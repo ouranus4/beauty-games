@@ -805,6 +805,34 @@
   }
 
   /* ============================================================
+     ВІДЕО З YOUTUBE
+     Показуємо превʼю, а плеєр підвантажуємо тільки за кліком:
+     три вбудовані ролики тягнуть за собою мегабайти скриптів,
+     і сторінка відкривалася б помітно довше.
+     ============================================================ */
+  $$('.ytv').forEach(function (card) {
+    card.addEventListener('click', function () {
+      var id = card.getAttribute('data-yt');
+      if (!id || card.classList.contains('playing')) return;
+
+      var box = $('.ytv-ph', card);
+      if (!box) return;
+
+      var fr = document.createElement('iframe');
+      fr.src = 'https://www.youtube-nocookie.com/embed/' + id +
+               '?autoplay=1&rel=0&modestbranding=1';
+      fr.title = card.getAttribute('aria-label') || 'YouTube';
+      fr.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; picture-in-picture';
+      fr.allowFullscreen = true;
+      fr.loading = 'lazy';
+
+      box.innerHTML = '';
+      box.appendChild(fr);
+      card.classList.add('playing');
+    });
+  });
+
+  /* ============================================================
      ПЛАВНА ПРОКРУТКА З УРАХУВАННЯМ ЛИПКОЇ ШАПКИ
      ============================================================ */
   var HEAD = 92;   // висота липкої шапки
