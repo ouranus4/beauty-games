@@ -494,6 +494,7 @@
       }
 
       if (ctaEl) ctaEl.hidden = n < 1;
+      if (n > 0) document.dispatchEvent(new CustomEvent('bg:quiz'));
     };
 
     boxes.forEach(function (b) { b.addEventListener('change', recount); });
@@ -543,6 +544,7 @@
         hrt.classList.toggle('got', k <= cur);
       });
       if (pos) pos.textContent = cur + 1;
+      if (cur === steps.length - 1) document.dispatchEvent(new CustomEvent('bg:path-end'));
       if (prev) prev.disabled = cur === 0;
       if (next) {
         next.textContent = cur === steps.length - 1 ? 'До заявки →' : 'Далі →';
@@ -575,93 +577,109 @@
     var chrs = $$('.chr', picker);
     var done = $('#pickerDone');
     var doneName = $('#pickerName');
-    var dirSelect = $('#fDir');
+    var doneLead = $('#pickerLead');
+    var dirField = $('#fDir');
 
-    var choose = function (dir, silent) {
-      var card = null;
+    // Майстер часто працює в кількох напрямках: бровистка може ще
+    // робити макіяж. Тому вибір множинний, а не один із списку.
+    var chosen = [];
+
+    var listify = function (arr) {
+      if (arr.length === 1) return arr[0];
+      return arr.slice(0, -1).join(', ') + ' і ' + arr[arr.length - 1];
+    };
+
+    var paint = function (silent) {
+      var heroes = [], full = [];
       chrs.forEach(function (c) {
-        var on = c.getAttribute('data-dir') === dir;
+        var on = chosen.indexOf(c.getAttribute('data-dir')) > -1;
         c.classList.toggle('on', on);
-        if (on) card = c;
+        c.setAttribute('aria-pressed', on ? 'true' : 'false');
+        if (on) {
+          heroes.push(c.getAttribute('data-hero') || c.getAttribute('data-dir'));
+          full.push(c.getAttribute('data-form') || c.getAttribute('data-dir'));
+        }
       });
-      if (done && doneName) {
-        doneName.textContent = (card && card.getAttribute('data-hero')) || dir;
-        done.hidden = false;
+
+      if (done) done.hidden = !chosen.length;
+      if (doneName) doneName.textContent = listify(heroes);
+      if (doneLead) {
+        doneLead.firstChild.nodeValue =
+          heroes.length > 1 ? 'Ваші персонажі — ' : 'Ваш персонаж — ';
       }
-      if (dirSelect) {
-        // На картці підпис коротший, ніж у списку форми
-        // («Перманент» проти «Перманентний макіяж») — беремо повну назву.
-        var full = (card && card.getAttribute('data-form')) || dir;
-        var hit = null;
-        $$('option', dirSelect).forEach(function (o) { if (o.textContent.trim() === full) hit = o; });
-        if (hit) dirSelect.value = hit.value;
+      if (dirField) dirField.value = full.join(', ');
+
+      store.set('bg_character', chosen.join('|'));
+      if (!silent) {
+        document.dispatchEvent(new CustomEvent('bg:character', { detail: { dirs: chosen.slice() } }));
       }
-      store.set('bg_character', dir);
-      if (!silent) document.dispatchEvent(new CustomEvent('bg:character', { detail: { dir: dir } }));
+    };
+
+    var toggle = function (dir) {
+      var i = chosen.indexOf(dir);
+      if (i > -1) chosen.splice(i, 1); else chosen.push(dir);
+      paint();
     };
 
     chrs.forEach(function (c) {
-      c.addEventListener('click', function () { choose(c.getAttribute('data-dir')); });
+      c.setAttribute('aria-pressed', 'false');
+      c.addEventListener('click', function () { toggle(c.getAttribute('data-dir')); });
     });
 
     var saved = store.get('bg_character');
-    if (saved) choose(saved, true);
+    if (saved) {
+      chosen = saved.split('|').filter(function (d) {
+        return chrs.some(function (c) { return c.getAttribute('data-dir') === d; });
+      });
+      paint(true);
+    }
   }
 
   /* ============================================================
-     ПРОФІЛІ ЕКСПЕРТІВ І ПАРТНЕРІВ
-     Картка показує головне, повний текст відкривається у вікні.
-     Текст лежить у розмітці — його видно пошуковикам і він
-     доступний, навіть якщо скрипт не завантажився.
+     ПРОГРЕС ПО СТОРІНЦІ
+     Крапки-віхи збоку: заповнюються в міру прокрутки, поточна
+     підсвічується. Дає відчуття руху по грі, а не гортання сайту.
      ============================================================ */
-  var bioModal = $('#bioModal');
-  if (bioModal) {
-    var bioTx = $('#bioTx');
-    var bioPhoto = $('#bioPhoto');
-    var bioBack = null;          // елемент, якому повертаємо фокус
+  var prog = $('#prog');
+  if (prog) {
+    var dots = $$('.prog-dot', prog);
+    var progFill = $('#progFill');
+    var targets = dots.map(function (d) {
+      return document.getElementById(d.getAttribute('href').slice(1));
+    });
 
-    var closeBio = function () {
-      bioModal.hidden = true;
-      document.body.classList.remove('bio-open');
-      if (bioTx) bioTx.innerHTML = '';
-      if (bioBack) { bioBack.focus(); bioBack = null; }
+    var syncProg = function () {
+      var doc = document.documentElement;
+      var max = doc.scrollHeight - window.innerHeight;
+      var pct = max > 0 ? Math.min(100, Math.max(0, window.scrollY / max * 100)) : 0;
+      if (progFill) progFill.style.height = pct + '%';
+
+      // поточним вважаємо останній блок, верх якого вже пройшов середину екрана
+      var cur = -1;
+      targets.forEach(function (t, i) {
+        if (t && t.getBoundingClientRect().top <= window.innerHeight * 0.5) cur = i;
+      });
+      dots.forEach(function (d, i) {
+        d.classList.toggle('done', i < cur);
+        d.classList.toggle('on', i === cur);
+      });
+      prog.classList.toggle('show', window.scrollY > 240);
     };
 
-    var openBio = function (card) {
-      var src = document.getElementById(card.getAttribute('data-bio'));
-      if (!src || !bioTx) return;
+    window.addEventListener('scroll', syncProg, { passive: true });
+    window.addEventListener('resize', syncProg);
+    syncProg();
 
-      bioBack = card;
-      bioTx.innerHTML = src.innerHTML;
-
-      var img = $('img', card);
-      if (bioPhoto && img) {
-        bioPhoto.src = img.getAttribute('src');
-        bioPhoto.alt = img.getAttribute('alt') || '';
-        bioPhoto.classList.toggle('is-logo', img.classList.contains('is-logo'));
-      }
-
-      var nm = $('.bio-nm', bioTx);
-      if (nm) nm.id = 'bioTitle';
-
-      bioModal.hidden = false;
-      document.body.classList.add('bio-open');
-      if (bioTx) bioTx.scrollTop = 0;
-      var x = $('.bio-x', bioModal);
-      if (x) x.focus();
+    // Пройдений крок позначається золотом і лишається таким: видно,
+    // що саме ви вже зробили, а не просто до чого догортали.
+    var markStep = function (href) {
+      dots.forEach(function (d) {
+        if (d.getAttribute('href') === href) d.classList.add('hit');
+      });
     };
-
-    $$('.pcard').forEach(function (card) {
-      card.addEventListener('click', function () { openBio(card); });
-    });
-
-    $$('[data-bio-close]', bioModal).forEach(function (el) {
-      el.addEventListener('click', closeBio);
-    });
-
-    document.addEventListener('keydown', function (e) {
-      if (e.key === 'Escape' && !bioModal.hidden) closeBio();
-    });
+    document.addEventListener('bg:character', function () { markStep('#picker'); });
+    document.addEventListener('bg:quiz', function () { markStep('#about'); });
+    document.addEventListener('bg:path-end', function () { markStep('#format'); });
   }
 
   /* ============================================================
