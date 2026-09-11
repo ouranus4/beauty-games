@@ -1,0 +1,217 @@
+/* ============================================================
+   BEAUTY GAMES — ПІКСЕЛЬНИЙ ШАР
+   Підключається після styles.css і нічого в ній не переписує:
+   тут тільки кнопки, іконки, курсори, вхідний екран і два
+   світлі блоки. Решта сайту лишається такою, як була.
+   ============================================================ */
+
+:root{
+  --px:3px;
+  --px-ink:#1B0E18;
+  --cream:#FFF2F8;
+  --cream-2:#FFE6F2;
+  --paper:#FFFFFF;
+  --pink:#FF8DC7;
+  --pink-lt:#FFC9E4;
+  --pink-pale:#FFE7F3;
+}
+
+[hidden]{display:none!important}
+
+/* ============================================================
+   КУРСОРИ
+   ============================================================ */
+html,body{
+  cursor:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 16 16' shape-rendering='crispEdges'%3E%3Cpath fill='%23ffffff' d='M1 1h1v1h1v1h1v1h1v1h1v1h1v1h1v1h1v1h1v1H8v1h1v1h1v1h1v1h-1v1h-1v-1h-1v-1h-1v-1h-1v-1H5v1H4v1H3v1H2v-1H1z'/%3E%3Cpath fill='%23E6007E' d='M2 2h1v1h1v1h1v1h1v1h1v1h1v1h1v1h1v1H7v1h1v1h1v1h1v1h-1v-1h-1v-1h-1v-1h-1v-1H4v1H3v1H2z'/%3E%3C/svg%3E") 2 2, auto;
+}
+a,button,.btn,.tile,.acc-btn,label,select,input[type=checkbox],.px-btn,
+.table-tabs button,.sfx-btn,.nav-burger,.js-pick{
+  cursor:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 16 16' shape-rendering='crispEdges'%3E%3Cpath fill='%23ffffff' d='M5 1h3v1h1v4h1V5h2v1h1v1h1v6h-1v2h-1v1H6v-1H5v-1H4v-2H3V9h2v1h1V2h-1z'/%3E%3Cpath fill='%23E6007E' d='M6 2h1v8h1V6h1v4h1V7h1v3h1V8h1v5h-1v2H7v-1H6v-1H5v-2H4v-1h1v1h1z'/%3E%3C/svg%3E") 6 1, pointer;
+}
+
+/* ============================================================
+   ПІКСЕЛЬНІ КНОПКИ
+   Чанкові: жорстка тінь без розмиття, нульові скруглення,
+   при натисканні кнопка втискається — тінь зникає.
+   ============================================================ */
+.btn{
+  font-family:"Pixelify Sans",monospace;font-size:17px;font-weight:400;
+  letter-spacing:.02em;word-spacing:.22em;text-transform:none;
+  padding:12px 24px;border-radius:0;
+  border:var(--px) solid var(--px-ink);
+  box-shadow:4px 4px 0 var(--px-ink);
+  transition:transform .06s linear, box-shadow .06s linear, background .12s;
+}
+.btn:hover{transform:none}
+.btn:active{transform:translate(4px,4px);box-shadow:0 0 0 var(--px-ink)}
+.btn-primary{background:var(--magenta);color:#fff}
+.btn-primary:hover{background:var(--magenta-hot)}
+[data-page="partners"] .btn-primary{background:var(--cyan-deep);color:#032630}
+.btn-ghost{background:var(--paper);color:var(--px-ink);border-color:var(--px-ink);
+  -webkit-backdrop-filter:none;backdrop-filter:none}
+.btn-ghost:hover{background:var(--pink-lt);border-color:var(--px-ink)}
+.btn-sm{padding:8px 15px;font-size:14px;box-shadow:3px 3px 0 var(--px-ink)}
+.btn-sm:active{transform:translate(3px,3px)}
+
+.nav-switch{
+  font-family:"Pixelify Sans",monospace;font-size:14px;font-weight:400;
+  text-transform:none;letter-spacing:.02em;border-radius:0;
+  background:var(--paper);color:var(--px-ink);
+  border:2px solid var(--px-ink);box-shadow:3px 3px 0 var(--px-ink);
+}
+.nav-switch:hover{background:var(--pink-lt)}
+
+.nav-burger{border-radius:0;border:2px solid var(--px-ink);background:var(--pink-lt);box-shadow:3px 3px 0 var(--px-ink)}
+.burger-lines i{background:var(--px-ink)}
+.burger-txt{font-family:"Pixelify Sans",monospace;font-size:13px;color:var(--px-ink)}
+
+.mobile-bar .tg{border-radius:0;border:var(--px) solid var(--px-ink);
+  background:var(--pink-lt);box-shadow:3px 3px 0 var(--px-ink)}
+.mobile-bar .tg svg{fill:var(--px-ink)}
+
+.sfx-btn{border-radius:0;border:2px solid var(--px-ink);background:var(--paper);box-shadow:3px 3px 0 var(--px-ink)}
+.sfx-btn .bars i{background:var(--px-ink)}
+.sfx-btn.on{background:var(--magenta)}
+.sfx-btn.on .bars i{background:#fff}
+
+/* ============================================================
+   ПІКСЕЛЬНІ ІКОНКИ
+   Без розмиття і без неонового ореолу — інакше піксель мажеться.
+   ============================================================ */
+.icon{
+  shape-rendering:crispEdges;image-rendering:pixelated;
+  color:var(--accent-lt);filter:none;
+  transition:transform .1s steps(2), color .1s;
+}
+.tile:hover .icon,.tcard:hover .icon{transform:translateY(-2px);color:#fff;filter:none}
+.icon-chip{
+  border-radius:0;background:rgba(var(--accent-rgb),.16);
+  border:2px solid rgba(var(--accent-rgb),.6);
+  box-shadow:3px 3px 0 rgba(var(--accent-rgb),.35);
+}
+.tile{border-radius:0;box-shadow:3px 3px 0 rgba(var(--accent-rgb),.3)}
+.tile:hover{box-shadow:5px 5px 0 rgba(var(--accent-rgb),.6);transform:translate(-2px,-2px)}
+
+/* ============================================================
+   СВІТЛІ БЛОКИ
+   Програма й питання — найтекстовіші місця сторінки, на світлому
+   тлі вони читаються легше, а сторінка отримує повітря.
+   ============================================================ */
+#program,#faq{
+  background:var(--cream);
+  border-top:var(--px) solid var(--px-ink);
+  border-bottom:var(--px) solid var(--px-ink);
+}
+#program .h-lg,#faq .h-lg,#program h3,#program h4,#faq h3{color:var(--px-ink);text-shadow:none}
+#program .glow,#faq .glow{color:var(--magenta);text-shadow:none}
+#program .lede,#faq .lede{color:#6B4E60}
+#program .lede b,#program .lede strong{color:var(--px-ink)}
+#program .eyebrow,#faq .eyebrow{
+  display:inline-block;align-self:flex-start;
+  font-family:"Pixelify Sans",monospace;font-size:13px;
+  letter-spacing:.08em;color:var(--px-ink);text-shadow:none;
+  background:var(--pink-lt);border:2px solid var(--px-ink);padding:4px 11px;
+  box-shadow:3px 3px 0 var(--px-ink);
+}
+#program .sec-rule,#faq .sec-rule{
+  height:6px;width:120px;border:2px solid var(--px-ink);
+  background:repeating-linear-gradient(90deg,var(--magenta) 0 10px,var(--pink-lt) 10px 20px);
+}
+#program .acc-item,#faq .acc-item{
+  background:var(--paper);border:var(--px) solid var(--px-ink);border-radius:0;
+  box-shadow:3px 3px 0 var(--px-ink);
+}
+#program .acc-item.open,#faq .acc-item.open{box-shadow:5px 5px 0 var(--px-ink)}
+#program .acc-btn,#faq .acc-btn{
+  color:var(--px-ink);font-family:"Pixelify Sans",monospace;font-size:16px;font-weight:400;
+}
+#program .acc-item.open .acc-btn,#faq .acc-item.open .acc-btn{
+  background:var(--pink-lt);border-bottom:var(--px) solid var(--px-ink);
+}
+#program .acc-btn .mi{
+  min-width:44px;height:30px;border-radius:0;display:grid;place-items:center;
+  font-family:"Pixelify Sans",monospace;font-size:14px;color:#fff;
+  background:var(--magenta);border:2px solid var(--px-ink);text-shadow:none;
+}
+#program .acc-btn .ic,#faq .acc-btn .ic{
+  border-radius:0;background:var(--paper);border:2px solid var(--px-ink);
+}
+#program .acc-btn .ic::before,#faq .acc-btn .ic::before{background:var(--px-ink);width:12px;height:3px}
+#program .acc-btn .ic::after,#faq .acc-btn .ic::after{background:var(--px-ink);width:3px;height:12px}
+#program .acc-item.open .acc-btn .ic,#faq .acc-item.open .acc-btn .ic{background:var(--paper);transform:none}
+#program .acc-panel-in,#faq .acc-panel-in{color:#6B4E60}
+#program .acc-panel-in li::before,#faq .acc-panel-in li::before{
+  background:var(--magenta);box-shadow:none;width:8px;height:8px;border-radius:0;
+}
+#program .glass{
+  background:var(--paper);border:var(--px) solid var(--px-ink);border-radius:0;
+  box-shadow:5px 5px 0 var(--px-ink);
+  -webkit-backdrop-filter:none;backdrop-filter:none;
+}
+#program .glass p{color:#6B4E60}
+#program .label-accent{color:var(--magenta);text-shadow:none}
+#program .ph,#faq .ph{background:var(--cream-2);border:var(--px) dashed var(--px-ink);border-radius:0}
+#program .ph .s{color:#9B8391}
+
+/* ============================================================
+   ВХІДНИЙ ЕКРАН — ретро-вікно
+   ============================================================ */
+.px-win{background:var(--paper);border:var(--px) solid var(--px-ink);
+  box-shadow:5px 5px 0 var(--px-ink);overflow:hidden}
+.px-win-bar{display:flex;align-items:center;justify-content:space-between;gap:10px;
+  background:var(--magenta);border-bottom:var(--px) solid var(--px-ink);padding:7px 10px}
+.px-win-title{font-family:"Pixelify Sans",monospace;font-size:14px;color:#fff;
+  letter-spacing:.04em;word-spacing:.25em;line-height:1}
+.px-win-btns{display:flex;gap:4px}
+.px-win-btns i{width:13px;height:13px;background:var(--cream);border:2px solid var(--px-ink);display:block}
+.px-win-body{padding:26px 22px}
+
+.px-btn{
+  font-family:"Pixelify Sans",monospace;font-size:17px;word-spacing:.25em;
+  color:var(--px-ink);background:var(--pink-lt);border:var(--px) solid var(--px-ink);
+  padding:11px 24px;box-shadow:4px 4px 0 var(--px-ink);border-radius:0;cursor:pointer;
+  transition:transform .06s linear, box-shadow .06s linear, background .12s;
+}
+.px-btn:hover{background:var(--pink)}
+.px-btn:active{transform:translate(4px,4px);box-shadow:0 0 0 var(--px-ink)}
+.px-btn-lg{font-size:21px;padding:14px 34px}
+
+.preloader{
+  position:fixed;inset:0;z-index:200;background:var(--cream);
+  display:flex;align-items:center;justify-content:center;padding:20px;
+  background-image:
+    linear-gradient(rgba(255,141,199,.2) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,141,199,.2) 1px,transparent 1px);
+  background-size:16px 16px;
+  animation:none;              /* ховається лише за кліком «Почати» */
+}
+.preloader.done{animation:plOut .35s steps(4) forwards}
+@keyframes plOut{to{opacity:0;visibility:hidden;pointer-events:none}}
+
+.pl-win{width:min(440px,100%)}
+.pl-win .px-win-body{display:grid;place-items:center;text-align:center;min-height:236px}
+.pl-hearts{display:flex;gap:10px;margin-bottom:18px}
+.pl-hearts svg{width:22px;height:22px;color:var(--magenta);shape-rendering:crispEdges}
+.pl-hearts svg:nth-child(1){animation:plBeat 1.05s steps(2) infinite}
+.pl-hearts svg:nth-child(2){animation:plBeat 1.05s steps(2) .35s infinite}
+.pl-hearts svg:nth-child(3){animation:plBeat 1.05s steps(2) .7s infinite}
+@keyframes plBeat{0%,100%{opacity:.28;transform:translateY(0)}50%{opacity:1;transform:translateY(-3px)}}
+.pl-label{font-family:"Pixelify Sans",monospace;font-size:19px;color:var(--px-ink);
+  margin-bottom:14px;word-spacing:.28em}
+.pl-bar{width:min(300px,72vw);height:22px;background:var(--paper);
+  border:var(--px) solid var(--px-ink);padding:3px}
+.pl-bar-fill{display:block;height:100%;width:0;transition:width .2s steps(6);
+  background:repeating-linear-gradient(90deg,var(--magenta) 0 8px,var(--magenta-lt) 8px 14px)}
+.pl-pct{font-family:"Pixelify Sans",monospace;font-size:15px;color:var(--magenta);margin-top:10px}
+.pl-start{display:grid;place-items:center;gap:14px}
+.pl-mark svg{width:40px;height:40px;color:var(--magenta);shape-rendering:crispEdges;
+  animation:plSpin 2.4s steps(8) infinite}
+@keyframes plSpin{to{transform:rotate(360deg)}}
+.pl-ask{font-family:"Pixelify Sans",monospace;font-size:29px;color:var(--px-ink);
+  line-height:1.15;word-spacing:.28em}
+.pl-hint{font-family:"Pixelify Sans",monospace;font-size:13px;color:#9B8391;word-spacing:.28em}
+
+@media (prefers-reduced-motion:reduce){
+  .pl-hearts svg,.pl-mark svg{animation:none}
+  .pl-bar-fill{transition:none}
+}
