@@ -651,7 +651,6 @@
       if (helloDone) helloDone.hidden = !v;
       if (helloName) helloName.textContent = v;
       if (formName && v && !formName.value) formName.value = v;
-      setPick('pickRowName', 'pickName', v);
       store.set('bg_name', v);
       if (v && !silent) document.dispatchEvent(new CustomEvent('bg:hello', { detail: { name: v } }));
     };
@@ -742,14 +741,21 @@
           }));
           var nm = (store.get('bg_name') || '').trim();
           var exp = (store.get('bg_exp') || '').trim();
-          whoName.textContent = (nm ? nm + ', ' : '') + roles + (exp ? ' · ' + exp + ' у ніші' : '');
+          whoName.textContent = (nm ? nm + ', ваш персонаж — ' : 'Ваш персонаж — ') + roles;
+          var whoExp = $('#forkWhoExp');
+          if (whoExp) {
+            whoExp.textContent = exp ? exp + ' у beauty' : '';
+            whoExp.hidden = !exp;
+          }
           whoPain.innerHTML = picked.map(function (c) {
             return '<span>' + (c.getAttribute('data-pain') || '') + '</span>';
           }).join('');
           if (whoBack) whoBack.hidden = true;
           if (who) who.classList.add('on');
         } else {
-          whoName.textContent = 'Оберіть персонажа у кроці 1';
+          whoName.textContent = 'Оберіть персонажа у кроці 2';
+          var whoExpOff = $('#forkWhoExp');
+          if (whoExpOff) whoExpOff.hidden = true;
           whoPain.textContent = 'Тоді покажемо, які задачі типові саме для вашого напрямку.';
           if (whoBack) whoBack.hidden = false;
           if (who) who.classList.remove('on');
@@ -874,7 +880,7 @@
     var toast = function (txt) {
       var t = document.createElement('div');
       t.className = 'toast';
-      t.innerHTML = '<b>Записали у ваше досьє</b><span>' + txt + '</span>';
+      t.innerHTML = '<b>Записали у вашу карту</b><span>' + txt + '</span>';
       document.body.appendChild(t);
       requestAnimationFrame(function () { t.classList.add('in'); });
       setTimeout(function () {

@@ -2311,3 +2311,12 @@ body.bio-open{overflow:hidden}
 }
 .sec-light .founder .vid-note{color:#120D18}
 .sec-light .founder .vid-sub{color:#6B6478}
+
+/* Стаж у beauty поруч із персонажем — окремою плашкою. */
+.fork-who-exp{
+  align-self:flex-start;padding:5px 13px;border-radius:var(--r-pill);
+  background:rgba(255,255,255,.1);
+  font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:.12em;
+  text-transform:uppercase;color:#fff;
+}
+.fork-who.on .fork-who-exp{background:rgba(255,255,255,.22)}
