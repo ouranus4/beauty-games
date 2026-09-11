@@ -793,3 +793,182 @@ a,button,.btn,.tile,.acc-btn,label,select,input[type=checkbox],.px-btn,
   .path-runner{width:24px;height:24px}
   .path-heart{width:14px;height:14px}
 }
+
+/* ============================================================
+   КАРТКИ ЕКСПЕРТІВ І ПАРТНЕРІВ
+   На картці одразу видно, хто це і чим займається: тег, ім'я,
+   напрямок і два факти. Повний профіль відкривається у вікні.
+   ============================================================ */
+.pgrid{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;
+}
+.pcard{
+  display:flex;flex-direction:column;text-align:left;padding:0;
+  background:rgba(255,255,255,.045);
+  border:2px solid rgba(255,255,255,.16);
+  box-shadow:4px 4px 0 rgba(var(--accent-rgb),.3);
+  overflow:hidden;
+  transition:transform .12s ease, box-shadow .12s ease, border-color .16s ease;
+}
+.pcard:hover{
+  transform:translate(-2px,-2px);border-color:rgba(var(--accent-rgb),.7);
+  box-shadow:7px 7px 0 rgba(var(--accent-rgb),.55);
+}
+.pcard:active{transform:translate(2px,2px);box-shadow:0 0 0 rgba(var(--accent-rgb),.55)}
+.pcard:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+
+.pcard-ph{display:block;aspect-ratio:4/5;overflow:hidden;background:#0E0810}
+.pcard-ph img{
+  width:100%;height:100%;object-fit:cover;object-position:50% 20%;display:block;
+  filter:grayscale(1) contrast(1.05);
+  transition:filter .28s ease, transform .4s ease;
+}
+.pcard:hover .pcard-ph img{filter:none;transform:scale(1.03)}
+/* Логотипи вже обрізані по знаку і мають рідне тло — не знебарвлюємо. */
+.pcard-ph img.is-logo{object-fit:cover;object-position:center;filter:none}
+.pcard:hover .pcard-ph img.is-logo{transform:none}
+
+.pcard-body{display:flex;flex-direction:column;gap:6px;padding:16px 16px 18px;flex:1}
+.pcard-tag{
+  align-self:flex-start;font-family:"JetBrains Mono",monospace;font-size:10px;
+  letter-spacing:1.5px;text-transform:uppercase;color:#fff;
+  background:var(--accent);padding:3px 8px;
+}
+.pcard-nm{
+  font-family:"Montserrat",sans-serif;font-weight:900;font-size:17px;
+  line-height:1.15;color:var(--white);letter-spacing:-.01em;
+}
+.pcard-rl{font-size:13.5px;line-height:1.4;color:var(--muted)}
+.pcard-facts{display:flex;flex-direction:column;gap:5px;margin-top:4px}
+.pcard-facts i{
+  position:relative;padding-left:20px;font-style:normal;
+  font-size:12.5px;line-height:1.35;color:var(--text);
+}
+.pcard-facts i::before{
+  content:"";position:absolute;left:0;top:.22em;width:12px;height:12px;
+  background:var(--accent);
+  -webkit-mask:var(--check) center/contain no-repeat;
+          mask:var(--check) center/contain no-repeat;
+}
+.pcard-more{
+  margin-top:auto;padding-top:12px;
+  font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:1.3px;
+  text-transform:uppercase;color:var(--accent-lt);
+}
+.pcard-more::after{content:" →"}
+
+/* Партнери — логотипи ширші, картки нижчі */
+.pgrid-logos{grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}
+.pgrid-logos .pcard-ph{aspect-ratio:16/10}
+
+/* ---------- вікно з повним профілем ---------- */
+.bio{position:fixed;inset:0;z-index:240;display:grid;place-items:center;padding:20px}
+.bio[hidden]{display:none}
+.bio-back{position:absolute;inset:0;background:rgba(6,2,8,.86)}
+.bio-win{
+  position:relative;display:grid;grid-template-columns:260px 1fr;
+  width:min(880px,100%);max-height:min(86vh,760px);
+  background:#120A14;border:2px solid #fff;
+  box-shadow:8px 8px 0 rgba(var(--accent-rgb),.85);
+  overflow:hidden;
+}
+.bio-photo{overflow:hidden;background:#0E0810}
+.bio-photo img{width:100%;height:100%;object-fit:cover;object-position:50% 18%;display:block}
+.bio-photo img.is-logo{object-fit:contain;padding:18px;background:#0E0810}
+.bio-tx{padding:26px 28px 28px;overflow-y:auto}
+.bio-x{
+  position:absolute;top:8px;right:8px;z-index:2;
+  width:36px;height:36px;display:grid;place-items:center;
+  font-size:22px;line-height:1;color:#fff;
+  background:var(--accent);border:2px solid #fff;
+}
+.bio-x:hover{background:var(--magenta-hot)}
+
+.bio-tag{
+  display:inline-block;font-family:"JetBrains Mono",monospace;font-size:10px;
+  letter-spacing:1.5px;text-transform:uppercase;color:#fff;
+  background:var(--accent);padding:3px 9px;
+}
+.bio-nm{
+  margin:10px 0 4px;font-family:"Montserrat",sans-serif;font-weight:900;
+  font-size:clamp(21px,3vw,28px);line-height:1.1;color:var(--white);letter-spacing:-.015em;
+}
+.bio-rl{
+  margin:0 0 14px;font-family:"JetBrains Mono",monospace;font-size:11px;
+  letter-spacing:1.2px;text-transform:uppercase;color:var(--accent-lt);
+}
+.bio-lead{margin:0 0 14px;font-size:15px;line-height:1.6;color:var(--text)}
+.bio-list{margin:0 0 14px;padding:0;list-style:none;display:grid;gap:8px}
+.bio-list li{
+  position:relative;padding-left:24px;font-size:14px;line-height:1.5;color:var(--text);
+}
+.bio-list li::before{
+  content:"";position:absolute;left:0;top:.28em;width:13px;height:13px;
+  background:var(--accent);
+  -webkit-mask:var(--check) center/contain no-repeat;
+          mask:var(--check) center/contain no-repeat;
+}
+.bio-q{
+  margin:0 0 14px;padding:13px 16px;
+  background:rgba(var(--accent-rgb),.14);
+  border-left:4px solid var(--accent);
+  font-size:14.5px;line-height:1.55;color:#fff;font-style:italic;
+}
+.bio-q::before{content:"«"}
+.bio-q::after{content:"»"}
+.bio-tail{margin:0 0 16px;font-size:14px;line-height:1.6;color:var(--muted)}
+.bio-ig{
+  display:inline-block;font-family:"JetBrains Mono",monospace;font-size:12px;
+  letter-spacing:.6px;color:var(--accent-lt);text-decoration:none;
+  border-bottom:2px solid rgba(var(--accent-rgb),.5);padding-bottom:2px;
+}
+.bio-ig:hover{color:#fff;border-color:#fff}
+
+body.bio-open{overflow:hidden}
+
+@media (max-width:760px){
+  /* На телефоні вікно — на весь екран; centering лишав його висіти
+     посередині з порожнечею знизу. */
+  .bio{padding:0;place-items:stretch}
+  .bio-win{
+    grid-template-columns:1fr;width:100%;max-height:100vh;height:100%;
+    border-width:0;box-shadow:none;
+  }
+  .bio-photo{height:180px}
+  .bio-photo img{object-position:50% 16%}
+  .bio-tx{padding:20px 18px 32px}
+  .pgrid{grid-template-columns:repeat(2,1fr);gap:10px}
+  .pcard-body{padding:12px 12px 14px;gap:5px}
+  .pcard-nm{font-size:15px}
+  .pcard-rl{font-size:12.5px}
+  .pcard-facts i{font-size:11.5px;padding-left:18px}
+  .pcard-more{font-size:10px;padding-top:10px}
+  .pgrid-logos{grid-template-columns:1fr}
+}
+
+/* ============================================================
+   КОМАНДА СУПРОВОДУ — компактний перелік ролей
+   ============================================================ */
+.crew{margin-top:16px;padding:20px 22px}
+.crew-k{
+  display:block;font-family:"JetBrains Mono",monospace;font-size:10.5px;
+  letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);margin-bottom:12px;
+}
+.crew-list{display:flex;flex-wrap:wrap;gap:8px}
+.crew-list span{
+  display:inline-flex;align-items:baseline;gap:7px;
+  padding:7px 12px;background:rgba(255,255,255,.05);
+  border:2px solid rgba(255,255,255,.14);
+  font-size:13px;color:var(--text);
+}
+.crew-list b{
+  font-family:"JetBrains Mono",monospace;font-size:9.5px;letter-spacing:1px;
+  text-transform:uppercase;color:var(--accent-lt);font-weight:400;
+}
+
+/* Постер відеозвернення — портрет авторки, поки немає самого відео. */
+.vid-poster{
+  position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
+  object-position:50% 16%;filter:grayscale(.5) brightness(.55);
+}
+.vid-frame .vid-ph{position:relative;z-index:1}

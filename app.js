@@ -670,6 +670,62 @@
   }
 
   /* ============================================================
+     ПРОФІЛІ ЕКСПЕРТІВ І ПАРТНЕРІВ
+     Картка показує головне, повний текст відкривається у вікні.
+     Текст лежить у розмітці — його видно пошуковикам і він
+     доступний, навіть якщо скрипт не завантажився.
+     ============================================================ */
+  var bioModal = $('#bioModal');
+  if (bioModal) {
+    var bioTx = $('#bioTx');
+    var bioPhoto = $('#bioPhoto');
+    var bioBack = null;          // елемент, якому повертаємо фокус
+
+    var closeBio = function () {
+      bioModal.hidden = true;
+      document.body.classList.remove('bio-open');
+      if (bioTx) bioTx.innerHTML = '';
+      if (bioBack) { bioBack.focus(); bioBack = null; }
+    };
+
+    var openBio = function (card) {
+      var src = document.getElementById(card.getAttribute('data-bio'));
+      if (!src || !bioTx) return;
+
+      bioBack = card;
+      bioTx.innerHTML = src.innerHTML;
+
+      var img = $('img', card);
+      if (bioPhoto && img) {
+        bioPhoto.src = img.getAttribute('src');
+        bioPhoto.alt = img.getAttribute('alt') || '';
+        bioPhoto.classList.toggle('is-logo', img.classList.contains('is-logo'));
+      }
+
+      var nm = $('.bio-nm', bioTx);
+      if (nm) nm.id = 'bioTitle';
+
+      bioModal.hidden = false;
+      document.body.classList.add('bio-open');
+      if (bioTx) bioTx.scrollTop = 0;
+      var x = $('.bio-x', bioModal);
+      if (x) x.focus();
+    };
+
+    $$('.pcard').forEach(function (card) {
+      card.addEventListener('click', function () { openBio(card); });
+    });
+
+    $$('[data-bio-close]', bioModal).forEach(function (el) {
+      el.addEventListener('click', closeBio);
+    });
+
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && !bioModal.hidden) closeBio();
+    });
+  }
+
+  /* ============================================================
      ПЛАВНА ПРОКРУТКА З УРАХУВАННЯМ ЛИПКОЇ ШАПКИ
      ============================================================ */
   var HEAD = 92;   // висота липкої шапки

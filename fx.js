@@ -345,6 +345,8 @@
     if (e.target.closest('.chk')) { SFX.tap(); return; }
     if (e.target.closest('.chr')) { SFX.pick(); return; }
     if (e.target.closest('.pnode')) { SFX.pick(); return; }
+    if (e.target.closest('.pcard')) { SFX.open(); return; }
+    if (e.target.closest('[data-bio-close]')) { SFX.close(); return; }
     if (e.target.closest('.js-pick')) { SFX.pick(); return; }
     if (e.target.closest('.acc-btn')) {
       var item = e.target.closest('.acc-item');

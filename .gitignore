@@ -14,3 +14,4 @@ node_modules/
 .env.local
 __pycache__/
 *.pyc
+photos/
