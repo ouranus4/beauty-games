@@ -182,8 +182,8 @@ a{color:var(--accent-lt);text-decoration:none}
 .nav-outer{position:fixed;top:0;left:0;right:0;z-index:60;padding:14px 22px;transition:padding .25s ease}
 .nav-outer.scrolled{padding:8px 22px}
 .nav{
-  max-width:var(--maxw);margin:0 auto;display:flex;align-items:center;gap:18px;
-  padding:9px 9px 9px 18px;border-radius:999px;
+  max-width:var(--maxw);margin:0 auto;display:flex;align-items:center;gap:14px;
+  padding:9px 16px 9px 18px;border-radius:999px;
   background:linear-gradient(158deg,rgba(255,255,255,.10),rgba(255,255,255,.035));
   -webkit-backdrop-filter:blur(24px) saturate(160%);backdrop-filter:blur(24px) saturate(160%);
   border:1px solid rgba(255,255,255,.13);
@@ -196,8 +196,8 @@ a{color:var(--accent-lt);text-decoration:none}
   filter:blur(7px);
 }
 .nav > *{position:relative;z-index:2}
-.brand{display:flex;align-items:center;gap:11px;flex:0 1 auto;min-width:0;overflow:hidden}
-.brand svg{width:30px;height:30px;filter:drop-shadow(0 0 12px rgba(var(--accent-rgb),.8))}
+.brand{display:flex;align-items:center;gap:11px;flex:none}
+.brand-mark{width:26px;height:28px;flex:none;color:var(--white);filter:drop-shadow(0 0 12px rgba(var(--accent-rgb),.85))}
 .brand-tx{display:block;font-family:"Montserrat",sans-serif;font-weight:800;letter-spacing:.2em;font-size:11px;color:var(--white);line-height:1.1;white-space:nowrap}
 .brand-sb{display:block;font-family:"JetBrains Mono",monospace;font-size:7.5px;letter-spacing:.16em;color:var(--faint);margin-top:3px;white-space:nowrap}
 .nav-links{display:flex;gap:2px;margin-left:auto;align-items:center}
@@ -358,7 +358,7 @@ a{color:var(--accent-lt);text-decoration:none}
 }
 .acc-btn .tx{flex:1}
 .acc-btn .ic{
-  flex:none;width:26px;height:26px;border-radius:50%;display:grid;place-items:center;
+  position:relative;flex:none;width:26px;height:26px;border-radius:50%;display:grid;place-items:center;
   border:1px solid rgba(255,255,255,.16);background:rgba(255,255,255,.06);
   transition:transform .3s ease,background .2s;
 }
@@ -435,6 +435,13 @@ a{color:var(--accent-lt);text-decoration:none}
 .pack .kicker{font-family:"JetBrains Mono",monospace;font-size:9.5px;letter-spacing:.17em;text-transform:uppercase;color:var(--accent-lt)}
 .pack h3{font-family:"Montserrat",sans-serif;font-weight:900;font-size:32px;color:var(--white);text-transform:uppercase;margin:9px 0 6px;letter-spacing:-.015em}
 .pack .tagline{font-size:13.5px;color:var(--muted);min-height:42px}
+.pack .benefit{display:flex;align-items:center;gap:14px;margin-top:22px;padding:16px 18px;border-radius:18px;
+  background:linear-gradient(120deg,rgba(var(--accent-rgb),.22),rgba(var(--accent-rgb),.05));
+  border:1px solid rgba(var(--accent-rgb),.34)}
+.pack .benefit-badge{font-family:"Montserrat",sans-serif;font-weight:900;font-size:30px;letter-spacing:-.03em;
+  color:var(--white);text-shadow:0 0 24px rgba(var(--accent-rgb),.9);font-variant-numeric:tabular-nums;flex:none}
+.pack .benefit-txt{font-size:12.5px;color:var(--text);line-height:1.4}
+.pack .benefit-note{margin-top:12px;font-size:12px;color:var(--muted);line-height:1.5}
 .pack .price-old{font-size:14px;color:var(--faint);text-decoration:line-through;margin-top:18px}
 .pack .price{
   font-family:"Montserrat",sans-serif;font-weight:900;font-size:46px;color:var(--white);
@@ -585,6 +592,12 @@ footer{position:relative;z-index:2;border-top:1px solid var(--line-soft);padding
 /* ============================================================
    АДАПТИВ
    ============================================================ */
+/* Підпис під назвою з'їдав ширину шапки і витісняв назву бренда */
+@media (max-width:1300px){ .brand-sb{display:none} }
+@media (max-width:1120px){
+  .nav-links a{padding:10px 9px;font-size:11px}
+  .nav{gap:10px}
+}
 @media (max-width:1040px){
   .nav-links{display:none}
   .nav-burger{display:grid}
@@ -643,6 +656,12 @@ footer{position:relative;z-index:2;border-top:1px solid var(--line-soft);padding
   transition:border-color .2s,background .2s,box-shadow .2s;
 }
 .sfx-btn:hover{background:rgba(255,255,255,.12);border-color:rgba(255,255,255,.28)}
+.sfx-btn:not(.on){border-color:rgba(var(--accent-rgb),.4);animation:sfxCall 2.6s ease-in-out 3 2s}
+@keyframes sfxCall{
+  0%,100%{box-shadow:0 0 0 0 rgba(var(--accent-rgb),0)}
+  40%{box-shadow:0 0 0 7px rgba(var(--accent-rgb),.22)}
+  70%{box-shadow:0 0 0 12px rgba(var(--accent-rgb),0)}
+}
 .sfx-btn.on{
   border-color:rgba(var(--accent-rgb),.55);
   background:linear-gradient(180deg,rgba(var(--accent-rgb),.3),rgba(var(--accent-rgb),.08));
@@ -731,26 +750,15 @@ footer{position:relative;z-index:2;border-top:1px solid var(--line-soft);padding
 .preloader.done{animation:plOut .4s cubic-bezier(.4,0,.2,1) forwards}
 @keyframes plOut{to{opacity:0;visibility:hidden;pointer-events:none}}
 
-.pl-core{position:relative;width:132px;height:132px;display:grid;place-items:center}
-.pl-ring{position:absolute;inset:0;width:100%;height:100%;transform:rotate(-90deg)}
-.pl-track{fill:none;stroke:rgba(255,255,255,.07);stroke-width:2}
-.pl-arc{
-  fill:none;stroke:url(#plGrad);stroke-width:2.5;stroke-linecap:round;
-  stroke-dasharray:327;stroke-dashoffset:327;
-  filter:drop-shadow(0 0 8px rgba(230,0,126,.95)) drop-shadow(0 0 22px rgba(230,0,126,.55));
-  animation:plArc 1.15s cubic-bezier(.65,0,.35,1) forwards;
+.pl-inf{width:min(62vw,250px);height:auto;overflow:visible}
+.pl-inf-track{fill:none;stroke:rgba(255,255,255,.07);stroke-width:5;stroke-linecap:round}
+.pl-inf-run{
+  fill:none;stroke:url(#plGrad);stroke-width:5;stroke-linecap:round;
+  stroke-dasharray:120 560;stroke-dashoffset:680;
+  filter:drop-shadow(0 0 7px rgba(230,0,126,1)) drop-shadow(0 0 20px rgba(230,0,126,.65));
+  animation:plRun 1.9s cubic-bezier(.55,.1,.45,.9) infinite;
 }
-@keyframes plArc{
-  0%{stroke-dashoffset:327}
-  70%{stroke-dashoffset:0}
-  100%{stroke-dashoffset:0}
-}
-.pl-mark{
-  width:52px;height:52px;opacity:0;transform:scale(.82);
-  filter:drop-shadow(0 0 16px rgba(230,0,126,.9));
-  animation:plMark .7s cubic-bezier(.34,1.4,.64,1) .42s forwards;
-}
-@keyframes plMark{to{opacity:1;transform:scale(1)}}
+@keyframes plRun{to{stroke-dashoffset:0}}
 .pl-word{
   font-family:"Montserrat",sans-serif;font-weight:800;font-size:12px;
   letter-spacing:.6em;text-indent:.6em;text-transform:uppercase;color:rgba(255,255,255,.75);
@@ -760,6 +768,7 @@ footer{position:relative;z-index:2;border-top:1px solid var(--line-soft);padding
 
 @media (prefers-reduced-motion:reduce){
   .preloader{animation:none;opacity:0;visibility:hidden;pointer-events:none}
+  .pl-inf-run{animation:none;stroke-dashoffset:0;stroke-dasharray:none}
 }
 
 /* ============================================================
@@ -824,4 +833,16 @@ footer{position:relative;z-index:2;border-top:1px solid var(--line-soft);padding
   .seatrow{grid-template-columns:78px minmax(0,1fr) 62px;gap:10px}
   .pl-core{width:108px;height:108px}
   .pl-word{font-size:10px;letter-spacing:.42em}
+}
+
+/* На вузьких екранах схеми ширші за екран — показуємо, що їх можна
+   протягнути вбік, інакше половина інфографіки лишається непоміченою. */
+@media (max-width:760px){
+  .info-scroll{position:relative}
+  .info-scroll::after{
+    content:"";position:sticky;right:0;top:0;float:right;width:44px;height:100%;
+    pointer-events:none;margin-left:-44px;
+    background:linear-gradient(270deg,rgba(10,6,18,.9),transparent);
+  }
+  .info-cap::before{content:"↔ ";color:var(--accent-lt)}
 }

@@ -39,7 +39,7 @@
     } catch (e) {}
 
     master = AC.createGain();
-    master.gain.value = 0.85;
+    master.gain.value = 1.0;
     master.connect(AC.destination);
 
     // шимер-шина: коротка затримка з фільтром — дає «скляну» глибину
@@ -47,7 +47,7 @@
     d.delayTime.value = 0.105;
     var fb = AC.createGain(); fb.gain.value = 0.24;
     var lp = AC.createBiquadFilter(); lp.type = 'lowpass'; lp.frequency.value = 2800;
-    var wet = AC.createGain(); wet.gain.value = 0.34;
+    var wet = AC.createGain(); wet.gain.value = 0.42;
     d.connect(fb); fb.connect(lp); lp.connect(d);
     d.connect(wet); wet.connect(master);
     shimmer = d;
@@ -129,39 +129,48 @@
   }
 
   /* ---------- палітра звуків ---------- */
+  // Кожен звук — основний тон плюс тихий обертон октавою вище:
+  // від цього клац перестає бути сухим «ляпасом» і звучить дзвінко.
+  function ding(o) {
+    tone(o);
+    tone({ f: o.f * 2, to: o.to ? o.to * 2 : 0, dur: (o.dur || .12) * .7,
+           gain: (o.gain || .05) * .34, type: 'sine',
+           delay: o.delay || 0, space: true });
+  }
+
   var SFX = {
-    hover:  function () { tone({ f: 1760, to: 2093, dur: 0.045, gain: 0.014, type: 'sine' }); },
-    tap:    function () { tone({ f: 880,  to: 1320, dur: 0.07,  gain: 0.045, type: 'triangle', space: true }); },
-    open:   function () { tone({ f: 523,  to: 932,  dur: 0.13,  gain: 0.04,  type: 'sine', space: true }); },
-    close:  function () { tone({ f: 830,  to: 415,  dur: 0.1,   gain: 0.03,  type: 'sine' }); },
-    tab:    function () { tone({ f: 1046, dur: 0.05, gain: 0.035, type: 'triangle', space: true }); },
-    field:  function () { tone({ f: 1318, dur: 0.035, gain: 0.02, type: 'sine' }); },
-    reveal: function () { noise({ f: 700, to: 2600, dur: 0.3, gain: 0.008, q: 0.8 }); },
-    swoosh: function () { noise({ f: 2400, to: 380, dur: 0.42, gain: 0.02, q: 0.7, space: true }); },
-    tick:   function () { tone({ f: 2349, dur: 0.022, gain: 0.018, type: 'sine' }); },
+    hover:  function () { tone({ f: 1568, to: 2093, dur: 0.07, gain: 0.03, type: 'sine', space: true }); },
+    tap:    function () { ding({ f: 784, to: 1175, dur: 0.22, gain: 0.16, type: 'triangle', space: true }); },
+    open:   function () { ding({ f: 523, to: 1046, dur: 0.3,  gain: 0.14, type: 'triangle', space: true }); },
+    close:  function () { ding({ f: 880, to: 392,  dur: 0.24, gain: 0.11, type: 'triangle', space: true }); },
+    tab:    function () { ding({ f: 1046, dur: 0.18, gain: 0.12, type: 'triangle', space: true }); },
+    field:  function () { tone({ f: 1318, dur: 0.1, gain: 0.06, type: 'sine', space: true }); },
+    reveal: function () { noise({ f: 700, to: 2600, dur: 0.36, gain: 0.022, q: 0.8, space: true }); },
+    swoosh: function () { noise({ f: 2600, to: 320, dur: 0.5, gain: 0.05, q: 0.7, space: true }); },
+    tick:   function () { tone({ f: 2349, dur: 0.05, gain: 0.05, type: 'sine', space: true }); },
 
     // вибір пакета — висхідне арпеджіо
     pick: function () {
       [659.25, 830.61, 987.77, 1318.51].forEach(function (f, i) {
-        tone({ f: f, dur: 0.26, gain: 0.05, type: 'triangle', delay: i * 0.055, space: true });
+        ding({ f: f, dur: 0.42, gain: 0.15, type: 'triangle', delay: i * 0.07, space: true });
       });
     },
     // успішна відправка — акорд із розкриттям
     success: function () {
       [523.25, 659.25, 783.99, 1046.50, 1318.51].forEach(function (f, i) {
-        tone({ f: f, dur: 0.7, gain: 0.045, type: 'sine', delay: i * 0.075, space: true });
+        ding({ f: f, dur: 1.0, gain: 0.13, type: 'triangle', delay: i * 0.085, space: true });
       });
-      noise({ f: 1200, to: 4200, dur: 0.55, gain: 0.01, q: 0.6, delay: 0.1, space: true });
+      noise({ f: 1200, to: 4600, dur: 0.7, gain: 0.03, q: 0.6, delay: 0.12, space: true });
     },
     error: function () {
-      tone({ f: 233, to: 175, dur: 0.2, gain: 0.055, type: 'triangle' });
+      tone({ f: 233, to: 165, dur: 0.34, gain: 0.16, type: 'triangle', space: true });
     },
     on: function () {
-      tone({ f: 784, dur: 0.1, gain: 0.05, type: 'triangle', space: true });
-      tone({ f: 1174, dur: 0.22, gain: 0.05, type: 'triangle', delay: 0.09, space: true });
+      ding({ f: 784,  dur: 0.26, gain: 0.16, type: 'triangle', space: true });
+      ding({ f: 1174, dur: 0.42, gain: 0.16, type: 'triangle', delay: 0.11, space: true });
     },
     off: function () {
-      tone({ f: 880, to: 440, dur: 0.16, gain: 0.04, type: 'triangle' });
+      ding({ f: 880, to: 392, dur: 0.3, gain: 0.13, type: 'triangle', space: true });
     }
   };
 
@@ -225,8 +234,10 @@
   var nav = $('.nav');
   if (nav) {
     var navBtn = buildToggle();
-    var burger = $('#burger', nav);
-    if (burger) nav.insertBefore(navBtn, burger);
+    // Не в самий кінець: кругла кнопка впиралася в заокруглений край
+    // шапки і візуально зрізалась — її просто не було видно.
+    var before = $('.nav-switch', nav) || $('#burger', nav);
+    if (before) nav.insertBefore(navBtn, before);
     else nav.appendChild(navBtn);
     toggles.push(navBtn);
   }
@@ -410,23 +421,27 @@
      ============================================================ */
   function countUp(el) {
     if (reduced || el.dataset.fxDone) return;
-    var raw = el.textContent.trim();
+    // У картці пакета число лежить поруч із підписом <s>місць</s> —
+    // анімуємо лише сам числовий вузол, підпис не чіпаємо.
+    var target = el.firstChild && el.firstChild.nodeType === 3 ? el.firstChild : null;
+    var raw = (target ? target.nodeValue : el.textContent).trim();
     var m = raw.match(/^(\d+)(\D*)$/);
     if (!m) return;
     el.dataset.fxDone = '1';
 
-    var target = parseInt(m[1], 10);
+    var goal = parseInt(m[1], 10);
     var suffix = m[2] || '';
-    var D = target > 100 ? 1100 : 800;
+    var D = goal > 100 ? 1100 : 800;
     var start = null;
 
     function frame(ts) {
       if (start === null) start = ts;
       var p = Math.min(1, (ts - start) / D);
       var eased = 1 - Math.pow(1 - p, 3);
-      el.textContent = Math.round(target * eased) + (p === 1 ? suffix : '');
+      var out = Math.round(goal * eased) + (p === 1 ? suffix : '');
+      if (target) target.nodeValue = out; else el.textContent = out;
       if (p < 1) requestAnimationFrame(frame);
-      else el.textContent = raw;
+      else if (target) target.nodeValue = raw; else el.textContent = raw;
     }
     requestAnimationFrame(frame);
   }
@@ -436,7 +451,7 @@
     $$('.h-xl').forEach(function (el) { el.classList.add('fx-wipe'); });
 
     var heads = [];
-    var nums  = $$('.stat .v, .pack .price');
+    var nums  = $$('.stat .v, .pack .seats b, .seatrow .qty');
 
     var fire = function (el) { countUp(el); };
 
