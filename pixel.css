@@ -258,3 +258,94 @@ a,button,.btn,.tile,.acc-btn,label,select,input[type=checkbox],.px-btn,
   .sfx-btn{width:auto;padding:0 12px;gap:0;display:flex;align-items:center}
   .sfx-btn.on::after{color:#fff}
 }
+
+/* ============================================================
+   ЧЕК-ЛИСТ ПРОБЛЕМ
+   Замість карток із цитатами — людина сама відмічає своє.
+   Порахований результат влучає точніше за будь-який заголовок.
+   ============================================================ */
+.quiz{padding:clamp(20px,3vw,30px)}
+.quiz-head{display:flex;flex-direction:column;gap:9px;margin-bottom:18px}
+.quiz-kicker{
+  align-self:flex-start;font-family:"Pixelify Sans",monospace;font-size:13px;
+  letter-spacing:.08em;text-transform:uppercase;color:#fff;
+  background:var(--accent);border:2px solid #fff;padding:3px 10px;
+}
+.quiz-sub{margin:0;font-size:14px;color:var(--muted)}
+.quiz-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:8px}
+
+.chk{
+  display:flex;align-items:flex-start;gap:12px;padding:12px 14px;
+  background:rgba(255,255,255,.04);border:2px solid rgba(255,255,255,.14);
+  font-size:14px;color:var(--text);line-height:1.45;
+  transition:background .14s, border-color .14s;
+}
+.chk:hover{background:rgba(var(--accent-rgb),.12);border-color:rgba(var(--accent-rgb),.5)}
+.chk input{position:absolute;opacity:0;width:0;height:0}
+.chk-box{
+  flex:none;width:22px;height:22px;margin-top:1px;position:relative;
+  background:var(--ink);border:2px solid rgba(255,255,255,.4);
+}
+.chk input:focus-visible + .chk-box{outline:3px solid var(--accent);outline-offset:2px}
+.chk input:checked + .chk-box{background:var(--accent);border-color:#fff}
+.chk input:checked + .chk-box::after{
+  content:"";position:absolute;left:4px;top:8px;width:4px;height:4px;
+  background:#fff;box-shadow:4px 0 0 #fff,8px -4px 0 #fff,12px -8px 0 #fff;
+}
+.chk:has(input:checked){background:rgba(var(--accent-rgb),.16);border-color:rgba(var(--accent-rgb),.6)}
+.chk:has(input:checked) .chk-tx{color:#fff}
+
+.quiz-result{
+  display:flex;align-items:center;gap:16px;flex-wrap:wrap;margin-top:18px;padding:16px 18px;
+  background:rgba(var(--accent-rgb),.14);border:2px solid rgba(var(--accent-rgb),.5);
+}
+.quiz-score{
+  flex:none;font-family:"Pixelify Sans",monospace;font-size:38px;color:#fff;line-height:1;
+  display:flex;align-items:baseline;gap:6px;
+}
+.quiz-score s{font-size:15px;color:var(--muted);text-decoration:none}
+.quiz-text{margin:0;font-size:14.5px;color:var(--text);flex:1;min-width:220px}
+.quiz-cta{margin-top:14px}
+
+@media (max-width:860px){
+  .quiz-list{grid-template-columns:1fr}
+  .quiz-cta{width:100%}
+}
+
+/* ============================================================
+   МОБІЛЬНІ ПРАВКИ
+   ============================================================ */
+/* Кнопці «Меню» була задана ширина 42px, і підпис із неї вилазив.
+   Задаємо розкладку явно, щоб нічого не лишилося від старих правил. */
+.nav-burger{
+  width:auto!important;height:auto!important;
+  display:none;align-items:center;gap:8px;padding:8px 13px;
+  flex:none;                 /* інакше шапка стискала кнопку і підпис вилазив */
+  white-space:nowrap;
+}
+/* У темній темі є правило .nav-burger span, яке робить смужкою
+   16x1.6 будь-який span усередині кнопки — зокрема й підпис.
+   Повертаємо підпису нормальні розміри. */
+.nav-burger .burger-txt{
+  flex:none;white-space:nowrap;
+  width:auto;height:auto;margin:0;background:none;border-radius:0;
+}
+.nav-burger .burger-lines{
+  flex:none;width:16px;height:auto;background:none;margin:0;
+}
+@media (max-width:1080px){ .nav-burger{display:inline-flex!important} }
+
+/* Підказку про звук прибрано: кнопка вже підписана словом «Звук». */
+.sfx-hint{display:none}
+
+@media (max-width:480px){
+  /* заголовок першого екрана має лягати у два рядки */
+  .h-xl{font-size:27px;line-height:1.12}
+}
+
+/* Етапи сезону: на вузькому екрані йдуть колонкою, без прокрутки вбок. */
+@media (max-width:760px){
+  .timeline{grid-template-columns:1fr}
+  .info-scroll{overflow-x:visible}
+  .info-scroll > svg{min-width:0}
+}
