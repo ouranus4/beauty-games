@@ -456,39 +456,139 @@
     var ctaEl = $('#quizCta');
     var verdictEl = $('#quizVerdict');
     var resultEl = $('#quizResult');
+    var modsEl = $('#quizMods');
     var total = boxes.length;
 
-    var verdict = function (n) {
-      if (n === 0) return {
+    // Кожен пункт належить до зони: гроші, ресурс, клієнти, напрямок.
+    // Висновок будується не за кількістю галочок, а за тим, яка зона
+    // переважає — дві однакові цифри можуть означати різні проблеми.
+    var ZONES = {
+      gro: {
+        t: 'Гроші не затримуються',
+        p: 'Ви заробляєте, але гроші не перетворюються на результат: немає обліку, а ціна нижча за вашу реальну вартість. Це найшвидша зона для змін — чек піднімається вже під час сезону.'
+      },
+      res: {
+        t: 'Ви — вузьке місце',
+        p: 'Бізнес тримається на ваших руках і ваших силах. Поки все замкнено на вас, зростати нема куди: більше годин у добі не стане. Сезон починається з роботи зі станом, а далі — делегування.'
+      },
+      cli: {
+        t: 'Потік некерований',
+        p: 'Клієнти є, але приходять випадково. Це не питання удачі, а питання системи: хто ваш клієнт, що ви йому показуєте і де він вас знаходить.'
+      },
+      dir: {
+        t: 'Немає напрямку',
+        p: 'Ви вже вмієте багато, але не бачите наступного кроку. Без стратегії будь-який інструмент працює навмання — тому сезон закінчується готовим планом на рік.'
+      },
+      mix: {
+        t: 'Проблема системна',
+        p: 'Ви відмітили пункти з різних зон одразу — і гроші, і ресурс, і клієнти. Поодинокий курс тут не допомагає: закривати треба разом, інакше одне тягне назад інше.'
+      },
+      none: {
         t: 'Відмітьте пункти вище',
-        p: 'Щойно ви щось відмітите, тут з’явиться діагноз ситуації.'
-      };
-      if (n <= 2) return {
-        t: 'Точковий запит',
-        p: 'Дві точки зростання — це вже конкретне завдання, а не туман. На програмі їх розбирають по черзі, з домашкою і куратором.'
-      };
-      if (n <= 5) return {
-        t: 'Робота без системи',
-        p: 'Половина списку — і жоден пункт не про лінь. Так виглядає бізнес без системи: сил багато, а куди вони йдуть — незрозуміло.'
-      };
-      return {
-        t: 'Це вже вигорання',
-        p: 'Стільки пунктів разом — це не втома, а вигорання. Тому сезон починається не з таблиць, а з психолога: спершу стан, потім бізнес.'
-      };
+        p: 'Результат залежить від того, що саме ви оберете.'
+      }
+    };
+
+    var verdict = function (picked) {
+      if (!picked.length) return ZONES.none;
+
+      var tally = {};
+      picked.forEach(function (b) {
+        var z = b.getAttribute('data-zone');
+        tally[z] = (tally[z] || 0) + 1;
+      });
+
+      var keys = Object.keys(tally);
+      var top = keys.reduce(function (a, b) { return tally[b] > tally[a] ? b : a; });
+      var leaders = keys.filter(function (k) { return tally[k] === tally[top]; });
+
+      // Три зони і більше — або кілька зон нарівні — це вже не одна проблема
+      if (keys.length >= 3 || leaders.length > 1) return ZONES.mix;
+      return ZONES[top];
     };
 
     var recount = function () {
-      var n = boxes.filter(function (b) { return b.checked; }).length;
-      var v = verdict(n);
+      var picked = boxes.filter(function (b) { return b.checked; });
+      var n = picked.length;
+      var v = verdict(picked);
+
       if (countEl) countEl.textContent = n;
       if (verdictEl) verdictEl.textContent = v.t;
       if (textEl) textEl.textContent = v.p;
       if (resultEl) resultEl.classList.toggle('on', n > 0);
-      if (ctaEl) ctaEl.hidden = n < 2;
+
+      // Модулі, які закривають саме ці пункти
+      if (modsEl) {
+        var mods = [];
+        picked.forEach(function (b) {
+          var m = b.getAttribute('data-mod');
+          if (m && mods.indexOf(m) < 0) mods.push(m);
+        });
+        mods.sort();
+        modsEl.hidden = !mods.length;
+        if (mods.length) {
+          modsEl.innerHTML = (mods.length === 1 ? 'Це закриває модуль ' : 'Це закривають модулі ') +
+            mods.map(function (m) { return '<b>' + m + '</b>'; }).join(', ') +
+            ' бізнес-програми.';
+        }
+      }
+
+      if (ctaEl) ctaEl.hidden = n < 1;
     };
 
     boxes.forEach(function (b) { b.addEventListener('change', recount); });
     recount();
+  }
+
+  /* ============================================================
+     ШЛЯХ ПО ЕТАПАХ
+     Етапи не просто перелічені — їх проходять. Пройдені вузли
+     лишаються підсвіченими, смуга показує, скільки вже позаду.
+     ============================================================ */
+  var path = $('#path');
+  if (path) {
+    var nodes = $$('.pnode', path);
+    var steps = $$('.pstep', path);
+    var fill = $('#pathFill');
+    var pos = $('#pathPos');
+    var prev = $('#pathPrev');
+    var next = $('#pathNext');
+    var cur = 0;
+    var seen = 0;               // найдальший етап, якого дійшли
+
+    var show = function (i) {
+      cur = Math.max(0, Math.min(steps.length - 1, i));
+      if (cur > seen) seen = cur;
+
+      nodes.forEach(function (n, k) {
+        n.classList.toggle('on', k === cur);
+        n.classList.toggle('done', k < cur || (k <= seen && k !== cur));
+        n.setAttribute('aria-selected', k === cur ? 'true' : 'false');
+      });
+      steps.forEach(function (p, k) { p.classList.toggle('on', k === cur); });
+
+      if (fill) fill.style.width = (cur / (steps.length - 1) * 100) + '%';
+      if (pos) pos.textContent = cur + 1;
+      if (prev) prev.disabled = cur === 0;
+      if (next) {
+        next.textContent = cur === steps.length - 1 ? 'До заявки →' : 'Далі →';
+      }
+    };
+
+    nodes.forEach(function (n) {
+      n.addEventListener('click', function () { show(+n.getAttribute('data-step')); });
+    });
+    if (prev) prev.addEventListener('click', function () { show(cur - 1); });
+    if (next) next.addEventListener('click', function () {
+      if (cur === steps.length - 1) {
+        var apply = $('#apply');
+        if (apply) apply.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        return;
+      }
+      show(cur + 1);
+    });
+
+    show(0);
   }
 
   /* ============================================================

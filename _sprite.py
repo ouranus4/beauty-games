@@ -102,7 +102,7 @@ PRELOADER = """
 <div class="preloader" id="preloader">
   <div class="px-win pl-win">
     <div class="px-win-bar">
-      <span class="px-win-title">beauty_games.exe</span>
+      <span class="px-win-title">Beauty Games 2026</span>
       <span class="px-win-btns" aria-hidden="true"><i></i><i></i><i></i></span>
     </div>
     <div class="px-win-body">

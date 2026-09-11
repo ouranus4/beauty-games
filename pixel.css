@@ -26,8 +26,8 @@ html,body{
   cursor:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 16 16' shape-rendering='crispEdges'%3E%3Cpath fill='%23ffffff' d='M1 1h1v1h1v1h1v1h1v1h1v1h1v1h1v1h1v1h1v1H8v1h1v1h1v1h1v1h-1v1h-1v-1h-1v-1h-1v-1h-1v-1H5v1H4v1H3v1H2v-1H1z'/%3E%3Cpath fill='%23E6007E' d='M2 2h1v1h1v1h1v1h1v1h1v1h1v1h1v1h1v1H7v1h1v1h1v1h1v1h-1v-1h-1v-1h-1v-1h-1v-1H4v1H3v1H2z'/%3E%3C/svg%3E") 2 2, auto;
 }
 a,button,.btn,.tile,.acc-btn,label,select,input[type=checkbox],.px-btn,
-.table-tabs button,.sfx-btn,.nav-burger,.js-pick{
-  cursor:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 16 16' shape-rendering='crispEdges'%3E%3Cpath fill='%23ffffff' d='M5 1h3v1h1v4h1V5h2v1h1v1h1v6h-1v2h-1v1H6v-1H5v-1H4v-2H3V9h2v1h1V2h-1z'/%3E%3Cpath fill='%23E6007E' d='M6 2h1v8h1V6h1v4h1V7h1v3h1V8h1v5h-1v2H7v-1H6v-1H5v-2H4v-1h1v1h1z'/%3E%3C/svg%3E") 6 1, pointer;
+.table-tabs button,.sfx-btn,.nav-burger,.js-pick,.pnode{
+  cursor:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 16 16' shape-rendering='crispEdges'%3E%3Cpath fill='%23ffffff' d='M5 1h3v1h1v4h1V5h2v1h1v1h1v6h-1v2h-1v1H6v-1H5v-1H4v-2H3V9h2v1h1V2h-1z'/%3E%3Cpath fill='%23E6007E' d='M6 2h1v8h1V6h1v4h1V7h1v3h1V8h1v5h-1v2H7v-1H6v-1H5v-2H4v-1h1v1h1z'/%3E%3C/svg%3E") 6 1, pointer !important;
 }
 
 /* ============================================================
@@ -133,12 +133,13 @@ a,button,.btn,.tile,.acc-btn,label,select,input[type=checkbox],.px-btn,
   font-family:"Montserrat",sans-serif;font-size:13px;font-weight:800;
   letter-spacing:.09em;text-transform:uppercase;
   color:#fff;background:transparent;border:0;
-  padding:15px 32px;border-radius:0;cursor:pointer;
+  padding:15px 32px;border-radius:0;
   transition:transform .07s linear, filter .07s linear;
+  /* Тільки біла обведення. Кольорову винесену тінь прибрано —
+     вона читалася як зайві кутики збоку від кнопки. */
   filter:
     drop-shadow(2px 0 0 #fff) drop-shadow(-2px 0 0 #fff)
-    drop-shadow(0 2px 0 #fff) drop-shadow(0 -2px 0 #fff)
-    drop-shadow(5px 5px 0 var(--cyan, #00E5FF));
+    drop-shadow(0 2px 0 #fff) drop-shadow(0 -2px 0 #fff);
 }
 .px-btn::before{
   content:"";position:absolute;inset:0;z-index:-1;
@@ -153,11 +154,7 @@ a,button,.btn,.tile,.acc-btn,label,select,input[type=checkbox],.px-btn,
   transition:background .16s;
 }
 .px-btn:hover::before{background:var(--magenta-hot)}
-.px-btn:active{
-  transform:translate(5px,5px);
-  filter:drop-shadow(2px 0 0 #fff) drop-shadow(-2px 0 0 #fff)
-    drop-shadow(0 2px 0 #fff) drop-shadow(0 -2px 0 #fff);
-}
+.px-btn:active{transform:translate(2px,2px)}
 .px-btn-lg{font-size:14.5px;padding:17px 40px}
 
 .preloader{
@@ -343,6 +340,13 @@ a,button,.btn,.tile,.acc-btn,label,select,input[type=checkbox],.px-btn,
   letter-spacing:.02em;text-transform:uppercase;color:#fff;
 }
 .quiz-text{margin:0;font-size:14.5px;color:var(--text)}
+/* Рядок із номерами модулів: підказує, що результат прив'язаний до
+   конкретної частини програми, а не просто підсумок галочок. */
+.quiz-mods{
+  margin:2px 0 0;font-family:"JetBrains Mono",monospace;font-size:11.5px;
+  letter-spacing:.06em;text-transform:uppercase;color:var(--muted);
+}
+.quiz-mods b{color:var(--accent-lt);font-weight:700}
 /* Поки нічого не відмічено, блок результату приглушений — щоб було
    видно, що він чекає на відповіді, а не зламаний. */
 .quiz-result{opacity:.62;transition:opacity .2s ease, border-color .2s ease}
@@ -466,4 +470,194 @@ a,button,.btn,.tile,.acc-btn,label,select,input[type=checkbox],.px-btn,
   .author{grid-template-columns:1fr;padding:20px;gap:18px}
   .acc-bar{gap:10px}
   .acc-track{order:3;flex-basis:100%}
+}
+
+/* ============================================================
+   ФОРМАТ — яскраві плашки
+   Три складові мають читатися одним поглядом, тому вони набрані
+   великими словами на суцільному кольорі, а не дрібним текстом.
+   Кольори — з логобука: маджента, ціан, лайм.
+   ============================================================ */
+.plates{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:22px;
+}
+.plate{
+  position:relative;display:flex;flex-direction:column;gap:6px;
+  padding:22px 20px 20px;border:2px solid #fff;
+  box-shadow:6px 6px 0 rgba(0,0,0,.55);
+  min-height:152px;justify-content:flex-end;overflow:hidden;
+}
+.plate-n{
+  position:absolute;top:8px;right:14px;
+  font-family:"JetBrains Mono",monospace;font-size:40px;font-weight:700;
+  line-height:1;opacity:.32;
+}
+.plate-w{
+  font-family:"Montserrat",sans-serif;font-weight:900;
+  font-size:clamp(20px,2.6vw,29px);line-height:1.04;
+  text-transform:uppercase;letter-spacing:-.015em;
+}
+.plate-s{font-size:13px;line-height:1.4;opacity:.9;max-width:30ch}
+
+.plate-1{background:#E6007E;color:#fff}
+.plate-2{background:#00E5FF;color:#0A0410}
+.plate-3{background:#B9FF3C;color:#0A0410}
+.plate-fin{
+  grid-column:1/-1;background:#0A0410;color:#fff;min-height:0;
+  flex-direction:row;align-items:center;flex-wrap:wrap;gap:6px 18px;
+  justify-content:flex-start;padding:18px 20px;
+}
+.plate-fin .plate-w{font-size:clamp(18px,2.2vw,24px)}
+.plate-fin .plate-s{opacity:.72}
+.plate-eq{
+  margin-left:auto;font-family:"JetBrains Mono",monospace;font-size:26px;
+  color:var(--accent);font-weight:700;
+}
+
+@media (max-width:860px){
+  .plates{grid-template-columns:1fr;gap:10px}
+  .plate{min-height:0;padding:18px 18px 16px}
+  .plate-n{font-size:32px}
+  .plate-fin{flex-direction:column;align-items:flex-start}
+  .plate-eq{display:none}
+}
+
+/* ============================================================
+   СЕЗОН У ЦИФРАХ
+   Раніше це були однакові сірі плитки, і цифри в них губилися.
+   Тепер число — головне: великий кегль, колір бренду, кольорова
+   смуга згори. Перша плитка суцільна — вона задає масштаб.
+   ============================================================ */
+.stats .stat{
+  position:relative;display:flex;flex-direction:column;gap:3px;
+  padding:24px 20px 20px;background:rgba(255,255,255,.045);
+  border:2px solid rgba(255,255,255,.14);border-radius:0;
+  box-shadow:4px 4px 0 rgba(var(--accent-rgb),.28);
+  text-align:left;
+}
+.stats .stat::before{
+  content:"";position:absolute;left:-2px;right:-2px;top:-2px;height:5px;
+  background:var(--accent);
+}
+.stats .stat .v{
+  font-family:"Montserrat",sans-serif;font-weight:900;
+  font-size:clamp(42px,6vw,62px);line-height:.94;letter-spacing:-.03em;
+  color:var(--accent-lt);font-variant-numeric:tabular-nums;
+}
+.stats .stat .u{
+  font-family:"Montserrat",sans-serif;font-weight:800;font-size:14px;
+  text-transform:uppercase;letter-spacing:.04em;color:#fff;margin-top:4px;
+}
+.stats .stat .k{
+  font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.9px;
+  text-transform:uppercase;color:var(--muted);line-height:1.5;
+}
+/* Перша плитка — суцільна маджента: зачіпка для ока на початку ряду. */
+.stats .st-hi{background:var(--accent);border-color:#fff;box-shadow:5px 5px 0 #fff}
+.stats .st-hi::before{background:#fff}
+.stats .st-hi .v{color:#fff}
+.stats .st-hi .k{color:rgba(255,255,255,.82)}
+
+/* ============================================================
+   ШЛЯХ ПО ЕТАПАХ — його проходять, а не читають
+   Замість статичної схеми на 900 одиниць: карта вузлів, панель
+   етапу і кнопки «назад/далі». Смуга під вузлами показує, як
+   далеко ви пройшли — це і є гейміфікація, а не декор.
+   ============================================================ */
+.path{
+  padding:clamp(18px,2.6vw,26px);
+  background:rgba(255,255,255,.04);
+  border:2px solid rgba(var(--accent-rgb),.42);
+  box-shadow:6px 6px 0 rgba(var(--accent-rgb),.3);
+}
+.path-map{
+  position:relative;display:grid;grid-template-columns:repeat(5,1fr);
+  gap:8px;padding-bottom:6px;
+}
+.path-line{
+  position:absolute;left:8%;right:8%;top:21px;height:4px;
+  background:rgba(255,255,255,.14);display:block;
+}
+.path-line i{display:block;height:100%;width:0;background:var(--accent);
+  transition:width .25s steps(6)}
+
+.pnode{
+  position:relative;display:flex;flex-direction:column;align-items:center;gap:8px;
+  background:none;border:0;padding:0;text-align:center;
+}
+.pnode-n{
+  width:42px;height:42px;display:grid;place-items:center;
+  font-family:"JetBrains Mono",monospace;font-size:14px;font-weight:700;
+  color:var(--muted);background:var(--ink);
+  border:2px solid rgba(255,255,255,.25);
+  transition:background .16s, color .16s, border-color .16s, transform .1s;
+}
+.pnode-t{
+  font-family:"Montserrat",sans-serif;font-size:11.5px;font-weight:700;
+  letter-spacing:.02em;text-transform:uppercase;color:var(--muted);
+  line-height:1.25;transition:color .16s;
+}
+.pnode:hover .pnode-n{border-color:rgba(var(--accent-rgb),.8);color:#fff}
+/* Пройдені етапи лишаються підсвіченими — видно, скільки вже позаду. */
+.pnode.done .pnode-n{background:rgba(var(--accent-rgb),.32);border-color:rgba(var(--accent-rgb),.75);color:#fff}
+.pnode.on .pnode-n{background:var(--accent);border-color:#fff;color:#fff;transform:scale(1.1)}
+.pnode.on .pnode-t{color:#fff}
+
+.path-stage{margin-top:18px;min-height:230px}
+.pstep{display:none}
+.pstep.on{display:block;animation:pstepIn .22s ease both}
+@keyframes pstepIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+.pstep-dur{
+  display:inline-block;font-family:"JetBrains Mono",monospace;font-size:11px;
+  letter-spacing:1.5px;text-transform:uppercase;color:#fff;
+  background:var(--accent);padding:3px 10px;
+}
+.pstep-t{
+  margin:10px 0 12px;font-family:"Montserrat",sans-serif;font-weight:900;
+  font-size:clamp(21px,3vw,30px);text-transform:uppercase;color:var(--white);
+  letter-spacing:-.015em;
+}
+.pstep-list{margin:0 0 16px;padding:0;list-style:none;display:grid;gap:8px}
+.pstep-list li{
+  position:relative;padding-left:26px;font-size:14.5px;line-height:1.5;color:var(--text);
+}
+.pstep-list li::before{
+  content:"";position:absolute;left:0;top:.3em;width:13px;height:13px;
+  background:var(--accent);
+  -webkit-mask:var(--heart) center/contain no-repeat;
+          mask:var(--heart) center/contain no-repeat;
+}
+.pstep-res{
+  padding:14px 16px;background:rgba(var(--accent-rgb),.16);
+  border:2px solid rgba(var(--accent-rgb),.6);
+  font-size:14.5px;line-height:1.5;color:#fff;
+}
+.pstep-res-k{
+  display:block;font-family:"JetBrains Mono",monospace;font-size:10.5px;
+  letter-spacing:1.5px;text-transform:uppercase;color:var(--accent-lt);margin-bottom:5px;
+}
+
+.path-nav{
+  display:flex;align-items:center;gap:14px;margin-top:18px;padding-top:16px;
+  border-top:2px solid rgba(255,255,255,.14);
+}
+.path-pos{
+  font-family:"JetBrains Mono",monospace;font-size:12px;letter-spacing:1.2px;
+  text-transform:uppercase;color:var(--muted);margin:0 auto;
+}
+.path-pos b{color:#fff;font-size:15px}
+.path-nav .btn[disabled]{opacity:.35;pointer-events:none}
+
+@media (max-width:760px){
+  .path{padding:16px}
+  .path-map{grid-template-columns:repeat(5,1fr);gap:4px}
+  .path-line{top:17px;left:10%;right:10%;height:3px}
+  .pnode-n{width:34px;height:34px;font-size:12px}
+  /* Підписи вузлів на вузькому екрані не влазять — назва етапу
+     все одно стоїть заголовком у панелі нижче. */
+  .pnode-t{display:none}
+  .path-stage{min-height:0}
+  .path-nav{flex-wrap:wrap;gap:10px}
+  .path-pos{order:-1;width:100%;text-align:center;margin:0}
+  .path-nav .btn{flex:1}
 }
