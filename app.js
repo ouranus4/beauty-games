@@ -55,18 +55,22 @@
 
     document.body.style.overflow = 'hidden';
 
+    // Мінімальний час показу. Раніше смуга рахувалася від кількості
+    // завантажених файлів і на швидкому з'єднанні долітала до кінця
+    // за перший тик — екран завантаження ніхто не встигав побачити.
+    var MIN = 2200;
+
     barTimer = setInterval(function () {
-      var byTime = Math.min(94, (Date.now() - t0) / 14);
-      var res = performance.getEntriesByType ? performance.getEntriesByType('resource').length : 0;
-      var byRes = Math.min(94, res * 8);
-      paint(Math.max(byTime, byRes));
-      if (value >= 94 && document.readyState === 'complete') offerStart();
-    }, 80);
+      var elapsed = Date.now() - t0;
+      var byTime = (elapsed / MIN) * 100;
+      paint(Math.min(97, byTime));
+      if (elapsed >= MIN && document.readyState === 'complete') offerStart();
+    }, 50);
 
     window.addEventListener('load', function () {
-      setTimeout(offerStart, Math.max(0, 900 - (Date.now() - t0)));
+      setTimeout(offerStart, Math.max(0, MIN - (Date.now() - t0)));
     });
-    setTimeout(offerStart, 5000);   // страховка, якщо load не настане
+    setTimeout(offerStart, 7000);   // страховка, якщо load не настане
 
     if (goBtn) goBtn.addEventListener('click', function () {
       hide();

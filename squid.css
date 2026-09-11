@@ -1070,29 +1070,9 @@ body.bio-open{overflow:hidden}
   background:linear-gradient(180deg,#FF57A0,#C2005F);color:#fff;
 }
 
-/* ============================================================
-   ЗОЛОТА КУЛЯ НА ПЕРШОМУ ЕКРАНІ
-   Canvas живе під вмістом і не ловить кліки.
-   ============================================================ */
+/* Перший екран лишається контекстом для позиціювання. */
 .hero{position:relative;overflow:hidden}
-.orb{
-  position:absolute;top:-4%;right:-14%;
-  width:min(760px,86vw);aspect-ratio:1;
-  pointer-events:none;z-index:0;
-  opacity:.95;
-}
-.orb canvas{width:100%;height:100%;display:block}
 .hero-inner{position:relative;z-index:1}
-/* Текст не має губитися на тлі кулі. */
-.hero-inner .h-xl,.hero-lede{text-shadow:0 4px 30px rgba(8,6,12,.9)}
-/* На телефоні куля не має лізти під заголовок — зсуваємо її вправо
-   вниз і приглушуємо, інакше білий текст на золоті не читається. */
-@media (max-width:860px){
-  .orb{top:2%;right:-42%;width:min(460px,104vw);opacity:.55}
-}
-@media (max-width:480px){
-  .orb{top:4%;right:-48%;width:min(400px,110vw);opacity:.48}
-}
 
 /* ============================================================
    ПЕРШИЙ ЕКРАН — плашки напрямків помітніші
