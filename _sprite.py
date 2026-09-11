@@ -153,15 +153,13 @@ PRELOADER = """
 <div class="preloader" id="preloader">
   <div class="px-win pl-win">
     <div class="px-win-bar">
-      <span class="px-win-title">Beauty Games 2026</span>
+      <span class="px-win-title">Beauty Games · Season 2026</span>
       <span class="px-win-btns" aria-hidden="true"><i></i><i></i><i></i></span>
     </div>
     <div class="px-win-body">
       <div class="pl-stage" id="plStage">
-        <div class="pl-hearts" aria-hidden="true">
-          <svg viewBox="0 0 16 16"><use href="#i-px-heart"/></svg>
-          <svg viewBox="0 0 16 16"><use href="#i-px-heart"/></svg>
-          <svg viewBox="0 0 16 16"><use href="#i-px-heart"/></svg>
+        <div class="pl-marks" aria-hidden="true">
+          <svg><use href="#bg-logo"/></svg>
         </div>
         <div class="pl-label">Завантажуємо гру…</div>
         <div class="pl-bar"><span class="pl-bar-fill" id="plBar"></span></div>
