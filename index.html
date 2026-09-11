@@ -5,38 +5,12 @@
 <script>document.documentElement.setAttribute('data-page','main');document.documentElement.lang='uk';</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800;900&family=Manrope:wght@400;500;600;700&family=Pixelify+Sans:wght@400..700&family=JetBrains+Mono:wght@400;500;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800;900&family=Oswald:wght@400;500;600&family=Manrope:wght@400;500;600;700&family=Pixelify+Sans:wght@400..700&family=JetBrains+Mono:wght@400;500;700&display=swap">
 <link rel="stylesheet" href="styles.css?v=2cf033dd">
-<link rel="stylesheet" href="squid.css?v=f87dfe1e">
+<link rel="stylesheet" href="squid.css?v=1dee6ce2">
 
 <!-- SPRITE -->
-<div class="preloader" id="preloader">
-  <div class="px-win pl-win">
-    <div class="px-win-bar">
-      <span class="px-win-title">Beauty Games · Season 2026</span>
-      <span class="px-win-btns" aria-hidden="true"><i></i><i></i><i></i></span>
-    </div>
-    <div class="px-win-body">
-      <div class="pl-stage" id="plStage">
-        <img class="pl-logo" src="assets/logo-vertical.svg" alt="Beauty Games" width="260" height="150">
-        <div class="pl-label">Завантажуємо гру…</div>
-        <div class="pl-bar"><span class="pl-bar-fill" id="plBar"></span></div>
-        <div class="pl-pct" id="plPct">0%</div>
-        <div class="pl-meta">
-          <span>Season 2026</span>
-          <span>Reality show</span>
-          <span>Championship</span>
-          <span>Education</span>
-        </div>
-      </div>
-      <div class="pl-start" id="plStart" hidden>
-        <div class="pl-ask">Почати гру?</div>
-        <button class="px-btn px-btn-lg" id="plGo" type="button">Почати</button>
-        <div class="pl-hint">Сезон 2026</div>
-      </div>
-    </div>
-  </div>
-</div>
+
 <svg class="sprite" width="0" height="0" aria-hidden="true" focusable="false" style="position:absolute;pointer-events:none">
   <symbol id="bg-logo" viewBox="282.88 122.06 153.76 160.69"><path transform="matrix(1,0,0,-1,355.3672,197.2986)" d="M0 0 10.562-10.562H23.928L9.563-28.966-7.014-24.057V11.189L11.614 17.33 54.82-5.281 32.64-16.889 40.439 0ZM-58.827-64.757V-48.983L-24.783-31.885-24.816-14.468-34.497-6.841-24.811-3.054V18.703L-58.827 37.917V54.195L-1.423 24.153-17.576 18.828V-31.944L-3.879-36ZM-35.368-19.6-35.357-25.187-58.827-37.312V25.969L-35.373 12.342V4.157L-53.21-3.721ZM-70.302 73.151V-83.714L79.568-5.281Z" fill="currentColor"/></symbol>
   <symbol id="i-brow" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 13.2c1.4-3.4 4.4-5.2 9-5.2 2.6 0 4.7.5 6.4 1.5 1 .6 1.3 1.6.9 2.3-.4.7-1.4.9-2.4.5-2.3-1-4.6-1.2-7-.7-2.4.5-4.4 1.6-6 3.2-.6.6-1.3.3-.9-1.6Z"/><path d="M5 17.6c2.2-1.6 4.8-2.4 7.8-2.4 1.7 0 3.2.2 4.5.7"/></g></symbol>
@@ -129,15 +103,15 @@
       <div class="picker-grid">
         <button class="chr" type="button" data-dir="Броу-майстер" data-hero="броу-майстер">
           <span class="chr-ph"><svg class="icon" aria-hidden="true"><use href="#i-brow"/></svg></span>
-          <span class="chr-nm">Броу-майстер</span>
+          <span class="chr-nm">Брови</span>
         </button>
         <button class="chr" type="button" data-dir="Лашмейкер" data-hero="лашмейкер">
           <span class="chr-ph"><svg class="icon" aria-hidden="true"><use href="#i-lash"/></svg></span>
-          <span class="chr-nm">Лашмейкер</span>
+          <span class="chr-nm">Вії</span>
         </button>
         <button class="chr" type="button" data-dir="Нігтьовий сервіс" data-hero="майстер нігтьового сервісу">
           <span class="chr-ph"><svg class="icon" aria-hidden="true"><use href="#i-nails"/></svg></span>
-          <span class="chr-nm">Нігтьовий сервіс</span>
+          <span class="chr-nm">Нігті</span>
         </button>
         <button class="chr" type="button" data-dir="Перманент" data-hero="майстер з перманенту" data-form="Перманентний макіяж">
           <span class="chr-ph"><svg class="icon" aria-hidden="true"><use href="#i-pmu"/></svg></span>
@@ -145,27 +119,27 @@
         </button>
         <button class="chr" type="button" data-dir="Візажист" data-hero="візажист">
           <span class="chr-ph"><svg class="icon" aria-hidden="true"><use href="#i-makeup"/></svg></span>
-          <span class="chr-nm">Візажист</span>
+          <span class="chr-nm">Макіяж</span>
         </button>
         <button class="chr" type="button" data-dir="Перукар-стиліст" data-hero="перукар-стиліст">
           <span class="chr-ph"><svg class="icon" aria-hidden="true"><use href="#i-hair"/></svg></span>
-          <span class="chr-nm">Перукар-стиліст</span>
+          <span class="chr-nm">Перукар</span>
         </button>
         <button class="chr" type="button" data-dir="Нарощування волосся" data-hero="майстер з нарощування волосся">
           <span class="chr-ph"><svg class="icon" aria-hidden="true"><use href="#i-extension"/></svg></span>
-          <span class="chr-nm">Нарощування волосся</span>
+          <span class="chr-nm">Нарощення</span>
         </button>
         <button class="chr" type="button" data-dir="Косметологія" data-hero="косметолог">
           <span class="chr-ph"><svg class="icon" aria-hidden="true"><use href="#i-skin"/></svg></span>
-          <span class="chr-nm">Косметологія</span>
+          <span class="chr-nm">Косметолог</span>
         </button>
         <button class="chr" type="button" data-dir="Масажист" data-hero="масажист">
           <span class="chr-ph"><svg class="icon" aria-hidden="true"><use href="#i-massage"/></svg></span>
-          <span class="chr-nm">Масажист</span>
+          <span class="chr-nm">Масаж</span>
         </button>
         <button class="chr" type="button" data-dir="Лазерне видалення" data-hero="майстер лазерного видалення">
           <span class="chr-ph"><svg class="icon" aria-hidden="true"><use href="#i-laser"/></svg></span>
-          <span class="chr-nm">Лазерне видалення</span>
+          <span class="chr-nm">Лазер</span>
         </button>
       </div>
       <div class="picker-done" id="pickerDone" hidden>
@@ -195,13 +169,10 @@
       </div>
     </div>
 
-    <div class="countdown glass rv" id="countdown">
-      <div class="cd-label"><b>Спеціальна ціна діє 24 години</b> з моменту, як ви відкрили сторінку. Далі — ціна тижня, потім стандартна.</div>
-      <div class="cd-clock">
-        <div class="cd-unit"><div class="v" id="cdH">24</div><div class="k">годин</div></div>
-        <div class="cd-unit"><div class="v" id="cdM">00</div><div class="k">хвилин</div></div>
-        <div class="cd-unit"><div class="v" id="cdS">00</div><div class="k">секунд</div></div>
-      </div>
+    <div class="countdown rv" id="countdown">
+      <div class="cd-cap">До кінця набору за спеціальною ціною</div>
+      <div class="cd-clock"><span id="cdH">24</span>:<span id="cdM">00</span>:<span id="cdS">00</span></div>
+      <div class="cd-label">Далі — ціна тижня, потім стандартна.</div>
     </div>
   </div>
 </header>
@@ -271,72 +242,121 @@
   </div>
 </section>
 
-<!-- ============ ТРИ СКЛАДОВІ ============ -->
+<!-- ============ КРОК 3: ФОРМАТ УЧАСТІ ============ -->
 <section class="sec" id="format">
   <div class="wrap">
     <div class="sec-head rv">
-      <span class="eyebrow">Унікальний формат</span>
-      <h2 class="h-lg">Три <span class="glow">в одному</span></h2>
-      <div class="sec-rule"></div>
-      <p class="lede">Такі шоу ми бачили тільки по телевізору. Тепер воно відбувається онлайн — і ви в ньому не глядачка, а учасниця.</p>
-      <p class="lede">Реаліті-шоу були. Перевтілення були. Чемпіонати були. Але окремо одне від одного — і жодне з них не давало майстрині бізнесу. Beauty&nbsp;Games вперше з'єднує всі три в одному сезоні.</p>
+      <span class="eyebrow">Крок 3</span>
+      <h2 class="h-lg">Оберіть <span class="glow">формат участі</span></h2>
+      <p class="lede">Дві дороги. Обидві ведуть до бізнесу — просто одна тихіша, а друга виводить вас на екран.</p>
     </div>
 
-    <div class="plates rv">
-      <div class="plate plate-1">
-        <span class="plate-n">01</span>
-        <span class="plate-w">Шоу</span>
-        <span class="plate-s">Ваш шлях знімають. Глядачі стежать і голосують</span>
-      </div>
-      <div class="plate plate-2">
-        <span class="plate-n">02</span>
-        <span class="plate-w">Бізнес-навчання</span>
-        <span class="plate-s">9 модулів про гроші, клієнтів і просування</span>
-      </div>
-      <div class="plate plate-3">
-        <span class="plate-n">03</span>
-        <span class="plate-w">Онлайн-чемпіонат</span>
-        <span class="plate-s">10 категорій. Журі — практики. Кубки і сертифікати</span>
-      </div>
-      <div class="plate plate-fin">
-        <span class="plate-w">Гранд-Фінал</span>
-        <span class="plate-s">5 днів офлайн. Фінал у прямому ефірі</span>
-        <span class="plate-eq" aria-hidden="true">=</span>
-      </div>
+    <div class="ways">
+      <article class="way rv">
+        <span class="way-n">Формат A</span>
+        <h3 class="way-t">Тільки бізнес-навчання</h3>
+        <p class="way-s">Для тих, хто хоче результат без камер і публічності.</p>
+        <ul class="way-list">
+          <li>Дев&rsquo;ять модулів, куратор і домашні завдання з перевіркою</li>
+          <li>Піднятий чек і порахована економіка замість відчуттів</li>
+          <li>Налаштований потік клієнтів і переупакований профіль</li>
+          <li>Бізнес-план на рік, з яким ви виходите з сезону</li>
+          <li>Доступ до матеріалів лишається після сезону</li>
+          <li>Працюєте у своєму темпі — ніхто вас не знімає</li>
+        </ul>
+        <div class="way-out"><b>На виході:</b> системний бізнес, який більше не тримається на ваших руках.</div>
+      </article>
+
+      <article class="way way-hi rv">
+        <span class="way-n">Формат B</span>
+        <h3 class="way-t">Навчання + чемпіонат + реаліті-шоу</h3>
+        <p class="way-s">Для тих, хто готовий, щоб про них дізналися.</p>
+        <ul class="way-list">
+          <li>Усе з формату A — повністю</li>
+          <li>Вас знімають: ви в кадрі шоу, за вами стежать тисячі глядачів</li>
+          <li>Ми вас просуваємо — ефіри, соцмережі проєкту, публікації</li>
+          <li>Чемпіонат у вашій категорії: кубки, звання, вага в професійному колі</li>
+          <li>Глядацьке голосування — ваша аудиторія росте під час сезону</li>
+          <li>Контент, знятий професійно, лишається вам</li>
+        </ul>
+        <div class="way-out"><b>На виході:</b> бізнес плюс ім&rsquo;я, яке знає ринок. Ви не просто майстер — ви медійна персона у своїй ніші.</div>
+      </article>
     </div>
 
-    <div class="three">
-      <div class="tcard glass rv">
-        <div class="icon-chip"><svg class="icon" aria-hidden="true"><use href="#i-program"/></svg></div>
-        <h3>Бізнес-програма</h3>
-        <p>Дев'ять модулів Олександри Горобець — від мислення до стратегії на рік.</p>
-        <ul>
-          <li>Відеоуроки + живі розбори + домашні завдання</li>
-          <li>Доступ до матеріалів залишається після сезону</li>
-          <li>Куратор веде команду весь проєкт</li>
-        </ul>
+    <div class="newfmt rv">
+      <span class="newfmt-k">Чому такого не було раніше</span>
+      <h3 class="newfmt-t">Такого формату на ринку не існувало. Ми його придумали — і можемо реалізувати</h3>
+      <p>Реаліті-шоу були. Перевтілення були. Чемпіонати були. Але окремо одне від одного, і жодне з них не робило з майстрині підприємця. З&rsquo;єднати все це в один сезон може не кожен — для цього потрібні і сцена, і журі, і аудиторія, і двадцять років зв&rsquo;язків у індустрії.</p>
+      <p>У нас вони є. Ось чому.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ІРИНА ВЕРБОВА ============ -->
+<section class="sec" id="iryna">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="eyebrow">Засновниця проєкту</span>
+      <h2 class="h-lg">Ірина Вербова — <span class="glow">більше ніж чемпіонат</span></h2>
+    </div>
+
+    <div class="iryna rv">
+      <div class="iryna-ph">
+        <img src="assets/people/verbova.jpg" alt="Ірина Вербова" loading="lazy" width="900" height="1125">
       </div>
-      <div class="tcard glass bloom rv">
-        <div class="icon-chip"><svg class="icon" aria-hidden="true"><use href="#i-reality"/></svg></div>
-        <h3>Команди і реаліті</h3>
-        <p>Крос-функціональні команди виконують реальні бізнес-завдання в прямих ефірах.</p>
-        <ul>
-          <li>Усередині команди немає конкуренції</li>
-          <li>Бали — за реальні бізнес-результати</li>
-          <li>Таблиця лідерів відкрита для глядачів</li>
-        </ul>
-      </div>
-      <div class="tcard glass rv">
-        <div class="icon-chip"><svg class="icon" aria-hidden="true"><use href="#i-trophy"/></svg></div>
-        <h3>Онлайн-чемпіонат</h3>
-        <p>Професійне змагання у вашій категорії з авторитетним журі з практиків.</p>
-        <ul>
-          <li>10 категорій — обираєте свою або кілька</li>
-          <li>Сертифікат кожній, кубки — переможницям</li>
-          <li>Окремий блок: як упакувати перемогу в маркетинг</li>
-        </ul>
+      <div class="iryna-tx">
+        <p>Понад <b>20 років тому</b> Ірина Вербова, засновниця IBV — International Beauty Voyage, почала будувати б&rsquo;юті-індустрію в Україні. У Європі вже гриміли чемпіонати, а в нас про це тільки мріяли.</p>
+        <p>Ірина привезла цей формат в Україну і <b>вперше вивела наших майстрів на світову сцену</b>. Перший конгрес — Греція, 2015 рік, 100+ майстрів. Ірина сказала їм: «Світ має дізнатися про наші таланти. Хто зі мною?»</p>
+        <div class="iryna-facts">
+          <div><b>40</b><span>країн світу, з яких їхали майстри на її заходи</span></div>
+          <div><b>ТОП-100</b><span>успішних людей України</span></div>
+          <div><b>20+</b><span>років в індустрії</span></div>
+        </div>
+        <p>Далі були Дубай, Іспанія, Польща, Грузія, Туреччина, Греція, Казахстан. Гран-прі одного разу стала <b>квартира в Києві</b>, а в номінації Jackpot розігрувався <b>Mercedes</b>. Не кубок і не сертифікат — квартира й машина.</p>
+        <blockquote class="iryna-q">Головний талант Ірини — не лише створювати масштабні події, а відкривати самородків. Вона знаходила їх по всьому світу, бачила потенціал, який «вистрілить», і виводила на сцену. Далі їхні імена знав уже весь ринок.</blockquote>
+        <p>Усе, що робила Ірина, через пару років ставало стандартом ринку. Beauty&nbsp;Games — її новий проєкт, аналогів якому немає ні в Україні, ні у світі.</p>
       </div>
     </div>
+  </div>
+</section>
+
+<!-- ============ РЕЗУЛЬТАТИ ============ -->
+<section class="sec" id="results">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="eyebrow">Результат, а не обіцянка</span>
+      <h2 class="h-lg">Імена, які сьогодні <span class="glow">знає весь ринок</span></h2>
+      <p class="lede">Головний результат Ірини — не рядок у щорічному рейтингу, а сотні імен, які вона вивела на сцену. Ось лише мала частина.</p>
+    </div>
+
+    <div class="stars">
+      <article class="star rv">
+        <h3>Яна Москаленко</h3>
+        <p>Перманентний макіяж, навчання, лазер · Київ і Варшава</p>
+      </article>
+      <article class="star rv">
+        <h3>Юліанна Дружиніна</h3>
+        <p>Чемпіонка світу · організаторка WULOP Poland</p>
+      </article>
+      <article class="star rv">
+        <h3>Олена Оніка</h3>
+        <p>PMU &amp; AI mentor · international expert · засновниця Fusion Hard &amp; Soft needles</p>
+      </article>
+      <article class="star rv">
+        <h3>Дар&rsquo;я Ореханова</h3>
+        <p>OREX · перманент, косметологія, ін&rsquo;єкційні методики · Київ</p>
+      </article>
+      <article class="star rv">
+        <h3>Катерина Овчарук</h3>
+        <p>Абсолютна чемпіонка світу WULOP 2025 · hairstroke</p>
+      </article>
+      <article class="star rv">
+        <h3>Роза Люкс</h3>
+        <p>PMU Master Trainer 11+ років · суддя, спікерка · 10 000+ учениць</p>
+      </article>
+    </div>
+
+    <p class="stars-note">І це лише мала частина.</p>
   </div>
 </section>
 
@@ -383,10 +403,7 @@
         <span class="path-heart" data-i="2"><svg><use href="#bg-logo"/></svg></span>
         <span class="path-heart" data-i="3"><svg><use href="#bg-logo"/></svg></span>
         <span class="path-heart" data-i="4"><svg><use href="#bg-logo"/></svg></span>
-        <span class="path-runner" id="pathRunner">
-          <svg viewBox="0 0 16 16"><use href="#i-px-run1"/></svg>
-          <svg viewBox="0 0 16 16"><use href="#i-px-run2"/></svg>
-        </span>
+        <span class="path-runner" id="pathRunner"><b id="pathMeN">01</b></span>
       </div>
 
       <div class="path-stage">
@@ -493,6 +510,7 @@
       <div class="sec-rule"></div>
       <p class="lede">Кожен модуль зібраний під одну задачу: щоб про вас дізналися і щоб вам платили більше. Гроші, ціни, клієнти, особистий бренд, соцмережі, продажі — сучасні інструменти, якими користуються прямо зараз, а не теорія з позаминулого сезону.</p>
       <p class="lede">Дев'ять модулів Олександри Горобець: відеоуроки, живі розбори і домашні завдання, які перевіряють. Поруч весь час куратор і експерти проєкту — ви не залишаєтесь наодинці з матеріалом. Доступ залишається після сезону.</p>
+      <p class="lede lede-claim">Ви могли проходити курси з рилсів і таргету — і не один. Ми зібрали вижимку з <b>понад 70 курсів</b> і залишили те, що працює. Кращого набору інструментів в одному місці ви не знайдете — гарантуємо.</p>
     </div>
 
     <div class="bizpart rv">
@@ -600,6 +618,34 @@
       <article class="founder glass rv">
         <div class="founder-top">
           <div class="founder-ph">
+            <img src="assets/people/verbova.jpg" alt="Ірина Вербова" loading="lazy" width="900" height="1125">
+          </div>
+          <div class="founder-id">
+            <span class="founder-tag">Засновниця</span>
+            <h3 class="founder-nm">Ірина Вербова</h3>
+            <p class="founder-rl">Засновниця IBV · шоу і чемпіонат</p>
+          </div>
+        </div>
+
+        <p>Понад 20 років будує б&rsquo;юті-індустрію в Україні. Привезла формат чемпіонатів і вперше вивела українських майстрів на світову сцену — перший конгрес у Греції, 2015 рік.</p>
+        <p>На її заходи їхали майстри з 40 країн світу. Гран-прі одного разу стала квартира в Києві, а в номінації Jackpot розігрувався Mercedes.</p>
+
+        <blockquote class="founder-q">Усе, що робила Ірина, через пару років ставало стандартом ринку.</blockquote>
+
+        <p class="founder-sub">Що це дає проєкту:</p>
+        <ul class="founder-list">
+          <li>Сцену, журі та аудиторію, зібрані за двадцять років</li>
+          <li>Вихід на світові конгреси й міжнародних експертів</li>
+          <li>Досвід відкривати самородків і виводити їх у топи</li>
+        </ul>
+
+        <p>Входить до топ-100 успішних людей України. Але головний її результат — сотні імен, які сьогодні знає весь beauty-ринок.</p>
+        <a href="#iryna" class="btn btn-ghost btn-sm">Докладніше про Ірину</a>
+      </article>
+
+      <article class="founder glass rv">
+        <div class="founder-top">
+          <div class="founder-ph">
             <img src="assets/people/horobets.jpg" alt="Олександра Горобець" loading="lazy" width="900" height="1125">
           </div>
           <div class="founder-id">
@@ -633,19 +679,7 @@
         </div>
       </article>
 
-      <article class="founder glass rv">
-        <div class="founder-top">
-          <div class="founder-ph">
-            <img src="assets/people/verbova.jpg" alt="Вербова" loading="lazy" width="900" height="1125">
-          </div>
-          <div class="founder-id">
-            <span class="founder-tag">Співзасновниця</span>
-            <h3 class="founder-nm">Вербова</h3>
-            <p class="founder-rl">Напрямок шоу і чемпіонату</p>
-          </div>
-        </div>
-        <p class="founder-todo">Текст профілю готуємо — надішліть опис, і він стане тут таким самим, як в Олександри.</p>
-      </article>
+
     </div>
   </div>
 </section>
@@ -1219,5 +1253,5 @@
   </a>
 </div>
 
-<script src="app.js?v=de46fe08"></script>
+<script src="app.js?v=a745269c"></script>
 <script src="fx.js?v=b9217507"></script>

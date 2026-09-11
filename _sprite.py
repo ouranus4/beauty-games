@@ -145,38 +145,7 @@ def build_sprite():
     return "\n".join(parts)
 
 
-# Вхідний екран: спочатку смуга LOADING, далі вікно «Почати гру?».
-# Кнопка навмисно піксельна рамкою, але підпис усередині — звичайний
-# Montserrat: піксельний шрифт на кирилиці читається погано.
-PRELOADER = """
-<div class="preloader" id="preloader">
-  <div class="px-win pl-win">
-    <div class="px-win-bar">
-      <span class="px-win-title">Beauty Games · Season 2026</span>
-      <span class="px-win-btns" aria-hidden="true"><i></i><i></i><i></i></span>
-    </div>
-    <div class="px-win-body">
-      <div class="pl-stage" id="plStage">
-        <img class="pl-logo" src="assets/logo-vertical.svg" alt="Beauty Games" width="260" height="150">
-        <div class="pl-label">Завантажуємо гру…</div>
-        <div class="pl-bar"><span class="pl-bar-fill" id="plBar"></span></div>
-        <div class="pl-pct" id="plPct">0%</div>
-        <div class="pl-meta">
-          <span>Season 2026</span>
-          <span>Reality show</span>
-          <span>Championship</span>
-          <span>Education</span>
-        </div>
-      </div>
-      <div class="pl-start" id="plStart" hidden>
-        <div class="pl-ask">Почати гру?</div>
-        <button class="px-btn px-btn-lg" id="plGo" type="button">Почати</button>
-        <div class="pl-hint">Сезон 2026</div>
-      </div>
-    </div>
-  </div>
-</div>
-"""
+PRELOADER = ""   # екран входу прибрано: зайвий клік перед сайтом
 
 BLOCK = "<!-- SPRITE -->\n%s\n%s\n<!-- /SPRITE -->" % (PRELOADER.strip(), build_sprite())
 

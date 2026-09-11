@@ -6,78 +6,6 @@
 
   document.documentElement.classList.add('js');
 
-  /* ============================================================
-     ПРЕЛОАДЕР
-     Ховається CSS-анімацією сам по собі, тож навіть якщо цей скрипт
-     не виконається — сторінка не залишиться перекритою. Тут лише
-     прибираємо його з DOM, щоб не заважав кліку.
-     ============================================================ */
-  /* ============================================================
-     ВХІДНИЙ ЕКРАН
-     Спершу смуга завантаження за реальним прогресом ресурсів,
-     далі вікно «Почати гру?». Далі — тільки за кліком користувача,
-     тому автозапуск звуку після цього дозволений браузером.
-     ============================================================ */
-  var preloader = document.getElementById('preloader');
-  if (preloader) {
-    var bar = document.getElementById('plBar');
-    var pct = document.getElementById('plPct');
-    var stage = document.getElementById('plStage');
-    var startPane = document.getElementById('plStart');
-    var goBtn = document.getElementById('plGo');
-    var value = 0, barTimer = null, t0 = Date.now(), armed = false;
-
-    var paint = function (v) {
-      value = Math.max(value, Math.min(100, v));
-      if (bar) bar.style.width = value + '%';
-      if (pct) pct.textContent = Math.round(value) + '%';
-    };
-
-    var hide = function () {
-      preloader.classList.add('done');
-      document.body.style.overflow = '';
-      setTimeout(function () {
-        if (preloader && preloader.parentNode) preloader.parentNode.removeChild(preloader);
-      }, 420);
-    };
-
-    var offerStart = function () {
-      if (armed) return;
-      armed = true;
-      if (barTimer) { clearInterval(barTimer); barTimer = null; }
-      paint(100);
-      setTimeout(function () {
-        if (stage) stage.hidden = true;
-        if (startPane) startPane.hidden = false;
-        if (goBtn) goBtn.focus({ preventScroll: true });
-      }, 320);
-    };
-
-    document.body.style.overflow = 'hidden';
-
-    // Мінімальний час показу. Раніше смуга рахувалася від кількості
-    // завантажених файлів і на швидкому з'єднанні долітала до кінця
-    // за перший тик — екран завантаження ніхто не встигав побачити.
-    var MIN = 2200;
-
-    barTimer = setInterval(function () {
-      var elapsed = Date.now() - t0;
-      var byTime = (elapsed / MIN) * 100;
-      paint(Math.min(97, byTime));
-      if (elapsed >= MIN && document.readyState === 'complete') offerStart();
-    }, 50);
-
-    window.addEventListener('load', function () {
-      setTimeout(offerStart, Math.max(0, MIN - (Date.now() - t0)));
-    });
-    setTimeout(offerStart, 7000);   // страховка, якщо load не настане
-
-    if (goBtn) goBtn.addEventListener('click', function () {
-      hide();
-      document.dispatchEvent(new CustomEvent('bg:start'));
-    });
-  }
-
   var $  = function (s, c) { return (c || document).querySelector(s); };
   var $$ = function (s, c) { return Array.prototype.slice.call((c || document).querySelectorAll(s)); };
 
@@ -603,7 +531,11 @@
 
       var pctDone = cur / (steps.length - 1) * 100;
       if (fill) fill.style.width = pctDone + '%';
-      if (runner) runner.style.left = pctDone + '%';
+      if (runner) {
+        runner.style.left = pctDone + '%';
+        var meN = $('#pathMeN', runner);
+        if (meN) meN.textContent = '0' + (cur + 1);
+      }
 
       // Сердечка розставлені під етапами; пройдені — зібрані
       hearts.forEach(function (hrt, k) {
