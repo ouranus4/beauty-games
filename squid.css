@@ -39,6 +39,7 @@
   --accent-lt:#FF8FC0;
   --accent-rgb:255,46,136;
 
+  --check:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='%23000' stroke-width='2.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m2.6 8.4 3.6 3.6 7.2-7.6'/%3E%3C/svg%3E");
   /* Маркер списків — емблема Beauty Games. */
   --bg-mark:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='282.88 122.06 153.76 160.69'%3E%3Cpath transform='matrix(1,0,0,-1,355.3672,197.2986)' d='M0 0 10.562-10.562H23.928L9.563-28.966-7.014-24.057V11.189L11.614 17.33 54.82-5.281 32.64-16.889 40.439 0ZM-58.827-64.757V-48.983L-24.783-31.885-24.816-14.468-34.497-6.841-24.811-3.054V18.703L-58.827 37.917V54.195L-1.423 24.153-17.576 18.828V-31.944L-3.879-36ZM-35.368-19.6-35.357-25.187-58.827-37.312V25.969L-35.373 12.342V4.157L-53.21-3.721ZM-70.302 73.151V-83.714L79.568-5.281Z' fill='%23000'/%3E%3C/svg%3E");
 }
@@ -283,61 +284,39 @@ a,button,.btn,.tile,.acc-btn,label,select,input[type=checkbox],.px-btn,
 .px-btn:active{transform:translateY(0)}
 .px-btn-lg{font-size:12.5px;padding:19px 48px}
 
+/* Заставка: логотип, смуга, рядок напрямків. Зникає сама. */
 .preloader{
   position:fixed;inset:0;z-index:200;background:var(--ink);
-  display:flex;align-items:center;justify-content:center;padding:20px;
-  animation:none;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  gap:0;padding:24px;
+  transition:opacity .4s ease, visibility .4s ease;
 }
-.preloader.done{animation:plOut .4s ease forwards}
-@keyframes plOut{to{opacity:0;visibility:hidden;pointer-events:none}}
-
-.pl-win{width:min(440px,100%)}
-.pl-win .px-win-body{display:grid;place-items:center;text-align:center;min-height:250px}
-
-/* Три знаки гри замість піксельних сердечок. */
-/* Емблема проєкту на екрані входу. */
-.pl-marks{display:flex;margin-bottom:24px}
-.pl-marks svg{
-  width:52px;height:52px;color:var(--pink);
-  filter:drop-shadow(0 0 24px rgba(255,46,136,.7));
-  animation:sqPulse 2.2s ease-in-out infinite;
-}
-@keyframes sqPulse{
-  0%,100%{opacity:.75;transform:scale(.96)}
-  50%{opacity:1;transform:scale(1.04)}
-}
-
-.pl-label{
-  font-family:"Montserrat",sans-serif;font-size:12px;font-weight:700;
-  letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin-bottom:16px;
+.preloader.gone{opacity:0;visibility:hidden;pointer-events:none}
+.pl-logo{
+  width:min(240px,64%);height:auto;margin-bottom:30px;display:block;
+  filter:drop-shadow(0 0 30px rgba(255,46,136,.35));
 }
 .pl-bar{
-  width:min(300px,72vw);height:8px;border-radius:var(--r-pill);
-  background:rgba(255,255,255,.1);padding:0;overflow:hidden;border:0;
+  width:min(280px,70vw);height:6px;border-radius:var(--r-pill);
+  background:rgba(255,255,255,.1);overflow:hidden;
 }
 .pl-bar-fill{
   display:block;height:100%;width:0;border-radius:var(--r-pill);
   background:linear-gradient(90deg,var(--pink-deep),var(--pink-hot));
   box-shadow:0 0 18px rgba(255,46,136,.7);
-  transition:width .25s ease;
+  transition:width .18s ease;
 }
 .pl-pct{
-  font-family:"JetBrains Mono",monospace;font-size:15px;color:var(--pink-soft);
+  font-family:"JetBrains Mono",monospace;font-size:13px;color:var(--pink-soft);
   margin-top:14px;letter-spacing:.08em;
 }
-.pl-start{display:grid;place-items:center;gap:18px}
-.pl-ask{
-  font-family:"Montserrat",sans-serif;font-size:clamp(22px,4vw,30px);font-weight:900;
-  text-transform:uppercase;letter-spacing:-.01em;color:#fff;line-height:1.1;
-}
-.pl-hint{
-  font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:.22em;
+.pl-meta{display:flex;flex-wrap:wrap;justify-content:center;gap:6px 14px;margin-top:26px}
+.pl-meta span{
+  font-family:"JetBrains Mono",monospace;font-size:9.5px;letter-spacing:.2em;
   text-transform:uppercase;color:var(--faint);
 }
-@media (prefers-reduced-motion:reduce){
-  .pl-marks svg{animation:none;opacity:1}
-  .pl-bar-fill{transition:none}
-}
+.pl-meta span + span::before{content:"· ";color:rgba(255,46,136,.6)}
+@media (prefers-reduced-motion:reduce){.pl-bar-fill{transition:none}}
 
 /* ============================================================
    ВИБІР ПЕРСОНАЖА
@@ -1117,17 +1096,19 @@ body.bio-open{overflow:hidden}
 /* ============================================================
    ВИБІР ПЕРСОНАЖА — рожеві плитки
    ============================================================ */
+/* Плитка світла, обрана — рожева. Раніше всі були рожеві, а вибір
+   позначався білою рамкою: людині з поганим зором різниці не видно. */
 .chr{
   position:relative;gap:0;padding:0;overflow:hidden;
   border-radius:var(--r-md);
-  background:linear-gradient(160deg,#FF2E88,#C2005F);
-  border:1px solid rgba(255,255,255,.16);
-  box-shadow:0 14px 34px rgba(255,46,136,.24);
+  background:#F4EFF6;
+  border:2px solid rgba(255,255,255,.2);
+  box-shadow:0 10px 26px rgba(0,0,0,.35);
 }
 /* Плитка персонажа квадратна: прямокутні виглядали як недороблені. */
 .chr-ph{
   display:block;width:100%;aspect-ratio:1;position:relative;overflow:hidden;
-  background:linear-gradient(160deg,#FF4F9A,#B80059);
+  background:#F4EFF6;transition:background .2s ease;
 }
 .picker-grid{grid-template-columns:repeat(5,1fr)}
 @media (max-width:900px){.picker-grid{grid-template-columns:repeat(4,1fr)}}
@@ -1138,27 +1119,48 @@ body.bio-open{overflow:hidden}
 }
 .chr-ph .icon{
   position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);
-  width:42%;height:42%;color:#fff;
-  filter:drop-shadow(0 4px 14px rgba(0,0,0,.4));
+  width:42%;height:42%;color:#C2005F;filter:none;
+  transition:color .2s ease;
 }
 /* Підпис лежить на самій плитці, тому картка лишається квадратною:
    раніше текст додавав низ і плитки виходили прямокутними. */
 .chr{position:relative}
 .chr-nm{
   position:absolute;left:0;right:0;bottom:0;
-  padding:22px 6px 9px;
-  background:linear-gradient(180deg,rgba(120,0,58,0),rgba(90,0,44,.85));
+  padding:20px 6px 9px;
+  background:linear-gradient(180deg,rgba(244,239,246,0),rgba(244,239,246,.94) 46%);
   font-family:"Montserrat",sans-serif;font-size:10px;font-weight:800;
-  letter-spacing:.02em;text-transform:uppercase;color:#fff;line-height:1.2;
-  overflow-wrap:anywhere;
+  letter-spacing:.02em;text-transform:uppercase;color:#2A1C33;line-height:1.2;
+  overflow-wrap:anywhere;transition:color .2s ease, background .2s ease;
 }
 @media (max-width:560px){.chr-nm{font-size:9px;padding:18px 3px 8px}}
-.chr:hover{transform:translateY(-4px);box-shadow:0 22px 46px rgba(255,46,136,.4)}
+.chr:hover{transform:translateY(-4px);box-shadow:0 18px 38px rgba(255,46,136,.3)}
 .chr.on{
   border-color:#fff;
-  box-shadow:0 0 0 2px #fff, 0 22px 50px rgba(255,46,136,.5);
+  box-shadow:0 0 0 3px rgba(255,46,136,.35), 0 22px 50px rgba(255,46,136,.5);
+}
+.chr.on .chr-ph{background:linear-gradient(160deg,#FF2E88,#C2005F)}
+.chr.on .chr-ph .icon{color:#fff}
+.chr.on .chr-nm{
+  color:#fff;
+  background:linear-gradient(180deg,rgba(194,0,95,0),rgba(150,0,73,.92) 46%);
 }
 .chr.on .chr-ph img{opacity:1;mix-blend-mode:normal}
+/* Галочка на обраній плитці — щоб вибір читався й без кольору. */
+.chr::after{
+  content:"";position:absolute;right:7px;top:7px;width:20px;height:20px;
+  border-radius:50%;background:var(--pink);
+  opacity:0;transform:scale(.6);transition:opacity .16s ease, transform .16s ease;
+  -webkit-mask:none;
+}
+.chr::before{
+  content:"";position:absolute;right:12px;top:12px;z-index:2;
+  width:10px;height:10px;background:#fff;
+  -webkit-mask:var(--check) center/contain no-repeat;
+          mask:var(--check) center/contain no-repeat;
+  opacity:0;transform:scale(.6);transition:opacity .16s ease, transform .16s ease;
+}
+.chr.on::after,.chr.on::before{opacity:1;transform:scale(1)}
 
 /* ============================================================
    КАТЕГОРІЇ ЧЕМПІОНАТУ — по три в ряд
@@ -1616,3 +1618,146 @@ body.bio-open{overflow:hidden}
 }
 .prog-dot.hit b{color:var(--gold-ink)}
 .prog-dot.hit.on{box-shadow:0 0 0 4px rgba(233,198,126,.22), 0 8px 20px rgba(233,198,126,.5)}
+
+/* ============================================================
+   РОЗВИЛКА ФОРМАТУ
+   Питання з трьома відповідями замість «ось два варіанти».
+   ============================================================ */
+.fork{
+  padding:clamp(22px,3vw,32px);border-radius:var(--r-lg);margin-bottom:18px;
+  background:linear-gradient(180deg,rgba(255,46,136,.12),rgba(255,255,255,.03));
+  border:1px solid rgba(255,46,136,.4);
+}
+.fork-k{
+  display:inline-block;padding:5px 14px;border-radius:var(--r-pill);
+  font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:.18em;
+  text-transform:uppercase;color:#fff;background:var(--pink);
+}
+.fork-t{
+  margin:14px 0 20px;font-family:"Montserrat",sans-serif;font-weight:900;
+  font-size:clamp(20px,2.8vw,28px);line-height:1.15;color:var(--white);
+  letter-spacing:-.025em;text-wrap:balance;
+}
+.fork-opts{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.fork-o{
+  display:flex;flex-direction:column;align-items:flex-start;gap:8px;text-align:left;
+  padding:20px;border-radius:var(--r-md);
+  background:rgba(255,255,255,.05);border:2px solid rgba(255,255,255,.12);
+  transition:transform .16s ease, border-color .2s ease, background .2s ease, box-shadow .2s;
+}
+.fork-o:hover{
+  transform:translateY(-3px);border-color:rgba(255,46,136,.55);
+  background:rgba(255,46,136,.1);
+}
+.fork-o.on{
+  border-color:var(--pink);background:rgba(255,46,136,.2);
+  box-shadow:0 0 0 3px rgba(255,46,136,.18), 0 16px 36px rgba(255,46,136,.28);
+}
+.fork-o-i{
+  width:44px;height:44px;display:grid;place-items:center;border-radius:14px;
+  background:rgba(255,46,136,.16);border:1px solid rgba(255,46,136,.4);
+}
+.fork-o-i .icon{width:24px;height:24px;color:var(--pink-soft)}
+.fork-o.on .fork-o-i{background:var(--pink);border-color:#fff}
+.fork-o.on .fork-o-i .icon{color:#fff}
+.fork-o b{
+  font-family:"Montserrat",sans-serif;font-weight:900;font-size:16px;
+  color:var(--white);letter-spacing:-.015em;
+}
+.fork-o span{font-size:13px;line-height:1.45;color:var(--muted)}
+.fork-o.on span{color:var(--text)}
+
+.fork-out{
+  margin-top:16px;padding:20px 22px;border-radius:var(--r-md);
+  background:linear-gradient(180deg,rgba(233,198,126,.14),rgba(233,198,126,.04));
+  border:1px solid rgba(233,198,126,.45);
+  animation:forkIn .26s ease both;
+}
+@keyframes forkIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.fork-out-k{
+  display:block;font-family:"JetBrains Mono",monospace;font-size:10px;
+  letter-spacing:.18em;text-transform:uppercase;color:var(--gold-2);margin-bottom:8px;
+}
+.fork-out b{
+  display:block;font-family:"Montserrat",sans-serif;font-weight:900;
+  font-size:clamp(17px,2.2vw,22px);color:var(--gold-1);margin-bottom:10px;
+  letter-spacing:-.02em;
+}
+.fork-out p{margin:0;font-size:14.5px;line-height:1.6;color:var(--text)}
+
+/* Дорога, яку підказала розвилка, підсвічується. */
+.way.pick{
+  border-color:var(--gold-2);
+  box-shadow:0 0 0 2px rgba(233,198,126,.3), 0 26px 60px rgba(233,198,126,.2);
+}
+.way.pick .way-n{background:linear-gradient(180deg,var(--gold-1),var(--gold-3));color:var(--gold-ink);box-shadow:none}
+
+@media (max-width:760px){
+  .fork-opts{grid-template-columns:1fr;gap:10px}
+  .fork-o{flex-direction:row;align-items:center;gap:14px;padding:14px;flex-wrap:wrap}
+  .fork-o-i{width:38px;height:38px;flex:none}
+  .fork-o b{font-size:15px}
+  .fork-o span{width:100%;font-size:12.5px}
+}
+
+/* ============================================================
+   РЕЗУЛЬТАТИ — з фото
+   ============================================================ */
+.star{display:flex;flex-direction:column;align-items:flex-start;gap:12px}
+.star-ph{
+  width:76px;height:76px;flex:none;border-radius:50%;overflow:hidden;
+  background:#F1EAF4;box-shadow:0 0 0 3px rgba(255,46,136,.35);
+}
+.star-ph img{width:100%;height:100%;object-fit:cover;display:block}
+.star-ph-empty{display:grid;place-items:center;background:#FBF3F7}
+.star-ph-empty .icon{width:34px;height:34px;color:rgba(194,0,95,.35)}
+
+/* ============================================================
+   МОДУЛІ — з номером-медаллю і станом «пройдено»
+   ============================================================ */
+.acc-btn .mi{
+  min-width:42px;height:42px;border-radius:50%;display:grid;place-items:center;
+  font-family:"JetBrains Mono",monospace;font-size:13px;font-weight:700;
+  background:rgba(255,46,136,.14);color:var(--pink-soft);
+  border:1.5px solid rgba(255,46,136,.4);
+  transition:background .2s, color .2s, border-color .2s, transform .16s;
+}
+.acc-item.open .acc-btn .mi{
+  background:linear-gradient(180deg,var(--gold-1),var(--gold-3));
+  color:var(--gold-ink);border-color:#fff;transform:scale(1.06);
+}
+.acc-item.seen .acc-btn .mi{
+  background:rgba(233,198,126,.24);color:var(--gold-1);border-color:rgba(233,198,126,.5);
+}
+.acc-bar .btn{flex:none}
+
+/* ============================================================
+   ЗАСНОВНИЦІ Й РЕЗУЛЬТАТИ — щільніше
+   ============================================================ */
+.founder{padding:clamp(18px,2.2vw,24px)}
+.founder-top{margin-bottom:16px;gap:14px}
+.founder-ph{width:92px;height:92px;border-radius:18px}
+.founder p{margin:0 0 11px;font-size:14px;line-height:1.55}
+.founder-q{margin-bottom:13px;padding:13px 15px;font-size:14px}
+.founder-list{margin-bottom:13px;gap:7px}
+.founder-list li{font-size:14px}
+.iryna{padding:clamp(18px,2.4vw,26px);gap:22px}
+.iryna-tx p{margin:0 0 11px;font-size:14.5px;line-height:1.58}
+.iryna-q{margin-bottom:13px;padding:15px 17px}
+.iryna-facts{margin-bottom:14px;gap:10px}
+.star{padding:18px}
+
+/* Плашки напрямків: рівний ряд із трьох, а не три окремі рядки. */
+.pills-3{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.pills-3 .pill{
+  justify-content:center;text-align:center;padding:12px 8px;
+  flex-direction:column;gap:6px;
+}
+.pills-3 .pill .icon{width:22px;height:22px}
+@media (max-width:520px){
+  .pills-3{gap:6px}
+  .pills-3 .pill{font-size:10px;letter-spacing:.02em;padding:11px 4px}
+  .pills-3 .pill .icon{width:20px;height:20px}
+}
+
+/* Пакети теж на світлому — біля них ухвалюють рішення. */

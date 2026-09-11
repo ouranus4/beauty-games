@@ -61,7 +61,21 @@ def build_sprite():
     return "\n".join(parts)
 
 
-PRELOADER = ""   # екран входу прибрано: зайвий клік перед сайтом
+# Коротка заставка на час завантаження. Кнопки «Почати гру?» немає:
+# зайвий клік перед сайтом прибрали, екран зникає сам.
+PRELOADER = """
+<div class="preloader" id="preloader">
+  <img class="pl-logo" src="assets/logo-vertical.svg" alt="Beauty Games" width="260" height="150">
+  <div class="pl-bar"><span class="pl-bar-fill" id="plBar"></span></div>
+  <div class="pl-pct" id="plPct">0%</div>
+  <div class="pl-meta">
+    <span>Season 2026</span>
+    <span>Reality show</span>
+    <span>Championship</span>
+    <span>Education</span>
+  </div>
+</div>
+"""
 
 BLOCK = "<!-- SPRITE -->\n%s\n%s\n<!-- /SPRITE -->" % (PRELOADER.strip(), build_sprite())
 

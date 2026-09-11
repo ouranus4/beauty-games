@@ -6,6 +6,48 @@
 
   document.documentElement.classList.add('js');
 
+  /* ============================================================
+     ЗАСТАВКА ЗАВАНТАЖЕННЯ
+     Мінімум 1,6 секунди, щоб логотип встигли побачити, далі ховається
+     сама. Кнопки немає — зайвий клік перед сайтом прибрали.
+     ============================================================ */
+  (function () {
+    var pl = document.getElementById('preloader');
+    if (!pl) return;
+    var bar = document.getElementById('plBar');
+    var pct = document.getElementById('plPct');
+    var t0 = Date.now(), MIN = 1600, done = false, timer = null;
+
+    document.body.style.overflow = 'hidden';
+
+    var hide = function () {
+      if (done) return;
+      done = true;
+      if (timer) clearInterval(timer);
+      if (bar) bar.style.width = '100%';
+      if (pct) pct.textContent = '100%';
+      setTimeout(function () {
+        pl.classList.add('gone');
+        document.body.style.overflow = '';
+        setTimeout(function () {
+          if (pl.parentNode) pl.parentNode.removeChild(pl);
+        }, 450);
+      }, 220);
+    };
+
+    timer = setInterval(function () {
+      var v = Math.min(97, (Date.now() - t0) / MIN * 100);
+      if (bar) bar.style.width = v + '%';
+      if (pct) pct.textContent = Math.round(v) + '%';
+      if (Date.now() - t0 >= MIN && document.readyState === 'complete') hide();
+    }, 40);
+
+    window.addEventListener('load', function () {
+      setTimeout(hide, Math.max(0, MIN - (Date.now() - t0)));
+    });
+    setTimeout(hide, 6000);   // страховка
+  })();
+
   var $  = function (s, c) { return (c || document).querySelector(s); };
   var $$ = function (s, c) { return Array.prototype.slice.call((c || document).querySelectorAll(s)); };
 
@@ -120,6 +162,7 @@
           });
         }
         setItem(item, !isOpen);
+        item.classList.add('seen');
         acc.dispatchEvent(new CustomEvent('acc:change', { bubbles: true }));
       });
     });
@@ -636,6 +679,48 @@
   }
 
   /* ============================================================
+     РОЗВИЛКА ФОРМАТУ
+     Замість «ось два варіанти, розбирайтесь самі» — питання і
+     відповідь. Обрана дорога підсвічується нижче.
+     ============================================================ */
+  var fork = $('#fork');
+  if (fork) {
+    var forkOut = $('#forkOut');
+    var forkName = $('#forkName');
+    var forkText = $('#forkText');
+    var ANSW = {
+      money: {
+        n: 'Формат A — тільки бізнес-навчання',
+        t: 'Ви тут за грошима, і це чесна відповідь. Беріть навчання без шоу: дев’ять модулів, куратор, домашні з перевіркою. Виходите з піднятим чеком, налаштованим потоком і планом на рік — без камер і публічності.',
+        w: 0
+      },
+      fame: {
+        n: 'Формат B — з чемпіонатом і реаліті-шоу',
+        t: 'Медійність не росте окремо від бізнесу: щоб вас знали, має бути що показати. Тому формат B — це і навчання, і зйомки. Вас знімають, ми вас просуваємо, глядачі голосують, а контент лишається вам.',
+        w: 1
+      },
+      both: {
+        n: 'Формат B — з чемпіонатом і реаліті-шоу',
+        t: 'Саме під це сезон і зроблений. За три місяці ви піднімаєте чек і одночасно набираєте ім’я: ефіри, чемпіонат у вашій категорії, голосування глядачів. Виходите не просто з бізнесом, а з бізнесом, про який знають.',
+        w: 1
+      }
+    };
+
+    $$('.fork-o', fork).forEach(function (b) {
+      b.addEventListener('click', function () {
+        var a = ANSW[b.getAttribute('data-pick')];
+        if (!a) return;
+        $$('.fork-o', fork).forEach(function (x) { x.classList.toggle('on', x === b); });
+        if (forkName) forkName.textContent = a.n;
+        if (forkText) forkText.textContent = a.t;
+        if (forkOut) forkOut.hidden = false;
+        $$('.way').forEach(function (w, i) { w.classList.toggle('pick', i === a.w); });
+        document.dispatchEvent(new CustomEvent('bg:fork'));
+      });
+    });
+  }
+
+  /* ============================================================
      ПРОГРЕС ПО СТОРІНЦІ
      Крапки-віхи збоку: заповнюються в міру прокрутки, поточна
      підсвічується. Дає відчуття руху по грі, а не гортання сайту.
@@ -679,7 +764,8 @@
     };
     document.addEventListener('bg:character', function () { markStep('#picker'); });
     document.addEventListener('bg:quiz', function () { markStep('#about'); });
-    document.addEventListener('bg:path-end', function () { markStep('#format'); });
+    document.addEventListener('bg:fork', function () { markStep('#format'); });
+    document.addEventListener('bg:path-end', function () { markStep('#how'); });
   }
 
   /* ============================================================
