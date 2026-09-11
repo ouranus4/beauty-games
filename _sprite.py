@@ -10,6 +10,7 @@
 пікселі рядка в один прямокутник — файл лишається невеликим.
 """
 import io, re
+from _icons32 import P32   # іконки 32x32 мають пріоритет над 16x16
 
 # Векторна емблема з логобука
 LOGO_D = ("M0 0 10.562-10.562H23.928L9.563-28.966-7.014-24.057V11.189L11.614 17.33 54.82-5.281 32.64-16.889 40.439 0Z"
@@ -496,6 +497,25 @@ P = {
 ................
 """,
 
+"sad": """
+................
+....########....
+..##........##..
+.##..........##.
+##............##
+##...##..##...##
+##...##..##...##
+##............##
+##............##
+##....####....##
+##...##..##...##
+.##..........##.
+.##..........##.
+..##........##..
+....########....
+................
+""",
+
 "shop": """
 ................
 .....######.....
@@ -539,9 +559,14 @@ def build_sprite():
              'style="position:absolute;pointer-events:none">']
     parts.append('  <symbol id="bg-logo" viewBox="%s"><path transform="%s" d="%s" fill="currentColor"/></symbol>'
                  % (LOGO_VB, LOGO_TR, LOGO_D))
-    for name, pat in P.items():
-        parts.append('  <symbol id="i-%s" viewBox="0 0 16 16" shape-rendering="crispEdges">'
-                     '<g fill="currentColor">%s</g></symbol>' % (name, pattern_to_svg(pat)))
+    names = set(P) | set(P32)
+    for name in sorted(names):
+        if name in P32:
+            grid, pat = 32, P32[name]
+        else:
+            grid, pat = 16, P[name]
+        parts.append('  <symbol id="i-%s" viewBox="0 0 %d %d" shape-rendering="crispEdges">'
+                     '<g fill="currentColor">%s</g></symbol>' % (name, grid, grid, pattern_to_svg(pat)))
     parts.append('</svg>')
     return "\n".join(parts)
 

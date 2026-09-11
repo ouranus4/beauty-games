@@ -418,6 +418,46 @@
   }
 
   /* ============================================================
+     ВИБІР ПЕРСОНАЖА
+     Обраний напрямок запам'ятовується і підставляється у форму,
+     тож менеджер одразу бачить, з ким має справу.
+     ============================================================ */
+  var picker = $('#picker');
+  if (picker) {
+    var chrs = $$('.chr', picker);
+    var done = $('#pickerDone');
+    var doneName = $('#pickerName');
+    var dirSelect = $('#fDir');
+
+    var choose = function (dir, silent) {
+      var card = null;
+      chrs.forEach(function (c) {
+        var on = c.getAttribute('data-dir') === dir;
+        c.classList.toggle('on', on);
+        if (on) card = c;
+      });
+      if (done && doneName) { doneName.textContent = dir; done.hidden = false; }
+      if (dirSelect) {
+        // На картці підпис коротший, ніж у списку форми
+        // («Перманент» проти «Перманентний макіяж») — беремо повну назву.
+        var full = (card && card.getAttribute('data-form')) || dir;
+        var hit = null;
+        $$('option', dirSelect).forEach(function (o) { if (o.textContent.trim() === full) hit = o; });
+        if (hit) dirSelect.value = hit.value;
+      }
+      store.set('bg_character', dir);
+      if (!silent) document.dispatchEvent(new CustomEvent('bg:character', { detail: { dir: dir } }));
+    };
+
+    chrs.forEach(function (c) {
+      c.addEventListener('click', function () { choose(c.getAttribute('data-dir')); });
+    });
+
+    var saved = store.get('bg_character');
+    if (saved) choose(saved, true);
+  }
+
+  /* ============================================================
      ПЛАВНА ПРОКРУТКА З УРАХУВАННЯМ ЛИПКОЇ ШАПКИ
      ============================================================ */
   $$('a[href^="#"]').forEach(function (a) {

@@ -180,3 +180,81 @@ a,button,.btn,.tile,.acc-btn,label,select,input[type=checkbox],.px-btn,
   .pl-hearts svg,.pl-mark svg{animation:none}
   .pl-bar-fill{transition:none}
 }
+
+/* ============================================================
+   ВИБІР ПЕРСОНАЖА
+   Перший крок гри: людина одразу впізнає себе в списку, а обране
+   підставляється в заявку — менеджер бачить напрямок без питань.
+   ============================================================ */
+.picker{
+  width:100%;margin-top:4px;padding:22px;
+  background:rgba(255,255,255,.04);
+  border:2px solid rgba(var(--accent-rgb),.45);
+  box-shadow:5px 5px 0 rgba(var(--accent-rgb),.55);
+}
+.picker-head{display:flex;flex-direction:column;gap:7px;margin-bottom:18px}
+.picker-kicker{
+  align-self:flex-start;font-family:"Pixelify Sans",monospace;font-size:13px;
+  letter-spacing:.08em;text-transform:uppercase;color:#fff;
+  background:var(--accent);border:2px solid #fff;padding:3px 10px;
+}
+.picker-title{
+  font-family:"Montserrat",sans-serif;font-weight:900;font-size:clamp(19px,2.4vw,26px);
+  text-transform:uppercase;color:var(--white);letter-spacing:-.01em;
+}
+.picker-sub{margin:0;font-size:13.5px;color:var(--muted);max-width:56ch}
+
+.picker-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(132px,1fr));gap:10px}
+.chr{
+  display:flex;flex-direction:column;align-items:center;gap:9px;text-align:center;
+  padding:14px 8px;background:rgba(255,255,255,.05);
+  border:2px solid rgba(255,255,255,.18);box-shadow:3px 3px 0 rgba(var(--accent-rgb),.4);
+  font-family:"Montserrat",sans-serif;font-size:11.5px;font-weight:700;
+  letter-spacing:.03em;text-transform:uppercase;color:var(--text);
+  transition:transform .07s linear, box-shadow .07s linear, background .14s;
+}
+.chr .icon{width:38px;height:38px;color:var(--accent-lt)}
+.chr:hover{background:rgba(var(--accent-rgb),.18);transform:translate(-2px,-2px);
+  box-shadow:5px 5px 0 rgba(var(--accent-rgb),.7)}
+.chr:active{transform:translate(3px,3px);box-shadow:0 0 0 rgba(var(--accent-rgb),.7)}
+.chr.on{
+  background:rgba(var(--accent-rgb),.34);border-color:#fff;color:#fff;
+  box-shadow:4px 4px 0 #fff;
+}
+.chr.on .icon{color:#fff}
+
+.picker-done{
+  display:flex;align-items:center;flex-wrap:wrap;gap:12px;margin-top:16px;
+  padding:12px 16px;background:rgba(var(--accent-rgb),.18);
+  border:2px solid rgba(var(--accent-rgb),.6);
+  font-size:14px;color:var(--text);
+}
+.picker-done b{color:#fff}
+.picker-check{
+  width:24px;height:24px;flex:none;display:grid;place-items:center;
+  background:var(--accent);border:2px solid #fff;color:#fff;font-size:13px;font-weight:800;
+}
+.picker-done .btn{margin-left:auto}
+
+/* ---------- сумні обличчя в блоці болів ---------- */
+.pain .qm{line-height:0}
+.pain .qm .icon{width:34px;height:34px;color:var(--accent-lt)}
+
+/* ---------- звук: помітно на мобільному ---------- */
+.sfx-row{display:flex;align-items:center;gap:12px;margin-top:18px;padding-top:16px;
+  border-top:2px solid rgba(255,255,255,.16)}
+.sfx-row-label{font-family:"Montserrat",sans-serif;font-size:13px;font-weight:800;
+  letter-spacing:.06em;text-transform:uppercase;color:var(--text)}
+@media (max-width:860px){
+  .picker{padding:16px}
+  .picker-grid{grid-template-columns:repeat(2,1fr)}
+  .picker-done .btn{margin-left:0;width:100%}
+  /* підпис поруч із кнопкою звуку: саму іконку на телефоні не впізнають */
+  .sfx-btn::after{
+    content:"Звук";margin-left:8px;
+    font-family:"Montserrat",sans-serif;font-size:11px;font-weight:800;
+    letter-spacing:.06em;text-transform:uppercase;color:var(--text);
+  }
+  .sfx-btn{width:auto;padding:0 12px;gap:0;display:flex;align-items:center}
+  .sfx-btn.on::after{color:#fff}
+}

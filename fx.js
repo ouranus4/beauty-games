@@ -342,6 +342,7 @@
     if (!soundOn || !e.target.closest) return;
     if (e.target.closest('.sfx-btn')) return;
 
+    if (e.target.closest('.chr')) { SFX.pick(); return; }
     if (e.target.closest('.js-pick')) { SFX.pick(); return; }
     if (e.target.closest('.acc-btn')) {
       var item = e.target.closest('.acc-item');
