@@ -12,43 +12,66 @@
      не виконається — сторінка не залишиться перекритою. Тут лише
      прибираємо його з DOM, щоб не заважав кліку.
      ============================================================ */
+  /* ============================================================
+     ВХІДНИЙ ЕКРАН
+     Спершу смуга завантаження за реальним прогресом ресурсів,
+     далі вікно «Почати гру?». Далі — тільки за кліком користувача,
+     тому автозапуск звуку після цього дозволений браузером.
+     ============================================================ */
   var preloader = document.getElementById('preloader');
   if (preloader) {
-    /* Смуга росте за реальним прогресом: скільки ресурсів сторінки вже
-       завантажилось. Поки їх мало — підтягуємо плавно за часом, щоб
-       смуга не стрибала з нуля одразу в кінець. */
     var bar = document.getElementById('plBar');
-    var pct = 0, barTimer = null;
-    var setBar = function (v) {
-      pct = Math.max(pct, Math.min(100, v));
-      if (bar) bar.style.width = pct + '%';
-    };
-    if (bar) {
-      var t0 = Date.now();
-      barTimer = setInterval(function () {
-        var byTime = Math.min(92, (Date.now() - t0) / 26);
-        var res = performance.getEntriesByType ? performance.getEntriesByType('resource').length : 0;
-        var byRes = Math.min(92, res * 7);
-        setBar(Math.max(byTime, byRes));
-      }, 90);
-    }
+    var pct = document.getElementById('plPct');
+    var stage = document.getElementById('plStage');
+    var startPane = document.getElementById('plStart');
+    var goBtn = document.getElementById('plGo');
+    var value = 0, barTimer = null, t0 = Date.now(), armed = false;
 
-    var killPreloader = function () {
-      if (barTimer) { clearInterval(barTimer); barTimer = null; }
-      setBar(100);
+    var paint = function (v) {
+      value = Math.max(value, Math.min(100, v));
+      if (bar) bar.style.width = value + '%';
+      if (pct) pct.textContent = Math.round(value) + '%';
+    };
+
+    var hide = function () {
       preloader.classList.add('done');
+      document.body.style.overflow = '';
       setTimeout(function () {
         if (preloader && preloader.parentNode) preloader.parentNode.removeChild(preloader);
-      }, 500);
+      }, 420);
     };
-    // мінімум показу, щоб анімація не обривалася на швидкому з'єднанні
-    var shown = Date.now();
+
+    var offerStart = function () {
+      if (armed) return;
+      armed = true;
+      if (barTimer) { clearInterval(barTimer); barTimer = null; }
+      paint(100);
+      setTimeout(function () {
+        if (stage) stage.hidden = true;
+        if (startPane) startPane.hidden = false;
+        if (goBtn) goBtn.focus({ preventScroll: true });
+      }, 320);
+    };
+
+    document.body.style.overflow = 'hidden';
+
+    barTimer = setInterval(function () {
+      var byTime = Math.min(94, (Date.now() - t0) / 14);
+      var res = performance.getEntriesByType ? performance.getEntriesByType('resource').length : 0;
+      var byRes = Math.min(94, res * 8);
+      paint(Math.max(byTime, byRes));
+      if (value >= 94 && document.readyState === 'complete') offerStart();
+    }, 80);
+
     window.addEventListener('load', function () {
-      var left = Math.max(0, 2700 - (Date.now() - shown));
-      setTimeout(killPreloader, left);
+      setTimeout(offerStart, Math.max(0, 900 - (Date.now() - t0)));
     });
-    // страховка на випадок, якщо load так і не настане
-    setTimeout(killPreloader, 5200);
+    setTimeout(offerStart, 5000);   // страховка, якщо load не настане
+
+    if (goBtn) goBtn.addEventListener('click', function () {
+      hide();
+      document.dispatchEvent(new CustomEvent('bg:start'));
+    });
   }
 
   var $  = function (s, c) { return (c || document).querySelector(s); };

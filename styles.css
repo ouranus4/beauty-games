@@ -35,6 +35,7 @@
 }
 
 *{box-sizing:border-box}
+[hidden]{display:none!important}
 html{scroll-behavior:smooth}
 body{
   margin:0;background:var(--ink);color:var(--text);
@@ -802,32 +803,28 @@ footer{position:relative;z-index:2;border-top:1px solid var(--line-soft);padding
    ІКОНКИ — заливка «скляним» градієнтом зі світінням
    ============================================================ */
 .icon{
-  width:32px;height:32px;flex:none;display:block;
-  color:#fff;
-  filter:drop-shadow(0 0 4px rgba(255,255,255,.55))
-         drop-shadow(0 0 10px rgba(var(--accent-rgb),1))
-         drop-shadow(0 0 22px rgba(var(--accent-rgb),.7));
-  transition:filter .22s ease, transform .22s ease;
+  width:30px;height:30px;flex:none;display:block;
+  color:var(--accent-lt);
+  shape-rendering:crispEdges;image-rendering:pixelated;
+  filter:drop-shadow(2px 2px 0 rgba(var(--accent-rgb),.45));
+  transition:transform .1s steps(2);
 }
 .icon-lg{width:44px;height:44px}
 .icon-sm{width:20px;height:20px}
 
 /* кругла підкладка під іконку */
 .icon-chip{
-  width:54px;height:54px;border-radius:17px;flex:none;display:grid;place-items:center;
-  background:linear-gradient(160deg,rgba(255,255,255,.07),rgba(255,255,255,.02));
-  border:1px solid rgba(255,255,255,.12);
-  box-shadow:inset 0 1px 0 rgba(255,255,255,.16);
+  width:52px;height:52px;border-radius:0;flex:none;display:grid;place-items:center;
+  background:rgba(var(--accent-rgb),.14);
+  border:2px solid rgba(var(--accent-rgb),.5);
+  box-shadow:3px 3px 0 rgba(var(--accent-rgb),.32);
 }
 .icon-chip .icon{width:30px;height:30px}
 
 /* іконка в плитці категорії */
 .tile{display:flex;flex-direction:column;align-items:center;gap:10px}
 .tile .icon{width:32px;height:32px}
-.tile:hover .icon{
-  transform:translateY(-2px);color:#fff;
-  filter:drop-shadow(0 0 9px rgba(var(--accent-rgb),1)) drop-shadow(0 0 24px rgba(var(--accent-rgb),.7));
-}
+.tile:hover .icon{transform:translateY(-3px);color:#fff}
 
 /* заміна номера на іконку в картках */
 .tcard .icon-chip{margin-bottom:18px}
@@ -941,3 +938,106 @@ footer{position:relative;z-index:2;border-top:1px solid var(--line-soft);padding
   transition:width .28s cubic-bezier(.3,.8,.4,1);
 }
 @media (prefers-reduced-motion:reduce){ .pl-bar-fill{transition:none} }
+
+/* ============================================================
+   ПІКСЕЛЬНИЙ ШАР — Y2K
+   Світла база, ретро-вікна, чанкові кнопки, піксельні курсори.
+   Накладається поверх базових стилів: класи ті самі, змінюється шкіра.
+   ============================================================ */
+
+:root{
+  --cream:#FFF4F9;
+  --cream-2:#FFE7F3;
+  --pink:#FF8DC7;
+  --pink-lt:#FFC9E4;
+  --ink:#1B0E18;
+  --px:3px;              /* товщина піксельної рамки */
+  --px-shadow:5px 5px 0 var(--ink);
+}
+
+/* ---------- курсори: піксельна стрілка і рука ---------- */
+html,body{
+  cursor:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 16 16' shape-rendering='crispEdges'%3E%3Cpath fill='%231B0E18' d='M1 1h1v1h1v1h1v1h1v1h1v1h1v1h1v1h1v1h1v1H8v1h1v1h1v1h1v1h-1v1h-1v-1h-1v-1h-1v-1h-1v-1H5v1H4v1H3v1H2v-1H1z'/%3E%3Cpath fill='%23fff' d='M2 2h1v1h1v1h1v1h1v1h1v1h1v1h1v1h1v1H7v1h1v1h1v1h1v1h-1v-1h-1v-1h-1v-1h-1v-1H4v1H3v1H2z'/%3E%3C/svg%3E") 2 2, auto;
+}
+a,button,.btn,.tile,.acc-btn,summary,label,input[type=checkbox],select,.px-btn,.table-tabs button,.sfx-btn,.nav-burger{
+  cursor:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 16 16' shape-rendering='crispEdges'%3E%3Cpath fill='%231B0E18' d='M5 1h3v1h1v4h1V5h2v1h1v1h1v6h-1v2h-1v1H6v-1H5v-1H4v-2H3V9h2v1h1V2h-1z'/%3E%3Cpath fill='%23fff' d='M6 2h1v8h1V6h1v4h1V7h1v3h1V8h1v5h-1v2H7v-1H6v-1H5v-2H4v-1h1v1h1z'/%3E%3C/svg%3E") 6 1, pointer;
+}
+
+/* ---------- ретро-вікно ---------- */
+.px-win{
+  background:#fff;border:var(--px) solid var(--ink);border-radius:0;
+  box-shadow:var(--px-shadow);overflow:hidden;
+}
+.px-win-bar{
+  display:flex;align-items:center;justify-content:space-between;gap:10px;
+  background:var(--magenta);border-bottom:var(--px) solid var(--ink);
+  padding:7px 10px;
+}
+.px-win-title{
+  font-family:"Pixelify Sans",monospace;font-size:14px;color:#fff;
+  letter-spacing:.04em;line-height:1;word-spacing:.25em;
+}
+.px-win-btns{display:flex;gap:4px}
+.px-win-btns i{width:13px;height:13px;background:var(--cream);border:2px solid var(--ink);display:block}
+.px-win-body{padding:26px 22px}
+
+/* ---------- чанкова кнопка ---------- */
+.px-btn{
+  font-family:"Pixelify Sans",monospace;font-size:17px;letter-spacing:.03em;word-spacing:.25em;
+  color:var(--ink);background:var(--pink-lt);
+  border:var(--px) solid var(--ink);border-radius:0;
+  padding:11px 24px;box-shadow:4px 4px 0 var(--ink);
+  transition:transform .06s linear, box-shadow .06s linear;
+}
+.px-btn:hover{background:var(--pink)}
+.px-btn:active{transform:translate(4px,4px);box-shadow:0 0 0 var(--ink)}
+.px-btn-lg{font-size:21px;padding:14px 34px}
+
+/* ============================================================
+   ВХІДНИЙ ЕКРАН
+   ============================================================ */
+.preloader{
+  position:fixed;inset:0;z-index:200;background:var(--cream);
+  display:flex;align-items:center;justify-content:center;padding:22px;
+  background-image:
+    linear-gradient(rgba(255,141,199,.16) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,141,199,.16) 1px,transparent 1px);
+  background-size:16px 16px;
+  animation:none;
+}
+.preloader.done{animation:plOut .35s steps(4) forwards}
+@keyframes plOut{to{opacity:0;visibility:hidden;pointer-events:none}}
+
+.pl-win{width:min(440px,100%)}
+.pl-win .px-win-body{display:grid;place-items:center;text-align:center;min-height:240px}
+
+.pl-hearts{display:flex;gap:10px;margin-bottom:18px}
+.pl-hearts svg{width:22px;height:22px;color:var(--magenta);shape-rendering:crispEdges}
+.pl-hearts svg:nth-child(1){animation:plBeat 1.05s steps(2) infinite}
+.pl-hearts svg:nth-child(2){animation:plBeat 1.05s steps(2) .35s infinite}
+.pl-hearts svg:nth-child(3){animation:plBeat 1.05s steps(2) .7s infinite}
+@keyframes plBeat{0%,100%{opacity:.28;transform:translateY(0)}50%{opacity:1;transform:translateY(-3px)}}
+
+.pl-label{font-family:"Pixelify Sans",monospace;font-size:19px;color:var(--ink);margin-bottom:14px;word-spacing:.28em}
+.pl-bar{
+  width:min(300px,72vw);height:22px;background:#fff;
+  border:var(--px) solid var(--ink);padding:3px;
+}
+.pl-bar-fill{
+  display:block;height:100%;width:0;
+  background:repeating-linear-gradient(90deg,var(--magenta) 0 8px,#FF4FA8 8px 14px);
+  transition:width .2s steps(6);
+}
+.pl-pct{font-family:"Pixelify Sans",monospace;font-size:15px;color:var(--magenta);margin-top:10px}
+
+.pl-start{display:grid;place-items:center;gap:14px}
+.pl-mark svg{width:40px;height:40px;color:var(--magenta);shape-rendering:crispEdges;
+  animation:plSpin 2.4s steps(8) infinite}
+@keyframes plSpin{to{transform:rotate(360deg)}}
+.pl-ask{font-family:"Pixelify Sans",monospace;font-size:29px;color:var(--ink);line-height:1.15;word-spacing:.28em}
+.pl-hint{font-family:"Pixelify Sans",monospace;font-size:13px;color:#9B7A8C;word-spacing:.28em}
+
+@media (prefers-reduced-motion:reduce){
+  .pl-hearts svg,.pl-mark svg{animation:none}
+  .pl-bar-fill{transition:none}
+}
