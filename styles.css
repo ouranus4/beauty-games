@@ -779,20 +779,21 @@ footer{position:relative;z-index:2;border-top:1px solid var(--line-soft);padding
 }
 .pl-inf{position:relative;width:min(66vw,270px);height:auto;overflow:visible}
 .pl-track{fill:none;stroke:currentColor;stroke-width:2;opacity:.1}
-.pl-run{
-  fill:none;stroke:currentColor;stroke-linecap:round;
-  animation:plRun 2.6s linear infinite;
-}
-/* голова — коротка, товста, яскрава */
-.pl-t1{stroke-width:4.2;stroke-dasharray:70 1000;--L:70;filter:drop-shadow(0 0 5px currentColor) drop-shadow(0 0 14px currentColor)}
-.pl-t2{stroke-width:3.2;stroke-dasharray:150 1000;--L:150;opacity:.62}
-.pl-t3{stroke-width:2.3;stroke-dasharray:250 1000;--L:250;opacity:.34}
-/* хвіст — довгий, тонкий, ледь помітний */
-.pl-t4{stroke-width:1.5;stroke-dasharray:380 1000;--L:380;opacity:.16}
-@keyframes plRun{
-  from{stroke-dashoffset:var(--L)}
-  to  {stroke-dashoffset:calc(var(--L) - 1000)}
-}
+.pl-run{fill:none;stroke:currentColor;stroke-linecap:round}
+
+/* Кадри виписані числами навмисно. Спроба зробити один @keyframes
+   через var(--L) не працювала взагалі: незареєстровані CSS-змінні
+   в кадрах не інтерполюються, і браузер просто відкидає анімацію. */
+.pl-t1{stroke-width:4.4;stroke-dasharray:70 1000;animation:plRun1 2.6s linear infinite;
+  filter:drop-shadow(0 0 5px currentColor) drop-shadow(0 0 15px currentColor)}
+.pl-t2{stroke-width:3.2;stroke-dasharray:150 1000;opacity:.6;animation:plRun2 2.6s linear infinite}
+.pl-t3{stroke-width:2.3;stroke-dasharray:250 1000;opacity:.32;animation:plRun3 2.6s linear infinite}
+.pl-t4{stroke-width:1.5;stroke-dasharray:380 1000;opacity:.15;animation:plRun4 2.6s linear infinite}
+
+@keyframes plRun1{from{stroke-dashoffset:70}  to{stroke-dashoffset:-930}}
+@keyframes plRun2{from{stroke-dashoffset:150} to{stroke-dashoffset:-850}}
+@keyframes plRun3{from{stroke-dashoffset:250} to{stroke-dashoffset:-750}}
+@keyframes plRun4{from{stroke-dashoffset:380} to{stroke-dashoffset:-620}}
 .pl-word{
   margin-top:6px;font-family:"Montserrat",sans-serif;font-weight:800;font-size:11px;
   letter-spacing:.6em;text-indent:.6em;text-transform:uppercase;color:rgba(255,255,255,.75);
@@ -802,7 +803,7 @@ footer{position:relative;z-index:2;border-top:1px solid var(--line-soft);padding
 
 @media (prefers-reduced-motion:reduce){
   .preloader{animation:none;opacity:0;visibility:hidden;pointer-events:none}
-  .pl-stage,.pl-run{animation:none}
+  .pl-stage,.pl-run{animation:none!important}
   .pl-run{stroke-dashoffset:0;stroke-dasharray:none}
 }
 
@@ -810,11 +811,12 @@ footer{position:relative;z-index:2;border-top:1px solid var(--line-soft);padding
    ІКОНКИ — заливка «скляним» градієнтом зі світінням
    ============================================================ */
 .icon{
-  width:30px;height:30px;flex:none;display:block;
-  color:rgba(255,255,255,.82);
-  filter:drop-shadow(0 0 6px rgba(var(--accent-rgb),.85))
-         drop-shadow(0 0 16px rgba(var(--accent-rgb),.45));
-  transition:color .22s ease, filter .22s ease, transform .22s ease;
+  width:32px;height:32px;flex:none;display:block;
+  color:#fff;
+  filter:drop-shadow(0 0 4px rgba(255,255,255,.55))
+         drop-shadow(0 0 10px rgba(var(--accent-rgb),1))
+         drop-shadow(0 0 22px rgba(var(--accent-rgb),.7));
+  transition:filter .22s ease, transform .22s ease;
 }
 .icon-lg{width:44px;height:44px}
 .icon-sm{width:20px;height:20px}
@@ -830,7 +832,7 @@ footer{position:relative;z-index:2;border-top:1px solid var(--line-soft);padding
 
 /* іконка в плитці категорії */
 .tile{display:flex;flex-direction:column;align-items:center;gap:10px}
-.tile .icon{width:30px;height:30px}
+.tile .icon{width:32px;height:32px}
 .tile:hover .icon{
   transform:translateY(-2px);color:#fff;
   filter:drop-shadow(0 0 9px rgba(var(--accent-rgb),1)) drop-shadow(0 0 24px rgba(var(--accent-rgb),.7));
@@ -888,3 +890,56 @@ footer{position:relative;z-index:2;border-top:1px solid var(--line-soft);padding
   }
   .info-cap::before{content:"↔ ";color:var(--accent-lt)}
 }
+
+/* ============================================================
+   МОБІЛЬНА СХЕМА ЛІГ
+   Широка діаграма на телефоні лишала пів-екрана порожнім і вимагала
+   горизонтальної прокрутки. Ті самі дані — вертикальними картками.
+   ============================================================ */
+.league-mob{display:none;flex-direction:column;gap:12px}
+.lm-row{
+  display:grid;grid-template-columns:96px 18px minmax(0,1fr);gap:10px;align-items:center;
+  padding:14px;border-radius:18px;
+  background:linear-gradient(150deg,rgba(255,255,255,.06),rgba(255,255,255,.02));
+  border:1px solid var(--line-soft);
+}
+.lm-vip{border-color:rgba(var(--accent-rgb),.45);background:linear-gradient(150deg,rgba(var(--accent-rgb),.16),rgba(255,255,255,.02))}
+.lm-biz{border-color:rgba(var(--accent-rgb),.26)}
+.lm-pack{display:flex;flex-direction:column;gap:2px}
+.lm-pack b{font-family:"Montserrat",sans-serif;font-size:14px;font-weight:900;color:var(--white);text-transform:uppercase}
+.lm-pack span{font-size:11px;color:var(--muted)}
+.lm-arrow{height:1.5px;background:linear-gradient(90deg,rgba(var(--accent-rgb),.9),rgba(var(--accent-rgb),.25))}
+.lm-league{font-family:"Montserrat",sans-serif;font-weight:800;font-size:13.5px;color:var(--white)}
+.lm-note{font-size:12px;color:var(--muted);margin-top:2px;line-height:1.45}
+.lm-final{display:flex;flex-wrap:wrap;align-items:baseline;gap:8px;margin-top:8px;padding-top:8px;border-top:1px solid var(--line-soft)}
+.lm-final span{font-size:11.5px;color:var(--muted)}
+.lm-final b{
+  font-family:"Montserrat",sans-serif;font-size:12px;font-weight:900;text-transform:uppercase;
+  color:var(--white);padding:4px 10px;border-radius:999px;
+  background:rgba(var(--accent-rgb),.5);box-shadow:0 0 18px -4px rgba(var(--accent-rgb),1);
+}
+.lm-foot{font-size:11.5px;color:var(--faint);text-align:center;margin-top:4px;line-height:1.5}
+
+/* ---------- підпис біля бургера ---------- */
+.nav-burger{width:auto;min-width:42px;padding:0 12px;border-radius:999px;gap:8px;
+  display:none;grid-auto-flow:column;align-items:center}
+.burger-lines{display:block;width:16px}
+.burger-lines i{display:block;width:16px;height:1.6px;background:var(--white);border-radius:2px;margin:3px 0;transition:transform .25s,opacity .25s}
+.nav-burger.open .burger-lines i:nth-child(1){transform:translateY(4.6px) rotate(45deg)}
+.nav-burger.open .burger-lines i:nth-child(2){opacity:0}
+.nav-burger.open .burger-lines i:nth-child(3){transform:translateY(-4.6px) rotate(-45deg)}
+.burger-txt{font-family:"Montserrat",sans-serif;font-size:10.5px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--white)}
+
+@media (max-width:760px){
+  .league-wide{display:none}
+  .info-scroll:has(.league-wide){display:none}
+  .league-mob{display:flex}
+  /* довгі складені слова в заголовках не мають вилазити за край */
+  .h-lg,.h-xl{overflow-wrap:break-word;hyphens:auto}
+  .h-lg{font-size:clamp(22px,7vw,34px)}
+  /* таймер спецціни: підписи й цифри на всю ширину, без зсувів */
+  .countdown{padding:16px 18px;gap:12px}
+  .cd-clock{width:100%;justify-content:space-between}
+  .cd-unit{flex:1;min-width:0}
+}
+@media (max-width:1040px){ .nav-burger{display:grid} }

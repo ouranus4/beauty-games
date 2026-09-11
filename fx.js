@@ -129,48 +129,66 @@
   }
 
   /* ---------- палітра звуків ---------- */
-  // Кожен звук — основний тон плюс тихий обертон октавою вище:
-  // від цього клац перестає бути сухим «ляпасом» і звучить дзвінко.
-  function ding(o) {
-    tone(o);
-    tone({ f: o.f * 2, to: o.to ? o.to * 2 : 0, dur: (o.dur || .12) * .7,
-           gain: (o.gain || .05) * .34, type: 'sine',
-           delay: o.delay || 0, space: true });
+  /* Характер звуку — як в інтерфейсі The Sims: тепла маримба замість
+     сухих сигналів. Кожна нота — синус із трьома обертонами, м'якою
+     атакою і довгим хвостом, плюс легкий підйом висоти на початку.
+     Ноти беремо з мажорної пентатоніки, тому будь-яке поєднання
+     звучить злагоджено, хоч би скільки їх наклалося. */
+  function mallet(o) {
+    var f = o.f, g = o.gain || 0.12, d = o.dur || 0.5, dl = o.delay || 0;
+    // основний тон з легким підйомом — це дає «дерев'яний» відтінок
+    tone({ f: f * 0.995, to: f, dur: d, gain: g, type: 'sine', attack: 0.012, delay: dl, space: true });
+    // обертони роблять тембр маримби, а не писку
+    tone({ f: f * 2.01, dur: d * 0.55, gain: g * 0.3,  type: 'sine', attack: 0.008, delay: dl, space: true });
+    tone({ f: f * 3.02, dur: d * 0.28, gain: g * 0.12, type: 'sine', attack: 0.006, delay: dl });
+    // короткий призвук удару
+    tone({ f: f * 5.4,  dur: 0.05,     gain: g * 0.09, type: 'triangle', delay: dl });
   }
 
-  var SFX = {
-    hover:  function () { tone({ f: 1568, to: 2093, dur: 0.07, gain: 0.03, type: 'sine', space: true }); },
-    tap:    function () { ding({ f: 784, to: 1175, dur: 0.22, gain: 0.16, type: 'triangle', space: true }); },
-    open:   function () { ding({ f: 523, to: 1046, dur: 0.3,  gain: 0.14, type: 'triangle', space: true }); },
-    close:  function () { ding({ f: 880, to: 392,  dur: 0.24, gain: 0.11, type: 'triangle', space: true }); },
-    tab:    function () { ding({ f: 1046, dur: 0.18, gain: 0.12, type: 'triangle', space: true }); },
-    field:  function () { tone({ f: 1318, dur: 0.1, gain: 0.06, type: 'sine', space: true }); },
-    reveal: function () { noise({ f: 700, to: 2600, dur: 0.36, gain: 0.022, q: 0.8, space: true }); },
-    swoosh: function () { noise({ f: 2600, to: 320, dur: 0.5, gain: 0.05, q: 0.7, space: true }); },
-    tick:   function () { tone({ f: 2349, dur: 0.05, gain: 0.05, type: 'sine', space: true }); },
+  // мажорна пентатоніка від до: до · ре · мі · соль · ля
+  var P = { c: 523.25, d: 587.33, e: 659.25, g: 783.99, a: 880.00,
+            c2: 1046.50, d2: 1174.66, e2: 1318.51, g2: 1567.98, a2: 1760.00 };
 
-    // вибір пакета — висхідне арпеджіо
+  var SFX = {
+    hover:  function () { mallet({ f: P.a2, dur: 0.22, gain: 0.035 }); },
+    tap:    function () { mallet({ f: P.e2, dur: 0.5,  gain: 0.13 }); },
+    open:   function () { mallet({ f: P.g,  dur: 0.5,  gain: 0.12 });
+                          mallet({ f: P.d2, dur: 0.45, gain: 0.08, delay: 0.06 }); },
+    close:  function () { mallet({ f: P.d2, dur: 0.4,  gain: 0.1 });
+                          mallet({ f: P.g,  dur: 0.44, gain: 0.08, delay: 0.06 }); },
+    tab:    function () { mallet({ f: P.c2, dur: 0.36, gain: 0.1 }); },
+    field:  function () { mallet({ f: P.g2, dur: 0.22, gain: 0.05 }); },
+    reveal: function () { noise({ f: 900, to: 2800, dur: 0.34, gain: 0.014, q: 0.8, space: true }); },
+    swoosh: function () { noise({ f: 2800, to: 320, dur: 0.5, gain: 0.04, q: 0.7, space: true }); },
+    tick:   function () { mallet({ f: P.e2, dur: 0.12, gain: 0.05 }); },
+
+    // вибір пакета — весела висхідна фраза
     pick: function () {
-      [659.25, 830.61, 987.77, 1318.51].forEach(function (f, i) {
-        ding({ f: f, dur: 0.42, gain: 0.15, type: 'triangle', delay: i * 0.07, space: true });
+      [P.c, P.e, P.g, P.c2].forEach(function (f, i) {
+        mallet({ f: f, dur: 0.6, gain: 0.13, delay: i * 0.075 });
       });
     },
-    // успішна відправка — акорд із розкриттям
+    // відправлена заявка — довша фраза з розкриттям
     success: function () {
-      [523.25, 659.25, 783.99, 1046.50, 1318.51].forEach(function (f, i) {
-        ding({ f: f, dur: 1.0, gain: 0.13, type: 'triangle', delay: i * 0.085, space: true });
+      [P.c, P.e, P.g, P.a, P.c2, P.e2].forEach(function (f, i) {
+        mallet({ f: f, dur: 1.1, gain: 0.12, delay: i * 0.085 });
       });
-      noise({ f: 1200, to: 4600, dur: 0.7, gain: 0.03, q: 0.6, delay: 0.12, space: true });
+      noise({ f: 1400, to: 5000, dur: 0.8, gain: 0.02, q: 0.6, delay: 0.16, space: true });
     },
+    // помилка — м'яка низхідна пара, без різкості
     error: function () {
-      tone({ f: 233, to: 165, dur: 0.34, gain: 0.16, type: 'triangle', space: true });
+      mallet({ f: P.d, dur: 0.42, gain: 0.13 });
+      mallet({ f: 440, dur: 0.5, gain: 0.12, delay: 0.1 });
     },
     on: function () {
-      ding({ f: 784,  dur: 0.26, gain: 0.16, type: 'triangle', space: true });
-      ding({ f: 1174, dur: 0.42, gain: 0.16, type: 'triangle', delay: 0.11, space: true });
+      [P.g, P.c2, P.e2].forEach(function (f, i) {
+        mallet({ f: f, dur: 0.7, gain: 0.13, delay: i * 0.08 });
+      });
     },
     off: function () {
-      ding({ f: 880, to: 392, dur: 0.3, gain: 0.13, type: 'triangle', space: true });
+      [P.e2, P.c2, P.g].forEach(function (f, i) {
+        mallet({ f: f, dur: 0.5, gain: 0.11, delay: i * 0.07 });
+      });
     }
   };
 
