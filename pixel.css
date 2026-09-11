@@ -1,22 +1,23 @@
 /* ============================================================
-   BEAUTY GAMES — ПІКСЕЛЬНИЙ ШАР
-   Підключається після styles.css і нічого в ній не переписує:
-   тут тільки кнопки, іконки, курсори, вхідний екран і два
-   світлі блоки. Решта сайту лишається такою, як була.
+   BEAUTY GAMES — ПІКСЕЛЬНІ ЕЛЕМЕНТИ
+   Підключається після styles.css і нічого в ній не переписує.
+   Тут тільки окремі елементи: кнопки, іконки, плашки, сердечка,
+   курсори і вхідний екран. Сама тема сайту лишається темною.
+
+   Свідомо НЕ робимо піксельним: тексти, заголовки, абзаци, поля
+   форми. Піксельний шрифт на дрібному кеглі нечитабельний,
+   а це сторінка, яка продає.
    ============================================================ */
 
 :root{
   --px:3px;
-  --px-ink:#1B0E18;
-  --cream:#FFF2F8;
-  --cream-2:#FFE6F2;
-  --paper:#FFFFFF;
-  --pink:#FF8DC7;
-  --pink-lt:#FFC9E4;
-  --pink-pale:#FFE7F3;
+  --px-line:#FFFFFF;
 }
 
 [hidden]{display:none!important}
+
+/* Клітинки прибрані: на темному тлі вони заважали читати. */
+.bg-grid{display:none}
 
 /* ============================================================
    КУРСОРИ
@@ -30,53 +31,32 @@ a,button,.btn,.tile,.acc-btn,label,select,input[type=checkbox],.px-btn,
 }
 
 /* ============================================================
-   ПІКСЕЛЬНІ КНОПКИ
-   Чанкові: жорстка тінь без розмиття, нульові скруглення,
-   при натисканні кнопка втискається — тінь зникає.
+   КНОПКИ — піксельна форма, звичайний шрифт
+   Прямі кути і жорстка тінь без розмиття; при натисканні кнопка
+   втискається. Текст лишається Montserrat, щоб читався.
    ============================================================ */
 .btn{
-  font-family:"Pixelify Sans",monospace;font-size:17px;font-weight:400;
-  letter-spacing:.02em;word-spacing:.22em;text-transform:none;
-  padding:12px 24px;border-radius:0;
-  border:var(--px) solid var(--px-ink);
-  box-shadow:4px 4px 0 var(--px-ink);
-  transition:transform .06s linear, box-shadow .06s linear, background .12s;
+  border-radius:0;
+  border:2px solid var(--px-line);
+  box-shadow:4px 4px 0 rgba(var(--accent-rgb),.9);
+  transition:transform .07s linear, box-shadow .07s linear, background .16s;
 }
 .btn:hover{transform:none}
-.btn:active{transform:translate(4px,4px);box-shadow:0 0 0 var(--px-ink)}
-.btn-primary{background:var(--magenta);color:#fff}
-.btn-primary:hover{background:var(--magenta-hot)}
-[data-page="partners"] .btn-primary{background:var(--cyan-deep);color:#032630}
-.btn-ghost{background:var(--paper);color:var(--px-ink);border-color:var(--px-ink);
-  -webkit-backdrop-filter:none;backdrop-filter:none}
-.btn-ghost:hover{background:var(--pink-lt);border-color:var(--px-ink)}
-.btn-sm{padding:8px 15px;font-size:14px;box-shadow:3px 3px 0 var(--px-ink)}
+.btn:active{transform:translate(4px,4px);box-shadow:0 0 0 rgba(var(--accent-rgb),.9)}
+.btn-primary{box-shadow:4px 4px 0 rgba(255,255,255,.85)}
+.btn-primary:active{box-shadow:0 0 0 rgba(255,255,255,.85)}
+.btn-sm{box-shadow:3px 3px 0 rgba(var(--accent-rgb),.9)}
+.btn-sm.btn-primary{box-shadow:3px 3px 0 rgba(255,255,255,.85)}
 .btn-sm:active{transform:translate(3px,3px)}
 
-.nav-switch{
-  font-family:"Pixelify Sans",monospace;font-size:14px;font-weight:400;
-  text-transform:none;letter-spacing:.02em;border-radius:0;
-  background:var(--paper);color:var(--px-ink);
-  border:2px solid var(--px-ink);box-shadow:3px 3px 0 var(--px-ink);
-}
-.nav-switch:hover{background:var(--pink-lt)}
-
-.nav-burger{border-radius:0;border:2px solid var(--px-ink);background:var(--pink-lt);box-shadow:3px 3px 0 var(--px-ink)}
-.burger-lines i{background:var(--px-ink)}
-.burger-txt{font-family:"Pixelify Sans",monospace;font-size:13px;color:var(--px-ink)}
-
-.mobile-bar .tg{border-radius:0;border:var(--px) solid var(--px-ink);
-  background:var(--pink-lt);box-shadow:3px 3px 0 var(--px-ink)}
-.mobile-bar .tg svg{fill:var(--px-ink)}
-
-.sfx-btn{border-radius:0;border:2px solid var(--px-ink);background:var(--paper);box-shadow:3px 3px 0 var(--px-ink)}
-.sfx-btn .bars i{background:var(--px-ink)}
-.sfx-btn.on{background:var(--magenta)}
-.sfx-btn.on .bars i{background:#fff}
+.nav-switch{border-radius:0;border:2px solid var(--px-line);box-shadow:3px 3px 0 rgba(var(--accent-rgb),.8)}
+.nav-burger{border-radius:0;border:2px solid var(--px-line);box-shadow:3px 3px 0 rgba(var(--accent-rgb),.8)}
+.sfx-btn{border-radius:0;border:2px solid var(--px-line);box-shadow:3px 3px 0 rgba(var(--accent-rgb),.8)}
+.mobile-bar .tg{border-radius:0;border:2px solid var(--px-line);box-shadow:3px 3px 0 rgba(var(--accent-rgb),.8)}
 
 /* ============================================================
-   ПІКСЕЛЬНІ ІКОНКИ
-   Без розмиття і без неонового ореолу — інакше піксель мажеться.
+   ІКОНКИ — піксельні, без розмиття
+   Розмиття і неоновий ореол мазали піксель, тому їх немає.
    ============================================================ */
 .icon{
   shape-rendering:crispEdges;image-rendering:pixelated;
@@ -85,131 +65,116 @@ a,button,.btn,.tile,.acc-btn,label,select,input[type=checkbox],.px-btn,
 }
 .tile:hover .icon,.tcard:hover .icon{transform:translateY(-2px);color:#fff;filter:none}
 .icon-chip{
-  border-radius:0;background:rgba(var(--accent-rgb),.16);
-  border:2px solid rgba(var(--accent-rgb),.6);
-  box-shadow:3px 3px 0 rgba(var(--accent-rgb),.35);
+  border-radius:0;
+  background:rgba(var(--accent-rgb),.16);
+  border:2px solid rgba(var(--accent-rgb),.65);
+  box-shadow:3px 3px 0 rgba(var(--accent-rgb),.4);
 }
-.tile{border-radius:0;box-shadow:3px 3px 0 rgba(var(--accent-rgb),.3)}
-.tile:hover{box-shadow:5px 5px 0 rgba(var(--accent-rgb),.6);transform:translate(-2px,-2px)}
 
 /* ============================================================
-   СВІТЛІ БЛОКИ
-   Програма й питання — найтекстовіші місця сторінки, на світлому
-   тлі вони читаються легше, а сторінка отримує повітря.
+   ПЛАШКИ Й ЛІЧИЛЬНИКИ — прямі кути замість пігулок
    ============================================================ */
-#program,#faq{
-  background:var(--cream);
-  border-top:var(--px) solid var(--px-ink);
-  border-bottom:var(--px) solid var(--px-ink);
+.pill{border-radius:0;border:2px solid rgba(255,255,255,.24);box-shadow:2px 2px 0 rgba(var(--accent-rgb),.5)}
+.pill-accent{border-color:#fff;box-shadow:2px 2px 0 #fff}
+.tl-step .badge{border-radius:0;border:2px solid rgba(var(--accent-rgb),.7)}
+.pack .ribbon{border-radius:0;border:2px solid #fff}
+.tile{border-radius:0;box-shadow:3px 3px 0 rgba(var(--accent-rgb),.35)}
+.tile:hover{box-shadow:5px 5px 0 rgba(var(--accent-rgb),.7);transform:translate(-2px,-2px)}
+.cd-unit{border-radius:0;border:2px solid rgba(var(--accent-rgb),.5)}
+.acc-btn .mi{
+  border-radius:0;min-width:44px;height:28px;display:grid;place-items:center;
+  border:2px solid rgba(var(--accent-rgb),.6);background:rgba(var(--accent-rgb),.2);
 }
-#program .h-lg,#faq .h-lg,#program h3,#program h4,#faq h3{color:var(--px-ink);text-shadow:none}
-#program .glow,#faq .glow{color:var(--magenta);text-shadow:none}
-#program .lede,#faq .lede{color:#6B4E60}
-#program .lede b,#program .lede strong{color:var(--px-ink)}
-#program .eyebrow,#faq .eyebrow{
-  display:inline-block;align-self:flex-start;
-  font-family:"Pixelify Sans",monospace;font-size:13px;
-  letter-spacing:.08em;color:var(--px-ink);text-shadow:none;
-  background:var(--pink-lt);border:2px solid var(--px-ink);padding:4px 11px;
-  box-shadow:3px 3px 0 var(--px-ink);
+.acc-btn .ic{border-radius:0;border:2px solid rgba(255,255,255,.28)}
+.acc-item.open .acc-btn .ic{transform:none;background:rgba(var(--accent-rgb),.4)}
+.table-tabs button{border-radius:0;border:2px solid rgba(255,255,255,.22)}
+.form-success .ok{border-radius:0;border:2px solid #fff}
+.form-aside .fact .b{border-radius:0;border:2px solid rgba(var(--accent-rgb),.6)}
+
+/* ============================================================
+   ПІКСЕЛЬНІ СЕРДЕЧКА — маркери списків у картках
+   ============================================================ */
+.pack ul li::before,.tcard ul li::before{
+  content:"";position:absolute;left:0;top:.28em;width:13px;height:13px;
+  background:var(--accent);border:0;border-radius:0;transform:none;
+  -webkit-mask:var(--heart) center/contain no-repeat;
+          mask:var(--heart) center/contain no-repeat;
 }
-#program .sec-rule,#faq .sec-rule{
-  height:6px;width:120px;border:2px solid var(--px-ink);
-  background:repeating-linear-gradient(90deg,var(--magenta) 0 10px,var(--pink-lt) 10px 20px);
+:root{
+  --heart:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' shape-rendering='crispEdges'%3E%3Cg fill='%23000'%3E%3Crect x='2' y='2' width='4' height='1'/%3E%3Crect x='9' y='2' width='4' height='1'/%3E%3Crect x='1' y='3' width='6' height='1'/%3E%3Crect x='8' y='3' width='6' height='1'/%3E%3Crect x='0' y='4' width='15' height='3'/%3E%3Crect x='1' y='7' width='14' height='1'/%3E%3Crect x='2' y='8' width='12' height='1'/%3E%3Crect x='3' y='9' width='10' height='1'/%3E%3Crect x='4' y='10' width='8' height='1'/%3E%3Crect x='5' y='11' width='6' height='1'/%3E%3Crect x='6' y='12' width='4' height='1'/%3E%3Crect x='7' y='13' width='2' height='1'/%3E%3C/g%3E%3C/svg%3E");
 }
-#program .acc-item,#faq .acc-item{
-  background:var(--paper);border:var(--px) solid var(--px-ink);border-radius:0;
-  box-shadow:3px 3px 0 var(--px-ink);
+
+/* ============================================================
+   ВХІДНИЙ ЕКРАН — ретро-вікно на темному тлі
+   ============================================================ */
+.px-win{
+  background:#120A14;border:var(--px) solid #fff;
+  box-shadow:6px 6px 0 var(--magenta);overflow:hidden;
 }
-#program .acc-item.open,#faq .acc-item.open{box-shadow:5px 5px 0 var(--px-ink)}
-#program .acc-btn,#faq .acc-btn{
-  color:var(--px-ink);font-family:"Pixelify Sans",monospace;font-size:16px;font-weight:400;
+.px-win-bar{
+  display:flex;align-items:center;justify-content:space-between;gap:10px;
+  background:var(--magenta);border-bottom:var(--px) solid #fff;padding:7px 10px;
 }
-#program .acc-item.open .acc-btn,#faq .acc-item.open .acc-btn{
-  background:var(--pink-lt);border-bottom:var(--px) solid var(--px-ink);
-}
-#program .acc-btn .mi{
-  min-width:44px;height:30px;border-radius:0;display:grid;place-items:center;
+.px-win-title{
   font-family:"Pixelify Sans",monospace;font-size:14px;color:#fff;
-  background:var(--magenta);border:2px solid var(--px-ink);text-shadow:none;
+  letter-spacing:.04em;word-spacing:.25em;line-height:1;
 }
-#program .acc-btn .ic,#faq .acc-btn .ic{
-  border-radius:0;background:var(--paper);border:2px solid var(--px-ink);
-}
-#program .acc-btn .ic::before,#faq .acc-btn .ic::before{background:var(--px-ink);width:12px;height:3px}
-#program .acc-btn .ic::after,#faq .acc-btn .ic::after{background:var(--px-ink);width:3px;height:12px}
-#program .acc-item.open .acc-btn .ic,#faq .acc-item.open .acc-btn .ic{background:var(--paper);transform:none}
-#program .acc-panel-in,#faq .acc-panel-in{color:#6B4E60}
-#program .acc-panel-in li::before,#faq .acc-panel-in li::before{
-  background:var(--magenta);box-shadow:none;width:8px;height:8px;border-radius:0;
-}
-#program .glass{
-  background:var(--paper);border:var(--px) solid var(--px-ink);border-radius:0;
-  box-shadow:5px 5px 0 var(--px-ink);
-  -webkit-backdrop-filter:none;backdrop-filter:none;
-}
-#program .glass p{color:#6B4E60}
-#program .label-accent{color:var(--magenta);text-shadow:none}
-#program .ph,#faq .ph{background:var(--cream-2);border:var(--px) dashed var(--px-ink);border-radius:0}
-#program .ph .s{color:#9B8391}
-
-/* ============================================================
-   ВХІДНИЙ ЕКРАН — ретро-вікно
-   ============================================================ */
-.px-win{background:var(--paper);border:var(--px) solid var(--px-ink);
-  box-shadow:5px 5px 0 var(--px-ink);overflow:hidden}
-.px-win-bar{display:flex;align-items:center;justify-content:space-between;gap:10px;
-  background:var(--magenta);border-bottom:var(--px) solid var(--px-ink);padding:7px 10px}
-.px-win-title{font-family:"Pixelify Sans",monospace;font-size:14px;color:#fff;
-  letter-spacing:.04em;word-spacing:.25em;line-height:1}
 .px-win-btns{display:flex;gap:4px}
-.px-win-btns i{width:13px;height:13px;background:var(--cream);border:2px solid var(--px-ink);display:block}
-.px-win-body{padding:26px 22px}
+.px-win-btns i{width:13px;height:13px;background:#120A14;border:2px solid #fff;display:block}
+.px-win-body{padding:28px 24px}
 
 .px-btn{
-  font-family:"Pixelify Sans",monospace;font-size:17px;word-spacing:.25em;
-  color:var(--px-ink);background:var(--pink-lt);border:var(--px) solid var(--px-ink);
-  padding:11px 24px;box-shadow:4px 4px 0 var(--px-ink);border-radius:0;cursor:pointer;
-  transition:transform .06s linear, box-shadow .06s linear, background .12s;
+  font-family:"Montserrat",sans-serif;font-size:13px;font-weight:800;
+  letter-spacing:.09em;text-transform:uppercase;
+  color:#fff;background:var(--magenta);border:2px solid #fff;
+  padding:13px 30px;box-shadow:4px 4px 0 #fff;border-radius:0;cursor:pointer;
+  transition:transform .07s linear, box-shadow .07s linear, background .16s;
 }
-.px-btn:hover{background:var(--pink)}
-.px-btn:active{transform:translate(4px,4px);box-shadow:0 0 0 var(--px-ink)}
-.px-btn-lg{font-size:21px;padding:14px 34px}
+.px-btn:hover{background:var(--magenta-hot)}
+.px-btn:active{transform:translate(4px,4px);box-shadow:0 0 0 #fff}
+.px-btn-lg{font-size:14px;padding:15px 38px}
 
 .preloader{
-  position:fixed;inset:0;z-index:200;background:var(--cream);
+  position:fixed;inset:0;z-index:200;background:var(--ink);
   display:flex;align-items:center;justify-content:center;padding:20px;
-  background-image:
-    linear-gradient(rgba(255,141,199,.2) 1px,transparent 1px),
-    linear-gradient(90deg,rgba(255,141,199,.2) 1px,transparent 1px);
-  background-size:16px 16px;
-  animation:none;              /* ховається лише за кліком «Почати» */
+  animation:none;            /* ховається лише за кліком «Почати» */
 }
 .preloader.done{animation:plOut .35s steps(4) forwards}
 @keyframes plOut{to{opacity:0;visibility:hidden;pointer-events:none}}
 
-.pl-win{width:min(440px,100%)}
-.pl-win .px-win-body{display:grid;place-items:center;text-align:center;min-height:236px}
+.pl-win{width:min(430px,100%)}
+.pl-win .px-win-body{display:grid;place-items:center;text-align:center;min-height:230px}
 .pl-hearts{display:flex;gap:10px;margin-bottom:18px}
 .pl-hearts svg{width:22px;height:22px;color:var(--magenta);shape-rendering:crispEdges}
 .pl-hearts svg:nth-child(1){animation:plBeat 1.05s steps(2) infinite}
 .pl-hearts svg:nth-child(2){animation:plBeat 1.05s steps(2) .35s infinite}
 .pl-hearts svg:nth-child(3){animation:plBeat 1.05s steps(2) .7s infinite}
-@keyframes plBeat{0%,100%{opacity:.28;transform:translateY(0)}50%{opacity:1;transform:translateY(-3px)}}
-.pl-label{font-family:"Pixelify Sans",monospace;font-size:19px;color:var(--px-ink);
-  margin-bottom:14px;word-spacing:.28em}
-.pl-bar{width:min(300px,72vw);height:22px;background:var(--paper);
-  border:var(--px) solid var(--px-ink);padding:3px}
-.pl-bar-fill{display:block;height:100%;width:0;transition:width .2s steps(6);
-  background:repeating-linear-gradient(90deg,var(--magenta) 0 8px,var(--magenta-lt) 8px 14px)}
-.pl-pct{font-family:"Pixelify Sans",monospace;font-size:15px;color:var(--magenta);margin-top:10px}
-.pl-start{display:grid;place-items:center;gap:14px}
-.pl-mark svg{width:40px;height:40px;color:var(--magenta);shape-rendering:crispEdges;
-  animation:plSpin 2.4s steps(8) infinite}
+@keyframes plBeat{0%,100%{opacity:.3;transform:translateY(0)}50%{opacity:1;transform:translateY(-3px)}}
+
+.pl-label{
+  font-family:"Montserrat",sans-serif;font-size:13px;font-weight:700;
+  letter-spacing:.06em;text-transform:uppercase;color:var(--text);margin-bottom:14px;
+}
+.pl-bar{width:min(290px,70vw);height:20px;background:#120A14;border:2px solid #fff;padding:3px}
+.pl-bar-fill{
+  display:block;height:100%;width:0;transition:width .2s steps(6);
+  background:repeating-linear-gradient(90deg,var(--magenta) 0 8px,var(--magenta-lt) 8px 14px);
+}
+.pl-pct{font-family:"Pixelify Sans",monospace;font-size:17px;color:var(--magenta-lt);margin-top:10px}
+.pl-start{display:grid;place-items:center;gap:15px}
+.pl-mark svg{
+  width:38px;height:38px;color:var(--magenta);shape-rendering:crispEdges;
+  animation:plSpin 2.4s steps(8) infinite;
+}
 @keyframes plSpin{to{transform:rotate(360deg)}}
-.pl-ask{font-family:"Pixelify Sans",monospace;font-size:29px;color:var(--px-ink);
-  line-height:1.15;word-spacing:.28em}
-.pl-hint{font-family:"Pixelify Sans",monospace;font-size:13px;color:#9B8391;word-spacing:.28em}
+.pl-ask{
+  font-family:"Montserrat",sans-serif;font-size:24px;font-weight:900;
+  text-transform:uppercase;letter-spacing:.01em;color:#fff;line-height:1.15;
+}
+.pl-hint{
+  font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:.18em;
+  text-transform:uppercase;color:var(--faint);
+}
 
 @media (prefers-reduced-motion:reduce){
   .pl-hearts svg,.pl-mark svg{animation:none}
