@@ -1686,6 +1686,7 @@ body.bio-open{overflow:hidden}
 .fork-o-i .icon{width:24px;height:24px;color:var(--pink-soft)}
 .fork-o.on .fork-o-i{background:var(--pink);border-color:#fff}
 .fork-o.on .fork-o-i .icon{color:#fff}
+.fork-o-tx{display:flex;flex-direction:column;gap:6px;min-width:0}
 .fork-o b{
   font-family:"Montserrat",sans-serif;font-weight:900;font-size:16px;
   color:var(--white);letter-spacing:-.015em;
@@ -1719,11 +1720,7 @@ body.bio-open{overflow:hidden}
 .way.pick .way-n{background:linear-gradient(180deg,var(--gold-1),var(--gold-3));color:var(--gold-ink);box-shadow:none}
 
 @media (max-width:760px){
-  .fork-opts{grid-template-columns:1fr;gap:10px}
-  .fork-o{flex-direction:row;align-items:center;gap:14px;padding:14px;flex-wrap:wrap}
-  .fork-o-i{width:38px;height:38px;flex:none}
-  .fork-o b{font-size:15px}
-  .fork-o span{width:100%;font-size:12.5px}
+  .fork-opts{grid-template-columns:1fr;gap:8px}
 }
 
 /* ============================================================
@@ -1828,3 +1825,152 @@ body.bio-open{overflow:hidden}
 }
 @media (max-width:760px){.toast{bottom:88px;padding:12px 18px}}
 @media (prefers-reduced-motion:reduce){.toast{transition:none}}
+
+/* ============================================================
+   IBV — організація, яка стоїть за проєктом
+   ============================================================ */
+.ibv{
+  margin-top:16px;padding:clamp(20px,2.6vw,28px);border-radius:var(--r-lg);
+  background:#fff;border:1px solid rgba(20,10,26,.1);
+  box-shadow:0 16px 40px rgba(30,10,40,.08);
+}
+.ibv-head{display:flex;align-items:center;gap:18px;flex-wrap:wrap;margin-bottom:16px}
+.ibv-logo{height:44px;width:auto;display:block}
+.ibv-t{
+  margin:0 0 3px;font-family:"Montserrat",sans-serif;font-weight:900;
+  font-size:clamp(18px,2.3vw,23px);color:#120D18;letter-spacing:-.02em;
+}
+.ibv-s{
+  margin:0;font-family:"JetBrains Mono",monospace;font-size:10.5px;
+  letter-spacing:.14em;text-transform:uppercase;color:#C2005F;
+}
+.ibv-p{margin:0 0 14px;font-size:14.5px;line-height:1.6;color:#3A3145}
+.ibv-facts{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:0 0 16px}
+.ibv-facts div{padding:13px 15px;border-radius:var(--r-md);background:#FBF7FC;border:1px solid rgba(20,10,26,.08)}
+.ibv-facts b{
+  display:block;font-family:"Montserrat",sans-serif;font-weight:900;
+  font-size:clamp(19px,2.6vw,25px);line-height:1;color:#D6006F;margin-bottom:5px;
+  letter-spacing:-.03em;
+}
+.ibv-facts span{
+  font-family:"JetBrains Mono",monospace;font-size:9.5px;letter-spacing:.06em;
+  text-transform:uppercase;color:#6B6478;line-height:1.45;
+}
+.ibv-logos{
+  display:flex;align-items:center;justify-content:center;gap:clamp(18px,4vw,40px);
+  flex-wrap:wrap;padding-top:16px;border-top:1px solid rgba(20,10,26,.1);
+}
+.ibv-logos img{height:34px;width:auto;display:block;opacity:.85}
+.ibv-logos img:first-child{filter:invert(1) brightness(.2)}
+@media (max-width:620px){
+  .ibv-facts{grid-template-columns:1fr;gap:8px}
+  .ibv-facts div{display:flex;align-items:baseline;gap:12px;padding:11px 13px}
+  .ibv-facts b{margin:0;font-size:20px}
+  .ibv-logos img{height:26px}
+}
+
+/* Аудиторія в картці результату. */
+.star-aud{
+  display:block;margin:0 0 4px;
+  font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.06em;
+  color:#C2005F;font-weight:700;
+}
+.stars-sum{
+  display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:16px;
+}
+.stars-sum div{
+  padding:16px 18px;border-radius:var(--r-md);
+  background:#fff;border:1px solid rgba(20,10,26,.1);
+}
+.stars-sum b{
+  display:block;font-family:"Montserrat",sans-serif;font-weight:900;
+  font-size:clamp(22px,3.4vw,30px);line-height:1;color:#D6006F;
+  letter-spacing:-.03em;margin-bottom:6px;
+}
+.stars-sum span{
+  font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:.08em;
+  text-transform:uppercase;color:#6B6478;line-height:1.45;
+}
+@media (max-width:520px){.stars-sum{grid-template-columns:1fr;gap:8px}}
+
+/* ============================================================
+   «ЯК ВЛАШТОВАНИЙ СЕЗОН» НА СВІТЛОМУ
+   Темні токени лишалися сірим текстом на білому — нечитабельно.
+   Тут увесь блок перебирається під світле тло, а смуга прогресу
+   стає помітно яскравішою.
+   ============================================================ */
+.sec-light .path{
+  background:#fff;border-color:rgba(20,10,26,.1);
+  box-shadow:0 16px 40px rgba(30,10,40,.08);
+}
+.sec-light .pnode-n{
+  background:#F4EFF6;border-color:rgba(20,10,26,.14);color:#6B6478;
+}
+.sec-light .pnode-t{color:#6B6478}
+.sec-light .pnode:hover .pnode-n{border-color:var(--pink);color:#120D18}
+.sec-light .pnode.done .pnode-n{
+  background:rgba(255,46,136,.16);border-color:var(--pink);color:#C2005F;
+}
+.sec-light .pnode.on .pnode-n{
+  background:linear-gradient(180deg,#FF2E88,#C2005F);border-color:#fff;color:#fff;
+  box-shadow:0 0 0 4px rgba(255,46,136,.16), 0 10px 24px rgba(255,46,136,.35);
+}
+.sec-light .pnode.on .pnode-t{color:#120D18}
+.sec-light .path-line{
+  background:#EDE4F0;box-shadow:inset 0 0 0 1px rgba(20,10,26,.08);
+}
+.sec-light .path-line i{
+  background:linear-gradient(90deg,#FF2E88,#FF57A0);
+  box-shadow:0 0 14px rgba(255,46,136,.5);
+}
+.sec-light .path-heart{color:#DCD1E2}
+.sec-light .path-heart.got{color:var(--pink);filter:drop-shadow(0 0 8px rgba(255,46,136,.5))}
+.sec-light .path-runner{border-color:#fff;box-shadow:0 0 0 4px rgba(255,46,136,.16), 0 10px 24px rgba(255,46,136,.45)}
+.sec-light .path-runner::after{border-top-color:#fff}
+.sec-light .pstep-dur{
+  background:rgba(255,46,136,.12);color:#C2005F;
+  box-shadow:inset 0 0 0 1.5px rgba(255,46,136,.4);
+}
+.sec-light .pstep-t{color:#120D18}
+.sec-light .pstep-body{border-top-color:rgba(20,10,26,.1)}
+.sec-light .pstep-k{color:#6B6478}
+.sec-light .pstep-list li{color:#3A3145}
+.sec-light .pstep-res{
+  background:#FDF0F6;border-color:rgba(255,46,136,.3);
+}
+.sec-light .pstep-res p{color:#2A2331}
+.sec-light .pstep-res-k{color:#C2005F}
+.sec-light .path-nav{border-top-color:rgba(20,10,26,.1)}
+.sec-light .path-pos{color:#6B6478}
+.sec-light .path-pos b{color:#120D18}
+.sec-light .tl-dur{color:#C2005F}
+
+/* ============================================================
+   КРОК 3 НА ТЕЛЕФОНІ
+   Три однакові прямокутники підряд читалися як список, а не як
+   вибір. Тут це компактні рядки з номером і стрілкою.
+   ============================================================ */
+@media (max-width:760px){
+  .fork{padding:18px}
+  .fork-t{font-size:19px;margin-top:12px}
+  .fork-opts{gap:8px}
+  /* Рядок вибору: іконка, текст, стрілка. Через flex, а не grid —
+     із сіткою іконка не трималася у своїй колонці. */
+  .fork-o{
+    display:flex;flex-direction:row;align-items:center;flex-wrap:nowrap;
+    gap:13px;padding:13px 14px;border-width:2px;
+  }
+  .fork-o-i{flex:0 0 40px;width:40px;height:40px;border-radius:12px}
+  .fork-o-tx{display:flex;flex-direction:column;gap:3px;min-width:0;flex:1}
+  .fork-o b{font-size:15px;line-height:1.2}
+  .fork-o span{width:auto;font-size:12px;line-height:1.35}
+  .fork-o::after{
+    content:"";flex:0 0 9px;
+    width:9px;height:9px;border-right:2px solid rgba(255,46,136,.7);
+    border-bottom:2px solid rgba(255,46,136,.7);transform:rotate(-45deg);
+  }
+  .fork-o.on::after{border-color:#fff}
+  .fork-out{padding:16px 18px}
+  .ways{gap:10px}
+  .way{padding:18px}
+}

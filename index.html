@@ -7,7 +7,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800;900&family=Oswald:wght@400;500;600&family=Manrope:wght@400;500;600;700&family=Pixelify+Sans:wght@400..700&family=JetBrains+Mono:wght@400;500;700&display=swap">
 <link rel="stylesheet" href="styles.css?v=2cf033dd">
-<link rel="stylesheet" href="squid.css?v=044eb5e2">
+<link rel="stylesheet" href="squid.css?v=2bfd8494">
 
 <!-- SPRITE -->
 <div class="preloader" id="preloader">
@@ -297,18 +297,15 @@
       <div class="fork-opts" role="group">
         <button class="fork-o" type="button" data-pick="money">
           <span class="fork-o-i" aria-hidden="true"><svg class="icon"><use href="#i-coin"/></svg></span>
-          <b>Більше заробляти</b>
-          <span>Чек, потік клієнтів, система. Без камер.</span>
+          <span class="fork-o-tx"><b>Більше заробляти</b><span>Чек, потік клієнтів, система. Без камер.</span></span>
         </button>
         <button class="fork-o" type="button" data-pick="fame">
           <span class="fork-o-i" aria-hidden="true"><svg class="icon"><use href="#i-tv"/></svg></span>
-          <b>Більше медійності</b>
-          <span>Ім&rsquo;я, аудиторія, зйомки, вихід на сцену.</span>
+          <span class="fork-o-tx"><b>Більше медійності</b><span>Ім&rsquo;я, аудиторія, зйомки, вихід на сцену.</span></span>
         </button>
         <button class="fork-o" type="button" data-pick="both">
           <span class="fork-o-i" aria-hidden="true"><svg class="icon"><use href="#i-star"/></svg></span>
-          <b>І те, і інше</b>
-          <span>Гроші та ім&rsquo;я одночасно, за один сезон.</span>
+          <span class="fork-o-tx"><b>І те, і інше</b><span>Гроші та ім&rsquo;я одночасно, за один сезон.</span></span>
         </button>
       </div>
       <div class="fork-out" id="forkOut" hidden>
@@ -384,6 +381,28 @@
         <p>Усе, що робила Ірина, через пару років ставало стандартом ринку. Beauty&nbsp;Games — її новий проєкт, аналогів якому немає ні в Україні, ні у світі.</p>
       </div>
     </div>
+
+    <div class="ibv rv">
+      <div class="ibv-head">
+        <img class="ibv-logo" src="assets/logo-ibv.png" alt="IBV — International Beauty Voyage" loading="lazy" width="365" height="97">
+        <div>
+          <h3 class="ibv-t">International Beauty Voyage</h3>
+          <p class="ibv-s">Організація, яка стоїть за Beauty&nbsp;Games</p>
+        </div>
+      </div>
+      <p class="ibv-p">IBV — міжнародна організація Ірини Вербової, через яку українські майстри вперше вийшли на світову сцену. За роки роботи IBV провела чемпіонати й конгреси в Україні та за кордоном: Греція, Дубай, Іспанія, Польща, Грузія, Туреччина, Казахстан.</p>
+      <div class="ibv-facts">
+        <div><b>2015</b><span>перший конгрес у Греції · 100+ майстрів</span></div>
+        <div><b>40</b><span>країн, з яких їхали учасниці</span></div>
+        <div><b>7</b><span>країн, де проходили заходи IBV</span></div>
+      </div>
+      <p class="ibv-p">Beauty&nbsp;Games — новий проєкт IBV. Та сама сцена, те саме журі й та сама аудиторія, але вперше разом із бізнес-навчанням і реаліті-шоу.</p>
+      <div class="ibv-logos">
+        <img src="assets/logo-horizontal.svg" alt="Beauty Games" loading="lazy">
+        <img src="assets/logo-verbova.png" alt="Iryna Verbova" loading="lazy" width="508" height="201">
+        <img src="assets/logo-ibv.png" alt="IBV" loading="lazy" width="365" height="97">
+      </div>
+    </div>
   </div>
 </section>
 
@@ -399,35 +418,38 @@
     <div class="stars">
       <article class="star rv">
         <div class="star-ph"><img src="assets/people/star-moskalenko.jpg" alt="Яна Москаленко" loading="lazy" width="360" height="360"></div>
-        <div><h3>Яна Москаленко</h3><p>Перманентний макіяж, навчання, лазер · Київ і Варшава</p></div>
+        <div><h3>Яна Москаленко</h3><span class="star-aud">37,2 тис. підписників</span><p>Перманентний макіяж, навчання, лазер · Київ і Варшава</p></div>
       </article>
       <article class="star rv">
         <div class="star-ph"><img src="assets/people/star-druzhinina.jpg" alt="Юліанна Дружиніна" loading="lazy" width="360" height="360"></div>
-        <div><h3>Юліанна Дружиніна</h3><p>Чемпіонка світу · організаторка WULOP Poland</p></div>
+        <div><h3>Юліанна Дружиніна</h3><span class="star-aud">375 тис. підписників</span><p>Чемпіонка світу · організаторка WULOP Poland</p></div>
       </article>
       <article class="star rv">
         <div class="star-ph"><img src="assets/people/star-onika.jpg" alt="Олена Оніка" loading="lazy" width="360" height="360"></div>
-        <div><h3>Олена Оніка</h3><p>PMU · biohacking · AI · international expert · засновниця Fusion PMU</p></div>
+        <div><h3>Олена Оніка</h3><span class="star-aud">121 тис. підписників</span><p>PMU · biohacking · AI · international expert · засновниця Fusion PMU</p></div>
       </article>
       <article class="star rv">
         <div class="star-ph"><img src="assets/people/star-orexanova.jpg" alt="Дар’я Ореханова" loading="lazy" width="360" height="360"></div>
-        <div><h3>Дар’я Ореханова</h3><p>OREX · перманент, косметологія, ін’єкційні методики · Київ</p></div>
+        <div><h3>Дар’я Ореханова</h3><span class="star-aud">66,2 тис. підписників</span><p>OREX · перманент, косметологія, ін’єкційні методики · Київ</p></div>
       </article>
       <article class="star rv">
         <div class="star-ph"><img src="assets/people/star-agaeva.jpg" alt="Елеонора Агаєва" loading="lazy" width="360" height="360"></div>
-        <div><h3>Елеонора Агаєва</h3><p>Засновниця International Academy · спікерка, суддя · 1000+ учениць із 20 країн</p></div>
+        <div><h3>Елеонора Агаєва</h3><span class="star-aud">56,9 тис. підписників</span><p>Засновниця International Academy · спікерка, суддя · 1000+ учениць із 20 країн</p></div>
       </article>
       <article class="star rv">
         <div class="star-ph"><img src="assets/people/star-ovcharuk.jpg" alt="Катерина Овчарук" loading="lazy" width="400" height="400"></div>
-        <div><h3>Катерина Овчарук</h3><p>Абсолютна чемпіонка світу WULOP 2025 · hairstroke</p></div>
+        <div><h3>Катерина Овчарук</h3><span class="star-aud">67,1 тис. підписників</span><p>Абсолютна чемпіонка світу WULOP 2025 · hairstroke</p></div>
       </article>
       <article class="star rv">
         <div class="star-ph"><img src="assets/people/star-lux.jpg" alt="Роза Люкс" loading="lazy" width="400" height="400"></div>
-        <div><h3>Роза Люкс</h3><p>PMU Master Trainer 11+ років · суддя, спікерка · 10 000+ учениць</p></div>
+        <div><h3>Роза Люкс</h3><span class="star-aud">101 тис. підписників</span><p>PMU Master Trainer 11+ років · суддя, спікерка · 10 000+ учениць</p></div>
       </article>
     </div>
 
-    <p class="stars-note">І це лише мала частина.</p>
+    <div class="stars-sum rv">
+      <div><b>824 тис.</b><span>сумарна аудиторія цих семи акаунтів</span></div>
+      <div><b>7</b><span>імен — і це лише мала частина</span></div>
+    </div>
   </div>
 </section>
 
@@ -577,9 +599,9 @@
         <svg class="prog-emblem" aria-hidden="true"><use href="#bg-logo"/></svg>
         <span class="prog-mark-tx"><b>Beauty Games</b><span>Бізнес-програма</span></span>
       </div>
-      <h2 class="h-lg">Дев'ять модулів, <span class="glow">які приносять гроші</span></h2>
+      <h2 class="h-lg">Дев'ять модулів, <span class="glow">які змінюють систему</span></h2>
       <div class="sec-rule"></div>
-      <p class="lede">Кожен модуль зібраний під одну задачу: щоб про вас дізналися і щоб вам платили більше. Гроші, ціни, клієнти, особистий бренд, соцмережі, продажі — сучасні інструменти, якими користуються прямо зараз, а не теорія з позаминулого сезону.</p>
+      <p class="lede">Це не набір лекцій, а перебудова того, як ви заробляєте. Ви заходите майстром, який продає години, а виходите підприємцем із системою: порахованою економікою, потоком клієнтів і командою. Ціль сезону — подвоїти дохід, а не додати ще один сертифікат у папку.</p>
       <p class="lede">Дев'ять модулів Олександри Горобець: відеоуроки, живі розбори і домашні завдання, які перевіряють. Поруч весь час куратор і експерти проєкту — ви не залишаєтесь наодинці з матеріалом. Доступ залишається після сезону.</p>
       <p class="lede lede-claim">Ви могли проходити курси з рилсів і таргету — і не один. Ми зібрали вижимку з <b>понад 70 курсів</b> і залишили те, що працює. Кращого набору інструментів в одному місці ви не знайдете — гарантуємо.</p>
     </div>
@@ -1025,8 +1047,8 @@
         <h3>Стандарт</h3>
         <div class="tagline">Самостійне навчання без кураторства. Для досвідчених майстринь.</div>
         <div class="benefit">
-          <span class="benefit-badge">−30%</span>
-          <span class="benefit-txt">при бронюванні місця<br>протягом 24 годин</span>
+          <span class="benefit-badge">−20%</span>
+          <span class="benefit-txt">при бронюванні<br>зараз</span>
         </div>
         <div class="benefit-note">Вартість участі менеджер надішле у відповідь на заявку. Ціна фіксується в момент бронювання.</div>
         <ul>
@@ -1050,8 +1072,8 @@
         <h3>Бізнес</h3>
         <div class="tagline">Повна програма, куратор і командні змагання Бізнес-ліги.</div>
         <div class="benefit">
-          <span class="benefit-badge">−19%</span>
-          <span class="benefit-txt">при бронюванні місця<br>протягом 24 годин</span>
+          <span class="benefit-badge">−20%</span>
+          <span class="benefit-txt">при бронюванні<br>зараз</span>
         </div>
         <div class="benefit-note">Вартість участі менеджер надішле у відповідь на заявку. Ціна фіксується в момент бронювання.</div>
         <ul>
@@ -1076,7 +1098,7 @@
         <div class="tagline">Бренд-наставник, масштабування, YouTube-реаліті та особистий бренд.</div>
         <div class="benefit">
           <span class="benefit-badge">−20%</span>
-          <span class="benefit-txt">при бронюванні місця<br>протягом 24 годин</span>
+          <span class="benefit-txt">при бронюванні<br>зараз</span>
         </div>
         <div class="benefit-note">Вартість участі менеджер надішле у відповідь на заявку. Ціна фіксується в момент бронювання.</div>
         <ul>
