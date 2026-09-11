@@ -23,7 +23,7 @@
     // мінімум показу, щоб анімація не обривалася на швидкому з'єднанні
     var shown = Date.now();
     window.addEventListener('load', function () {
-      var left = Math.max(0, 1250 - (Date.now() - shown));
+      var left = Math.max(0, 1900 - (Date.now() - shown));
       setTimeout(killPreloader, left);
     });
     // страховка на випадок, якщо load так і не настане

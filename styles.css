@@ -753,22 +753,48 @@ footer{position:relative;z-index:2;border-top:1px solid var(--line-soft);padding
 .preloader{
   position:fixed;inset:0;z-index:200;background:#000;
   display:flex;flex-direction:column;align-items:center;justify-content:center;gap:26px;
-  animation:plOut .55s cubic-bezier(.4,0,.2,1) 1.25s forwards;
+  animation:plOut .55s cubic-bezier(.4,0,.2,1) 1.95s forwards;
 }
 .preloader.done{animation:plOut .4s cubic-bezier(.4,0,.2,1) forwards}
 @keyframes plOut{to{opacity:0;visibility:hidden;pointer-events:none}}
 
-.pl-inf{width:min(62vw,250px);height:auto;overflow:visible}
-.pl-inf-track{fill:none;stroke:rgba(255,255,255,.07);stroke-width:5;stroke-linecap:round}
-.pl-inf-run{
-  fill:none;stroke:url(#plGrad);stroke-width:5;stroke-linecap:round;
-  stroke-dasharray:120 560;stroke-dashoffset:680;
-  filter:drop-shadow(0 0 7px rgba(230,0,126,1)) drop-shadow(0 0 20px rgba(230,0,126,.65));
-  animation:plRun 1.9s cubic-bezier(.55,.1,.45,.9) infinite;
+/* Комета біжить по вісімці: чотири шари одного шляху з різною
+   довжиною штриха дають звуження хвоста, бо всі вони вирівняні
+   по передньому краю. Колір міняється по колу — від фіолетового
+   через маджента до ціану, як у референсі. */
+.pl-stage{position:relative;display:grid;place-items:center;
+  animation:plHue 2.6s linear infinite}
+@keyframes plHue{
+  0%   {color:#B14BFF}
+  22%  {color:#E6007E}
+  46%  {color:#7FE9FF}
+  62%  {color:#00E5FF}
+  82%  {color:#7A2BE0}
+  100% {color:#B14BFF}
 }
-@keyframes plRun{to{stroke-dashoffset:0}}
+.pl-glow{
+  position:absolute;width:min(90vw,420px);aspect-ratio:1;border-radius:50%;
+  background:radial-gradient(closest-side,currentColor,transparent 72%);
+  opacity:.16;filter:blur(28px);pointer-events:none;
+}
+.pl-inf{position:relative;width:min(66vw,270px);height:auto;overflow:visible}
+.pl-track{fill:none;stroke:currentColor;stroke-width:2;opacity:.1}
+.pl-run{
+  fill:none;stroke:currentColor;stroke-linecap:round;
+  animation:plRun 2.6s linear infinite;
+}
+/* голова — коротка, товста, яскрава */
+.pl-t1{stroke-width:4.2;stroke-dasharray:70 1000;--L:70;filter:drop-shadow(0 0 5px currentColor) drop-shadow(0 0 14px currentColor)}
+.pl-t2{stroke-width:3.2;stroke-dasharray:150 1000;--L:150;opacity:.62}
+.pl-t3{stroke-width:2.3;stroke-dasharray:250 1000;--L:250;opacity:.34}
+/* хвіст — довгий, тонкий, ледь помітний */
+.pl-t4{stroke-width:1.5;stroke-dasharray:380 1000;--L:380;opacity:.16}
+@keyframes plRun{
+  from{stroke-dashoffset:var(--L)}
+  to  {stroke-dashoffset:calc(var(--L) - 1000)}
+}
 .pl-word{
-  font-family:"Montserrat",sans-serif;font-weight:800;font-size:12px;
+  margin-top:6px;font-family:"Montserrat",sans-serif;font-weight:800;font-size:11px;
   letter-spacing:.6em;text-indent:.6em;text-transform:uppercase;color:rgba(255,255,255,.75);
   opacity:0;animation:plWord .7s ease .68s forwards;
 }
@@ -776,7 +802,8 @@ footer{position:relative;z-index:2;border-top:1px solid var(--line-soft);padding
 
 @media (prefers-reduced-motion:reduce){
   .preloader{animation:none;opacity:0;visibility:hidden;pointer-events:none}
-  .pl-inf-run{animation:none;stroke-dashoffset:0;stroke-dasharray:none}
+  .pl-stage,.pl-run{animation:none}
+  .pl-run{stroke-dashoffset:0;stroke-dasharray:none}
 }
 
 /* ============================================================
@@ -847,7 +874,6 @@ footer{position:relative;z-index:2;border-top:1px solid var(--line-soft);padding
 
 @media (max-width:560px){
   .seatrow{grid-template-columns:78px minmax(0,1fr) 62px;gap:10px}
-  .pl-core{width:108px;height:108px}
   .pl-word{font-size:10px;letter-spacing:.42em}
 }
 
