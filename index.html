@@ -7,7 +7,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800;900&family=Oswald:wght@400;500;600&family=Manrope:wght@400;500;600;700&family=Pixelify+Sans:wght@400..700&family=JetBrains+Mono:wght@400;500;700&display=swap">
 <link rel="stylesheet" href="styles.css?v=2cf033dd">
-<link rel="stylesheet" href="squid.css?v=b17c0a9a">
+<link rel="stylesheet" href="squid.css?v=7ec6a32d">
 
 <!-- SPRITE -->
 <div class="preloader" id="preloader">
@@ -59,15 +59,15 @@
      прокрутки. Людина бачить, що рухається по грі, а не гортає сайт. -->
 <nav class="prog" id="prog" aria-label="Прогрес сторінки">
   <span class="prog-line" aria-hidden="true"><i id="progFill"></i></span>
-  <a class="prog-dot" href="#picker"   data-t="Крок 1 · Персонаж"><b>1</b></a>
-  <a class="prog-dot" href="#about"    data-t="Крок 2 · Тест"><b>2</b></a>
-  <a class="prog-dot" href="#format"   data-t="Крок 3 · Формат"><b>3</b></a>
-  <a class="prog-dot" href="#how"      data-t="Як влаштований сезон"><b>4</b></a>
-  <a class="prog-dot" href="#iryna"    data-t="Хто за цим стоїть"><b>5</b></a>
-  <a class="prog-dot" href="#program"  data-t="Бізнес-програма"><b>6</b></a>
-  <a class="prog-dot" href="#champ"    data-t="Чемпіонат"><b>7</b></a>
+  <a class="prog-dot" href="#hello"    data-t="Крок 1 · Знайомство"><b>1</b></a>
+  <a class="prog-dot" href="#picker"   data-t="Крок 2 · Персонаж"><b>2</b></a>
+  <a class="prog-dot" href="#about"    data-t="Крок 3 · Тест"><b>3</b></a>
+  <a class="prog-dot" href="#format"   data-t="Крок 4 · Місія"><b>4</b></a>
+  <a class="prog-dot" href="#how"      data-t="Як влаштований сезон"><b>5</b></a>
+  <a class="prog-dot" href="#founders" data-t="Хто за цим стоїть"><b>6</b></a>
+  <a class="prog-dot" href="#program"  data-t="Бізнес-програма"><b>7</b></a>
   <a class="prog-dot" href="#packages" data-t="Пакети"><b>8</b></a>
-  <a class="prog-dot" href="#apply"    data-t="Заявка"><b>9</b></a>
+  <a class="prog-dot" href="#apply"    data-t="Досьє і заявка"><b>9</b></a>
 </nav>
 
 <!-- ============ ШАПКА ============ -->
@@ -117,9 +117,40 @@
     </div>
     <p class="lede hero-lede">Три напрямки, які раніше існували окремо, — в одному місці.</p>
 
+    <div class="hello rv" id="hello">
+      <div class="hello-head">
+        <span class="hello-kicker">Крок 1</span>
+        <h2 class="hello-title">Як вас звати?</h2>
+        <p class="hello-sub">Далі на сторінці ми звертатимемось до вас на ім’я — і зберемо ваше досьє гравця.</p>
+      </div>
+
+      <div class="hello-row">
+        <label class="hello-fld">
+          <span>Ім’я</span>
+          <input type="text" id="heroName" autocomplete="given-name" placeholder="Ольга" maxlength="30">
+        </label>
+      </div>
+
+      <div class="hello-exp">
+        <span class="hello-exp-k">Скільки років ви в цій ніші?</span>
+        <div class="hello-exp-opts" role="group">
+          <button class="expo" type="button" data-exp="менше року">До року</button>
+          <button class="expo" type="button" data-exp="1–3 роки">1–3</button>
+          <button class="expo" type="button" data-exp="3–5 років">3–5</button>
+          <button class="expo" type="button" data-exp="5–10 років">5–10</button>
+          <button class="expo" type="button" data-exp="понад 10 років">10+</button>
+        </div>
+      </div>
+
+      <div class="hello-done" id="helloDone" hidden>
+        <span class="hello-check" aria-hidden="true">✓</span>
+        <span>Вітаємо, <b id="helloName"></b>. Далі — оберіть свого персонажа.</span>
+      </div>
+    </div>
+
     <div class="picker rv" id="picker">
       <div class="picker-head">
-        <span class="picker-kicker">Крок 1</span>
+        <span class="picker-kicker">Крок 2</span>
         <h2 class="picker-title">Оберіть свого персонажа</h2>
         <p class="picker-sub">Ваш напрямок визначає категорію в чемпіонаті й підбір команди. Якщо працюєте в кількох — обирайте кілька.</p>
       </div>
@@ -176,7 +207,7 @@
       <div class="picker-done" id="pickerDone" hidden>
         <span class="picker-check" aria-hidden="true">✓</span>
         <span id="pickerLead">Ваш персонаж — <b id="pickerName"></b></span>
-        <a href="#quiz" class="btn btn-primary btn-sm">Далі: крок 2 →</a>
+        <a href="#quiz" class="btn btn-primary btn-sm">Далі: крок 3 →</a>
       </div>
     </div>
 
@@ -213,7 +244,7 @@
   <div class="wrap">
     <div class="quiz glass rv" id="quiz">
       <div class="quiz-head">
-        <span class="quiz-kicker">Крок 2</span>
+        <span class="quiz-kicker">Крок 3</span>
         <h2 class="quiz-title">Пройдіть короткий тест, щоб визначити вашу поточну ситуацію</h2>
         <p class="quiz-sub">Відмітьте те, що про вас. Результат залежить не від кількості галочок, а від того, які саме ви поставите.</p>
       </div>
@@ -277,7 +308,7 @@
 <section class="sec" id="format">
   <div class="wrap">
     <div class="sec-head rv">
-      <span class="eyebrow">Крок 3</span>
+      <span class="eyebrow">Крок 4</span>
       <h2 class="h-lg">Оберіть <span class="glow">формат участі</span></h2>
       <p class="lede">Дві дороги. Обидві ведуть до бізнесу — просто одна тихіша, а друга виводить вас на екран.</p>
     </div>
@@ -285,7 +316,7 @@
     <div class="fork rv" id="fork">
       <div class="fork-who" id="forkWho">
         <span class="fork-who-k">Ваш персонаж</span>
-        <b id="forkWhoName">Оберіть персонажа у кроці 1</b>
+        <b id="forkWhoName">Оберіть персонажа у кроці 2</b>
         <p id="forkWhoPain">Тоді покажемо, які задачі типові саме для вашого напрямку.</p>
         <a class="fork-who-back" href="#picker" id="forkWhoBack">Обрати персонажа →</a>
       </div>
@@ -358,56 +389,6 @@
       <h3 class="newfmt-t">Такого формату на ринку не існувало. Ми його придумали — і можемо реалізувати</h3>
       <p>Реаліті-шоу були. Перевтілення були. Чемпіонати були. Але окремо одне від одного, і жодне з них не робило з майстрині підприємця. З&rsquo;єднати все це в один сезон може не кожен — для цього потрібні і сцена, і журі, і аудиторія, і двадцять років зв&rsquo;язків у індустрії.</p>
       <p>У нас вони є. Ось чому.</p>
-    </div>
-  </div>
-</section>
-
-<!-- ============ ІРИНА ВЕРБОВА ============ -->
-<section class="sec sec-light" id="iryna">
-  <div class="wrap">
-    <div class="sec-head rv">
-      <span class="eyebrow">Засновниця проєкту</span>
-      <h2 class="h-lg">Ірина <span class="glow">Вербова</span></h2>
-    </div>
-
-    <div class="iryna rv">
-      <div class="iryna-ph">
-        <img src="assets/people/verbova.jpg" alt="Ірина Вербова" loading="lazy" width="900" height="1125">
-      </div>
-      <div class="iryna-tx">
-        <p>Понад <b>20 років тому</b> Ірина Вербова, засновниця IBV — International Beauty Voyage, почала будувати б&rsquo;юті-індустрію в Україні. У Європі вже гриміли чемпіонати, а в нас про це тільки мріяли.</p>
-        <p>Ірина привезла цей формат в Україну і <b>вперше вивела наших майстрів на світову сцену</b>. Перший конгрес — Греція, 2015 рік, 100+ майстрів. Ірина сказала їм: «Світ має дізнатися про наші таланти. Хто зі мною?»</p>
-        <div class="iryna-facts">
-          <div><b>40</b><span>країн світу, з яких їхали майстри на її заходи</span></div>
-          <div><b>ТОП-100</b><span>успішних людей України</span></div>
-          <div><b>20+</b><span>років в індустрії</span></div>
-        </div>
-        <p>Далі були Дубай, Іспанія, Польща, Грузія, Туреччина, Греція, Казахстан. Гран-прі одного разу стала <b>квартира в Києві</b>, а в номінації Jackpot розігрувався <b>Mercedes</b>. Не кубок і не сертифікат — квартира й машина.</p>
-        <blockquote class="iryna-q">Головний талант Ірини — не лише створювати масштабні події, а відкривати самородків. Вона знаходила їх по всьому світу, бачила потенціал, який «вистрілить», і виводила на сцену. Далі їхні імена знав уже весь ринок.</blockquote>
-        <p>Усе, що робила Ірина, через пару років ставало стандартом ринку. Beauty&nbsp;Games — її новий проєкт, аналогів якому немає ні в Україні, ні у світі.</p>
-      </div>
-    </div>
-
-    <div class="ibv rv">
-      <div class="ibv-head">
-        <img class="ibv-logo" src="assets/logo-ibv.png" alt="IBV — International Beauty Voyage" loading="lazy" width="365" height="97">
-        <div>
-          <h3 class="ibv-t">International Beauty Voyage</h3>
-          <p class="ibv-s">Організація, яка стоїть за Beauty&nbsp;Games</p>
-        </div>
-      </div>
-      <p class="ibv-p">IBV — міжнародна організація Ірини Вербової, через яку українські майстри вперше вийшли на світову сцену. За роки роботи IBV провела чемпіонати й конгреси в Україні та за кордоном: Греція, Дубай, Іспанія, Польща, Грузія, Туреччина, Казахстан.</p>
-      <div class="ibv-facts">
-        <div><b>2015</b><span>перший конгрес у Греції · 100+ майстрів</span></div>
-        <div><b>40</b><span>країн, з яких їхали учасниці</span></div>
-        <div><b>7</b><span>країн, де проходили заходи IBV</span></div>
-      </div>
-      <p class="ibv-p">Beauty&nbsp;Games — новий проєкт IBV. Та сама сцена, те саме журі й та сама аудиторія, але вперше разом із бізнес-навчанням і реаліті-шоу.</p>
-      <div class="ibv-logos">
-        <img src="assets/logo-horizontal.svg" alt="Beauty Games" loading="lazy">
-        <img src="assets/logo-verbova.png" alt="Iryna Verbova" loading="lazy" width="508" height="201">
-        <img src="assets/logo-ibv.png" alt="IBV" loading="lazy" width="365" height="97">
-      </div>
     </div>
   </div>
 </section>
@@ -704,7 +685,7 @@
 </section>
 
 <!-- ============ ЗАСНОВНИЦІ ============ -->
-<section class="sec" id="founders">
+<section class="sec sec-light" id="founders">
   <div class="wrap">
     <div class="sec-head rv">
       <span class="eyebrow">Хто за цим стоїть</span>
@@ -737,7 +718,24 @@
         </ul>
 
         <p>Входить до топ-100 успішних людей України. Але головний її результат — сотні імен, які сьогодні знає весь beauty-ринок.</p>
-        <a href="#iryna" class="btn btn-ghost btn-sm">Докладніше про Ірину</a>
+
+        <details class="founder-more">
+          <summary>Уся історія Ірини</summary>
+          <div class="founder-more-in">
+            <div class="iryna-tx">
+        <p>Понад <b>20 років тому</b> Ірина Вербова, засновниця IBV — International Beauty Voyage, почала будувати б&rsquo;юті-індустрію в Україні. У Європі вже гриміли чемпіонати, а в нас про це тільки мріяли.</p>
+        <p>Ірина привезла цей формат в Україну і <b>вперше вивела наших майстрів на світову сцену</b>. Перший конгрес — Греція, 2015 рік, 100+ майстрів. Ірина сказала їм: «Світ має дізнатися про наші таланти. Хто зі мною?»</p>
+        <div class="iryna-facts">
+          <div><b>40</b><span>країн світу, з яких їхали майстри на її заходи</span></div>
+          <div><b>ТОП-100</b><span>успішних людей України</span></div>
+          <div><b>20+</b><span>років в індустрії</span></div>
+        </div>
+        <p>Далі були Дубай, Іспанія, Польща, Грузія, Туреччина, Греція, Казахстан. Гран-прі одного разу стала <b>квартира в Києві</b>, а в номінації Jackpot розігрувався <b>Mercedes</b>. Не кубок і не сертифікат — квартира й машина.</p>
+        <blockquote class="iryna-q">Головний талант Ірини — не лише створювати масштабні події, а відкривати самородків. Вона знаходила їх по всьому світу, бачила потенціал, який «вистрілить», і виводила на сцену. Далі їхні імена знав уже весь ринок.</blockquote>
+        <p>Усе, що робила Ірина, через пару років ставало стандартом ринку. Beauty&nbsp;Games — її новий проєкт, аналогів якому немає ні в Україні, ні у світі.</p>
+
+          </div>
+        </details>
       </article>
 
       <article class="founder glass rv">
@@ -778,6 +776,29 @@
 
 
     </div>
+
+    <div class="ibv rv">
+      <div class="ibv-head">
+        <img class="ibv-logo" src="assets/logo-ibv.png" alt="IBV — International Beauty Voyage" loading="lazy" width="365" height="97">
+        <div>
+          <h3 class="ibv-t">International Beauty Voyage</h3>
+          <p class="ibv-s">Організація, яка стоїть за Beauty&nbsp;Games</p>
+        </div>
+      </div>
+      <p class="ibv-p">IBV — міжнародна організація Ірини Вербової, через яку українські майстри вперше вийшли на світову сцену. За роки роботи IBV провела чемпіонати й конгреси в Україні та за кордоном: Греція, Дубай, Іспанія, Польща, Грузія, Туреччина, Казахстан.</p>
+      <div class="ibv-facts">
+        <div><b>2015</b><span>перший конгрес у Греції · 100+ майстрів</span></div>
+        <div><b>40</b><span>країн, з яких їхали учасниці</span></div>
+        <div><b>7</b><span>країн, де проходили заходи IBV</span></div>
+      </div>
+      <p class="ibv-p">Beauty&nbsp;Games — новий проєкт IBV. Та сама сцена, те саме журі й та сама аудиторія, але вперше разом із бізнес-навчанням і реаліті-шоу.</p>
+      <div class="ibv-logos">
+        <img src="assets/logo-horizontal.svg" alt="Beauty Games" loading="lazy">
+        <img src="assets/logo-verbova.png" alt="Iryna Verbova" loading="lazy" width="508" height="201">
+        <img src="assets/logo-ibv.png" alt="IBV" loading="lazy" width="365" height="97">
+      </div>
+    </div>
+
   </div>
 </section>
 
@@ -1270,25 +1291,36 @@
 
       <div class="form-main">
         <div class="pickbox" id="pickBox" hidden>
-          <span class="pickbox-k">Ваш вибір на сторінці</span>
+          <span class="pickbox-k">Досьє гравця</span>
           <div class="pickbox-rows">
+            <div class="pickbox-row" id="pickRowName" hidden>
+              <span>Ім’я</span><b id="pickName"></b>
+            </div>
+            <div class="pickbox-row" id="pickRowExp" hidden>
+              <span>Досвід у ніші</span><b id="pickExp"></b>
+            </div>
             <div class="pickbox-row" id="pickRowDir" hidden>
               <span>Напрямок</span><b id="pickDir"></b>
             </div>
+            <div class="pickbox-row" id="pickRowSit" hidden>
+              <span>Ситуація</span><b id="pickSit"></b>
+            </div>
             <div class="pickbox-row" id="pickRowGoal" hidden>
-              <span>Мета на рік</span><b id="pickGoal"></b>
+              <span>Місія на рік</span><b id="pickGoal"></b>
             </div>
             <div class="pickbox-row" id="pickRowFmt" hidden>
               <span>Формат участі</span><b id="pickFmt"></b>
             </div>
           </div>
-          <p class="pickbox-note">Це піде менеджеру разом із заявкою — не треба повторювати.</p>
+          <p class="pickbox-note">Усе це вже у нас — менеджер не питатиме те саме ще раз.</p>
         </div>
 
         <form id="applyForm" name="participant" method="POST" data-netlify="true" netlify-honeypot="bot-field" novalidate>
           <input type="hidden" name="form-name" value="participant">
           <input type="hidden" name="goal" id="fGoal">
           <input type="hidden" name="format" id="fFormat">
+          <input type="hidden" name="experience" id="fExp">
+          <input type="hidden" name="situation" id="fSit">
           <p hidden><label>Не заповнюйте це поле: <input name="bot-field"></label></p>
           <div class="fgrid">
             <div class="fld">
@@ -1319,7 +1351,7 @@
             </div>
             <div class="fld">
               <label for="fDir">Ваш напрямок</label>
-              <input type="text" id="fDir" name="direction" placeholder="Оберіть у кроці 1 або впишіть">
+              <input type="text" id="fDir" name="direction" placeholder="Оберіть у кроці 2 або впишіть">
               <span class="msg">Оберіть пакет або «ще не визначилась»</span>
             </div>
             <div class="fld">
@@ -1413,5 +1445,5 @@
   </a>
 </div>
 
-<script src="app.js?v=8ba6cb5f"></script>
+<script src="app.js?v=ea0d4bce"></script>
 <script src="fx.js?v=b9217507"></script>

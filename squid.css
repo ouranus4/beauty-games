@@ -2171,3 +2171,143 @@ body.bio-open{overflow:hidden}
   .fork-who{padding:14px 16px;margin-bottom:18px}
   .fork-who p{font-size:13px}
 }
+
+/* ============================================================
+   КРОК 1 — ЗНАЙОМСТВО
+   Ім'я й досвід на початку: далі сторінка звертається на ім'я,
+   а наприкінці все складається в досьє гравця.
+   ============================================================ */
+.hello{
+  width:100%;margin:0 0 14px;padding:24px;border-radius:var(--r-lg);
+  background:linear-gradient(180deg,rgba(233,198,126,.12),rgba(255,255,255,.03));
+  border:1px solid rgba(233,198,126,.42);
+  box-shadow:0 22px 54px rgba(0,0,0,.5);
+}
+.hello-head{display:flex;flex-direction:column;gap:9px;margin-bottom:18px}
+.hello-kicker{
+  align-self:flex-start;padding:7px 16px;border-radius:var(--r-pill);
+  background:rgba(233,198,126,.16);
+  box-shadow:inset 0 0 0 1.5px rgba(233,198,126,.55);
+  font-family:"Montserrat",sans-serif;font-weight:700;font-size:11.5px;
+  letter-spacing:.16em;text-transform:uppercase;color:var(--gold-1);
+}
+.hello-title{
+  margin:0;font-family:"Montserrat",sans-serif;font-weight:900;
+  font-size:clamp(21px,2.8vw,28px);line-height:1.1;color:var(--white);
+  text-transform:uppercase;letter-spacing:-.025em;
+}
+.hello-sub{margin:0;font-size:14px;line-height:1.5;color:var(--muted);max-width:50ch}
+
+.hello-fld{display:flex;flex-direction:column;gap:7px;max-width:340px}
+.hello-fld > span{
+  font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--muted);
+}
+.hello-fld input{
+  width:100%;padding:14px 16px;border-radius:var(--r-md);
+  background:rgba(255,255,255,.06);border:1.5px solid rgba(255,255,255,.16);
+  font-family:"Montserrat",sans-serif;font-size:16px;font-weight:700;color:#fff;
+  transition:border-color .18s ease, box-shadow .18s ease;
+}
+.hello-fld input::placeholder{color:var(--faint);font-weight:400}
+.hello-fld input:focus{
+  outline:none;border-color:var(--gold-2);
+  box-shadow:0 0 0 3px rgba(233,198,126,.18);
+}
+
+.hello-exp{margin-top:18px}
+.hello-exp-k{
+  display:block;margin-bottom:10px;
+  font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--muted);
+}
+.hello-exp-opts{display:flex;flex-wrap:wrap;gap:8px}
+.expo{
+  padding:10px 18px;border-radius:var(--r-pill);
+  background:rgba(255,255,255,.05);border:1.5px solid rgba(255,255,255,.16);
+  font-family:"Montserrat",sans-serif;font-weight:800;font-size:13px;color:var(--text);
+  transition:background .18s ease, border-color .18s ease, color .18s ease, transform .14s;
+}
+.expo:hover{border-color:rgba(233,198,126,.6);color:#fff}
+.expo.on{
+  background:linear-gradient(180deg,var(--gold-1),var(--gold-3));
+  border-color:#fff;color:var(--gold-ink);
+  box-shadow:0 10px 26px rgba(233,198,126,.4);
+}
+
+.hello-done{
+  display:flex;align-items:center;gap:12px;margin-top:18px;
+  padding:13px 16px;border-radius:var(--r-md);
+  background:rgba(233,198,126,.14);border:1px solid rgba(233,198,126,.45);
+  font-size:14.5px;color:var(--text);
+}
+.hello-done b{color:#fff}
+.hello-check{
+  width:26px;height:26px;flex:none;display:grid;place-items:center;border-radius:50%;
+  background:linear-gradient(180deg,var(--gold-1),var(--gold-3));
+  color:var(--gold-ink);font-size:13px;font-weight:800;
+}
+
+@media (max-width:520px){
+  .hello{padding:18px}
+  .hello-fld{max-width:none}
+  .expo{padding:9px 14px;font-size:12.5px}
+}
+
+/* Персонаж у кроці 4 має виділятися: це головний рядок блока. */
+.fork-who.on{
+  background:linear-gradient(180deg,rgba(255,46,136,.2),rgba(255,46,136,.07));
+  border:2px solid rgba(255,46,136,.6);
+  box-shadow:0 16px 40px rgba(255,46,136,.22);
+}
+.fork-who.on .fork-who-k{color:var(--pink-soft)}
+.fork-who.on b{font-size:clamp(18px,2.6vw,24px)}
+
+/* Уся історія Ірини — під розкриттям, щоб картка не тягнулася. */
+.founder-more{margin-top:6px}
+.founder-more > summary{
+  cursor:pointer;list-style:none;display:inline-flex;align-items:center;gap:8px;
+  padding:11px 20px;border-radius:var(--r-btn);
+  background:rgba(255,46,136,.1);
+  box-shadow:inset 0 0 0 2px rgba(255,46,136,.45);
+  font-family:Arial,Helvetica,sans-serif;font-size:11px;font-weight:700;
+  letter-spacing:.16em;text-transform:uppercase;color:#C2005F;
+}
+.founder-more > summary::-webkit-details-marker{display:none}
+.founder-more > summary::after{content:"↓";font-size:13px}
+.founder-more[open] > summary::after{content:"↑"}
+.founder-more > summary:hover{background:rgba(255,46,136,.18)}
+.founder-more-in{padding-top:16px}
+.sec-light .founder-more-in .iryna-tx p{color:#3A3145}
+.sec-light .founder-more-in .iryna-tx p b{color:#120D18}
+.sec-light .founder-more-in .iryna-q{background:#FDF0F6;color:#2A2331}
+.sec-light .founder-more-in .iryna-facts div{background:#FBF7FC;border-color:rgba(20,10,26,.08)}
+.sec-light .founder-more-in .iryna-facts b{color:#D6006F}
+.sec-light .founder-more-in .iryna-facts span{color:#6B6478}
+
+/* ============================================================
+   ЗАСНОВНИЦІ НА СВІТЛОМУ
+   Блок переїхав на білий фон, а токени лишалися темними —
+   світлий текст по білому не читався.
+   ============================================================ */
+.sec-light .founder{
+  background:#fff;border-color:rgba(20,10,26,.1);
+  box-shadow:0 16px 40px rgba(30,10,40,.08);
+}
+.sec-light .founder-nm{color:#120D18}
+.sec-light .founder-rl{color:#C2005F}
+.sec-light .founder p{color:#3A3145}
+.sec-light .founder-sub{color:#6B6478!important}
+.sec-light .founder-list li{color:#3A3145}
+.sec-light .founder-q{
+  background:#FDF0F6;border-left-color:var(--pink);color:#2A2331;
+}
+.sec-light .founder-todo{
+  background:#FBF7FC;border-color:rgba(20,10,26,.18);color:#6B6478!important;
+}
+.sec-light .founder .vid-frame{
+  background:#F1EAF4;border-color:rgba(255,46,136,.35);
+  box-shadow:0 14px 34px rgba(255,46,136,.14);
+}
+.sec-light .founder .vid-note{color:#120D18}
+.sec-light .founder .vid-sub{color:#6B6478}

@@ -522,6 +522,7 @@
 
       if (countEl) countEl.textContent = n;
       if (verdictEl) verdictEl.textContent = v.t;
+      setPick('pickRowSit', 'pickSit', n ? v.t : '', 'fSit');
       if (textEl) textEl.textContent = v.f ? v.p + ' ' + v.f : v.p;
       if (resultEl) resultEl.classList.toggle('on', n > 0);
 
@@ -554,7 +555,7 @@
       }
 
       if (ctaEl) ctaEl.hidden = n < 1;
-      if (n > 0) document.dispatchEvent(new CustomEvent('bg:quiz'));
+      if (n > 0) document.dispatchEvent(new CustomEvent('bg:quiz', { detail: { verdict: v.t } }));
     };
 
     boxes.forEach(function (b) { b.addEventListener('change', recount); });
@@ -632,6 +633,63 @@
      Обраний напрямок запам'ятовується і підставляється у форму,
      тож менеджер одразу бачить, з ким має справу.
      ============================================================ */
+  /* ============================================================
+     КРОК 1 — ЗНАЙОМСТВО
+     Ім'я й досвід збираються на початку: далі сторінка звертається
+     на ім'я, а наприкінці все складається в досьє гравця.
+     ============================================================ */
+  var hello = $('#hello');
+  if (hello) {
+    var nameIn = $('#heroName');
+    var helloDone = $('#helloDone');
+    var helloName = $('#helloName');
+    var expBtns = $$('.expo', hello);
+    var formName = $('#fName');
+
+    var syncName = function (silent) {
+      var v = (nameIn && nameIn.value || '').trim();
+      if (helloDone) helloDone.hidden = !v;
+      if (helloName) helloName.textContent = v;
+      if (formName && v && !formName.value) formName.value = v;
+      setPick('pickRowName', 'pickName', v);
+      store.set('bg_name', v);
+      if (v && !silent) document.dispatchEvent(new CustomEvent('bg:hello', { detail: { name: v } }));
+    };
+
+    if (nameIn) {
+      nameIn.addEventListener('input', function () { syncName(true); });
+      nameIn.addEventListener('change', function () { syncName(); });
+      nameIn.addEventListener('blur', function () { syncName(); });
+    }
+
+    expBtns.forEach(function (b) {
+      b.addEventListener('click', function () {
+        var already = b.classList.contains('on');
+        expBtns.forEach(function (x) { x.classList.remove('on'); });
+        if (already) {
+          setPick('pickRowExp', 'pickExp', '', 'fExp');
+          store.set('bg_exp', '');
+          return;
+        }
+        b.classList.add('on');
+        var v = b.getAttribute('data-exp');
+        setPick('pickRowExp', 'pickExp', v, 'fExp');
+        store.set('bg_exp', v);
+        document.dispatchEvent(new CustomEvent('bg:hello'));
+      });
+    });
+
+    var savedName = store.get('bg_name');
+    if (savedName && nameIn) { nameIn.value = savedName; syncName(true); }
+    var savedExp = store.get('bg_exp');
+    if (savedExp) {
+      expBtns.forEach(function (b) {
+        if (b.getAttribute('data-exp') === savedExp) b.classList.add('on');
+      });
+      setPick('pickRowExp', 'pickExp', savedExp, 'fExp');
+    }
+  }
+
   var picker = $('#picker');
   if (picker) {
     var chrs = $$('.chr', picker);
@@ -679,9 +737,12 @@
           return chosen.indexOf(c.getAttribute('data-dir')) > -1;
         });
         if (picked.length) {
-          whoName.textContent = listify(picked.map(function (c) {
+          var roles = listify(picked.map(function (c) {
             return c.getAttribute('data-hero') || c.getAttribute('data-dir');
           }));
+          var nm = (store.get('bg_name') || '').trim();
+          var exp = (store.get('bg_exp') || '').trim();
+          whoName.textContent = (nm ? nm + ', ' : '') + roles + (exp ? ' · ' + exp + ' у ніші' : '');
           whoPain.innerHTML = picked.map(function (c) {
             return '<span>' + (c.getAttribute('data-pain') || '') + '</span>';
           }).join('');
@@ -759,9 +820,12 @@
         if (forkText) forkText.textContent = a.t;
         if (forkOut) forkOut.hidden = false;
         $$('.way').forEach(function (w, i) { w.classList.toggle('pick', i === a.w); });
+        // <br> у підписі не дає пробілу — інакше виходило «І те,і інше»
         var nm = $('.fork-o-nm', b);
-        setPick('pickRowGoal', 'pickGoal',
-                nm ? nm.textContent.replace(/\s+/g, ' ').trim() : '', 'fGoal');
+        var nmTx = nm ? nm.innerHTML.replace(/<br\s*\/?>/gi, ' ')
+                                    .replace(/<[^>]*>/g, '')
+                                    .replace(/\s+/g, ' ').trim() : '';
+        setPick('pickRowGoal', 'pickGoal', nmTx, 'fGoal');
         setPick('pickRowFmt', 'pickFmt', a.n, 'fFormat');
         document.dispatchEvent(new CustomEvent('bg:fork', { detail: { name: a.n } }));
       });
@@ -810,7 +874,7 @@
     var toast = function (txt) {
       var t = document.createElement('div');
       t.className = 'toast';
-      t.innerHTML = '<span>' + txt + '</span><b>Записали — побачите у заявці</b>';
+      t.innerHTML = '<b>Записали у ваше досьє</b><span>' + txt + '</span>';
       document.body.appendChild(t);
       requestAnimationFrame(function () { t.classList.add('in'); });
       setTimeout(function () {
@@ -819,17 +883,31 @@
       }, 2400);
     };
 
-    var markStep = function (href, label) {
+    // Сповіщення показує саме те, що записали, а не абстрактне
+    // «крок зараховано»: людина має бачити своє значення.
+    var markStep = function (href, value) {
+      var fresh = false;
       dots.forEach(function (d) {
-        if (d.getAttribute('href') !== href || d.classList.contains('hit')) return;
+        if (d.getAttribute('href') !== href) return;
+        if (!d.classList.contains('hit')) fresh = true;
         d.classList.add('hit');
-        if (label) toast(label);
       });
+      if (value) toast(value);
     };
-    document.addEventListener('bg:character', function () { markStep('#picker', 'Напрямок обрано'); });
-    document.addEventListener('bg:quiz', function () { markStep('#about', 'Тест пройдено'); });
-    document.addEventListener('bg:fork', function () { markStep('#format', 'Формат обрано'); });
-    document.addEventListener('bg:path-end', function () { markStep('#how', 'Шлях сезону переглянуто'); });
+    document.addEventListener('bg:character', function (e) {
+      var d = (e.detail && e.detail.dirs) || [];
+      markStep('#picker', d.length ? d.join(', ') : '');
+    });
+    document.addEventListener('bg:quiz', function (e) {
+      markStep('#about', (e.detail && e.detail.verdict) || '');
+    });
+    document.addEventListener('bg:hello', function (e) {
+      markStep('#hello', (e.detail && e.detail.name) || '');
+    });
+    document.addEventListener('bg:fork', function (e) {
+      markStep('#format', (e.detail && e.detail.name) || '');
+    });
+    document.addEventListener('bg:path-end', function () { markStep('#how', ''); });
   }
 
   /* ============================================================
