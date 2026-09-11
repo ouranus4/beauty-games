@@ -7,7 +7,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800;900&family=Manrope:wght@400;500;600;700&family=Pixelify+Sans:wght@400..700&family=JetBrains+Mono:wght@400;500;700&display=swap">
 <link rel="stylesheet" href="styles.css?v=2cf033dd">
-<link rel="stylesheet" href="squid.css?v=87928d21">
+<link rel="stylesheet" href="squid.css?v=f87dfe1e">
 
 <!-- SPRITE -->
 <div class="preloader" id="preloader">
@@ -30,7 +30,6 @@
         </div>
       </div>
       <div class="pl-start" id="plStart" hidden>
-        <div class="pl-marks" aria-hidden="true"><svg><use href="#bg-logo"/></svg></div>
         <div class="pl-ask">Почати гру?</div>
         <button class="px-btn px-btn-lg" id="plGo" type="button">Почати</button>
         <div class="pl-hint">Сезон 2026</div>
@@ -39,7 +38,7 @@
   </div>
 </div>
 <svg class="sprite" width="0" height="0" aria-hidden="true" focusable="false" style="position:absolute;pointer-events:none">
-  <symbol id="bg-logo" viewBox="282.88 122.06 153.76 160.69"><path transform="matrix(1,0,0,-1,355.3672,197.2986)" d="M0 0 10.562-10.562H23.928L9.563-28.966-7.014-24.057V11.189L11.614 17.33 54.82-5.281 32.64-16.889 40.439 0ZM-58.827-64.757V-48.983L-24.783-31.885-24.816-14.468-34.49-10.005-24.783-3.301V13.375L-58.827 30.473V46.247L-42.795 38.202-42.795-56.712ZM-33.223 20.763-33.223 3.665-45.635-4.898-33.223-11.354-33.223-25.529-58.827-38.202-58.827 33.436ZM-70.802 55.005V-73.515L83.714-9.193Z" fill="currentColor"/></symbol>
+  <symbol id="bg-logo" viewBox="282.88 122.06 153.76 160.69"><path transform="matrix(1,0,0,-1,355.3672,197.2986)" d="M0 0 10.562-10.562H23.928L9.563-28.966-7.014-24.057V11.189L11.614 17.33 54.82-5.281 32.64-16.889 40.439 0ZM-58.827-64.757V-48.983L-24.783-31.885-24.816-14.468-34.497-6.841-24.811-3.054V18.703L-58.827 37.917V54.195L-1.423 24.153-17.576 18.828V-31.944L-3.879-36ZM-35.368-19.6-35.357-25.187-58.827-37.312V25.969L-35.373 12.342V4.157L-53.21-3.721ZM-70.302 73.151V-83.714L79.568-5.281Z" fill="currentColor"/></symbol>
   <symbol id="i-brow" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 13.2c1.4-3.4 4.4-5.2 9-5.2 2.6 0 4.7.5 6.4 1.5 1 .6 1.3 1.6.9 2.3-.4.7-1.4.9-2.4.5-2.3-1-4.6-1.2-7-.7-2.4.5-4.4 1.6-6 3.2-.6.6-1.3.3-.9-1.6Z"/><path d="M5 17.6c2.2-1.6 4.8-2.4 7.8-2.4 1.7 0 3.2.2 4.5.7"/></g></symbol>
   <symbol id="i-camera" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2.6" y="6.6" width="13" height="10.8" rx="2"/><path d="m15.6 11 4.6-2.9a.8.8 0 0 1 1.2.7v6.4a.8.8 0 0 1-1.2.7l-4.6-2.9Z"/><circle cx="6.6" cy="10.2" r="1.4"/></g></symbol>
   <symbol id="i-chart" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3.4 20.6h17.2"/><rect x="4.6" y="13" width="3.6" height="6.2" rx=".8"/><rect x="10.2" y="8.6" width="3.6" height="10.6" rx=".8"/><rect x="15.8" y="4.2" width="3.6" height="15" rx=".8"/></g></symbol>
@@ -125,7 +124,7 @@
       <div class="picker-head">
         <span class="picker-kicker">Крок 1</span>
         <h2 class="picker-title">Оберіть свого персонажа</h2>
-        <p class="picker-sub">Ваш напрямок визначає категорію в чемпіонаті й підбір команди. Обране підставиться в заявку.</p>
+        <p class="picker-sub">Ваш напрямок визначає категорію в чемпіонаті й підбір команди.</p>
       </div>
       <div class="picker-grid">
         <button class="chr" type="button" data-dir="Броу-майстер" data-hero="броу-майстер">
@@ -218,44 +217,44 @@
       </div>
       <div class="quiz-list">
         <label class="chk">
-          <input type="checkbox" data-problem data-zone="gro" data-mod="04" data-tag="вкладення в навчання без віддачі">
+          <input type="checkbox" data-problem data-zone="gro" data-mod="04" data-tag="дохід є, але не росте">
           <span class="chk-box" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="m3.2 8.4 3.3 3.4 6.3-7"/></svg></span>
-          <span class="chk-tx">Вклала сотні тисяч у курси — а доходу як не було, так і немає</span>
+          <span class="chk-tx">Дохід є, але роками стоїть на місці — скільки не працюй</span>
         </label>
         <label class="chk">
-          <input type="checkbox" data-problem data-zone="res" data-mod="07" data-tag="перевантаження і брак часу">
+          <input type="checkbox" data-problem data-zone="res" data-mod="07" data-tag="запис під зав’язку без вихідних">
           <span class="chk-box" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="m3.2 8.4 3.3 3.4 6.3-7"/></svg></span>
-          <span class="chk-tx">Працюю руками по 10–12 годин і все одно не встигаю</span>
+          <span class="chk-tx">Запис щільний, вихідних немає, а відпустка — це мінус місяць доходу</span>
         </label>
         <label class="chk">
-          <input type="checkbox" data-problem data-zone="gro" data-mod="04" data-tag="немає обліку грошей">
+          <input type="checkbox" data-problem data-zone="gro" data-mod="04" data-tag="не бачу реального прибутку">
           <span class="chk-box" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="m3.2 8.4 3.3 3.4 6.3-7"/></svg></span>
-          <span class="chk-tx">Не розумію, куди зникають гроші наприкінці місяця</span>
+          <span class="chk-tx">Не рахую собівартість: не знаю, скільки насправді лишається з послуги</span>
         </label>
         <label class="chk">
-          <input type="checkbox" data-problem data-zone="gro" data-mod="02" data-tag="страх підняти ціну">
+          <input type="checkbox" data-problem data-zone="gro" data-mod="02" data-tag="страшно підняти ціну">
           <span class="chk-box" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="m3.2 8.4 3.3 3.4 6.3-7"/></svg></span>
-          <span class="chk-tx">Боюся підняти ціни — здається, клієнти підуть</span>
+          <span class="chk-tx">Ціни нижчі за ринок, підняти страшно — здається, клієнти підуть</span>
         </label>
         <label class="chk">
-          <input type="checkbox" data-problem data-zone="cli" data-mod="03" data-tag="нестабільний потік клієнтів">
+          <input type="checkbox" data-problem data-zone="cli" data-mod="03" data-tag="нема системи запису">
           <span class="chk-box" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="m3.2 8.4 3.3 3.4 6.3-7"/></svg></span>
-          <span class="chk-tx">Клієнти приходять хвилями: то густо, то порожньо</span>
+          <span class="chk-tx">Вікна в графіку й відміни в останній момент — потік некерований</span>
         </label>
         <label class="chk">
-          <input type="checkbox" data-problem data-zone="cli" data-mod="05" data-tag="соцмережі не приводять клієнтів">
+          <input type="checkbox" data-problem data-zone="cli" data-mod="05" data-tag="соцмережі не дають записів">
           <span class="chk-box" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="m3.2 8.4 3.3 3.4 6.3-7"/></svg></span>
-          <span class="chk-tx">Веду Instagram, але клієнти звідти не приходять</span>
+          <span class="chk-tx">Instagram веду, лайки є, а записів із нього майже немає</span>
         </label>
         <label class="chk">
-          <input type="checkbox" data-problem data-zone="res" data-mod="08" data-tag="робота без задоволення">
+          <input type="checkbox" data-problem data-zone="res" data-mod="08" data-tag="тримаю все на собі">
           <span class="chk-box" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="m3.2 8.4 3.3 3.4 6.3-7"/></svg></span>
-          <span class="chk-tx">Роблю на автоматі. Радості від роботи вже немає</span>
+          <span class="chk-tx">Все замкнено на мені: адміністратор, закупівлі, реклама, руки</span>
         </label>
         <label class="chk">
-          <input type="checkbox" data-problem data-zone="dir" data-mod="09" data-tag="немає плану, що далі">
+          <input type="checkbox" data-problem data-zone="dir" data-mod="09" data-tag="не знаю, що далі">
           <span class="chk-box" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="m3.2 8.4 3.3 3.4 6.3-7"/></svg></span>
-          <span class="chk-tx">Не знаю, що робити далі, щоб вийти на новий рівень</span>
+          <span class="chk-tx">Хочу більше — салон, команду, навчання — але не знаю, з чого починати</span>
         </label>
       </div>
       <div class="quiz-result" id="quizResult">
@@ -350,7 +349,7 @@
       <div class="sec-rule"></div>
     </div>
     <div class="stats">
-      <div class="stat st-hi rv"><div class="v">4</div><div class="u">місяці</div><div class="k">2 передпідготовки + 2 активної фази</div></div>
+      <div class="stat st-hi rv"><div class="v">3</div><div class="u">місяці</div><div class="k">1 передпідготовки + 2 активної фази</div></div>
       <div class="stat rv"><div class="v">290</div><div class="u">місць у потоці</div><div class="k">130 · 100 · 60 за лігами</div></div>
       <div class="stat rv"><div class="v">10</div><div class="u">категорій</div><div class="k">онлайн-чемпіонату</div></div>
       <div class="stat rv"><div class="v">5</div><div class="u">днів офлайн</div><div class="k">Гранд-Фіналу</div></div>
@@ -409,7 +408,7 @@
         </div>
         <div class="pstep" data-step="1">
           <div class="pstep-head">
-            <span class="pstep-dur">2 місяці</span>
+            <span class="pstep-dur">1 місяць</span>
             <h3 class="pstep-t">Передпідготовка</h3>
           </div>
           <div class="pstep-body">
@@ -490,10 +489,18 @@
         <svg class="prog-emblem" aria-hidden="true"><use href="#bg-logo"/></svg>
         <span class="prog-mark-tx"><b>Beauty Games</b><span>Бізнес-програма</span></span>
       </div>
-      <h2 class="h-lg">Усе тут — про ваше <span class="glow">просування</span></h2>
+      <h2 class="h-lg">Дев'ять модулів, <span class="glow">які приносять гроші</span></h2>
       <div class="sec-rule"></div>
       <p class="lede">Кожен модуль зібраний під одну задачу: щоб про вас дізналися і щоб вам платили більше. Гроші, ціни, клієнти, особистий бренд, соцмережі, продажі — сучасні інструменти, якими користуються прямо зараз, а не теорія з позаминулого сезону.</p>
       <p class="lede">Дев'ять модулів Олександри Горобець: відеоуроки, живі розбори і домашні завдання, які перевіряють. Поруч весь час куратор і експерти проєкту — ви не залишаєтесь наодинці з матеріалом. Доступ залишається після сезону.</p>
+    </div>
+
+    <div class="bizpart rv">
+      <span class="bizpart-k">Бізнес-модуль реалізується за підтримки партнерів</span>
+      <div class="bizpart-logos">
+        <img src="assets/people/dia.jpg" alt="DIA Consulting" loading="lazy" width="1200" height="750">
+        <img src="assets/people/genius.jpg" alt="Genius Space Телепорт" loading="lazy" width="1200" height="750">
+      </div>
     </div>
 
     <div class="acc-bar rv">
@@ -578,23 +585,67 @@
       </div>
     </div>
 
-    <div class="author glass rv">
-      <div class="author-vid">
+  </div>
+</section>
+
+<!-- ============ ЗАСНОВНИЦІ ============ -->
+<section class="sec" id="founders">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="eyebrow">Хто за цим стоїть</span>
+      <h2 class="h-lg">Засновниці <span class="glow">проєкту</span></h2>
+    </div>
+
+    <div class="founders">
+      <article class="founder glass rv">
+        <div class="founder-top">
+          <div class="founder-ph">
+            <img src="assets/people/horobets.jpg" alt="Олександра Горобець" loading="lazy" width="900" height="1125">
+          </div>
+          <div class="founder-id">
+            <span class="founder-tag">Співзасновниця</span>
+            <h3 class="founder-nm">Олександра Горобець</h3>
+            <p class="founder-rl">Напрямок бізнес-навчання</p>
+          </div>
+        </div>
+
+        <p>Магістр фінансів, підприємець і наставник із понад 10-річним досвідом у б&rsquo;юті-індустрії. За ці роки навчила сотні майстрів перманентного макіяжу, ламінування вій та оформлення брів.</p>
+        <p>Але головне — сама пройшла повну трансформацію: від майстра, який працює тільки руками, до підприємця, який будує системний бізнес і масштабує процеси.</p>
+
+        <blockquote class="founder-q">Б&rsquo;юті-індустрія працює за тими самими законами, що й готельний чи ресторанний бізнес. Без чітких процесів неможливо стабільно заробляти великі гроші.</blockquote>
+
+        <p class="founder-sub">У бізнес-програмі Олександра веде:</p>
+        <ul class="founder-list">
+          <li>Сучасний SMM та упаковку особистого бренду</li>
+          <li>Таргетовану рекламу й залучення платоспроможних клієнтів</li>
+          <li>Побудову системи, делегування та вихід із вигорання</li>
+        </ul>
+
+        <p>Її задача на проєкті — зробити з учасниць справжніх б&rsquo;юті-підприємців, які керують системою, а не залежать виключно від власних рук.</p>
+
         <div class="vid-frame" id="authorVideo" data-src="assets/video/alexandra-method.mp4">
-          <img class="vid-poster" src="assets/people/horobets.jpg" alt="Олександра Горобець" loading="lazy" width="900" height="1125">
+          <img class="vid-poster" src="assets/people/horobets.jpg" alt="" loading="lazy" width="900" height="1125">
           <div class="vid-ph">
             <span class="vid-play" aria-hidden="true"></span>
             <span class="vid-note">Відеозвернення Олександри</span>
             <span class="vid-sub">про методику програми · 3 хв</span>
           </div>
         </div>
-      </div>
-      <div class="author-tx">
-        <span class="label label-accent">Авторка програми</span>
-        <h3 class="h-md" style="margin:8px 0 10px">Олександра Горобець</h3>
-        <p style="margin:0 0 12px;color:var(--muted);font-size:14.5px">Міжнародний тренер PMU, спеціаліст із фінансів, авторка бізнес-програми Beauty Games. Веде живі розбори протягом усього сезону.</p>
-        <p style="margin:0;color:var(--muted);font-size:14.5px">У відео — як влаштована методика: чому сезон починається зі стану майстра, а не з таблиць, і чому кожен модуль закривається впровадженням, а не конспектом.</p>
-      </div>
+      </article>
+
+      <article class="founder glass rv">
+        <div class="founder-top">
+          <div class="founder-ph">
+            <img src="assets/people/verbova.jpg" alt="Вербова" loading="lazy" width="900" height="1125">
+          </div>
+          <div class="founder-id">
+            <span class="founder-tag">Співзасновниця</span>
+            <h3 class="founder-nm">Вербова</h3>
+            <p class="founder-rl">Напрямок шоу і чемпіонату</p>
+          </div>
+        </div>
+        <p class="founder-todo">Текст профілю готуємо — надішліть опис, і він стане тут таким самим, як в Олександри.</p>
+      </article>
     </div>
   </div>
 </section>
@@ -739,7 +790,7 @@
       <p class="lede">Це не змагання заради кубка. Окрім нагород, усі учасниці отримують розбір від маркетологів: як упакувати участь і перемогу в Instagram, як підняти на цьому чек і залучити клієнтів.</p>
     </div>
 
-    <div class="tiles rv" style="margin-bottom:22px">
+    <div class="tiles tiles-3 rv" style="margin-bottom:22px">
       <div class="tile"><svg class="icon" aria-hidden="true"><use href="#i-brow"/></svg><span>Броу-майстер</span></div>
       <div class="tile"><svg class="icon" aria-hidden="true"><use href="#i-lash"/></svg><span>Лашмейкер</span></div>
       <div class="tile"><svg class="icon" aria-hidden="true"><use href="#i-nails"/></svg><span>Нігтьовий сервіс</span></div>
@@ -753,22 +804,6 @@
     </div>
 
     <div class="three">
-      <div class="tcard glass-soft rv">
-        <h3 style="font-size:15px">Умови участі</h3>
-        <ul>
-          <li><b>Чемпіонат оплачується окремо</b> від пакета — участь за бажанням</li>
-          <li>Кожна наступна номінація дешевша за попередню</li>
-          <li>Універсали можуть заявлятися в різні категорії — кратно вищі шанси</li>
-        </ul>
-      </div>
-      <div class="tcard glass-soft rv">
-        <h3 style="font-size:15px">Вартість номінацій</h3>
-        <ul>
-          <li><b>Стандарт</b> — 1-ша €150 · 2-га €130 · 3-тя €100 <span style="color:var(--muted)">(усі три — €380)</span></li>
-          <li><b>Бізнес</b> — 1-ша €130 · 2-га €100 · 3-тя €80 <span style="color:var(--muted)">(усі три — €310)</span></li>
-          <li><b>VIP</b> — 1-ша включена · 2-га €130 · 3-тя €100</li>
-        </ul>
-      </div>
       <div class="tcard glass-soft rv">
         <h3 style="font-size:15px">Що отримуєте</h3>
         <ul>
@@ -862,234 +897,6 @@
     <div style="text-align:center;margin-top:30px">
       <p style="color:var(--muted);font-size:14.5px;margin-bottom:16px">Хочете виступити на сцені Beauty Games?</p>
       <a href="partners.html#speakers" class="btn btn-ghost">Умови для спікерів</a>
-    </div>
-  </div>
-</section>
-
-<!-- ============ ПАРТНЕРИ ============ -->
-<section class="sec" id="partners-logos">
-  <div class="wrap">
-    <div class="sec-head rv">
-      <span class="eyebrow">Разом із нами</span>
-      <h2 class="h-lg">Партнери <span class="glow">сезону</span></h2>
-      <div class="sec-rule"></div>
-    </div>
-
-    <div class="pgrid pgrid-logos">
-      <button class="pcard rv" type="button" data-bio="bio-dia">
-        <span class="pcard-ph"><img src="assets/people/dia.jpg" alt="DIA Consulting" loading="lazy" width="1200" height="750" class="is-logo"></span>
-        <span class="pcard-body">
-          <span class="pcard-tag">Партнер</span>
-          <span class="pcard-nm">DIA Consulting</span>
-          <span class="pcard-rl">Побудова відділів продажу під ключ</span>
-          <span class="pcard-facts"><i>ТОП-3 консалтингових компаній України</i><i>$17,6 млн зароблено клієнтам</i></span>
-          <span class="pcard-more">Читати профіль</span>
-        </span>
-      </button>
-      <button class="pcard rv" type="button" data-bio="bio-genius">
-        <span class="pcard-ph"><img src="assets/people/genius.jpg" alt="Genius Space Телепорт" loading="lazy" width="1200" height="750" class="is-logo"></span>
-        <span class="pcard-body">
-          <span class="pcard-tag">Партнер</span>
-          <span class="pcard-nm">Genius Space Телепорт</span>
-          <span class="pcard-rl">Освітній проєкт</span>
-          <span class="pcard-facts"><i>Один із найбільших освітніх проєктів</i></span>
-          <span class="pcard-more">Читати профіль</span>
-        </span>
-      </button>
-    </div>
-  </div>
-</section>
-
-<div class="bio" id="bioModal" hidden>
-  <div class="bio-back" data-bio-close></div>
-  <div class="bio-win" role="dialog" aria-modal="true" aria-labelledby="bioTitle">
-    <button class="bio-x" type="button" data-bio-close aria-label="Закрити">×</button>
-    <div class="bio-photo"><img id="bioPhoto" src="" alt=""></div>
-    <div class="bio-tx" id="bioTx"></div>
-  </div>
-</div>
-
-  <div class="bio-src" id="bio-horobets" hidden>
-    <span class="bio-tag">Співзасновниця</span>
-    <h3 class="bio-nm">Олександра Горобець</h3>
-    <p class="bio-rl">Напрямок бізнес-навчання Beauty Games</p>
-    <p class="bio-lead">Співзасновниця Beauty Games. Саме вона відповідає за напрямок бізнес-навчання — від структури програми до живих розборів протягом сезону.</p>
-    <ul class="bio-list"><li>Магістр фінансів, підприємець і наставник</li><li>Понад 10 років у б'юті-індустрії</li><li>Навчила сотні майстрів перманентного макіяжу, ламінування вій та оформлення брів</li><li>Сама пройшла повну трансформацію: від майстра, який працює тільки руками, до підприємця, який будує системний бізнес і масштабує процеси</li></ul>
-    <blockquote class="bio-q">Б'юті-індустрія працює за тими самими законами, що й готельний чи ресторанний бізнес. Без чітких процесів неможливо стабільно заробляти великі гроші.</blockquote>
-    <p class="bio-tail">У бізнес-програмі Олександра дає найпрактичніші інструменти: сучасний SMM та упаковку особистого бренду, таргетовану рекламу й залучення платоспроможних клієнтів, побудову системи, делегування та вихід із вигорання.</p>
-    <a class="bio-ig" href="https://instagram.com/alexa.horobets" target="_blank" rel="noopener">@alexa.horobets</a>
-  </div>
-  <div class="bio-src" id="bio-vyshnyvetska" hidden>
-    <span class="bio-tag">Спікер</span>
-    <h3 class="bio-nm">Катерина Вишневецька</h3>
-    <p class="bio-rl">Декомпозиція та побудова бізнес-систем</p>
-    <p class="bio-lead">Є люди, яких запрошують виступити, а є ті, заради кого збирають зал. Катерина — з других. Спікер бізнес-напряму Beauty Games, експерт з декомпозиції та побудови бізнес-систем.</p>
-    <ul class="bio-list"><li>Партнер Genius Space Телепорт — одного з найбільших освітніх проєктів</li><li>Співвласниця міжнародного навчального проєкту Proriv</li><li>Виростила компанію у 21 раз за 4 роки</li><li>Понад 27 000 учасників програм по всьому світу</li><li>12+ років у бізнесі, 8 із них — в інфобізнесі</li><li>Тричі стартувала з нуля без капіталу, витягувала компанію з касового розриву і тричі повертала її в ріст</li><li>Авторка методології декомпозиції: будує воронки, тестує гіпотези, створює бізнес-клуби</li><li>І автоспортсменка</li></ul>
-    <p class="bio-tail">Тисячі підприємців побудували свої результати на системі Катерини. На Beauty Games вона покаже, як розкласти будь-яку мету на цифри й кроки — саме так, як це роблять компанії, що виросли вдесятеро.</p>
-    <a class="bio-ig" href="https://instagram.com/kateryna.vish" target="_blank" rel="noopener">@kateryna.vish</a>
-  </div>
-  <div class="bio-src" id="bio-holovashchenko" hidden>
-    <span class="bio-tag">Експертка</span>
-    <h3 class="bio-nm">Олена Головащенко</h3>
-    <p class="bio-rl">Системні продажі · ТОП-10 тренерів України</p>
-    <p class="bio-lead">Експертка зі створення системних продажів для власників бізнесу та експертів, які продають свої знання, послуги й продукти. Входить до ТОП-10 тренерів України з продажів.</p>
-    <ul class="bio-list"><li>Співвласниця консалтингової компанії DIA Consulting</li><li>Бізнес-тренерка, спікерка бізнес-форумів та освітніх програм</li><li>12 років у продажах, 7+ років у консалтингу та навчанні</li><li>560+ реалізованих проєктів у 61 ніші бізнесу</li><li>$17,6 млн підтвердженого чистого прибутку клієнтів в Україні, Польщі та Казахстані</li><li>900+ менеджерів проходять навчання щороку</li><li>12 000+ учасників офлайн- та онлайн-програм</li></ul>
-    <p class="bio-tail">Допомогла сотням власників бізнесу й експертів перейти від хаотичних продажів до прогнозованої системи, яка стабільно приносить клієнтів і прибуток.</p>
-    <a class="bio-ig" href="https://instagram.com/olena.golovashchenko.sales" target="_blank" rel="noopener">@olena.golovashchenko.sales</a>
-  </div>
-  <div class="bio-src" id="bio-zaremba" hidden>
-    <span class="bio-tag">Спікер і експерт</span>
-    <h3 class="bio-nm">Тетяна Заремба</h3>
-    <p class="bio-rl">Стратегічний та антикризовий супровід бізнесу</p>
-    <p class="bio-lead">Підприємець, бізнес-ментор, коуч та аналітик з понад 20-річним досвідом у підприємництві, управлінні та супроводі бізнесу.</p>
-    <ul class="bio-list"><li>Ключовий напрям — стратегічний та антикризовий супровід власників бізнесу</li><li>Працює на стику мислення підприємця, його управлінських рішень, систематизації та фінансової стійкості компанії</li><li>У фокусі — управлінська звітність, цифри, фінансова модель, юніт-економіка, ефективність напрямів, команд і локацій</li><li>Окремий напрям — побудова та автоматизація управлінського обліку всередині бізнесу</li><li>Супровід у питаннях відділу продажів, структури, підбору й розстановки людей і мотивації команди</li></ul>
-    <p class="bio-tail">Тетяна бачить бізнес не лише через цифри, а й через контекст країни, менталітету, криз, адаптації та реальних можливостей для зростання — як окремої людини, так і компанії.</p>
-    <a class="bio-ig" href="https://instagram.com/zaremba.tatiana" target="_blank" rel="noopener">@zaremba.tatiana</a>
-  </div>
-  <div class="bio-src" id="bio-kuimova" hidden>
-    <span class="bio-tag">Експертка</span>
-    <h3 class="bio-nm">Ірина Куімова</h3>
-    <p class="bio-rl">Легалізація, податки і фінансова безпека</p>
-    <p class="bio-lead">У б'юті є ілюзія, що для високого чека достатньо робити гарні роботи. Але реальний бізнес починається там, де зникає страх перед податковою, фінансовим моніторингом і блокуванням карток. Ірина відповідає за те, щоб ваш перехід від майстра до власника системного бізнесу був юридично захищеним.</p>
-    <ul class="bio-list"><li>Легальний старт: правильно відкрити ФОП і обрати найвигіднішу систему оподаткування саме для вашої діяльності</li><li>Законна оптимізація: сплачувати податки грамотно й не переплачувати там, де цього можна уникнути</li><li>Облік без головного болю: вести облік, подавати звітність і контролювати фінанси без найму дорогих спеціалістів</li><li>Робота без «сюрпризів»: правила, ліміти та актуальні зміни в законодавстві</li></ul>
-    <blockquote class="bio-q">Я не вчу сухої теорії. Моє завдання в Beauty Games — дати вам фінансову свободу. Щоб ви чітко розуміли свій бізнес з точки зору закону, не працювали наосліп і не переплачували там, де можна законно зекономити.</blockquote>
-    <p class="bio-tail">З Іриною ви побудуєте юридичний фундамент, який дозволить відкривати салони, запускати франшизи та продавати свої послуги дорого по всьому світу.</p>
-    <a class="bio-ig" href="https://instagram.com/buhgalter.prof.iryna" target="_blank" rel="noopener">@buhgalter.prof.iryna</a>
-  </div>
-  <div class="bio-src" id="bio-dia" hidden>
-    <span class="bio-tag">Партнер</span>
-    <h3 class="bio-nm">DIA Consulting</h3>
-    <p class="bio-rl">Побудова відділів продажу під ключ</p>
-    <p class="bio-lead">Цю компанію знає весь український бізнес, коли мова заходить про продажі.</p>
-    <ul class="bio-list"><li>ТОП-3 консалтингових компаній України з побудови відділів продажу</li><li>167 бізнесів у 5 країнах Європи працюють за їхньою системою</li><li>$17,6 млн — стільки DIA Consulting заробили своїм клієнтам</li><li>Будують системи продажів з нуля</li><li>Впроваджують CRM, аналітику та звітність</li><li>Навчають команди й керівників</li><li>Калібрують продажі за авторською методикою, яка підвищує конверсію вже на другий тиждень</li></ul>
-    <p class="bio-tail">Відділи продажу будують під ключ із гарантією результату. Технологія базується на західній сервісній моделі Getting Naked: кожен дзвінок, кожна переписка, кожна конверсія оцифровані та вимірювані.</p>
-    <a class="bio-ig" href="https://instagram.com/dia_consulting" target="_blank" rel="noopener">@dia_consulting</a>
-  </div>
-  <div class="bio-src" id="bio-genius" hidden>
-    <span class="bio-tag">Партнер</span>
-    <h3 class="bio-nm">Genius Space Телепорт</h3>
-    <p class="bio-rl">Освітній проєкт</p>
-    <p class="bio-lead">Один із найбільших освітніх проєктів — партнер Beauty Games 2026.</p>
-    <p class="bio-tail">Партнером Genius Space Телепорт є Катерина Вишневецька — спікер бізнес-напряму Beauty Games.</p>
-    <a class="bio-ig" href="https://instagram.com/teleport.genius" target="_blank" rel="noopener">@teleport.genius</a>
-  </div>
-<!-- /PEOPLE -->
-
-<!-- ============ НАГОРОДИ ============ -->
-<section class="sec" id="awards">
-  <div class="wrap">
-    <div class="sec-head rv">
-      <span class="eyebrow">Гранд-Фінал · грудень 2026</span>
-      <h2 class="h-lg">Нагороди <span class="glow">сезону</span></h2>
-      <div class="sec-rule"></div>
-      <p class="lede">У офлайн-фінал виходять 5 команд VIP-ліги і ТОП-3 команди Бізнес-ліги. П'ять днів, щодня — на вибування. У фіналі учасниці змагаються вже кожна за себе.</p>
-    </div>
-
-    <div class="awards">
-      <div class="award glass bloom spec rv">
-        <div class="icon-chip"><svg class="icon" aria-hidden="true"><use href="#i-crown"/></svg></div>
-        <h4>Гран-прі</h4>
-        <p>Головний приз проєкту. Отримує переможниця VIP-ліги — розігрується в прямому ефірі Гранд-Фіналу. Після сезону виходить пост-шоу про те, як вона використала приз.</p>
-      </div>
-      <div class="award glass rv">
-        <div class="icon-chip"><svg class="icon" aria-hidden="true"><use href="#i-diamond"/></svg></div>
-        <h4>Джекпот</h4>
-        <p>Головна нагорода Бізнес-ліги. В останній день фіналу команди переходять в індивідуальну боротьбу — і Джекпот отримує переможниця особисто.</p>
-      </div>
-      <div class="award glass rv">
-        <div class="icon-chip"><svg class="icon" aria-hidden="true"><use href="#i-heart"/></svg></div>
-        <h4>Приз глядацьких симпатій</h4>
-        <p>За підсумками відкритого голосування в усіх каналах проєкту: YouTube, Instagram та інші майданчики. Голоси сумуються.</p>
-      </div>
-      <div class="award glass rv">
-        <div class="icon-chip"><svg class="icon" aria-hidden="true"><use href="#i-jester"/></svg></div>
-        <h4>Джокер</h4>
-        <p>Глядачі можуть повернути в гру улюблену героїню і вивести її в індивідуальні змагання. Джокер може виграти будь-яка учасниця — незалежно від ліги.</p>
-      </div>
-    </div>
-
-    <div class="three" style="margin-top:18px">
-      <div class="tcard glass-soft rv">
-        <h3 style="font-size:15px">Усім призеркам</h3>
-        <ul>
-          <li>Кубки й дипломи — обов'язкова нагорода всіх призових місць</li>
-          <li>2 і 3 місця — подарунки від спонсорів проєкту</li>
-        </ul>
-      </div>
-      <div class="tcard glass-soft rv">
-        <h3 style="font-size:15px">Консультація інвестора</h3>
-        <ul>
-          <li>1 і 2 місце VIP-ліги та 1 місце Бізнес-ліги</li>
-          <li>Персональна бізнес-консультація у спонсора-інвестора після шоу</li>
-        </ul>
-      </div>
-      <div class="tcard glass-soft rv">
-        <h3 style="font-size:15px">Шлях у Сезон 2</h3>
-        <ul>
-          <li>Призерки отримують запрошення в команду наступного сезону</li>
-          <li>Суддя, кураторка, коуч або менторка нового потоку</li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</section>
-
-
-
-<!-- ============ ЗАСНОВНИЦІ ============ -->
-<section class="sec">
-  <div class="wrap">
-    <div class="sec-head rv">
-      <span class="eyebrow">Хто за цим стоїть</span>
-      <h2 class="h-lg">Засновниці <span class="glow">проєкту</span></h2>
-      <div class="sec-rule"></div>
-    </div>
-
-    <div class="three">
-      <div class="tcard glass bloom spec rv" style="grid-column:span 2;min-width:0">
-        <div class="ph ph-round" style="width:92px;margin-bottom:18px"><span class="s">ФОТО</span></div>
-        <h3>Ірина Вербова</h3>
-        <p>Організаторка найбільших міжнародних заходів б'юті-індустрії з 2015 року: IBV, PMU Congress &amp; Championship — Греція, Дубай, Іспанія, Польща, Прибалтика, Грузія, Казахстан.</p>
-        <ul>
-          <li>Президент Товариства спеціалістів естетичної дермопігментації</li>
-          <li>Суддя міжнародної категорії</li>
-          <li>Засновниця Міжнародної Академії «QIQ»</li>
-          <li><b>Призами минулих чемпіонатів були квартира в Києві та автомобіль Mercedes</b></li>
-        </ul>
-      </div>
-      <div class="tcard glass rv">
-        <div class="ph ph-round" style="width:92px;margin-bottom:18px"><span class="s">ФОТО</span></div>
-        <h3>Олександра Горобець</h3>
-        <p>Міжнародний тренер PMU, спеціаліст із фінансів.</p>
-        <ul>
-          <li>Авторка бізнес-програми проєкту</li>
-          <li>Веде живі розбори весь сезон</li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ============ ПАРТНЕРИ ============ -->
-<section class="sec">
-  <div class="wrap">
-    <div class="sec-head rv">
-      <span class="eyebrow">Партнери сезону</span>
-      <h2 class="h-lg">Бренди, які <span class="glow">підтримують</span> проєкт</h2>
-      <div class="sec-rule"></div>
-    </div>
-    <div class="logos rv">
-      <div class="logo-ph">Генеральний</div>
-      <div class="logo-ph">Спеціальний</div>
-      <div class="logo-ph">Спеціальний</div>
-      <div class="logo-ph">Категорійний</div>
-      <div class="logo-ph">Категорійний</div>
-      <div class="logo-ph">Партнер</div>
-      <div class="logo-ph">Партнер</div>
-      <div class="logo-ph">Партнер</div>
-    </div>
-    <div style="text-align:center;margin-top:30px">
-      <a href="partners.html" class="btn btn-ghost">Стати партнером сезону</a>
     </div>
   </div>
 </section>
@@ -1412,5 +1219,5 @@
   </a>
 </div>
 
-<script src="app.js?v=c523814a"></script>
+<script src="app.js?v=de46fe08"></script>
 <script src="fx.js?v=b9217507"></script>

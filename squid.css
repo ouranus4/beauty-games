@@ -40,7 +40,7 @@
   --accent-rgb:255,46,136;
 
   /* Маркер списків — емблема Beauty Games. */
-  --bg-mark:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='282.88 122.06 153.76 160.69'%3E%3Cpath transform='matrix(1,0,0,-1,355.3672,197.2986)' d='M0 0 10.562-10.562H23.928L9.563-28.966-7.014-24.057V11.189L11.614 17.33 54.82-5.281 32.64-16.889 40.439 0ZM-58.827-64.757V-48.983L-24.783-31.885-24.816-14.468-34.49-10.005-24.783-3.301V13.375L-58.827 30.473V46.247L-42.795 38.202-42.795-56.712ZM-33.223 20.763-33.223 3.665-45.635-4.898-33.223-11.354-33.223-25.529-58.827-38.202-58.827 33.436ZM-70.802 55.005V-73.515L83.714-9.193Z' fill='%23000'/%3E%3C/svg%3E");
+  --bg-mark:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='282.88 122.06 153.76 160.69'%3E%3Cpath transform='matrix(1,0,0,-1,355.3672,197.2986)' d='M0 0 10.562-10.562H23.928L9.563-28.966-7.014-24.057V11.189L11.614 17.33 54.82-5.281 32.64-16.889 40.439 0ZM-58.827-64.757V-48.983L-24.783-31.885-24.816-14.468-34.497-6.841-24.811-3.054V18.703L-58.827 37.917V54.195L-1.423 24.153-17.576 18.828V-31.944L-3.879-36ZM-35.368-19.6-35.357-25.187-58.827-37.312V25.969L-35.373 12.342V4.157L-53.21-3.721ZM-70.302 73.151V-83.714L79.568-5.281Z' fill='%23000'/%3E%3C/svg%3E");
 }
 
 /* Сторінка партнерів — дзеркало головної: акценти золоті, а головна
@@ -1142,3 +1142,99 @@ body.bio-open{overflow:hidden}
   box-shadow:0 0 0 2px #fff, 0 22px 50px rgba(255,46,136,.5);
 }
 .chr.on .chr-ph img{opacity:1;mix-blend-mode:normal}
+
+/* ============================================================
+   КАТЕГОРІЇ ЧЕМПІОНАТУ — по три в ряд
+   ============================================================ */
+.tiles-3{grid-template-columns:repeat(3,1fr)!important}
+@media (max-width:520px){
+  .tiles-3{gap:8px}
+  .tiles-3 .tile{padding:14px 8px}
+  .tiles-3 .tile span{font-size:11px;line-height:1.25}
+  .tiles-3 .icon{width:26px;height:26px}
+}
+
+/* ============================================================
+   ПАРТНЕРИ БІЗНЕС-МОДУЛЯ
+   Логотипи стоять поруч із програмою, бо саме її вони підсилюють.
+   ============================================================ */
+.bizpart{
+  display:flex;align-items:center;gap:20px;flex-wrap:wrap;
+  margin-bottom:18px;padding:18px 22px;border-radius:var(--r-lg);
+  background:rgba(255,255,255,.04);
+  border:1px solid rgba(233,198,126,.35);
+}
+.bizpart-k{
+  font-family:"JetBrains Mono",monospace;font-size:10.5px;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--muted);max-width:22ch;line-height:1.5;
+}
+/* Логотипи вже обрізані по знаку у пропорції 16:10, тому просто
+   вписуємо їх у колонки — так вони читаються, а не тиснуться в смужку. */
+.bizpart-logos{display:grid;grid-template-columns:1fr 1fr;gap:12px;flex:1;min-width:220px}
+.bizpart-logos img{
+  width:100%;height:auto;aspect-ratio:16/10;object-fit:cover;display:block;
+  border-radius:var(--r-sm);background:#0E0810;
+}
+@media (max-width:620px){
+  .bizpart{gap:14px;padding:16px 18px;flex-direction:column;align-items:stretch}
+  .bizpart-k{max-width:none}
+}
+
+/* ============================================================
+   ЗАСНОВНИЦІ
+   Фото стоїть квадратом поруч з іменем, текст — колонкою під ним.
+   ============================================================ */
+.founders{display:grid;grid-template-columns:1.35fr 1fr;gap:16px;align-items:start}
+.founder{padding:clamp(20px,2.6vw,28px);border-radius:var(--r-lg)}
+.founder-top{display:flex;align-items:center;gap:18px;margin-bottom:20px}
+.founder-ph{
+  width:108px;height:108px;flex:none;border-radius:20px;overflow:hidden;background:#0E0810;
+}
+.founder-ph img{width:100%;height:100%;object-fit:cover;object-position:50% 16%;display:block}
+.founder-id{min-width:0}
+.founder-tag{
+  display:inline-block;padding:5px 14px;border-radius:var(--r-pill);
+  font-family:"Montserrat",sans-serif;font-size:10px;font-weight:800;
+  letter-spacing:.16em;text-transform:uppercase;color:#fff;background:var(--pink);
+}
+.founder-nm{
+  margin:10px 0 4px;font-family:"Montserrat",sans-serif;font-weight:900;
+  font-size:clamp(20px,2.6vw,26px);line-height:1.1;color:var(--white);letter-spacing:-.025em;
+}
+.founder-rl{
+  margin:0;font-family:"JetBrains Mono",monospace;font-size:10.5px;
+  letter-spacing:.14em;text-transform:uppercase;color:var(--pink-soft);
+}
+.founder p{margin:0 0 14px;font-size:14.5px;line-height:1.62;color:var(--text)}
+.founder-sub{color:var(--muted)!important;margin-bottom:10px!important}
+.founder-q{
+  margin:0 0 16px;padding:16px 18px;border-radius:var(--r-md);
+  background:rgba(255,46,136,.12);border-left:3px solid var(--pink);
+  font-size:15px;line-height:1.6;color:#fff;font-style:italic;
+}
+.founder-q::before{content:"«"}
+.founder-q::after{content:"»"}
+.founder-list{margin:0 0 16px;padding:0;list-style:none;display:grid;gap:9px}
+.founder-list li{
+  position:relative;padding-left:25px;font-size:14.5px;line-height:1.5;color:var(--text);
+}
+.founder-list li::before{
+  content:"";position:absolute;left:0;top:.34em;width:13px;height:13px;
+  background:var(--pink);
+  -webkit-mask:var(--bg-mark) center/contain no-repeat;
+          mask:var(--bg-mark) center/contain no-repeat;
+}
+.founder-todo{
+  padding:16px 18px;border-radius:var(--r-md);
+  background:rgba(255,255,255,.04);border:1px dashed rgba(255,255,255,.2);
+  color:var(--muted)!important;font-size:14px!important;
+}
+.founder .vid-frame{margin-top:4px}
+
+@media (max-width:900px){
+  .founders{grid-template-columns:1fr}
+}
+@media (max-width:520px){
+  .founder-top{gap:14px}
+  .founder-ph{width:88px;height:88px;border-radius:16px}
+}
