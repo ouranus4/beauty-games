@@ -131,8 +131,11 @@ a,button,.btn,.tile,.acc-btn,label,select,input[type=checkbox],.px-btn,
    ЗАГОЛОВКИ СЕКЦІЙ
    Надпис над заголовком — рожева пігулка з контуром, як у референсі.
    ============================================================ */
+/* .sec-head — flex-колонка, і inline-block розтягувався на всю її
+   ширину: плашка «Крок 3» виходила на пів екрана, а «Крок 2» поруч
+   була нормальна, бо в неї свій клас. Фіксуємо по вмісту. */
 .eyebrow{
-  display:inline-block;
+  display:inline-flex;align-self:flex-start;width:auto;max-width:100%;
   padding:9px 20px;border-radius:var(--r-pill);
   background:rgba(255,46,136,.08);
   box-shadow:inset 0 0 0 1.5px rgba(255,46,136,.5);
@@ -1633,11 +1636,34 @@ body.bio-open{overflow:hidden}
   font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:.18em;
   text-transform:uppercase;color:#fff;background:var(--pink);
 }
+.fork-q{text-align:center}
 .fork-t{
-  margin:14px 0 20px;font-family:"Montserrat",sans-serif;font-weight:900;
+  margin:14px auto 0;font-family:"Montserrat",sans-serif;font-weight:900;
   font-size:clamp(20px,2.8vw,28px);line-height:1.15;color:var(--white);
-  letter-spacing:-.025em;text-wrap:balance;
+  letter-spacing:-.025em;text-wrap:balance;max-width:22ch;
 }
+
+/* Розвилка малюється лініями: стовбур від питання, поперечина
+   і три спуски до варіантів. Видно, що дорога розходиться. */
+.fork-tree{position:relative;height:46px;margin:16px 0 0}
+.fork-stem{
+  position:absolute;left:50%;top:0;width:2px;height:22px;
+  transform:translateX(-50%);background:rgba(255,46,136,.55);
+}
+.fork-arms{
+  position:absolute;left:16.6%;right:16.6%;top:22px;height:2px;
+  background:rgba(255,46,136,.55);
+}
+.fork-drop{position:absolute;top:22px;width:2px;height:24px;background:rgba(255,46,136,.55)}
+.fork-drop::after{
+  content:"";position:absolute;left:50%;bottom:-1px;transform:translateX(-50%);
+  border-left:5px solid transparent;border-right:5px solid transparent;
+  border-top:7px solid var(--pink);
+}
+.fork-drop-1{left:16.6%}
+.fork-drop-2{left:50%;transform:translateX(-50%)}
+.fork-drop-3{left:83.4%}
+@media (max-width:760px){.fork-tree{display:none}}
 .fork-opts{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
 .fork-o{
   display:flex;flex-direction:column;align-items:flex-start;gap:8px;text-align:left;
@@ -1761,3 +1787,44 @@ body.bio-open{overflow:hidden}
 }
 
 /* Пакети теж на світлому — біля них ухвалюють рішення. */
+
+/* Результати — по три в ряд, картка компактна. */
+.stars{grid-template-columns:repeat(3,1fr);gap:12px}
+.star{
+  flex-direction:row;align-items:center;gap:14px;padding:16px;
+  border-radius:var(--r-md);
+}
+.star-ph{width:62px;height:62px;box-shadow:0 0 0 2px rgba(255,46,136,.4)}
+.star h3{margin:0 0 4px;font-size:15.5px}
+.star p{font-size:12.5px;line-height:1.4}
+.star > div:last-child{min-width:0}
+@media (max-width:900px){.stars{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:520px){
+  .stars{grid-template-columns:1fr;gap:8px}
+  .star{padding:13px;gap:12px}
+  .star-ph{width:54px;height:54px}
+  .star h3{font-size:14.5px}
+}
+
+/* Підтвердження пройденого кроку. Показується на 2,4 секунди. */
+.toast{
+  position:fixed;left:50%;bottom:96px;z-index:180;
+  transform:translate(-50%,16px);opacity:0;
+  display:flex;flex-direction:column;gap:2px;
+  padding:14px 22px;border-radius:var(--r-md);
+  background:linear-gradient(180deg,var(--gold-1),var(--gold-2));
+  box-shadow:0 18px 44px rgba(0,0,0,.5), 0 0 0 1px rgba(255,255,255,.5) inset;
+  transition:opacity .3s ease, transform .3s ease;
+  pointer-events:none;text-align:center;
+}
+.toast.in{opacity:1;transform:translate(-50%,0)}
+.toast b{
+  font-family:Arial,Helvetica,sans-serif;font-size:10.5px;font-weight:700;
+  letter-spacing:.18em;text-transform:uppercase;color:rgba(42,27,6,.65);
+}
+.toast span{
+  font-family:"Montserrat",sans-serif;font-weight:900;font-size:15px;
+  color:var(--gold-ink);letter-spacing:-.01em;
+}
+@media (max-width:760px){.toast{bottom:88px;padding:12px 18px}}
+@media (prefers-reduced-motion:reduce){.toast{transition:none}}

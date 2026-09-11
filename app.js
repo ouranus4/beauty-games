@@ -757,15 +757,31 @@
 
     // Пройдений крок позначається золотом і лишається таким: видно,
     // що саме ви вже зробили, а не просто до чого догортали.
-    var markStep = function (href) {
+    // Пройдений крок підтверджуємо коротким сповіщенням: без відгуку
+    // людина не помічає, що щось зарахувалось.
+    var toast = function (txt) {
+      var t = document.createElement('div');
+      t.className = 'toast';
+      t.innerHTML = '<b>Крок зараховано</b><span>' + txt + '</span>';
+      document.body.appendChild(t);
+      requestAnimationFrame(function () { t.classList.add('in'); });
+      setTimeout(function () {
+        t.classList.remove('in');
+        setTimeout(function () { if (t.parentNode) t.parentNode.removeChild(t); }, 400);
+      }, 2400);
+    };
+
+    var markStep = function (href, label) {
       dots.forEach(function (d) {
-        if (d.getAttribute('href') === href) d.classList.add('hit');
+        if (d.getAttribute('href') !== href || d.classList.contains('hit')) return;
+        d.classList.add('hit');
+        if (label) toast(label);
       });
     };
-    document.addEventListener('bg:character', function () { markStep('#picker'); });
-    document.addEventListener('bg:quiz', function () { markStep('#about'); });
-    document.addEventListener('bg:fork', function () { markStep('#format'); });
-    document.addEventListener('bg:path-end', function () { markStep('#how'); });
+    document.addEventListener('bg:character', function () { markStep('#picker', 'Персонаж обраний'); });
+    document.addEventListener('bg:quiz', function () { markStep('#about', 'Тест пройдено'); });
+    document.addEventListener('bg:fork', function () { markStep('#format', 'Формат обрано'); });
+    document.addEventListener('bg:path-end', function () { markStep('#how', 'Шлях сезону пройдено'); });
   }
 
   /* ============================================================
