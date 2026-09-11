@@ -668,6 +668,32 @@
           heroes.length > 1 ? 'Ваші персонажі — ' : 'Ваш персонаж — ';
       }
       if (dirField) dirField.value = full.join(', ');
+
+      // Крок 3 показує, кого обрали, і типові задачі напрямку
+      var whoName = $('#forkWhoName');
+      var whoPain = $('#forkWhoPain');
+      var whoBack = $('#forkWhoBack');
+      var who = $('#forkWho');
+      if (whoName && whoPain) {
+        var picked = chrs.filter(function (c) {
+          return chosen.indexOf(c.getAttribute('data-dir')) > -1;
+        });
+        if (picked.length) {
+          whoName.textContent = listify(picked.map(function (c) {
+            return c.getAttribute('data-hero') || c.getAttribute('data-dir');
+          }));
+          whoPain.innerHTML = picked.map(function (c) {
+            return '<span>' + (c.getAttribute('data-pain') || '') + '</span>';
+          }).join('');
+          if (whoBack) whoBack.hidden = true;
+          if (who) who.classList.add('on');
+        } else {
+          whoName.textContent = 'Оберіть персонажа у кроці 1';
+          whoPain.textContent = 'Тоді покажемо, які задачі типові саме для вашого напрямку.';
+          if (whoBack) whoBack.hidden = false;
+          if (who) who.classList.remove('on');
+        }
+      }
       setPick('pickRowDir', 'pickDir', full.join(', '));
 
       store.set('bg_character', chosen.join('|'));
@@ -733,7 +759,9 @@
         if (forkText) forkText.textContent = a.t;
         if (forkOut) forkOut.hidden = false;
         $$('.way').forEach(function (w, i) { w.classList.toggle('pick', i === a.w); });
-        setPick('pickRowGoal', 'pickGoal', $('b', b).textContent, 'fGoal');
+        var nm = $('.fork-o-nm', b);
+        setPick('pickRowGoal', 'pickGoal',
+                nm ? nm.textContent.replace(/\s+/g, ' ').trim() : '', 'fGoal');
         setPick('pickRowFmt', 'pickFmt', a.n, 'fFormat');
         document.dispatchEvent(new CustomEvent('bg:fork', { detail: { name: a.n } }));
       });

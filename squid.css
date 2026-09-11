@@ -1631,67 +1631,91 @@ body.bio-open{overflow:hidden}
   background:linear-gradient(180deg,rgba(255,46,136,.12),rgba(255,255,255,.03));
   border:1px solid rgba(255,46,136,.4);
 }
-.fork-q{text-align:center}
+.fork-q{text-align:center;margin-bottom:22px}
+.fork-lvl{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:6px 16px;border-radius:var(--r-pill);
+  background:rgba(233,198,126,.14);
+  box-shadow:inset 0 0 0 1.5px rgba(233,198,126,.5);
+  font-family:"JetBrains Mono",monospace;font-size:9.5px;letter-spacing:.18em;
+  text-transform:uppercase;color:var(--gold-1);
+}
+.fork-lvl::before{
+  content:"";width:7px;height:7px;border-radius:50%;background:var(--gold-2);
+  box-shadow:0 0 10px rgba(233,198,126,.9);
+}
 .fork-t{
-  margin:0 auto;font-family:"Montserrat",sans-serif;font-weight:900;
-  font-size:clamp(21px,3vw,30px);line-height:1.12;color:var(--white);
-  letter-spacing:-.025em;text-wrap:balance;max-width:20ch;
+  margin:14px auto 0;font-family:"Montserrat",sans-serif;font-weight:900;
+  font-size:clamp(24px,3.6vw,36px);line-height:1.08;color:var(--white);
+  letter-spacing:-.03em;text-wrap:balance;max-width:16ch;text-transform:uppercase;
 }
 .fork-sub{
-  margin:10px 0 0;font-family:"JetBrains Mono",monospace;font-size:10.5px;
-  letter-spacing:.16em;text-transform:uppercase;color:var(--pink-soft);
+  margin:10px auto 0;font-size:14.5px;line-height:1.5;color:var(--muted);max-width:34ch;
 }
 
-/* Розвилка малюється лініями: стовбур від питання, поперечина
-   і три спуски до варіантів. Видно, що дорога розходиться. */
-.fork-tree{position:relative;height:46px;margin:16px 0 0}
-.fork-stem{
-  position:absolute;left:50%;top:0;width:2px;height:22px;
-  transform:translateX(-50%);background:rgba(255,46,136,.55);
-}
-.fork-arms{
-  position:absolute;left:16.6%;right:16.6%;top:22px;height:2px;
-  background:rgba(255,46,136,.55);
-}
-.fork-drop{position:absolute;top:22px;width:2px;height:24px;background:rgba(255,46,136,.55)}
-.fork-drop::after{
-  content:"";position:absolute;left:50%;bottom:-1px;transform:translateX(-50%);
-  border-left:5px solid transparent;border-right:5px solid transparent;
-  border-top:7px solid var(--pink);
-}
-.fork-drop-1{left:16.6%}
-.fork-drop-2{left:50%;transform:translateX(-50%)}
-.fork-drop-3{left:83.4%}
-@media (max-width:760px){.fork-tree{display:none}}
+/* Місії — квадрати, як плитки персонажів у кроці 1. Людина вже
+   бачила цей жест і розуміє його: тиснеш — загоряється. */
 .fork-opts{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
 .fork-o{
-  display:flex;flex-direction:column;align-items:flex-start;gap:8px;text-align:left;
-  padding:20px;border-radius:var(--r-md);
-  background:rgba(255,255,255,.05);border:2px solid rgba(255,255,255,.12);
-  transition:transform .16s ease, border-color .2s ease, background .2s ease, box-shadow .2s;
+  position:relative;display:flex;flex-direction:column;align-items:center;
+  justify-content:flex-start;gap:0;padding:0;overflow:hidden;
+  aspect-ratio:1;border-radius:var(--r-md);
+  background:#F4EFF6;border:2px solid rgba(255,255,255,.2);
+  box-shadow:0 10px 26px rgba(0,0,0,.35);
+  transition:transform .18s ease, box-shadow .25s ease, background .22s ease,
+             border-color .22s ease;
 }
-.fork-o:hover{
-  transform:translateY(-3px);border-color:rgba(255,46,136,.55);
-  background:rgba(255,46,136,.1);
-}
-.fork-o.on{
-  border-color:var(--pink);background:rgba(255,46,136,.2);
-  box-shadow:0 0 0 3px rgba(255,46,136,.18), 0 16px 36px rgba(255,46,136,.28);
+.fork-o:hover{transform:translateY(-4px);box-shadow:0 20px 42px rgba(255,46,136,.32)}
+.fork-o:focus-visible{outline:3px solid var(--pink);outline-offset:3px}
+
+.fork-o-n{
+  width:100%;padding:9px 6px 0;
+  font-family:"JetBrains Mono",monospace;font-size:9.5px;letter-spacing:.14em;
+  text-transform:uppercase;color:#A497AD;transition:color .22s ease;
 }
 .fork-o-i{
-  width:44px;height:44px;display:grid;place-items:center;border-radius:14px;
-  background:rgba(255,46,136,.16);border:1px solid rgba(255,46,136,.4);
+  flex:1;width:100%;display:grid;place-items:center;
+  background:none;border:0;box-shadow:none;border-radius:0;height:auto;
 }
-.fork-o-i .icon{width:24px;height:24px;color:var(--pink-soft)}
-.fork-o.on .fork-o-i{background:var(--pink);border-color:#fff}
+.fork-o-i .icon{
+  width:42px;height:42px;color:#C2005F;filter:none;transition:color .22s ease;
+}
+.fork-o-nm{
+  width:100%;padding:0 6px 13px;
+  font-family:"Montserrat",sans-serif;font-weight:900;font-size:13px;
+  line-height:1.15;letter-spacing:-.01em;text-transform:uppercase;
+  color:#2A1C33;transition:color .22s ease;
+}
+
+/* Обрана місія загоряється рожевим і отримує галочку. */
+.fork-o.on{
+  background:linear-gradient(160deg,#FF2E88,#C2005F);
+  border-color:#fff;transform:translateY(-4px);
+  box-shadow:0 0 0 3px rgba(255,46,136,.35), 0 26px 56px rgba(255,46,136,.55);
+}
+.fork-o.on .fork-o-n{color:rgba(255,255,255,.75)}
 .fork-o.on .fork-o-i .icon{color:#fff}
-.fork-o-tx{display:flex;flex-direction:column;gap:6px;min-width:0}
-.fork-o b{
-  font-family:"Montserrat",sans-serif;font-weight:900;font-size:18px;
-  color:var(--white);letter-spacing:-.02em;line-height:1.15;
+.fork-o.on .fork-o-nm{color:#fff}
+.fork-o::after{
+  content:"";position:absolute;right:8px;top:8px;width:22px;height:22px;
+  border-radius:50%;background:#fff;
+  opacity:0;transform:scale(.6);transition:opacity .18s ease, transform .18s ease;
 }
-.fork-o span{font-size:13.5px;line-height:1.45;color:var(--muted)}
-.fork-o.on span{color:var(--text)}
+.fork-o::before{
+  content:"";position:absolute;right:13.5px;top:13.5px;z-index:2;
+  width:11px;height:11px;background:var(--pink);
+  -webkit-mask:var(--check) center/contain no-repeat;
+          mask:var(--check) center/contain no-repeat;
+  opacity:0;transform:scale(.6);transition:opacity .18s ease, transform .18s ease;
+}
+.fork-o.on::after,.fork-o.on::before{opacity:1;transform:scale(1)}
+
+@media (max-width:520px){
+  .fork-opts{gap:8px}
+  .fork-o-n{font-size:8.5px;letter-spacing:.1em;padding-top:8px}
+  .fork-o-i .icon{width:34px;height:34px}
+  .fork-o-nm{font-size:11px;padding-bottom:11px}
+}
 
 .fork-out{
   margin-top:16px;padding:20px 22px;border-radius:var(--r-md);
@@ -1719,7 +1743,7 @@ body.bio-open{overflow:hidden}
 .way.pick .way-n{background:linear-gradient(180deg,var(--gold-1),var(--gold-3));color:var(--gold-ink);box-shadow:none}
 
 @media (max-width:760px){
-  .fork-opts{grid-template-columns:1fr;gap:8px}
+  .fork-opts{gap:8px}
 }
 
 /* ============================================================
@@ -1956,22 +1980,6 @@ body.bio-open{overflow:hidden}
   .fork{padding:18px}
   .fork-t{font-size:19px;margin-top:12px}
   .fork-opts{gap:8px}
-  /* Рядок вибору: іконка, текст, стрілка. Через flex, а не grid —
-     із сіткою іконка не трималася у своїй колонці. */
-  .fork-o{
-    display:flex;flex-direction:row;align-items:center;flex-wrap:nowrap;
-    gap:13px;padding:13px 14px;border-width:2px;
-  }
-  .fork-o-i{flex:0 0 40px;width:40px;height:40px;border-radius:12px}
-  .fork-o-tx{display:flex;flex-direction:column;gap:3px;min-width:0;flex:1}
-  .fork-o b{font-size:16.5px;line-height:1.18}
-  .fork-o span{width:auto;font-size:12.5px;line-height:1.35}
-  .fork-o::after{
-    content:"";flex:0 0 9px;
-    width:9px;height:9px;border-right:2px solid rgba(255,46,136,.7);
-    border-bottom:2px solid rgba(255,46,136,.7);transform:rotate(-45deg);
-  }
-  .fork-o.on::after{border-color:#fff}
   .fork-out{padding:16px 18px}
   .ways{gap:10px}
   .way{padding:18px}
@@ -2115,4 +2123,51 @@ body.bio-open{overflow:hidden}
   .ytv-tx b{font-size:14.5px}
   .ytv-play{width:52px;height:52px}
   .ytv-play::after{border-left-width:16px;border-top-width:10px;border-bottom-width:10px}
+}
+
+/* ============================================================
+   ПЕРСОНАЖ У КРОЦІ 3
+   Перед вибором місії показуємо, кого обрали і які задачі типові
+   для цього напрямку — щоб місія обиралася не в порожнечі.
+   ============================================================ */
+.fork-who{
+  display:flex;flex-direction:column;gap:8px;align-items:flex-start;
+  margin-bottom:22px;padding:18px 20px;border-radius:var(--r-md);
+  background:rgba(255,255,255,.05);border:1px dashed rgba(255,255,255,.22);
+  transition:background .22s ease, border-color .22s ease;
+}
+.fork-who.on{
+  background:rgba(255,46,136,.12);
+  border:1px solid rgba(255,46,136,.45);
+}
+.fork-who-k{
+  font-family:"JetBrains Mono",monospace;font-size:9.5px;letter-spacing:.18em;
+  text-transform:uppercase;color:var(--muted);
+}
+.fork-who b{
+  font-family:"Montserrat",sans-serif;font-weight:900;
+  font-size:clamp(17px,2.4vw,22px);line-height:1.15;color:var(--white);
+  letter-spacing:-.02em;
+}
+.fork-who p{margin:0;font-size:14px;line-height:1.5;color:var(--muted)}
+.fork-who p span{display:block}
+.fork-who p span + span{margin-top:6px}
+.fork-who.on p span{
+  position:relative;padding-left:22px;color:var(--text);
+}
+.fork-who.on p span::before{
+  content:"";position:absolute;left:0;top:.34em;width:12px;height:12px;
+  background:var(--pink);
+  -webkit-mask:var(--bg-mark) center/contain no-repeat;
+          mask:var(--bg-mark) center/contain no-repeat;
+}
+.fork-who-back{
+  font-family:Arial,Helvetica,sans-serif;font-size:11px;font-weight:700;
+  letter-spacing:.14em;text-transform:uppercase;color:var(--pink);
+  text-decoration:none;
+}
+.fork-who-back:hover{color:#fff}
+@media (max-width:520px){
+  .fork-who{padding:14px 16px;margin-bottom:18px}
+  .fork-who p{font-size:13px}
 }
