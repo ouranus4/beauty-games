@@ -102,6 +102,7 @@ a,button,.btn,.tile,.acc-btn,label,select,input[type=checkbox],.px-btn,
 }
 :root{
   --heart:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' shape-rendering='crispEdges'%3E%3Cg fill='%23000'%3E%3Crect x='2' y='2' width='4' height='1'/%3E%3Crect x='9' y='2' width='4' height='1'/%3E%3Crect x='1' y='3' width='6' height='1'/%3E%3Crect x='8' y='3' width='6' height='1'/%3E%3Crect x='0' y='4' width='15' height='3'/%3E%3Crect x='1' y='7' width='14' height='1'/%3E%3Crect x='2' y='8' width='12' height='1'/%3E%3Crect x='3' y='9' width='10' height='1'/%3E%3Crect x='4' y='10' width='8' height='1'/%3E%3Crect x='5' y='11' width='6' height='1'/%3E%3Crect x='6' y='12' width='4' height='1'/%3E%3Crect x='7' y='13' width='2' height='1'/%3E%3C/g%3E%3C/svg%3E");
+  --px-hand:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 16 16' shape-rendering='crispEdges'%3E%3Cpath fill='%23ffffff' d='M5 1h3v1h1v4h1V5h2v1h1v1h1v6h-1v2h-1v1H6v-1H5v-1H4v-2H3V9h2v1h1V2h-1z'/%3E%3Cpath fill='%23E6007E' d='M6 2h1v8h1V6h1v4h1V7h1v3h1V8h1v5h-1v2H7v-1H6v-1H5v-2H4v-1h1v1h1z'/%3E%3C/svg%3E");
 }
 
 /* ============================================================
@@ -123,38 +124,36 @@ a,button,.btn,.tile,.acc-btn,label,select,input[type=checkbox],.px-btn,
 .px-win-btns i{width:13px;height:13px;background:#120A14;border:2px solid #fff;display:block}
 .px-win-body{padding:28px 24px}
 
-/* Силует кнопки піксельний — зі сходинками на кутах, як у старій грі.
-   Підпис усередині лишається звичайним Montserrat: піксельний шрифт
-   на кирилиці читається погано.
-   Форму і тінь навмисно розведено по різних шарах: clip-path застосовується
-   після filter, тому на одному елементі він зрізав би власні тіні. */
+/* Кнопка входу — простий прямокутник із білою рамкою.
+   Сходинки на кутах прибрано: на темному тлі вони світилися
+   окремими кутиками і виглядали як брак, а не як піксель.
+   Поруч «клікає» піксельна рука — підказка, що сюди тиснуть. */
 .px-btn{
-  position:relative;isolation:isolate;
+  position:relative;
   font-family:"Montserrat",sans-serif;font-size:13px;font-weight:800;
   letter-spacing:.09em;text-transform:uppercase;
-  color:#fff;background:transparent;border:0;
-  padding:15px 32px;border-radius:0;
-  transition:transform .07s linear, filter .07s linear;
-  /* Тільки біла обведення. Кольорову винесену тінь прибрано —
-     вона читалася як зайві кутики збоку від кнопки. */
-  filter:
-    drop-shadow(2px 0 0 #fff) drop-shadow(-2px 0 0 #fff)
-    drop-shadow(0 2px 0 #fff) drop-shadow(0 -2px 0 #fff);
+  color:#fff;background:var(--magenta);
+  border:2px solid #fff;border-radius:0;
+  padding:15px 32px;
+  box-shadow:4px 4px 0 rgba(0,0,0,.65);
+  transition:transform .07s linear, box-shadow .07s linear, background .16s;
 }
-.px-btn::before{
-  content:"";position:absolute;inset:0;z-index:-1;
-  background:var(--magenta);
-  clip-path:polygon(
-    8px 0, calc(100% - 8px) 0, calc(100% - 8px) 4px, calc(100% - 4px) 4px,
-    calc(100% - 4px) 8px, 100% 8px, 100% calc(100% - 8px),
-    calc(100% - 4px) calc(100% - 8px), calc(100% - 4px) calc(100% - 4px),
-    calc(100% - 8px) calc(100% - 4px), calc(100% - 8px) 100%,
-    8px 100%, 8px calc(100% - 4px), 4px calc(100% - 4px),
-    4px calc(100% - 8px), 0 calc(100% - 8px), 0 8px, 4px 8px, 4px 4px, 8px 4px);
-  transition:background .16s;
+.px-btn:hover{background:var(--magenta-hot)}
+.px-btn:active{transform:translate(4px,4px);box-shadow:0 0 0 rgba(0,0,0,.65)}
+
+/* Рука з’являється поверх правого нижнього кута і ритмічно тисне. */
+.px-btn::after{
+  content:"";position:absolute;right:-15px;bottom:-19px;
+  width:30px;height:30px;pointer-events:none;
+  background:var(--px-hand) center/contain no-repeat;
+  animation:pxTap 1.8s steps(1) infinite;
 }
-.px-btn:hover::before{background:var(--magenta-hot)}
-.px-btn:active{transform:translate(2px,2px)}
+@keyframes pxTap{
+  0%,55%,100%{transform:translate(0,0)}
+  62%,88%{transform:translate(-5px,-5px)}
+}
+@media (prefers-reduced-motion:reduce){.px-btn::after{animation:none}}
+
 .px-btn-lg{font-size:14.5px;padding:17px 40px}
 
 .preloader{
@@ -186,10 +185,12 @@ a,button,.btn,.tile,.acc-btn,label,select,input[type=checkbox],.px-btn,
 .pl-pct{font-family:"Pixelify Sans",monospace;font-size:17px;color:var(--magenta-lt);margin-top:10px}
 .pl-start{display:grid;place-items:center;gap:15px}
 .pl-mark svg{
-  width:38px;height:38px;color:var(--magenta);shape-rendering:crispEdges;
-  animation:plSpin 2.4s steps(8) infinite;
+  width:40px;height:40px;color:var(--magenta);shape-rendering:crispEdges;
+  animation:plBlink 1.4s steps(2) infinite;
 }
-@keyframes plSpin{to{transform:rotate(360deg)}}
+/* Раніше зірка оберталася і на півоберта читалася як хрестик.
+   Тепер вона стоїть рівно і просто підморгує. */
+@keyframes plBlink{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.55;transform:scale(.88)}}
 .pl-ask{
   font-family:"Montserrat",sans-serif;font-size:24px;font-weight:900;
   text-transform:uppercase;letter-spacing:.01em;color:#fff;line-height:1.15;
@@ -326,7 +327,7 @@ a,button,.btn,.tile,.acc-btn,label,select,input[type=checkbox],.px-btn,
 .chk:has(input:checked) .chk-tx{color:#fff}
 
 .quiz-result{
-  display:flex;align-items:center;gap:16px;flex-wrap:wrap;margin-top:18px;padding:16px 18px;
+  display:flex;align-items:flex-start;gap:16px;flex-wrap:wrap;margin-top:18px;padding:16px 18px;
   background:rgba(var(--accent-rgb),.14);border:2px solid rgba(var(--accent-rgb),.5);
 }
 .quiz-score{
@@ -339,7 +340,11 @@ a,button,.btn,.tile,.acc-btn,label,select,input[type=checkbox],.px-btn,
   font-family:"Montserrat",sans-serif;font-weight:900;font-size:15px;
   letter-spacing:.02em;text-transform:uppercase;color:#fff;
 }
-.quiz-text{margin:0;font-size:14.5px;color:var(--text)}
+.quiz-picked{
+  margin:0;font-size:14px;line-height:1.5;color:var(--muted);
+}
+.quiz-picked b{color:#fff;font-weight:700}
+.quiz-text{margin:0;font-size:14.5px;line-height:1.55;color:var(--text)}
 /* Рядок із номерами модулів: підказує, що результат прив'язаний до
    конкретної частини програми, а не просто підсумок галочок. */
 .quiz-mods{
@@ -613,11 +618,21 @@ a,button,.btn,.tile,.acc-btn,label,select,input[type=checkbox],.px-btn,
   background:var(--accent);padding:3px 10px;
 }
 .pstep-t{
-  margin:10px 0 12px;font-family:"Montserrat",sans-serif;font-weight:900;
+  margin:10px 0 0;font-family:"Montserrat",sans-serif;font-weight:900;
   font-size:clamp(21px,3vw,30px);text-transform:uppercase;color:var(--white);
   letter-spacing:-.015em;
 }
-.pstep-list{margin:0 0 16px;padding:0;list-style:none;display:grid;gap:8px}
+/* Дві колонки: ліворуч — що відбувається, праворуч — з чим виходите.
+   Суцільним текстом етап не читався, око не знало, де зупинитись. */
+.pstep-body{
+  display:grid;grid-template-columns:1.3fr .85fr;gap:20px;
+  margin-top:16px;padding-top:16px;border-top:2px solid rgba(255,255,255,.12);
+}
+.pstep-k{
+  display:block;font-family:"JetBrains Mono",monospace;font-size:10.5px;
+  letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);margin-bottom:10px;
+}
+.pstep-list{margin:0;padding:0;list-style:none;display:grid;gap:8px}
 .pstep-list li{
   position:relative;padding-left:26px;font-size:14.5px;line-height:1.5;color:var(--text);
 }
@@ -628,13 +643,13 @@ a,button,.btn,.tile,.acc-btn,label,select,input[type=checkbox],.px-btn,
           mask:var(--heart) center/contain no-repeat;
 }
 .pstep-res{
-  padding:14px 16px;background:rgba(var(--accent-rgb),.16);
+  align-self:start;padding:16px;background:rgba(var(--accent-rgb),.16);
   border:2px solid rgba(var(--accent-rgb),.6);
-  font-size:14.5px;line-height:1.5;color:#fff;
 }
+.pstep-res p{margin:0;font-size:14.5px;line-height:1.5;color:#fff}
 .pstep-res-k{
   display:block;font-family:"JetBrains Mono",monospace;font-size:10.5px;
-  letter-spacing:1.5px;text-transform:uppercase;color:var(--accent-lt);margin-bottom:5px;
+  letter-spacing:1.5px;text-transform:uppercase;color:var(--accent-lt);margin-bottom:7px;
 }
 
 .path-nav{
@@ -657,7 +672,32 @@ a,button,.btn,.tile,.acc-btn,label,select,input[type=checkbox],.px-btn,
      все одно стоїть заголовком у панелі нижче. */
   .pnode-t{display:none}
   .path-stage{min-height:0}
+  .pstep-body{grid-template-columns:1fr;gap:16px}
   .path-nav{flex-wrap:wrap;gap:10px}
   .path-pos{order:-1;width:100%;text-align:center;margin:0}
   .path-nav .btn{flex:1}
+}
+
+/* ============================================================
+   YOUTUBE — ефіри й матеріали, які вже є
+   ============================================================ */
+.yt{
+  display:grid;grid-template-columns:auto 1fr;gap:22px;align-items:center;
+  padding:clamp(20px,3vw,30px);
+  border:2px solid rgba(var(--accent-rgb),.45);
+  box-shadow:6px 6px 0 rgba(var(--accent-rgb),.3);
+}
+.yt-ic{
+  width:74px;height:74px;flex:none;display:grid;place-items:center;
+  background:rgba(var(--accent-rgb),.18);border:2px solid rgba(var(--accent-rgb),.65);
+  box-shadow:4px 4px 0 rgba(var(--accent-rgb),.4);
+}
+.yt-ic .icon{width:40px;height:40px;color:var(--accent-lt)}
+.yt-tx .h-md{margin:8px 0 10px}
+.yt-tx p{margin:0;color:var(--muted);font-size:14.5px;line-height:1.6;max-width:70ch}
+
+@media (max-width:760px){
+  .yt{grid-template-columns:1fr;gap:16px}
+  .yt-ic{width:60px;height:60px}
+  .yt-ic .icon{width:32px;height:32px}
 }
