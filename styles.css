@@ -197,6 +197,9 @@ a{color:var(--accent-lt);text-decoration:none}
 }
 .nav > *{position:relative;z-index:2}
 .brand{display:flex;align-items:center;gap:11px;flex:none}
+.brand-logo{display:block;height:34px;width:auto;flex:none}
+.foot-brand{display:inline-block;margin-bottom:6px}
+.foot-logo{display:block;height:104px;width:auto;opacity:.95}
 .brand-mark{width:26px;height:28px;flex:none;color:var(--white);filter:drop-shadow(0 0 12px rgba(var(--accent-rgb),.85))}
 .brand-tx{display:block;font-family:"Montserrat",sans-serif;font-weight:800;letter-spacing:.2em;font-size:11px;color:var(--white);line-height:1.1;white-space:nowrap}
 .brand-sb{display:block;font-family:"JetBrains Mono",monospace;font-size:7.5px;letter-spacing:.16em;color:var(--faint);margin-top:3px;white-space:nowrap}
@@ -593,7 +596,8 @@ footer{position:relative;z-index:2;border-top:1px solid var(--line-soft);padding
    АДАПТИВ
    ============================================================ */
 /* Підпис під назвою з'їдав ширину шапки і витісняв назву бренда */
-@media (max-width:1300px){ .brand-sb{display:none} }
+@media (max-width:1240px){ .brand-logo{height:30px} }
+@media (max-width:400px){ .brand-logo{height:26px} }
 @media (max-width:1120px){
   .nav-links a{padding:10px 9px;font-size:11px}
   .nav{gap:10px}
