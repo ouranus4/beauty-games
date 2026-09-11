@@ -1687,10 +1687,10 @@ body.bio-open{overflow:hidden}
 .fork-o.on .fork-o-i .icon{color:#fff}
 .fork-o-tx{display:flex;flex-direction:column;gap:6px;min-width:0}
 .fork-o b{
-  font-family:"Montserrat",sans-serif;font-weight:900;font-size:16px;
-  color:var(--white);letter-spacing:-.015em;
+  font-family:"Montserrat",sans-serif;font-weight:900;font-size:18px;
+  color:var(--white);letter-spacing:-.02em;line-height:1.15;
 }
-.fork-o span{font-size:13px;line-height:1.45;color:var(--muted)}
+.fork-o span{font-size:13.5px;line-height:1.45;color:var(--muted)}
 .fork-o.on span{color:var(--text)}
 
 .fork-out{
@@ -1769,17 +1769,20 @@ body.bio-open{overflow:hidden}
 .iryna-facts{margin-bottom:14px;gap:10px}
 .star{padding:18px}
 
-/* Плашки напрямків: рівний ряд із трьох, а не три окремі рядки. */
-.pills-3{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+/* Плашки напрямків: кожна в один рядок — іконка і підпис поруч.
+   Колонкою вони ставали високими і ряд виглядав розтягнутим. */
+.pills-3{display:flex;flex-wrap:nowrap;gap:7px}
 .pills-3 .pill{
-  justify-content:center;text-align:center;padding:12px 8px;
-  flex-direction:column;gap:6px;
+  flex:1 1 0;min-width:0;
+  display:inline-flex;flex-direction:row;align-items:center;justify-content:center;
+  gap:7px;padding:11px 10px;white-space:nowrap;
+  font-size:11.5px;letter-spacing:.03em;
 }
-.pills-3 .pill .icon{width:22px;height:22px}
+.pills-3 .pill .icon{width:17px;height:17px;flex:none}
 @media (max-width:520px){
-  .pills-3{gap:6px}
-  .pills-3 .pill{font-size:10px;letter-spacing:.02em;padding:11px 4px}
-  .pills-3 .pill .icon{width:20px;height:20px}
+  .pills-3{gap:5px}
+  .pills-3 .pill{font-size:9.5px;letter-spacing:0;padding:10px 6px;gap:5px}
+  .pills-3 .pill .icon{width:15px;height:15px}
 }
 
 /* Пакети теж на світлому — біля них ухвалюють рішення. */
@@ -1961,8 +1964,8 @@ body.bio-open{overflow:hidden}
   }
   .fork-o-i{flex:0 0 40px;width:40px;height:40px;border-radius:12px}
   .fork-o-tx{display:flex;flex-direction:column;gap:3px;min-width:0;flex:1}
-  .fork-o b{font-size:15px;line-height:1.2}
-  .fork-o span{width:auto;font-size:12px;line-height:1.35}
+  .fork-o b{font-size:16.5px;line-height:1.18}
+  .fork-o span{width:auto;font-size:12.5px;line-height:1.35}
   .fork-o::after{
     content:"";flex:0 0 9px;
     width:9px;height:9px;border-right:2px solid rgba(255,46,136,.7);
@@ -2026,4 +2029,26 @@ body.bio-open{overflow:hidden}
 .toast b{
   font-family:Arial,Helvetica,sans-serif;font-size:10px;font-weight:700;
   letter-spacing:.14em;text-transform:uppercase;color:rgba(42,27,6,.62);
+}
+
+/* ============================================================
+   ПЕРШИЙ ЕКРАН — компактніше
+   Заголовок має лягати у два рядки, а не в три, і крок 1 має
+   підтягнутися вище: між ними було забагато повітря.
+   ============================================================ */
+.hero-inner .h-xl{margin-bottom:16px}
+.hero .pills{margin-bottom:14px}
+.hero-lede{margin:0 0 18px;font-size:15.5px;line-height:1.5}
+.hero .picker{margin-top:0}
+
+@media (max-width:520px){
+  /* Розмір підібраний так, щоб «Перше онлайн-реаліті» стояло одним
+     рядком — інакше заголовок розпадався на три. */
+  .h-xl{font-size:23px;line-height:1.14;letter-spacing:-.03em}
+  .hero-inner .h-xl{margin-bottom:14px}
+  .hero-lede{font-size:14.5px;margin-bottom:16px}
+}
+@media (max-width:380px){
+  .h-xl{font-size:21px}
+  .pills-3 .pill{font-size:9px;padding:9px 4px}
 }
