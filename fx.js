@@ -1,0 +1,513 @@
+/* ============================================================
+   BEAUTY GAMES 2026 — звук і текстові ефекти
+
+   Звук синтезується через Web Audio API — жодних аудіофайлів.
+   Вимкнений за замовчуванням: браузери блокують автоплей,
+   а сайт часто відкривають у дорозі або поруч із клієнтом.
+   ============================================================ */
+(function () {
+  'use strict';
+
+  var $  = function (s, c) { return (c || document).querySelector(s); };
+  var $$ = function (s, c) { return Array.prototype.slice.call((c || document).querySelectorAll(s)); };
+
+  var store = {
+    get: function (k) { try { return localStorage.getItem(k); } catch (e) { return null; } },
+    set: function (k, v) { try { localStorage.setItem(k, v); } catch (e) {} }
+  };
+
+  var reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* ============================================================
+     1. ЗВУКОВИЙ РУШІЙ
+     ============================================================ */
+  var AC = null, master = null, shimmer = null;
+  var soundOn = store.get('bg_sound') === 'on';
+
+  function ensureAudio() {
+    if (AC) return AC;
+    var Ctx = window.AudioContext || window.webkitAudioContext;
+    if (!Ctx) return null;
+    try {
+      AC = new Ctx();
+    } catch (e) { return null; }
+
+    master = AC.createGain();
+    master.gain.value = 0.85;
+    master.connect(AC.destination);
+
+    // шимер-шина: коротка затримка з фільтром — дає «скляну» глибину
+    var d = AC.createDelay(0.6);
+    d.delayTime.value = 0.105;
+    var fb = AC.createGain(); fb.gain.value = 0.24;
+    var lp = AC.createBiquadFilter(); lp.type = 'lowpass'; lp.frequency.value = 2800;
+    var wet = AC.createGain(); wet.gain.value = 0.34;
+    d.connect(fb); fb.connect(lp); lp.connect(d);
+    d.connect(wet); wet.connect(master);
+    shimmer = d;
+
+    return AC;
+  }
+
+  function tone(o) {
+    if (!soundOn) return;
+    var ac = ensureAudio();
+    if (!ac || ac.state === 'suspended') return;
+
+    var t0 = ac.currentTime + (o.delay || 0);
+    var dur = o.dur || 0.12;
+    var osc = ac.createOscillator();
+    osc.type = o.type || 'sine';
+    osc.frequency.setValueAtTime(o.f, t0);
+    if (o.to) osc.frequency.exponentialRampToValueAtTime(o.to, t0 + dur);
+
+    var g = ac.createGain();
+    var peak = Math.max(0.0002, (o.gain || 0.05));
+    g.gain.setValueAtTime(0.0001, t0);
+    g.gain.exponentialRampToValueAtTime(peak, t0 + (o.attack || 0.006));
+    g.gain.exponentialRampToValueAtTime(0.0001, t0 + dur);
+
+    osc.connect(g);
+    g.connect(master);
+    if (o.space && shimmer) g.connect(shimmer);
+
+    osc.start(t0);
+    osc.stop(t0 + dur + 0.03);
+  }
+
+  var noiseBuf = null;
+  function noise(o) {
+    if (!soundOn) return;
+    var ac = ensureAudio();
+    if (!ac || ac.state === 'suspended') return;
+
+    if (!noiseBuf) {
+      noiseBuf = ac.createBuffer(1, ac.sampleRate * 1.2, ac.sampleRate);
+      var ch = noiseBuf.getChannelData(0);
+      for (var i = 0; i < ch.length; i++) ch[i] = Math.random() * 2 - 1;
+    }
+
+    var t0 = ac.currentTime + (o.delay || 0);
+    var dur = o.dur || 0.2;
+
+    var src = ac.createBufferSource();
+    src.buffer = noiseBuf;
+    src.loop = true;
+
+    var bp = ac.createBiquadFilter();
+    bp.type = 'bandpass';
+    bp.Q.value = o.q || 1.1;
+    bp.frequency.setValueAtTime(o.f || 900, t0);
+    if (o.to) bp.frequency.exponentialRampToValueAtTime(o.to, t0 + dur);
+
+    var g = ac.createGain();
+    var peak = Math.max(0.0002, (o.gain || 0.02));
+    g.gain.setValueAtTime(0.0001, t0);
+    g.gain.exponentialRampToValueAtTime(peak, t0 + (o.attack || 0.02));
+    g.gain.exponentialRampToValueAtTime(0.0001, t0 + dur);
+
+    src.connect(bp); bp.connect(g); g.connect(master);
+    if (o.space && shimmer) g.connect(shimmer);
+
+    src.start(t0);
+    src.stop(t0 + dur + 0.03);
+  }
+
+  /* ---------- палітра звуків ---------- */
+  var SFX = {
+    hover:  function () { tone({ f: 1760, to: 2093, dur: 0.045, gain: 0.014, type: 'sine' }); },
+    tap:    function () { tone({ f: 880,  to: 1320, dur: 0.07,  gain: 0.045, type: 'triangle', space: true }); },
+    open:   function () { tone({ f: 523,  to: 932,  dur: 0.13,  gain: 0.04,  type: 'sine', space: true }); },
+    close:  function () { tone({ f: 830,  to: 415,  dur: 0.1,   gain: 0.03,  type: 'sine' }); },
+    tab:    function () { tone({ f: 1046, dur: 0.05, gain: 0.035, type: 'triangle', space: true }); },
+    field:  function () { tone({ f: 1318, dur: 0.035, gain: 0.02, type: 'sine' }); },
+    reveal: function () { noise({ f: 700, to: 2600, dur: 0.3, gain: 0.008, q: 0.8 }); },
+    swoosh: function () { noise({ f: 2400, to: 380, dur: 0.42, gain: 0.02, q: 0.7, space: true }); },
+    tick:   function () { tone({ f: 2349, dur: 0.022, gain: 0.018, type: 'sine' }); },
+
+    // вибір пакета — висхідне арпеджіо
+    pick: function () {
+      [659.25, 830.61, 987.77, 1318.51].forEach(function (f, i) {
+        tone({ f: f, dur: 0.26, gain: 0.05, type: 'triangle', delay: i * 0.055, space: true });
+      });
+    },
+    // успішна відправка — акорд із розкриттям
+    success: function () {
+      [523.25, 659.25, 783.99, 1046.50, 1318.51].forEach(function (f, i) {
+        tone({ f: f, dur: 0.7, gain: 0.045, type: 'sine', delay: i * 0.075, space: true });
+      });
+      noise({ f: 1200, to: 4200, dur: 0.55, gain: 0.01, q: 0.6, delay: 0.1, space: true });
+    },
+    error: function () {
+      tone({ f: 233, to: 175, dur: 0.2, gain: 0.055, type: 'triangle' });
+    },
+    on: function () {
+      tone({ f: 784, dur: 0.1, gain: 0.05, type: 'triangle', space: true });
+      tone({ f: 1174, dur: 0.22, gain: 0.05, type: 'triangle', delay: 0.09, space: true });
+    },
+    off: function () {
+      tone({ f: 880, to: 440, dur: 0.16, gain: 0.04, type: 'triangle' });
+    }
+  };
+
+  /* ============================================================
+     2. ПЕРЕМИКАЧ ЗВУКУ
+     ============================================================ */
+  function buildToggle() {
+    var btn = document.createElement('button');
+    btn.className = 'sfx-btn';
+    btn.type = 'button';
+    btn.setAttribute('aria-label', 'Звукові ефекти');
+    btn.setAttribute('aria-pressed', soundOn ? 'true' : 'false');
+    btn.innerHTML = '<span class="bars"><i></i><i></i><i></i><i></i></span>';
+    return btn;
+  }
+
+  function applyState(btn) {
+    btn.classList.toggle('on', soundOn);
+    btn.setAttribute('aria-pressed', soundOn ? 'true' : 'false');
+    btn.title = soundOn ? 'Вимкнути звук' : 'Увімкнути звук';
+  }
+
+  var toggles = [];
+
+  function setSound(next, silent) {
+    soundOn = next;
+    store.set('bg_sound', soundOn ? 'on' : 'off');
+    toggles.forEach(applyState);
+
+    if (soundOn) {
+      var ac = ensureAudio();
+      if (ac && ac.state === 'suspended' && ac.resume) {
+        ac.resume().then(function () { if (!silent) SFX.on(); });
+      } else if (!silent) {
+        SFX.on();
+      }
+    } else if (!silent) {
+      // короткий сигнал ще звучить — граємо до зняття прапорця
+      soundOn = true; SFX.off(); soundOn = false;
+    }
+  }
+
+  // кнопка в шапці
+  var nav = $('.nav');
+  if (nav) {
+    var navBtn = buildToggle();
+    var burger = $('#burger', nav);
+    if (burger) nav.insertBefore(navBtn, burger);
+    else nav.appendChild(navBtn);
+    toggles.push(navBtn);
+  }
+  // кнопка в мобільному меню
+  var mm = $('#mobileMenu');
+  if (mm) {
+    var row = document.createElement('div');
+    row.className = 'sfx-row';
+    var mmBtn = buildToggle();
+    var lbl = document.createElement('span');
+    lbl.className = 'sfx-row-label';
+    lbl.textContent = 'Звукові ефекти';
+    row.appendChild(mmBtn); row.appendChild(lbl);
+    mm.appendChild(row);
+    toggles.push(mmBtn);
+  }
+
+  toggles.forEach(function (b) {
+    applyState(b);
+    b.addEventListener('click', function (e) {
+      e.stopPropagation();
+      setSound(!soundOn);
+      hideHint();
+    });
+  });
+
+  /* ---------- розморозка звуку на першій дії користувача ----------
+     Якщо відвідувач уже вмикав звук раніше, налаштування підтягується
+     з localStorage, але браузер тримає AudioContext замороженим
+     до першого справжнього жесту. Ловимо його один раз. */
+  if (soundOn) {
+    var unlock = function () {
+      var ac = ensureAudio();
+      if (ac && ac.state === 'suspended' && ac.resume) ac.resume();
+      document.removeEventListener('pointerdown', unlock);
+      document.removeEventListener('keydown', unlock);
+    };
+    document.addEventListener('pointerdown', unlock);
+    document.addEventListener('keydown', unlock);
+  }
+
+  /* ---------- одноразова підказка ---------- */
+  var hint = null;
+  function hideHint() {
+    if (hint) { hint.classList.remove('show'); store.set('bg_sound_hint', '1'); }
+  }
+  if (navBtn && !soundOn && !store.get('bg_sound_hint')) {
+    hint = document.createElement('div');
+    hint.className = 'sfx-hint';
+    hint.innerHTML = 'Увімкніть звук <span>↑</span>';
+    document.body.appendChild(hint);
+    setTimeout(function () { if (hint) hint.classList.add('show'); }, 2600);
+    setTimeout(hideHint, 10000);
+    document.addEventListener('click', hideHint, { once: true });
+  }
+
+  /* ============================================================
+     3. РОЗВІШУВАННЯ ЗВУКІВ — режим «максимум»
+     ============================================================ */
+  var lastHover = 0, lastHoverEl = null;
+  var HOVER_SEL = '.btn, .tile, .pill, .nav-links a, .acc-btn, .pack, .person, .tcard, .stat, .award, .date-card, .logo-ph, .table-tabs button, .sfx-btn, .nav-switch, .foot a';
+
+  document.addEventListener('mouseover', function (e) {
+    if (!soundOn) return;
+    var el = e.target.closest && e.target.closest(HOVER_SEL);
+    if (!el || el === lastHoverEl) return;
+    var now = Date.now();
+    if (now - lastHover < 55) return;
+    lastHover = now; lastHoverEl = el;
+    SFX.hover();
+  }, { passive: true });
+
+  document.addEventListener('mouseout', function (e) {
+    if (lastHoverEl && e.target === lastHoverEl) lastHoverEl = null;
+  }, { passive: true });
+
+  // кліки
+  document.addEventListener('click', function (e) {
+    if (!soundOn || !e.target.closest) return;
+    if (e.target.closest('.sfx-btn')) return;
+
+    if (e.target.closest('.js-pick')) { SFX.pick(); return; }
+    if (e.target.closest('.acc-btn')) {
+      var item = e.target.closest('.acc-item');
+      // клас ще не перемкнувся на момент capture — читаємо після
+      setTimeout(function () {
+        (item && item.classList.contains('open') ? SFX.open : SFX.close)();
+      }, 0);
+      return;
+    }
+    if (e.target.closest('.table-tabs button')) { SFX.tab(); return; }
+    if (e.target.closest('a[href$=".html"], .nav-switch')) { SFX.swoosh(); return; }
+    if (e.target.closest('.btn, .tile, .nav-links a, a[href^="#"]')) { SFX.tap(); return; }
+  }, true);
+
+  // поля форми
+  document.addEventListener('focusin', function (e) {
+    if (!soundOn) return;
+    if (e.target.matches && e.target.matches('.fld input, .fld select, .fld textarea')) SFX.field();
+  });
+
+  // відправка форми: успіх або помилка
+  var form = $('#applyForm');
+  if (form) {
+    form.addEventListener('submit', function () {
+      setTimeout(function () {
+        var ok = form.style.display === 'none';
+        if (ok) SFX.success();
+        else if ($('.fld.err')) SFX.error();
+      }, 30);
+    });
+  }
+
+  // поява секцій при прокрутці
+  var lastReveal = 0;
+  if ('IntersectionObserver' in window && !reduced) {
+    var revealIO = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (!en.isIntersecting) return;
+        revealIO.unobserve(en.target);
+        if (!soundOn) return;
+        var now = Date.now();
+        if (now - lastReveal < 320) return;
+        lastReveal = now;
+        SFX.reveal();
+      });
+    }, { rootMargin: '0px 0px -14% 0px', threshold: 0.12 });
+
+    setTimeout(function () {
+      $$('.sec-head, .glass.bloom').forEach(function (el) {
+        var r = el.getBoundingClientRect();
+        if (r.top < window.innerHeight && r.bottom > 0) return; // вже видно — не озвучуємо
+        revealIO.observe(el);
+      });
+    }, 400);
+  }
+
+  /* ============================================================
+     4. ТАЙМЕР: терміновість у тексті + тікання в останню хвилину
+     ============================================================ */
+  var cdBox = $('#countdown');
+  var urgentSet = 0;
+  document.addEventListener('bg:tick', function (e) {
+    var d = e.detail || {};
+    if (!cdBox) return;
+
+    var label = $('.cd-label', cdBox);
+    var totalMin = d.h * 60 + d.m;
+
+    if (d.h === 0 && d.m === 0 && soundOn) SFX.tick();
+
+    if (totalMin < 60 && urgentSet < 2) {
+      urgentSet = 2;
+      cdBox.classList.add('cd-urgent');
+      if (label) label.innerHTML = '<b>Менше години до кінця спецціни.</b> Далі — ціна тижня. Забронюйте зараз, щоб зафіксувати цю.';
+    } else if (totalMin < 6 * 60 && urgentSet < 1) {
+      urgentSet = 1;
+      if (label) label.innerHTML = '<b>Спеціальна ціна ось-ось закриється.</b> Ціна фіксується в момент бронювання — далі діє ціна тижня.';
+    }
+  });
+
+  /* ============================================================
+     5. ТЕКСТ: проявлення літер із шуму
+     ============================================================ */
+  var GLYPHS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789#%&*+=/\\<>{}[]АБВГДЕЖЗИЛМНОПРСТУФХЦЧШЩЮЯ';
+
+  function scramble(el, duration) {
+    if (reduced || el.dataset.fxDone) return;
+    el.dataset.fxDone = '1';
+
+    var nodes = [];
+    var walker = document.createTreeWalker(el, NodeFilter.SHOW_TEXT, null, false);
+    while (walker.nextNode()) {
+      var n = walker.currentNode;
+      if (n.nodeValue && n.nodeValue.trim()) nodes.push({ node: n, text: n.nodeValue });
+    }
+    if (!nodes.length) return;
+
+    var total = nodes.reduce(function (a, b) { return a + b.text.length; }, 0);
+    if (total > 120) return; // довгий текст не глітчимо — це заголовки
+
+    var start = null;
+    var D = duration || 780;
+
+    function frame(ts) {
+      if (start === null) start = ts;
+      var p = Math.min(1, (ts - start) / D);
+      var revealed = Math.floor(p * total * 1.18);
+      var seen = 0;
+
+      nodes.forEach(function (item) {
+        var out = '';
+        for (var i = 0; i < item.text.length; i++) {
+          var ch = item.text[i];
+          if (ch === ' ' || ch === '\n' || ch === ' ') { out += ch; seen++; continue; }
+          if (seen < revealed) out += ch;
+          else out += GLYPHS[(Math.random() * GLYPHS.length) | 0];
+          seen++;
+        }
+        item.node.nodeValue = out;
+      });
+
+      if (p < 1) {
+        requestAnimationFrame(frame);
+      } else {
+        nodes.forEach(function (item) { item.node.nodeValue = item.text; });
+        el.classList.remove('fx-glitch');
+      }
+    }
+
+    el.classList.add('fx-glitch');
+    requestAnimationFrame(frame);
+  }
+
+  /* ============================================================
+     6. ТЕКСТ: цифри, що набігають
+     ============================================================ */
+  function countUp(el) {
+    if (reduced || el.dataset.fxDone) return;
+    var raw = el.textContent.trim();
+    var m = raw.match(/^(\d+)(\D*)$/);
+    if (!m) return;
+    el.dataset.fxDone = '1';
+
+    var target = parseInt(m[1], 10);
+    var suffix = m[2] || '';
+    var D = target > 100 ? 1100 : 800;
+    var start = null;
+
+    function frame(ts) {
+      if (start === null) start = ts;
+      var p = Math.min(1, (ts - start) / D);
+      var eased = 1 - Math.pow(1 - p, 3);
+      el.textContent = Math.round(target * eased) + (p === 1 ? suffix : '');
+      if (p < 1) requestAnimationFrame(frame);
+      else el.textContent = raw;
+    }
+    requestAnimationFrame(frame);
+  }
+
+  /* ---------- запуск текстових ефектів ---------- */
+  if (!reduced) {
+    var heads = $$('.h-xl, .h-lg');
+    var nums  = $$('.stat .v, .pack .price');
+
+    var fire = function (el) {
+      if (el.matches('.h-xl, .h-lg')) scramble(el, el.matches('.h-xl') ? 900 : 640);
+      else countUp(el);
+    };
+
+    if ('IntersectionObserver' in window) {
+      var fxIO = new IntersectionObserver(function (entries) {
+        entries.forEach(function (en) {
+          if (!en.isIntersecting) return;
+          fxIO.unobserve(en.target);
+          fire(en.target);
+        });
+      }, { rootMargin: '0px 0px -12% 0px', threshold: 0.2 });
+
+      heads.concat(nums).forEach(function (el) {
+        var r = el.getBoundingClientRect();
+        if (r.top < window.innerHeight && r.bottom > 0) {
+          // вже у в'юпорті — запускаємо одразу, сторінка не стоїть порожня
+          setTimeout(function () { fire(el); }, el.matches('.h-xl') ? 120 : 260);
+        } else {
+          fxIO.observe(el);
+        }
+      });
+    }
+  }
+
+  /* ============================================================
+     7. ЖИВІ ПІДПИСИ НА КНОПКАХ
+     ============================================================ */
+  var ALT = {
+    'Забронювати місце':     'Я в грі',
+    'Забронювати Стандарт':  'Стартуємо',
+    'Забронювати Бізнес':    'Хочу в Бізнес-лігу',
+    'Забронювати VIP':       'Хочу Гран-прі',
+    'Як це працює':          'Розкажіть',
+    'Обговорити співпрацю':  'Давайте поговоримо',
+    'Дивитися пакети':       'Показуйте',
+    'Обрати пакет':          'Цей беремо',
+    'Подати заявку':         'Я готова',
+    'Стати партнером сезону': 'Цікаво',
+    'Умови для спікерів':    'Хочу на сцену'
+  };
+
+  $$('.btn').forEach(function (btn) {
+    var base = btn.textContent.trim();
+    var alt = ALT[base];
+    if (!alt) return;
+
+    btn.addEventListener('mouseenter', function () {
+      if (!btn.style.minWidth) btn.style.minWidth = btn.offsetWidth + 'px';
+      btn.classList.add('fx-swap');
+      setTimeout(function () { btn.textContent = alt; }, 90);
+    });
+    btn.addEventListener('mouseleave', function () {
+      setTimeout(function () { btn.textContent = base; }, 90);
+      btn.classList.remove('fx-swap');
+    });
+  });
+
+  /* ============================================================
+     8. ПАСХАЛКА В КОНСОЛІ
+     ============================================================ */
+  if (window.console && console.log) {
+    console.log(
+      '%c BEAUTY GAMES 2026 %c\n\nШукаєте, як усе влаштовано зсередини?\nНам подобається такий підхід.\n\nПишіть: @beauty_games.pro',
+      'background:linear-gradient(90deg,#FF2D96,#E6007E);color:#fff;font:700 15px Montserrat,sans-serif;padding:7px 14px;border-radius:20px',
+      'color:#A29BB2;font:13px/1.6 Manrope,sans-serif'
+    );
+  }
+
+})();

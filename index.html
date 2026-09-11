@@ -1,0 +1,987 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Beauty Games 2026 — онлайн-реаліті для б'юті-майстрів</title>
+<meta name="description" content="Міжнародне онлайн-реаліті, бізнес-програма та чемпіонат для б'юті-майстрів. Сезон 2026: навчання, командні бізнес-змагання, реаліті-шоу і Гранд-Фінал офлайн.">
+<script>document.documentElement.setAttribute('data-page','main');document.documentElement.lang='uk';</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800;900&family=Manrope:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap">
+<link rel="stylesheet" href="styles.css">
+
+<div class="bg-mesh" aria-hidden="true"></div>
+<div class="bg-grid" aria-hidden="true"></div>
+
+<!-- ============ ШАПКА ============ -->
+<div class="nav-outer" id="navOuter">
+  <nav class="nav">
+    <a href="#top" class="brand" aria-label="Beauty Games — на початок">
+      <svg viewBox="0 0 40 40" fill="none" aria-hidden="true">
+        <path d="M4 3 L36 20 L4 37 Z" stroke="#FF57AE" stroke-width="2.2"/>
+        <path d="M12 12h8v6h-8v-6Zm0 10h8v6h-8v-6Zm10-7 7 5-7 5" stroke="#fff" stroke-width="1.7" stroke-linejoin="round"/>
+      </svg>
+      <span>
+        <span class="brand-tx">BEAUTY GAMES</span>
+        <span class="brand-sb">REALITY SHOW · CHAMPIONSHIP</span>
+      </span>
+    </a>
+    <div class="nav-links">
+      <a href="#about">Про проєкт</a>
+      <a href="#program">Програма</a>
+      <a href="#champ">Чемпіонат</a>
+      <a href="#speakers">Спікери</a>
+      <a href="#packages">Пакети</a>
+      <a href="#faq">Питання</a>
+    </div>
+    <a href="partners.html" class="nav-switch">Партнерам</a>
+    <a href="#apply" class="btn btn-primary btn-sm">Забронювати місце</a>
+    <button class="nav-burger" id="burger" aria-label="Меню" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+</div>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#about">Про проєкт</a>
+  <a href="#program">Програма</a>
+  <a href="#champ">Чемпіонат</a>
+  <a href="#awards">Нагороди</a>
+  <a href="#speakers">Спікери</a>
+  <a href="#packages">Пакети</a>
+  <a href="#faq">Питання</a>
+  <a href="partners.html">Партнерам і спонсорам</a>
+  <a href="#apply" class="btn btn-primary">Забронювати місце</a>
+</div>
+
+<!-- ============ ГЕРОЙ ============ -->
+<header class="hero" id="top">
+  <div class="wrap hero-inner">
+    <span class="eyebrow">Reality Show · Championship · Education · Сезон 2026</span>
+    <h1 class="h-xl">Онлайн-реаліті<br>для <span class="glow">б'юті-майстрів</span></h1>
+
+    <div class="pills">
+      <span class="pill">Навчання</span>
+      <span class="pill">Бізнес-змагання</span>
+      <span class="pill">Реаліті-шоу</span>
+      <span class="pill">Онлайн-чемпіонат</span>
+    </div>
+
+    <p class="lede">Перший міжнародний трансформаційний проєкт б'юті-індустрії. У центрі — не техніка рук, а <b>ви і ваш бізнес</b>: мислення, чек, фінанси, особистий бренд. Сотні майстринь з Європи, США та України проходять сезон у прямих ефірах — і бачать зростання доходу вже під час проєкту.</p>
+
+    <div class="trail-wrap" aria-hidden="true"><div class="trail"></div></div>
+
+    <div style="display:flex;gap:12px;flex-wrap:wrap">
+      <a href="#apply" class="btn btn-primary">Забронювати місце</a>
+      <a href="#about" class="btn btn-ghost">Як це працює</a>
+    </div>
+
+    <div class="hero-dates">
+      <div class="date-card glass rv">
+        <span class="label">Старт продажів</span>
+        <div class="d">Серпень 2026</div>
+        <div class="n">Передпідготовка відкривається одразу після оплати</div>
+      </div>
+      <div class="date-card glass rv">
+        <span class="label">Старт програми</span>
+        <div class="d">Осінь 2026</div>
+        <div class="n">Активна фаза: ефіри, змагання, чемпіонат</div>
+      </div>
+      <div class="date-card glass bloom spec rv">
+        <span class="label">Гранд-Фінал</span>
+        <div class="d">Грудень 2026</div>
+        <div class="n">5 днів офлайн · фінал у прямому ефірі на YouTube</div>
+      </div>
+    </div>
+
+    <div class="countdown glass rv" id="countdown">
+      <div class="cd-label"><b>Спеціальна ціна діє 24 години</b> з моменту, як ви відкрили сторінку. Далі — ціна тижня, потім стандартна.</div>
+      <div class="cd-clock">
+        <div class="cd-unit"><div class="v" id="cdH">24</div><div class="k">годин</div></div>
+        <div class="cd-unit"><div class="v" id="cdM">00</div><div class="k">хвилин</div></div>
+        <div class="cd-unit"><div class="v" id="cdS">00</div><div class="k">секунд</div></div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ============ ПРОБЛЕМА ============ -->
+<section class="sec" id="about">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="eyebrow">Чому цей проєкт існує</span>
+      <h2 class="h-lg">Ви вклали в навчання.<br>А бізнесу так і <span class="glow">немає</span></h2>
+      <div class="sec-rule"></div>
+    </div>
+
+    <div class="pains">
+      <div class="pain glass-soft rv"><div class="qm">“</div><p>Вклала сотні тисяч у курси — вмію все, а стабільного потоку клієнтів немає.</p></div>
+      <div class="pain glass-soft rv"><div class="qm">“</div><p>Працюю руками по 12 годин і не розумію, куди зникають гроші наприкінці місяця.</p></div>
+      <div class="pain glass-soft rv"><div class="qm">“</div><p>Вигоріла. Розчарувалась і готова кинути справу, яку колись любила.</p></div>
+      <div class="pain glass-soft rv"><div class="qm">“</div><p>Бачу «успішний успіх» в Instagram і не вірю жодному слову. Де реальні кроки?</p></div>
+    </div>
+
+    <div class="pivot glass bloom spec rv">
+      <p>Beauty Games працює не з технікою рук, а <b>з вами і вашим бізнесом</b>. Мислення, ціноутворення, фінанси, особистий бренд — і обов'язкове впровадження кожного кроку в реальне життя, під наглядом куратора і на очах у тисяч глядачів.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ТРИ СКЛАДОВІ ============ -->
+<section class="sec">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="eyebrow">Три речі одночасно</span>
+      <h2 class="h-lg">Це не курс.<br>І не просто чемпіонат</h2>
+      <div class="sec-rule"></div>
+      <p class="lede">Beauty Games поєднує три формати, які зазвичай існують окремо. Саме тому результат з'являється вже під час сезону, а не «колись потім».</p>
+    </div>
+
+    <div class="three">
+      <div class="tcard glass rv">
+        <div class="num">01</div>
+        <h3>Бізнес-програма</h3>
+        <p>Дев'ять модулів Олександри Горобець — від мислення до стратегії на рік.</p>
+        <ul>
+          <li>Відеоуроки + живі розбори + домашні завдання</li>
+          <li>Доступ до матеріалів залишається після сезону</li>
+          <li>Куратор веде команду весь проєкт</li>
+        </ul>
+      </div>
+      <div class="tcard glass bloom rv">
+        <div class="num">02</div>
+        <h3>Команди і реаліті</h3>
+        <p>Крос-функціональні команди виконують реальні бізнес-завдання в прямих ефірах.</p>
+        <ul>
+          <li>Усередині команди немає конкуренції</li>
+          <li>Бали — за реальні бізнес-результати</li>
+          <li>Таблиця лідерів відкрита для глядачів</li>
+        </ul>
+      </div>
+      <div class="tcard glass rv">
+        <div class="num">03</div>
+        <h3>Онлайн-чемпіонат</h3>
+        <p>Професійне змагання у вашій категорії з авторитетним журі з практиків.</p>
+        <ul>
+          <li>10 категорій — обираєте свою або кілька</li>
+          <li>Сертифікат кожній, кубки — переможницям</li>
+          <li>Окремий блок: як упакувати перемогу в маркетинг</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ЦИФРИ ============ -->
+<section class="sec">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="eyebrow">Сезон 2026 у цифрах</span>
+      <div class="sec-rule"></div>
+    </div>
+    <div class="stats">
+      <div class="stat glass bloom spec rv"><div class="v">4</div><div class="k">місяці сезону<br>2 передпідготовки + 2 активної фази</div></div>
+      <div class="stat glass rv"><div class="v">290</div><div class="k">місць у потоці<br>130 · 100 · 60</div></div>
+      <div class="stat glass rv"><div class="v">10</div><div class="k">категорій<br>онлайн-чемпіонату</div></div>
+      <div class="stat glass rv"><div class="v">5</div><div class="k">днів офлайн<br>Гранд-Фіналу</div></div>
+      <div class="stat glass rv"><div class="v">300+</div><div class="k">майстринь<br>у закритій спільноті</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ТАЙМЛАЙН ============ -->
+<section class="sec">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="eyebrow">Як влаштований сезон</span>
+      <h2 class="h-lg">Ваш шлях <span class="glow">по етапах</span></h2>
+      <div class="sec-rule"></div>
+    </div>
+    <div class="trail-wrap rv" aria-hidden="true"><div class="trail"></div></div>
+    <div class="timeline">
+      <div class="tl-step glass rv">
+        <span class="badge">Етап 01</span>
+        <h4>Бронювання</h4>
+        <p>Ви фіксуєте ціну і місце в потоці. Доступ до передпідготовки відкривається одразу після оплати.</p>
+      </div>
+      <div class="tl-step glass rv">
+        <span class="badge">Етап 02</span>
+        <h4>Передпідготовка</h4>
+        <p>Психолог проєкту, робота з вигоранням і внутрішніми бар'єрами, стиліст, перші маркетингові інструменти.</p>
+      </div>
+      <div class="tl-step glass bloom rv">
+        <span class="badge">Етап 03</span>
+        <h4>Активна фаза</h4>
+        <p>Лекції + обов'язкове впровадження. Командні квести, прямі ефіри, голосування глядачів, онлайн-чемпіонат.</p>
+      </div>
+      <div class="tl-step glass rv">
+        <span class="badge">Етап 04</span>
+        <h4>Гранд-Фінал</h4>
+        <p>5 днів офлайн: чемпіонатні завдання, баттли, зйомки. Щодня — на вибування. Фінальний день у прямому ефірі.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ПРОГРАМА ============ -->
+<section class="sec" id="program">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="eyebrow">Бізнес-програма · 9 модулів</span>
+      <h2 class="h-lg">Що саме ви <span class="glow">вивчите</span></h2>
+      <div class="sec-rule"></div>
+      <p class="lede">Авторська програма Олександри Горобець. Відеоуроки, живі розбори й домашні завдання. Доступ залишається після завершення сезону.</p>
+    </div>
+
+    <div class="acc" id="modules">
+      <div class="acc-item glass-soft">
+        <button class="acc-btn" type="button"><span class="mi">М1</span><span class="tx">Мислення — від ремісника до підприємця</span><span class="ic"></span></button>
+        <div class="acc-panel"><div class="acc-panel-in"><ul>
+          <li>Чому «працювати більше» не працює і де межа зростання руками</li>
+          <li>Рішення власника проти рішень виконавця</li>
+          <li>Як перестати бути найманим працівником у власному бізнесі</li>
+        </ul></div></div>
+      </div>
+      <div class="acc-item glass-soft">
+        <button class="acc-btn" type="button"><span class="mi">М2</span><span class="tx">Ціноутворення — підняти прайс без втрати клієнтів</span><span class="ic"></span></button>
+        <div class="acc-panel"><div class="acc-panel-in"><ul>
+          <li>Як рахувати собівартість послуги і власну годину</li>
+          <li>Покрокове підвищення чека та комунікація змін клієнтам</li>
+          <li>Що робити з клієнтами, які «не потягнуть»</li>
+        </ul></div></div>
+      </div>
+      <div class="acc-item glass-soft">
+        <button class="acc-btn" type="button"><span class="mi">М3</span><span class="tx">Клієнти — портрет, лінійка послуг, залучення</span><span class="ic"></span></button>
+        <div class="acc-panel"><div class="acc-panel-in"><ul>
+          <li>Хто ваш клієнт насправді і за що він платить</li>
+          <li>Лінійка послуг: вхідна, основна, преміальна</li>
+          <li>Де брати нових клієнтів без зв'язків, бюджету і реклами</li>
+        </ul></div></div>
+      </div>
+      <div class="acc-item glass-soft">
+        <button class="acc-btn" type="button"><span class="mi">М4</span><span class="tx">Фінанси — облік, планування, подушка</span><span class="ic"></span></button>
+        <div class="acc-panel"><div class="acc-panel-in"><ul>
+          <li>Облік, який реально ведеться: таблиця замість інтуїції</li>
+          <li>Розділення грошей бізнесу і особистих</li>
+          <li>Фінансова подушка і планування на рік</li>
+          <li>Юридичні та податкові тонкощі б'юті-бізнесу</li>
+        </ul></div></div>
+      </div>
+      <div class="acc-item glass-soft">
+        <button class="acc-btn" type="button"><span class="mi">М5</span><span class="tx">Особистий бренд і SMM — упаковка та сторіс</span><span class="ic"></span></button>
+        <div class="acc-panel"><div class="acc-panel-in"><ul>
+          <li>Що публікувати, щоб приходили клієнти, а не підписники</li>
+          <li>Контент-план на місяць за 30 хвилин</li>
+          <li>Таргет у Meta Ads самостійно від €5–10 на день</li>
+        </ul></div></div>
+      </div>
+      <div class="acc-item glass-soft">
+        <button class="acc-btn" type="button"><span class="mi">М6</span><span class="tx">Продажі — через сторітелінг і довіру</span><span class="ic"></span></button>
+        <div class="acc-panel"><div class="acc-panel-in"><ul>
+          <li>Продаж без тиску: як говорити про ціну спокійно</li>
+          <li>Бібліотека скриптів: 15 типових заперечень</li>
+          <li>Повторні продажі й підвищення середнього чека</li>
+        </ul></div></div>
+      </div>
+      <div class="acc-item glass-soft">
+        <button class="acc-btn" type="button"><span class="mi">М7</span><span class="tx">Команда і делегування</span><span class="ic"></span></button>
+        <div class="acc-panel"><div class="acc-panel-in"><ul>
+          <li>Коли брати першого майстра і як його шукати</li>
+          <li>Система мотивації та контролю якості</li>
+          <li>Що делегувати першим, а що не віддавати ніколи</li>
+        </ul></div></div>
+      </div>
+      <div class="acc-item glass-soft">
+        <button class="acc-btn" type="button"><span class="mi">М8</span><span class="tx">Психологія лідерства й антивигорання</span><span class="ic"></span></button>
+        <div class="acc-panel"><div class="acc-panel-in"><ul>
+          <li>Робота з вигоранням, страхом і втратою віри в себе</li>
+          <li>Внутрішня опора власника: як тримати темп сезону</li>
+          <li>Поки немає внутрішнього ресурсу — не працює жоден бізнес-інструмент</li>
+        </ul></div></div>
+      </div>
+      <div class="acc-item glass-soft">
+        <button class="acc-btn" type="button"><span class="mi">М9</span><span class="tx">Стратегія — бізнес-план на рік</span><span class="ic"></span></button>
+        <div class="acc-panel"><div class="acc-panel-in"><ul>
+          <li>Шаблон бізнес-плану, заповнений під ваш бізнес</li>
+          <li>Точки зростання: салон, студія, школа, онлайн</li>
+          <li>Дорожня карта на 12 місяців з контрольними точками</li>
+        </ul></div></div>
+      </div>
+    </div>
+
+    <div class="glass rv" style="margin-top:22px;padding:28px;display:flex;gap:24px;align-items:center;flex-wrap:wrap">
+      <div class="ph ph-round" style="width:104px;flex:none"><span class="s">ФОТО<br>АВТОРКИ</span></div>
+      <div style="flex:1;min-width:240px">
+        <span class="label label-accent">Авторка програми</span>
+        <h3 class="h-md" style="margin:8px 0 8px">Олександра Горобець</h3>
+        <p style="margin:0;color:var(--muted);font-size:14.5px">Міжнародний тренер PMU, спеціаліст із фінансів, авторка бізнес-програми Beauty Games. Веде живі розбори протягом усього сезону.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ КОМАНДИ ============ -->
+<section class="sec">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="eyebrow">Команди і ліги</span>
+      <h2 class="h-lg">Ви не змагаєтесь<br>зі своїми <span class="glow">конкурентками</span></h2>
+      <div class="sec-rule"></div>
+      <p class="lede">Головна механіка проєкту: команда збирається з майстринь <b>різних напрямків</b>. Манікюр, перукар, перманент, косметолог — в одній команді. Усередині немає конкуренції, тому ніхто не боїться ділитися ідеями.</p>
+    </div>
+
+    <div class="three">
+      <div class="tcard glass rv">
+        <div class="num">✦</div>
+        <h3>Крос-функціональна команда</h3>
+        <ul>
+          <li>Майстрині різних напрямків в одній команді</li>
+          <li>Синергія замість конкуренції: спільні офери й колаборації</li>
+          <li>Куратор веде команду весь сезон</li>
+        </ul>
+      </div>
+      <div class="tcard glass bloom rv">
+        <div class="num">◆</div>
+        <h3>Дві окремі ліги</h3>
+        <ul>
+          <li><b>Бізнес-ліга</b> і <b>VIP-ліга</b> між собою не змагаються</li>
+          <li>У кожної — свій трек і своя головна нагорода</li>
+          <li>VIP-ліга має окремий трек медійності</li>
+        </ul>
+      </div>
+      <div class="tcard glass rv">
+        <div class="num">★</div>
+        <h3>Бали та магазин</h3>
+        <ul>
+          <li>Бали за реальні бізнес-результати, а не за активність</li>
+          <li>Голосування глядачів — 20% балів команди</li>
+          <li>Магазин балів: консультації топ-експертів і бізнес-розбори</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ЧЕМПІОНАТ ============ -->
+<section class="sec" id="champ">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="eyebrow">Онлайн-чемпіонат</span>
+      <h2 class="h-lg">Кубок, який <span class="glow">конвертується в гроші</span></h2>
+      <div class="sec-rule"></div>
+      <p class="lede">Це не змагання заради кубка. Окрім нагород, усі учасниці отримують розбір від маркетологів: як упакувати участь і перемогу в Instagram, як підняти на цьому чек і залучити клієнтів.</p>
+    </div>
+
+    <div class="tiles rv" style="margin-bottom:22px">
+      <div class="tile">Броу-майстер</div>
+      <div class="tile">Лашмейкер</div>
+      <div class="tile">Нігтьовий сервіс</div>
+      <div class="tile">Перманентний макіяж</div>
+      <div class="tile">Візажист</div>
+      <div class="tile">Перукар-стиліст</div>
+      <div class="tile">Нарощування волосся</div>
+      <div class="tile">Косметологія</div>
+      <div class="tile">Масажист</div>
+      <div class="tile">Лазерне видалення</div>
+    </div>
+
+    <div class="three">
+      <div class="tcard glass-soft rv">
+        <h3 style="font-size:15px">Умови участі</h3>
+        <ul>
+          <li><b>Чемпіонат оплачується окремо</b> від пакета — участь за бажанням</li>
+          <li>Кожна наступна номінація дешевша за попередню</li>
+          <li>Універсали можуть заявлятися в різні категорії — кратно вищі шанси</li>
+        </ul>
+      </div>
+      <div class="tcard glass-soft rv">
+        <h3 style="font-size:15px">Вартість номінацій</h3>
+        <ul>
+          <li><b>Стандарт</b> — 1-ша €150 · 2-га €130 · 3-тя €100 <span style="color:var(--muted)">(усі три — €380)</span></li>
+          <li><b>Бізнес</b> — 1-ша €130 · 2-га €100 · 3-тя €80 <span style="color:var(--muted)">(усі три — €310)</span></li>
+          <li><b>VIP</b> — 1-ша включена · 2-га €130 · 3-тя €100</li>
+        </ul>
+      </div>
+      <div class="tcard glass-soft rv">
+        <h3 style="font-size:15px">Що отримуєте</h3>
+        <ul>
+          <li>Сертифікат — кожній учасниці чемпіонату</li>
+          <li>Кубки, дипломи й подарунки — переможницям</li>
+          <li>Бали в особистий залік: у фіналі можуть вивести на призове місце</li>
+          <li>За бажанням — індивідуальний розбір від обраного судді</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ЕКСПЕРТИ ============ -->
+<section class="sec">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="eyebrow">Команда супроводу</span>
+      <h2 class="h-lg">Експерти <span class="glow">проєкту</span></h2>
+      <div class="sec-rule"></div>
+      <p class="lede">Щоб знайти сильні й слабкі сторони кожної учасниці — з вами працює не один тренер, а команда фахівців різних напрямків.</p>
+    </div>
+
+    <div class="people">
+      <div class="person rv"><div class="avatar"><span class="ini">ПС</span></div><div class="nm">Психолог</div><div class="rl">Вигорання, страхи, внутрішня опора · усі пакети</div></div>
+      <div class="person rv"><div class="avatar"><span class="ini">СТ</span></div><div class="nm">Стиліст</div><div class="rl">Особистий бренд через образ · усі пакети</div></div>
+      <div class="person rv"><div class="avatar"><span class="ini">МК</span></div><div class="nm">Маркетолог</div><div class="rl">Instagram і таргет · усі пакети</div></div>
+      <div class="person rv"><div class="avatar"><span class="ini">АН</span></div><div class="nm">Астролог-нумеролог</div><div class="rl">Особиста карта, ресурсні періоди · Бізнес і VIP</div></div>
+      <div class="person rv"><div class="avatar"><span class="ini">ЦП</span></div><div class="nm">Цифровий психолог</div><div class="rl">Робота з грошовими установками · Бізнес і VIP</div></div>
+      <div class="person rv"><div class="avatar"><span class="ini">ЕП</span></div><div class="nm">Енергопрактик</div><div class="rl">Блоки на гроші й публічність · Бізнес і VIP</div></div>
+      <div class="person rv"><div class="avatar"><span class="ini">БН</span></div><div class="nm">Бренд-наставник</div><div class="rl">Побудова особистого бренду · тільки VIP</div></div>
+      <div class="person rv"><div class="avatar"><span class="ini">КР</span></div><div class="nm">Куратор команди</div><div class="rl">Веде команду весь сезон · Бізнес і VIP</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ НАГОРОДИ ============ -->
+<section class="sec" id="awards">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="eyebrow">Гранд-Фінал · грудень 2026</span>
+      <h2 class="h-lg">Нагороди <span class="glow">сезону</span></h2>
+      <div class="sec-rule"></div>
+      <p class="lede">У офлайн-фінал виходять 5 команд VIP-ліги і ТОП-3 команди Бізнес-ліги. П'ять днів, щодня — на вибування. У фіналі учасниці змагаються вже кожна за себе.</p>
+    </div>
+
+    <div class="awards">
+      <div class="award glass bloom spec rv">
+        <div class="sym">♛</div>
+        <h4>Гран-прі</h4>
+        <p>Головний приз проєкту. Отримує переможниця VIP-ліги — розігрується в прямому ефірі Гранд-Фіналу. Після сезону виходить пост-шоу про те, як вона використала приз.</p>
+      </div>
+      <div class="award glass rv">
+        <div class="sym">◆</div>
+        <h4>Джекпот</h4>
+        <p>Головна нагорода Бізнес-ліги. В останній день фіналу команди переходять в індивідуальну боротьбу — і Джекпот отримує переможниця особисто.</p>
+      </div>
+      <div class="award glass rv">
+        <div class="sym">♥</div>
+        <h4>Приз глядацьких симпатій</h4>
+        <p>За підсумками відкритого голосування в усіх каналах проєкту: YouTube, Instagram та інші майданчики. Голоси сумуються.</p>
+      </div>
+      <div class="award glass rv">
+        <div class="sym">★</div>
+        <h4>Джокер</h4>
+        <p>Глядачі можуть повернути в гру улюблену героїню і вивести її в індивідуальні змагання. Джокер може виграти будь-яка учасниця — незалежно від ліги.</p>
+      </div>
+    </div>
+
+    <div class="three" style="margin-top:18px">
+      <div class="tcard glass-soft rv">
+        <h3 style="font-size:15px">Усім призеркам</h3>
+        <ul>
+          <li>Кубки й дипломи — обов'язкова нагорода всіх призових місць</li>
+          <li>2 і 3 місця — подарунки від спонсорів проєкту</li>
+        </ul>
+      </div>
+      <div class="tcard glass-soft rv">
+        <h3 style="font-size:15px">Консультація інвестора</h3>
+        <ul>
+          <li>1 і 2 місце VIP-ліги та 1 місце Бізнес-ліги</li>
+          <li>Персональна бізнес-консультація у спонсора-інвестора після шоу</li>
+        </ul>
+      </div>
+      <div class="tcard glass-soft rv">
+        <h3 style="font-size:15px">Шлях у Сезон 2</h3>
+        <ul>
+          <li>Призерки отримують запрошення в команду наступного сезону</li>
+          <li>Суддя, кураторка, коуч або менторка нового потоку</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ СПІКЕРИ ============ -->
+<section class="sec" id="speakers">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="eyebrow">Афіша сезону</span>
+      <h2 class="h-lg">Спікери <span class="glow">Beauty Games</span></h2>
+      <div class="sec-rule"></div>
+      <p class="lede">Практики індустрії, які виступають у прямих ефірах проєкту перед учасницями сезону.</p>
+    </div>
+
+    <div class="people">
+      <div class="person rv"><div class="ph ph-round" style="width:112px;margin:0 auto"><span class="s">ФОТО<br>800×800</span></div><div class="nm">Ім'я спікера</div><div class="rl">Регалія · тема виступу</div></div>
+      <div class="person rv"><div class="ph ph-round" style="width:112px;margin:0 auto"><span class="s">ФОТО<br>800×800</span></div><div class="nm">Ім'я спікера</div><div class="rl">Регалія · тема виступу</div></div>
+      <div class="person rv"><div class="ph ph-round" style="width:112px;margin:0 auto"><span class="s">ФОТО<br>800×800</span></div><div class="nm">Ім'я спікера</div><div class="rl">Регалія · тема виступу</div></div>
+      <div class="person rv"><div class="ph ph-round" style="width:112px;margin:0 auto"><span class="s">ФОТО<br>800×800</span></div><div class="nm">Ім'я спікера</div><div class="rl">Регалія · тема виступу</div></div>
+      <div class="person rv"><div class="ph ph-round" style="width:112px;margin:0 auto"><span class="s">ФОТО<br>800×800</span></div><div class="nm">Ім'я спікера</div><div class="rl">Регалія · тема виступу</div></div>
+      <div class="person rv"><div class="ph ph-round" style="width:112px;margin:0 auto"><span class="s">ФОТО<br>800×800</span></div><div class="nm">Ім'я спікера</div><div class="rl">Регалія · тема виступу</div></div>
+      <div class="person rv"><div class="ph ph-round" style="width:112px;margin:0 auto"><span class="s">ФОТО<br>800×800</span></div><div class="nm">Ім'я спікера</div><div class="rl">Регалія · тема виступу</div></div>
+      <div class="person rv"><div class="ph ph-round" style="width:112px;margin:0 auto"><span class="s">ФОТО<br>800×800</span></div><div class="nm">Ім'я спікера</div><div class="rl">Регалія · тема виступу</div></div>
+    </div>
+
+    <div style="text-align:center;margin-top:34px">
+      <p style="color:var(--muted);font-size:14.5px;margin-bottom:16px">Хочете виступити на сцені Beauty Games?</p>
+      <a href="partners.html#speakers" class="btn btn-ghost">Умови для спікерів</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ЗАСНОВНИЦІ ============ -->
+<section class="sec">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="eyebrow">Хто за цим стоїть</span>
+      <h2 class="h-lg">Засновниці <span class="glow">проєкту</span></h2>
+      <div class="sec-rule"></div>
+    </div>
+
+    <div class="three">
+      <div class="tcard glass bloom spec rv" style="grid-column:span 2;min-width:0">
+        <div class="ph ph-round" style="width:92px;margin-bottom:18px"><span class="s">ФОТО</span></div>
+        <h3>Ірина Вербова</h3>
+        <p>Організаторка найбільших міжнародних заходів б'юті-індустрії з 2015 року: IBV, PMU Congress &amp; Championship — Греція, Дубай, Іспанія, Польща, Прибалтика, Грузія, Казахстан.</p>
+        <ul>
+          <li>Президент Товариства спеціалістів естетичної дермопігментації</li>
+          <li>Суддя міжнародної категорії</li>
+          <li>Засновниця Міжнародної Академії «QIQ»</li>
+          <li><b>Призами минулих чемпіонатів були квартира в Києві та автомобіль Mercedes</b></li>
+        </ul>
+      </div>
+      <div class="tcard glass rv">
+        <div class="ph ph-round" style="width:92px;margin-bottom:18px"><span class="s">ФОТО</span></div>
+        <h3>Олександра Горобець</h3>
+        <p>Міжнародний тренер PMU, спеціаліст із фінансів.</p>
+        <ul>
+          <li>Авторка бізнес-програми проєкту</li>
+          <li>Веде живі розбори весь сезон</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ПАРТНЕРИ ============ -->
+<section class="sec">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="eyebrow">Партнери сезону</span>
+      <h2 class="h-lg">Бренди, які <span class="glow">підтримують</span> проєкт</h2>
+      <div class="sec-rule"></div>
+    </div>
+    <div class="logos rv">
+      <div class="logo-ph">Генеральний</div>
+      <div class="logo-ph">Спеціальний</div>
+      <div class="logo-ph">Спеціальний</div>
+      <div class="logo-ph">Категорійний</div>
+      <div class="logo-ph">Категорійний</div>
+      <div class="logo-ph">Партнер</div>
+      <div class="logo-ph">Партнер</div>
+      <div class="logo-ph">Партнер</div>
+    </div>
+    <div style="text-align:center;margin-top:30px">
+      <a href="partners.html" class="btn btn-ghost">Стати партнером сезону</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ПАКЕТИ ============ -->
+<section class="sec" id="packages">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="eyebrow">Три формати участі</span>
+      <h2 class="h-lg">Пакети <span class="glow">участі</span></h2>
+      <div class="sec-rule"></div>
+      <p class="lede">Ціна фіксується в момент бронювання місця. Далі діє наступний рівень ціни.</p>
+    </div>
+
+    <div class="packs">
+      <!-- СТАНДАРТ -->
+      <div class="pack glass rv">
+        <span class="kicker">Пакет 01</span>
+        <h3>Стандарт</h3>
+        <div class="tagline">Самостійне навчання без кураторства. Для досвідчених майстринь.</div>
+        <div class="price-old">€990</div>
+        <div class="price">€690</div>
+        <div class="price-note">при бронюванні протягом 24 годин</div>
+        <div class="rows">
+          <div class="row"><span>Протягом тижня</span><b>€790</b></div>
+          <div class="row"><span>Стандартна ціна</span><b>€990</b></div>
+          <div class="row"><span>Розстрочка</span><b>€495 + €495</b></div>
+        </div>
+        <ul>
+          <li>Блок «Точка зростання»: перезапуск бізнесу</li>
+          <li>Психолог проєкту на етапі передпідготовки</li>
+          <li>Стиліст: особистий бренд через образ</li>
+          <li>Маркетолог: Instagram і таргет</li>
+          <li>Спільнота 300+ майстринь і голосування</li>
+          <li>Ранній доступ до серій — на 24 години раніше</li>
+          <li>Сертифікат учасниці · знижка 15% на наступний потік</li>
+        </ul>
+        <div class="value">
+          <div><div class="l">Цінність окремо</div><div class="v strike">≈ €2 500</div></div>
+          <div style="text-align:right"><div class="l">Ваша інвестиція</div><div class="v">€690</div></div>
+        </div>
+        <button class="btn btn-primary btn-block js-pick" data-pack="Стандарт">Забронювати Стандарт</button>
+        <div class="seats">Лишилось <b>130</b> місць</div>
+      </div>
+
+      <!-- БІЗНЕС -->
+      <div class="pack glass bloom spec featured rv">
+        <span class="ribbon">Рекомендовано</span>
+        <span class="kicker">Пакет 02</span>
+        <h3>Бізнес</h3>
+        <div class="tagline">Повна програма, куратор і командні змагання Бізнес-ліги.</div>
+        <div class="price-old">€1 590</div>
+        <div class="price">€1 290</div>
+        <div class="price-note">при бронюванні протягом 24 годин</div>
+        <div class="rows">
+          <div class="row"><span>Протягом тижня</span><b>€1 490</b></div>
+          <div class="row"><span>Стандартна ціна</span><b>€1 590</b></div>
+          <div class="row"><span>Розстрочка</span><b>€795 + €795</b></div>
+        </div>
+        <ul>
+          <li><b>Усе з тарифу «Стандарт» — повністю</b></li>
+          <li>Програма Олександри Горобець — 9 модулів</li>
+          <li>Команда і Бізнес-ліга, куратор весь сезон</li>
+          <li>Призначення: астролог-нумеролог і цифровий психолог</li>
+          <li>Енергопрактик: блоки на гроші й публічність</li>
+          <li>Монетизація інфоприводу + контент для Instagram і TikTok</li>
+          <li>Участь у фіналі — ТОП-3 команди Бізнес-ліги</li>
+          <li>Сесія 1:1 з куратором · знижка 20%</li>
+        </ul>
+        <div class="value">
+          <div><div class="l">Цінність окремо</div><div class="v strike">≈ €6 000</div></div>
+          <div style="text-align:right"><div class="l">Ваша інвестиція</div><div class="v">€1 290</div></div>
+        </div>
+        <button class="btn btn-primary btn-block js-pick" data-pack="Бізнес">Забронювати Бізнес</button>
+        <div class="seats">Лишилось <b>100</b> місць</div>
+      </div>
+
+      <!-- VIP -->
+      <div class="pack glass rv">
+        <span class="kicker">Пакет 03 · максимум</span>
+        <h3>VIP</h3>
+        <div class="tagline">Бренд-наставник, масштабування, YouTube-реаліті та особистий бренд.</div>
+        <div class="price-old">€2 490</div>
+        <div class="price">€1 990</div>
+        <div class="price-note">при бронюванні протягом 24 годин</div>
+        <div class="rows">
+          <div class="row"><span>Протягом тижня</span><b>€2 290</b></div>
+          <div class="row"><span>Стандартна ціна</span><b>€2 490</b></div>
+          <div class="row"><span>Розстрочка</span><b>€1 245 + €1 245</b></div>
+        </div>
+        <ul>
+          <li><b>Усе зі «Стандарт» і «Бізнес» — повністю</b></li>
+          <li>Бренд-наставник · щотижнева сесія 60 хв у Zoom</li>
+          <li>Зйомки в YouTube-реаліті: ви — ключова героїня шоу</li>
+          <li>Індивідуальна робота з коучем · 2 сесії з психологом</li>
+          <li>Урок з відеозйомки · фотосесія на офлайн-фіналі</li>
+          <li>1-ша номінація чемпіонату включена в пакет</li>
+          <li>Гранд-Фінал: 5 команд VIP-ліги · Гран-прі</li>
+          <li>Пост-шоу про переможницю · знижка 25%</li>
+        </ul>
+        <div class="value">
+          <div><div class="l">Цінність окремо</div><div class="v strike">≈ €12 000</div></div>
+          <div style="text-align:right"><div class="l">Ваша інвестиція</div><div class="v">€1 990</div></div>
+        </div>
+        <button class="btn btn-primary btn-block js-pick" data-pack="VIP">Забронювати VIP</button>
+        <div class="seats">Лишилось <b>60</b> місць</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ПОРІВНЯННЯ ============ -->
+<section class="sec">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="eyebrow">Детально</span>
+      <h2 class="h-lg">Що входить <span class="glow">у кожен тариф</span></h2>
+      <div class="sec-rule"></div>
+    </div>
+
+    <div class="table-tabs" id="tableTabs">
+      <button class="on" data-col="1">Стандарт</button>
+      <button data-col="2">Бізнес</button>
+      <button data-col="3">VIP</button>
+    </div>
+
+    <div class="glass rv">
+      <div class="tablewrap">
+        <table id="compare">
+          <thead>
+            <tr>
+              <th>Що входить</th>
+              <th class="col show" data-col="1">Стандарт<span class="pr">€990</span></th>
+              <th class="col" data-col="2">Бізнес<span class="pr">€1 590</span></th>
+              <th class="col" data-col="3">VIP<span class="pr">€2 490</span></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="group"><td colspan="4">База</td></tr>
+            <tr><td>Блоки «Точка зростання», «Стиліст», «Маркетолог»</td><td class="col show" data-col="1"><span class="yes">✓</span></td><td class="col" data-col="2"><span class="yes">✓</span></td><td class="col" data-col="3"><span class="yes">✓</span></td></tr>
+            <tr><td>Психолог: внутрішній стан на старті</td><td class="col show" data-col="1"><span class="yes">✓</span></td><td class="col" data-col="2"><span class="yes">✓</span></td><td class="col" data-col="3"><span class="yes">✓</span></td></tr>
+            <tr><td>Спільнота + голосування за команди</td><td class="col show" data-col="1"><span class="yes">✓</span></td><td class="col" data-col="2"><span class="yes">✓</span></td><td class="col" data-col="3"><span class="yes">✓</span></td></tr>
+            <tr><td>П'ятничні неформальні ефіри</td><td class="col show" data-col="1"><span class="yes">✓</span></td><td class="col" data-col="2"><span class="yes">✓</span></td><td class="col" data-col="3"><span class="yes">✓</span></td></tr>
+            <tr><td>Лекція «Як упакувати перемогу в маркетинг»</td><td class="col show" data-col="1"><span class="yes">✓</span></td><td class="col" data-col="2"><span class="yes">✓</span></td><td class="col" data-col="3"><span class="yes">✓</span></td></tr>
+            <tr><td>Онлайн-чемпіонат <span style="color:var(--faint)">(оплачується окремо)</span></td><td class="col show" data-col="1">€150 / 130 / 100</td><td class="col" data-col="2">€130 / 100 / 80</td><td class="col" data-col="3">1-ша включена<br>+ €130 / 100</td></tr>
+
+            <tr class="group"><td colspan="4">Програма і трансформація</td></tr>
+            <tr><td>Навчальна програма — 9 модулів</td><td class="col show" data-col="1"><span class="no">—</span></td><td class="col" data-col="2"><span class="yes">✓</span></td><td class="col" data-col="3"><span class="yes">✓</span></td></tr>
+            <tr><td>Астролог, нумеролог, цифровий психолог</td><td class="col show" data-col="1"><span class="no">—</span></td><td class="col" data-col="2"><span class="yes">✓</span></td><td class="col" data-col="3"><span class="yes">✓</span></td></tr>
+            <tr><td>Робота з енергопрактиком</td><td class="col show" data-col="1"><span class="no">—</span></td><td class="col" data-col="2"><span class="yes">✓</span></td><td class="col" data-col="3"><span class="yes">✓</span></td></tr>
+            <tr><td>Блок монетизації інфоприводу</td><td class="col show" data-col="1"><span class="no">—</span></td><td class="col" data-col="2"><span class="yes">✓</span></td><td class="col" data-col="3"><span class="yes">✓</span></td></tr>
+            <tr><td>Командні змагання + куратор</td><td class="col show" data-col="1"><span class="no">—</span></td><td class="col" data-col="2">Бізнес-ліга</td><td class="col" data-col="3">VIP-ліга</td></tr>
+            <tr><td>Контент для Instagram і TikTok</td><td class="col show" data-col="1"><span class="no">—</span></td><td class="col" data-col="2"><span class="yes">✓</span></td><td class="col" data-col="3"><span class="yes">✓</span> + YouTube</td></tr>
+
+            <tr class="group"><td colspan="4">Тільки VIP</td></tr>
+            <tr><td>Бренд-наставник — побудова особистого бренду</td><td class="col show" data-col="1"><span class="no">—</span></td><td class="col" data-col="2"><span class="no">—</span></td><td class="col" data-col="3"><span class="yes">✓</span></td></tr>
+            <tr><td>YouTube-серіал Beauty Games</td><td class="col show" data-col="1"><span class="no">—</span></td><td class="col" data-col="2"><span class="no">—</span></td><td class="col" data-col="3"><span class="yes">✓</span></td></tr>
+            <tr><td>Індивідуальна робота з коучем</td><td class="col show" data-col="1"><span class="no">—</span></td><td class="col" data-col="2"><span class="no">—</span></td><td class="col" data-col="3">1–2 сесії</td></tr>
+            <tr><td>Сканування у трансформаційного психолога</td><td class="col show" data-col="1"><span class="no">—</span></td><td class="col" data-col="2"><span class="no">—</span></td><td class="col" data-col="3">за бажанням</td></tr>
+            <tr><td>Урок з відеозйомки та фотографії</td><td class="col show" data-col="1"><span class="no">—</span></td><td class="col" data-col="2"><span class="no">—</span></td><td class="col" data-col="3"><span class="yes">✓</span></td></tr>
+            <tr><td>Фотосесія на офлайн-фіналі</td><td class="col show" data-col="1"><span class="no">—</span></td><td class="col" data-col="2"><span class="no">—</span></td><td class="col" data-col="3"><span class="yes">✓</span></td></tr>
+
+            <tr class="group"><td colspan="4">Фінал і нагороди</td></tr>
+            <tr><td>Участь в офлайн-фіналі</td><td class="col show" data-col="1"><span class="no">—</span></td><td class="col" data-col="2">ТОП-3 команди</td><td class="col" data-col="3">5 команд</td></tr>
+            <tr><td>Головна нагорода фіналу</td><td class="col show" data-col="1"><span class="no">—</span></td><td class="col" data-col="2">Джекпот</td><td class="col" data-col="3">Гран-прі</td></tr>
+            <tr><td>Кубки, дипломи й подарунки призеркам</td><td class="col show" data-col="1"><span class="no">—</span></td><td class="col" data-col="2"><span class="yes">✓</span></td><td class="col" data-col="3"><span class="yes">✓</span></td></tr>
+            <tr><td>Консультація у спонсора-інвестора</td><td class="col show" data-col="1"><span class="no">—</span></td><td class="col" data-col="2">1 місце</td><td class="col" data-col="3">1 і 2 місце</td></tr>
+            <tr><td>Запрошення призерок у команду Сезону 2</td><td class="col show" data-col="1"><span class="no">—</span></td><td class="col" data-col="2"><span class="yes">✓</span></td><td class="col" data-col="3"><span class="yes">✓</span></td></tr>
+            <tr><td>Пост-шоу про переможницю Гран-прі</td><td class="col show" data-col="1"><span class="no">—</span></td><td class="col" data-col="2"><span class="no">—</span></td><td class="col" data-col="3"><span class="yes">✓</span></td></tr>
+            <tr><td>Знижка на наступний потік курсу</td><td class="col show" data-col="1">−15%</td><td class="col" data-col="2">−20%</td><td class="col" data-col="3">−25%</td></tr>
+            <tr class="total"><td>Ціна при бронюванні за 24 години</td><td class="col show" data-col="1">€690</td><td class="col" data-col="2">€1 290</td><td class="col" data-col="3">€1 990</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="three" style="margin-top:18px">
+      <div class="tcard glass-soft rv">
+        <h3 style="font-size:15px">Оплата</h3>
+        <ul>
+          <li>Ціна фіксується в момент бронювання місця</li>
+          <li>Розстрочка: 50% при бронюванні + 50% до старту програми</li>
+          <li>Оплата в євро, приймаємо картки з будь-якої країни</li>
+        </ul>
+      </div>
+      <div class="tcard glass-soft rv">
+        <h3 style="font-size:15px">Строки</h3>
+        <ul>
+          <li>Старт продажів — серпень 2026</li>
+          <li>Передпідготовка — одразу після оплати</li>
+          <li>Старт програми — осінь 2026</li>
+          <li>Гранд-Фінал — грудень 2026, 5 днів офлайн</li>
+        </ul>
+      </div>
+      <div class="tcard glass-soft rv">
+        <h3 style="font-size:15px">Місця в потоці</h3>
+        <ul>
+          <li>VIP — <b>60</b> учасниць</li>
+          <li>Бізнес — <b>100</b> учасниць</li>
+          <li>Стандарт — <b>130</b> учасниць</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ РЕЗУЛЬТАТИ ============ -->
+<section class="sec">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="eyebrow">Результати</span>
+      <h2 class="h-lg">Історії <span class="glow">учасниць</span></h2>
+      <div class="sec-rule"></div>
+      <p class="lede">Відеовідгуки учасниць попередніх чемпіонатів і учениць Академії «QIQ»: що було, що зробили, що стало.</p>
+    </div>
+    <div class="three">
+      <div class="ph rv" style="min-height:260px"><span class="t">Відеовідгук</span><span class="s">MP4 / YouTube · 30–60 сек<br>вертикальне або 16:9</span></div>
+      <div class="ph rv" style="min-height:260px"><span class="t">Відеовідгук</span><span class="s">MP4 / YouTube · 30–60 сек<br>вертикальне або 16:9</span></div>
+      <div class="ph rv" style="min-height:260px"><span class="t">Відеовідгук</span><span class="s">MP4 / YouTube · 30–60 сек<br>вертикальне або 16:9</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FAQ ============ -->
+<section class="sec" id="faq">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="eyebrow">Питання й відповіді</span>
+      <h2 class="h-lg">Що зазвичай <span class="glow">запитують</span></h2>
+      <div class="sec-rule"></div>
+    </div>
+
+    <div class="acc" id="faqAcc">
+      <div class="acc-item glass-soft">
+        <button class="acc-btn" type="button"><span class="tx">Я не з України — чи можу брати участь?</span><span class="ic"></span></button>
+        <div class="acc-panel"><div class="acc-panel-in"><p>Так. Проєкт повністю онлайн і охоплює весь світ. Ядро аудиторії — українки, які живуть у Європі та США. Усі ефіри проходять онлайн, офлайн лише Гранд-Фінал у грудні.</p></div></div>
+      </div>
+      <div class="acc-item glass-soft">
+        <button class="acc-btn" type="button"><span class="tx">Скільки часу це займає на тиждень?</span><span class="ic"></span></button>
+        <div class="acc-panel"><div class="acc-panel-in"><p>Передпідготовка — легкий режим, кілька годин на тиждень. Активна фаза інтенсивніша: лекції, командні завдання та впровадження. Усі ефіри залишаються в записі в особистому кабінеті, тож дивитися можна у своєму темпі.</p></div></div>
+      </div>
+      <div class="acc-item glass-soft">
+        <button class="acc-btn" type="button"><span class="tx">Я не хочу бути в кадрі. Обов'язково зніматися?</span><span class="ic"></span></button>
+        <div class="acc-panel"><div class="acc-panel-in"><p>Ні. Зйомки в YouTube-реаліті — це частина пакета VIP, де учасниці свідомо йдуть у медійність. У пакетах «Стандарт» і «Бізнес» ви працюєте в команді й проходите програму без обов'язкових зйомок.</p></div></div>
+      </div>
+      <div class="acc-item glass-soft">
+        <button class="acc-btn" type="button"><span class="tx">Чи обов'язково брати участь у чемпіонаті?</span><span class="ic"></span></button>
+        <div class="acc-panel"><div class="acc-panel-in"><p>Ні, участь у чемпіонаті добровільна і оплачується окремо від пакета. Але вона дає бали в особистий залік — у фіналі при рівності балів вони можуть вивести вас на призове місце.</p></div></div>
+      </div>
+      <div class="acc-item glass-soft">
+        <button class="acc-btn" type="button"><span class="tx">Чи потрібно їхати на офлайн-фінал?</span><span class="ic"></span></button>
+        <div class="acc-panel"><div class="acc-panel-in"><p>В офлайн-фінал виходять 5 команд VIP-ліги і ТОП-3 команди Бізнес-ліги. Якщо ваша команда проходить — поїздка потрібна. Місце проведення і точні дати повідомляємо заздалегідь, щоб ви встигли спланувати переліт.</p></div></div>
+      </div>
+      <div class="acc-item glass-soft">
+        <button class="acc-btn" type="button"><span class="tx">Я тільки почала. Чи підходить мені проєкт?</span><span class="ic"></span></button>
+        <div class="acc-panel"><div class="acc-panel-in"><p>Проєкт розрахований на майстринь з діючою практикою — тих, кому є що масштабувати. Блок «Точка зростання» універсальний і працює з будь-якої стартової позиції, але максимум ви отримаєте, якщо вже приймаєте клієнтів. Напишіть менеджеру — розберемо вашу ситуацію.</p></div></div>
+      </div>
+      <div class="acc-item glass-soft">
+        <button class="acc-btn" type="button"><span class="tx">Як оплатити з-за кордону? Чи є розстрочка?</span><span class="ic"></span></button>
+        <div class="acc-panel"><div class="acc-panel-in"><p>Оплата в євро карткою з будь-якої країни. Розстрочка — 50% при бронюванні місця і 50% до старту програми. Менеджер надішле посилання на оплату після заявки.</p></div></div>
+      </div>
+      <div class="acc-item glass-soft">
+        <button class="acc-btn" type="button"><span class="tx">Що буде, якщо я не зможу продовжити?</span><span class="ic"></span></button>
+        <div class="acc-panel"><div class="acc-panel-in"><p>Умови повернення та перенесення участі описані в публічній оферті. Якщо ситуація складна — напишіть менеджеру, розглядаємо індивідуально.</p></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ФОРМА ============ -->
+<section class="sec form-sec" id="apply">
+  <div class="wrap">
+    <div class="form-box glass bloom rv">
+      <aside class="form-aside">
+        <span class="eyebrow">Бронювання місця</span>
+        <h2 class="h-lg">Забронюйте<br><span class="glow">своє місце</span></h2>
+        <p class="lede" style="font-size:15px">Залиште заявку — менеджер напише вам у месенджері, відповість на питання і надішле посилання на оплату.</p>
+        <div class="facts">
+          <div class="fact"><span class="b">1</span><span><b>Ціна фіксується</b> в момент бронювання. Далі діє наступний рівень.</span></div>
+          <div class="fact"><span class="b">2</span><span><b>Розстрочка 50/50</b> — половина при бронюванні, половина до старту.</span></div>
+          <div class="fact"><span class="b">3</span><span><b>Місць обмежено:</b> 130 Стандарт · 100 Бізнес · 60 VIP.</span></div>
+          <div class="fact"><span class="b">4</span><span>Заявка <b>ні до чого не зобов'язує</b> — спочатку поговоримо.</span></div>
+        </div>
+      </aside>
+
+      <div class="form-main">
+        <form id="applyForm" novalidate>
+          <div class="fgrid">
+            <div class="fld">
+              <label for="fName">Ім'я <span class="r">*</span></label>
+              <input type="text" id="fName" name="name" placeholder="Як до вас звертатися" autocomplete="given-name">
+              <span class="msg">Вкажіть, будь ласка, ім'я</span>
+            </div>
+            <div class="fld">
+              <label for="fPhone">Телефон <span class="r">*</span></label>
+              <input type="tel" id="fPhone" name="phone" placeholder="+380 67 000 00 00" autocomplete="tel">
+              <span class="msg">Вкажіть телефон з кодом країни</span>
+            </div>
+            <div class="fld">
+              <label for="fInsta">Instagram <span class="r">*</span></label>
+              <input type="text" id="fInsta" name="instagram" placeholder="@your_profile">
+              <span class="msg">Вкажіть нік в Instagram</span>
+            </div>
+            <div class="fld">
+              <label for="fPack">Пакет, що цікавить <span class="r">*</span></label>
+              <select id="fPack" name="package">
+                <option value="">Оберіть пакет</option>
+                <option>Стандарт — €690</option>
+                <option>Бізнес — €1 290</option>
+                <option>VIP — €1 990</option>
+                <option>Ще не визначилась</option>
+              </select>
+              <span class="msg">Оберіть пакет або «ще не визначилась»</span>
+            </div>
+            <div class="fld">
+              <label for="fDir">Ваш напрямок</label>
+              <select id="fDir" name="direction">
+                <option value="">Не вказувати</option>
+                <option>Броу-майстер</option>
+                <option>Лашмейкер</option>
+                <option>Нігтьовий сервіс</option>
+                <option>Перманентний макіяж</option>
+                <option>Візажист</option>
+                <option>Перукар-стиліст</option>
+                <option>Нарощування волосся</option>
+                <option>Косметологія</option>
+                <option>Масажист</option>
+                <option>Лазерне видалення</option>
+                <option>Власниця салону / студії / школи</option>
+              </select>
+            </div>
+            <div class="fld">
+              <label for="fMsg">Зручний месенджер</label>
+              <select id="fMsg" name="messenger">
+                <option>Telegram</option>
+                <option>WhatsApp</option>
+                <option>Viber</option>
+                <option>Дзвінок</option>
+              </select>
+            </div>
+            <label class="consent">
+              <input type="checkbox" id="fConsent" checked>
+              <span>Погоджуюсь на обробку персональних даних відповідно до <a href="#">політики конфіденційності</a>.</span>
+            </label>
+          </div>
+          <button type="submit" class="btn btn-primary btn-block" style="margin-top:20px">Забронювати місце</button>
+          <div class="form-alt">Не готові залишати заявку? <a href="https://t.me/beauty_games_pro" target="_blank" rel="noopener">Поставте питання менеджеру в Telegram</a></div>
+        </form>
+
+        <div class="form-success" id="formSuccess">
+          <div class="ok">✓</div>
+          <h3>Заявку прийнято</h3>
+          <p>Менеджер напише вам найближчим часом. Щоб пришвидшити — напишіть нам самі, і ми одразу підберемо формат участі.</p>
+          <a href="https://t.me/beauty_games_pro" target="_blank" rel="noopener" class="btn btn-primary">Написати менеджеру в Telegram</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ФУТЕР ============ -->
+<footer>
+  <div class="wrap">
+    <div class="foot">
+      <div>
+        <a href="#top" class="brand" style="margin-bottom:4px">
+          <svg viewBox="0 0 40 40" fill="none" aria-hidden="true" style="width:30px;height:30px">
+            <path d="M4 3 L36 20 L4 37 Z" stroke="#FF57AE" stroke-width="2.2"/>
+            <path d="M12 12h8v6h-8v-6Zm0 10h8v6h-8v-6Zm10-7 7 5-7 5" stroke="#fff" stroke-width="1.7" stroke-linejoin="round"/>
+          </svg>
+          <span><span class="brand-tx">BEAUTY GAMES</span><span class="brand-sb">REALITY SHOW · CHAMPIONSHIP · EDUCATION</span></span>
+        </a>
+        <p class="about">Перший міжнародний трансформаційний проєкт б'юті-індустрії: бізнес-програма, командні змагання, реаліті-шоу та онлайн-чемпіонат. Сезон 2026.</p>
+      </div>
+      <div>
+        <h5>Проєкт</h5>
+        <a href="#about">Про проєкт</a>
+        <a href="#program">Бізнес-програма</a>
+        <a href="#champ">Онлайн-чемпіонат</a>
+        <a href="#awards">Нагороди</a>
+        <a href="#packages">Пакети участі</a>
+      </div>
+      <div>
+        <h5>Контакти</h5>
+        <a href="https://instagram.com/beauty_games.pro" target="_blank" rel="noopener">@beauty_games.pro</a>
+        <a href="https://instagram.com/verbovaya_irina" target="_blank" rel="noopener">@verbovaya_irina</a>
+        <a href="https://t.me/beauty_games_pro" target="_blank" rel="noopener">Telegram-канал</a>
+        <a href="tel:+380676311431">+38 (067) 631-14-31</a>
+        <a href="partners.html">Партнерам і спонсорам</a>
+      </div>
+    </div>
+    <div class="foot-btm">
+      <span>© Beauty Games 2026. Усі права захищені.</span>
+      <span><a href="#">Публічна оферта</a> · <a href="#">Політика конфіденційності</a></span>
+    </div>
+  </div>
+</footer>
+
+<!-- ============ МОБІЛЬНА ПАНЕЛЬ ============ -->
+<div class="mobile-bar">
+  <a href="#apply" class="btn btn-primary">Забронювати місце</a>
+  <a href="https://t.me/beauty_games_pro" target="_blank" rel="noopener" class="tg" aria-label="Написати в Telegram">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9.8 15.6l-.4 4.2c.5 0 .8-.2 1.1-.5l2.6-2.4 5.4 3.9c1 .5 1.7.3 1.9-.9l3.5-16.3c.3-1.4-.5-2-1.5-1.6L1.1 9.6C-.3 10.1-.3 11 .9 11.4l5.5 1.7L19 5.3c.6-.4 1.2-.2.7.2L9.8 15.6z"/></svg>
+  </a>
+</div>
+
+<script src="app.js"></script>
+<script src="fx.js"></script>
