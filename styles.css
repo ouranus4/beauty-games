@@ -197,9 +197,9 @@ a{color:var(--accent-lt);text-decoration:none}
 }
 .nav > *{position:relative;z-index:2}
 .brand{display:flex;align-items:center;gap:11px;flex:none}
-.brand-logo{display:block;height:34px;width:auto;flex:none}
+.brand-logo{display:block;height:24px;width:auto;flex:none}
 .foot-brand{display:inline-block;margin-bottom:6px}
-.foot-logo{display:block;height:104px;width:auto;opacity:.95}
+.foot-logo{display:block;height:78px;width:auto;opacity:.9}
 .brand-mark{width:26px;height:28px;flex:none;color:var(--white);filter:drop-shadow(0 0 12px rgba(var(--accent-rgb),.85))}
 .brand-tx{display:block;font-family:"Montserrat",sans-serif;font-weight:800;letter-spacing:.2em;font-size:11px;color:var(--white);line-height:1.1;white-space:nowrap}
 .brand-sb{display:block;font-family:"JetBrains Mono",monospace;font-size:7.5px;letter-spacing:.16em;color:var(--faint);margin-top:3px;white-space:nowrap}
@@ -299,7 +299,7 @@ a{color:var(--accent-lt);text-decoration:none}
 /* ============================================================
    ТРИ СКЛАДОВІ — нахилені картки
    ============================================================ */
-.three{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px}
+.three{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px;align-items:start}
 .tcard{padding:30px 28px 36px;transition:transform .3s ease}
 .tcard:nth-child(1){transform:rotate(-1.6deg)}
 .tcard:nth-child(2){transform:rotate(1deg)}
@@ -314,7 +314,7 @@ a{color:var(--accent-lt);text-decoration:none}
 }
 .tcard h3{font-size:19px;font-weight:800;text-transform:uppercase;letter-spacing:.02em;color:var(--white)}
 .tcard p{margin:10px 0 0;font-size:14.5px;color:var(--muted)}
-.tcard ul{margin:16px 0 0;padding:0;list-style:none;display:flex;flex-direction:column;gap:7px}
+.tcard ul{margin:16px 0 0;padding:0;list-style:none;display:flex;flex-direction:column;gap:7px;flex:none}
 .tcard ul li{position:relative;padding-left:17px;font-size:13.5px;color:var(--text)}
 .tcard ul li::before{content:"";position:absolute;left:0;top:.62em;width:7px;height:2px;border-radius:2px;background:var(--accent);box-shadow:0 0 8px rgba(var(--accent-rgb),.9)}
 
@@ -356,9 +356,13 @@ a{color:var(--accent-lt);text-decoration:none}
   font-size:15px;font-weight:700;letter-spacing:.01em;
 }
 .acc-btn .mi{
-  font-family:"JetBrains Mono",monospace;font-size:11px;color:var(--accent-lt);flex:none;
-  min-width:28px;text-shadow:0 0 12px rgba(var(--accent-rgb),.7);
+  flex:none;width:30px;height:30px;border-radius:50%;display:grid;place-items:center;
+  font-family:"JetBrains Mono",monospace;font-size:10.5px;font-weight:700;
+  color:var(--accent-lt);letter-spacing:.02em;
+  border:1px solid rgba(var(--accent-rgb),.34);
+  background:rgba(var(--accent-rgb),.1);
 }
+.acc-item.open .acc-btn .mi{color:#fff;background:rgba(var(--accent-rgb),.42);border-color:rgba(var(--accent-rgb),.6)}
 .acc-btn .tx{flex:1}
 .acc-btn .ic{
   position:relative;flex:none;width:26px;height:26px;border-radius:50%;display:grid;place-items:center;
@@ -370,7 +374,7 @@ a{color:var(--accent-lt);text-decoration:none}
 .acc-item.open .acc-btn .ic{transform:rotate(180deg);background:rgba(var(--accent-rgb),.35)}
 .acc-item.open .acc-btn .ic::after{opacity:0}
 .acc-panel{max-height:0;overflow:hidden;transition:max-height .34s ease}
-.acc-panel-in{padding:0 24px 22px 68px;font-size:14.5px;color:var(--muted)}
+.acc-panel-in{padding:0 24px 22px 70px;font-size:14.5px;color:var(--muted)}
 .acc-panel-in p{margin:0 0 9px}
 .acc-panel-in ul{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:6px}
 .acc-panel-in li{position:relative;padding-left:16px}
@@ -596,8 +600,8 @@ footer{position:relative;z-index:2;border-top:1px solid var(--line-soft);padding
    АДАПТИВ
    ============================================================ */
 /* Підпис під назвою з'їдав ширину шапки і витісняв назву бренда */
-@media (max-width:1240px){ .brand-logo{height:30px} }
-@media (max-width:400px){ .brand-logo{height:26px} }
+@media (max-width:1240px){ .brand-logo{height:22px} }
+@media (max-width:400px){ .brand-logo{height:19px} }
 @media (max-width:1120px){
   .nav-links a{padding:10px 9px;font-size:11px}
   .nav{gap:10px}
@@ -778,24 +782,32 @@ footer{position:relative;z-index:2;border-top:1px solid var(--line-soft);padding
 /* ============================================================
    ІКОНКИ — заливка «скляним» градієнтом зі світінням
    ============================================================ */
-.icon{width:30px;height:30px;flex:none;display:block}
+.icon{
+  width:30px;height:30px;flex:none;display:block;
+  color:rgba(255,255,255,.82);
+  filter:drop-shadow(0 0 6px rgba(var(--accent-rgb),.85))
+         drop-shadow(0 0 16px rgba(var(--accent-rgb),.45));
+  transition:color .22s ease, filter .22s ease, transform .22s ease;
+}
 .icon-lg{width:44px;height:44px}
 .icon-sm{width:20px;height:20px}
-.icon-glow{filter:drop-shadow(0 4px 14px rgba(var(--accent-rgb),.75))}
 
 /* кругла підкладка під іконку */
 .icon-chip{
-  width:56px;height:56px;border-radius:18px;flex:none;display:grid;place-items:center;
-  background:linear-gradient(160deg,rgba(255,255,255,.14),rgba(255,255,255,.035));
-  border:1px solid rgba(255,255,255,.16);
-  box-shadow:inset 0 1px 0 rgba(255,255,255,.3),0 12px 30px -10px rgba(var(--accent-rgb),.8);
+  width:54px;height:54px;border-radius:17px;flex:none;display:grid;place-items:center;
+  background:linear-gradient(160deg,rgba(255,255,255,.07),rgba(255,255,255,.02));
+  border:1px solid rgba(255,255,255,.12);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.16);
 }
 .icon-chip .icon{width:30px;height:30px}
 
 /* іконка в плитці категорії */
 .tile{display:flex;flex-direction:column;align-items:center;gap:10px}
-.tile .icon{width:32px;height:32px;transition:transform .22s ease}
-.tile:hover .icon{transform:translateY(-2px) scale(1.06)}
+.tile .icon{width:30px;height:30px}
+.tile:hover .icon{
+  transform:translateY(-2px);color:#fff;
+  filter:drop-shadow(0 0 9px rgba(var(--accent-rgb),1)) drop-shadow(0 0 24px rgba(var(--accent-rgb),.7));
+}
 
 /* заміна номера на іконку в картках */
 .tcard .icon-chip{margin-bottom:18px}
