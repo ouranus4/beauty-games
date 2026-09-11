@@ -863,7 +863,9 @@
       </aside>
 
       <div class="form-main">
-        <form id="applyForm" novalidate>
+        <form id="applyForm" name="participant" method="POST" data-netlify="true" netlify-honeypot="bot-field" novalidate>
+          <input type="hidden" name="form-name" value="participant">
+          <p hidden><label>Не заповнюйте це поле: <input name="bot-field"></label></p>
           <div class="fgrid">
             <div class="fld">
               <label for="fName">Ім'я <span class="r">*</span></label>
@@ -918,7 +920,7 @@
               </select>
             </div>
             <label class="consent">
-              <input type="checkbox" id="fConsent" checked>
+              <input type="checkbox" id="fConsent" name="consent" value="yes" checked>
               <span>Погоджуюсь на обробку персональних даних відповідно до <a href="#">політики конфіденційності</a>.</span>
             </label>
           </div>

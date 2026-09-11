@@ -1,0 +1,42 @@
+# ============================================================
+# Beauty Games 2026 — конфігурація Netlify
+# Статичний сайт: збірка не потрібна, публікується коренева тека.
+# ============================================================
+
+[build]
+  publish = "."
+  command = ""
+
+# ---------- гарні адреси ----------
+[[redirects]]
+  from = "/partners"
+  to = "/partners.html"
+  status = 200
+
+# ---------- безпека ----------
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Content-Type-Options = "nosniff"
+    X-Frame-Options = "SAMEORIGIN"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "geolocation=(), microphone=(), camera=(), payment=()"
+    Strict-Transport-Security = "max-age=31536000; includeSubDomains"
+
+# ---------- кеш ----------
+# HTML завжди перевіряється: правки контенту мають з'являтися одразу.
+[[headers]]
+  for = "/*.html"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
+
+# CSS і JS без хешів в іменах — тримаємо годину, щоб оновлення не зависали.
+[[headers]]
+  for = "/*.css"
+  [headers.values]
+    Cache-Control = "public, max-age=3600"
+
+[[headers]]
+  for = "/*.js"
+  [headers.values]
+    Cache-Control = "public, max-age=3600"

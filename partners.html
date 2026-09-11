@@ -622,7 +622,9 @@
       </aside>
 
       <div class="form-main">
-        <form id="applyForm" novalidate>
+        <form id="applyForm" name="partner" method="POST" data-netlify="true" netlify-honeypot="bot-field" novalidate>
+          <input type="hidden" name="form-name" value="partner">
+          <p hidden><label>Do not fill: <input name="bot-field"></label></p>
           <div class="fgrid">
             <div class="fld">
               <label for="fCompany">Компанія / бренд <span class="r">*</span></label>
@@ -666,7 +668,7 @@
               <textarea id="fNote" name="note" rows="3" placeholder="Сфера, продукт, що хочете отримати від участі"></textarea>
             </div>
             <label class="consent">
-              <input type="checkbox" id="fConsent" checked>
+              <input type="checkbox" id="fConsent" name="consent" value="yes" checked>
               <span>Погоджуюсь на обробку персональних даних відповідно до <a href="#">політики конфіденційності</a>.</span>
             </label>
           </div>
