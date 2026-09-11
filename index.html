@@ -7,7 +7,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800;900&family=Oswald:wght@400;500;600&family=Manrope:wght@400;500;600;700&family=Pixelify+Sans:wght@400..700&family=JetBrains+Mono:wght@400;500;700&display=swap">
 <link rel="stylesheet" href="styles.css?v=2cf033dd">
-<link rel="stylesheet" href="squid.css?v=2bfd8494">
+<link rel="stylesheet" href="squid.css?v=e2773cd9">
 
 <!-- SPRITE -->
 <div class="preloader" id="preloader">
@@ -284,8 +284,8 @@
 
     <div class="fork rv" id="fork">
       <div class="fork-q">
-        <span class="fork-k">Питання</span>
-        <h3 class="fork-t">Чого ви хочете для себе цього сезону?</h3>
+        <h3 class="fork-t">Що ви хочете встигнути до кінця року?</h3>
+        <p class="fork-sub">Оберіть одне — підкажемо формат</p>
       </div>
       <div class="fork-tree" aria-hidden="true">
         <span class="fork-stem"></span>
@@ -297,15 +297,15 @@
       <div class="fork-opts" role="group">
         <button class="fork-o" type="button" data-pick="money">
           <span class="fork-o-i" aria-hidden="true"><svg class="icon"><use href="#i-coin"/></svg></span>
-          <span class="fork-o-tx"><b>Більше заробляти</b><span>Чек, потік клієнтів, система. Без камер.</span></span>
+          <span class="fork-o-tx"><b>Заробляти більше</b><span>Підняти чек і поставити потік клієнтів</span></span>
         </button>
         <button class="fork-o" type="button" data-pick="fame">
           <span class="fork-o-i" aria-hidden="true"><svg class="icon"><use href="#i-tv"/></svg></span>
-          <span class="fork-o-tx"><b>Більше медійності</b><span>Ім&rsquo;я, аудиторія, зйомки, вихід на сцену.</span></span>
+          <span class="fork-o-tx"><b>Стати помітною</b><span>Ім&rsquo;я, аудиторія, зйомки, вихід на сцену</span></span>
         </button>
         <button class="fork-o" type="button" data-pick="both">
           <span class="fork-o-i" aria-hidden="true"><svg class="icon"><use href="#i-star"/></svg></span>
-          <span class="fork-o-tx"><b>І те, і інше</b><span>Гроші та ім&rsquo;я одночасно, за один сезон.</span></span>
+          <span class="fork-o-tx"><b>І те, і інше</b><span>Гроші та ім&rsquo;я — за один сезон</span></span>
         </button>
       </div>
       <div class="fork-out" id="forkOut" hidden>
@@ -446,10 +446,7 @@
       </article>
     </div>
 
-    <div class="stars-sum rv">
-      <div><b>824 тис.</b><span>сумарна аудиторія цих семи акаунтів</span></div>
-      <div><b>7</b><span>імен — і це лише мала частина</span></div>
-    </div>
+    <p class="stars-note">І це лише мала частина.</p>
   </div>
 </section>
 
@@ -481,6 +478,7 @@
       <p class="lede">Крок за кроком: що відбувається на етапі і з чим ви з нього виходите.</p>
     </div>
     <div class="path rv" id="path">
+      <p class="path-hint">Натисніть етап, щоб подивитись, що на ньому відбувається</p>
       <div class="path-map" role="tablist" aria-label="Етапи сезону">
         <button class="pnode on" type="button" data-step="0" role="tab" aria-selected="true"><span class="pnode-n">01</span><span class="pnode-t">Бронювання</span></button>
         <button class="pnode" type="button" data-step="1" role="tab" aria-selected="false"><span class="pnode-n">02</span><span class="pnode-t">Передпідготовка</span></button>
@@ -1230,8 +1228,26 @@
       </aside>
 
       <div class="form-main">
+        <div class="pickbox" id="pickBox" hidden>
+          <span class="pickbox-k">Ваш вибір на сторінці</span>
+          <div class="pickbox-rows">
+            <div class="pickbox-row" id="pickRowDir" hidden>
+              <span>Напрямок</span><b id="pickDir"></b>
+            </div>
+            <div class="pickbox-row" id="pickRowGoal" hidden>
+              <span>Мета на рік</span><b id="pickGoal"></b>
+            </div>
+            <div class="pickbox-row" id="pickRowFmt" hidden>
+              <span>Формат участі</span><b id="pickFmt"></b>
+            </div>
+          </div>
+          <p class="pickbox-note">Це піде менеджеру разом із заявкою — не треба повторювати.</p>
+        </div>
+
         <form id="applyForm" name="participant" method="POST" data-netlify="true" netlify-honeypot="bot-field" novalidate>
           <input type="hidden" name="form-name" value="participant">
+          <input type="hidden" name="goal" id="fGoal">
+          <input type="hidden" name="format" id="fFormat">
           <p hidden><label>Не заповнюйте це поле: <input name="bot-field"></label></p>
           <div class="fgrid">
             <div class="fld">
@@ -1355,5 +1371,5 @@
   </a>
 </div>
 
-<script src="app.js?v=4a4f3747"></script>
+<script src="app.js?v=d9562358"></script>
 <script src="fx.js?v=b9217507"></script>

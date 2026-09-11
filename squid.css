@@ -1631,16 +1631,15 @@ body.bio-open{overflow:hidden}
   background:linear-gradient(180deg,rgba(255,46,136,.12),rgba(255,255,255,.03));
   border:1px solid rgba(255,46,136,.4);
 }
-.fork-k{
-  display:inline-block;padding:5px 14px;border-radius:var(--r-pill);
-  font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:.18em;
-  text-transform:uppercase;color:#fff;background:var(--pink);
-}
 .fork-q{text-align:center}
 .fork-t{
-  margin:14px auto 0;font-family:"Montserrat",sans-serif;font-weight:900;
-  font-size:clamp(20px,2.8vw,28px);line-height:1.15;color:var(--white);
-  letter-spacing:-.025em;text-wrap:balance;max-width:22ch;
+  margin:0 auto;font-family:"Montserrat",sans-serif;font-weight:900;
+  font-size:clamp(21px,3vw,30px);line-height:1.12;color:var(--white);
+  letter-spacing:-.025em;text-wrap:balance;max-width:20ch;
+}
+.fork-sub{
+  margin:10px 0 0;font-family:"JetBrains Mono",monospace;font-size:10.5px;
+  letter-spacing:.16em;text-transform:uppercase;color:var(--pink-soft);
 }
 
 /* Розвилка малюється лініями: стовбур від питання, поперечина
@@ -1973,4 +1972,58 @@ body.bio-open{overflow:hidden}
   .fork-out{padding:16px 18px}
   .ways{gap:10px}
   .way{padding:18px}
+}
+
+/* ============================================================
+   ПІДКАЗКА ПРО ЕТАПИ
+   На телефоні підписи вузлів приховані, і було незрозуміло, що по
+   них клікають. Рядок над картою це знімає.
+   ============================================================ */
+.path-hint{
+  margin:0 0 14px;text-align:center;
+  font-family:"JetBrains Mono",monospace;font-size:10.5px;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--muted);
+}
+.sec-light .path-hint{color:#6B6478}
+/* Вузол має виглядати натискним: тінь і легкий підйом на дотик. */
+.pnode-n{box-shadow:0 4px 12px rgba(0,0,0,.25)}
+.sec-light .pnode-n{box-shadow:0 4px 12px rgba(30,10,40,.1)}
+.pnode:active .pnode-n{transform:scale(.94)}
+
+/* ============================================================
+   ПІДСУМОК ВИБОРУ БІЛЯ ЗАЯВКИ
+   ============================================================ */
+.pickbox{
+  margin-bottom:20px;padding:18px 20px;border-radius:var(--r-md);
+  background:linear-gradient(180deg,rgba(233,198,126,.14),rgba(233,198,126,.04));
+  border:1px solid rgba(233,198,126,.45);
+}
+.pickbox-k{
+  display:block;font-family:"JetBrains Mono",monospace;font-size:10px;
+  letter-spacing:.18em;text-transform:uppercase;color:var(--gold-2);margin-bottom:12px;
+}
+.pickbox-rows{display:grid;gap:8px}
+.pickbox-row{
+  display:flex;align-items:baseline;justify-content:space-between;gap:14px;
+  padding-bottom:8px;border-bottom:1px dashed rgba(233,198,126,.3);
+}
+.pickbox-row:last-child{border-bottom:0;padding-bottom:0}
+.pickbox-row > span{
+  flex:none;font-family:"JetBrains Mono",monospace;font-size:10px;
+  letter-spacing:.1em;text-transform:uppercase;color:var(--muted);
+}
+.pickbox-row b{
+  text-align:right;font-family:"Montserrat",sans-serif;font-weight:800;
+  font-size:14px;color:var(--gold-1);line-height:1.3;
+}
+.pickbox-note{margin:12px 0 0;font-size:12px;color:var(--muted);line-height:1.5}
+
+/* Сповіщення: спершу що саме зарахували, потім навіщо. */
+.toast span{
+  font-family:"Montserrat",sans-serif;font-weight:900;font-size:15px;
+  color:var(--gold-ink);letter-spacing:-.01em;
+}
+.toast b{
+  font-family:Arial,Helvetica,sans-serif;font-size:10px;font-weight:700;
+  letter-spacing:.14em;text-transform:uppercase;color:rgba(42,27,6,.62);
 }

@@ -51,6 +51,23 @@
   var $  = function (s, c) { return (c || document).querySelector(s); };
   var $$ = function (s, c) { return Array.prototype.slice.call((c || document).querySelectorAll(s)); };
 
+  /* ============================================================
+     ПІДСУМОК ВИБОРУ
+     Усе, що людина обрала на сторінці, збирається в одну картку
+     біля заявки — щоб не питати те саме ще раз у менеджера.
+     ============================================================ */
+  var pickBox = $('#pickBox');
+  var setPick = function (row, field, value, hidden) {
+    var r = $('#' + row);
+    var f = $('#' + field);
+    if (f) f.textContent = value || '';
+    if (r) r.hidden = !value;
+    if (hidden) { var hf = $('#' + hidden); if (hf) hf.value = value || ''; }
+    if (pickBox) {
+      pickBox.hidden = !$$('.pickbox-row', pickBox).some(function (x) { return !x.hidden; });
+    }
+  };
+
   /* ---------- безпечний localStorage ---------- */
   var store = {
     get: function (k) { try { return window.localStorage.getItem(k); } catch (e) { return null; } },
@@ -651,6 +668,7 @@
           heroes.length > 1 ? 'Ваші персонажі — ' : 'Ваш персонаж — ';
       }
       if (dirField) dirField.value = full.join(', ');
+      setPick('pickRowDir', 'pickDir', full.join(', '));
 
       store.set('bg_character', chosen.join('|'));
       if (!silent) {
@@ -715,7 +733,9 @@
         if (forkText) forkText.textContent = a.t;
         if (forkOut) forkOut.hidden = false;
         $$('.way').forEach(function (w, i) { w.classList.toggle('pick', i === a.w); });
-        document.dispatchEvent(new CustomEvent('bg:fork'));
+        setPick('pickRowGoal', 'pickGoal', $('b', b).textContent, 'fGoal');
+        setPick('pickRowFmt', 'pickFmt', a.n, 'fFormat');
+        document.dispatchEvent(new CustomEvent('bg:fork', { detail: { name: a.n } }));
       });
     });
   }
@@ -762,7 +782,7 @@
     var toast = function (txt) {
       var t = document.createElement('div');
       t.className = 'toast';
-      t.innerHTML = '<b>Крок зараховано</b><span>' + txt + '</span>';
+      t.innerHTML = '<span>' + txt + '</span><b>Записали — побачите у заявці</b>';
       document.body.appendChild(t);
       requestAnimationFrame(function () { t.classList.add('in'); });
       setTimeout(function () {
@@ -778,10 +798,10 @@
         if (label) toast(label);
       });
     };
-    document.addEventListener('bg:character', function () { markStep('#picker', 'Персонаж обраний'); });
+    document.addEventListener('bg:character', function () { markStep('#picker', 'Напрямок обрано'); });
     document.addEventListener('bg:quiz', function () { markStep('#about', 'Тест пройдено'); });
     document.addEventListener('bg:fork', function () { markStep('#format', 'Формат обрано'); });
-    document.addEventListener('bg:path-end', function () { markStep('#how', 'Шлях сезону пройдено'); });
+    document.addEventListener('bg:path-end', function () { markStep('#how', 'Шлях сезону переглянуто'); });
   }
 
   /* ============================================================
