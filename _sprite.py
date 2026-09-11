@@ -86,7 +86,7 @@ ICONS = {
               '<path d="M3.6 10.6 12 3.2l8.4 7.4"/><path d="M9 20.6v-6h6v6"/>'),
 }
 
-ICON_ATTRS = ('fill="none" stroke="currentColor" stroke-width="1.85" '
+ICON_ATTRS = ('fill="none" stroke="currentColor" stroke-width="1.45" '
               'stroke-linecap="round" stroke-linejoin="round"')
 
 
@@ -119,6 +119,7 @@ PRELOADER = """
     </svg>
   </div>
   <div class="pl-word">Beauty Games</div>
+  <div class="pl-bar"><span class="pl-bar-fill" id="plBar"></span></div>
 </div>
 """
 

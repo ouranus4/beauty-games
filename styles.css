@@ -159,6 +159,7 @@ a{color:var(--accent-lt);text-decoration:none}
 /* ---------- пігулки ---------- */
 .pills{display:flex;flex-wrap:wrap;gap:9px}
 .pill{
+  white-space:nowrap;
   font-family:"Montserrat",sans-serif;font-size:11.5px;font-weight:700;
   letter-spacing:.06em;text-transform:uppercase;padding:9px 17px;border-radius:999px;
   border:1px solid rgba(255,255,255,.16);color:var(--text);
@@ -721,18 +722,9 @@ footer{position:relative;z-index:2;border-top:1px solid var(--line-soft);padding
    екрані. Стартує під прелоадером, тож до моменту, коли він зникає,
    заголовок уже наполовину проявлений. Текст завжди лишається
    справжнім — жодних підмін символів. */
-.fx-wipe{
-  /* Суцільна частина маски — 62% від її ширини при масштабі 260%,
-     тобто 1.6 ширини заголовка. У кінцевому стані вона перекриває
-     текст повністю разом зі світінням, без обрізаного краю. */
-  -webkit-mask-image:linear-gradient(96deg,#000 62%,rgba(0,0,0,.38) 76%,transparent 90%);
-          mask-image:linear-gradient(96deg,#000 62%,rgba(0,0,0,.38) 76%,transparent 90%);
-  -webkit-mask-size:260% 100%;  mask-size:260% 100%;
-  -webkit-mask-repeat:no-repeat; mask-repeat:no-repeat;
-  -webkit-mask-position:100% 0; mask-position:100% 0;
-  animation:fxWipe .95s cubic-bezier(.32,.72,.3,1) .8s forwards;
-}
-@keyframes fxWipe{to{-webkit-mask-position:0 0;mask-position:0 0}}
+/* Проявку заголовка маскою прибрано. Вона стартувала з повністю
+   невидимого стану, і будь-який збій анімації лишав перший екран
+   без головного рядка. Рух тепер тільки в прелоадері. */
 
 /* ---------- зміна підпису на кнопці ---------- */
 .btn{transition:transform .18s ease,box-shadow .18s ease,background .18s ease,opacity .12s ease}
@@ -743,7 +735,6 @@ footer{position:relative;z-index:2;border-top:1px solid var(--line-soft);padding
 }
 @media (prefers-reduced-motion:reduce){
   .sfx-btn.on .bars i,.sfx-hint span,.cd-urgent .cd-unit .v{animation:none!important}
-  .fx-wipe{-webkit-mask-image:none;mask-image:none;animation:none}
 }
 
 /* ============================================================
@@ -753,7 +744,7 @@ footer{position:relative;z-index:2;border-top:1px solid var(--line-soft);padding
 .preloader{
   position:fixed;inset:0;z-index:200;background:#000;
   display:flex;flex-direction:column;align-items:center;justify-content:center;gap:26px;
-  animation:plOut .55s cubic-bezier(.4,0,.2,1) 1.95s forwards;
+  animation:plOut .55s cubic-bezier(.4,0,.2,1) 2.75s forwards;
 }
 .preloader.done{animation:plOut .4s cubic-bezier(.4,0,.2,1) forwards}
 @keyframes plOut{to{opacity:0;visibility:hidden;pointer-events:none}}
@@ -882,12 +873,6 @@ footer{position:relative;z-index:2;border-top:1px solid var(--line-soft);padding
 /* На вузьких екранах схеми ширші за екран — показуємо, що їх можна
    протягнути вбік, інакше половина інфографіки лишається непоміченою. */
 @media (max-width:760px){
-  .info-scroll{position:relative}
-  .info-scroll::after{
-    content:"";position:sticky;right:0;top:0;float:right;width:44px;height:100%;
-    pointer-events:none;margin-left:-44px;
-    background:linear-gradient(270deg,rgba(10,6,18,.9),transparent);
-  }
   .info-cap::before{content:"↔ ";color:var(--accent-lt)}
 }
 
@@ -943,3 +928,16 @@ footer{position:relative;z-index:2;border-top:1px solid var(--line-soft);padding
   .cd-unit{flex:1;min-width:0}
 }
 @media (max-width:1040px){ .nav-burger{display:grid} }
+
+/* ---------- смуга завантаження під знаком ---------- */
+.pl-bar{
+  width:min(58vw,220px);height:3px;border-radius:999px;overflow:hidden;
+  background:rgba(255,255,255,.09);margin-top:4px;
+}
+.pl-bar-fill{
+  display:block;height:100%;width:0;border-radius:999px;
+  background:linear-gradient(90deg,#7A2BE0,#E6007E,#00E5FF);
+  box-shadow:0 0 12px rgba(230,0,126,.9);
+  transition:width .28s cubic-bezier(.3,.8,.4,1);
+}
+@media (prefers-reduced-motion:reduce){ .pl-bar-fill{transition:none} }

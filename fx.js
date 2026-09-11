@@ -158,7 +158,6 @@
                           mallet({ f: P.g,  dur: 0.44, gain: 0.08, delay: 0.06 }); },
     tab:    function () { mallet({ f: P.c2, dur: 0.36, gain: 0.1 }); },
     field:  function () { mallet({ f: P.g2, dur: 0.22, gain: 0.05 }); },
-    reveal: function () { noise({ f: 900, to: 2800, dur: 0.34, gain: 0.014, q: 0.8, space: true }); },
     swoosh: function () { noise({ f: 2800, to: 320, dur: 0.5, gain: 0.04, q: 0.7, space: true }); },
     tick:   function () { mallet({ f: P.e2, dur: 0.12, gain: 0.05 }); },
 
@@ -375,29 +374,8 @@
     });
   }
 
-  // поява секцій при прокрутці
-  var lastReveal = 0;
-  if ('IntersectionObserver' in window && !reduced) {
-    var revealIO = new IntersectionObserver(function (entries) {
-      entries.forEach(function (en) {
-        if (!en.isIntersecting) return;
-        revealIO.unobserve(en.target);
-        if (!soundOn) return;
-        var now = Date.now();
-        if (now - lastReveal < 320) return;
-        lastReveal = now;
-        SFX.reveal();
-      });
-    }, { rootMargin: '0px 0px -14% 0px', threshold: 0.12 });
-
-    setTimeout(function () {
-      $$('.sec-head, .glass.bloom').forEach(function (el) {
-        var r = el.getBoundingClientRect();
-        if (r.top < window.innerHeight && r.bottom > 0) return; // вже видно — не озвучуємо
-        revealIO.observe(el);
-      });
-    }, 400);
-  }
+  // Звук появи секцій прибрано: під час прокрутки він давав
+  // безперервне «шух-шух» і швидко набридав.
 
   /* ============================================================
      4. ТАЙМЕР: терміновість у тексті + тікання в останню хвилину
@@ -466,8 +444,6 @@
 
   /* ---------- запуск текстових ефектів ---------- */
   if (!reduced) {
-    $$('.h-xl').forEach(function (el) { el.classList.add('fx-wipe'); });
-
     var heads = [];
     var nums  = $$('.stat .v, .pack .seats b, .seatrow .qty');
 
@@ -511,7 +487,10 @@
     'Умови для спікерів':    'Хочу на сцену'
   };
 
+  var canHover = window.matchMedia && window.matchMedia('(hover: hover)').matches;
+
   $$('.btn').forEach(function (btn) {
+    if (!canHover) return;   // на тач-екрані підпис залипав на «Я в грі»
     var base = btn.textContent.trim();
     var alt = ALT[base];
     if (!alt) return;

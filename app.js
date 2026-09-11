@@ -14,7 +14,28 @@
      ============================================================ */
   var preloader = document.getElementById('preloader');
   if (preloader) {
+    /* Смуга росте за реальним прогресом: скільки ресурсів сторінки вже
+       завантажилось. Поки їх мало — підтягуємо плавно за часом, щоб
+       смуга не стрибала з нуля одразу в кінець. */
+    var bar = document.getElementById('plBar');
+    var pct = 0, barTimer = null;
+    var setBar = function (v) {
+      pct = Math.max(pct, Math.min(100, v));
+      if (bar) bar.style.width = pct + '%';
+    };
+    if (bar) {
+      var t0 = Date.now();
+      barTimer = setInterval(function () {
+        var byTime = Math.min(92, (Date.now() - t0) / 26);
+        var res = performance.getEntriesByType ? performance.getEntriesByType('resource').length : 0;
+        var byRes = Math.min(92, res * 7);
+        setBar(Math.max(byTime, byRes));
+      }, 90);
+    }
+
     var killPreloader = function () {
+      if (barTimer) { clearInterval(barTimer); barTimer = null; }
+      setBar(100);
       preloader.classList.add('done');
       setTimeout(function () {
         if (preloader && preloader.parentNode) preloader.parentNode.removeChild(preloader);
@@ -23,11 +44,11 @@
     // мінімум показу, щоб анімація не обривалася на швидкому з'єднанні
     var shown = Date.now();
     window.addEventListener('load', function () {
-      var left = Math.max(0, 1900 - (Date.now() - shown));
+      var left = Math.max(0, 2700 - (Date.now() - shown));
       setTimeout(killPreloader, left);
     });
     // страховка на випадок, якщо load так і не настане
-    setTimeout(killPreloader, 4000);
+    setTimeout(killPreloader, 5200);
   }
 
   var $  = function (s, c) { return (c || document).querySelector(s); };
