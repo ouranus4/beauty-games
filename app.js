@@ -456,6 +456,19 @@
     // Висновок будується не за кількістю галочок, а за тим, яка зона
     // переважає — дві однакові цифри можуть означати різні проблеми.
     // «а, б і в» — з комами і останнім сполучником, як у звичайному тексті
+    // Кожен відмічений пункт має своє рішення: показуємо відповідь
+    // саме на те, що людина обрала, а не загальний висновок.
+    var FIX = {
+      "дохід є, але не росте": "рахуємо, звідки береться дохід, і прибираємо те, що його з’їдає",
+      "запис під зав’язку без вихідних": "розвантажуємо графік і віддаємо першу частину задач",
+      "не бачу реального прибутку": "рахуємо собівартість послуги і вашу годину",
+      "страшно підняти ціну": "піднімаємо чек ступенями, зі скриптом для діючих клієнтів",
+      "нема системи запису": "ставимо передоплату і запис наступного візиту в кріслі",
+      "соцмережі не дають записів": "переупаковуємо профіль і робимо контент, який приводить записи",
+      "тримаю все на собі": "розбираємо, що делегувати першим, і як не втратити якість",
+      "не знаю, що далі": "збираємо бізнес-план на рік із контрольними точками"
+};
+
     var listify = function (arr) {
       if (arr.length === 1) return arr[0];
       return arr.slice(0, -1).join(', ') + ' і ' + arr[arr.length - 1];
@@ -535,6 +548,19 @@
         if (tags.length) {
           pickedEl.innerHTML = 'Ви відмітили: ' +
             listify(tags.map(function (t) { return '<b>' + t + '</b>'; })) + '.';
+        }
+      }
+
+      // Рішення саме на те, що відмітили
+      var fixEl = $('#quizFix');
+      if (fixEl) {
+        var fixes = picked.map(function (b) {
+          return FIX[b.getAttribute('data-tag')];
+        }).filter(Boolean);
+        fixEl.hidden = !fixes.length;
+        if (fixes.length) {
+          fixEl.innerHTML = '<span class="quiz-fix-k">Що з цим робимо на сезоні</span><ul>' +
+            fixes.map(function (f) { return '<li>' + f + '</li>'; }).join('') + '</ul>';
         }
       }
 
@@ -641,16 +667,14 @@
   var hello = $('#hello');
   if (hello) {
     var nameIn = $('#heroName');
-    var helloDone = $('#helloDone');
-    var helloName = $('#helloName');
     var expBtns = $$('.expo', hello);
     var formName = $('#fName');
 
     var syncName = function (silent) {
       var v = (nameIn && nameIn.value || '').trim();
-      if (helloDone) helloDone.hidden = !v;
-      if (helloName) helloName.textContent = v;
       if (formName && v && !formName.value) formName.value = v;
+      setPick('pickRowName', 'pickName', v);
+      if (window.bgPaintWho) window.bgPaintWho();
       store.set('bg_name', v);
       if (v && !silent) document.dispatchEvent(new CustomEvent('bg:hello', { detail: { name: v } }));
     };
@@ -706,7 +730,7 @@
       return arr.slice(0, -1).join(', ') + ' і ' + arr[arr.length - 1];
     };
 
-    var paint = function (silent) {
+    var paint = window.bgPaintWho = function (silent) {
       var heroes = [], full = [];
       chrs.forEach(function (c) {
         var on = chosen.indexOf(c.getAttribute('data-dir')) > -1;
@@ -741,7 +765,7 @@
           }));
           var nm = (store.get('bg_name') || '').trim();
           var exp = (store.get('bg_exp') || '').trim();
-          whoName.textContent = (nm ? nm + ', ваш персонаж — ' : 'Ваш персонаж — ') + roles;
+          whoName.textContent = (nm ? nm + ', ваші скіли — ' : 'Ваші скіли — ') + roles;
           var whoExp = $('#forkWhoExp');
           if (whoExp) {
             whoExp.textContent = exp ? exp + ' у beauty' : '';
@@ -753,7 +777,7 @@
           if (whoBack) whoBack.hidden = true;
           if (who) who.classList.add('on');
         } else {
-          whoName.textContent = 'Оберіть персонажа у кроці 2';
+          whoName.textContent = 'Оберіть свої скіли у кроці 2';
           var whoExpOff = $('#forkWhoExp');
           if (whoExpOff) whoExpOff.hidden = true;
           whoPain.textContent = 'Тоді покажемо, які задачі типові саме для вашого напрямку.';
@@ -762,6 +786,12 @@
         }
       }
       setPick('pickRowDir', 'pickDir', full.join(', '));
+
+      var pTitle = $('#pickerTitle');
+      if (pTitle) {
+        var nm2 = (store.get('bg_name') || '').trim();
+        pTitle.textContent = nm2 ? nm2 + ', оберіть свої скіли' : 'Оберіть свої скіли';
+      }
 
       store.set('bg_character', chosen.join('|'));
       if (!silent) {
@@ -799,21 +829,24 @@
     var forkOut = $('#forkOut');
     var forkName = $('#forkName');
     var forkText = $('#forkText');
+    // Три місії — три шляхи, один до одного. Підсвічуємо той,
+    // що відповідає обраній місії, але інші лишаються видимими:
+    // вибір за людиною.
     var ANSW = {
       money: {
-        n: 'Формат A — тільки бізнес-навчання',
+        n: 'Шлях 1 — тільки бізнес-навчання',
         t: 'Ви тут за грошима, і це чесна відповідь. Беріть навчання без шоу: дев’ять модулів, куратор, домашні з перевіркою. Виходите з піднятим чеком, налаштованим потоком і планом на рік — без камер і публічності.',
         w: 0
       },
       fame: {
-        n: 'Формат B — з чемпіонатом і реаліті-шоу',
-        t: 'Медійність не росте окремо від бізнесу: щоб вас знали, має бути що показати. Тому формат B — це і навчання, і зйомки. Вас знімають, ми вас просуваємо, глядачі голосують, а контент лишається вам.',
+        n: 'Шлях 2 — навчання і чемпіонат',
+        t: 'Щоб вас помітили в професії, потрібен не тільки красивий профіль, а підтверджений рівень. Чемпіонат дає звання, кубок і оцінку журі з практиків — це те, що видно з першого екрана вашого профілю і що можна закласти в прайс.',
         w: 1
       },
       both: {
-        n: 'Формат B — з чемпіонатом і реаліті-шоу',
-        t: 'Саме під це сезон і зроблений. За три місяці ви піднімаєте чек і одночасно набираєте ім’я: ефіри, чемпіонат у вашій категорії, голосування глядачів. Виходите не просто з бізнесом, а з бізнесом, про який знають.',
-        w: 1
+        n: 'Шлях 3 — навчання, чемпіонат і реаліті-шоу',
+        t: 'Саме під це сезон і зроблений. За три місяці ви піднімаєте чек, берете звання в чемпіонаті й одночасно набираєте аудиторію: ефіри, зйомки, голосування глядачів. Виходите не просто з бізнесом, а з бізнесом, про який знають.',
+        w: 2
       }
     };
 

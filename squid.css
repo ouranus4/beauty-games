@@ -2320,3 +2320,36 @@ body.bio-open{overflow:hidden}
   text-transform:uppercase;color:#fff;
 }
 .fork-who.on .fork-who-exp{background:rgba(255,255,255,.22)}
+
+/* Три шляхи замість двох: сітка на три колонки. */
+.ways-3{grid-template-columns:repeat(3,1fr)}
+.ways-k{
+  margin:0 0 14px;text-align:center;
+  font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--muted);
+}
+@media (max-width:1000px){.ways-3{grid-template-columns:1fr}}
+
+/* ============================================================
+   РІШЕННЯ ПІД ВІДМІЧЕНІ ПУНКТИ
+   Людина бачить відповідь саме на те, що обрала, а не загальні слова.
+   ============================================================ */
+.quiz-fix{
+  margin:4px 0 0;padding:16px 18px;border-radius:var(--r-md);
+  background:rgba(233,198,126,.12);border:1px solid rgba(233,198,126,.42);
+}
+.quiz-fix-k{
+  display:block;margin-bottom:10px;
+  font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--gold-2);
+}
+.quiz-fix ul{margin:0;padding:0;list-style:none;display:grid;gap:8px}
+.quiz-fix li{
+  position:relative;padding-left:24px;font-size:14px;line-height:1.5;color:var(--text);
+}
+.quiz-fix li::before{
+  content:"";position:absolute;left:0;top:.36em;width:12px;height:12px;
+  background:var(--gold-2);
+  -webkit-mask:var(--check) center/contain no-repeat;
+          mask:var(--check) center/contain no-repeat;
+}

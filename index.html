@@ -7,7 +7,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800;900&family=Oswald:wght@400;500;600&family=Manrope:wght@400;500;600;700&family=Pixelify+Sans:wght@400..700&family=JetBrains+Mono:wght@400;500;700&display=swap">
 <link rel="stylesheet" href="styles.css?v=2cf033dd">
-<link rel="stylesheet" href="squid.css?v=3c802224">
+<link rel="stylesheet" href="squid.css?v=ce4ef755">
 
 <!-- SPRITE -->
 <div class="preloader" id="preloader">
@@ -121,13 +121,13 @@
       <div class="hello-head">
         <span class="hello-kicker">Крок 1</span>
         <h2 class="hello-title">Як вас звати?</h2>
-        <p class="hello-sub">Далі на сторінці ми звертатимемось до вас на ім’я — і зберемо вашу карту гравця.</p>
+        <p class="hello-sub">Заповнюйте по дорозі — наприкінці все складеться у вашу карту гравця.</p>
       </div>
 
       <div class="hello-row">
         <label class="hello-fld">
-          <span>Ім’я</span>
-          <input type="text" id="heroName" autocomplete="given-name" placeholder="Ольга" maxlength="30">
+          <span>Вкажіть ім’я</span>
+          <input type="text" id="heroName" autocomplete="given-name" placeholder="Ваше ім’я" maxlength="30">
         </label>
       </div>
 
@@ -142,17 +142,13 @@
         </div>
       </div>
 
-      <div class="hello-done" id="helloDone" hidden>
-        <span class="hello-check" aria-hidden="true">✓</span>
-        <span>Вітаємо, <b id="helloName"></b>. Далі — оберіть свого персонажа.</span>
-      </div>
     </div>
 
     <div class="picker rv" id="picker">
       <div class="picker-head">
         <span class="picker-kicker">Крок 2</span>
-        <h2 class="picker-title">Оберіть свого персонажа</h2>
-        <p class="picker-sub">Ваш напрямок визначає категорію в чемпіонаті й підбір команди. Якщо працюєте в кількох — обирайте кілька.</p>
+        <h2 class="picker-title" id="pickerTitle">Оберіть свої скіли</h2>
+        <p class="picker-sub">Що ви вмієте робити руками. Це визначає категорію в чемпіонаті й підбір команди — якщо працюєте в кількох напрямках, обирайте кілька.</p>
       </div>
       <div class="picker-grid">
         <button class="chr" type="button" data-dir="Броу-майстер" data-pain="Низький чек за корекцію, клієнтки ходять раз на місяць і легко йдуть до тих, хто дешевше" data-hero="броу-майстер">
@@ -206,7 +202,7 @@
       </div>
       <div class="picker-done" id="pickerDone" hidden>
         <span class="picker-check" aria-hidden="true">✓</span>
-        <span id="pickerLead">Ваш персонаж — <b id="pickerName"></b></span>
+        <span id="pickerLead">Ваші скіли — <b id="pickerName"></b></span>
         <a href="#quiz" class="btn btn-primary btn-sm">Далі: крок 3 →</a>
       </div>
     </div>
@@ -296,6 +292,7 @@
           <b class="quiz-verdict" id="quizVerdict">Відмітьте пункти вище</b>
           <p class="quiz-picked" id="quizPicked" hidden></p>
           <p class="quiz-text" id="quizText">Результат залежить від того, що саме ви оберете.</p>
+          <div class="quiz-fix" id="quizFix" hidden></div>
           <p class="quiz-mods" id="quizMods" hidden></p>
         </div>
       </div>
@@ -353,35 +350,28 @@
       </div>
     </div>
 
-    <div class="ways">
+    <p class="ways-k">Три шляхи. Кожна обирає свій — правильного для всіх немає.</p>
+    <div class="ways ways-3">
       <article class="way rv">
-        <span class="way-n">Формат A</span>
+        <span class="way-n">Шлях 1</span>
         <h3 class="way-t">Тільки бізнес-навчання</h3>
-        <p class="way-s">Для тих, хто хоче результат без камер і публічності.</p>
-        <ul class="way-list">
-          <li>Дев&rsquo;ять модулів, куратор і домашні завдання з перевіркою</li>
-          <li>Піднятий чек і порахована економіка замість відчуттів</li>
-          <li>Налаштований потік клієнтів і переупакований профіль</li>
-          <li>Бізнес-план на рік, з яким ви виходите з сезону</li>
-          <li>Доступ до матеріалів лишається після сезону</li>
-          <li>Працюєте у своєму темпі — ніхто вас не знімає</li>
-        </ul>
+        <p class="way-s">Коли треба полагодити гроші, а публічність зараз не на часі.</p>
+        <ul class="way-list"><li>Дев’ять модулів, куратор і домашні завдання з перевіркою</li><li>Піднятий чек і порахована економіка замість відчуттів</li><li>Налаштований потік клієнтів і переупакований профіль</li><li>Бізнес-план на рік, з яким ви виходите з сезону</li><li>Працюєте у своєму темпі — ніхто вас не знімає</li></ul>
         <div class="way-out"><b>На виході:</b> системний бізнес, який більше не тримається на ваших руках.</div>
       </article>
-
-      <article class="way way-hi rv">
-        <span class="way-n">Формат B</span>
+      <article class="way rv">
+        <span class="way-n">Шлях 2</span>
+        <h3 class="way-t">Навчання + чемпіонат</h3>
+        <p class="way-s">Коли хочеться ваги в професії, але без камер щодня.</p>
+        <ul class="way-list"><li>Усе з першого шляху — повністю</li><li>Чемпіонат у вашій категорії: журі з практиків, кубки, сертифікат</li><li>Звання, яке працює на вас у профілі та в прайсі</li><li>Окремий блок: як упакувати перемогу в маркетинг</li><li>Зйомки не обов’язкові — тільки за бажанням</li></ul>
+        <div class="way-out"><b>На виході:</b> бізнес і титул, який видно з першого екрана вашого профілю.</div>
+      </article>
+      <article class="way rv">
+        <span class="way-n">Шлях 3</span>
         <h3 class="way-t">Навчання + чемпіонат + реаліті-шоу</h3>
-        <p class="way-s">Для тих, хто готовий, щоб про них дізналися.</p>
-        <ul class="way-list">
-          <li>Усе з формату A — повністю</li>
-          <li>Вас знімають: ви в кадрі шоу, за вами стежать тисячі глядачів</li>
-          <li>Ми вас просуваємо — ефіри, соцмережі проєкту, публікації</li>
-          <li>Чемпіонат у вашій категорії: кубки, звання, вага в професійному колі</li>
-          <li>Глядацьке голосування — ваша аудиторія росте під час сезону</li>
-          <li>Контент, знятий професійно, лишається вам</li>
-        </ul>
-        <div class="way-out"><b>На виході:</b> бізнес плюс ім&rsquo;я, яке знає ринок. Ви не просто майстер — ви медійна персона у своїй ніші.</div>
+        <p class="way-s">Коли ви готові, щоб про вас дізналися тисячі.</p>
+        <ul class="way-list"><li>Усе з другого шляху — повністю</li><li>Вас знімають: ви в кадрі шоу, за вами стежать глядачі</li><li>Ми вас просуваємо — ефіри, соцмережі проєкту, публікації</li><li>Глядацьке голосування: аудиторія росте під час сезону</li><li>Професійно знятий контент лишається вам</li></ul>
+        <div class="way-out"><b>На виході:</b> бізнес плюс ім’я, яке знає ринок.</div>
       </article>
     </div>
 
@@ -1294,6 +1284,9 @@
         <div class="pickbox" id="pickBox" hidden>
           <span class="pickbox-k">Карта гравця</span>
           <div class="pickbox-rows">
+            <div class="pickbox-row" id="pickRowName" hidden>
+              <span>Ім’я</span><b id="pickName"></b>
+            </div>
             <div class="pickbox-row" id="pickRowExp" hidden>
               <span>Років у beauty</span><b id="pickExp"></b>
             </div>
@@ -1443,5 +1436,5 @@
   </a>
 </div>
 
-<script src="app.js?v=c9980a40"></script>
+<script src="app.js?v=7c0f6b30"></script>
 <script src="fx.js?v=b9217507"></script>
