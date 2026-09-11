@@ -159,7 +159,20 @@
   /* ============================================================
      АКОРДЕОНИ (модулі програми, FAQ)
      ============================================================ */
+  var setItem = function (item, open) {
+    var panel = $('.acc-panel', item);
+    var btn = $('.acc-btn', item);
+    if (!panel || !btn) return;
+    item.classList.toggle('open', open);
+    panel.style.maxHeight = open ? panel.scrollHeight + 'px' : '';
+    btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+  };
+
   $$('.acc').forEach(function (acc) {
+    // Модулі програми можна тримати відкритими разом — людина порівнює
+    // їх між собою. FAQ лишається звичайним: одна відповідь за раз.
+    var multi = acc.id === 'modules';
+
     $$('.acc-item', acc).forEach(function (item) {
       var btn = $('.acc-btn', item);
       var panel = $('.acc-panel', item);
@@ -169,29 +182,42 @@
 
       btn.addEventListener('click', function () {
         var isOpen = item.classList.contains('open');
-
-        // закриваємо сусідів у межах цього акордеона
-        $$('.acc-item.open', acc).forEach(function (other) {
-          if (other === item) return;
-          other.classList.remove('open');
-          var op = $('.acc-panel', other);
-          var ob = $('.acc-btn', other);
-          if (op) op.style.maxHeight = '';
-          if (ob) ob.setAttribute('aria-expanded', 'false');
-        });
-
-        if (isOpen) {
-          item.classList.remove('open');
-          panel.style.maxHeight = '';
-          btn.setAttribute('aria-expanded', 'false');
-        } else {
-          item.classList.add('open');
-          panel.style.maxHeight = panel.scrollHeight + 'px';
-          btn.setAttribute('aria-expanded', 'true');
+        if (!multi) {
+          $$('.acc-item.open', acc).forEach(function (other) {
+            if (other !== item) setItem(other, false);
+          });
         }
+        setItem(item, !isOpen);
+        acc.dispatchEvent(new CustomEvent('acc:change', { bubbles: true }));
       });
     });
   });
+
+  /* ---------- лічильник і кнопка «відкрити всі» для модулів ---------- */
+  var mods = $('#modules');
+  if (mods) {
+    var openEl = $('#accOpen');
+    var fillEl = $('#accFill');
+    var allBtn = $('#accAll');
+    var items = $$('.acc-item', mods);
+
+    var sync = function () {
+      var n = items.filter(function (i) { return i.classList.contains('open'); }).length;
+      if (openEl) openEl.textContent = n;
+      if (fillEl) fillEl.style.width = (n / items.length * 100) + '%';
+      if (allBtn) allBtn.textContent = n === items.length ? 'Згорнути всі' : 'Відкрити всі';
+    };
+
+    mods.addEventListener('acc:change', sync);
+    if (allBtn) {
+      allBtn.addEventListener('click', function () {
+        var openAll = items.some(function (i) { return !i.classList.contains('open'); });
+        items.forEach(function (i) { setItem(i, openAll); });
+        sync();
+      });
+    }
+    sync();
+  }
 
   // перерахунок висоти відкритих панелей при зміні ширини
   var resizeTO;
@@ -428,19 +454,36 @@
     var countEl = $('#quizCount');
     var textEl = $('#quizText');
     var ctaEl = $('#quizCta');
+    var verdictEl = $('#quizVerdict');
+    var resultEl = $('#quizResult');
     var total = boxes.length;
 
     var verdict = function (n) {
-      if (n === 0) return 'Поки нічого не відмічено.';
-      if (n <= 2) return 'Дві точки зростання — це вже конкретне завдання, а не туман. На програмі їх розбирають по черзі, з домашкою і куратором.';
-      if (n <= 5) return 'Половина списку — і жоден пункт не про лінь. Так виглядає робота без системи: сил багато, а куди вони йдуть — незрозуміло.';
-      return 'Стільки пунктів разом — це вже не втома, а вигорання. Тому сезон починається не з таблиць, а з психолога: спершу стан, потім бізнес.';
+      if (n === 0) return {
+        t: 'Відмітьте пункти вище',
+        p: 'Щойно ви щось відмітите, тут з’явиться діагноз ситуації.'
+      };
+      if (n <= 2) return {
+        t: 'Точковий запит',
+        p: 'Дві точки зростання — це вже конкретне завдання, а не туман. На програмі їх розбирають по черзі, з домашкою і куратором.'
+      };
+      if (n <= 5) return {
+        t: 'Робота без системи',
+        p: 'Половина списку — і жоден пункт не про лінь. Так виглядає бізнес без системи: сил багато, а куди вони йдуть — незрозуміло.'
+      };
+      return {
+        t: 'Це вже вигорання',
+        p: 'Стільки пунктів разом — це не втома, а вигорання. Тому сезон починається не з таблиць, а з психолога: спершу стан, потім бізнес.'
+      };
     };
 
     var recount = function () {
       var n = boxes.filter(function (b) { return b.checked; }).length;
+      var v = verdict(n);
       if (countEl) countEl.textContent = n;
-      if (textEl) textEl.textContent = verdict(n);
+      if (verdictEl) verdictEl.textContent = v.t;
+      if (textEl) textEl.textContent = v.p;
+      if (resultEl) resultEl.classList.toggle('on', n > 0);
       if (ctaEl) ctaEl.hidden = n < 2;
     };
 
@@ -467,7 +510,10 @@
         c.classList.toggle('on', on);
         if (on) card = c;
       });
-      if (done && doneName) { doneName.textContent = dir; done.hidden = false; }
+      if (done && doneName) {
+        doneName.textContent = (card && card.getAttribute('data-hero')) || dir;
+        done.hidden = false;
+      }
       if (dirSelect) {
         // На картці підпис коротший, ніж у списку форми
         // («Перманент» проти «Перманентний макіяж») — беремо повну назву.

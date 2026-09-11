@@ -55,13 +55,13 @@ a,button,.btn,.tile,.acc-btn,label,select,input[type=checkbox],.px-btn,
 .mobile-bar .tg{border-radius:0;border:2px solid var(--px-line);box-shadow:3px 3px 0 rgba(var(--accent-rgb),.8)}
 
 /* ============================================================
-   ІКОНКИ — піксельні, без розмиття
-   Розмиття і неоновий ореол мазали піксель, тому їх немає.
+   ІКОНКИ — тонкий вектор
+   Піксельна сітка з'їдала форму б'юті-інструментів, тому іконки
+   малюємо контуром. Піксельними лишилися тільки сердечка заставки.
    ============================================================ */
 .icon{
-  shape-rendering:crispEdges;image-rendering:pixelated;
   color:var(--accent-lt);filter:none;
-  transition:transform .1s steps(2), color .1s;
+  transition:transform .16s ease, color .16s ease;
 }
 .tile:hover .icon,.tcard:hover .icon{transform:translateY(-2px);color:#fff;filter:none}
 .icon-chip{
@@ -123,16 +123,42 @@ a,button,.btn,.tile,.acc-btn,label,select,input[type=checkbox],.px-btn,
 .px-win-btns i{width:13px;height:13px;background:#120A14;border:2px solid #fff;display:block}
 .px-win-body{padding:28px 24px}
 
+/* Силует кнопки піксельний — зі сходинками на кутах, як у старій грі.
+   Підпис усередині лишається звичайним Montserrat: піксельний шрифт
+   на кирилиці читається погано.
+   Форму і тінь навмисно розведено по різних шарах: clip-path застосовується
+   після filter, тому на одному елементі він зрізав би власні тіні. */
 .px-btn{
+  position:relative;isolation:isolate;
   font-family:"Montserrat",sans-serif;font-size:13px;font-weight:800;
   letter-spacing:.09em;text-transform:uppercase;
-  color:#fff;background:var(--magenta);border:2px solid #fff;
-  padding:13px 30px;box-shadow:4px 4px 0 #fff;border-radius:0;cursor:pointer;
-  transition:transform .07s linear, box-shadow .07s linear, background .16s;
+  color:#fff;background:transparent;border:0;
+  padding:15px 32px;border-radius:0;cursor:pointer;
+  transition:transform .07s linear, filter .07s linear;
+  filter:
+    drop-shadow(2px 0 0 #fff) drop-shadow(-2px 0 0 #fff)
+    drop-shadow(0 2px 0 #fff) drop-shadow(0 -2px 0 #fff)
+    drop-shadow(5px 5px 0 var(--cyan, #00E5FF));
 }
-.px-btn:hover{background:var(--magenta-hot)}
-.px-btn:active{transform:translate(4px,4px);box-shadow:0 0 0 #fff}
-.px-btn-lg{font-size:14px;padding:15px 38px}
+.px-btn::before{
+  content:"";position:absolute;inset:0;z-index:-1;
+  background:var(--magenta);
+  clip-path:polygon(
+    8px 0, calc(100% - 8px) 0, calc(100% - 8px) 4px, calc(100% - 4px) 4px,
+    calc(100% - 4px) 8px, 100% 8px, 100% calc(100% - 8px),
+    calc(100% - 4px) calc(100% - 8px), calc(100% - 4px) calc(100% - 4px),
+    calc(100% - 8px) calc(100% - 4px), calc(100% - 8px) 100%,
+    8px 100%, 8px calc(100% - 4px), 4px calc(100% - 4px),
+    4px calc(100% - 8px), 0 calc(100% - 8px), 0 8px, 4px 8px, 4px 4px, 8px 4px);
+  transition:background .16s;
+}
+.px-btn:hover::before{background:var(--magenta-hot)}
+.px-btn:active{
+  transform:translate(5px,5px);
+  filter:drop-shadow(2px 0 0 #fff) drop-shadow(-2px 0 0 #fff)
+    drop-shadow(0 2px 0 #fff) drop-shadow(0 -2px 0 #fff);
+}
+.px-btn-lg{font-size:14.5px;padding:17px 40px}
 
 .preloader{
   position:fixed;inset:0;z-index:200;background:var(--ink);
@@ -271,6 +297,11 @@ a,button,.btn,.tile,.acc-btn,label,select,input[type=checkbox],.px-btn,
   letter-spacing:.08em;text-transform:uppercase;color:#fff;
   background:var(--accent);border:2px solid #fff;padding:3px 10px;
 }
+.quiz-title{
+  margin:0;font-family:"Montserrat",sans-serif;font-weight:900;
+  font-size:clamp(18px,2.2vw,24px);line-height:1.22;color:var(--white);
+  text-wrap:balance;max-width:26ch;
+}
 .quiz-sub{margin:0;font-size:14px;color:var(--muted)}
 .quiz-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:8px}
 
@@ -283,15 +314,17 @@ a,button,.btn,.tile,.acc-btn,label,select,input[type=checkbox],.px-btn,
 .chk:hover{background:rgba(var(--accent-rgb),.12);border-color:rgba(var(--accent-rgb),.5)}
 .chk input{position:absolute;opacity:0;width:0;height:0}
 .chk-box{
-  flex:none;width:22px;height:22px;margin-top:1px;position:relative;
+  flex:none;width:22px;height:22px;margin-top:1px;
+  display:grid;place-items:center;
   background:var(--ink);border:2px solid rgba(255,255,255,.4);
 }
+/* Галочка звичайна: піксельні сходинки на такому розмірі читалися
+   як сміття, а не як відмітка. */
+.chk-box svg{width:15px;height:15px;color:#fff;opacity:0;transform:scale(.6);
+  transition:opacity .12s ease, transform .12s ease}
 .chk input:focus-visible + .chk-box{outline:3px solid var(--accent);outline-offset:2px}
 .chk input:checked + .chk-box{background:var(--accent);border-color:#fff}
-.chk input:checked + .chk-box::after{
-  content:"";position:absolute;left:4px;top:8px;width:4px;height:4px;
-  background:#fff;box-shadow:4px 0 0 #fff,8px -4px 0 #fff,12px -8px 0 #fff;
-}
+.chk input:checked + .chk-box svg{opacity:1;transform:scale(1)}
 .chk:has(input:checked){background:rgba(var(--accent-rgb),.16);border-color:rgba(var(--accent-rgb),.6)}
 .chk:has(input:checked) .chk-tx{color:#fff}
 
@@ -304,7 +337,16 @@ a,button,.btn,.tile,.acc-btn,label,select,input[type=checkbox],.px-btn,
   display:flex;align-items:baseline;gap:6px;
 }
 .quiz-score s{font-size:15px;color:var(--muted);text-decoration:none}
-.quiz-text{margin:0;font-size:14.5px;color:var(--text);flex:1;min-width:220px}
+.quiz-out{flex:1;min-width:220px;display:flex;flex-direction:column;gap:5px}
+.quiz-verdict{
+  font-family:"Montserrat",sans-serif;font-weight:900;font-size:15px;
+  letter-spacing:.02em;text-transform:uppercase;color:#fff;
+}
+.quiz-text{margin:0;font-size:14.5px;color:var(--text)}
+/* Поки нічого не відмічено, блок результату приглушений — щоб було
+   видно, що він чекає на відповіді, а не зламаний. */
+.quiz-result{opacity:.62;transition:opacity .2s ease, border-color .2s ease}
+.quiz-result.on{opacity:1;border-color:rgba(var(--accent-rgb),.85)}
 .quiz-cta{margin-top:14px}
 
 @media (max-width:860px){
@@ -343,9 +385,85 @@ a,button,.btn,.tile,.acc-btn,label,select,input[type=checkbox],.px-btn,
   .h-xl{font-size:27px;line-height:1.12}
 }
 
-/* Етапи сезону: на вузькому екрані йдуть колонкою, без прокрутки вбок. */
+/* Терміни етапу — поруч із номером, тому працюють і без схеми. */
+.tl-dur{
+  font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:1.4px;
+  text-transform:uppercase;color:var(--accent-lt);margin-left:10px;
+}
+
+/* Етапи сезону на вузькому екрані.
+   Широка схема на 900 одиниць тут нечитабельна: якщо її стиснути —
+   підписи зливаються, якщо лишити прокрутку — її ніхто не помічає.
+   Тому на мобільному ховаємо схему, а картки етапів нижче кажуть
+   те саме словами і вже містять терміни. */
 @media (max-width:760px){
   .timeline{grid-template-columns:1fr}
-  .info-scroll{overflow-x:visible}
-  .info-scroll > svg{min-width:0}
+  .tl-chart{display:none}
+}
+
+/* ============================================================
+   МОДУЛІ ПРОГРАМИ — видно прогрес і що список клікабельний
+   Сам акордеон був інтерактивним і раніше, але виглядав як
+   статичний перелік. Смужка згори показує, що з ним працюють.
+   ============================================================ */
+.acc-bar{
+  display:flex;align-items:center;gap:14px;flex-wrap:wrap;
+  margin-bottom:14px;padding:12px 16px;
+  background:rgba(255,255,255,.04);
+  border:2px solid rgba(var(--accent-rgb),.4);
+}
+.acc-progress{
+  font-family:"JetBrains Mono",monospace;font-size:11.5px;letter-spacing:1.1px;
+  text-transform:uppercase;color:var(--muted);
+}
+.acc-progress b{color:#fff;font-size:14px}
+.acc-track{
+  flex:1;min-width:120px;height:10px;background:var(--ink);
+  border:2px solid rgba(255,255,255,.2);padding:2px;display:block;
+}
+.acc-track i{
+  display:block;height:100%;width:0;background:var(--accent);
+  transition:width .2s steps(6);
+}
+.acc-bar .btn{flex:none}
+
+/* Закритий модуль має читатися як кнопка, а не як рядок списку. */
+.acc-item{transition:border-color .16s ease, background .16s ease}
+.acc-btn:hover .tx{color:#fff}
+.acc-item.open{border-color:rgba(var(--accent-rgb),.6)}
+
+/* ============================================================
+   АВТОРКА ПРОГРАМИ І ВІДЕОЗВЕРНЕННЯ
+   ============================================================ */
+.author{
+  margin-top:22px;padding:26px;
+  display:grid;grid-template-columns:minmax(240px,340px) 1fr;gap:26px;align-items:center;
+}
+.vid-frame{
+  position:relative;aspect-ratio:16/10;width:100%;
+  background:#0E0810;border:2px solid rgba(var(--accent-rgb),.55);
+  box-shadow:5px 5px 0 rgba(var(--accent-rgb),.4);
+  display:grid;place-items:center;overflow:hidden;
+}
+.vid-frame video{width:100%;height:100%;object-fit:cover;display:block}
+.vid-ph{display:grid;place-items:center;gap:9px;text-align:center;padding:18px}
+.vid-play{
+  width:52px;height:52px;display:block;background:var(--accent);
+  border:2px solid #fff;
+  clip-path:polygon(0 0,100% 50%,0 100%);
+  transform:scale(.72);
+}
+.vid-note{
+  font-family:"Montserrat",sans-serif;font-size:13.5px;font-weight:800;
+  letter-spacing:.05em;text-transform:uppercase;color:#fff;
+}
+.vid-sub{
+  font-family:"JetBrains Mono",monospace;font-size:10.5px;letter-spacing:1.4px;
+  text-transform:uppercase;color:var(--faint);
+}
+
+@media (max-width:860px){
+  .author{grid-template-columns:1fr;padding:20px;gap:18px}
+  .acc-bar{gap:10px}
+  .acc-track{order:3;flex-basis:100%}
 }
