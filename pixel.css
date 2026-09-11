@@ -23,11 +23,11 @@
    КУРСОРИ
    ============================================================ */
 html,body{
-  cursor:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 16 16' shape-rendering='crispEdges'%3E%3Cpath fill='%23ffffff' d='M1 1h1v1h1v1h1v1h1v1h1v1h1v1h1v1h1v1h1v1H8v1h1v1h1v1h1v1h-1v1h-1v-1h-1v-1h-1v-1h-1v-1H5v1H4v1H3v1H2v-1H1z'/%3E%3Cpath fill='%23E6007E' d='M2 2h1v1h1v1h1v1h1v1h1v1h1v1h1v1h1v1H7v1h1v1h1v1h1v1h-1v-1h-1v-1h-1v-1h-1v-1H4v1H3v1H2z'/%3E%3C/svg%3E") 2 2, auto;
+  cursor:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 16 16' shape-rendering='crispEdges'%3E%3Cpath fill='%23000000' d='M1 1h1v1h1v1h1v1h1v1h1v1h1v1h1v1h1v1h1v1H8v1h1v1h1v1h1v1h-1v1h-1v-1h-1v-1h-1v-1h-1v-1H5v1H4v1H3v1H2v-1H1z'/%3E%3Cpath fill='%23ffffff' d='M2 2h1v1h1v1h1v1h1v1h1v1h1v1h1v1h1v1H7v1h1v1h1v1h1v1h-1v-1h-1v-1h-1v-1h-1v-1H4v1H3v1H2z'/%3E%3C/svg%3E") 2 2, auto;
 }
 a,button,.btn,.tile,.acc-btn,label,select,input[type=checkbox],.px-btn,
 .table-tabs button,.sfx-btn,.nav-burger,.js-pick,.pnode{
-  cursor:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 16 16' shape-rendering='crispEdges'%3E%3Cpath fill='%23ffffff' d='M5 1h3v1h1v4h1V5h2v1h1v1h1v6h-1v2h-1v1H6v-1H5v-1H4v-2H3V9h2v1h1V2h-1z'/%3E%3Cpath fill='%23E6007E' d='M6 2h1v8h1V6h1v4h1V7h1v3h1V8h1v5h-1v2H7v-1H6v-1H5v-2H4v-1h1v1h1z'/%3E%3C/svg%3E") 6 1, pointer !important;
+  cursor:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 16 16' shape-rendering='crispEdges'%3E%3Cpath fill='%23000000' d='M5 1h3v1h1v4h1V5h2v1h1v1h1v6h-1v2h-1v1H6v-1H5v-1H4v-2H3V9h2v1h1V2h-1z'/%3E%3Cpath fill='%23ffffff' d='M6 2h1v8h1V6h1v4h1V7h1v3h1V8h1v5h-1v2H7v-1H6v-1H5v-2H4v-1h1v1h1z'/%3E%3C/svg%3E") 6 1, pointer !important;
 }
 
 /* ============================================================
@@ -102,7 +102,8 @@ a,button,.btn,.tile,.acc-btn,label,select,input[type=checkbox],.px-btn,
 }
 :root{
   --heart:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' shape-rendering='crispEdges'%3E%3Cg fill='%23000'%3E%3Crect x='2' y='2' width='4' height='1'/%3E%3Crect x='9' y='2' width='4' height='1'/%3E%3Crect x='1' y='3' width='6' height='1'/%3E%3Crect x='8' y='3' width='6' height='1'/%3E%3Crect x='0' y='4' width='15' height='3'/%3E%3Crect x='1' y='7' width='14' height='1'/%3E%3Crect x='2' y='8' width='12' height='1'/%3E%3Crect x='3' y='9' width='10' height='1'/%3E%3Crect x='4' y='10' width='8' height='1'/%3E%3Crect x='5' y='11' width='6' height='1'/%3E%3Crect x='6' y='12' width='4' height='1'/%3E%3Crect x='7' y='13' width='2' height='1'/%3E%3C/g%3E%3C/svg%3E");
-  --px-hand:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 16 16' shape-rendering='crispEdges'%3E%3Cpath fill='%23ffffff' d='M5 1h3v1h1v4h1V5h2v1h1v1h1v6h-1v2h-1v1H6v-1H5v-1H4v-2H3V9h2v1h1V2h-1z'/%3E%3Cpath fill='%23E6007E' d='M6 2h1v8h1V6h1v4h1V7h1v3h1V8h1v5h-1v2H7v-1H6v-1H5v-2H4v-1h1v1h1z'/%3E%3C/svg%3E");
+  --check:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='%23000' stroke-width='2.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m2.6 8.4 3.6 3.6 7.2-7.6'/%3E%3C/svg%3E");
+  --px-hand:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 16 16' shape-rendering='crispEdges'%3E%3Cpath fill='%23000000' d='M5 1h3v1h1v4h1V5h2v1h1v1h1v6h-1v2h-1v1H6v-1H5v-1H4v-2H3V9h2v1h1V2h-1z'/%3E%3Cpath fill='%23ffffff' d='M6 2h1v8h1V6h1v4h1V7h1v3h1V8h1v5h-1v2H7v-1H6v-1H5v-2H4v-1h1v1h1z'/%3E%3C/svg%3E");
 }
 
 /* ============================================================
@@ -575,13 +576,15 @@ a,button,.btn,.tile,.acc-btn,label,select,input[type=checkbox],.px-btn,
   border:2px solid rgba(var(--accent-rgb),.42);
   box-shadow:6px 6px 0 rgba(var(--accent-rgb),.3);
 }
-.path-map{
-  position:relative;display:grid;grid-template-columns:repeat(5,1fr);
-  gap:8px;padding-bottom:6px;
-}
+.path-map{display:grid;grid-template-columns:repeat(5,1fr);gap:8px}
+
+/* Доріжка винесена під ряд вузлів: на самій лінії між кружечками
+   бігунові ніде стати — він налазив на номери етапів. */
+.path-track{position:relative;height:54px;margin:18px 6% 4px}
 .path-line{
-  position:absolute;left:8%;right:8%;top:21px;height:4px;
-  background:rgba(255,255,255,.14);display:block;
+  position:absolute;left:0;right:0;bottom:0;height:10px;display:block;
+  background:rgba(255,255,255,.12);
+  box-shadow:inset 0 0 0 2px rgba(255,255,255,.2);
 }
 .path-line i{display:block;height:100%;width:0;background:var(--accent);
   transition:width .25s steps(6)}
@@ -666,7 +669,7 @@ a,button,.btn,.tile,.acc-btn,label,select,input[type=checkbox],.px-btn,
 @media (max-width:760px){
   .path{padding:16px}
   .path-map{grid-template-columns:repeat(5,1fr);gap:4px}
-  .path-line{top:17px;left:10%;right:10%;height:3px}
+  .path-track{margin:14px 5% 2px;height:48px}
   .pnode-n{width:34px;height:34px;font-size:12px}
   /* Підписи вузлів на вузькому екрані не влазять — назва етапу
      все одно стоїть заголовком у панелі нижче. */
@@ -700,4 +703,93 @@ a,button,.btn,.tile,.acc-btn,label,select,input[type=checkbox],.px-btn,
   .yt{grid-template-columns:1fr;gap:16px}
   .yt-ic{width:60px;height:60px}
   .yt-ic .icon{width:32px;height:32px}
+}
+
+/* ============================================================
+   ПЛАШКИ ПЕРШОГО ЕКРАНА — з іконками
+   ============================================================ */
+.hero .pill{display:inline-flex;align-items:center;gap:8px}
+.hero .pill .icon{width:18px;height:18px;color:var(--accent-lt);filter:none}
+
+/* ============================================================
+   СПИСКИ В МОДУЛЯХ — галочки замість рисок
+   Риска нічого не означала; галочка каже «це входить».
+   ============================================================ */
+.acc-panel-in li::before{
+  content:"";position:absolute;left:0;top:.3em;
+  width:14px;height:14px;border-radius:0;
+  background:var(--accent);
+  box-shadow:none;
+  -webkit-mask:var(--check) center/contain no-repeat;
+          mask:var(--check) center/contain no-repeat;
+}
+.acc-panel-in li{padding-left:24px}
+
+/* ============================================================
+   БІГУН НА СМУЗІ ЕТАПІВ
+   Фігурка стоїть на тому місці смуги, де ви зараз, і перебирає
+   ногами — видно, що шлях проходять, а не гортають.
+   ============================================================ */
+/* Сердечка стоять під кожним етапом; бігунка забирає їх дорогою.
+   Зібрані підсвічуються — видно, скільки шляху вже позаду. */
+.path-heart{
+  position:absolute;left:0;top:0;width:17px;height:17px;
+  transform:translateX(-50%);
+  color:rgba(255,255,255,.22);
+  transition:color .2s ease, transform .2s ease, filter .2s ease;
+}
+.path-heart svg{width:100%;height:100%;display:block;shape-rendering:crispEdges}
+.path-heart.got{
+  color:var(--accent);
+  transform:translateX(-50%) translateY(-3px);
+  filter:drop-shadow(0 0 7px rgba(var(--accent-rgb),.95));
+}
+
+.path-runner{
+  position:absolute;left:0;bottom:10px;width:28px;height:28px;z-index:2;
+  transform:translateX(-50%);
+  transition:left .25s steps(6);
+  pointer-events:none;
+}
+.path-runner svg{
+  position:absolute;inset:0;width:100%;height:100%;
+  color:#fff;shape-rendering:crispEdges;
+  filter:drop-shadow(0 0 6px rgba(var(--accent-rgb),.9));
+}
+.path-runner svg:nth-child(1){animation:runA .24s steps(1) infinite}
+.path-runner svg:nth-child(2){animation:runB .24s steps(1) infinite}
+@keyframes runA{0%,49%{opacity:1}50%,100%{opacity:0}}
+@keyframes runB{0%,49%{opacity:0}50%,100%{opacity:1}}
+@media (prefers-reduced-motion:reduce){
+  .path-runner svg:nth-child(1){animation:none;opacity:1}
+  .path-runner svg:nth-child(2){animation:none;opacity:0}
+}
+
+/* ============================================================
+   ЗНАК БІЗНЕС-ПРОГРАМИ
+   ============================================================ */
+.prog-mark{
+  display:inline-flex;align-items:center;gap:12px;
+  padding:9px 15px 9px 12px;margin-bottom:14px;
+  background:rgba(var(--accent-rgb),.14);
+  border:2px solid rgba(var(--accent-rgb),.55);
+  box-shadow:4px 4px 0 rgba(var(--accent-rgb),.35);
+}
+.prog-emblem{width:30px;height:30px;flex:none;color:var(--accent-lt)}
+.prog-mark-tx{display:flex;flex-direction:column;line-height:1.15}
+.prog-mark-tx b{
+  font-family:"Montserrat",sans-serif;font-weight:900;font-size:14px;
+  letter-spacing:.06em;text-transform:uppercase;color:#fff;
+}
+.prog-mark-tx span{
+  font-family:"JetBrains Mono",monospace;font-size:10.5px;letter-spacing:1.5px;
+  text-transform:uppercase;color:var(--accent-lt);
+}
+
+/* Розміри бігунки й сердечок стоять тут, а не у блоці вище:
+   їхні базові правила описані нижче по файлу і перебивали
+   мобільні значення. */
+@media (max-width:760px){
+  .path-runner{width:24px;height:24px}
+  .path-heart{width:14px;height:14px}
 }

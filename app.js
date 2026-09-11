@@ -576,6 +576,8 @@
     var steps = $$('.pstep', path);
     var fill = $('#pathFill');
     var pos = $('#pathPos');
+    var runner = $('#pathRunner');
+    var hearts = $$('.path-heart', path);
     var prev = $('#pathPrev');
     var next = $('#pathNext');
     var cur = 0;
@@ -592,7 +594,15 @@
       });
       steps.forEach(function (p, k) { p.classList.toggle('on', k === cur); });
 
-      if (fill) fill.style.width = (cur / (steps.length - 1) * 100) + '%';
+      var pctDone = cur / (steps.length - 1) * 100;
+      if (fill) fill.style.width = pctDone + '%';
+      if (runner) runner.style.left = pctDone + '%';
+
+      // Сердечка розставлені під етапами; пройдені — зібрані
+      hearts.forEach(function (hrt, k) {
+        hrt.style.left = (k / (steps.length - 1) * 100) + '%';
+        hrt.classList.toggle('got', k <= cur);
+      });
       if (pos) pos.textContent = cur + 1;
       if (prev) prev.disabled = cur === 0;
       if (next) {
@@ -662,6 +672,29 @@
   /* ============================================================
      ПЛАВНА ПРОКРУТКА З УРАХУВАННЯМ ЛИПКОЇ ШАПКИ
      ============================================================ */
+  var HEAD = 92;   // висота липкої шапки
+
+  // Сторінка довга, і поки триває плавна прокрутка, блоки нижче
+  // встигають проявитись і зрушити розкладку — кнопка приземлялася
+  // не там. Тому після зупинки перевіряємо позицію і дотягуємо.
+  var scrollToTarget = function (target) {
+    var go = function () {
+      return target.getBoundingClientRect().top + window.scrollY - HEAD;
+    };
+    window.scrollTo({ top: go(), behavior: 'smooth' });
+
+    var last = -1, still = 0;
+    var settle = setInterval(function () {
+      var y = Math.round(window.scrollY);
+      if (y === last) { still++; } else { still = 0; last = y; }
+      if (still < 3) return;
+      clearInterval(settle);
+      var off = target.getBoundingClientRect().top - HEAD;
+      if (Math.abs(off) > 4) window.scrollTo({ top: go() });
+    }, 60);
+    setTimeout(function () { clearInterval(settle); }, 3000);
+  };
+
   $$('a[href^="#"]').forEach(function (a) {
     var href = a.getAttribute('href');
     if (!href || href === '#' || a.classList.contains('js-pick')) return;
@@ -669,8 +702,7 @@
       var target = document.getElementById(href.slice(1));
       if (!target) return;
       e.preventDefault();
-      var top = target.getBoundingClientRect().top + window.scrollY - 92;
-      window.scrollTo({ top: top, behavior: 'smooth' });
+      scrollToTarget(target);
     });
   });
 
