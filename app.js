@@ -6,6 +6,30 @@
 
   document.documentElement.classList.add('js');
 
+  /* ============================================================
+     ПРЕЛОАДЕР
+     Ховається CSS-анімацією сам по собі, тож навіть якщо цей скрипт
+     не виконається — сторінка не залишиться перекритою. Тут лише
+     прибираємо його з DOM, щоб не заважав кліку.
+     ============================================================ */
+  var preloader = document.getElementById('preloader');
+  if (preloader) {
+    var killPreloader = function () {
+      preloader.classList.add('done');
+      setTimeout(function () {
+        if (preloader && preloader.parentNode) preloader.parentNode.removeChild(preloader);
+      }, 500);
+    };
+    // мінімум показу, щоб анімація не обривалася на швидкому з'єднанні
+    var shown = Date.now();
+    window.addEventListener('load', function () {
+      var left = Math.max(0, 1250 - (Date.now() - shown));
+      setTimeout(killPreloader, left);
+    });
+    // страховка на випадок, якщо load так і не настане
+    setTimeout(killPreloader, 4000);
+  }
+
   var $  = function (s, c) { return (c || document).querySelector(s); };
   var $$ = function (s, c) { return Array.prototype.slice.call((c || document).querySelectorAll(s)); };
 
@@ -320,6 +344,33 @@
         io.observe(el);
       }
     });
+  }
+
+  /* ============================================================
+     СМУГИ «МІСЦЯ В ПОТОЦІ» — заповнюються при появі
+     ============================================================ */
+  var fills = $$('.seatrow .fill');
+  if (fills.length) {
+    fills.forEach(function (f) { f.style.transform = 'scaleX(0)'; });
+    var runFills = function () {
+      fills.forEach(function (f, i) {
+        var w = parseFloat(f.getAttribute('data-w')) || 100;
+        f.style.width = w + '%';
+        setTimeout(function () { f.style.transform = 'scaleX(1)'; }, 90 * i);
+      });
+    };
+    if ('IntersectionObserver' in window) {
+      var barIO = new IntersectionObserver(function (entries) {
+        entries.forEach(function (en) {
+          if (!en.isIntersecting) return;
+          barIO.disconnect();
+          runFills();
+        });
+      }, { threshold: 0.35 });
+      barIO.observe(fills[0].closest('.info'));
+    } else {
+      runFills();
+    }
   }
 
   /* ============================================================

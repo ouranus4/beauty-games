@@ -196,10 +196,10 @@ a{color:var(--accent-lt);text-decoration:none}
   filter:blur(7px);
 }
 .nav > *{position:relative;z-index:2}
-.brand{display:flex;align-items:center;gap:11px;flex:none}
+.brand{display:flex;align-items:center;gap:11px;flex:0 1 auto;min-width:0;overflow:hidden}
 .brand svg{width:30px;height:30px;filter:drop-shadow(0 0 12px rgba(var(--accent-rgb),.8))}
-.brand-tx{font-family:"Montserrat",sans-serif;font-weight:800;letter-spacing:.2em;font-size:11px;color:var(--white);line-height:1.1}
-.brand-sb{font-family:"JetBrains Mono",monospace;font-size:7.5px;letter-spacing:.16em;color:var(--faint);margin-top:3px}
+.brand-tx{display:block;font-family:"Montserrat",sans-serif;font-weight:800;letter-spacing:.2em;font-size:11px;color:var(--white);line-height:1.1;white-space:nowrap}
+.brand-sb{display:block;font-family:"JetBrains Mono",monospace;font-size:7.5px;letter-spacing:.16em;color:var(--faint);margin-top:3px;white-space:nowrap}
 .nav-links{display:flex;gap:2px;margin-left:auto;align-items:center}
 .nav-links a{
   font-family:"Montserrat",sans-serif;font-size:11.5px;font-weight:700;letter-spacing:.05em;
@@ -595,6 +595,11 @@ footer{position:relative;z-index:2;border-top:1px solid var(--line-soft);padding
   body{padding-bottom:76px}
   .mobile-bar{display:flex}
   .nav-switch{display:none}
+  /* Кнопку бронювання дублює нижня панель — у шапці вона лише
+     витісняла звук і бургер за межі екрана. */
+  .nav > .btn-primary{display:none}
+  .nav{padding-left:14px;gap:10px}
+  .brand-sb{display:none}
   .foot{grid-template-columns:1fr;gap:26px}
   .fgrid{grid-template-columns:1fr}
   .table-tabs{display:flex}
@@ -684,9 +689,23 @@ footer{position:relative;z-index:2;border-top:1px solid var(--line-soft);padding
 .cd-urgent .cd-unit .v{animation:beat 1s ease-in-out infinite}
 @keyframes beat{0%,100%{text-shadow:0 0 20px rgba(var(--accent-rgb),.7)}50%{text-shadow:0 0 34px rgba(var(--accent-rgb),1),0 0 62px rgba(var(--accent-rgb),.6)}}
 
-/* ---------- проявлення літер із шуму ---------- */
-.fx-glitch{text-shadow:0 0 26px rgba(var(--accent-rgb),.5)}
-.fx-glitch .glow{text-shadow:0 0 34px rgba(var(--accent-rgb),.9),0 0 76px rgba(var(--accent-rgb),.5)}
+/* ---------- світлова проявка заголовка ----------
+   Маска йде зліва направо тим самим світлом, що й слід на першому
+   екрані. Стартує під прелоадером, тож до моменту, коли він зникає,
+   заголовок уже наполовину проявлений. Текст завжди лишається
+   справжнім — жодних підмін символів. */
+.fx-wipe{
+  /* Суцільна частина маски — 62% від її ширини при масштабі 260%,
+     тобто 1.6 ширини заголовка. У кінцевому стані вона перекриває
+     текст повністю разом зі світінням, без обрізаного краю. */
+  -webkit-mask-image:linear-gradient(96deg,#000 62%,rgba(0,0,0,.38) 76%,transparent 90%);
+          mask-image:linear-gradient(96deg,#000 62%,rgba(0,0,0,.38) 76%,transparent 90%);
+  -webkit-mask-size:260% 100%;  mask-size:260% 100%;
+  -webkit-mask-repeat:no-repeat; mask-repeat:no-repeat;
+  -webkit-mask-position:100% 0; mask-position:100% 0;
+  animation:fxWipe .95s cubic-bezier(.32,.72,.3,1) .8s forwards;
+}
+@keyframes fxWipe{to{-webkit-mask-position:0 0;mask-position:0 0}}
 
 /* ---------- зміна підпису на кнопці ---------- */
 .btn{transition:transform .18s ease,box-shadow .18s ease,background .18s ease,opacity .12s ease}
@@ -697,4 +716,112 @@ footer{position:relative;z-index:2;border-top:1px solid var(--line-soft);padding
 }
 @media (prefers-reduced-motion:reduce){
   .sfx-btn.on .bars i,.sfx-hint span,.cd-urgent .cd-unit .v{animation:none!important}
+  .fx-wipe{-webkit-mask-image:none;mask-image:none;animation:none}
+}
+
+/* ============================================================
+   ПРЕЛОАДЕР — світлове кільце, з якого проявляється знак
+   Ховається CSS-анімацією, тож працює навіть без JS.
+   ============================================================ */
+.preloader{
+  position:fixed;inset:0;z-index:200;background:#000;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:26px;
+  animation:plOut .55s cubic-bezier(.4,0,.2,1) 1.25s forwards;
+}
+.preloader.done{animation:plOut .4s cubic-bezier(.4,0,.2,1) forwards}
+@keyframes plOut{to{opacity:0;visibility:hidden;pointer-events:none}}
+
+.pl-core{position:relative;width:132px;height:132px;display:grid;place-items:center}
+.pl-ring{position:absolute;inset:0;width:100%;height:100%;transform:rotate(-90deg)}
+.pl-track{fill:none;stroke:rgba(255,255,255,.07);stroke-width:2}
+.pl-arc{
+  fill:none;stroke:url(#plGrad);stroke-width:2.5;stroke-linecap:round;
+  stroke-dasharray:327;stroke-dashoffset:327;
+  filter:drop-shadow(0 0 8px rgba(230,0,126,.95)) drop-shadow(0 0 22px rgba(230,0,126,.55));
+  animation:plArc 1.15s cubic-bezier(.65,0,.35,1) forwards;
+}
+@keyframes plArc{
+  0%{stroke-dashoffset:327}
+  70%{stroke-dashoffset:0}
+  100%{stroke-dashoffset:0}
+}
+.pl-mark{
+  width:52px;height:52px;opacity:0;transform:scale(.82);
+  filter:drop-shadow(0 0 16px rgba(230,0,126,.9));
+  animation:plMark .7s cubic-bezier(.34,1.4,.64,1) .42s forwards;
+}
+@keyframes plMark{to{opacity:1;transform:scale(1)}}
+.pl-word{
+  font-family:"Montserrat",sans-serif;font-weight:800;font-size:12px;
+  letter-spacing:.6em;text-indent:.6em;text-transform:uppercase;color:rgba(255,255,255,.75);
+  opacity:0;animation:plWord .7s ease .68s forwards;
+}
+@keyframes plWord{from{opacity:0;letter-spacing:.34em}to{opacity:1;letter-spacing:.6em}}
+
+@media (prefers-reduced-motion:reduce){
+  .preloader{animation:none;opacity:0;visibility:hidden;pointer-events:none}
+}
+
+/* ============================================================
+   ІКОНКИ — заливка «скляним» градієнтом зі світінням
+   ============================================================ */
+.icon{width:30px;height:30px;flex:none;display:block}
+.icon-lg{width:44px;height:44px}
+.icon-sm{width:20px;height:20px}
+.icon-glow{filter:drop-shadow(0 4px 14px rgba(var(--accent-rgb),.75))}
+
+/* кругла підкладка під іконку */
+.icon-chip{
+  width:56px;height:56px;border-radius:18px;flex:none;display:grid;place-items:center;
+  background:linear-gradient(160deg,rgba(255,255,255,.14),rgba(255,255,255,.035));
+  border:1px solid rgba(255,255,255,.16);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.3),0 12px 30px -10px rgba(var(--accent-rgb),.8);
+}
+.icon-chip .icon{width:30px;height:30px}
+
+/* іконка в плитці категорії */
+.tile{display:flex;flex-direction:column;align-items:center;gap:10px}
+.tile .icon{width:32px;height:32px;transition:transform .22s ease}
+.tile:hover .icon{transform:translateY(-2px) scale(1.06)}
+
+/* заміна номера на іконку в картках */
+.tcard .icon-chip{margin-bottom:18px}
+.award .icon-chip{margin-bottom:14px;width:50px;height:50px;border-radius:16px}
+.award .icon-chip .icon{width:27px;height:27px}
+
+/* ============================================================
+   ІНФОГРАФІКА
+   ============================================================ */
+.info{padding:clamp(22px,3vw,34px);overflow:hidden}
+.info svg{display:block;width:100%;height:auto;overflow:visible}
+.info-cap{
+  font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--faint);margin-top:16px;text-align:center;
+}
+.info-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch}
+.info-scroll > svg{min-width:640px}
+
+/* легенда */
+.legend{display:flex;flex-wrap:wrap;gap:16px;justify-content:center;margin-top:18px}
+.legend span{display:flex;align-items:center;gap:8px;font-size:12.5px;color:var(--muted)}
+.legend i{width:12px;height:12px;border-radius:4px;display:block}
+
+/* смуга місць у потоці */
+.seatbar{display:flex;flex-direction:column;gap:14px;margin-top:4px}
+.seatrow{display:grid;grid-template-columns:96px minmax(0,1fr) 74px;gap:14px;align-items:center}
+.seatrow .nm{font-family:"Montserrat",sans-serif;font-weight:800;font-size:12.5px;text-transform:uppercase;letter-spacing:.05em;color:var(--white)}
+.seatrow .track{display:block;height:30px;border-radius:10px;background:rgba(255,255,255,.05);border:1px solid var(--line-soft);overflow:hidden;position:relative}
+.seatrow .fill{
+  display:block;height:100%;border-radius:9px;
+  background:linear-gradient(90deg,rgba(var(--accent-rgb),.85),rgba(var(--accent-rgb),.35));
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.35),0 0 26px -4px rgba(var(--accent-rgb),.9);
+  transform-origin:left;transition:transform 1s cubic-bezier(.2,.7,.3,1);
+}
+.seatrow .qty{font-family:"Montserrat",sans-serif;font-weight:900;font-size:19px;color:var(--white);text-align:right;font-variant-numeric:tabular-nums}
+.seatrow .qty s{display:block;font-size:10px;font-weight:600;color:var(--faint);text-decoration:none;letter-spacing:.1em;text-transform:uppercase}
+
+@media (max-width:560px){
+  .seatrow{grid-template-columns:78px minmax(0,1fr) 62px;gap:10px}
+  .pl-core{width:108px;height:108px}
+  .pl-word{font-size:10px;letter-spacing:.42em}
 }

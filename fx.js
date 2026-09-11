@@ -32,6 +32,12 @@
       AC = new Ctx();
     } catch (e) { return null; }
 
+    // iOS: без цього перемикач беззвучного режиму глушить Web Audio.
+    // Підтримується з Safari 16.4, у решті браузерів просто відсутнє.
+    try {
+      if (navigator.audioSession) navigator.audioSession.type = 'playback';
+    } catch (e) {}
+
     master = AC.createGain();
     master.gain.value = 0.85;
     master.connect(AC.destination);
@@ -49,10 +55,19 @@
     return AC;
   }
 
+  /* Контекст може заснути сам: iOS присипляє його після дзвінка,
+     блокування екрана чи перемикання вкладки. Не мовчимо — будимо. */
+  function awake(ac) {
+    if (!ac) return false;
+    if (ac.state === 'running') return true;
+    if (ac.resume) { try { ac.resume(); } catch (e) {} }
+    return ac.state === 'running';
+  }
+
   function tone(o) {
     if (!soundOn) return;
     var ac = ensureAudio();
-    if (!ac || ac.state === 'suspended') return;
+    if (!awake(ac)) return;
 
     var t0 = ac.currentTime + (o.delay || 0);
     var dur = o.dur || 0.12;
@@ -79,7 +94,7 @@
   function noise(o) {
     if (!soundOn) return;
     var ac = ensureAudio();
-    if (!ac || ac.state === 'suspended') return;
+    if (!awake(ac)) return;
 
     if (!noiseBuf) {
       noiseBuf = ac.createBuffer(1, ac.sampleRate * 1.2, ac.sampleRate);
@@ -171,6 +186,19 @@
 
   var toggles = [];
 
+  /* iOS вимагає, щоб звук стартував усередині самого обробника дотику:
+     програємо беззвучний семпл синхронно, ще до будь-яких промісів —
+     це «розблоковує» контекст на всю сесію. */
+  function primeAudio(ac) {
+    try {
+      var b = ac.createBuffer(1, 1, ac.sampleRate);
+      var s = ac.createBufferSource();
+      s.buffer = b;
+      s.connect(ac.destination);
+      s.start(0);
+    } catch (e) {}
+  }
+
   function setSound(next, silent) {
     soundOn = next;
     store.set('bg_sound', soundOn ? 'on' : 'off');
@@ -178,8 +206,12 @@
 
     if (soundOn) {
       var ac = ensureAudio();
-      if (ac && ac.state === 'suspended' && ac.resume) {
-        ac.resume().then(function () { if (!silent) SFX.on(); });
+      if (!ac) return;
+      primeAudio(ac);
+      if (ac.state === 'suspended' && ac.resume) {
+        var r = ac.resume();
+        if (r && r.then) r.then(function () { if (!silent) SFX.on(); });
+        else if (!silent) SFX.on();
       } else if (!silent) {
         SFX.on();
       }
@@ -234,7 +266,13 @@
     };
     document.addEventListener('pointerdown', unlock);
     document.addEventListener('keydown', unlock);
+    document.addEventListener('touchstart', unlock, { passive: true });
   }
+
+  // повернення на вкладку після дзвінка або блокування екрана
+  document.addEventListener('visibilitychange', function () {
+    if (!document.hidden && soundOn && AC) awake(AC);
+  });
 
   /* ---------- одноразова підказка ---------- */
   var hint = null;
@@ -357,57 +395,15 @@
   });
 
   /* ============================================================
-     5. ТЕКСТ: проявлення літер із шуму
+     5. ТЕКСТ: світлова проявка заголовка
+
+     Раніше тут був посимвольний глітч. Від нього відмовились:
+     головний рядок сторінки на секунду ставав нечитабельним набором
+     літер. Замість цього — маска, яка проявляє заголовок зліва направо
+     тим самим світлом, що й слід на першому екрані. Текст у розмітці
+     лишається звичайним і читається пошуковиками та зчитувачами.
+     Сама анімація описана в styles.css, класом .fx-wipe.
      ============================================================ */
-  var GLYPHS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789#%&*+=/\\<>{}[]АБВГДЕЖЗИЛМНОПРСТУФХЦЧШЩЮЯ';
-
-  function scramble(el, duration) {
-    if (reduced || el.dataset.fxDone) return;
-    el.dataset.fxDone = '1';
-
-    var nodes = [];
-    var walker = document.createTreeWalker(el, NodeFilter.SHOW_TEXT, null, false);
-    while (walker.nextNode()) {
-      var n = walker.currentNode;
-      if (n.nodeValue && n.nodeValue.trim()) nodes.push({ node: n, text: n.nodeValue });
-    }
-    if (!nodes.length) return;
-
-    var total = nodes.reduce(function (a, b) { return a + b.text.length; }, 0);
-    if (total > 120) return; // довгий текст не глітчимо — це заголовки
-
-    var start = null;
-    var D = duration || 780;
-
-    function frame(ts) {
-      if (start === null) start = ts;
-      var p = Math.min(1, (ts - start) / D);
-      var revealed = Math.floor(p * total * 1.18);
-      var seen = 0;
-
-      nodes.forEach(function (item) {
-        var out = '';
-        for (var i = 0; i < item.text.length; i++) {
-          var ch = item.text[i];
-          if (ch === ' ' || ch === '\n' || ch === ' ') { out += ch; seen++; continue; }
-          if (seen < revealed) out += ch;
-          else out += GLYPHS[(Math.random() * GLYPHS.length) | 0];
-          seen++;
-        }
-        item.node.nodeValue = out;
-      });
-
-      if (p < 1) {
-        requestAnimationFrame(frame);
-      } else {
-        nodes.forEach(function (item) { item.node.nodeValue = item.text; });
-        el.classList.remove('fx-glitch');
-      }
-    }
-
-    el.classList.add('fx-glitch');
-    requestAnimationFrame(frame);
-  }
 
   /* ============================================================
      6. ТЕКСТ: цифри, що набігають
@@ -437,13 +433,12 @@
 
   /* ---------- запуск текстових ефектів ---------- */
   if (!reduced) {
-    var heads = $$('.h-xl, .h-lg');
+    $$('.h-xl').forEach(function (el) { el.classList.add('fx-wipe'); });
+
+    var heads = [];
     var nums  = $$('.stat .v, .pack .price');
 
-    var fire = function (el) {
-      if (el.matches('.h-xl, .h-lg')) scramble(el, el.matches('.h-xl') ? 900 : 640);
-      else countUp(el);
-    };
+    var fire = function (el) { countUp(el); };
 
     if ('IntersectionObserver' in window) {
       var fxIO = new IntersectionObserver(function (entries) {

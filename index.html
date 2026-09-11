@@ -8,6 +8,177 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800;900&family=Manrope:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap">
 <link rel="stylesheet" href="styles.css">
 
+<!-- SPRITE -->
+<div class="preloader" id="preloader" aria-hidden="true">
+  <div class="pl-core">
+    <svg class="pl-ring" viewBox="0 0 120 120" aria-hidden="true">
+      <circle class="pl-track" cx="60" cy="60" r="52"/>
+      <circle class="pl-arc" cx="60" cy="60" r="52"/>
+    </svg>
+    <svg class="pl-mark" viewBox="0 0 40 40" fill="none" aria-hidden="true">
+      <path d="M4 3 L36 20 L4 37 Z" stroke="#FF57AE" stroke-width="2.2"/>
+      <path d="M12 12h8v6h-8v-6Zm0 10h8v6h-8v-6Zm10-7 7 5-7 5" stroke="#fff" stroke-width="1.7" stroke-linejoin="round"/>
+    </svg>
+  </div>
+  <div class="pl-word">Beauty Games</div>
+</div>
+<svg class="sprite" width="0" height="0" aria-hidden="true" focusable="false" style="position:absolute;pointer-events:none">
+<defs>
+    <linearGradient id="gIce" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#FF7ACB"/>
+      <stop offset=".45" stop-color="#E6007E"/>
+      <stop offset="1" stop-color="#7A2BE0"/>
+    </linearGradient>
+    <linearGradient id="gIceCy" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#9BF6FF"/>
+      <stop offset=".5" stop-color="#00C8E0"/>
+      <stop offset="1" stop-color="#5B4BE0"/>
+    </linearGradient>
+    <linearGradient id="gSpec" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#fff" stop-opacity=".85"/>
+      <stop offset="1" stop-color="#fff" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="gGold" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#FFE9A8"/>
+      <stop offset=".5" stop-color="#FFC24B"/>
+      <stop offset="1" stop-color="#E6007E"/>
+    </linearGradient>
+    <linearGradient id="plGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#7A2BE0"/>
+      <stop offset=".5" stop-color="#E6007E"/>
+      <stop offset="1" stop-color="#00E5FF"/>
+    </linearGradient>
+  </defs>
+  <symbol id="i-brow" viewBox="0 0 32 32">
+  <path d="M4 19c3.6-6.4 9-9.6 16.2-9.6 3.4 0 6.1.7 8.1 2.1.8.6.5 1.9-.5 2-5.9.7-10.4 2.1-13.6 4.2C11.3 19.6 8.2 22 5.6 21.3 4.5 21 3.5 19.9 4 19Z" fill="url(#gIce)"/>
+  <path d="M6 18.2c3.2-5 7.8-7.6 13.8-7.8-4.9 1.1-9.1 3.5-12.6 7.2-.5.5-1.4.9-1.2.6Z" fill="url(#gSpec)"/>
+  </symbol>
+  <symbol id="i-lash" viewBox="0 0 32 32">
+  <path d="M16 11c5.4 0 10 3 12.4 6.2.4.5.4 1.1 0 1.6C26 22 21.4 25 16 25S6 22 3.6 18.8a1.3 1.3 0 0 1 0-1.6C6 14 10.6 11 16 11Z" fill="url(#gIce)" opacity=".92"/>
+  <circle cx="16" cy="18" r="4.4" fill="#0A0512" opacity=".65"/>
+  <circle cx="16" cy="18" r="2.1" fill="url(#gSpec)"/>
+  <g stroke="url(#gIce)" stroke-width="2" stroke-linecap="round">
+    <path d="M16 9V5"/><path d="M8.6 10.4 6.3 7"/><path d="M23.4 10.4 25.7 7"/>
+    <path d="M2.8 13.6.4 11.9"/><path d="M29.2 13.6 31.6 11.9"/>
+  </g>
+  </symbol>
+  <symbol id="i-nails" viewBox="0 0 32 32">
+  <path d="M11 6.5C11 4.6 13.2 3 16 3s5 1.6 5 3.5c0 2.7-.9 8-1.6 13.4-.3 2.2-1.7 3.6-3.4 3.6s-3.1-1.4-3.4-3.6C11.9 14.5 11 9.2 11 6.5Z" fill="url(#gIce)"/>
+  <path d="M13 6.4c0-1.1 1.4-2 3-2s3 .9 3 2c0 1.4-.3 3.4-.6 5.6h-4.8C13.3 9.8 13 7.8 13 6.4Z" fill="url(#gSpec)" opacity=".5"/>
+  <rect x="10.5" y="25" width="11" height="4" rx="2" fill="url(#gIce)" opacity=".75"/>
+  </symbol>
+  <symbol id="i-pmu" viewBox="0 0 32 32">
+  <path d="M22.8 3.6 28.4 9.2a2 2 0 0 1 0 2.8L14.2 26.2a3 3 0 0 1-1.5.8l-6.4 1.4a1 1 0 0 1-1.2-1.2l1.4-6.4a3 3 0 0 1 .8-1.5L21.4 3.6a2 2 0 0 1 1.4-.6Z" fill="url(#gIce)"/>
+  <path d="M22.8 5.4 26.6 9.2 24 11.8 20.2 8 22.8 5.4Z" fill="url(#gSpec)" opacity=".7"/>
+  <path d="m7.6 21.4 3 3-3.8.8.8-3.8Z" fill="#0A0512" opacity=".55"/>
+  </symbol>
+  <symbol id="i-makeup" viewBox="0 0 32 32">
+  <rect x="11" y="14" width="10" height="15" rx="2.2" fill="url(#gIce)"/>
+  <rect x="12.6" y="15.6" width="3" height="11" rx="1.5" fill="url(#gSpec)" opacity=".45"/>
+  <path d="M13 4.4C13 3.1 14.3 2 16 2s3 1.1 3 2.4V14h-6V4.4Z" fill="url(#gIce)" opacity=".9"/>
+  <path d="M14.4 4.6c0-.7.7-1.2 1.6-1.2v9.2h-1.6V4.6Z" fill="url(#gSpec)" opacity=".6"/>
+  </symbol>
+  <symbol id="i-hair" viewBox="0 0 32 32">
+  <g stroke="url(#gIce)" stroke-width="2.4" stroke-linecap="round" fill="none">
+    <path d="M9.4 9.4 24 24"/><path d="M22.6 9.4 8 24"/>
+  </g>
+  <circle cx="7" cy="26" r="3.6" fill="none" stroke="url(#gIce)" stroke-width="2.4"/>
+  <circle cx="25" cy="26" r="3.6" fill="none" stroke="url(#gIce)" stroke-width="2.4"/>
+  <circle cx="16" cy="16.4" r="1.8" fill="url(#gSpec)"/>
+  </symbol>
+  <symbol id="i-extension" viewBox="0 0 32 32">
+  <path d="M10 3c-3.4 4.6-4.6 9.3-3.6 14.2C7.3 21.6 9.8 25.4 13.6 29" stroke="url(#gIce)" stroke-width="2.6" fill="none" stroke-linecap="round"/>
+  <path d="M16.6 3c-2.6 4.8-3.2 9.5-1.8 14.2 1.2 4 3.6 7.8 7.2 11.8" stroke="url(#gIce)" stroke-width="2.6" fill="none" stroke-linecap="round" opacity=".75"/>
+  <path d="M23.2 3.6c-1.6 4.8-1.6 9.4.2 13.8 1.4 3.4 3.4 6.6 6 9.6" stroke="url(#gIce)" stroke-width="2.6" fill="none" stroke-linecap="round" opacity=".5"/>
+  </symbol>
+  <symbol id="i-skin" viewBox="0 0 32 32">
+  <path d="M16 2.6c5 6.2 9.2 11.8 9.2 16.4 0 5.1-4.1 9.2-9.2 9.2s-9.2-4.1-9.2-9.2C6.8 14.4 11 8.8 16 2.6Z" fill="url(#gIce)"/>
+  <path d="M12.6 12.6c-2.2 3-3.4 5.6-3.4 7.6 0 .8.1 1.6.4 2.3-1.4-2.6-1.1-6.2 3-9.9Z" fill="url(#gSpec)"/>
+  <circle cx="19.6" cy="21" r="2.4" fill="#fff" opacity=".35"/>
+  </symbol>
+  <symbol id="i-massage" viewBox="0 0 32 32">
+  <path d="M6.4 16.8c0-1 .8-1.8 1.8-1.8s1.8.8 1.8 1.8v2h.8V8.6c0-1 .8-1.8 1.8-1.8s1.8.8 1.8 1.8v10.2h.8V6.4c0-1 .8-1.8 1.8-1.8s1.8.8 1.8 1.8v12.4h.8V9.6c0-1 .8-1.8 1.8-1.8s1.8.8 1.8 1.8v12.2c0 4.2-3.4 7.6-7.6 7.6h-1.4c-2.4 0-4.6-1.2-6-3.2L6.9 22a2 2 0 0 1-.5-1.3v-3.9Z" fill="url(#gIce)"/>
+  <path d="M12.6 8.8c0-.5.4-.8.8-.8v10.8h-.8V8.8Z" fill="url(#gSpec)" opacity=".55"/>
+  </symbol>
+  <symbol id="i-laser" viewBox="0 0 32 32">
+  <path d="M16 2 19 12l10 4-10 4-3 10-3-10-10-4 10-4 3-10Z" fill="url(#gIce)"/>
+  <path d="M16 6.6 17.6 12 16 13.4 14.4 12 16 6.6Z" fill="url(#gSpec)"/>
+  <g stroke="url(#gIce)" stroke-width="1.8" stroke-linecap="round" opacity=".55">
+    <path d="M27 5.4 29.6 2.8"/><path d="M5 26.6 2.4 29.2"/>
+  </g>
+  </symbol>
+  <symbol id="i-program" viewBox="0 0 32 32">
+  <path d="M4 6.2C4 5 5 4 6.2 4h8c1.1 0 2 .9 2 2v20c0-1.1-.9-2-2-2h-8C5 24 4 23 4 21.8V6.2Z" fill="url(#gIce)"/>
+  <path d="M28 6.2C28 5 27 4 25.8 4h-8c-1.1 0-2 .9-2 2v20c0-1.1.9-2 2-2h8c1.2 0 2.2-1 2.2-2.2V6.2Z" fill="url(#gIce)" opacity=".72"/>
+  <path d="M6.4 6.6h7.2v8.8H6.4V6.6Z" fill="url(#gSpec)" opacity=".35"/>
+  <rect x="4" y="26" width="24" height="2.6" rx="1.3" fill="url(#gIce)" opacity=".55"/>
+  </symbol>
+  <symbol id="i-team" viewBox="0 0 32 32">
+  <circle cx="11" cy="10" r="4.6" fill="url(#gIce)"/>
+  <circle cx="22.4" cy="12" r="3.8" fill="url(#gIce)" opacity=".72"/>
+  <path d="M3 26c0-4.4 3.6-8 8-8s8 3.6 8 8a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1Z" fill="url(#gIce)"/>
+  <path d="M20.6 19.2c1-.5 2-.8 3-.8 3.6 0 6.4 2.9 6.4 6.4a1 1 0 0 1-1 1h-6.6c0-2.5-.7-4.8-1.8-6.6Z" fill="url(#gIce)" opacity=".72"/>
+  <circle cx="9.4" cy="8.6" r="1.6" fill="url(#gSpec)"/>
+  </symbol>
+  <symbol id="i-trophy" viewBox="0 0 32 32">
+  <path d="M9 4h14v8.4c0 3.9-3.1 7-7 7s-7-3.1-7-7V4Z" fill="url(#gIce)"/>
+  <path d="M9 6.4H5.6c-.9 0-1.6.7-1.6 1.6 0 3.4 2.4 6.2 5.6 6.8M23 6.4h3.4c.9 0 1.6.7 1.6 1.6 0 3.4-2.4 6.2-5.6 6.8" stroke="url(#gIce)" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+  <path d="M13.6 19.4h4.8V24h-4.8z" fill="url(#gIce)" opacity=".8"/>
+  <rect x="8.6" y="24" width="14.8" height="4" rx="1.6" fill="url(#gIce)"/>
+  <path d="M11 5.6h3.4v7.2c0 .8-.6 1-1.2.6-1.4-1-2.2-2.6-2.2-4.4V5.6Z" fill="url(#gSpec)" opacity=".45"/>
+  </symbol>
+  <symbol id="i-crown" viewBox="0 0 32 32">
+  <path d="M3 10.6c0-1.1 1.2-1.7 2.1-1.1l5.5 3.6 4-7.4c.5-1 1.9-1 2.4 0l4 7.4 5.5-3.6c.9-.6 2.1 0 2.1 1.1L26.4 24c-.1 1-1 1.7-2 1.7H7.6c-1 0-1.9-.7-2-1.7L3 10.6Z" fill="url(#gGold)"/>
+  <path d="M5.4 11.8 7.6 23h3.2L8.6 13.6l-3.2-1.8Z" fill="url(#gSpec)" opacity=".5"/>
+  <circle cx="16" cy="19" r="2.2" fill="#fff" opacity=".5"/>
+  </symbol>
+  <symbol id="i-diamond" viewBox="0 0 32 32">
+  <path d="M9.4 4h13.2l6.4 7.4-13 16.4L3 11.4 9.4 4Z" fill="url(#gIce)"/>
+  <path d="M9.4 4 12 11.4 16 27.8 6 11.4 9.4 4Z" fill="url(#gSpec)" opacity=".4"/>
+  <path d="M3 11.4h26" stroke="#fff" stroke-opacity=".4" stroke-width="1.4"/>
+  <path d="m9.4 4 2.6 7.4h8L22.6 4" stroke="#fff" stroke-opacity=".35" stroke-width="1.4" fill="none"/>
+  </symbol>
+  <symbol id="i-heart" viewBox="0 0 32 32">
+  <path d="M16 28C7.4 22.2 3 17.5 3 12.4 3 8 6.4 4.8 10.5 4.8c2.3 0 4.3 1 5.5 2.7 1.2-1.7 3.2-2.7 5.5-2.7C25.6 4.8 29 8 29 12.4c0 5.1-4.4 9.8-13 15.6Z" fill="url(#gIce)"/>
+  <path d="M8.4 8c-1.9.9-3 2.6-3 4.7 0 1.4.4 2.8 1.3 4.2C5 14.4 5.4 10.2 8.4 8Z" fill="url(#gSpec)" opacity=".65"/>
+  </symbol>
+  <symbol id="i-joker" viewBox="0 0 32 32">
+  <path d="m16 2 3.9 8.5 9.3 1.1-6.9 6.3 1.9 9.1-8.2-4.6-8.2 4.6 1.9-9.1L2.8 11.6l9.3-1.1L16 2Z" fill="url(#gIce)"/>
+  <path d="m16 6.4 2 4.4-2 1.4-2-1.4 2-4.4Z" fill="url(#gSpec)"/>
+  </symbol>
+  <symbol id="i-camera" viewBox="0 0 32 32">
+  <rect x="2.6" y="8.6" width="19" height="15" rx="3.2" fill="url(#gIce)"/>
+  <path d="m23.6 14.4 5.1-3.4c.7-.5 1.7 0 1.7.9v10.2c0 .9-1 1.4-1.7.9l-5.1-3.4v-5.2Z" fill="url(#gIce)" opacity=".72"/>
+  <rect x="4.8" y="10.8" width="7.4" height="5.4" rx="2" fill="url(#gSpec)" opacity=".4"/>
+  <circle cx="26.4" cy="6" r="2.6" fill="#E6007E"/>
+  </symbol>
+  <symbol id="i-rocket" viewBox="0 0 32 32">
+  <path d="M16 2c4.8 3.6 7.4 8.4 7.4 14.2v3.4l-3.4 3.4h-8l-3.4-3.4v-3.4C8.6 10.4 11.2 5.6 16 2Z" fill="url(#gIce)"/>
+  <circle cx="16" cy="13" r="3.4" fill="#0A0512" opacity=".55"/>
+  <circle cx="16" cy="13" r="1.6" fill="url(#gSpec)"/>
+  <path d="M8.6 13.6 4.4 18c-.5.5-.8 1.2-.8 1.9v4.3l4.6-3.2M23.4 13.6l4.2 4.4c.5.5.8 1.2.8 1.9v4.3l-4.6-3.2" stroke="url(#gIce)" stroke-width="2" fill="none" stroke-linejoin="round"/>
+  <path d="M13.4 24.4c.7 2.4 1.6 4.3 2.6 5.6 1-1.3 1.9-3.2 2.6-5.6h-5.2Z" fill="#E6007E"/>
+  </symbol>
+  <symbol id="i-coin" viewBox="0 0 32 32">
+  <ellipse cx="16" cy="8.6" rx="11.4" ry="4.6" fill="url(#gIce)"/>
+  <path d="M4.6 8.6v6.8c0 2.5 5.1 4.6 11.4 4.6s11.4-2.1 11.4-4.6V8.6" stroke="url(#gIce)" stroke-width="2.4" fill="none"/>
+  <path d="M4.6 15.4v6.8c0 2.5 5.1 4.6 11.4 4.6s11.4-2.1 11.4-4.6v-6.8" stroke="url(#gIce)" stroke-width="2.4" fill="none" opacity=".7"/>
+  <ellipse cx="11" cy="7.8" rx="3.6" ry="1.4" fill="url(#gSpec)" opacity=".55"/>
+  </symbol>
+  <symbol id="i-mind" viewBox="0 0 32 32">
+  <path d="M20.4 3.4c4.8 0 8.6 3.9 8.6 8.6 0 2.4-1 4.6-2.6 6.2v4.4c0 1.3-1.1 2.4-2.4 2.4h-2.2v2.6c0 1.3-1.1 2.4-2.4 2.4h-7c-1.3 0-2.4-1.1-2.4-2.4v-4.2l-4.4-5c-.6-.7-.6-1.7 0-2.4l4.4-4.8c1.2-4.6 5.2-7.8 10.4-7.8Z" fill="url(#gIce)"/>
+  <circle cx="21.6" cy="11" r="2.8" fill="#0A0512" opacity=".5"/>
+  <circle cx="21.6" cy="11" r="1.2" fill="url(#gSpec)"/>
+  </symbol>
+  <symbol id="i-chart" viewBox="0 0 32 32">
+  <rect x="3" y="17" width="6" height="12" rx="2" fill="url(#gIce)" opacity=".62"/>
+  <rect x="13" y="10" width="6" height="19" rx="2" fill="url(#gIce)" opacity=".82"/>
+  <rect x="23" y="3" width="6" height="26" rx="2" fill="url(#gIce)"/>
+  <rect x="24.4" y="5" width="1.8" height="9" rx=".9" fill="url(#gSpec)" opacity=".55"/>
+  </symbol>
+</svg>
+<!-- /SPRITE -->
+
 <div class="bg-mesh" aria-hidden="true"></div>
 <div class="bg-grid" aria-hidden="true"></div>
 
@@ -137,7 +308,7 @@
 
     <div class="three">
       <div class="tcard glass rv">
-        <div class="num">01</div>
+        <div class="icon-chip"><svg class="icon" aria-hidden="true"><use href="#i-program"/></svg></div>
         <h3>Бізнес-програма</h3>
         <p>Дев'ять модулів Олександри Горобець — від мислення до стратегії на рік.</p>
         <ul>
@@ -147,7 +318,7 @@
         </ul>
       </div>
       <div class="tcard glass bloom rv">
-        <div class="num">02</div>
+        <div class="icon-chip"><svg class="icon" aria-hidden="true"><use href="#i-camera"/></svg></div>
         <h3>Команди і реаліті</h3>
         <p>Крос-функціональні команди виконують реальні бізнес-завдання в прямих ефірах.</p>
         <ul>
@@ -157,7 +328,7 @@
         </ul>
       </div>
       <div class="tcard glass rv">
-        <div class="num">03</div>
+        <div class="icon-chip"><svg class="icon" aria-hidden="true"><use href="#i-trophy"/></svg></div>
         <h3>Онлайн-чемпіонат</h3>
         <p>Професійне змагання у вашій категорії з авторитетним журі з практиків.</p>
         <ul>
@@ -196,6 +367,38 @@
       <div class="sec-rule"></div>
     </div>
     <div class="trail-wrap rv" aria-hidden="true"><div class="trail"></div></div>
+    <div class="info glass rv" style="margin-bottom:18px">
+      <div class="info-scroll">
+        <svg viewBox="0 0 900 190" role="img" aria-label="Структура сезону: бронювання, два місяці передпідготовки, два місяці активної фази і п ять днів Гранд-Фіналу">
+          <line x1="20" y1="118" x2="880" y2="118" stroke="rgba(255,255,255,.12)" stroke-width="1"/>
+
+          <rect x="20"  y="86" width="86"  height="32" rx="9" fill="rgba(255,255,255,.10)" stroke="rgba(255,255,255,.16)"/>
+          <rect x="116" y="86" width="330" height="32" rx="9" fill="url(#gIce)" opacity=".38"/>
+          <rect x="456" y="86" width="330" height="32" rx="9" fill="url(#gIce)" opacity=".82"/>
+          <rect x="796" y="86" width="84"  height="32" rx="9" fill="#E6007E"/>
+
+          <text x="63"  y="107" fill="#EDEAF3" font-family="Montserrat,sans-serif" font-size="12" font-weight="700" text-anchor="middle">Бронювання</text>
+          <text x="281" y="107" fill="#EDEAF3" font-family="Montserrat,sans-serif" font-size="13" font-weight="700" text-anchor="middle">Передпідготовка</text>
+          <text x="621" y="107" fill="#FFFFFF" font-family="Montserrat,sans-serif" font-size="13" font-weight="800" text-anchor="middle">Активна фаза шоу</text>
+          <text x="838" y="107" fill="#FFFFFF" font-family="Montserrat,sans-serif" font-size="12" font-weight="800" text-anchor="middle">Фінал</text>
+
+          <text x="63"  y="140" fill="#6A6379" font-family="JetBrains Mono,monospace" font-size="10" letter-spacing="1.4" text-anchor="middle">ОДРАЗУ</text>
+          <text x="281" y="140" fill="#6A6379" font-family="JetBrains Mono,monospace" font-size="10" letter-spacing="1.4" text-anchor="middle">2 МІСЯЦІ</text>
+          <text x="621" y="140" fill="#6A6379" font-family="JetBrains Mono,monospace" font-size="10" letter-spacing="1.4" text-anchor="middle">2 МІСЯЦІ</text>
+          <text x="838" y="140" fill="#6A6379" font-family="JetBrains Mono,monospace" font-size="10" letter-spacing="1.4" text-anchor="middle">5 ДНІВ</text>
+
+          <text x="281" y="66" fill="#A29BB2" font-family="Manrope,sans-serif" font-size="12" text-anchor="middle">психолог · стиліст · маркетолог · робота зі станом</text>
+          <text x="621" y="66" fill="#A29BB2" font-family="Manrope,sans-serif" font-size="12" text-anchor="middle">9 модулів · командні квести · ефіри · чемпіонат</text>
+          <text x="838" y="66" fill="#A29BB2" font-family="Manrope,sans-serif" font-size="12" text-anchor="middle">офлайн</text>
+
+          <circle cx="116" cy="118" r="4" fill="#E6007E"/>
+          <circle cx="456" cy="118" r="4" fill="#E6007E"/>
+          <circle cx="796" cy="118" r="5" fill="#FFFFFF"/>
+          <text x="450" y="172" fill="#FF57AE" font-family="JetBrains Mono,monospace" font-size="10" letter-spacing="2.2" text-anchor="middle">УСЬОГО 4 МІСЯЦІ СЕЗОНУ</text>
+        </svg>
+      </div>
+      <div class="info-cap">Доступ до передпідготовки відкривається одразу після оплати пакета</div>
+    </div>
     <div class="timeline">
       <div class="tl-step glass rv">
         <span class="badge">Етап 01</span>
@@ -330,7 +533,7 @@
 
     <div class="three">
       <div class="tcard glass rv">
-        <div class="num">✦</div>
+        <div class="icon-chip"><svg class="icon" aria-hidden="true"><use href="#i-team"/></svg></div>
         <h3>Крос-функціональна команда</h3>
         <ul>
           <li>Майстрині різних напрямків в одній команді</li>
@@ -339,7 +542,7 @@
         </ul>
       </div>
       <div class="tcard glass bloom rv">
-        <div class="num">◆</div>
+        <div class="icon-chip"><svg class="icon" aria-hidden="true"><use href="#i-chart"/></svg></div>
         <h3>Дві окремі ліги</h3>
         <ul>
           <li><b>Бізнес-ліга</b> і <b>VIP-ліга</b> між собою не змагаються</li>
@@ -348,7 +551,7 @@
         </ul>
       </div>
       <div class="tcard glass rv">
-        <div class="num">★</div>
+        <div class="icon-chip"><svg class="icon" aria-hidden="true"><use href="#i-coin"/></svg></div>
         <h3>Бали та магазин</h3>
         <ul>
           <li>Бали за реальні бізнес-результати, а не за активність</li>
@@ -356,6 +559,65 @@
           <li>Магазин балів: консультації топ-експертів і бізнес-розбори</li>
         </ul>
       </div>
+    </div>
+
+    <div class="info glass rv" style="margin-top:20px">
+      <div class="info-scroll">
+        <svg viewBox="0 0 900 330" role="img" aria-label="Схема: пакети формують дві окремі ліги, з яких команди виходять у Гранд-Фінал за різними нагородами">
+          <text x="88"  y="26" fill="#6A6379" font-family="JetBrains Mono,monospace" font-size="10" letter-spacing="2" text-anchor="middle">ПАКЕТ</text>
+          <text x="345" y="26" fill="#6A6379" font-family="JetBrains Mono,monospace" font-size="10" letter-spacing="2" text-anchor="middle">ЛІГА</text>
+          <text x="605" y="26" fill="#6A6379" font-family="JetBrains Mono,monospace" font-size="10" letter-spacing="2" text-anchor="middle">ОФЛАЙН-ФІНАЛ</text>
+          <text x="816" y="26" fill="#6A6379" font-family="JetBrains Mono,monospace" font-size="10" letter-spacing="2" text-anchor="middle">НАГОРОДА</text>
+
+          <path d="M162 108 H248" stroke="#E6007E" stroke-width="2" opacity=".85"/>
+          <path d="M162 196 H248" stroke="#E6007E" stroke-width="2" opacity=".6"/>
+          <path d="M442 108 H520" stroke="#E6007E" stroke-width="2" opacity=".85"/>
+          <path d="M442 196 H520" stroke="#E6007E" stroke-width="2" opacity=".6"/>
+          <path d="M690 108 H752" stroke="#E6007E" stroke-width="2" opacity=".85"/>
+          <path d="M690 196 H752" stroke="#E6007E" stroke-width="2" opacity=".6"/>
+          <path d="M162 278 H430" stroke="rgba(255,255,255,.16)" stroke-width="2" stroke-dasharray="5 6"/>
+
+          <rect x="20" y="82" width="142" height="52" rx="14" fill="url(#gIce)" opacity=".9"/>
+          <text x="91" y="106" fill="#fff" font-family="Montserrat,sans-serif" font-size="15" font-weight="900" text-anchor="middle">VIP</text>
+          <text x="91" y="123" fill="rgba(255,255,255,.82)" font-family="Manrope,sans-serif" font-size="11" text-anchor="middle">60 місць</text>
+
+          <rect x="248" y="80" width="194" height="56" rx="14" fill="rgba(230,0,126,.16)" stroke="rgba(230,0,126,.5)"/>
+          <text x="345" y="104" fill="#fff" font-family="Montserrat,sans-serif" font-size="14" font-weight="800" text-anchor="middle">VIP-ліга</text>
+          <text x="345" y="122" fill="#A29BB2" font-family="Manrope,sans-serif" font-size="11" text-anchor="middle">команди + бренд-наставник</text>
+
+          <rect x="520" y="80" width="170" height="56" rx="14" fill="rgba(255,255,255,.06)" stroke="rgba(255,255,255,.14)"/>
+          <text x="605" y="104" fill="#fff" font-family="Montserrat,sans-serif" font-size="14" font-weight="800" text-anchor="middle">5 команд</text>
+          <text x="605" y="122" fill="#A29BB2" font-family="Manrope,sans-serif" font-size="11" text-anchor="middle">виходять у фінал</text>
+
+          <rect x="752" y="80" width="128" height="56" rx="14" fill="#E6007E"/>
+          <text x="816" y="104" fill="#fff" font-family="Montserrat,sans-serif" font-size="14" font-weight="900" text-anchor="middle">Гран-прі</text>
+          <text x="816" y="122" fill="rgba(255,255,255,.86)" font-family="Manrope,sans-serif" font-size="11" text-anchor="middle">прямий ефір</text>
+
+          <rect x="20" y="170" width="142" height="52" rx="14" fill="url(#gIce)" opacity=".62"/>
+          <text x="91" y="194" fill="#fff" font-family="Montserrat,sans-serif" font-size="15" font-weight="900" text-anchor="middle">Бізнес</text>
+          <text x="91" y="211" fill="rgba(255,255,255,.82)" font-family="Manrope,sans-serif" font-size="11" text-anchor="middle">100 місць</text>
+
+          <rect x="248" y="168" width="194" height="56" rx="14" fill="rgba(230,0,126,.11)" stroke="rgba(230,0,126,.34)"/>
+          <text x="345" y="192" fill="#fff" font-family="Montserrat,sans-serif" font-size="14" font-weight="800" text-anchor="middle">Бізнес-ліга</text>
+          <text x="345" y="210" fill="#A29BB2" font-family="Manrope,sans-serif" font-size="11" text-anchor="middle">команди + куратор</text>
+
+          <rect x="520" y="168" width="170" height="56" rx="14" fill="rgba(255,255,255,.06)" stroke="rgba(255,255,255,.14)"/>
+          <text x="605" y="192" fill="#fff" font-family="Montserrat,sans-serif" font-size="14" font-weight="800" text-anchor="middle">ТОП-3 команди</text>
+          <text x="605" y="210" fill="#A29BB2" font-family="Manrope,sans-serif" font-size="11" text-anchor="middle">виходять у фінал</text>
+
+          <rect x="752" y="168" width="128" height="56" rx="14" fill="rgba(230,0,126,.6)"/>
+          <text x="816" y="192" fill="#fff" font-family="Montserrat,sans-serif" font-size="14" font-weight="900" text-anchor="middle">Джекпот</text>
+          <text x="816" y="210" fill="rgba(255,255,255,.86)" font-family="Manrope,sans-serif" font-size="11" text-anchor="middle">особисто</text>
+
+          <rect x="20" y="252" width="142" height="52" rx="14" fill="rgba(255,255,255,.07)" stroke="rgba(255,255,255,.14)"/>
+          <text x="91" y="276" fill="#EDEAF3" font-family="Montserrat,sans-serif" font-size="15" font-weight="900" text-anchor="middle">Стандарт</text>
+          <text x="91" y="293" fill="#6A6379" font-family="Manrope,sans-serif" font-size="11" text-anchor="middle">130 місць</text>
+          <text x="440" y="282" fill="#6A6379" font-family="Manrope,sans-serif" font-size="12">без команд і ліги — навчання, спільнота та чемпіонат</text>
+
+          <text x="345" y="152" fill="#6A6379" font-family="JetBrains Mono,monospace" font-size="9.5" letter-spacing="1.6" text-anchor="middle">ЛІГИ НЕ ЗМАГАЮТЬСЯ МІЖ СОБОЮ</text>
+        </svg>
+      </div>
+      <div class="info-cap">Кожна ліга має власний залік і власну головну нагороду</div>
     </div>
   </div>
 </section>
@@ -371,16 +633,16 @@
     </div>
 
     <div class="tiles rv" style="margin-bottom:22px">
-      <div class="tile">Броу-майстер</div>
-      <div class="tile">Лашмейкер</div>
-      <div class="tile">Нігтьовий сервіс</div>
-      <div class="tile">Перманентний макіяж</div>
-      <div class="tile">Візажист</div>
-      <div class="tile">Перукар-стиліст</div>
-      <div class="tile">Нарощування волосся</div>
-      <div class="tile">Косметологія</div>
-      <div class="tile">Масажист</div>
-      <div class="tile">Лазерне видалення</div>
+      <div class="tile"><svg class="icon" aria-hidden="true"><use href="#i-brow"/></svg><span>Броу-майстер</span></div>
+      <div class="tile"><svg class="icon" aria-hidden="true"><use href="#i-lash"/></svg><span>Лашмейкер</span></div>
+      <div class="tile"><svg class="icon" aria-hidden="true"><use href="#i-nails"/></svg><span>Нігтьовий сервіс</span></div>
+      <div class="tile"><svg class="icon" aria-hidden="true"><use href="#i-pmu"/></svg><span>Перманентний макіяж</span></div>
+      <div class="tile"><svg class="icon" aria-hidden="true"><use href="#i-makeup"/></svg><span>Візажист</span></div>
+      <div class="tile"><svg class="icon" aria-hidden="true"><use href="#i-hair"/></svg><span>Перукар-стиліст</span></div>
+      <div class="tile"><svg class="icon" aria-hidden="true"><use href="#i-extension"/></svg><span>Нарощування волосся</span></div>
+      <div class="tile"><svg class="icon" aria-hidden="true"><use href="#i-skin"/></svg><span>Косметологія</span></div>
+      <div class="tile"><svg class="icon" aria-hidden="true"><use href="#i-massage"/></svg><span>Масажист</span></div>
+      <div class="tile"><svg class="icon" aria-hidden="true"><use href="#i-laser"/></svg><span>Лазерне видалення</span></div>
     </div>
 
     <div class="three">
@@ -448,22 +710,22 @@
 
     <div class="awards">
       <div class="award glass bloom spec rv">
-        <div class="sym">♛</div>
+        <div class="icon-chip"><svg class="icon" aria-hidden="true"><use href="#i-crown"/></svg></div>
         <h4>Гран-прі</h4>
         <p>Головний приз проєкту. Отримує переможниця VIP-ліги — розігрується в прямому ефірі Гранд-Фіналу. Після сезону виходить пост-шоу про те, як вона використала приз.</p>
       </div>
       <div class="award glass rv">
-        <div class="sym">◆</div>
+        <div class="icon-chip"><svg class="icon" aria-hidden="true"><use href="#i-diamond"/></svg></div>
         <h4>Джекпот</h4>
         <p>Головна нагорода Бізнес-ліги. В останній день фіналу команди переходять в індивідуальну боротьбу — і Джекпот отримує переможниця особисто.</p>
       </div>
       <div class="award glass rv">
-        <div class="sym">♥</div>
+        <div class="icon-chip"><svg class="icon" aria-hidden="true"><use href="#i-heart"/></svg></div>
         <h4>Приз глядацьких симпатій</h4>
         <p>За підсумками відкритого голосування в усіх каналах проєкту: YouTube, Instagram та інші майданчики. Голоси сумуються.</p>
       </div>
       <div class="award glass rv">
-        <div class="sym">★</div>
+        <div class="icon-chip"><svg class="icon" aria-hidden="true"><use href="#i-joker"/></svg></div>
         <h4>Джокер</h4>
         <p>Глядачі можуть повернути в гру улюблену героїню і вивести її в індивідуальні змагання. Джокер може виграти будь-яка учасниця — незалежно від ліги.</p>
       </div>
@@ -779,6 +1041,28 @@
           <li>Стандарт — <b>130</b> учасниць</li>
         </ul>
       </div>
+    </div>
+
+    <div class="info glass rv" style="margin-top:18px">
+      <span class="label label-accent">Місця в потоці</span>
+      <div class="seatbar" style="margin-top:18px">
+        <div class="seatrow">
+          <span class="nm">Стандарт</span>
+          <span class="track"><span class="fill" data-w="100"></span></span>
+          <span class="qty">130<s>місць</s></span>
+        </div>
+        <div class="seatrow">
+          <span class="nm">Бізнес</span>
+          <span class="track"><span class="fill" data-w="77"></span></span>
+          <span class="qty">100<s>місць</s></span>
+        </div>
+        <div class="seatrow">
+          <span class="nm">VIP</span>
+          <span class="track"><span class="fill" data-w="46"></span></span>
+          <span class="qty">60<s>місць</s></span>
+        </div>
+      </div>
+      <div class="info-cap">Разом 290 учасниць сезону</div>
     </div>
   </div>
 </section>
