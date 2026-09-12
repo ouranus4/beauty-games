@@ -1,0 +1,217 @@
+/* ============================================================
+   BEAUTY GAMES — калькулятор майстра
+   ------------------------------------------------------------
+   Шар поверх styles.css і squid.css: токени, кнопки, заголовки
+   кроків (.quiz-*), вибір (.expo) і галочка (.hello-check)
+   беруться звідти. Тут — лише те, чого на головній немає:
+   поля з одиницями, прогрес кроків і екран результату.
+   ============================================================ */
+
+.calc-hero{padding:calc(var(--nav-h) + 64px) 0 30px;position:relative;z-index:2}
+.calc-hero .wrap{display:flex;flex-direction:column;gap:18px}
+.calc-hero .lede{margin:0}
+.calc-wrap{max-width:980px;padding-bottom:clamp(56px,8vw,96px)}
+
+/* Скло ховає все, що виходить за край, — і липка панель кнопок
+   переставала липнути. Обрізати тут нема чого. */
+.calc.glass{overflow:visible;padding:0}
+
+/* ---------- прогрес ---------- */
+.calc-top{padding:22px clamp(18px,3vw,32px) 0}
+.calc-steps{list-style:none;margin:0 0 12px;padding:0;display:grid;grid-template-columns:repeat(5,1fr);gap:6px}
+.calc-steps button{
+  width:100%;display:flex;align-items:center;gap:8px;padding:0;
+  background:none;border:0;text-align:left;color:var(--faint);
+  font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;
+}
+.calc-steps button:disabled{cursor:default!important}
+.calc-steps b{
+  flex:none;width:24px;height:24px;display:grid;place-items:center;border-radius:50%;
+  font-family:"Montserrat",sans-serif;font-size:11px;font-weight:800;letter-spacing:0;
+  background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);color:var(--muted);
+}
+.calc-steps .done{color:var(--muted)}
+.calc-steps .done b{background:rgba(255,46,136,.16);border-color:rgba(255,46,136,.5);color:var(--pink-soft)}
+.calc-steps .on{color:#fff}
+.calc-steps .on b{background:var(--pink);border-color:var(--pink);color:#fff;box-shadow:0 0 18px rgba(255,46,136,.55)}
+.calc-bar{height:6px;border-radius:var(--r-pill);background:rgba(255,255,255,.08);overflow:hidden}
+.calc-bar span{
+  display:block;height:100%;width:0;border-radius:var(--r-pill);
+  background:linear-gradient(90deg,var(--pink-deep),var(--pink-hot));
+  box-shadow:0 0 18px rgba(255,46,136,.7);transition:width .35s ease;
+}
+
+.calc-step{padding:28px clamp(18px,3vw,32px) 6px}
+.calc-step .quiz-title{max-width:none}
+
+/* ---------- поля ---------- */
+.cf-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px 20px}
+.cf{display:flex;flex-direction:column;gap:8px;min-width:0}
+.cf.full,.cf-grid .full{grid-column:1/-1}
+.cf-l{font-family:"Montserrat",sans-serif;font-weight:700;font-size:13.5px;color:var(--white);line-height:1.3}
+.cf-h{font-size:12.5px;line-height:1.45;color:var(--muted)}
+.cf-sub{
+  grid-column:1/-1;margin-top:6px;padding-top:16px;border-top:1px solid rgba(255,255,255,.07);
+  font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);
+}
+
+.cf-in{
+  display:flex;align-items:center;min-height:54px;border-radius:var(--r-sm);
+  background:rgba(255,255,255,.05);border:1.5px solid rgba(255,255,255,.14);
+  transition:border-color .18s ease, box-shadow .18s ease, background .18s ease;
+}
+.cf-in:hover{border-color:rgba(255,46,136,.4)}
+.cf-in:focus-within{border-color:var(--pink);background:rgba(255,46,136,.06);box-shadow:0 0 0 4px rgba(255,46,136,.16)}
+.cf-in input,.cf-in select{
+  flex:1;min-width:0;height:100%;padding:13px 14px;background:transparent;border:0;outline:0;border-radius:var(--r-sm);
+  font-family:"Montserrat",sans-serif;font-weight:800;font-size:18px;color:#fff;font-variant-numeric:tabular-nums;
+}
+.cf-in input[type=text]:not([inputmode]){font-family:"Manrope",sans-serif;font-weight:600;font-size:15.5px}
+.cf-in input::placeholder{color:rgba(255,255,255,.26);font-weight:600}
+.cf-in select{font-family:"Manrope",sans-serif;font-weight:700;font-size:15.5px;appearance:none;-webkit-appearance:none;
+  background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 8'%3E%3Cpath d='M1 1.5 6 6.5l5-5' fill='none' stroke='%23FF8FC0' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") right 16px center/12px no-repeat}
+.cf-in select option{background:#120B16;color:#fff}
+.cf-u{flex:none;padding-right:14px;font-family:"JetBrains Mono",monospace;font-size:12px;color:var(--muted);white-space:nowrap}
+.cf-u i{font-style:normal}
+.cf-step{
+  flex:none;width:46px;align-self:stretch;border:0;background:transparent;
+  color:var(--pink-soft);font-family:"Montserrat",sans-serif;font-size:22px;font-weight:700;line-height:1;
+  transition:background .16s ease, color .16s ease;
+}
+.cf-step:hover{background:rgba(255,46,136,.14);color:#fff}
+.cf-step:first-child{border-right:1px solid rgba(255,255,255,.08);border-radius:var(--r-sm) 0 0 var(--r-sm)}
+.cf-step:last-child{border-left:1px solid rgba(255,255,255,.08);border-radius:0 var(--r-sm) var(--r-sm) 0}
+.cf-in-pair input + .cf-u{padding-right:6px}
+.cf-in-pair input:nth-of-type(2){border-left:1px solid rgba(255,255,255,.1);border-radius:0;max-width:40%}
+
+.cf-row{display:flex;align-items:center;gap:16px}
+.cf-row .cf-range{flex:1}
+.cf-in-sm{flex:none;width:130px}
+.cf-range{width:100%;height:28px;accent-color:var(--pink);background:transparent}
+
+.cf-msg{display:none;font-size:12.5px;color:#FF8A9E}
+.cf.err .cf-in{border-color:#FF5C7A;box-shadow:0 0 0 4px rgba(255,92,122,.14)}
+.cf.err .cf-msg{display:block}
+
+.calc-dirs{display:flex;flex-wrap:wrap;gap:8px}
+
+.cf-sum{
+  display:flex;align-items:baseline;justify-content:space-between;gap:14px;margin-top:22px;
+  padding:16px 20px;border-radius:var(--r-md);
+  background:rgba(233,198,126,.1);border:1px solid rgba(233,198,126,.38);
+  font-size:14px;color:var(--text);
+}
+.cf-sum b{font-family:"Montserrat",sans-serif;font-weight:900;font-size:24px;color:var(--gold-1);font-variant-numeric:tabular-nums}
+
+/* ---------- кнопки кроків ---------- */
+.calc-nav{
+  position:sticky;bottom:0;z-index:6;display:flex;align-items:center;gap:10px;
+  margin-top:18px;padding:16px clamp(18px,3vw,32px) 20px;
+  border-top:1px solid rgba(255,255,255,.07);border-radius:0 0 var(--r-lg) var(--r-lg);
+  background:linear-gradient(180deg,rgba(18,11,22,.72),rgba(12,8,15,.96));
+  -webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);
+}
+.calc-nav #calcNext{margin-left:auto}
+.calc-nav #calcReset{margin-left:auto}
+
+/* ============================================================
+   РЕЗУЛЬТАТ
+   ============================================================ */
+.r-hero{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:14px;align-items:stretch}
+.r-main{
+  padding:24px;border-radius:var(--r-lg);
+  background:linear-gradient(180deg,rgba(255,46,136,.2),rgba(255,46,136,.05));
+  border:1px solid rgba(255,46,136,.5);box-shadow:0 24px 60px rgba(255,46,136,.18);
+}
+.r-k,.r-tile span,.r-raise-grid span{
+  font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);
+}
+.r-big{
+  margin:10px 0 4px;font-family:"Montserrat",sans-serif;font-weight:900;line-height:1;
+  font-size:clamp(42px,7vw,70px);letter-spacing:-.03em;color:#fff;font-variant-numeric:tabular-nums;
+  text-shadow:0 0 34px rgba(255,46,136,.45);
+}
+.r-big.neg{color:#FF6F8E}
+.r-of{margin:0;font-size:14px;color:var(--muted)}
+
+.r-stack{display:flex;height:14px;margin:20px 0 14px;border-radius:var(--r-pill);overflow:hidden;background:rgba(255,255,255,.08)}
+.r-stack i{display:block;height:100%;width:0;transition:width .45s ease}
+.seg-mat{background:#8E7A9C}
+.seg-tax{background:#54435F}
+.seg-fix{background:var(--pink-deep)}
+.seg-net{background:linear-gradient(90deg,var(--gold-3),var(--gold-1))}
+.r-legend{display:grid;grid-template-columns:1fr 1fr;gap:8px 18px}
+.r-legend span{display:flex;align-items:baseline;justify-content:space-between;gap:8px;font-size:13px;color:var(--muted)}
+.r-legend em{font-style:normal;display:flex;align-items:center;gap:8px}
+.r-legend b{color:#fff;font-weight:700;font-variant-numeric:tabular-nums;white-space:nowrap}
+.dot{width:9px;height:9px;border-radius:50%;flex:none}
+
+.r-tiles{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.r-tile{
+  display:flex;flex-direction:column;gap:5px;padding:16px;border-radius:var(--r-md);
+  background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.09);
+}
+.r-tile b{font-family:"Montserrat",sans-serif;font-weight:900;font-size:clamp(20px,2.6vw,26px);color:#fff;line-height:1.1;font-variant-numeric:tabular-nums}
+.r-tile small{font-size:12px;line-height:1.4;color:var(--muted)}
+.r-tile-hot{background:rgba(233,198,126,.1);border-color:rgba(233,198,126,.4)}
+.r-tile-hot b{color:var(--gold-1)}
+
+.r-verdict{margin-top:14px}
+.r-verdict .quiz-verdict{font-size:17px}
+.r-verdict .quiz-text{font-size:15px}
+
+.r-raise{margin-top:14px;padding:22px}
+.r-raise-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:8px}
+.r-h{font-family:"Montserrat",sans-serif;font-weight:900;font-size:17px;text-transform:uppercase;color:#fff;letter-spacing:-.01em}
+.r-raise-pct{
+  padding:6px 14px;border-radius:var(--r-pill);background:rgba(255,46,136,.16);
+  box-shadow:inset 0 0 0 1.5px rgba(255,46,136,.55);
+  font-family:"Montserrat",sans-serif;font-weight:900;font-size:16px;color:#fff;font-variant-numeric:tabular-nums;
+}
+.r-raise-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:10px}
+.r-raise-grid div{display:flex;flex-direction:column;gap:4px;padding:12px 14px;border-radius:var(--r-sm);background:rgba(255,255,255,.04)}
+.r-raise-grid b{font-family:"Montserrat",sans-serif;font-weight:900;font-size:20px;color:#fff;font-variant-numeric:tabular-nums}
+.r-raise-grid div:last-child b{color:var(--gold-1)}
+.r-raise-note{margin:14px 0 0;font-size:14.5px;line-height:1.55;color:var(--text)}
+.r-raise-note b{color:var(--pink-soft)}
+
+/* Заявка — золотий контур, як у кроці знайомства на головній:
+   це головна дія екрана. */
+.r-lead{
+  margin-top:18px;padding:24px;border-radius:var(--r-lg);
+  background:linear-gradient(180deg,rgba(233,198,126,.12),rgba(255,255,255,.03));
+  border:1px solid rgba(233,198,126,.42);
+}
+.r-lead-head{display:flex;flex-direction:column;gap:9px;margin-bottom:18px}
+.r-lead .consent{display:flex;gap:10px;align-items:flex-start;font-size:12.5px;color:var(--muted);line-height:1.5}
+.r-lead .consent input{margin-top:3px;accent-color:var(--pink)}
+.r-lead-btn{margin-top:18px;width:100%}
+.r-lead-ok{display:flex;gap:14px;align-items:flex-start}
+.r-lead-ok b{font-family:"Montserrat",sans-serif;font-weight:900;font-size:18px;text-transform:uppercase;color:#fff}
+.r-lead-ok p{margin:6px 0 14px;font-size:14.5px;color:var(--text)}
+
+.r-foot{margin:18px 0 0;font-size:12px;line-height:1.55;color:var(--faint)}
+
+/* ============================================================
+   МОБІЛЬНЕ
+   ============================================================ */
+@media (max-width:760px){
+  .calc-hero{padding-top:calc(var(--nav-h) + 36px)}
+  .cf-grid{grid-template-columns:1fr;gap:16px}
+  .calc-steps span{display:none}
+  .calc-steps button{justify-content:center}
+  .r-hero{grid-template-columns:1fr}
+  .r-raise-grid{grid-template-columns:1fr}
+  .r-raise-grid div{flex-direction:row;align-items:baseline;justify-content:space-between}
+  .r-legend{grid-template-columns:1fr}
+  .cf-in-sm{width:112px}
+  .calc-nav{border-radius:0 0 var(--r-lg) var(--r-lg);padding-bottom:calc(16px + env(safe-area-inset-bottom))}
+}
+@media (max-width:860px){
+  /* На цій сторінці немає нижньої панелі головної — відступ під неї не потрібен. */
+  body{padding-bottom:0}
+  .calc-nav-home{display:none}
+}
+@media (prefers-reduced-motion:reduce){
+  .calc-bar span,.r-stack i{transition:none}
+}
