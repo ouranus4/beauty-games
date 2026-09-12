@@ -13,6 +13,11 @@
   to = "/partners.html"
   status = 200
 
+[[redirects]]
+  from = "/calc"
+  to = "/calculator.html"
+  status = 200
+
 # ---------- безпека ----------
 [[headers]]
   for = "/*"

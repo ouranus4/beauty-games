@@ -1,0 +1,421 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Калькулятор майстра — Beauty Games 2026</title>
+<meta name="description" content="Безкоштовний калькулятор для б'юті-майстрів: скільки насправді коштує ваша процедура, скільки лишається чистими, яка ціна потрібна для вашої мети і що буде, якщо підняти ціну.">
+<script>document.documentElement.setAttribute('data-page','calc');document.documentElement.lang='uk';</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800;900&family=Manrope:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap">
+<link rel="stylesheet" href="styles.css?v=2cf033dd">
+<link rel="stylesheet" href="squid.css?v=ce4ef755">
+<link rel="stylesheet" href="calc.css?v=1">
+
+<div class="bg-mesh" aria-hidden="true"></div>
+
+<!-- ============ ШАПКА ============ -->
+<div class="nav-outer">
+  <nav class="nav">
+    <a href="index.html" class="brand" aria-label="Beauty Games — на головну">
+      <img class="brand-logo" src="assets/logo-horizontal.svg" alt="Beauty Games — reality show, championship, education" width="330" height="52">
+    </a>
+    <a href="index.html" class="nav-switch calc-nav-home">Про проєкт</a>
+    <a href="index.html#picker" class="btn btn-primary btn-sm">Забронювати місце</a>
+  </nav>
+</div>
+
+<!-- ============ ГЕРОЙ ============ -->
+<header class="calc-hero">
+  <div class="wrap">
+    <span class="eyebrow">Бонус від Beauty Games</span>
+    <h1 class="h-xl">Калькулятор <span class="glow">майстра</span></h1>
+    <p class="lede" id="calcHello">Скільки насправді коштує ваша процедура і скільки з неї лишається вам. Чотири короткі кроки — і ви побачите свої справжні цифри.</p>
+  </div>
+</header>
+
+<main class="wrap calc-wrap">
+  <div class="calc glass" id="calc">
+
+    <!-- ---------- прогрес ---------- -->
+    <div class="calc-top">
+      <ol class="calc-steps" id="calcSteps">
+        <li><button type="button" data-go="1"><b>1</b><span>Послуга</span></button></li>
+        <li><button type="button" data-go="2"><b>2</b><span>Витратні</span></button></li>
+        <li><button type="button" data-go="3"><b>3</b><span>Витрати</span></button></li>
+        <li><button type="button" data-go="4"><b>4</b><span>Мета</span></button></li>
+        <li><button type="button" data-go="5"><b>✓</b><span>Результат</span></button></li>
+      </ol>
+      <div class="calc-bar"><span id="calcBar"></span></div>
+    </div>
+
+    <!-- ---------- КРОК 1 ---------- -->
+    <section class="calc-step" data-step="1">
+      <div class="quiz-head">
+        <span class="quiz-kicker">Крок 1 / 4</span>
+        <h2 class="quiz-title">Ваша послуга</h2>
+        <p class="quiz-sub">Візьміть ту, яку робите найчастіше. Якщо послуг кілька — порахуйте кожну окремо і порівняйте.</p>
+      </div>
+
+      <div class="cf-grid">
+        <div class="cf full">
+          <span class="cf-l">Ваш напрямок</span>
+          <div class="calc-dirs" id="calcDirs" role="group" aria-label="Напрямок">
+            <button class="expo" type="button" data-dir="Броу-майстер">Брови</button>
+            <button class="expo" type="button" data-dir="Лашмейкер">Вії</button>
+            <button class="expo" type="button" data-dir="Нігтьовий сервіс">Нігті</button>
+            <button class="expo" type="button" data-dir="Перманент">Перманент</button>
+            <button class="expo" type="button" data-dir="Візажист">Макіяж</button>
+            <button class="expo" type="button" data-dir="Перукар-стиліст">Перукар</button>
+            <button class="expo" type="button" data-dir="Нарощування волосся">Нарощення</button>
+            <button class="expo" type="button" data-dir="Косметологія">Косметолог</button>
+            <button class="expo" type="button" data-dir="Масажист">Масаж</button>
+            <button class="expo" type="button" data-dir="Лазерне видалення">Лазер</button>
+            <button class="expo" type="button" data-dir="Депіляція">Депіляція</button>
+            <button class="expo" type="button" data-dir="Подологія">Подологія</button>
+          </div>
+        </div>
+
+        <div class="cf">
+          <label class="cf-l" for="cService">Назва послуги</label>
+          <div class="cf-in"><input type="text" id="cService" data-k="service" maxlength="60" placeholder="Напр., корекція брів"></div>
+        </div>
+
+        <div class="cf">
+          <label class="cf-l" for="cCur">Валюта</label>
+          <div class="cf-in">
+            <select id="cCur" data-k="cur">
+              <option value="€">€ — євро</option>
+              <option value="$">$ — долар</option>
+              <option value="£">£ — фунт</option>
+              <option value="zł">zł — злотий</option>
+              <option value="₴">₴ — гривня</option>
+              <option value="лв">лв — лев</option>
+              <option value="₾">₾ — ларі</option>
+              <option value="CHF">CHF — франк</option>
+              <option value="Kč">Kč — крона</option>
+              <option value="lei">lei — лей</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="cf" data-req>
+          <label class="cf-l" for="cPrice">Ціна зараз</label>
+          <div class="cf-in"><input type="text" inputmode="decimal" id="cPrice" data-k="price" placeholder="60"><span class="cf-u" data-cur>€</span></div>
+          <span class="cf-msg">Вкажіть ціну послуги</span>
+        </div>
+
+        <div class="cf" data-req>
+          <label class="cf-l" for="cDur">Час на одну процедуру</label>
+          <div class="cf-in">
+            <button type="button" class="cf-step" data-d="-1" aria-label="Менше">−</button>
+            <input type="text" inputmode="decimal" id="cDur" data-k="dur" data-step="0.25" placeholder="2,5">
+            <span class="cf-u">год</span>
+            <button type="button" class="cf-step" data-d="1" aria-label="Більше">+</button>
+          </div>
+          <span class="cf-h">Разом із підготовкою, прибиранням і стерилізацією</span>
+          <span class="cf-msg">Вкажіть, скільки триває процедура</span>
+        </div>
+
+        <div class="cf full" data-req>
+          <label class="cf-l" for="cCount">Скільки таких процедур на місяць</label>
+          <div class="cf-row">
+            <input type="range" class="cf-range" min="0" max="200" step="1" value="0" data-mirror="count" aria-label="Процедур на місяць">
+            <div class="cf-in cf-in-sm">
+              <input type="text" inputmode="numeric" id="cCount" data-k="count" data-step="1" placeholder="50">
+              <span class="cf-u">шт</span>
+            </div>
+          </div>
+          <span class="cf-msg">Вкажіть, скільки процедур ви робите на місяць</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ---------- КРОК 2 ---------- -->
+    <section class="calc-step" data-step="2" hidden>
+      <div class="quiz-head">
+        <span class="quiz-kicker">Крок 2 / 4</span>
+        <h2 class="quiz-title">Витратні на одну процедуру</h2>
+        <p class="quiz-sub">Скільки матеріалів іде на одну клієнтку. Не знаєте точно — поставте приблизно: чесна оцінка краща за порожнє поле.</p>
+      </div>
+      <div class="cf-grid">
+        <div class="cf">
+          <label class="cf-l" for="cMat1">Основні матеріали</label>
+          <div class="cf-in"><input type="text" inputmode="decimal" id="cMat1" data-k="mat1" placeholder="6"><span class="cf-u" data-cur>€</span></div>
+          <span class="cf-h">Пігмент, вії, клей, гель, препарати</span>
+        </div>
+        <div class="cf">
+          <label class="cf-l" for="cMat2">Одноразове</label>
+          <div class="cf-in"><input type="text" inputmode="decimal" id="cMat2" data-k="mat2" placeholder="2"><span class="cf-u" data-cur>€</span></div>
+          <span class="cf-h">Рукавички, простирадла, голки, серветки</span>
+        </div>
+        <div class="cf">
+          <label class="cf-l" for="cMat3">Дезінфекція і стерилізація</label>
+          <div class="cf-in"><input type="text" inputmode="decimal" id="cMat3" data-k="mat3" placeholder="1"><span class="cf-u" data-cur>€</span></div>
+        </div>
+        <div class="cf">
+          <label class="cf-l" for="cMat4">Інше</label>
+          <div class="cf-in"><input type="text" inputmode="decimal" id="cMat4" data-k="mat4" placeholder="0,5"><span class="cf-u" data-cur>€</span></div>
+          <span class="cf-h">Кава, вода, дрібниці для клієнтки</span>
+        </div>
+      </div>
+      <div class="cf-sum"><span>Витратні на одну процедуру</span><b id="sumMat">0</b></div>
+    </section>
+
+    <!-- ---------- КРОК 3 ---------- -->
+    <section class="calc-step" data-step="3" hidden>
+      <div class="quiz-head">
+        <span class="quiz-kicker">Крок 3 / 4</span>
+        <h2 class="quiz-title">Витрати на місяць</h2>
+        <p class="quiz-sub">Те, що ви платите, навіть якщо клієнток немає. Їх треба покрити раніше, ніж ви заробите хоч щось.</p>
+      </div>
+      <div class="cf-grid">
+        <div class="cf">
+          <label class="cf-l" for="cRent">Оренда кабінету або місця</label>
+          <div class="cf-in"><input type="text" inputmode="decimal" id="cRent" data-k="rent" placeholder="400"><span class="cf-u" data-cur>€</span></div>
+          <span class="cf-h">Працюєте вдома — впишіть частку комуналки або 0</span>
+        </div>
+        <div class="cf">
+          <label class="cf-l" for="cUtil">Комуналка, інтернет, телефон</label>
+          <div class="cf-in"><input type="text" inputmode="decimal" id="cUtil" data-k="util" placeholder="60"><span class="cf-u" data-cur>€</span></div>
+        </div>
+        <div class="cf">
+          <label class="cf-l" for="cAds">Реклама і просування</label>
+          <div class="cf-in"><input type="text" inputmode="decimal" id="cAds" data-k="ads" placeholder="50"><span class="cf-u" data-cur>€</span></div>
+          <span class="cf-h">Таргет, SMM, фотограф, друк</span>
+        </div>
+        <div class="cf">
+          <label class="cf-l" for="cSoft">Програми і сервіси</label>
+          <div class="cf-in"><input type="text" inputmode="decimal" id="cSoft" data-k="soft" placeholder="40"><span class="cf-u" data-cur>€</span></div>
+          <span class="cf-h">Booksy, CRM, онлайн-бухгалтерія</span>
+        </div>
+        <div class="cf">
+          <label class="cf-l" for="cFee">Обов'язкові внески і страховки</label>
+          <div class="cf-in"><input type="text" inputmode="decimal" id="cFee" data-k="fee" placeholder="0"><span class="cf-u" data-cur>€</span></div>
+          <span class="cf-h">Щомісячні платежі, які не залежать від доходу</span>
+        </div>
+        <div class="cf">
+          <label class="cf-l" for="cOther">Дорога, парковка, інше</label>
+          <div class="cf-in"><input type="text" inputmode="decimal" id="cOther" data-k="other" placeholder="30"><span class="cf-u" data-cur>€</span></div>
+        </div>
+
+        <span class="cf-sub">Те, що купуєте рідше, — калькулятор сам розкладе по місяцях</span>
+        <div class="cf">
+          <label class="cf-l" for="cEdu">Навчання і курси за рік</label>
+          <div class="cf-in"><input type="text" inputmode="decimal" id="cEdu" data-k="edu" placeholder="1200"><span class="cf-u"><i data-cur>€</i> на рік</span></div>
+        </div>
+        <div class="cf">
+          <label class="cf-l" for="cEquip">Обладнання</label>
+          <div class="cf-in cf-in-pair">
+            <input type="text" inputmode="decimal" id="cEquip" data-k="equip" placeholder="1500" aria-label="Скільки коштувало обладнання"><span class="cf-u" data-cur>€</span>
+            <input type="text" inputmode="decimal" id="cYears" data-k="years" placeholder="3" aria-label="Скільки років прослужить"><span class="cf-u">років</span>
+          </div>
+          <span class="cf-h">Скільки коштувало і скільки років прослужить: знос — теж ваша витрата</span>
+        </div>
+      </div>
+      <div class="cf-sum"><span>Витрати на місяць</span><b id="sumFixed">0</b></div>
+    </section>
+
+    <!-- ---------- КРОК 4 ---------- -->
+    <section class="calc-step" data-step="4" hidden>
+      <div class="quiz-head">
+        <span class="quiz-kicker">Крок 4 / 4</span>
+        <h2 class="quiz-title">Податки і ваша мета</h2>
+        <p class="quiz-sub">Останній крок — і побачите, скільки лишається вам насправді.</p>
+      </div>
+      <div class="cf-grid">
+        <div class="cf">
+          <label class="cf-l" for="cTax">Податок з доходу</label>
+          <div class="cf-in">
+            <button type="button" class="cf-step" data-d="-1" aria-label="Менше">−</button>
+            <input type="text" inputmode="decimal" id="cTax" data-k="tax" data-step="1" placeholder="10">
+            <span class="cf-u">%</span>
+            <button type="button" class="cf-step" data-d="1" aria-label="Більше">+</button>
+          </div>
+          <span class="cf-h">Відсоток, який сплачуєте з виручки. Не знаєте — уточніть у бухгалтера</span>
+        </div>
+        <div class="cf">
+          <label class="cf-l" for="cComm">Комісія банку і сервісів запису</label>
+          <div class="cf-in">
+            <button type="button" class="cf-step" data-d="-1" aria-label="Менше">−</button>
+            <input type="text" inputmode="decimal" id="cComm" data-k="comm" data-step="0.5" placeholder="2">
+            <span class="cf-u">%</span>
+            <button type="button" class="cf-step" data-d="1" aria-label="Більше">+</button>
+          </div>
+          <span class="cf-h">Оплата карткою, Booksy тощо</span>
+        </div>
+        <div class="cf full">
+          <label class="cf-l" for="cGoal">Скільки хочу заробляти чистими на місяць</label>
+          <div class="cf-in"><input type="text" inputmode="decimal" id="cGoal" data-k="goal" placeholder="2500"><span class="cf-u" data-cur>€</span></div>
+          <span class="cf-h">Після всіх витрат і податків — те, що лишається вам</span>
+        </div>
+        <div class="cf">
+          <label class="cf-l" for="cHours">Годин на тиждень з клієнтками</label>
+          <div class="cf-in">
+            <button type="button" class="cf-step" data-d="-1" aria-label="Менше">−</button>
+            <input type="text" inputmode="numeric" id="cHours" data-k="hours" data-step="1" placeholder="30">
+            <span class="cf-u">год</span>
+            <button type="button" class="cf-step" data-d="1" aria-label="Більше">+</button>
+          </div>
+          <span class="cf-h">Скільки ви хочете працювати, а не скільки працюєте зараз</span>
+        </div>
+        <div class="cf">
+          <label class="cf-l" for="cVac">Тижнів відпочинку на рік</label>
+          <div class="cf-in">
+            <button type="button" class="cf-step" data-d="-1" aria-label="Менше">−</button>
+            <input type="text" inputmode="numeric" id="cVac" data-k="vac" data-step="1" placeholder="4">
+            <span class="cf-u">тиж</span>
+            <button type="button" class="cf-step" data-d="1" aria-label="Більше">+</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ---------- РЕЗУЛЬТАТ ---------- -->
+    <section class="calc-step" data-step="5" hidden aria-live="polite">
+      <div class="quiz-head">
+        <span class="quiz-kicker">Результат</span>
+        <h2 class="quiz-title" id="rTitle">Ваші цифри</h2>
+      </div>
+
+      <div class="r-hero">
+        <div class="r-main">
+          <span class="r-k">Чистими на місяць</span>
+          <div class="r-big" id="rNet">0</div>
+          <p class="r-of" id="rOf"></p>
+          <div class="r-stack" aria-hidden="true">
+            <i class="seg-mat" id="segMat"></i><i class="seg-tax" id="segTax"></i><i class="seg-fix" id="segFix"></i><i class="seg-net" id="segNet"></i>
+          </div>
+          <div class="r-legend">
+            <span><em><i class="dot seg-mat"></i>Витратні</em><b id="lgMat">0</b></span>
+            <span><em><i class="dot seg-tax"></i>Податки й комісії</em><b id="lgTax">0</b></span>
+            <span><em><i class="dot seg-fix"></i>Витрати на місяць</em><b id="lgFix">0</b></span>
+            <span><em><i class="dot seg-net"></i>Вам</em><b id="lgNet">0</b></span>
+          </div>
+        </div>
+
+        <div class="r-tiles">
+          <div class="r-tile r-tile-hot"><span>За годину роботи</span><b id="rHour">0</b><small>Порівняйте зі ставкою найманого майстра у вашому місті</small></div>
+          <div class="r-tile"><span>З однієї процедури</span><b id="rProc">0</b><small id="rShare"></small></div>
+          <div class="r-tile"><span>Точка беззбитковості</span><b id="rBep">0</b><small>процедур на місяць, щоб просто покрити витрати</small></div>
+          <div class="r-tile"><span>Мінімальна ціна</span><b id="rMin">0</b><small>нижче неї ви працюєте собі в збиток</small></div>
+        </div>
+      </div>
+
+      <div class="quiz-result on r-verdict">
+        <div class="quiz-out">
+          <b class="quiz-verdict" id="rVerdictT"></b>
+          <p class="quiz-text" id="rVerdict"></p>
+        </div>
+      </div>
+
+      <div class="r-raise glass-soft">
+        <div class="r-raise-head">
+          <h3 class="r-h">Що буде, якщо підняти ціну</h3>
+          <span class="r-raise-pct" id="rRaisePct">+20%</span>
+        </div>
+        <input type="range" class="cf-range" id="rRaise" min="0" max="50" step="5" value="20" aria-label="На скільки підняти ціну">
+        <div class="r-raise-grid">
+          <div><span>Нова ціна</span><b id="rNewPrice">0</b></div>
+          <div><span>Чистими на місяць</span><b id="rNewNet">0</b></div>
+          <div><span>Можна втратити клієнток</span><b id="rLoss">—</b></div>
+        </div>
+        <p class="r-raise-note" id="rRaiseNote"></p>
+      </div>
+
+      <!-- ---------- ЗАЯВКА НА РОЗБІР ---------- -->
+      <div class="r-lead" id="rLead">
+        <form id="calcForm" name="calc" method="POST" data-netlify="true" netlify-honeypot="bot-field" novalidate>
+          <input type="hidden" name="form-name" value="calc">
+          <input type="hidden" name="direction">
+          <input type="hidden" name="service">
+          <input type="hidden" name="currency">
+          <input type="hidden" name="price">
+          <input type="hidden" name="duration_h">
+          <input type="hidden" name="per_month">
+          <input type="hidden" name="materials">
+          <input type="hidden" name="fixed_month">
+          <input type="hidden" name="tax_pct">
+          <input type="hidden" name="net_month">
+          <input type="hidden" name="per_hour">
+          <input type="hidden" name="goal">
+          <input type="hidden" name="goal_price">
+          <input type="hidden" name="verdict">
+          <p hidden><label>Не заповнюйте це поле: <input name="bot-field"></label></p>
+
+          <div class="r-lead-head">
+            <span class="hello-kicker">Наступний крок</span>
+            <h3 class="hello-title">Хочете розбір своїх цифр?</h3>
+            <p class="hello-sub">Залиште контакт — експерти Beauty Games подивляться ваш розрахунок і підкажуть, де губляться гроші та як підняти чек, не втративши клієнток.</p>
+          </div>
+          <div class="cf-grid">
+            <div class="cf" data-lead>
+              <label class="cf-l" for="lName">Ім'я</label>
+              <div class="cf-in"><input type="text" id="lName" name="name" autocomplete="given-name" maxlength="40" placeholder="Як до вас звертатися"></div>
+              <span class="cf-msg">Вкажіть ім'я</span>
+            </div>
+            <div class="cf" data-lead>
+              <label class="cf-l" for="lContact">Instagram або Telegram</label>
+              <div class="cf-in"><input type="text" id="lContact" name="contact" maxlength="60" placeholder="@your_profile"></div>
+              <span class="cf-msg">Вкажіть нік, щоб ми могли написати</span>
+            </div>
+            <label class="consent full">
+              <input type="checkbox" name="consent" value="yes" checked>
+              <span>Погоджуюсь на обробку персональних даних відповідно до <a href="#">політики конфіденційності</a>.</span>
+            </label>
+          </div>
+          <button type="submit" class="btn btn-primary btn-block r-lead-btn">Хочу розбір</button>
+        </form>
+        <div class="r-lead-ok" id="rLeadOk" hidden>
+          <span class="hello-check" aria-hidden="true">✓</span>
+          <div>
+            <b>Прийнято!</b>
+            <p>Менеджер напише вам найближчим часом. А поки — заходьте в Telegram-канал проєкту: там ефіри й розбори.</p>
+            <a href="https://t.me/beauty_games_pro" target="_blank" rel="noopener" class="btn btn-primary btn-sm">Telegram-канал</a>
+          </div>
+        </div>
+      </div>
+
+      <p class="r-foot">Розрахунок орієнтовний: він показує економіку послуги, але не замінює консультацію бухгалтера щодо податків у вашій країні. Ваші цифри зберігаються лише у вашому браузері, доки ви самі не надішлете форму.</p>
+    </section>
+
+    <!-- ---------- навігація ---------- -->
+    <div class="calc-nav">
+      <button type="button" class="btn btn-ghost btn-sm" id="calcBack" hidden>← Назад</button>
+      <button type="button" class="btn btn-primary" id="calcNext">Далі</button>
+      <button type="button" class="btn btn-ghost btn-sm" id="calcReset" hidden>Почати заново</button>
+    </div>
+  </div>
+</main>
+
+<!-- ============ ФУТЕР ============ -->
+<footer>
+  <div class="wrap">
+    <div class="foot">
+      <div>
+        <a href="index.html" class="foot-brand" aria-label="Beauty Games">
+          <img class="foot-logo" src="assets/logo-vertical.svg" alt="Beauty Games" width="260" height="104">
+        </a>
+        <p class="about">Перший міжнародний трансформаційний проєкт б'юті-індустрії: бізнес-програма, командні змагання, реаліті-шоу та онлайн-чемпіонат. Сезон 2026.</p>
+      </div>
+      <div>
+        <h5>Проєкт</h5>
+        <a href="index.html#about">Про проєкт</a>
+        <a href="index.html#program">Бізнес-програма</a>
+        <a href="index.html#champ">Онлайн-чемпіонат</a>
+        <a href="index.html#packages">Пакети участі</a>
+      </div>
+      <div>
+        <h5>Контакти</h5>
+        <a href="https://instagram.com/beauty_games.pro" target="_blank" rel="noopener">@beauty_games.pro</a>
+        <a href="https://www.youtube.com/@BeautyGames-PRO" target="_blank" rel="noopener">YouTube-канал</a>
+        <a href="https://t.me/beauty_games_pro" target="_blank" rel="noopener">Telegram-канал</a>
+        <a href="partners.html">Партнерам і спонсорам</a>
+      </div>
+    </div>
+    <div class="foot-btm">
+      <span>© Beauty Games 2026. Усі права захищені.</span>
+      <span><a href="#">Публічна оферта</a> · <a href="#">Політика конфіденційності</a></span>
+    </div>
+  </div>
+</footer>
+
+<script src="calc.js?v=1"></script>
