@@ -104,12 +104,28 @@
         </div>
 
         <div class="cf" data-req>
-          <label class="cf-l" for="cDur">Час на одну процедуру</label>
-          <div class="cf-in">
-            <button type="button" class="cf-step" data-d="-1" aria-label="Менше">−</button>
-            <input type="text" inputmode="decimal" id="cDur" data-k="dur" data-step="0.25" placeholder="2,5">
-            <span class="cf-u">год</span>
-            <button type="button" class="cf-step" data-d="1" aria-label="Більше">+</button>
+          <span class="cf-l" id="lDur">Час на одну процедуру</span>
+          <div class="cf-dur" role="group" aria-labelledby="lDur">
+            <div class="cf-in">
+              <button type="button" class="cf-step" data-d="-1" aria-label="На годину менше">−</button>
+              <input type="text" inputmode="numeric" id="cDurH" data-k="durH" placeholder="0" aria-label="Години">
+              <span class="cf-u">год</span>
+              <button type="button" class="cf-step" data-d="1" aria-label="На годину більше">+</button>
+            </div>
+            <div class="cf-in">
+              <button type="button" class="cf-step" data-d="-1" aria-label="На 15 хвилин менше">−</button>
+              <input type="text" inputmode="numeric" id="cDurM" data-k="durM" placeholder="0" aria-label="Хвилини">
+              <span class="cf-u">хв</span>
+              <button type="button" class="cf-step" data-d="1" aria-label="На 15 хвилин більше">+</button>
+            </div>
+          </div>
+          <div class="cf-quick" id="durQuick" role="group" aria-label="Швидкий вибір часу">
+            <button class="expo" type="button" data-min="30">30 хв</button>
+            <button class="expo" type="button" data-min="45">45 хв</button>
+            <button class="expo" type="button" data-min="60">1 год</button>
+            <button class="expo" type="button" data-min="90">1,5 год</button>
+            <button class="expo" type="button" data-min="120">2 год</button>
+            <button class="expo" type="button" data-min="180">3 год</button>
           </div>
           <span class="cf-h">Разом із підготовкою, прибиранням і стерилізацією</span>
           <span class="cf-msg">Вкажіть, скільки триває процедура</span>
@@ -165,7 +181,7 @@
       <div class="quiz-head">
         <span class="quiz-kicker">Крок 3 / 4</span>
         <h2 class="quiz-title">Витрати на місяць</h2>
-        <p class="quiz-sub">Те, що ви платите, навіть якщо клієнток немає. Їх треба покрити раніше, ніж ви заробите хоч щось.</p>
+        <p class="quiz-sub">Те, що ви платите, навіть якщо клієнток немає. Їх треба покрити раніше, ніж ви заробите хоч щось. <b>Податки сюди не додавайте</b> — для них окреме місце на кроці 4.</p>
       </div>
       <div class="cf-grid">
         <div class="cf">
@@ -188,13 +204,9 @@
           <span class="cf-h">Booksy, CRM, онлайн-бухгалтерія</span>
         </div>
         <div class="cf">
-          <label class="cf-l" for="cFee">Обов'язкові внески і страховки</label>
-          <div class="cf-in"><input type="text" inputmode="decimal" id="cFee" data-k="fee" placeholder="0"><span class="cf-u" data-cur>€</span></div>
-          <span class="cf-h">Щомісячні платежі, які не залежать від доходу</span>
-        </div>
-        <div class="cf">
-          <label class="cf-l" for="cOther">Дорога, парковка, інше</label>
+          <label class="cf-l" for="cOther">Інші витрати на роботу</label>
           <div class="cf-in"><input type="text" inputmode="decimal" id="cOther" data-k="other" placeholder="30"><span class="cf-u" data-cur>€</span></div>
+          <span class="cf-h">Дорога, парковка, прання рушників. Без податків і матеріалів — їх уже враховано окремо</span>
         </div>
 
         <span class="cf-sub">Те, що купуєте рідше, — калькулятор сам розкладе по місяцях</span>
@@ -222,7 +234,16 @@
         <p class="quiz-sub">Останній крок — і побачите, скільки лишається вам насправді.</p>
       </div>
       <div class="cf-grid">
-        <div class="cf">
+        <div class="cf full">
+          <span class="cf-l">Як ви сплачуєте податок?</span>
+          <div class="calc-dirs" id="taxModes" role="group" aria-label="Спосіб сплати податку">
+            <button class="expo" type="button" data-tax="pct">Відсоток від доходу</button>
+            <button class="expo" type="button" data-tax="fix">Фіксована сума</button>
+            <button class="expo" type="button" data-tax="both">Відсоток + фіксовані внески</button>
+          </div>
+          <span class="cf-h" id="taxHint"></span>
+        </div>
+        <div class="cf" data-tax-show="pct both">
           <label class="cf-l" for="cTax">Податок з доходу</label>
           <div class="cf-in">
             <button type="button" class="cf-step" data-d="-1" aria-label="Менше">−</button>
@@ -230,7 +251,12 @@
             <span class="cf-u">%</span>
             <button type="button" class="cf-step" data-d="1" aria-label="Більше">+</button>
           </div>
-          <span class="cf-h">Відсоток, який сплачуєте з виручки. Не знаєте — уточніть у бухгалтера</span>
+          <span class="cf-h">Відсоток від виручки. Не знаєте — уточніть у бухгалтера</span>
+        </div>
+        <div class="cf" data-tax-show="fix both" hidden>
+          <label class="cf-l" for="cTaxFix">Фіксовані податки і внески</label>
+          <div class="cf-in"><input type="text" inputmode="decimal" id="cTaxFix" data-k="taxFix" placeholder="100"><span class="cf-u"><i data-cur>€</i> на місяць</span></div>
+          <span class="cf-h">Єдиний податок, ЄСВ, обов'язкові страховки — разом за місяць</span>
         </div>
         <div class="cf">
           <label class="cf-l" for="cComm">Комісія банку і сервісів запису</label>
@@ -307,6 +333,12 @@
         </div>
       </div>
 
+      <details class="r-how">
+        <summary>Як ми порахували</summary>
+        <ul class="r-how-list" id="rHow"></ul>
+        <p class="r-how-note">Кожна витрата має бути лише в одному місці: матеріали — на кроці 2, оренда й інше — на кроці 3, податки — на кроці 4. Якщо щось записали двічі, «чистими» вийде менше, ніж насправді.</p>
+      </details>
+
       <div class="r-raise glass-soft">
         <div class="r-raise-head">
           <h3 class="r-h">Що буде, якщо підняти ціну</h3>
@@ -333,7 +365,9 @@
           <input type="hidden" name="per_month">
           <input type="hidden" name="materials">
           <input type="hidden" name="fixed_month">
+          <input type="hidden" name="tax_mode">
           <input type="hidden" name="tax_pct">
+          <input type="hidden" name="tax_fixed_month">
           <input type="hidden" name="net_month">
           <input type="hidden" name="per_hour">
           <input type="hidden" name="goal">

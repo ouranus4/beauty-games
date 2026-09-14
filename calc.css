@@ -95,6 +95,20 @@
 
 .calc-dirs{display:flex;flex-wrap:wrap;gap:8px}
 
+/* Час процедури: години й хвилини окремо — 30 хвилин не треба
+   перераховувати в «0,5 год». Кнопки під полями — найчастіші варіанти. */
+/* minmax(0,…) і min-width:0 — інакше поле тримає свою стандартну ширину
+   і хвилини вилазять за край на вузькому екрані. */
+.cf-dur{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+.cf-dur .cf-in{min-width:0}
+.cf-dur .cf-in input{width:100%;text-align:center;padding-left:4px;padding-right:4px}
+@media (max-width:480px){
+  .cf-dur{grid-template-columns:1fr}
+}
+.cf-dur .cf-u{padding-right:8px}
+.cf-quick{display:flex;flex-wrap:wrap;gap:6px}
+.cf-quick .expo{padding:7px 13px;font-size:12px}
+
 .cf-sum{
   display:flex;align-items:baseline;justify-content:space-between;gap:14px;margin-top:22px;
   padding:16px 20px;border-radius:var(--r-md);
@@ -191,6 +205,35 @@
 .r-lead-ok p{margin:6px 0 14px;font-size:14.5px;color:var(--text)}
 
 .r-foot{margin:18px 0 0;font-size:12px;line-height:1.55;color:var(--faint)}
+
+/* «Як ми порахували» — розрахунок рядками, згорнутий за замовчуванням:
+   кому цифри здаються дивними, розгортає й бачить, звідки вони. */
+.r-how{
+  margin-top:14px;border-radius:var(--r-md);
+  background:rgba(255,255,255,.035);border:1px solid rgba(255,255,255,.08);
+}
+.r-how summary{
+  display:flex;align-items:center;justify-content:space-between;gap:12px;
+  padding:15px 18px;list-style:none;
+  font-family:"Montserrat",sans-serif;font-weight:800;font-size:12.5px;
+  letter-spacing:.1em;text-transform:uppercase;color:var(--pink-soft);
+}
+.r-how summary::-webkit-details-marker{display:none}
+.r-how summary::after{content:"+";font-size:20px;line-height:1;color:var(--pink-soft)}
+.r-how[open] summary::after{content:"−"}
+.r-how summary:hover{color:#fff}
+.r-how-list{list-style:none;margin:0;padding:0 18px}
+.r-how-list li{
+  display:flex;align-items:baseline;justify-content:space-between;gap:14px;
+  padding:11px 0;border-top:1px solid rgba(255,255,255,.07);font-size:14px;color:var(--text);
+}
+.r-how-list li span{display:flex;flex-direction:column;gap:2px}
+.r-how-list small{font-size:12px;color:var(--muted)}
+.r-how-list b{color:#fff;font-weight:700;white-space:nowrap;font-variant-numeric:tabular-nums}
+.r-how-list li:last-child{font-weight:700}
+.r-how-list li:last-child b{color:var(--gold-1);font-size:16px}
+.r-how-note{margin:0;padding:12px 18px 16px;font-size:12.5px;line-height:1.5;color:var(--muted)}
+.calc-step .quiz-sub b{color:#fff;font-weight:700}
 
 /* ============================================================
    МОБІЛЬНЕ
