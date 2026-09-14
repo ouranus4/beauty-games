@@ -88,17 +88,16 @@
     var fixed = num('rent') + num('util') + num('ads') + num('soft') + num('other') +
       num('edu') / 12 + (years > 0 ? num('equip') / (years * 12) : 0);
 
-    /* Податок буває відсотком від виручки, фіксованою сумою (ФОП 1–2 групи)
-       або тим і іншим (ФОП 3 групи: 5% + ЄСВ). Поле невибраного способу
-       не рахуємо, навіть якщо в ньому лишилося число. */
+    /* Податок буває відсотком від виручки, фіксованою сумою (ФОП 1–2 групи),
+       тим і іншим (ФОП 3 групи: 5% + ЄСВ) або його немає зовсім. Поле
+       невибраного способу не рахуємо, навіть якщо в ньому лишилося число. */
     var mode = state.taxMode || 'pct';
-    var taxPct = mode === 'fix' ? 0 : num('tax');
-    var taxFix = mode === 'pct' ? 0 : num('taxFix');
+    var taxPct = mode === 'pct' || mode === 'both' ? num('tax') : 0;
+    var taxFix = mode === 'fix' || mode === 'both' ? num('taxFix') : 0;
     var k = Math.min((taxPct + num('comm')) / 100, 0.99);
     var F = fixed + taxFix;                     // усе, що йде щомісяця незалежно від кількості клієнток
 
     var goal = num('goal');
-    var hours = state.hours == null || state.hours === '' ? 30 : num('hours');
     var vac = Math.min(num('vac'), 51);
     var weeks = 52 - vac;
 
@@ -107,7 +106,6 @@
     var taxM = revenue * k + taxFix;
     var net = revenue - matM - taxM - fixed;
     var vm = P * (1 - k) - mat;                 // скільки дає одна процедура до постійних витрат
-    var cap = dur > 0 ? Math.floor(hours * weeks / 12 / dur) : 0;
     var needN = vm > 0 ? Math.ceil((goal + F) / vm) : null;
 
     return {
@@ -119,8 +117,11 @@
       share: N > 0 && P > 0 ? net / N / P : null,
       bep: vm > 0 ? Math.ceil(F / vm) : null,
       minPrice: N > 0 ? (mat + F / N) / (1 - k) : null,
-      cap: cap,
-      goalPrice: cap > 0 ? ((goal + F) / cap + mat) / (1 - k) : null,
+      /* Мету рахуємо при тій кількості процедур, що вказана на кроці 1:
+         окремо питати «скільки годин хочете працювати» зайве — час
+         процедури й кількість уже відомі. */
+      goalPrice: N > 0 ? ((goal + F) / N + mat) / (1 - k) : null,
+      hoursNow: weeks > 0 ? N * dur * 12 / weeks : null,
       needN: needN,
       needHours: needN != null && weeks > 0 ? needN * dur * 12 / weeks : null
     };
@@ -163,6 +164,7 @@
       var box = el.closest('.cf');
       if (box) box.classList.remove('err');
       save();
+      paintSet(k);
       paintSums();
     };
     el.addEventListener('input', on);
@@ -176,7 +178,24 @@
     range.value = Math.min(num(k), +range.max);
     range.addEventListener('input', function () {
       if (!field) return;
-      field.value = range.value;
+      field.value = String(range.value).replace('.', ',');
+      field.dispatchEvent(new Event('input'));
+    });
+  });
+
+  /* кнопки популярних значень: 5% податку, 2% комісії тощо */
+  var paintSet = function (k) {
+    $$('[data-set="' + k + '"]', root).forEach(function (b) {
+      var on = state[k] != null && state[k] !== '' && num(k) === parseFloat(b.getAttribute('data-val'));
+      b.classList.toggle('on', on);
+      b.setAttribute('aria-pressed', on ? 'true' : 'false');
+    });
+  };
+  $$('[data-set]', root).forEach(function (b) {
+    b.addEventListener('click', function () {
+      var field = $('[data-k="' + b.getAttribute('data-set') + '"]', root);
+      if (!field) return;
+      field.value = String(b.getAttribute('data-val')).replace('.', ',');
       field.dispatchEvent(new Event('input'));
     });
   });
@@ -187,10 +206,6 @@
       var field = $('input', btn.parentNode);
       if (!field) return;
       var k = field.getAttribute('data-k');
-      if (k === 'durH' || k === 'durM') {
-        setDur(num('durH') * 60 + num('durM') + (k === 'durH' ? 60 : 15) * +btn.getAttribute('data-d'));
-        return;
-      }
       var stepV = parseFloat(field.getAttribute('data-step')) || 1;
       var base = state[k] == null || state[k] === '' ? parseFloat(String(field.placeholder).replace(',', '.')) || 0 : num(k);
       var next = Math.max(0, Math.round((base + stepV * +btn.getAttribute('data-d')) * 100) / 100);
@@ -199,9 +214,16 @@
     });
   });
 
-  /* час процедури: години + хвилини, 75 хв самі стають 1 год 15 хв */
+  /* час процедури: два барабани, як у будильнику на телефоні — години й
+     хвилини крутяться окремо і зупиняються рівно на значенні; клік по
+     значенню чи стрілки ↑↓ теж обирають. Під барабанами — часті варіанти. */
   var durH = $('#cDurH'), durM = $('#cDurM');
   var durChips = $$('#durQuick [data-min]');
+  var ITEM = 44;                                // висота рядка барабана, як у calc.css
+  var HOURS = [], MINS = [];
+  for (var hh = 0; hh <= 12; hh++) HOURS.push(hh);
+  for (var mm = 0; mm < 60; mm += 5) MINS.push(mm);
+
   var paintDurChips = function () {
     var total = Math.round(num('durH') * 60 + num('durM'));
     durChips.forEach(function (b) {
@@ -210,21 +232,80 @@
       b.setAttribute('aria-pressed', on ? 'true' : 'false');
     });
   };
-  var setDur = function (total) {
-    if (!durH || !durM) return;
-    total = Math.max(0, Math.round(total));
-    durH.value = String(Math.floor(total / 60));
-    durM.value = String(total % 60);
-    durH.dispatchEvent(new Event('input'));
-    durM.dispatchEvent(new Event('input'));
+
+  var wheelIndex = function (w) {
+    return Math.max(0, Math.min(w.vals.length - 1, Math.round(w.col.scrollTop / ITEM)));
   };
-  [durH, durM].forEach(function (el) {
-    if (!el) return;
-    el.addEventListener('input', paintDurChips);
-    el.addEventListener('change', function () {
-      if (num('durM') >= 60) setDur(num('durH') * 60 + num('durM'));
+  var paintWheel = function (w, i) {
+    Array.prototype.forEach.call(w.col.children, function (it, j) {
+      it.classList.toggle('on', j === i);
+      it.setAttribute('aria-selected', j === i ? 'true' : 'false');
     });
+  };
+  var pickFromWheel = function (w, i) {
+    if (i == null) i = wheelIndex(w);
+    paintWheel(w, i);
+    var field = w.key === 'durH' ? durH : durM;
+    var v = String(w.vals[i]);
+    if (field && field.value !== v) {
+      field.value = v;
+      field.dispatchEvent(new Event('input'));
+    }
+    paintDurChips();
+  };
+  var scrollWheel = function (w, i, smooth) {
+    i = Math.max(0, Math.min(w.vals.length - 1, i));
+    if (Math.round(w.col.scrollTop / ITEM) === i) { pickFromWheel(w, i); return; }
+    if (smooth && w.col.scrollTo) w.col.scrollTo({ top: i * ITEM, behavior: 'smooth' });
+    else w.col.scrollTop = i * ITEM;
+  };
+
+  var wheels = $$('#durWheel [data-wheel]').map(function (col) {
+    var w = { col: col, key: col.getAttribute('data-wheel') === 'h' ? 'durH' : 'durM', timer: null };
+    w.vals = w.key === 'durH' ? HOURS : MINS;
+    w.vals.forEach(function (v, i) {
+      var it = document.createElement('div');
+      it.className = 'wheel-item';
+      it.setAttribute('role', 'option');
+      it.textContent = w.key === 'durM' && v < 10 ? '0' + v : String(v);
+      it.addEventListener('click', function () { scrollWheel(w, i, true); });
+      col.appendChild(it);
+    });
+    col.addEventListener('scroll', function () {
+      clearTimeout(w.timer);
+      w.timer = setTimeout(function () { pickFromWheel(w); }, 90);
+    });
+    col.addEventListener('keydown', function (e) {
+      if (e.key !== 'ArrowUp' && e.key !== 'ArrowDown') return;
+      e.preventDefault();
+      scrollWheel(w, wheelIndex(w) + (e.key === 'ArrowDown' ? 1 : -1), true);
+    });
+    return w;
   });
+
+  /* Прокрутку можна виставити лише видимому барабану, тому синхронізуємо
+     при кожному відкритті кроку 1. */
+  var syncWheels = function () {
+    wheels.forEach(function (w) {
+      var v = w.key === 'durH' ? Math.min(12, Math.round(num('durH'))) : Math.round(num('durM') / 5) * 5 % 60;
+      var i = Math.max(0, w.vals.indexOf(v));
+      w.col.scrollTop = i * ITEM;
+      paintWheel(w, i);
+    });
+  };
+
+  var setDur = function (total) {
+    total = Math.max(0, Math.round(total));
+    var h = Math.min(12, Math.floor(total / 60));
+    var m = Math.round((total % 60) / 5) * 5 % 60;
+    [[durH, h], [durM, m]].forEach(function (p) {
+      if (!p[0] || p[0].value === String(p[1])) return;
+      p[0].value = String(p[1]);
+      p[0].dispatchEvent(new Event('input'));
+    });
+    wheels.forEach(function (w) { scrollWheel(w, w.vals.indexOf(w.key === 'durH' ? h : m), true); });
+    paintDurChips();
+  };
   durChips.forEach(function (b) {
     b.addEventListener('click', function () { setDur(+b.getAttribute('data-min')); });
   });
@@ -272,7 +353,8 @@
   var taxHints = {
     pct: 'Податок — відсоток від виручки: більше заробили — більше сплатили.',
     fix: 'Щомісяця та сама сума, скільки б ви не заробили. Напр., ФОП 1 чи 2 групи: єдиний податок + ЄСВ.',
-    both: 'Відсоток від виручки плюс фіксований платіж. Напр., ФОП 3 групи: 5% + ЄСВ.'
+    both: 'Відсоток від виручки плюс фіксований платіж. Напр., ФОП 3 групи: 5% + ЄСВ.',
+    none: 'Податок не рахуємо. Якщо платите комісію банку чи сервісу запису — вкажіть її нижче.'
   };
   var paintTax = function () {
     var mode = state.taxMode || 'pct';
@@ -339,7 +421,8 @@
 
     var big = $('#rNet');
     if (big) { big.textContent = money(c.net); big.classList.toggle('neg', c.net < 0); }
-    setText('rOf', 'з ' + money(c.revenue) + ' виручки за ' + plain(c.N) + ' процедур');
+    setText('rOf', 'з ' + money(c.revenue) + ' виручки за ' + plain(c.N) + ' процедур' +
+      (okNum(c.hoursNow) && c.hoursNow > 0 ? ' · ≈ ' + plain(c.hoursNow) + ' год роботи на тиждень' : ''));
 
     var base = Math.max(c.revenue, c.matM + c.taxM + c.fixed) || 1;
     var w = function (v) { return Math.max(0, v) / base * 100 + '%'; };
@@ -400,15 +483,18 @@
       tx = 'Вкажіть на кроці 4, скільки хочете заробляти, — і калькулятор покаже, яка ціна для цього потрібна.';
     } else if (okNum(c.goalPrice) && c.P < c.goalPrice) {
       t = 'Ціна нижча за вашу мету';
-      tx = 'Щоб заробляти ' + money(c.goal) + ' чистими у вашому графіку, послуга має коштувати ' + money(c.goalPrice) +
-        ' — це на ' + pct(c.goalPrice / c.P - 1) + ' більше, ніж зараз.';
-      if (okNum(c.needHours)) tx += ' За нинішньою ціною доведеться працювати ' + plain(c.needHours) + ' год на тиждень.';
+      tx = 'Щоб заробляти ' + money(c.goal) + ' чистими при ' + plain(c.N) + ' процедурах на місяць, послуга має коштувати ' +
+        money(c.goalPrice) + ' — це на ' + pct(c.goalPrice / c.P - 1) + ' більше, ніж зараз.';
+      if (okNum(c.needN) && okNum(c.needHours)) {
+        tx += ' Або за нинішньою ціною потрібно ' + plain(c.needN) + ' процедур на місяць — це близько ' +
+          plain(c.needHours) + ' год роботи на тиждень.';
+      }
     } else if (okNum(c.goalPrice)) {
       t = 'Ціна тримає вашу мету';
-      tx = 'За нинішньої ціни ви виходите на ' + money(c.goal) + ' чистими в бажаному графіку. Далі ростуть не години, а чек і завантаження.';
+      tx = 'За нинішньої ціни і кількості процедур ви виходите на ' + money(c.goal) + ' чистими. Далі ростуть не години, а чек і завантаження.';
     } else {
       t = 'Ось ваша реальна картина';
-      tx = 'Вкажіть на кроці 4, скільки годин на тиждень хочете працювати, — і калькулятор порахує ціну для мети.';
+      tx = 'Вкажіть на кроці 1 ціну, час і кількість процедур — і калькулятор порахує ціну для мети.';
     }
     setText('rVerdictT', t);
     setText('rVerdict', tx);
@@ -439,7 +525,8 @@
         if (!bad) bad = fields[0];
       }
     });
-    if (bad) bad.focus();
+    // Час живе в прихованих полях — фокус ставимо на барабан годин.
+    if (bad) (bad.type === 'hidden' ? ($('[data-wheel]', bad.closest('.cf')) || bad) : bad).focus();
     return !bad;
   };
 
@@ -448,6 +535,7 @@
     current = n;
     reached = Math.max(reached, n);
     steps.forEach(function (s, i) { s.hidden = i !== n - 1; });
+    if (n === 1) syncWheels();
 
     stepBtns.forEach(function (b) {
       var g = +b.getAttribute('data-go');
@@ -509,6 +597,8 @@
     reached = 1;
     paintSums();
     paintDurChips();
+    paintSet('tax');
+    paintSet('comm');
     go(1);
   });
 
@@ -539,7 +629,7 @@
       set('per_month', c.N);
       set('materials', r2(c.mat));
       set('fixed_month', r2(c.fixed));
-      set('tax_mode', { pct: 'відсоток', fix: 'фіксована сума', both: 'відсоток + фіксовані' }[c.mode]);
+      set('tax_mode', { pct: 'відсоток', fix: 'фіксована сума', both: 'відсоток + фіксовані', none: 'не сплачує' }[c.mode]);
       set('tax_pct', r2(c.k * 100));
       set('tax_fixed_month', r2(c.taxFix));
       set('net_month', r2(c.net));
@@ -585,6 +675,8 @@
   paintDir();
   paintTax();
   paintDurChips();
+  paintSet('tax');
+  paintSet('comm');
   paintSums();
   if (state.done && num('price') && (num('durH') || num('durM')) && num('count')) {
     reached = RESULT;

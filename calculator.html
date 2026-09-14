@@ -8,7 +8,7 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800;900&family=Manrope:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap">
 <link rel="stylesheet" href="styles.css?v=2cf033dd">
 <link rel="stylesheet" href="squid.css?v=ce4ef755">
-<link rel="stylesheet" href="calc.css?v=1">
+<link rel="stylesheet" href="calc.css?v=2">
 
 <div class="bg-mesh" aria-hidden="true"></div>
 
@@ -105,19 +105,12 @@
 
         <div class="cf" data-req>
           <span class="cf-l" id="lDur">Час на одну процедуру</span>
-          <div class="cf-dur" role="group" aria-labelledby="lDur">
-            <div class="cf-in">
-              <button type="button" class="cf-step" data-d="-1" aria-label="На годину менше">−</button>
-              <input type="text" inputmode="numeric" id="cDurH" data-k="durH" placeholder="0" aria-label="Години">
-              <span class="cf-u">год</span>
-              <button type="button" class="cf-step" data-d="1" aria-label="На годину більше">+</button>
-            </div>
-            <div class="cf-in">
-              <button type="button" class="cf-step" data-d="-1" aria-label="На 15 хвилин менше">−</button>
-              <input type="text" inputmode="numeric" id="cDurM" data-k="durM" placeholder="0" aria-label="Хвилини">
-              <span class="cf-u">хв</span>
-              <button type="button" class="cf-step" data-d="1" aria-label="На 15 хвилин більше">+</button>
-            </div>
+          <div class="wheel" id="durWheel" role="group" aria-labelledby="lDur">
+            <input type="hidden" id="cDurH" data-k="durH">
+            <input type="hidden" id="cDurM" data-k="durM">
+            <div class="wheel-lens" aria-hidden="true"><span>год</span><span>хв</span></div>
+            <div class="wheel-col" data-wheel="h" tabindex="0" role="listbox" aria-label="Години"></div>
+            <div class="wheel-col" data-wheel="m" tabindex="0" role="listbox" aria-label="Хвилини"></div>
           </div>
           <div class="cf-quick" id="durQuick" role="group" aria-label="Швидкий вибір часу">
             <button class="expo" type="button" data-min="30">30 хв</button>
@@ -240,48 +233,48 @@
             <button class="expo" type="button" data-tax="pct">Відсоток від доходу</button>
             <button class="expo" type="button" data-tax="fix">Фіксована сума</button>
             <button class="expo" type="button" data-tax="both">Відсоток + фіксовані внески</button>
+            <button class="expo" type="button" data-tax="none">Не сплачую податок</button>
           </div>
           <span class="cf-h" id="taxHint"></span>
         </div>
-        <div class="cf" data-tax-show="pct both">
+        <div class="cf full" data-tax-show="pct both">
           <label class="cf-l" for="cTax">Податок з доходу</label>
-          <div class="cf-in">
-            <button type="button" class="cf-step" data-d="-1" aria-label="Менше">−</button>
-            <input type="text" inputmode="decimal" id="cTax" data-k="tax" data-step="1" placeholder="10">
-            <span class="cf-u">%</span>
-            <button type="button" class="cf-step" data-d="1" aria-label="Більше">+</button>
+          <div class="cf-row">
+            <input type="range" class="cf-range" min="0" max="30" step="0.5" value="0" data-mirror="tax" aria-label="Податок з доходу, відсотків">
+            <div class="cf-in cf-in-sm"><input type="text" inputmode="decimal" id="cTax" data-k="tax" placeholder="0"><span class="cf-u">%</span></div>
+          </div>
+          <div class="cf-quick" role="group" aria-label="Популярні ставки податку">
+            <button class="expo" type="button" data-set="tax" data-val="3">3%</button>
+            <button class="expo" type="button" data-set="tax" data-val="5">5%</button>
+            <button class="expo" type="button" data-set="tax" data-val="10">10%</button>
+            <button class="expo" type="button" data-set="tax" data-val="15">15%</button>
+            <button class="expo" type="button" data-set="tax" data-val="20">20%</button>
           </div>
           <span class="cf-h">Відсоток від виручки. Не знаєте — уточніть у бухгалтера</span>
         </div>
-        <div class="cf" data-tax-show="fix both" hidden>
+        <div class="cf full" data-tax-show="fix both" hidden>
           <label class="cf-l" for="cTaxFix">Фіксовані податки і внески</label>
           <div class="cf-in"><input type="text" inputmode="decimal" id="cTaxFix" data-k="taxFix" placeholder="100"><span class="cf-u"><i data-cur>€</i> на місяць</span></div>
           <span class="cf-h">Єдиний податок, ЄСВ, обов'язкові страховки — разом за місяць</span>
         </div>
-        <div class="cf">
-          <label class="cf-l" for="cComm">Комісія банку і сервісів запису</label>
-          <div class="cf-in">
-            <button type="button" class="cf-step" data-d="-1" aria-label="Менше">−</button>
-            <input type="text" inputmode="decimal" id="cComm" data-k="comm" data-step="0.5" placeholder="2">
-            <span class="cf-u">%</span>
-            <button type="button" class="cf-step" data-d="1" aria-label="Більше">+</button>
-          </div>
-          <span class="cf-h">Оплата карткою, Booksy тощо</span>
-        </div>
         <div class="cf full">
+          <label class="cf-l" for="cComm">Комісія банку і сервісів запису</label>
+          <div class="cf-row">
+            <input type="range" class="cf-range" min="0" max="10" step="0.5" value="0" data-mirror="comm" aria-label="Комісія, відсотків">
+            <div class="cf-in cf-in-sm"><input type="text" inputmode="decimal" id="cComm" data-k="comm" placeholder="0"><span class="cf-u">%</span></div>
+          </div>
+          <div class="cf-quick" role="group" aria-label="Популярні комісії">
+            <button class="expo" type="button" data-set="comm" data-val="0">0%</button>
+            <button class="expo" type="button" data-set="comm" data-val="1.5">1,5%</button>
+            <button class="expo" type="button" data-set="comm" data-val="2">2%</button>
+            <button class="expo" type="button" data-set="comm" data-val="3">3%</button>
+          </div>
+          <span class="cf-h">Оплата карткою, Booksy тощо. Лише готівка — залиште 0</span>
+        </div>
+        <div class="cf">
           <label class="cf-l" for="cGoal">Скільки хочу заробляти чистими на місяць</label>
           <div class="cf-in"><input type="text" inputmode="decimal" id="cGoal" data-k="goal" placeholder="2500"><span class="cf-u" data-cur>€</span></div>
           <span class="cf-h">Після всіх витрат і податків — те, що лишається вам</span>
-        </div>
-        <div class="cf">
-          <label class="cf-l" for="cHours">Годин на тиждень з клієнтками</label>
-          <div class="cf-in">
-            <button type="button" class="cf-step" data-d="-1" aria-label="Менше">−</button>
-            <input type="text" inputmode="numeric" id="cHours" data-k="hours" data-step="1" placeholder="30">
-            <span class="cf-u">год</span>
-            <button type="button" class="cf-step" data-d="1" aria-label="Більше">+</button>
-          </div>
-          <span class="cf-h">Скільки ви хочете працювати, а не скільки працюєте зараз</span>
         </div>
         <div class="cf">
           <label class="cf-l" for="cVac">Тижнів відпочинку на рік</label>
@@ -452,4 +445,4 @@
   </div>
 </footer>
 
-<script src="calc.js?v=1"></script>
+<script src="calc.js?v=2"></script>
