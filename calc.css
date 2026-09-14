@@ -192,6 +192,35 @@
 
 .r-foot{margin:18px 0 0;font-size:12px;line-height:1.55;color:var(--faint)}
 
+/* «Як ми порахували» — розрахунок рядками, згорнутий за замовчуванням:
+   кому цифри здаються дивними, розгортає й бачить, звідки вони. */
+.r-how{
+  margin-top:14px;border-radius:var(--r-md);
+  background:rgba(255,255,255,.035);border:1px solid rgba(255,255,255,.08);
+}
+.r-how summary{
+  display:flex;align-items:center;justify-content:space-between;gap:12px;
+  padding:15px 18px;list-style:none;
+  font-family:"Montserrat",sans-serif;font-weight:800;font-size:12.5px;
+  letter-spacing:.1em;text-transform:uppercase;color:var(--pink-soft);
+}
+.r-how summary::-webkit-details-marker{display:none}
+.r-how summary::after{content:"+";font-size:20px;line-height:1;color:var(--pink-soft)}
+.r-how[open] summary::after{content:"−"}
+.r-how summary:hover{color:#fff}
+.r-how-list{list-style:none;margin:0;padding:0 18px}
+.r-how-list li{
+  display:flex;align-items:baseline;justify-content:space-between;gap:14px;
+  padding:11px 0;border-top:1px solid rgba(255,255,255,.07);font-size:14px;color:var(--text);
+}
+.r-how-list li span{display:flex;flex-direction:column;gap:2px}
+.r-how-list small{font-size:12px;color:var(--muted)}
+.r-how-list b{color:#fff;font-weight:700;white-space:nowrap;font-variant-numeric:tabular-nums}
+.r-how-list li:last-child{font-weight:700}
+.r-how-list li:last-child b{color:var(--gold-1);font-size:16px}
+.r-how-note{margin:0;padding:12px 18px 16px;font-size:12.5px;line-height:1.5;color:var(--muted)}
+.calc-step .quiz-sub b{color:#fff;font-weight:700}
+
 /* ============================================================
    МОБІЛЬНЕ
    ============================================================ */

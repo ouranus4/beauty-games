@@ -36,6 +36,17 @@
   try { state = JSON.parse(store.get('bg_calc') || '{}') || {}; } catch (e) { state = {}; }
   if (!state.cur) state.cur = '€';
 
+  /* Раніше «обов'язкові внески» стояли серед витрат на місяць, і туди ж
+     дописували податки — виходило двічі. Тепер фіксовані платежі живуть
+     на кроці податків; збережене значення переносимо туди. */
+  if (state.fee != null) {
+    if (parseFloat(String(state.fee).replace(',', '.')) > 0 && !state.taxMode) {
+      state.taxMode = 'both';
+      if (!state.taxFix) state.taxFix = state.fee;
+    }
+    delete state.fee;
+  }
+
   var save = function () { store.set('bg_calc', JSON.stringify(state)); };
 
   /* Кома чи крапка — як звикла людина; пробіли в тисячах теж можна. */
@@ -63,9 +74,18 @@
     var P = num('price'), dur = num('dur'), N = Math.round(num('count'));
     var mat = num('mat1') + num('mat2') + num('mat3') + num('mat4');
     var years = num('years');
-    var fixed = num('rent') + num('util') + num('ads') + num('soft') + num('fee') + num('other') +
+    var fixed = num('rent') + num('util') + num('ads') + num('soft') + num('other') +
       num('edu') / 12 + (years > 0 ? num('equip') / (years * 12) : 0);
-    var k = Math.min((num('tax') + num('comm')) / 100, 0.99);
+
+    /* Податок буває відсотком від виручки, фіксованою сумою (ФОП 1–2 групи)
+       або тим і іншим (ФОП 3 групи: 5% + ЄСВ). Поле невибраного способу
+       не рахуємо, навіть якщо в ньому лишилося число. */
+    var mode = state.taxMode || 'pct';
+    var taxPct = mode === 'fix' ? 0 : num('tax');
+    var taxFix = mode === 'pct' ? 0 : num('taxFix');
+    var k = Math.min((taxPct + num('comm')) / 100, 0.99);
+    var F = fixed + taxFix;                     // усе, що йде щомісяця незалежно від кількості клієнток
+
     var goal = num('goal');
     var hours = state.hours == null || state.hours === '' ? 30 : num('hours');
     var vac = Math.min(num('vac'), 51);
@@ -73,22 +93,23 @@
 
     var revenue = P * N;
     var matM = mat * N;
-    var taxM = revenue * k;
+    var taxM = revenue * k + taxFix;
     var net = revenue - matM - taxM - fixed;
     var vm = P * (1 - k) - mat;                 // скільки дає одна процедура до постійних витрат
     var cap = dur > 0 ? Math.floor(hours * weeks / 12 / dur) : 0;
-    var needN = vm > 0 ? Math.ceil((goal + fixed) / vm) : null;
+    var needN = vm > 0 ? Math.ceil((goal + F) / vm) : null;
 
     return {
       P: P, dur: dur, N: N, mat: mat, fixed: fixed, k: k, goal: goal, weeks: weeks,
+      mode: mode, taxPct: taxPct, taxFix: taxFix, F: F,
       revenue: revenue, matM: matM, taxM: taxM, net: net, vm: vm,
       perProc: N > 0 ? net / N : null,
       perHour: N > 0 && dur > 0 ? net / N / dur : null,
       share: N > 0 && P > 0 ? net / N / P : null,
-      bep: vm > 0 ? Math.ceil(fixed / vm) : null,
-      minPrice: N > 0 ? (mat + fixed / N) / (1 - k) : null,
+      bep: vm > 0 ? Math.ceil(F / vm) : null,
+      minPrice: N > 0 ? (mat + F / N) / (1 - k) : null,
       cap: cap,
-      goalPrice: cap > 0 ? ((goal + fixed) / cap + mat) / (1 - k) : null,
+      goalPrice: cap > 0 ? ((goal + F) / cap + mat) / (1 - k) : null,
       needN: needN,
       needHours: needN != null && weeks > 0 ? needN * dur * 12 / weeks : null
     };
@@ -99,7 +120,7 @@
     var newVm = newP * (1 - c.k) - c.mat;
     return {
       price: newP,
-      net: c.N * newVm - c.fixed,
+      net: c.N * newVm - c.F,
       loss: c.vm > 0 && newVm > 0 ? 1 - c.vm / newVm : null
     };
   };
@@ -201,6 +222,34 @@
     });
   });
 
+  /* спосіб сплати податку */
+  var taxBtns = $$('#taxModes [data-tax]');
+  var taxHints = {
+    pct: 'Податок — відсоток від виручки: більше заробили — більше сплатили.',
+    fix: 'Щомісяця та сама сума, скільки б ви не заробили. Напр., ФОП 1 чи 2 групи: єдиний податок + ЄСВ.',
+    both: 'Відсоток від виручки плюс фіксований платіж. Напр., ФОП 3 групи: 5% + ЄСВ.'
+  };
+  var paintTax = function () {
+    var mode = state.taxMode || 'pct';
+    taxBtns.forEach(function (b) {
+      var on = b.getAttribute('data-tax') === mode;
+      b.classList.toggle('on', on);
+      b.setAttribute('aria-pressed', on ? 'true' : 'false');
+    });
+    $$('[data-tax-show]', root).forEach(function (box) {
+      box.hidden = box.getAttribute('data-tax-show').split(' ').indexOf(mode) < 0;
+    });
+    var hint = $('#taxHint');
+    if (hint) hint.textContent = taxHints[mode];
+  };
+  taxBtns.forEach(function (b) {
+    b.addEventListener('click', function () {
+      state.taxMode = b.getAttribute('data-tax');
+      save();
+      paintTax();
+    });
+  });
+
   /* звертання на ім'я, як на головній */
   var name = (store.get('bg_name') || '').trim();
   var hello = $('#calcHello');
@@ -261,6 +310,38 @@
     setText('rShare', okNum(c.share) ? 'це ' + pct(c.share) + ' від ціни' : '');
     setText('rBep', okNum(c.bep) ? plain(c.bep) : 'не вийти');
     setText('rMin', money(c.minPrice));
+
+    /* «Як ми порахували» — той самий розрахунок рядками, на цифрах людини:
+       видно, звідки взялася кожна сума і чи не записано щось двічі. */
+    var how = $('#rHow');
+    if (how) {
+      var taxParts = [];
+      if (c.k > 0) taxParts.push(nf1.format(c.k * 100) + '% від виручки');
+      if (c.taxFix > 0) taxParts.push(money(c.taxFix) + ' фіксовано');
+      var rows = [
+        ['Виручка', money(c.P) + ' × ' + plain(c.N) + ' процедур', money(c.revenue)],
+        ['− Витратні', money(c.mat) + ' × ' + plain(c.N) + ' процедур', money(c.matM)],
+        ['− Податки й комісії', taxParts.join(' + ') || 'не вказані', money(c.taxM)],
+        ['− Витрати на місяць', 'оренда, реклама, сервіси, навчання, знос', money(c.fixed)],
+        ['= Чистими', '', money(c.net)]
+      ];
+      how.textContent = '';
+      rows.forEach(function (r) {
+        var li = document.createElement('li');
+        var lbl = document.createElement('span');
+        lbl.textContent = r[0];
+        if (r[1]) {
+          var sm = document.createElement('small');
+          sm.textContent = r[1];
+          lbl.appendChild(sm);
+        }
+        var val = document.createElement('b');
+        val.textContent = r[2];
+        li.appendChild(lbl);
+        li.appendChild(val);
+        how.appendChild(li);
+      });
+    }
 
     var svc = (state.service || '').trim();
     setText('rTitle', svc ? 'Ваші цифри: ' + svc : 'Ваші цифри');
@@ -370,7 +451,7 @@
   });
 
   if (resetBtn) resetBtn.addEventListener('click', function () {
-    var keep = { cur: state.cur, dir: state.dir };
+    var keep = { cur: state.cur, dir: state.dir, taxMode: state.taxMode };
     state = keep;
     store.set('bg_calc', JSON.stringify(state));
     inputs.forEach(function (el) {
@@ -410,7 +491,9 @@
       set('per_month', c.N);
       set('materials', r2(c.mat));
       set('fixed_month', r2(c.fixed));
+      set('tax_mode', { pct: 'відсоток', fix: 'фіксована сума', both: 'відсоток + фіксовані' }[c.mode]);
       set('tax_pct', r2(c.k * 100));
+      set('tax_fixed_month', r2(c.taxFix));
       set('net_month', r2(c.net));
       set('per_hour', r2(c.perHour));
       set('goal', r2(c.goal));
@@ -452,6 +535,7 @@
   /* ---------- старт ---------- */
   paintCurrency();
   paintDir();
+  paintTax();
   paintSums();
   if (state.done && num('price') && num('dur') && num('count')) {
     reached = RESULT;
