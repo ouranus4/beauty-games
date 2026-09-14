@@ -47,6 +47,17 @@
     delete state.fee;
   }
 
+  /* Час процедури раніше вводили годинами з дробом («2,5»); тепер години
+     й хвилини окремо. Старе значення розкладаємо на два поля. */
+  if (state.dur != null) {
+    var oldMin = Math.round((parseFloat(String(state.dur).replace(',', '.')) || 0) * 60);
+    if (oldMin > 0 && state.durH == null && state.durM == null) {
+      state.durH = String(Math.floor(oldMin / 60));
+      state.durM = String(oldMin % 60);
+    }
+    delete state.dur;
+  }
+
   var save = function () { store.set('bg_calc', JSON.stringify(state)); };
 
   /* Кома чи крапка — як звикла людина; пробіли в тисячах теж можна. */
@@ -71,7 +82,7 @@
      РОЗРАХУНОК
      ============================================================ */
   var compute = function () {
-    var P = num('price'), dur = num('dur'), N = Math.round(num('count'));
+    var P = num('price'), dur = num('durH') + num('durM') / 60, N = Math.round(num('count'));
     var mat = num('mat1') + num('mat2') + num('mat3') + num('mat4');
     var years = num('years');
     var fixed = num('rent') + num('util') + num('ads') + num('soft') + num('other') +
@@ -176,12 +187,46 @@
       var field = $('input', btn.parentNode);
       if (!field) return;
       var k = field.getAttribute('data-k');
+      if (k === 'durH' || k === 'durM') {
+        setDur(num('durH') * 60 + num('durM') + (k === 'durH' ? 60 : 15) * +btn.getAttribute('data-d'));
+        return;
+      }
       var stepV = parseFloat(field.getAttribute('data-step')) || 1;
       var base = state[k] == null || state[k] === '' ? parseFloat(String(field.placeholder).replace(',', '.')) || 0 : num(k);
       var next = Math.max(0, Math.round((base + stepV * +btn.getAttribute('data-d')) * 100) / 100);
       field.value = String(next).replace('.', ',');
       field.dispatchEvent(new Event('input'));
     });
+  });
+
+  /* час процедури: години + хвилини, 75 хв самі стають 1 год 15 хв */
+  var durH = $('#cDurH'), durM = $('#cDurM');
+  var durChips = $$('#durQuick [data-min]');
+  var paintDurChips = function () {
+    var total = Math.round(num('durH') * 60 + num('durM'));
+    durChips.forEach(function (b) {
+      var on = +b.getAttribute('data-min') === total;
+      b.classList.toggle('on', on);
+      b.setAttribute('aria-pressed', on ? 'true' : 'false');
+    });
+  };
+  var setDur = function (total) {
+    if (!durH || !durM) return;
+    total = Math.max(0, Math.round(total));
+    durH.value = String(Math.floor(total / 60));
+    durM.value = String(total % 60);
+    durH.dispatchEvent(new Event('input'));
+    durM.dispatchEvent(new Event('input'));
+  };
+  [durH, durM].forEach(function (el) {
+    if (!el) return;
+    el.addEventListener('input', paintDurChips);
+    el.addEventListener('change', function () {
+      if (num('durM') >= 60) setDur(num('durH') * 60 + num('durM'));
+    });
+  });
+  durChips.forEach(function (b) {
+    b.addEventListener('click', function () { setDur(+b.getAttribute('data-min')); });
   });
 
   /* напрямок */
@@ -386,10 +431,12 @@
   var validate = function (n) {
     var bad = null;
     $$('[data-req]', steps[n - 1]).forEach(function (box) {
-      var field = $('[data-k]', box);
-      if (field && !num(field.getAttribute('data-k'))) {
+      // У полі часу два входи: достатньо, щоб хоч один був заповнений.
+      var fields = $$('[data-k]', box);
+      var empty = fields.length && fields.every(function (f) { return !num(f.getAttribute('data-k')); });
+      if (empty) {
         box.classList.add('err');
-        if (!bad) bad = field;
+        if (!bad) bad = fields[0];
       }
     });
     if (bad) bad.focus();
@@ -461,6 +508,7 @@
     $$('[data-mirror]', root).forEach(function (r) { r.value = 0; });
     reached = 1;
     paintSums();
+    paintDurChips();
     go(1);
   });
 
@@ -536,8 +584,9 @@
   paintCurrency();
   paintDir();
   paintTax();
+  paintDurChips();
   paintSums();
-  if (state.done && num('price') && num('dur') && num('count')) {
+  if (state.done && num('price') && (num('durH') || num('durM')) && num('count')) {
     reached = RESULT;
     go(RESULT, true);
   } else {

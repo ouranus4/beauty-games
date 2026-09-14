@@ -95,6 +95,20 @@
 
 .calc-dirs{display:flex;flex-wrap:wrap;gap:8px}
 
+/* Час процедури: години й хвилини окремо — 30 хвилин не треба
+   перераховувати в «0,5 год». Кнопки під полями — найчастіші варіанти. */
+/* minmax(0,…) і min-width:0 — інакше поле тримає свою стандартну ширину
+   і хвилини вилазять за край на вузькому екрані. */
+.cf-dur{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+.cf-dur .cf-in{min-width:0}
+.cf-dur .cf-in input{width:100%;text-align:center;padding-left:4px;padding-right:4px}
+@media (max-width:480px){
+  .cf-dur{grid-template-columns:1fr}
+}
+.cf-dur .cf-u{padding-right:8px}
+.cf-quick{display:flex;flex-wrap:wrap;gap:6px}
+.cf-quick .expo{padding:7px 13px;font-size:12px}
+
 .cf-sum{
   display:flex;align-items:baseline;justify-content:space-between;gap:14px;margin-top:22px;
   padding:16px 20px;border-radius:var(--r-md);
