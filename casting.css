@@ -1,0 +1,132 @@
+/* Сторінка кастингу. Спирається на токени й компоненти squid.css. */
+
+.cst-hero .hero-inner{gap:22px}
+.cst-lede{max-width:60ch}
+.cst-cta{display:flex;gap:12px;flex-wrap:wrap}
+.cst-note{margin:0;font-size:13px;color:var(--muted)}
+
+/* ---------- етапи ---------- */
+.cst-steps{list-style:none;margin:0;padding:0;
+  display:grid;grid-template-columns:repeat(4,1fr);gap:14px;counter-reset:none}
+.cst-step{
+  display:flex;flex-direction:column;gap:10px;padding:24px 22px;
+  border-radius:var(--r-lg);background:#fff;
+  border:1px solid rgba(18,13,24,.08);box-shadow:0 14px 34px rgba(18,13,24,.06);
+}
+.cst-step-n{
+  width:44px;height:44px;display:grid;place-items:center;border-radius:50%;
+  background:linear-gradient(160deg,var(--pink),var(--pink-deep));color:#fff;
+  font-family:"Montserrat",sans-serif;font-weight:900;font-size:18px;
+}
+.cst-step h3{margin:6px 0 0;font-family:"Montserrat",sans-serif;font-weight:800;font-size:17px;
+  text-transform:uppercase;letter-spacing:-.01em}
+.sec-light .cst-step p{margin:0;font-size:14.5px;line-height:1.55}
+.cst-step:last-child{background:linear-gradient(180deg,#FFF3F8,#fff);border-color:rgba(255,46,136,.35)}
+
+/* ---------- кого шукаємо ---------- */
+.cst-who{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.cst-who li{
+  display:flex;gap:14px;align-items:flex-start;padding:18px 20px;border-radius:var(--r-md);
+  background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.09);
+  font-size:15px;line-height:1.5;color:var(--text);
+}
+.cst-who b{color:#fff}
+.cst-who .icon{flex:none;width:28px;height:28px;color:var(--pink-soft);margin-top:1px}
+.cst-niches{display:flex;flex-wrap:wrap;gap:8px;margin-top:22px}
+.cst-niches span{
+  padding:8px 16px;border-radius:var(--r-pill);
+  box-shadow:inset 0 0 0 1.5px rgba(255,46,136,.45);background:rgba(255,46,136,.08);
+  font-family:"Montserrat",sans-serif;font-weight:700;font-size:11.5px;
+  letter-spacing:.1em;text-transform:uppercase;color:var(--pink-soft);
+}
+
+/* ---------- що отримаєте ---------- */
+.cst-get{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.cst-get-i{
+  display:flex;flex-direction:column;gap:10px;padding:26px 24px;border-radius:var(--r-lg);
+  background:#fff;border:1px solid rgba(18,13,24,.08);box-shadow:0 14px 34px rgba(18,13,24,.06);
+}
+.cst-get-i .icon{width:34px;height:34px;color:var(--pink)}
+.cst-get-i h3{margin:4px 0 0;font-family:"Montserrat",sans-serif;font-weight:800;font-size:17px;text-transform:uppercase}
+.sec-light .cst-get-i p{margin:0;font-size:14.5px;line-height:1.55}
+
+/* ---------- анкета ---------- */
+.cst-form{
+  max-width:860px;margin:0 auto;padding:clamp(22px,3.4vw,40px);border-radius:var(--r-lg);
+  background:linear-gradient(180deg,rgba(255,46,136,.1),rgba(255,255,255,.03));
+  border:1px solid rgba(255,46,136,.35);box-shadow:0 24px 60px rgba(255,46,136,.16);
+}
+.cst-bar{display:flex;align-items:center;gap:14px;margin-bottom:24px}
+.cst-bar-k{
+  flex:none;padding:8px 18px;border-radius:var(--r-pill);
+  background:rgba(255,46,136,.14);box-shadow:inset 0 0 0 1.5px rgba(255,46,136,.55);
+  font-family:"Montserrat",sans-serif;font-weight:700;font-size:12px;
+  letter-spacing:.14em;text-transform:uppercase;color:var(--pink-soft);
+}
+.cst-bar-line{flex:1;height:6px;border-radius:99px;background:rgba(255,255,255,.1);overflow:hidden}
+.cst-bar-line i{display:block;height:100%;width:25%;border-radius:inherit;
+  background:linear-gradient(90deg,var(--gold-3),var(--gold-1));transition:width .35s ease}
+
+.cst-pg{border:0;margin:0;padding:0;min-width:0;display:flex;flex-direction:column;gap:12px}
+.cst-q{
+  padding:0;margin-bottom:6px;font-family:"Montserrat",sans-serif;font-weight:900;
+  font-size:clamp(20px,2.6vw,28px);text-transform:uppercase;color:var(--white);letter-spacing:-.02em;
+}
+.cst-q2{margin:14px 0 0;font-family:"Montserrat",sans-serif;font-weight:700;font-size:15px;color:#fff}
+.cst-hint{margin:-4px 0 4px;font-size:14px;color:var(--muted)}
+.cst-lim{margin-left:6px;padding:3px 9px;border-radius:99px;background:rgba(255,255,255,.08);
+  font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);vertical-align:2px}
+.cst-opt{text-transform:none;letter-spacing:0;color:var(--muted)}
+
+.cst-tiles{grid-template-columns:repeat(4,1fr)}
+.cst-opts{display:flex;flex-wrap:wrap;gap:8px}
+.cst-chks{display:grid;grid-template-columns:repeat(2,1fr);gap:9px}
+.cst-chks .chk:has(input:disabled){opacity:.45;cursor:not-allowed}
+
+.cst-err{display:none;font-size:12.5px;color:#FF6B88}
+.cst-err.show{display:block}
+
+.cst-pg .fld textarea{resize:vertical;min-height:110px;line-height:1.5}
+.cst-count{align-self:flex-end;font-size:12px;color:var(--muted)}
+.cst-agree{margin-top:14px}
+
+.cst-nav{display:flex;gap:12px;justify-content:space-between;margin-top:28px;
+  padding-top:22px;border-top:1px solid rgba(255,255,255,.1)}
+.cst-nav #cstNext{margin-left:auto}
+.cst-nav .btn:disabled{opacity:.6;pointer-events:none}
+.cst-fail{margin:14px 0 0;font-size:14px;color:#FF8FA6}
+.cst-fail a{color:#fff}
+
+/* ---------- фінал ---------- */
+.cst-done{
+  max-width:720px;margin:0 auto;padding:clamp(26px,4vw,44px);border-radius:var(--r-lg);text-align:center;
+  display:flex;flex-direction:column;align-items:center;gap:14px;
+  background:linear-gradient(180deg,rgba(255,46,136,.16),rgba(255,255,255,.03));
+  border:1px solid rgba(255,46,136,.45);
+}
+.cst-done .picker-check{width:52px;height:52px;font-size:24px}
+.cst-done-t{margin:0;font-family:"Montserrat",sans-serif;font-weight:900;font-size:clamp(22px,3vw,30px);
+  text-transform:uppercase;color:#fff;letter-spacing:-.02em;text-wrap:balance}
+.cst-done > p{margin:0;max-width:52ch;color:var(--text);line-height:1.6}
+.cst-done a:not(.btn){color:var(--pink-soft)}
+.cst-done-gift{
+  margin-top:10px;width:100%;padding:22px;border-radius:var(--r-md);
+  display:flex;flex-direction:column;align-items:center;gap:10px;
+  background:rgba(233,198,126,.08);border:1px solid rgba(233,198,126,.4);
+}
+.cst-done-gift p{margin:0;color:var(--text);max-width:46ch}
+.cst-done-gift b{color:var(--gold-1)}
+.cst-done-k{font-family:"Montserrat",sans-serif;font-weight:700;font-size:12px;
+  letter-spacing:.14em;text-transform:uppercase;color:var(--gold-2)}
+
+/* ---------- мобільний ---------- */
+@media (max-width:980px){
+  .cst-steps{grid-template-columns:repeat(2,1fr)}
+  .cst-get{grid-template-columns:1fr}
+}
+@media (max-width:640px){
+  .cst-steps,.cst-who,.cst-chks{grid-template-columns:1fr}
+  .cst-tiles{grid-template-columns:repeat(3,1fr)}
+  .cst-bar-k{padding:7px 14px;font-size:11px}
+  .cst-nav .btn{padding-inline:22px}
+}

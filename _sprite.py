@@ -79,7 +79,7 @@ PRELOADER = """
 
 BLOCK = "<!-- SPRITE -->\n%s\n%s\n<!-- /SPRITE -->" % (PRELOADER.strip(), build_sprite())
 
-for page in ("index.html", "partners.html"):
+for page in ("index.html", "partners.html", "casting.html"):
     s = io.open(page, encoding="utf-8").read()
     if "<!-- SPRITE -->" in s:
         s = re.sub(r"<!-- SPRITE -->.*?<!-- /SPRITE -->", lambda m: BLOCK, s, flags=re.S)
