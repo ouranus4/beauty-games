@@ -1797,7 +1797,7 @@ body.bio-open{overflow:hidden}
    Колонкою вони ставали високими і ряд виглядав розтягнутим. */
 .pills-3{display:flex;flex-wrap:nowrap;gap:7px}
 .pills-3 .pill{
-  flex:1 1 0;min-width:0;
+  flex:1 1 auto;min-width:0;
   display:inline-flex;flex-direction:row;align-items:center;justify-content:center;
   gap:7px;padding:11px 10px;white-space:nowrap;
   font-size:11.5px;letter-spacing:.03em;
