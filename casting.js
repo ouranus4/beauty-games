@@ -158,9 +158,9 @@
     next.disabled = true;
     next.textContent = 'Надсилаємо…';
 
-    if (!window.BG_LEADS_URL) {
+    if (!window.bgLeadsOn || !window.bgLeadsOn()) {
       // Адреса ще не підключена: показуємо фінал, щоб можна було пройти анкету наскрізь
-      console.warn('casting: BG_LEADS_URL empty, lead not saved', d);
+      console.warn('casting: no lead channel, lead not saved', d);
       done(d);
       return;
     }
