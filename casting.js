@@ -1,10 +1,7 @@
 /* Заявка на кастинг: чотири кроки, перевірка кожного кроку, відправка.
-   Куди відправляти — ENDPOINT (веб-застосунок Google Apps Script,
-   який пише рядок у таблицю). Поки він порожній, заявка нікуди не йде. */
+   Відправка — через leads.js (Google Таблиця + Telegram менеджерам). */
 (function () {
   'use strict';
-
-  var ENDPOINT = '';
 
   var form = document.getElementById('castForm');
   if (!form) return;
@@ -141,9 +138,7 @@
       tried: picked('tried').join(', '),
       why: why.value.trim(),
       camera: picked('camera').join(''),
-      video: $('#cVideo').value.trim(),
-      page: location.href,
-      sent_at: new Date().toISOString()
+      video: $('#cVideo').value.trim()
     };
   }
 
@@ -163,16 +158,15 @@
     next.disabled = true;
     next.textContent = 'Надсилаємо…';
 
-    if (!ENDPOINT) {
+    if (!window.BG_LEADS_URL) {
       // Адреса ще не підключена: показуємо фінал, щоб можна було пройти анкету наскрізь
-      console.warn('casting: ENDPOINT не заданий, заявка не збережена', d);
+      console.warn('casting: BG_LEADS_URL empty, lead not saved', d);
       done(d);
       return;
     }
 
-    // text/plain — щоб Apps Script прийняв запит без попередньої CORS-перевірки
-    fetch(ENDPOINT, { method: 'POST', body: JSON.stringify(d), headers: { 'Content-Type': 'text/plain;charset=utf-8' } })
-      .then(function (r) { if (!r.ok) throw new Error(r.status); done(d); })
+    window.bgSendLead('casting', d)
+      .then(function () { done(d); })
       .catch(function () {
         fail.hidden = false;
         next.disabled = false;

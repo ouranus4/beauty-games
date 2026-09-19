@@ -603,7 +603,7 @@
   });
 
   /* ============================================================
-     ЗАЯВКА НА РОЗБІР — Netlify Forms, як і на головній
+     ЗАЯВКА НА РОЗБІР — через leads.js, як і на головній
      ============================================================ */
   var form = $('#calcForm');
   if (form) {
@@ -644,21 +644,9 @@
         if (el.type === 'checkbox') data[el.name] = el.checked ? 'yes' : 'no';
         else data[el.name] = el.value;
       });
-      data.page = 'calc';
-      data.utm = window.location.search || '';
-      data.referrer = document.referrer || '';
-
-      var body = Object.keys(data).map(function (k) {
-        return encodeURIComponent(k) + '=' + encodeURIComponent(data[k]);
-      }).join('&');
-
-      if (window.fetch) {
-        fetch('/', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-          body: body
-        }).catch(function (err) {
-          if (window.console && console.warn) console.warn('Форма не надіслана (очікувано поза Netlify):', err);
+      if (window.bgSendLead) {
+        window.bgSendLead('calc', data).catch(function (err) {
+          if (window.console && console.warn) console.warn('calc: lead not sent', err);
         });
       }
       if (window.gtag) window.gtag('event', 'form_submit', { form: 'calc' });

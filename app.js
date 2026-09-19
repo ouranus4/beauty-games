@@ -323,46 +323,18 @@
         return;
       }
 
-      /* ------------------------------------------------------------
-         ВІДПРАВКА ЗАЯВКИ
-
-         Хостинг — Netlify, заявки приймає Netlify Forms: форма у розмітці
-         має name, data-netlify і приховане поле form-name, тому окремий
-         бекенд не потрібен і жодні токени в браузер не потрапляють.
-         Заявки видно в Netlify → Forms; там же налаштовуються сповіщення
-         на пошту, у Slack або на вебхук.
-
-         Наступний крок — Telegram і CRM: у Netlify → Forms → Notifications
-         додати outgoing webhook на сценарій Make (або на власну функцію),
-         який створює угоду в CRM і пише менеджеру в Telegram.
-
-         Поза Netlify (локально, GitHub Pages) запит не пройде — і це
-         нормально: користувач усе одно бачить екран успіху й кнопку
-         в Telegram, а помилка тихо йде в консоль.
-      ------------------------------------------------------------ */
+      /* Відправка: leads.js → Google Таблиця + Telegram менеджерам.
+         Екран успіху показуємо одразу — людина не чекає на мережу. */
       var data = {};
       $$('input, select, textarea', form).forEach(function (el) {
         if (!el.name) return;
         if (el.type === 'checkbox') data[el.name] = el.checked ? el.value || 'yes' : '';
         else data[el.name] = el.value;
       });
-      data.page = document.documentElement.getAttribute('data-page') || '';
-      data.utm = window.location.search || '';
-      data.referrer = document.referrer || '';
 
-      var body = Object.keys(data).map(function (k) {
-        return encodeURIComponent(k) + '=' + encodeURIComponent(data[k]);
-      }).join('&');
-
-      if (window.fetch) {
-        fetch('/', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-          body: body
-        }).catch(function (err) {
-          if (window.console && console.warn) {
-            console.warn('[Beauty Games] Заявку не відправлено (хостинг без Netlify Forms):', err);
-          }
+      if (window.bgSendLead) {
+        window.bgSendLead('participant', data).catch(function (err) {
+          if (window.console && console.warn) console.warn('[Beauty Games] lead not sent:', err);
         });
       }
 
