@@ -14,8 +14,8 @@ import hashlib
 import io
 import re
 
-ASSETS = ('styles.css', 'squid.css', 'app.js', 'fx.js', 'casting.css', 'casting.js')
-PAGES = ('index.html', 'partners.html', 'casting.html')
+ASSETS = ('styles.css', 'squid.css', 'app.js', 'fx.js', 'casting.css', 'casting.js', 'app.ru.js')
+PAGES = ('index.html', 'partners.html', 'casting.html', 'ru.html')
 
 
 def digest(path):
