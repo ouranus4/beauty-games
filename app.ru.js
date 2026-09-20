@@ -93,6 +93,8 @@
     var p = 0, timer = 0, last = 0, down = false, open = false;
 
     document.documentElement.classList.add('gated');
+    try { if ('scrollRestoration' in history) history.scrollRestoration = 'manual'; } catch (e) {}
+    window.scrollTo(0, 0);
     if (ring) {
       ring.style.strokeDasharray = LEN;
       ring.style.strokeDashoffset = LEN;
@@ -129,6 +131,13 @@
             var reveal = function () { tip.classList.add('in'); };
             requestAnimationFrame(function () { requestAnimationFrame(reveal); });
             setTimeout(reveal, 250);       // якщо вкладка була у фоні
+            // підказку має бути видно повністю, навіть на низькому екрані
+            setTimeout(function () {
+              var r = tip.getBoundingClientRect();
+              if (r.bottom > window.innerHeight - 12) {
+                tip.scrollIntoView({ behavior: 'smooth', block: 'center' });
+              }
+            }, 400);
             setTimeout(function () { tip.classList.add('ping'); }, 700);
           }, 1100);
         };

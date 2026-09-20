@@ -2725,6 +2725,17 @@ html.gated,html.gated body{overflow:hidden}
 .tip-tx b{color:#120D18}
 .tip-x{color:#6B6478}
 .tip-x:hover{color:#120D18}
+/* Правила гри — три рядки, щоб одразу було зрозуміло, як тут усе влаштовано */
+.tip-list{
+  list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:9px;
+  font-size:14px;line-height:1.5;color:#3A3142;
+}
+.tip-list li{position:relative;padding-left:22px}
+.tip-list li::before{
+  content:"";position:absolute;left:0;top:7px;width:8px;height:8px;border-radius:50%;
+  background:var(--pink);box-shadow:0 0 0 3px rgba(255,46,136,.16);
+}
+.tip-list b{color:#120D18;font-weight:700}
 
 /* Смуга модулів — та сама дорожка, що й на етапах сезону:
    лінія, знаки гри й бігунок «ви тут». Різниця тільки у відступах. */
