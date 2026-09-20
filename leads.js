@@ -7,6 +7,9 @@
    - BG_LEADS_URL — веб-застосунок Google Apps Script: Google Таблиця +
      Telegram-чат менеджерів (код у папці «Заявки_Telegram»). */
 window.BG_LEADS_EMAIL = 'beautygames.pro@gmail.com';
+// Коротке сповіщення в Telegram через бота-пересилача пошти (@email2telegrambot).
+// Повна заявка туди не йде — тільки «нова заявка, ім'я», деталі в пошті.
+window.BG_LEADS_PING = '6835234366@e2t.link';
 window.BG_LEADS_URL = '';
 
 (function () {
@@ -60,6 +63,22 @@ window.BG_LEADS_URL = '';
       });
   }
 
+  function viaPing(p) {
+    var t = { participant: 'бронювання місця', casting: 'кастинг', calc: 'калькулятор' }[p.form] || p.form;
+    return fetch('https://formsubmit.co/ajax/' + window.BG_LEADS_PING, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+      body: JSON.stringify({
+        _subject: 'Beauty Games: нова заявка — ' + t,
+        _template: 'table',
+        _captcha: 'false',
+        Заявка: t,
+        "Ім'я": p.name || '',
+        Деталі: 'уся заявка — на пошті beautygames.pro@gmail.com'
+      })
+    }).catch(function () {});
+  }
+
   function viaScript(p) {
     // text/plain — простий запит без CORS-перевірки, Apps Script його приймає
     return fetch(window.BG_LEADS_URL, {
@@ -95,6 +114,7 @@ window.BG_LEADS_URL = '';
 
     var jobs = [];
     if (window.BG_LEADS_EMAIL) jobs.push(viaEmail(p));
+    if (window.BG_LEADS_PING) viaPing(p);   // сповіщення, на успіх заявки не впливає
     if (window.BG_LEADS_URL) jobs.push(viaScript(p));
 
     return new Promise(function (resolve, reject) {
