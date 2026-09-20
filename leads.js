@@ -7,9 +7,9 @@
    - BG_LEADS_URL — веб-застосунок Google Apps Script: Google Таблиця +
      Telegram-чат менеджерів (код у папці «Заявки_Telegram»). */
 window.BG_LEADS_EMAIL = 'beautygames.pro@gmail.com';
-// Коротке сповіщення в Telegram через бота-пересилача пошти (@email2telegrambot).
-// Повна заявка туди не йде — тільки «нова заявка, ім'я», деталі в пошті.
-window.BG_LEADS_PING = '6835234366@e2t.link';
+// Сповіщення в робочий чат менеджерів: @email2telegrambot пересилає лист
+// у групу. Шлемо коротко — звідки заявка і як зв'язатися; решта в пошті.
+window.BG_LEADS_PING = 'group-5500606997@e2t.link';
 window.BG_LEADS_URL = '';
 
 (function () {
@@ -74,6 +74,11 @@ window.BG_LEADS_URL = '';
         _captcha: 'false',
         Заявка: t,
         "Ім'я": p.name || '',
+        Телефон: p.phone || '',
+        Instagram: p.instagram || '',
+        Контакт: p.contact || '',
+        Напрямок: p.skills || p.direction || '',
+        Пакет: p.package || '',
         Деталі: 'уся заявка — на пошті beautygames.pro@gmail.com'
       })
     }).catch(function () {});
