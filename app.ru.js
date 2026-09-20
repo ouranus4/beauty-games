@@ -1051,6 +1051,29 @@
   }
 
   /* ============================================================
+     АРХІВ СПОГАДІВ — локальні ролики
+     Той самий підхід, що і з YouTube: спершу картинка, плеєр
+     зʼявляється після кліку, щоб сторінка не тягнула відео наперед.
+     ============================================================ */
+  $$('.arcv').forEach(function (card) {
+    card.addEventListener('click', function () {
+      if (card.classList.contains('playing')) return;
+      var src = card.getAttribute('data-src');
+      var ph = $('.arcv-ph', card);
+      if (!src || !ph) return;
+      var v = document.createElement('video');
+      v.src = src;
+      v.controls = true;
+      v.autoplay = true;
+      v.playsInline = true;
+      v.preload = 'auto';
+      ph.innerHTML = '';
+      ph.appendChild(v);
+      card.classList.add('playing');
+    });
+  });
+
+  /* ============================================================
      ВІДЕО З YOUTUBE
      Показуємо превʼю, а плеєр підвантажуємо тільки за кліком:
      три вбудовані ролики тягнуть за собою мегабайти скриптів,
