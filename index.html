@@ -9,7 +9,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800;900&family=Oswald:wght@400;500;600&family=Manrope:wght@400;500;600;700&family=Pixelify+Sans:wght@400..700&family=JetBrains+Mono:wght@400;500;700&display=swap">
 <link rel="stylesheet" href="styles.css?v=2cf033dd">
-<link rel="stylesheet" href="squid.css?v=5ff9159e">
+<link rel="stylesheet" href="squid.css?v=bc2fdc58">
 
 <!-- SPRITE -->
 <div class="preloader" id="preloader">
@@ -111,6 +111,7 @@
 <!-- ============ ГЕРОЙ ============ -->
 <header class="hero" id="top">
   <div class="wrap hero-inner">
+    <img class="hero-logo" src="assets/logo-horizontal.svg" alt="Beauty Games — reality show, championship, education" width="330" height="52">
     <h1 class="h-xl">Перше онлайн-реаліті<br>для <span class="glow">б'юті-майстрів</span></h1>
 
     <div class="pills pills-3">
@@ -120,19 +121,13 @@
     </div>
     <p class="lede hero-lede">Три напрямки, які раніше існували окремо, — в одному місці.</p>
 
-    <div class="boot rv" id="boot" data-done="0">
-      <div class="boot-top">
-        <span class="boot-k">Завантаження гри</span>
-        <span class="boot-pct" id="bootPct">0%</span>
-      </div>
-      <div class="boot-bar"><i id="bootFill"></i></div>
-      <div class="boot-log" id="bootLog" aria-live="polite">Готуємо арену сезону…</div>
-      <div class="boot-tags">
-        <span class="boot-tag" data-i="0">Арена</span>
-        <span class="boot-tag" data-i="1">Команди</span>
-        <span class="boot-tag" data-i="2">Журі</span>
-        <span class="boot-tag" data-i="3">Ефіри</span>
-      </div>
+    <div class="hold rv" id="hold" data-done="0">
+      <span class="hold-k">Крок 0 · Почніть гру</span>
+      <button class="hold-btn" type="button" id="holdBtn" aria-label="Затисніть і тримайте, щоб почати">
+        <span class="hold-fill" id="holdFill"></span>
+        <span class="hold-tx" id="holdTx">Затисніть<br>і тримайте</span>
+      </button>
+      <p class="hold-sub" id="holdSub">На телефоні — палець, на компʼютері — ліва кнопка миші. Тримайте, поки екран не заллється рожевим.</p>
     </div>
 
     <div class="hello rv" id="hello">
@@ -615,8 +610,21 @@
 
     <div class="acc-bar rv">
       <span class="acc-progress"><b id="accOpen">0</b> з 9 модулів пройдено</span>
-      <span class="acc-track" aria-hidden="true"><i id="accFill"></i></span>
       <button class="btn btn-ghost btn-sm" type="button" id="accAll">Відкрити модуль 01</button>
+    </div>
+
+    <div class="path-track mod-track rv" aria-hidden="true">
+      <span class="path-line"><i id="accFill"></i></span>
+        <span class="path-heart mod-heart" data-i="0"><svg><use href="#bg-logo"/></svg></span>
+        <span class="path-heart mod-heart" data-i="1"><svg><use href="#bg-logo"/></svg></span>
+        <span class="path-heart mod-heart" data-i="2"><svg><use href="#bg-logo"/></svg></span>
+        <span class="path-heart mod-heart" data-i="3"><svg><use href="#bg-logo"/></svg></span>
+        <span class="path-heart mod-heart" data-i="4"><svg><use href="#bg-logo"/></svg></span>
+        <span class="path-heart mod-heart" data-i="5"><svg><use href="#bg-logo"/></svg></span>
+        <span class="path-heart mod-heart" data-i="6"><svg><use href="#bg-logo"/></svg></span>
+        <span class="path-heart mod-heart" data-i="7"><svg><use href="#bg-logo"/></svg></span>
+        <span class="path-heart mod-heart" data-i="8"><svg><use href="#bg-logo"/></svg></span>
+      <span class="path-runner" id="accRunner"><b id="accRunnerN">01</b></span>
     </div>
     <p class="acc-hint" id="accHint">Модулі відкриваються по черзі — так само, як на сезоні. Почніть з першого.</p>
 
@@ -806,6 +814,37 @@
       </div>
     </div>
 
+  </div>
+</section>
+
+<!-- ============ АРХІВ СПОГАДІВ ============ -->
+<section class="sec" id="archive">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="eyebrow">Архів спогадів</span>
+      <h2 class="h-lg">Як це було <span class="glow">на заходах IBV</span></h2>
+      <div class="sec-rule"></div>
+      <p class="lede">Кадри з чемпіонатів і конгресів, з яких виріс Beauty Games. Натисніть на знімок — і він оживе.</p>
+    </div>
+
+    <div class="arc-wrap rv">
+      <button class="arc-nav arc-prev" type="button" aria-label="Попередній кадр">‹</button>
+      <div class="arc" id="arc">
+        <button class="arcv" type="button" data-src="assets/video/arch-champ.mp4" aria-label="Оживити кадр: чемпіонат у роботі">
+          <span class="arcv-ph"><img src="assets/video/arch-champ.jpg" alt="" loading="lazy" width="960" height="540"><span class="arcv-play" aria-hidden="true"></span></span>
+        </button>
+        <button class="arcv" type="button" data-src="assets/video/arch-award.mp4" aria-label="Оживити кадр: нагородження">
+          <span class="arcv-ph"><img src="assets/video/arch-award.jpg" alt="" loading="lazy" width="960" height="540"><span class="arcv-play" aria-hidden="true"></span></span>
+        </button>
+        <button class="arcv" type="button" data-src="assets/video/arch-loginova.mp4" aria-label="Оживити кадр: слово судді">
+          <span class="arcv-ph"><img src="assets/video/arch-loginova.jpg" alt="" loading="lazy" width="960" height="540"><span class="arcv-play" aria-hidden="true"></span></span>
+        </button>
+        <button class="arcv" type="button" data-src="assets/video/arch-polivanova.mp4" aria-label="Оживити кадр: слово судді">
+          <span class="arcv-ph"><img src="assets/video/arch-polivanova.jpg" alt="" loading="lazy" width="960" height="540"><span class="arcv-play" aria-hidden="true"></span></span>
+        </button>
+      </div>
+      <button class="arc-nav arc-next" type="button" aria-label="Наступний кадр">›</button>
+    </div>
   </div>
 </section>
 
@@ -1196,61 +1235,6 @@
   </div>
 </section>
 
-<!-- ============ АРХІВ СПОГАДІВ ============ -->
-<section class="sec" id="archive">
-  <div class="wrap">
-    <div class="sec-head rv">
-      <span class="eyebrow">Архів спогадів</span>
-      <h2 class="h-lg">Як це було <span class="glow">на заходах IBV</span></h2>
-      <div class="sec-rule"></div>
-      <p class="lede">Beauty Games виріс із чемпіонатів і конгресів IBV. Ось кадри звідти: робота учасниць, сцена, нагородження і слова суддів.</p>
-    </div>
-
-    <div class="arc rv">
-      <button class="arcv" type="button" data-src="assets/video/arch-champ.mp4" aria-label="Дивитись: чемпіонат у роботі">
-        <span class="arcv-ph">
-          <img src="assets/video/arch-champ.jpg" alt="" loading="lazy" width="960" height="540">
-          <span class="arcv-play" aria-hidden="true"></span>
-        </span>
-        <span class="arcv-tx">
-          <b>Чемпіонат у роботі</b>
-          <span>IBV Ukraine 2021 · відбірковий тур в Одесі</span>
-        </span>
-      </button>
-      <button class="arcv" type="button" data-src="assets/video/arch-award.mp4" aria-label="Дивитись: нагородження і гала-вечір">
-        <span class="arcv-ph">
-          <img src="assets/video/arch-award.jpg" alt="" loading="lazy" width="960" height="540">
-          <span class="arcv-play" aria-hidden="true"></span>
-        </span>
-        <span class="arcv-tx">
-          <b>Нагородження і гала-вечір</b>
-          <span>Кубки, сцена і вечір після змагань</span>
-        </span>
-      </button>
-      <button class="arcv" type="button" data-src="assets/video/arch-loginova.mp4" aria-label="Дивитись: інтерв'ю Ольги Логінової">
-        <span class="arcv-ph">
-          <img src="assets/video/arch-loginova.jpg" alt="" loading="lazy" width="960" height="540">
-          <span class="arcv-play" aria-hidden="true"></span>
-        </span>
-        <span class="arcv-tx">
-          <b>Ольга Логінова</b>
-          <span>Суддя, спікерка і партнерка — про чемпіонат</span>
-        </span>
-      </button>
-      <button class="arcv" type="button" data-src="assets/video/arch-polivanova.mp4" aria-label="Дивитись: інтерв'ю судді чемпіонату">
-        <span class="arcv-ph">
-          <img src="assets/video/arch-polivanova.jpg" alt="" loading="lazy" width="960" height="540">
-          <span class="arcv-play" aria-hidden="true"></span>
-        </span>
-        <span class="arcv-tx">
-          <b>Слово судді</b>
-          <span>Про рівень робіт і атмосферу турніру</span>
-        </span>
-      </button>
-    </div>
-  </div>
-</section>
-
 <!-- ============ МІСЦЯ ============ -->
 <section class="sec">
   <div class="wrap">
@@ -1498,5 +1482,5 @@
 </div>
 
 <script src="leads.js?v=d5b28821"></script>
-<script src="app.js?v=2575deb9"></script>
+<script src="app.js?v=4acfbf12"></script>
 <script src="fx.js?v=b9217507"></script>

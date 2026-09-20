@@ -52,53 +52,6 @@
   var $$ = function (s, c) { return Array.prototype.slice.call((c || document).querySelectorAll(s)); };
 
   /* ============================================================
-     ЗАВАНТАЖЕННЯ ГРИ НА ПЕРШОМУ ЕКРАНІ
-     Перший блок був статичний. Тепер сезон «вантажиться»: смуга
-     заповнюється, етапи по черзі відмічаються, і наприкінці
-     сторінка передає хід людині — до першого кроку.
-     ============================================================ */
-  (function () {
-    var boot = document.getElementById('boot');
-    if (!boot) return;
-    var fill = document.getElementById('bootFill');
-    var pctEl = document.getElementById('bootPct');
-    var logEl = document.getElementById('bootLog');
-    var tags = Array.prototype.slice.call(boot.querySelectorAll('.boot-tag'));
-    var STEPS = [
-      [28, 'Готовим арену сезона…'],
-      [54, 'Собираем команды мастеров…'],
-      [78, 'Зовём жюри и экспертов…'],
-      [96, 'Включаем камеры и эфиры…'],
-      [100, 'Готово. Ваш ход — шаг 1 ниже.']
-    ];
-    var still = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-    var show = function (i) {
-      var st = STEPS[i];
-      if (fill) fill.style.width = st[0] + '%';
-      if (pctEl) pctEl.textContent = st[0] + '%';
-      if (logEl) logEl.textContent = st[1];
-      tags.forEach(function (t, k) { t.classList.toggle('on', k < i + (st[0] === 100 ? 1 : 0)); });
-      if (st[0] === 100) {
-        boot.setAttribute('data-done', '1');
-        tags.forEach(function (t) { t.classList.add('on'); });
-      }
-    };
-
-    if (still) { show(STEPS.length - 1); return; }
-
-    var i = 0;
-    show(0);
-    var tick = function () {
-      i++;
-      if (i >= STEPS.length) return;
-      show(i);
-      setTimeout(tick, i === STEPS.length - 1 ? 700 : 620);
-    };
-    setTimeout(tick, 700);
-  })();
-
-  /* ============================================================
      ПІДСУМОК ВИБОРУ
      Усе, що людина обрала на сторінці, збирається в одну картку
      біля заявки — щоб не питати те саме ще раз у менеджера.
@@ -120,6 +73,107 @@
     get: function (k) { try { return window.localStorage.getItem(k); } catch (e) { return null; } },
     set: function (k, v) { try { window.localStorage.setItem(k, v); } catch (e) {} }
   };
+
+  /* ============================================================
+     ПОЧАТОК ГРИ: ЗАТИСНІТЬ І ТРИМАЙТЕ
+     Як у мобільних іграх: що довше тримаєш, то більше екрана
+     заливається рожевим. Відпустив раніше — заливка сповзає назад.
+     Дотримав до кінця — гра почалась, і сторінка веде до кроку 1.
+     ============================================================ */
+  (function () {
+    var box = document.getElementById('hold');
+    if (!box) return;
+    var btn = document.getElementById('holdBtn');
+    var fill = document.getElementById('holdFill');
+    var tx = document.getElementById('holdTx');
+    var sub = document.getElementById('holdSub');
+    var hello = document.getElementById('hello');
+
+    var wash = document.createElement('div');
+    wash.className = 'hold-wash';
+    wash.setAttribute('aria-hidden', 'true');
+    document.body.appendChild(wash);
+
+    var HOLD = 1500;            // скільки треба тримати
+    var p = 0, raf = 0, last = 0, down = false, done = false;
+
+    var paint = function () {
+      var v = Math.max(0, Math.min(1, p));
+      if (fill) fill.style.setProperty('--p', (v * 100) + '%');
+      wash.style.setProperty('--p', (v * 100) + '%');
+      wash.classList.toggle('on', v > 0.01);
+      box.setAttribute('data-p', Math.round(v * 100));
+    };
+
+    var finish = function () {
+      done = true;
+      down = false;
+      p = 1;
+      paint();
+      box.setAttribute('data-done', '1');
+      store.set('bg_started', '1');
+      if (tx) tx.innerHTML = 'Игра<br>началась';
+      if (sub) sub.textContent = 'Готово. Ваш ход — шаг 1 ниже: скажите, как вас зовут.';
+      wash.classList.add('flash');
+      setTimeout(function () {
+        wash.classList.remove('on', 'flash');
+        if (hello) {
+          hello.classList.add('pulse');
+          hello.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          setTimeout(function () { hello.classList.remove('pulse'); }, 2400);
+          var nm = document.getElementById('heroName');
+          if (nm) setTimeout(function () { nm.focus({ preventScroll: true }); }, 700);
+        }
+      }, 520);
+    };
+
+    var tick = function () {
+      var t = Date.now();
+      if (!last) last = t;
+      var dt = t - last;
+      last = t;
+      p += (down ? dt / HOLD : -dt / (HOLD * 0.7));
+      if (p >= 1) { clearInterval(raf); raf = 0; finish(); return; }
+      // нуль на першому тику ще не означає «відпустили»
+      if (p <= 0 && !down) { p = 0; paint(); clearInterval(raf); raf = 0; last = 0; return; }
+      if (p < 0) p = 0;
+      paint();
+    };
+
+    var start = function (e) {
+      if (done) return;
+      if (e && e.type === 'keydown' && e.key !== ' ' && e.key !== 'Enter') return;
+      if (e && e.preventDefault) e.preventDefault();
+      down = true;
+      last = 0;
+      if (!raf) raf = setInterval(tick, 30);
+    };
+    var stop = function () {
+      if (done) return;
+      down = false;
+      last = 0;
+      if (!raf) raf = setInterval(tick, 30);
+    };
+
+    if (btn) {
+      ['mousedown', 'touchstart', 'keydown'].forEach(function (ev) {
+        btn.addEventListener(ev, start, { passive: false });
+      });
+      ['mouseup', 'mouseleave', 'touchend', 'touchcancel', 'keyup', 'blur'].forEach(function (ev) {
+        btn.addEventListener(ev, stop);
+      });
+      window.addEventListener('mouseup', stop);
+    }
+
+    // Хто вже починав гру, вдруге тримати не мусить
+    if (store.get('bg_started') === '1') {
+      done = true;
+      box.setAttribute('data-done', '1');
+      if (fill) fill.style.setProperty('--p', '100%');
+      if (tx) tx.innerHTML = 'Игра<br>началась';
+      if (sub) sub.textContent = 'Вы уже в игре. Шаг 1 ниже — можно продолжать.';
+    }
+  })();
 
   /* ============================================================
      ШАПКА: стан прокрутки
@@ -241,42 +295,54 @@
     var openEl = $('#accOpen');
     var fillEl = $('#accFill');
     var railEl = $('#accRail');
+    var modHearts = $$('.mod-heart');
+    var modRunner = $('#accRunner');
+    var modRunnerN = $('#accRunnerN');
     var hintEl = $('#accHint');
     var allBtn = $('#accAll');
-    var items = $$('.acc-item', mods);
+    var modItems = $$('.acc-item', mods);
 
-    var num = function (i) { return ('0' + (i + 1)).slice(-2); };
+    var modNum = function (i) { return ('0' + (i + 1)).slice(-2); };
 
     var unlocked = 1;
     var saved = parseInt(store.get('bg_mods'), 10);
-    if (saved > 1) unlocked = Math.min(saved, items.length);
+    if (saved > 1) unlocked = Math.min(saved, modItems.length);
 
     var paintMods = function () {
-      var open = items.filter(function (i) { return i.classList.contains('open'); }).length;
+      var open = modItems.filter(function (i) { return i.classList.contains('open'); }).length;
       var doneN = Math.max(0, unlocked - 1);
-      items.forEach(function (it, i) {
+      modItems.forEach(function (it, i) {
         var lock = i + 1 > unlocked;
         it.classList.toggle('locked', lock);
         var btn = $('.acc-btn', it);
         if (btn) btn.setAttribute('aria-disabled', lock ? 'true' : 'false');
       });
       if (openEl) openEl.textContent = doneN;
-      if (fillEl) fillEl.style.width = (doneN / items.length * 100) + '%';
-      if (railEl) railEl.style.height = (doneN / items.length * 100) + '%';
+      var pct = doneN / modItems.length * 100;
+      if (fillEl) fillEl.style.width = pct + '%';
+      if (railEl) railEl.style.height = pct + '%';
+      modHearts.forEach(function (hrt, k) {
+        hrt.style.left = (k / (modItems.length - 1) * 100) + '%';
+        hrt.classList.toggle('got', k < doneN);
+      });
+      if (modRunner) {
+        modRunner.style.left = Math.min(99, doneN / (modItems.length - 1) * 100) + '%';
+        if (modRunnerN) modRunnerN.textContent = modNum(Math.min(modItems.length - 1, doneN));
+      }
       if (allBtn) {
-        allBtn.textContent = unlocked < items.length
-          ? 'Открыть модуль ' + num(unlocked - (items[unlocked - 1].classList.contains('open') ? 0 : 1))
-          : (open === items.length ? 'Свернуть все' : 'Открыть все');
+        allBtn.textContent = unlocked < modItems.length
+          ? 'Открыть модуль ' + modNum(unlocked - (modItems[unlocked - 1].classList.contains('open') ? 0 : 1))
+          : (open === modItems.length ? 'Свернуть все' : 'Открыть все');
       }
       if (hintEl) {
-        hintEl.textContent = unlocked < items.length
-          ? 'Модули открываются по очереди — так же, как на сезоне. Дальше модуль ' + num(unlocked - 1 + (items[unlocked - 1].classList.contains('open') ? 1 : 0)) + '.'
+        hintEl.textContent = unlocked < modItems.length
+          ? 'Модули открываются по очереди — так же, как на сезоне. Дальше модуль ' + modNum(unlocked - 1 + (modItems[unlocked - 1].classList.contains('open') ? 1 : 0)) + '.'
           : 'Все девять модулей открыты — столько же работы ждёт на сезоне.';
       }
     };
 
     var unlockNext = function () {
-      if (unlocked < items.length) {
+      if (unlocked < modItems.length) {
         unlocked++;
         store.set('bg_mods', String(unlocked));
       }
@@ -291,13 +357,13 @@
       it.classList.remove('shake');
       void it.offsetWidth;
       it.classList.add('shake');
-      var next = items[unlocked - 1];
+      var next = modItems[unlocked - 1];
       if (next) next.scrollIntoView({ behavior: 'smooth', block: 'center' });
-      if (hintEl) hintEl.textContent = 'Сначала откройте модуль ' + num(unlocked - 1) + ' — дальше откроется следующий.';
+      if (hintEl) hintEl.textContent = 'Сначала откройте модуль ' + modNum(unlocked - 1) + ' — дальше откроется следующий.';
     }, true);
 
     mods.addEventListener('acc:change', function () {
-      items.forEach(function (it, i) {
+      modItems.forEach(function (it, i) {
         if (it.classList.contains('open') && i + 1 === unlocked) unlockNext();
       });
       paintMods();
@@ -305,10 +371,10 @@
 
     if (allBtn) {
       allBtn.addEventListener('click', function () {
-        if (unlocked < items.length) {
+        if (unlocked < modItems.length) {
           var i = unlocked - 1;
-          var it = items[i];
-          if (it.classList.contains('open')) { unlockNext(); paintMods(); items[unlocked - 1].scrollIntoView({ behavior: 'smooth', block: 'center' }); return; }
+          var it = modItems[i];
+          if (it.classList.contains('open')) { unlockNext(); paintMods(); modItems[unlocked - 1].scrollIntoView({ behavior: 'smooth', block: 'center' }); return; }
           setItem(it, true);
           it.classList.add('seen');
           unlockNext();
@@ -316,8 +382,8 @@
           it.scrollIntoView({ behavior: 'smooth', block: 'center' });
           return;
         }
-        var openAll = items.some(function (i2) { return !i2.classList.contains('open'); });
-        items.forEach(function (i2) { setItem(i2, openAll); });
+        var openAll = modItems.some(function (i2) { return !i2.classList.contains('open'); });
+        modItems.forEach(function (i2) { setItem(i2, openAll); });
         paintMods();
       });
     }
@@ -1055,6 +1121,25 @@
      Той самий підхід, що і з YouTube: спершу картинка, плеєр
      зʼявляється після кліку, щоб сторінка не тягнула відео наперед.
      ============================================================ */
+  (function () {
+    var arc = $('#arc');
+    if (!arc) return;
+    var step = function () {
+      var card = $('.arcv', arc);
+      return card ? card.offsetWidth + 16 : 320;
+    };
+    var prev = $('.arc-prev'), next = $('.arc-next');
+    if (prev) prev.addEventListener('click', function () { arc.scrollBy({ left: -step(), behavior: 'smooth' }); });
+    if (next) next.addEventListener('click', function () { arc.scrollBy({ left: step(), behavior: 'smooth' }); });
+    var ends = function () {
+      if (prev) prev.disabled = arc.scrollLeft < 8;
+      if (next) next.disabled = arc.scrollLeft + arc.clientWidth > arc.scrollWidth - 8;
+    };
+    arc.addEventListener('scroll', ends);
+    window.addEventListener('resize', ends);
+    ends();
+  })();
+
   $$('.arcv').forEach(function (card) {
     card.addEventListener('click', function () {
       if (card.classList.contains('playing')) return;
