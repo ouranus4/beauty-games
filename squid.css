@@ -2521,17 +2521,14 @@ body.bio-open{overflow:hidden}
   display:block;width:min(360px,74vw);height:auto;
   filter:drop-shadow(0 10px 26px rgba(0,0,0,.5));
 }
-.hero-brand-rule{
-  display:block;width:min(360px,74vw);height:1px;
-  background:linear-gradient(90deg,rgba(233,198,126,.75),rgba(233,198,126,.06));
-}
+
 .hero-brand-tag{
   font-family:"Montserrat",sans-serif;font-weight:600;font-size:10.5px;
   letter-spacing:.34em;text-transform:uppercase;color:var(--gold-2);
 }
 .hero-inner .h-xl{margin-top:10px}
 @media (max-width:520px){
-  .hero-logo,.hero-brand-rule{width:min(300px,82vw)}
+  .hero-logo{width:min(300px,82vw)}
   .hero-brand-tag{font-size:9px;letter-spacing:.24em}
   .hero-brand{gap:10px}
 }
@@ -2546,14 +2543,15 @@ body.bio-open{overflow:hidden}
   background:rgba(8,6,12,.55);
   -webkit-backdrop-filter:blur(calc(9px * (1 - var(--p,0))));
   backdrop-filter:blur(calc(9px * (1 - var(--p,0))));
-  transition:opacity .6s ease, visibility .6s, backdrop-filter .2s linear;
+  transition:opacity .6s ease, visibility .6s;
 }
 /* Рожеве розходиться колом від самого замка. */
 .gate-wash{
   position:absolute;left:50%;top:50%;width:230vmax;height:230vmax;border-radius:50%;
   transform:translate(-50%,-50%) scale(var(--s,0));
   background:radial-gradient(circle,rgba(255,87,160,.96) 0%,rgba(230,0,126,.94) 45%,rgba(194,0,95,.92) 100%);
-  transition:transform .55s cubic-bezier(.22,.61,.36,1), opacity .6s ease;
+  transition:opacity .6s ease;
+  will-change:transform;
   pointer-events:none;
 }
 /* кола по воді: поки тримають, від замка розходяться хвилі */
@@ -2590,7 +2588,7 @@ body.bio-open{overflow:hidden}
 .gate-ring{position:absolute;inset:0;width:100%;height:100%;transform:rotate(-90deg)}
 .gate-ring circle{fill:none;stroke-width:4;stroke-linecap:round}
 .gate-ring-bg{stroke:rgba(255,255,255,.16)}
-.gate-ring-fill{stroke:var(--pink);transition:stroke-dashoffset .12s cubic-bezier(.33,1,.68,1)}
+.gate-ring-fill{stroke:var(--pink)}
 .gate-ico{
   position:absolute;inset:0;margin:auto;width:58px;height:58px;
   fill:none;stroke:#fff;stroke-width:3;stroke-linecap:round;stroke-linejoin:round;
@@ -2769,3 +2767,14 @@ html.gated,html.gated body{overflow:hidden}
 .arcv-soon-tx b{display:block;color:var(--gold-1);font-size:15px;letter-spacing:.1em}
 .arcv.seen{outline:2px solid rgba(233,198,126,.55);outline-offset:-2px}
 .fork-cta{margin-top:14px;align-self:flex-start}
+
+/* Підказка: плавна поява знизу, слово «Підказка» коротко вібрує */
+.tip{transition:opacity .5s ease, transform .5s cubic-bezier(.22,.61,.36,1)}
+.tip.ping .tip-k{animation:tipPing 1.1s ease 2}
+@keyframes tipPing{
+  0%,100%{transform:translateX(0) scale(1);box-shadow:0 0 0 0 rgba(255,46,136,.5)}
+  15%{transform:translateX(-3px) scale(1.06)}
+  30%{transform:translateX(3px) scale(1.06)}
+  45%{transform:translateX(-2px) scale(1.03);box-shadow:0 0 0 12px rgba(255,46,136,0)}
+  60%{transform:translateX(0) scale(1)}
+}

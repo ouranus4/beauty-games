@@ -112,7 +112,7 @@
       if (open) return;
       open = true;
       down = false;
-      clearInterval(timer);
+      if (timer) cancelAnimationFrame(timer);
       timer = 0;
       p = 1;
       paint();
@@ -122,7 +122,13 @@
       var tip = document.getElementById('tip');
       if (tip) {
         var showTip = function () {
-          setTimeout(function () { tip.hidden = false; tip.classList.add('in'); }, 900);
+          setTimeout(function () {
+            tip.hidden = false;
+            var reveal = function () { tip.classList.add('in'); };
+            requestAnimationFrame(function () { requestAnimationFrame(reveal); });
+            setTimeout(reveal, 250);       // якщо вкладка була у фоні
+            setTimeout(function () { tip.classList.add('ping'); }, 700);
+          }, 1100);
         };
         if (document.readyState === 'complete') showTip();
         else window.addEventListener('load', showTip);
@@ -131,16 +137,17 @@
       setTimeout(function () { gate.remove(); }, 700);
     };
 
-    var tick = function () {
-      var t = Date.now();
+    var tick = function (t) {
+      t = t || Date.now();
       if (!last) last = t;
-      var dt = t - last;
+      var dt = Math.min(64, t - last);      // після паузи вкладки не стрибаємо
       last = t;
       p += (down ? dt / HOLD : -dt / (HOLD * 0.6));
-      if (p >= 1) { unlock(); return; }
-      if (p <= 0 && !down) { p = 0; paint(); clearInterval(timer); timer = 0; last = 0; return; }
+      if (p >= 1) { timer = 0; unlock(); return; }
+      if (p <= 0 && !down) { p = 0; paint(); timer = 0; last = 0; return; }
       if (p < 0) p = 0;
       paint();
+      timer = requestAnimationFrame(tick);
     };
 
     var start = function (e) {
@@ -150,13 +157,13 @@
       down = true;
       last = 0;
       buzz(12);
-      if (!timer) timer = setInterval(tick, 16);
+      if (!timer) timer = requestAnimationFrame(tick);
     };
     var stop = function () {
       if (open) return;
       down = false;
       last = 0;
-      if (!timer) timer = setInterval(tick, 16);
+      if (!timer) timer = requestAnimationFrame(tick);
     };
 
     if (lock) {
