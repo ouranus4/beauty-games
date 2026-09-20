@@ -342,7 +342,9 @@
   if (mods) {
     var openEl = $('#accOpen');
     var fillEl = $('#accFill');
-    var modDots = $$('.mdot');
+    var modTrack = $('#mprog');
+    var modHearts = modTrack ? $$('.path-heart', modTrack) : [];
+    var modRunner = $('#modRunner');
     var hintEl = $('#accHint');
     var allBtn = $('#accAll');
     var modItems = $$('.acc-item', mods);
@@ -363,11 +365,19 @@
         if (btn) btn.setAttribute('aria-disabled', lock ? 'true' : 'false');
       });
       if (openEl) openEl.textContent = doneN;
-      var pct = doneN / modItems.length * 100;
+      // Смуга — така сама, як дорожка етапів вище: бігунок стоїть на
+      // поточному модулі, пройдені знаки зібрані.
+      var here = Math.min(doneN, modItems.length - 1);
+      var pct = here / (modItems.length - 1) * 100;
       if (fillEl) fillEl.style.width = pct + '%';
-      modDots.forEach(function (d, k) {
-        d.classList.toggle('done', k < doneN);
-        d.classList.toggle('now', k === doneN && doneN < modItems.length);
+      if (modRunner) {
+        modRunner.style.left = pct + '%';
+        var runN = $('#modRunN', modRunner);
+        if (runN) runN.textContent = modNum(here);
+      }
+      modHearts.forEach(function (h, k) {
+        h.style.left = (k / (modItems.length - 1) * 100) + '%';
+        h.classList.toggle('got', k < doneN);
       });
       if (allBtn) {
         allBtn.textContent = unlocked < modItems.length

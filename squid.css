@@ -2570,7 +2570,10 @@ body.bio-open{overflow:hidden}
   70%{opacity:.18}
   100%{transform:translate(-50%,-50%) scale(14);opacity:0;border-color:rgba(255,255,255,.2)}
 }
-.gate.open .gate-wash{transform:translate(-50%,-50%) scale(1.06)}
+.gate.open .gate-wash{
+  transform:translate(-50%,-50%) scale(1.08);
+  transition:transform .8s cubic-bezier(.22,.61,.36,1), opacity .6s ease;
+}
 .gate.gone .gate-wash{opacity:0}
 .gate.open{pointer-events:none}
 .gate.gone{opacity:0;visibility:hidden}
@@ -2580,6 +2583,7 @@ body.bio-open{overflow:hidden}
   background:rgba(255,46,136,.1);border:0;cursor:pointer;
   touch-action:none;-webkit-user-select:none;user-select:none;
   animation:gatePulse 2.1s ease-in-out infinite;
+  transition:background .5s ease;
 }
 .gate.holding .gate-lock{animation:none}
 .gate-lock:focus-visible{outline:3px solid var(--pink-soft);outline-offset:6px}
@@ -2590,16 +2594,15 @@ body.bio-open{overflow:hidden}
 .gate-ring{position:absolute;inset:0;width:100%;height:100%;transform:rotate(-90deg)}
 .gate-ring circle{fill:none;stroke-width:4;stroke-linecap:round}
 .gate-ring-bg{stroke:rgba(255,255,255,.16)}
-.gate-ring-fill{stroke:var(--pink)}
+.gate-ring-fill{stroke:var(--pink);transition:stroke .5s ease}
 .gate-ico{
   position:absolute;inset:0;margin:auto;width:58px;height:58px;
   fill:none;stroke:#fff;stroke-width:3;stroke-linecap:round;stroke-linejoin:round;
+  transition:stroke .5s ease;
 }
-.gate-ico .gate-body{fill:rgba(255,46,136,.22)}
+.gate-ico .gate-body{fill:rgba(255,46,136,.22);transition:fill .5s ease}
 .gate-ico .gate-hole{fill:#fff;stroke:none}
-.gate-shackle{transition:transform .45s cubic-bezier(.3,1.4,.5,1);transform-origin:24px 22px}
-.gate.open .gate-shackle{transform:translateY(-9px) rotate(-14deg)}
-.gate.open .gate-lock{animation:none;background:rgba(233,198,126,.16)}
+.gate-shackle{transition:transform .6s cubic-bezier(.34,1.24,.5,1);transform-origin:33px 22px}
 .gate-tx{
   margin:0;font-family:"Montserrat",sans-serif;font-weight:800;font-size:12.5px;
   letter-spacing:.18em;text-transform:uppercase;color:#fff;
@@ -2694,7 +2697,7 @@ html.gated,html.gated body{overflow:hidden}
 
 /* Замок відмикається як на айфоні: дужка підстрибує, знак світлішає. */
 .gate.open .gate-lock{
-  animation:lockPop .55s cubic-bezier(.3,1.5,.5,1);
+  animation:lockPop .6s cubic-bezier(.33,1.2,.5,1);
   background:rgba(255,255,255,.18);
 }
 .gate.open .gate-ico{stroke:#fff}
@@ -2702,10 +2705,11 @@ html.gated,html.gated body{overflow:hidden}
 .gate.open .gate-ring-fill{stroke:#fff}
 @keyframes lockPop{
   0%{transform:scale(1)}
-  45%{transform:scale(1.14)}
+  40%{transform:scale(1.07)}
   100%{transform:scale(1)}
 }
-.gate.open .gate-shackle{transform:translateY(-11px) rotate(-16deg)}
+/* Дужка відкидається вбік, лишаючись на своїй петлі — як у справжнього замка */
+.gate.open .gate-shackle{transform:rotate(26deg) translateY(-1px)}
 .gate.open .gate-skip{opacity:0;transition:opacity .25s ease}
 .gate.open .gate-tx{color:#fff}
 
@@ -2722,33 +2726,13 @@ html.gated,html.gated body{overflow:hidden}
 .tip-x{color:#6B6478}
 .tip-x:hover{color:#120D18}
 
-/* Смуга модулів — крапки з номерами, як у бічного прогрес-бару сторінки. */
-.mprog{
-  position:relative;display:flex;justify-content:space-between;align-items:center;
-  margin:2px 4px 20px;padding:0 2px;
-}
-.mprog-line{
-  position:absolute;left:10px;right:10px;top:9px;height:2px;border-radius:2px;
-  background:rgba(255,255,255,.12);overflow:hidden;
-}
-.mprog-line i{display:block;height:100%;width:0;background:var(--pink);transition:width .4s ease}
-.mdot{position:relative;display:flex;flex-direction:column;align-items:center;gap:7px;z-index:1}
-.mdot i{
-  width:11px;height:11px;border-radius:50%;
-  background:#15101C;box-shadow:inset 0 0 0 2px rgba(255,255,255,.22);
-  transition:background .25s, box-shadow .25s, transform .25s;
-}
-.mdot b{
-  font-family:"JetBrains Mono",monospace;font-size:9.5px;letter-spacing:.06em;
-  color:var(--muted);transition:color .25s;
-}
-.mdot.done i{background:var(--pink);box-shadow:0 0 0 3px rgba(255,46,136,.22)}
-.mdot.done b{color:var(--pink-soft)}
-.mdot.now i{background:#fff;box-shadow:0 0 0 4px rgba(255,46,136,.35);transform:scale(1.12)}
-.mdot.now b{color:#fff}
+/* Смуга модулів — та сама дорожка, що й на етапах сезону:
+   лінія, знаки гри й бігунок «ви тут». Різниця тільки у відступах. */
+.mtrack{margin:6px 6% 16px}
+.mtrack .path-heart{width:17px;height:17px}
 @media (max-width:640px){
-  .mdot b{font-size:8.5px}
-  .mdot i{width:9px;height:9px}
+  .mtrack{margin:4px 4% 14px}
+  .mtrack .path-heart{width:13px;height:13px}
 }
 
 /* Архів: скільки спогадів уже відкрито + кадр «далі буде» */

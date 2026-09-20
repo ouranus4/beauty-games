@@ -9,7 +9,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800;900&family=Oswald:wght@400;500;600&family=Manrope:wght@400;500;600;700&family=Pixelify+Sans:wght@400..700&family=JetBrains+Mono:wght@400;500;700&display=swap">
 <link rel="stylesheet" href="styles.css?v=2cf033dd">
-<link rel="stylesheet" href="squid.css?v=a448a4bd">
+<link rel="stylesheet" href="squid.css?v=049b8c9b">
 
 <!-- SPRITE -->
 <div class="preloader" id="preloader">
@@ -631,17 +631,18 @@
       <button class="btn btn-ghost btn-sm" type="button" id="accAll">Открыть модуль 01</button>
     </div>
 
-    <div class="mprog rv" id="mprog" aria-hidden="true">
-      <span class="mprog-line"><i id="accFill"></i></span>
-        <span class="mdot" data-i="0"><i></i><b>01</b></span>
-        <span class="mdot" data-i="1"><i></i><b>02</b></span>
-        <span class="mdot" data-i="2"><i></i><b>03</b></span>
-        <span class="mdot" data-i="3"><i></i><b>04</b></span>
-        <span class="mdot" data-i="4"><i></i><b>05</b></span>
-        <span class="mdot" data-i="5"><i></i><b>06</b></span>
-        <span class="mdot" data-i="6"><i></i><b>07</b></span>
-        <span class="mdot" data-i="7"><i></i><b>08</b></span>
-        <span class="mdot" data-i="8"><i></i><b>09</b></span>
+    <div class="path-track mtrack rv" id="mprog" aria-hidden="true">
+      <span class="path-line"><i id="accFill"></i></span>
+      <span class="path-heart" data-i="0"><svg><use href="#bg-logo"/></svg></span>
+      <span class="path-heart" data-i="1"><svg><use href="#bg-logo"/></svg></span>
+      <span class="path-heart" data-i="2"><svg><use href="#bg-logo"/></svg></span>
+      <span class="path-heart" data-i="3"><svg><use href="#bg-logo"/></svg></span>
+      <span class="path-heart" data-i="4"><svg><use href="#bg-logo"/></svg></span>
+      <span class="path-heart" data-i="5"><svg><use href="#bg-logo"/></svg></span>
+      <span class="path-heart" data-i="6"><svg><use href="#bg-logo"/></svg></span>
+      <span class="path-heart" data-i="7"><svg><use href="#bg-logo"/></svg></span>
+      <span class="path-heart" data-i="8"><svg><use href="#bg-logo"/></svg></span>
+      <span class="path-runner" id="modRunner"><b id="modRunN">01</b></span>
     </div>
     <p class="acc-hint" id="accHint">Модули открываются по очереди — так же, как на сезоне. Начните с первого.</p>
 
@@ -1509,5 +1510,5 @@
 </div>
 
 <script src="leads.js?v=d5b28821"></script>
-<script src="app.ru.js?v=4649b866"></script>
+<script src="app.ru.js?v=96070602"></script>
 <script src="fx.js?v=b9217507"></script>
