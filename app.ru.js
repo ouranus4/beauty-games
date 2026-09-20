@@ -117,6 +117,8 @@
       p = 1;
       paint();
       gate.classList.add('open');
+      // спершу показуємо, як відмикається замок, і тільки потім ховаємо екран
+      setTimeout(function () { gate.classList.add('gone'); }, 900);
       buzz([22, 60, 90]);          // короткий відгук, як у застосунках
       if (tx) tx.textContent = 'Открыто';
       var tip = document.getElementById('tip');
@@ -134,7 +136,7 @@
         else window.addEventListener('load', showTip);
       }
       document.documentElement.classList.remove('gated');
-      setTimeout(function () { gate.remove(); }, 700);
+      setTimeout(function () { gate.remove(); }, 1700);
     };
 
     var tick = function (t) {
@@ -1236,6 +1238,24 @@
       card.classList.add('playing');
     });
   });
+
+  /* ============================================================
+     НИЖНЯ ПАНЕЛЬ ІЗ БРОНЮВАННЯМ
+     З'являється, коли людина дійшла до кроку 4 — там уже зібрана
+     карта гравця й обраний формат. Раніше кнопка тільки заважала.
+     ============================================================ */
+  (function () {
+    var bar = $('.mobile-bar');
+    var from = $('#format');
+    if (!bar || !from) return;
+    var check = function () {
+      var top = from.getBoundingClientRect().top;
+      bar.classList.toggle('on', top < window.innerHeight * 0.6);
+    };
+    window.addEventListener('scroll', check, { passive: true });
+    window.addEventListener('resize', check);
+    check();
+  })();
 
   /* ============================================================
      ПЛАВНА ПРОКРУТКА З УРАХУВАННЯМ ЛИПКОЇ ШАПКИ

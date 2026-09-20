@@ -2570,8 +2570,10 @@ body.bio-open{overflow:hidden}
   70%{opacity:.18}
   100%{transform:translate(-50%,-50%) scale(14);opacity:0;border-color:rgba(255,255,255,.2)}
 }
-.gate.open .gate-wash{opacity:0;transform:translate(-50%,-50%) scale(1.06)}
-.gate.open{opacity:0;visibility:hidden;pointer-events:none}
+.gate.open .gate-wash{transform:translate(-50%,-50%) scale(1.06)}
+.gate.gone .gate-wash{opacity:0}
+.gate.open{pointer-events:none}
+.gate.gone{opacity:0;visibility:hidden}
 .gate-in{display:flex;flex-direction:column;align-items:center;gap:14px}
 .gate-lock{
   position:relative;width:132px;height:132px;border-radius:50%;
@@ -2704,7 +2706,8 @@ html.gated,html.gated body{overflow:hidden}
   100%{transform:scale(1)}
 }
 .gate.open .gate-shackle{transform:translateY(-11px) rotate(-16deg)}
-.gate.open .gate-tx,.gate.open .gate-skip{opacity:0;transition:opacity .25s ease}
+.gate.open .gate-skip{opacity:0;transition:opacity .25s ease}
+.gate.open .gate-tx{color:#fff}
 
 /* Підказка: біла картка, слово «Підказка» — рожевим */
 .tip{
@@ -2777,4 +2780,44 @@ html.gated,html.gated body{overflow:hidden}
   30%{transform:translateX(3px) scale(1.06)}
   45%{transform:translateX(-2px) scale(1.03);box-shadow:0 0 0 12px rgba(255,46,136,0)}
   60%{transform:translateX(0) scale(1)}
+}
+
+/* ============================================================
+   МОДУЛІ: ВІДКРИТИЙ = БІЛА КАРТКА
+   Як квадрати місій у кроці 4: закритий — темний, відкритий —
+   білий із рожевим. Видно, скільки вже «засвітилося».
+   ============================================================ */
+#modules .acc-item{
+  border-radius:var(--r-lg);
+  transition:background .3s ease, border-color .3s ease, box-shadow .3s ease, transform .2s ease;
+}
+#modules .acc-item:not(.locked):hover{transform:translateY(-2px)}
+#modules .acc-item.open{
+  background:#fff;border-color:rgba(255,46,136,.5);
+  box-shadow:0 20px 44px rgba(255,46,136,.18);
+}
+#modules .acc-item.open .acc-btn{color:#120D18}
+#modules .acc-item.open .acc-btn .tx{color:#120D18}
+#modules .acc-item.open .acc-btn .mi{
+  background:var(--pink);border-color:var(--pink);color:#fff;
+}
+#modules .acc-item.open .acc-btn .ic{
+  background:rgba(255,46,136,.12);border-color:rgba(255,46,136,.4);
+}
+#modules .acc-item.open .acc-btn .ic::before,
+#modules .acc-item.open .acc-btn .ic::after{background:var(--pink-deep)}
+#modules .acc-item.open .acc-btn::after{color:#C2005F}
+#modules .acc-item.open .acc-panel-in{color:#3A3142}
+#modules .acc-item.open .acc-panel-in ul li{color:#3A3142}
+#modules .acc-item.open .acc-panel-in ul li::marker{color:var(--pink)}
+#modules .acc-item.open .acc-panel-in b{color:#120D18}
+
+/* Нижня панель із бронюванням показується не одразу, а з кроку 4:
+   спершу людина збирає карту гравця, і лише потім бачить кнопку. */
+@media (max-width:860px){
+  [data-page="main"] .mobile-bar{
+    transform:translateY(120%);opacity:0;pointer-events:none;
+    transition:transform .35s cubic-bezier(.22,.61,.36,1), opacity .3s ease;
+  }
+  [data-page="main"] .mobile-bar.on{transform:none;opacity:1;pointer-events:auto}
 }
