@@ -75,56 +75,47 @@
   };
 
   /* ============================================================
-     ПОЧАТОК ГРИ: ЗАТИСНІТЬ І ТРИМАЙТЕ
-     Як у мобільних іграх: що довше тримаєш, то більше екрана
-     заливається рожевим. Відпустив раніше — заливка сповзає назад.
-     Дотримав до кінця — гра почалась, і сторінка веде до кроку 1.
+     ЗАМОК НА ВХОДІ
+     Сайт спершу під замком і легким розмиттям. Тримаєш замок —
+     дужка піднімається, розмиття сходить, сторінка відкривається.
+     Нічого не запам'ятовуємо: кожне оновлення — знову замок.
      ============================================================ */
   (function () {
-    var box = document.getElementById('hold');
-    if (!box) return;
-    var btn = document.getElementById('holdBtn');
-    var fill = document.getElementById('holdFill');
-    var tx = document.getElementById('holdTx');
-    var sub = document.getElementById('holdSub');
-    var hello = document.getElementById('hello');
+    var gate = document.getElementById('gate');
+    if (!gate) return;
+    var lock = document.getElementById('gateLock');
+    var ring = document.getElementById('gateRing');
+    var tx = document.getElementById('gateTx');
+    var skip = document.getElementById('gateSkip');
+    var LEN = 2 * Math.PI * 54;
+    var HOLD = 1200;
+    var p = 0, timer = 0, last = 0, down = false, open = false;
 
-    var wash = document.createElement('div');
-    wash.className = 'hold-wash';
-    wash.setAttribute('aria-hidden', 'true');
-    document.body.appendChild(wash);
-
-    var HOLD = 1500;            // скільки треба тримати
-    var p = 0, raf = 0, last = 0, down = false, done = false;
+    document.documentElement.classList.add('gated');
+    if (ring) {
+      ring.style.strokeDasharray = LEN;
+      ring.style.strokeDashoffset = LEN;
+    }
 
     var paint = function () {
       var v = Math.max(0, Math.min(1, p));
-      if (fill) fill.style.setProperty('--p', (v * 100) + '%');
-      wash.style.setProperty('--p', (v * 100) + '%');
-      wash.classList.toggle('on', v > 0.01);
-      box.setAttribute('data-p', Math.round(v * 100));
+      if (ring) ring.style.strokeDashoffset = LEN * (1 - v);
+      gate.style.setProperty('--p', v);
+      gate.classList.toggle('holding', down && v > 0.02);
     };
 
-    var finish = function () {
-      done = true;
+    var unlock = function () {
+      if (open) return;
+      open = true;
       down = false;
+      clearInterval(timer);
+      timer = 0;
       p = 1;
       paint();
-      box.setAttribute('data-done', '1');
-      store.set('bg_started', '1');
-      if (tx) tx.innerHTML = 'Гру<br>почато';
-      if (sub) sub.textContent = 'Готово. Ваш хід — крок 1 нижче: скажіть, як вас звати.';
-      wash.classList.add('flash');
-      setTimeout(function () {
-        wash.classList.remove('on', 'flash');
-        if (hello) {
-          hello.classList.add('pulse');
-          hello.scrollIntoView({ behavior: 'smooth', block: 'center' });
-          setTimeout(function () { hello.classList.remove('pulse'); }, 2400);
-          var nm = document.getElementById('heroName');
-          if (nm) setTimeout(function () { nm.focus({ preventScroll: true }); }, 700);
-        }
-      }, 520);
+      gate.classList.add('open');
+      if (tx) tx.textContent = 'Відкрито';
+      document.documentElement.classList.remove('gated');
+      setTimeout(function () { gate.remove(); }, 700);
     };
 
     var tick = function () {
@@ -132,48 +123,64 @@
       if (!last) last = t;
       var dt = t - last;
       last = t;
-      p += (down ? dt / HOLD : -dt / (HOLD * 0.7));
-      if (p >= 1) { clearInterval(raf); raf = 0; finish(); return; }
-      // нуль на першому тику ще не означає «відпустили»
-      if (p <= 0 && !down) { p = 0; paint(); clearInterval(raf); raf = 0; last = 0; return; }
+      p += (down ? dt / HOLD : -dt / (HOLD * 0.6));
+      if (p >= 1) { unlock(); return; }
+      if (p <= 0 && !down) { p = 0; paint(); clearInterval(timer); timer = 0; last = 0; return; }
       if (p < 0) p = 0;
       paint();
     };
 
     var start = function (e) {
-      if (done) return;
+      if (open) return;
       if (e && e.type === 'keydown' && e.key !== ' ' && e.key !== 'Enter') return;
-      if (e && e.preventDefault) e.preventDefault();
+      if (e && e.cancelable) e.preventDefault();
       down = true;
       last = 0;
-      if (!raf) raf = setInterval(tick, 30);
+      if (!timer) timer = setInterval(tick, 30);
     };
     var stop = function () {
-      if (done) return;
+      if (open) return;
       down = false;
       last = 0;
-      if (!raf) raf = setInterval(tick, 30);
+      if (!timer) timer = setInterval(tick, 30);
     };
 
-    if (btn) {
-      ['mousedown', 'touchstart', 'keydown'].forEach(function (ev) {
-        btn.addEventListener(ev, start, { passive: false });
+    if (lock) {
+      ['pointerdown', 'touchstart', 'keydown'].forEach(function (ev) {
+        lock.addEventListener(ev, start, { passive: false });
       });
-      ['mouseup', 'mouseleave', 'touchend', 'touchcancel', 'keyup', 'blur'].forEach(function (ev) {
-        btn.addEventListener(ev, stop);
+      ['pointerup', 'pointercancel', 'pointerleave', 'touchend', 'touchcancel', 'keyup', 'blur'].forEach(function (ev) {
+        lock.addEventListener(ev, stop);
       });
-      window.addEventListener('mouseup', stop);
+      window.addEventListener('pointerup', stop);
     }
-
-    // Хто вже починав гру, вдруге тримати не мусить
-    if (store.get('bg_started') === '1') {
-      done = true;
-      box.setAttribute('data-done', '1');
-      if (fill) fill.style.setProperty('--p', '100%');
-      if (tx) tx.innerHTML = 'Гру<br>почато';
-      if (sub) sub.textContent = 'Ви вже в грі. Крок 1 нижче — можна продовжувати.';
-    }
+    if (skip) skip.addEventListener('click', unlock);
+    // якщо анімації вимкнені — не тримаємо людину на вході
+    if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) unlock();
   })();
+
+  /* ============================================================
+     ПІДСУМОК ВИБОРУ
+     Усе, що людина обрала на сторінці, збирається в одну картку
+     біля заявки — щоб не питати те саме ще раз у менеджера.
+     ============================================================ */
+  var pickBox = $('#pickBox');
+  var setPick = function (row, field, value, hidden) {
+    var r = $('#' + row);
+    var f = $('#' + field);
+    if (f) f.textContent = value || '';
+    if (r) r.hidden = !value;
+    if (hidden) { var hf = $('#' + hidden); if (hf) hf.value = value || ''; }
+    if (pickBox) {
+      pickBox.hidden = !$$('.pickbox-row', pickBox).some(function (x) { return !x.hidden; });
+    }
+  };
+
+  /* ---------- безпечний localStorage ---------- */
+  var store = {
+    get: function (k) { try { return window.localStorage.getItem(k); } catch (e) { return null; } },
+    set: function (k, v) { try { window.localStorage.setItem(k, v); } catch (e) {} }
+  };
 
   /* ============================================================
      ШАПКА: стан прокрутки
