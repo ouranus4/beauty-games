@@ -9,7 +9,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800;900&family=Oswald:wght@400;500;600&family=Manrope:wght@400;500;600;700&family=Pixelify+Sans:wght@400..700&family=JetBrains+Mono:wght@400;500;700&display=swap">
 <link rel="stylesheet" href="styles.css?v=2cf033dd">
-<link rel="stylesheet" href="squid.css?v=a7eed54f">
+<link rel="stylesheet" href="squid.css?v=32aff4bf">
 
 <!-- SPRITE -->
 <div class="preloader" id="preloader">
@@ -59,8 +59,9 @@
 
 <!-- ============ ЗАМОК НА ВХОДІ ============ -->
 <div class="gate" id="gate">
+  <span class="gate-wash" aria-hidden="true"></span>
   <div class="gate-in">
-    <button class="gate-lock" type="button" id="gateLock" aria-label="Затисніть, щоб відкрити сайт">
+    <button class="gate-lock" type="button" id="gateLock" aria-label="Натисніть і тримайте, щоб розблокувати гру">
       <svg class="gate-ring" viewBox="0 0 120 120" aria-hidden="true">
         <circle class="gate-ring-bg" cx="60" cy="60" r="54"/>
         <circle class="gate-ring-fill" id="gateRing" cx="60" cy="60" r="54"/>
@@ -71,7 +72,7 @@
         <circle class="gate-hole" cx="24" cy="31" r="2.6"/>
       </svg>
     </button>
-    <p class="gate-tx" id="gateTx">Затисніть, щоб відкрити</p>
+    <p class="gate-tx" id="gateTx">Натисніть, щоб розблокувати гру</p>
     <button class="gate-skip" type="button" id="gateSkip">Пропустити</button>
   </div>
 </div>
@@ -138,7 +139,16 @@
       <span class="pill"><svg class="icon" aria-hidden="true"><use href="#i-tv"/></svg>Реаліті-шоу</span>
       <span class="pill"><svg class="icon" aria-hidden="true"><use href="#i-trophy"/></svg>Чемпіонат</span>
     </div>
-    <p class="lede hero-lede">Три напрямки, які раніше існували окремо, — в одному місці.</p>
+    <p class="lede hero-lede">Ми створили Beauty Games — перше онлайн-реаліті для б'юті-майстрів: бізнес-навчання, командні змагання і чемпіонат в одному сезоні. Зараз коротко розповімо, як це працює.</p>
+
+    <div class="tip" id="tip" hidden>
+      <span class="tip-k">Підказка</span>
+      <p class="tip-tx">Поки читаєте — збирайте свою <b>карту гравця</b>. Чотири короткі кроки, по одному питанню в кожному: ім'я, скіли, коротка діагностика і мета на рік. Наприкінці карта сама підставиться у заявку, і менеджер не питатиме те саме вдруге.</p>
+      <div class="tip-row">
+        <button class="btn btn-primary btn-sm" type="button" id="tipGo">Почати з кроку 1</button>
+        <button class="tip-x" type="button" id="tipX" aria-label="Закрити підказку">Зрозуміло</button>
+      </div>
+    </div>
 
     <div class="hello rv" id="hello">
       <div class="hello-head">
@@ -1492,5 +1502,5 @@
 </div>
 
 <script src="leads.js?v=d5b28821"></script>
-<script src="app.js?v=b87b87fc"></script>
+<script src="app.js?v=a77b9b3b"></script>
 <script src="fx.js?v=b9217507"></script>

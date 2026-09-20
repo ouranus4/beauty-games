@@ -2540,12 +2540,20 @@ body.bio-open{overflow:hidden}
    коло заповнюється, дужка піднімається, розмиття сходить.
    ============================================================ */
 .gate{
-  position:fixed;inset:0;z-index:120;display:grid;place-items:center;
+  position:fixed;inset:0;z-index:120;display:grid;place-items:center;overflow:hidden;
   background:rgba(8,6,12,.55);
   -webkit-backdrop-filter:blur(calc(9px * (1 - var(--p,0))));
   backdrop-filter:blur(calc(9px * (1 - var(--p,0))));
-  transition:opacity .45s ease, visibility .45s;
+  transition:opacity .6s ease, visibility .6s, backdrop-filter .2s linear;
 }
+/* екран заливається рожевим, поки тримають замок */
+.gate-wash{
+  position:absolute;left:0;right:0;bottom:0;height:var(--wash,0%);
+  background:linear-gradient(180deg,rgba(255,46,136,.25),rgba(230,0,126,.8));
+  transition:height .18s cubic-bezier(.33,1,.68,1), opacity .5s ease;
+  pointer-events:none;
+}
+.gate.open .gate-wash{opacity:0;height:100%}
 .gate.open{opacity:0;visibility:hidden;pointer-events:none}
 .gate-in{display:flex;flex-direction:column;align-items:center;gap:14px}
 .gate-lock{
@@ -2563,7 +2571,7 @@ body.bio-open{overflow:hidden}
 .gate-ring{position:absolute;inset:0;width:100%;height:100%;transform:rotate(-90deg)}
 .gate-ring circle{fill:none;stroke-width:4;stroke-linecap:round}
 .gate-ring-bg{stroke:rgba(255,255,255,.16)}
-.gate-ring-fill{stroke:url(#none);stroke:var(--pink);transition:stroke-dashoffset .06s linear}
+.gate-ring-fill{stroke:var(--pink);transition:stroke-dashoffset .12s cubic-bezier(.33,1,.68,1)}
 .gate-ico{
   position:absolute;inset:0;margin:auto;width:58px;height:58px;
   fill:none;stroke:#fff;stroke-width:3;stroke-linecap:round;stroke-linejoin:round;
@@ -2643,3 +2651,27 @@ html.gated,html.gated body{overflow:hidden}
 /* смуга модулів — така сама доріжка, як в етапів сезону */
 .mod-track{margin:4px 6% 18px}
 .mod-heart{bottom:0;top:auto}
+
+/* підказка після розблокування: веде до карти гравця */
+.tip{
+  max-width:560px;padding:18px 20px;border-radius:var(--r-md);
+  background:linear-gradient(180deg,rgba(233,198,126,.14),rgba(255,255,255,.03));
+  border:1px solid rgba(233,198,126,.45);
+  display:flex;flex-direction:column;gap:12px;
+  opacity:0;transform:translateY(10px);transition:opacity .3s ease, transform .3s ease;
+}
+.tip.in{opacity:1;transform:none}
+.tip-k{
+  align-self:flex-start;padding:6px 14px;border-radius:var(--r-pill);
+  background:rgba(233,198,126,.16);box-shadow:inset 0 0 0 1.5px rgba(233,198,126,.5);
+  font-family:"Montserrat",sans-serif;font-weight:700;font-size:11px;
+  letter-spacing:.14em;text-transform:uppercase;color:var(--gold-1);
+}
+.tip-tx{margin:0;font-size:14.5px;line-height:1.6;color:var(--text)}
+.tip-tx b{color:#fff}
+.tip-row{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.tip-x{
+  background:none;border:0;cursor:pointer;color:var(--muted);font-size:13px;
+  text-decoration:underline;text-underline-offset:3px;
+}
+.tip-x:hover{color:#fff}

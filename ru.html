@@ -9,7 +9,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800;900&family=Oswald:wght@400;500;600&family=Manrope:wght@400;500;600;700&family=Pixelify+Sans:wght@400..700&family=JetBrains+Mono:wght@400;500;700&display=swap">
 <link rel="stylesheet" href="styles.css?v=2cf033dd">
-<link rel="stylesheet" href="squid.css?v=a7eed54f">
+<link rel="stylesheet" href="squid.css?v=32aff4bf">
 
 <!-- SPRITE -->
 <div class="preloader" id="preloader">
@@ -59,8 +59,9 @@
 
 <!-- ============ ЗАМОК НА ВХОДІ ============ -->
 <div class="gate" id="gate">
+  <span class="gate-wash" aria-hidden="true"></span>
   <div class="gate-in">
-    <button class="gate-lock" type="button" id="gateLock" aria-label="Зажмите, чтобы открыть сайт">
+    <button class="gate-lock" type="button" id="gateLock" aria-label="Нажмите и держите, чтобы разблокировать игру">
       <svg class="gate-ring" viewBox="0 0 120 120" aria-hidden="true">
         <circle class="gate-ring-bg" cx="60" cy="60" r="54"/>
         <circle class="gate-ring-fill" id="gateRing" cx="60" cy="60" r="54"/>
@@ -71,7 +72,7 @@
         <circle class="gate-hole" cx="24" cy="31" r="2.6"/>
       </svg>
     </button>
-    <p class="gate-tx" id="gateTx">Зажмите, чтобы открыть</p>
+    <p class="gate-tx" id="gateTx">Нажмите, чтобы разблокировать игру</p>
     <button class="gate-skip" type="button" id="gateSkip">Пропустить</button>
   </div>
 </div>
@@ -138,7 +139,16 @@
       <span class="pill"><svg class="icon" aria-hidden="true"><use href="#i-tv"/></svg>Реалити-шоу</span>
       <span class="pill"><svg class="icon" aria-hidden="true"><use href="#i-trophy"/></svg>Чемпионат</span>
     </div>
-    <p class="lede hero-lede">Три направления, которые раньше существовали отдельно, — в одном месте.</p>
+    <p class="lede hero-lede">Мы создали Beauty Games — первое онлайн-реалити для бьюти-мастеров: бизнес-обучение, командные соревнования и чемпионат в одном сезоне. Сейчас коротко расскажем, как это работает.</p>
+
+    <div class="tip" id="tip" hidden>
+      <span class="tip-k">Подсказка</span>
+      <p class="tip-tx">Пока читаете — собирайте свою <b>карту игрока</b>. Четыре коротких шага, по одному вопросу в каждом: имя, скилы, короткая диагностика и цель на год. В конце карта сама подставится в заявку, и менеджер не будет спрашивать то же самое второй раз.</p>
+      <div class="tip-row">
+        <button class="btn btn-primary btn-sm" type="button" id="tipGo">Начать с шага 1</button>
+        <button class="tip-x" type="button" id="tipX" aria-label="Закрыть подсказку">Понятно</button>
+      </div>
+    </div>
 
     <div class="hello rv" id="hello">
       <div class="hello-head">
@@ -1492,5 +1502,5 @@
 </div>
 
 <script src="leads.js?v=d5b28821"></script>
-<script src="app.ru.js?v=be60936e"></script>
+<script src="app.ru.js?v=d9111f97"></script>
 <script src="fx.js?v=b9217507"></script>

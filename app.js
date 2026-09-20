@@ -88,7 +88,8 @@
     var tx = document.getElementById('gateTx');
     var skip = document.getElementById('gateSkip');
     var LEN = 2 * Math.PI * 54;
-    var HOLD = 1200;
+    var HOLD = 1400;
+    var buzz = function (pat) { try { if (navigator.vibrate) navigator.vibrate(pat); } catch (e) {} };
     var p = 0, timer = 0, last = 0, down = false, open = false;
 
     document.documentElement.classList.add('gated');
@@ -99,8 +100,11 @@
 
     var paint = function () {
       var v = Math.max(0, Math.min(1, p));
-      if (ring) ring.style.strokeDashoffset = LEN * (1 - v);
+      // easeOutCubic: заливка йде рівно, без ривка наприкінці
+      var e = 1 - Math.pow(1 - v, 3);
+      if (ring) ring.style.strokeDashoffset = LEN * (1 - e);
       gate.style.setProperty('--p', v);
+      gate.style.setProperty('--wash', (e * 100) + '%');
       gate.classList.toggle('holding', down && v > 0.02);
     };
 
@@ -113,7 +117,10 @@
       p = 1;
       paint();
       gate.classList.add('open');
+      buzz([22, 60, 90]);          // короткий відгук, як у застосунках
       if (tx) tx.textContent = 'Відкрито';
+      var tip = document.getElementById('tip');
+      if (tip) setTimeout(function () { tip.hidden = false; tip.classList.add('in'); }, 640);
       document.documentElement.classList.remove('gated');
       setTimeout(function () { gate.remove(); }, 700);
     };
@@ -136,13 +143,14 @@
       if (e && e.cancelable) e.preventDefault();
       down = true;
       last = 0;
-      if (!timer) timer = setInterval(tick, 30);
+      buzz(12);
+      if (!timer) timer = setInterval(tick, 16);
     };
     var stop = function () {
       if (open) return;
       down = false;
       last = 0;
-      if (!timer) timer = setInterval(tick, 30);
+      if (!timer) timer = setInterval(tick, 16);
     };
 
     if (lock) {
@@ -155,6 +163,24 @@
       window.addEventListener('pointerup', stop);
     }
     if (skip) skip.addEventListener('click', unlock);
+
+    var tipEl = document.getElementById('tip');
+    if (tipEl) {
+      var hideTip = function () {
+        tipEl.classList.remove('in');
+        setTimeout(function () { tipEl.hidden = true; }, 300);
+      };
+      var tipGo = document.getElementById('tipGo');
+      var tipX = document.getElementById('tipX');
+      if (tipGo) tipGo.addEventListener('click', function () {
+        hideTip();
+        var hello = document.getElementById('hello');
+        if (hello) hello.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        var nm = document.getElementById('heroName');
+        if (nm) setTimeout(function () { nm.focus({ preventScroll: true }); }, 600);
+      });
+      if (tipX) tipX.addEventListener('click', hideTip);
+    }
     // якщо анімації вимкнені — не тримаємо людину на вході
     if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) unlock();
   })();
