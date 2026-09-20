@@ -104,7 +104,7 @@
       var e = 1 - Math.pow(1 - v, 3);
       if (ring) ring.style.strokeDashoffset = LEN * (1 - e);
       gate.style.setProperty('--p', v);
-      gate.style.setProperty('--wash', (e * 100) + '%');
+      gate.style.setProperty('--s', (e * 1.02).toFixed(3));
       gate.classList.toggle('holding', down && v > 0.02);
     };
 
