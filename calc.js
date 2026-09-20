@@ -367,7 +367,7 @@
       sel.appendChild(o);
       return o;
     };
-    add('', list.length ? 'Оберіть процедуру' : 'Спочатку оберіть напрямок');
+    add('', 'Оберіть зі списку');
     list.forEach(function (row) { add(row[0], row[0]); });
     add('own', 'Інша послуга');
 
@@ -377,6 +377,12 @@
     sel.disabled = !list.length;
     if (own) own.hidden = !custom && !!list.length;
     if (hint) hint.hidden = custom || !state.proc;
+    // решта питань з'являється тільки після вибору напрямку
+    var rest = $('#svcRest');
+    if (rest && rest.hidden !== !state.dir) {
+      rest.hidden = !state.dir;
+      if (!rest.hidden) syncWheels();
+    }
   };
 
   var procMinutes = function (name) {
@@ -462,6 +468,7 @@
         state.proc = '';
       }
       state.dir = state.dir === d ? '' : d;
+      b.closest('.cf').classList.toggle('err', !state.dir);
       save();
       paintDir();
     });
@@ -635,6 +642,15 @@
 
   var validate = function (n) {
     var bad = null;
+    // Перший крок починається з напрямку: без нього решта питань схована
+    if (n === 1 && !state.dir) {
+      var dirs = $('#calcDirs');
+      if (dirs) {
+        dirs.closest('.cf').classList.add('err');
+        dirs.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }
+      return false;
+    }
     $$('[data-req]', steps[n - 1]).forEach(function (box) {
       // У полі часу два входи: достатньо, щоб хоч один був заповнений.
       var fields = $$('[data-k]', box);

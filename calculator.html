@@ -84,12 +84,12 @@
       <div class="quiz-head">
         <span class="quiz-kicker">Крок 1 / 4</span>
         <h2 class="quiz-title">Ваша послуга</h2>
-        <p class="quiz-sub">Візьміть ту, яку робите найчастіше. Якщо послуг кілька — порахуйте кожну окремо і порівняйте.</p>
+        <p class="quiz-sub">Почніть з напрямку — далі підставимо список ваших процедур. Якщо послуг кілька, порахуйте кожну окремо і порівняйте.</p>
       </div>
 
       <div class="cf-grid">
         <div class="cf full">
-          <span class="cf-l">Ваш напрямок</span>
+          <span class="cf-l">У якому напрямку ви працюєте?</span>
           <div class="picker-grid calc-tiles" id="calcDirs" role="group" aria-label="Напрямок">
             <button class="chr" type="button" data-dir="Броу-майстер"><span class="chr-ph"><svg class="icon" aria-hidden="true"><use href="#i-brow"/></svg></span><span class="chr-nm">Брови</span></button>
             <button class="chr" type="button" data-dir="Лашмейкер"><span class="chr-ph"><svg class="icon" aria-hidden="true"><use href="#i-lash"/></svg></span><span class="chr-nm">Вії</span></button>
@@ -104,14 +104,18 @@
             <button class="chr" type="button" data-dir="Депіляція"><span class="chr-ph"><svg class="icon" aria-hidden="true"><use href="#i-wax"/></svg></span><span class="chr-nm">Депіляція</span></button>
             <button class="chr" type="button" data-dir="Подологія"><span class="chr-ph"><svg class="icon" aria-hidden="true"><use href="#i-podo"/></svg></span><span class="chr-nm">Подологія</span></button>
           </div>
+          <span class="cf-msg">Оберіть напрямок — далі підставимо ваші процедури</span>
         </div>
 
+      </div>
+
+      <div class="cf-grid" id="svcRest" hidden>
         <div class="cf">
-          <label class="cf-l" for="cServiceSel">Назва послуги</label>
+          <label class="cf-l" for="cServiceSel">Яку процедуру рахуємо?</label>
           <div class="cf-in">
-            <select id="cServiceSel"><option value="">Оберіть процедуру</option></select>
+            <select id="cServiceSel"></select>
           </div>
-          <span class="cf-h" id="procHint" hidden>Час підставився приблизний — поправте під себе</span>
+          <span class="cf-h" id="procHint" hidden>Час підставили приблизний — поправте під себе</span>
         </div>
 
         <div class="cf" id="svcOwnBox" hidden>
@@ -468,4 +472,4 @@
 
 <script src="leads.js?v=d5b28821"></script>
 <script src="calc-costs.js?v=8ef54d8e"></script>
-<script src="calc.js?v=149eb9bb"></script>
+<script src="calc.js?v=20f60c54"></script>
