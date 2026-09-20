@@ -352,6 +352,36 @@
     return box;
   };
 
+  /* Типові процедури напрямку: обрала — назва і час підставились самі. */
+  var paintProcs = function () {
+    var box = $('#procBox'), grid = $('#calcProcs');
+    if (!box || !grid) return;
+    var list = (window.BG_PROCS || {})[state.dir] || [];
+    box.hidden = !list.length;
+    grid.innerHTML = '';
+    list.forEach(function (row) {
+      var b = document.createElement('button');
+      b.className = 'expo';
+      b.type = 'button';
+      b.textContent = row[0];
+      b.classList.toggle('on', state.proc === row[0]);
+      b.setAttribute('aria-pressed', state.proc === row[0] ? 'true' : 'false');
+      b.addEventListener('click', function () {
+        var same = state.proc === row[0];
+        state.proc = same ? '' : row[0];
+        var svc = $('#cService');
+        if (svc) {
+          svc.value = same ? '' : row[0];
+          svc.dispatchEvent(new Event('input'));
+        }
+        if (!same) setDur(row[1]);
+        save();
+        paintProcs();
+      });
+      grid.appendChild(b);
+    });
+  };
+
   var paintCosts = function () {
     var c = costsFor(state.dir);
     var grid = $('#matGrid'), note = $('#matNote');
@@ -393,6 +423,7 @@
     var svc = $('#cService');
     if (svc && hints[state.dir]) svc.placeholder = hints[state.dir];
     paintCosts();
+    paintProcs();
     paintSums();
   };
   if (!state.dir) {
@@ -402,6 +433,12 @@
   dirBtns.forEach(function (b) {
     b.addEventListener('click', function () {
       var d = b.getAttribute('data-dir');
+      if (state.dir !== d && state.proc) {
+        // назва послуги була підставлена з попереднього напрямку — прибираємо
+        var svcEl = $('#cService');
+        if (svcEl && svcEl.value === state.proc) { svcEl.value = ''; svcEl.dispatchEvent(new Event('input')); }
+        state.proc = '';
+      }
       state.dir = state.dir === d ? '' : d;
       save();
       paintDir();
