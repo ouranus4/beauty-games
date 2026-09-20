@@ -282,3 +282,10 @@
 @media (prefers-reduced-motion:reduce){
   .calc-bar span,.r-stack i{transition:none}
 }
+
+/* Підказка, коли напрямок ще не обрано: список витрат поки загальний. */
+.cf-note{
+  margin:0 0 14px;padding:12px 16px;border-radius:var(--r-md);
+  background:rgba(233,198,126,.1);border:1px solid rgba(233,198,126,.35);
+  font-size:13.5px;color:var(--gold-1);
+}

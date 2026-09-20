@@ -83,9 +83,10 @@
      ============================================================ */
   var compute = function () {
     var P = num('price'), dur = num('durH') + num('durM') / 60, N = Math.round(num('count'));
-    var mat = num('mat1') + num('mat2') + num('mat3') + num('mat4');
+    var mat = num('mat1') + num('mat2') + num('mat3') + num('mat4') + num('mat5');
     var years = num('years');
     var fixed = num('rent') + num('util') + num('ads') + num('soft') + num('other') +
+      num('ex1') + num('ex2') +
       num('edu') / 12 + (years > 0 ? num('equip') / (years * 12) : 0);
 
     /* Податок буває відсотком від виручки, фіксованою сумою (ФОП 1–2 групи),
@@ -153,7 +154,7 @@
     if (sf) sf.textContent = money(c.fixed);
   };
 
-  inputs.forEach(function (el) {
+  var bindInput = function (el) {
     var k = el.getAttribute('data-k');
     if (state[k] != null) el.value = state[k];
     var on = function () {
@@ -169,7 +170,8 @@
     };
     el.addEventListener('input', on);
     el.addEventListener('change', on);
-  });
+  };
+  inputs.forEach(bindInput);
 
   /* повзунок кількості процедур ↔ поле */
   $$('[data-mirror]', root).forEach(function (range) {
@@ -326,6 +328,62 @@
     'Депіляція': 'Напр., шугаринг, бікіні',
     'Подологія': 'Напр., медичний педикюр'
   };
+  /* Статті витрат під напрямок: у броу-майстра фарба, у подолога —
+     стерилізація. Загальні «основні матеріали» люди пропускали. */
+  var costsFor = function (dir) {
+    var C = window.BG_COSTS || {};
+    return C[dir] || C[''] || { mat: [], fix: [] };
+  };
+
+  var field = function (key, row, unit) {
+    var id = 'cf_' + key;
+    var box = document.createElement('div');
+    box.className = 'cf';
+    box.innerHTML =
+      '<label class="cf-l" for="' + id + '"></label>' +
+      '<div class="cf-in"><input type="text" inputmode="decimal" id="' + id + '" data-k="' + key + '">' +
+      '<span class="cf-u">' + unit + '</span></div>' +
+      (row[1] ? '<span class="cf-h"></span>' : '');
+    $('label', box).textContent = row[0];
+    var inp = $('input', box);
+    inp.placeholder = row[2];
+    if (row[1]) $('.cf-h', box).textContent = row[1];
+    bindInput(inp);
+    return box;
+  };
+
+  var paintCosts = function () {
+    var c = costsFor(state.dir);
+    var grid = $('#matGrid'), note = $('#matNote');
+
+    if (grid) {
+      grid.innerHTML = '';
+      c.mat.forEach(function (row, i) {
+        grid.appendChild(field('mat' + (i + 1), row, '<i data-cur>' + state.cur + '</i>'));
+      });
+      // те, чого в цьому напрямку немає, не має підсумовуватись
+      for (var i = c.mat.length + 1; i <= 5; i++) delete state['mat' + i];
+    }
+    if (note) {
+      note.hidden = !!state.dir;
+      note.textContent = state.dir ? '' : 'Оберіть напрямок на кроці 1 — і список стане під вашу роботу.';
+    }
+
+    $$('#fixGrid .cf-extra').forEach(function (el) { el.remove(); });
+    var sub = $('#fixSub');
+    if (sub) {
+      c.fix.forEach(function (row, i) {
+        var box = field('ex' + (i + 1), row, '<i data-cur>' + state.cur + '</i> на місяць');
+        box.classList.add('cf-extra');
+        sub.parentNode.insertBefore(box, sub);
+      });
+    }
+    for (var j = c.fix.length + 1; j <= 2; j++) delete state['ex' + j];
+
+    paintCurrency();
+    save();
+  };
+
   var paintDir = function () {
     dirBtns.forEach(function (b) {
       var on = b.getAttribute('data-dir') === state.dir;
@@ -334,6 +392,8 @@
     });
     var svc = $('#cService');
     if (svc && hints[state.dir]) svc.placeholder = hints[state.dir];
+    paintCosts();
+    paintSums();
   };
   if (!state.dir) {
     var fromMain = (store.get('bg_character') || '').split('|')[0];
