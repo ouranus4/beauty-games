@@ -77,9 +77,13 @@ PRELOADER = """
 </div>
 """
 
-BLOCK = "<!-- SPRITE -->\n%s\n%s\n<!-- /SPRITE -->" % (PRELOADER.strip(), build_sprite())
+SPRITE = build_sprite()
+BLOCK_FULL = "<!-- SPRITE -->\n%s\n%s\n<!-- /SPRITE -->" % (PRELOADER.strip(), SPRITE)
+# На калькуляторі немає app.js, який ховає заставку, тому туди — самі іконки.
+BLOCK_ICONS = "<!-- SPRITE -->\n%s\n<!-- /SPRITE -->" % SPRITE
 
-for page in ("index.html", "partners.html", "casting.html"):
+for page in ("index.html", "partners.html", "casting.html", "calculator.html"):
+    BLOCK = BLOCK_ICONS if page == "calculator.html" else BLOCK_FULL
     s = io.open(page, encoding="utf-8").read()
     if "<!-- SPRITE -->" in s:
         s = re.sub(r"<!-- SPRITE -->.*?<!-- /SPRITE -->", lambda m: BLOCK, s, flags=re.S)

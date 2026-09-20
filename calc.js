@@ -352,35 +352,57 @@
     return box;
   };
 
-  /* Типові процедури напрямку: обрала — назва і час підставились самі. */
+  /* Процедури напрямку — випадним списком, як валюта. Остання опція
+     «Інша послуга» відкриває поле для власної назви. */
   var paintProcs = function () {
-    var box = $('#procBox'), grid = $('#calcProcs');
-    if (!box || !grid) return;
+    var sel = $('#cServiceSel'), own = $('#svcOwnBox'), hint = $('#procHint');
+    if (!sel) return;
     var list = (window.BG_PROCS || {})[state.dir] || [];
-    box.hidden = !list.length;
-    grid.innerHTML = '';
-    list.forEach(function (row) {
-      var b = document.createElement('button');
-      b.className = 'expo';
-      b.type = 'button';
-      b.textContent = row[0];
-      b.classList.toggle('on', state.proc === row[0]);
-      b.setAttribute('aria-pressed', state.proc === row[0] ? 'true' : 'false');
-      b.addEventListener('click', function () {
-        var same = state.proc === row[0];
-        state.proc = same ? '' : row[0];
-        var svc = $('#cService');
-        if (svc) {
-          svc.value = same ? '' : row[0];
-          svc.dispatchEvent(new Event('input'));
-        }
-        if (!same) setDur(row[1]);
-        save();
-        paintProcs();
-      });
-      grid.appendChild(b);
-    });
+    var svc = $('#cService');
+
+    sel.innerHTML = '';
+    var add = function (v, t) {
+      var o = document.createElement('option');
+      o.value = v; o.textContent = t;
+      sel.appendChild(o);
+      return o;
+    };
+    add('', list.length ? 'Оберіть процедуру' : 'Спочатку оберіть напрямок');
+    list.forEach(function (row) { add(row[0], row[0]); });
+    add('own', 'Інша послуга');
+
+    var custom = state.proc === 'own';
+    sel.value = custom ? 'own' : (state.proc || '');
+    if (sel.value !== (custom ? 'own' : (state.proc || ''))) sel.value = '';
+    sel.disabled = !list.length;
+    if (own) own.hidden = !custom && !!list.length;
+    if (hint) hint.hidden = custom || !state.proc;
   };
+
+  var procMinutes = function (name) {
+    var list = (window.BG_PROCS || {})[state.dir] || [];
+    for (var i = 0; i < list.length; i++) if (list[i][0] === name) return list[i][1];
+    return 0;
+  };
+
+  (function () {
+    var sel = $('#cServiceSel');
+    if (!sel) return;
+    sel.addEventListener('change', function () {
+      var v = sel.value;
+      state.proc = v;
+      var svc = $('#cService');
+      if (v === 'own') {
+        if (svc) { svc.value = ''; svc.focus(); }
+      } else if (svc) {
+        svc.value = v;
+        svc.dispatchEvent(new Event('input'));
+      }
+      if (v && v !== 'own') setDur(procMinutes(v));
+      save();
+      paintProcs();
+    });
+  })();
 
   var paintCosts = function () {
     var c = costsFor(state.dir);
@@ -433,8 +455,8 @@
   dirBtns.forEach(function (b) {
     b.addEventListener('click', function () {
       var d = b.getAttribute('data-dir');
-      if (state.dir !== d && state.proc) {
-        // назва послуги була підставлена з попереднього напрямку — прибираємо
+      if (state.dir !== d && state.proc && state.proc !== 'own') {
+        // назву підставив список попереднього напрямку — прибираємо
         var svcEl = $('#cService');
         if (svcEl && svcEl.value === state.proc) { svcEl.value = ''; svcEl.dispatchEvent(new Event('input')); }
         state.proc = '';
