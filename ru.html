@@ -9,7 +9,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800;900&family=Oswald:wght@400;500;600&family=Manrope:wght@400;500;600;700&family=Pixelify+Sans:wght@400..700&family=JetBrains+Mono:wght@400;500;700&display=swap">
 <link rel="stylesheet" href="styles.css?v=2cf033dd">
-<link rel="stylesheet" href="squid.css?v=f63acf31">
+<link rel="stylesheet" href="squid.css?v=96c0e612">
 
 <!-- SPRITE -->
 <div class="preloader" id="preloader">
@@ -118,6 +118,21 @@
       <span class="pill"><svg class="icon" aria-hidden="true"><use href="#i-trophy"/></svg>Чемпионат</span>
     </div>
     <p class="lede hero-lede">Три направления, которые раньше существовали отдельно, — в одном месте.</p>
+
+    <div class="boot rv" id="boot" data-done="0">
+      <div class="boot-top">
+        <span class="boot-k">Загрузка игры</span>
+        <span class="boot-pct" id="bootPct">0%</span>
+      </div>
+      <div class="boot-bar"><i id="bootFill"></i></div>
+      <div class="boot-log" id="bootLog" aria-live="polite">Готовим арену сезона…</div>
+      <div class="boot-tags">
+        <span class="boot-tag" data-i="0">Арена</span>
+        <span class="boot-tag" data-i="1">Команды</span>
+        <span class="boot-tag" data-i="2">Жюри</span>
+        <span class="boot-tag" data-i="3">Эфиры</span>
+      </div>
+    </div>
 
     <div class="hello rv" id="hello">
       <div class="hello-head">
@@ -318,6 +333,11 @@
         <b id="forkWhoName">Выберите свои скилы в шаге 2</b>
         <span class="fork-who-exp" id="forkWhoExp" hidden></span>
         <p id="forkWhoPain">Тогда покажем, какие задачи типичны именно для вашего направления.</p>
+        <div class="fork-who-test" id="forkWhoTest" hidden>
+          <span class="fork-who-test-k">По тесту</span>
+          <b id="forkWhoSit"></b>
+          <p id="forkWhoPains"></p>
+        </div>
         <a class="fork-who-back" href="#picker" id="forkWhoBack">Выбрать скилы →</a>
       </div>
 
@@ -593,12 +613,14 @@
     </div>
 
     <div class="acc-bar rv">
-      <span class="acc-progress"><b id="accOpen">0</b> из 9 модулей раскрыто</span>
+      <span class="acc-progress"><b id="accOpen">0</b> из 9 модулей пройдено</span>
       <span class="acc-track" aria-hidden="true"><i id="accFill"></i></span>
-      <button class="btn btn-ghost btn-sm" type="button" id="accAll">Открыть все</button>
+      <button class="btn btn-ghost btn-sm" type="button" id="accAll">Открыть модуль 01</button>
     </div>
+    <p class="acc-hint" id="accHint">Модули открываются по очереди — так же, как на сезоне. Начните с первого.</p>
 
-    <div class="acc" id="modules">
+    <div class="acc acc-path" id="modules">
+      <span class="acc-rail" aria-hidden="true"><i id="accRail"></i></span>
       <div class="acc-item glass-soft">
         <button class="acc-btn" type="button"><span class="mi">01</span><span class="tx">Мышление — от ремесленника к предпринимателю</span><span class="ic"></span></button>
         <div class="acc-panel"><div class="acc-panel-in"><ul>
@@ -763,7 +785,7 @@
 
     <div class="ibv rv">
       <div class="ibv-head">
-        <img class="ibv-logo" src="assets/logo-ibv.png" alt="IBV — International Beauty Voyage" loading="lazy" width="365" height="97">
+        <img class="ibv-logo" src="assets/logo-ibv.png" alt="IBV — International Beauty Voyage" loading="lazy" width="607" height="132">
         <div>
           <h3 class="ibv-t">International Beauty Voyage</h3>
           <p class="ibv-s">Организация, которая стоит за Beauty&nbsp;Games</p>
@@ -779,7 +801,7 @@
       <div class="ibv-logos">
         <img src="assets/logo-horizontal.svg" alt="Beauty Games" loading="lazy">
         <img src="assets/logo-verbova.png" alt="Iryna Verbova" loading="lazy" width="508" height="201">
-        <img src="assets/logo-ibv.png" alt="IBV" loading="lazy" width="365" height="97">
+        <img src="assets/logo-ibv.png" alt="IBV" loading="lazy" width="607" height="132">
       </div>
     </div>
 
@@ -1283,7 +1305,10 @@
               <span>Направление</span><b id="pickDir"></b>
             </div>
             <div class="pickbox-row" id="pickRowSit" hidden>
-              <span>Ситуация</span><b id="pickSit"></b>
+              <span>Ситуация по тесту</span><b id="pickSit"></b>
+            </div>
+            <div class="pickbox-row" id="pickRowPains" hidden>
+              <span>Что мешает расти</span><b id="pickPains"></b>
             </div>
             <div class="pickbox-row" id="pickRowGoal" hidden>
               <span>Миссия на год</span><b id="pickGoal"></b>
@@ -1301,6 +1326,7 @@
           <input type="hidden" name="format" id="fFormat">
           <input type="hidden" name="experience" id="fExp">
           <input type="hidden" name="situation" id="fSit">
+          <input type="hidden" name="pains" id="fPains">
           <p hidden><label>Не заполняйте это поле: <input name="bot-field"></label></p>
           <div class="fgrid">
             <div class="fld">
@@ -1314,11 +1340,6 @@
               <span class="msg">Укажите телефон с кодом страны</span>
             </div>
             <div class="fld">
-              <label for="fInsta">Instagram <span class="r">*</span></label>
-              <input type="text" id="fInsta" name="instagram" placeholder="@your_profile">
-              <span class="msg">Укажите ник в Instagram</span>
-            </div>
-            <div class="fld">
               <label for="fPack">Интересующий пакет <span class="r">*</span></label>
               <select id="fPack" name="package">
                 <option value="">Выберите пакет</option>
@@ -1327,11 +1348,6 @@
                 <option>VIP</option>
                 <option>Ещё не определилась</option>
               </select>
-              <span class="msg">Выберите пакет или «ещё не определилась»</span>
-            </div>
-            <div class="fld">
-              <label for="fDir">Ваше направление</label>
-              <input type="text" id="fDir" name="direction" placeholder="Выберите в шаге 2 или впишите">
               <span class="msg">Выберите пакет или «ещё не определилась»</span>
             </div>
             <div class="fld">
@@ -1426,5 +1442,5 @@
 </div>
 
 <script src="leads.js?v=d5b28821"></script>
-<script src="app.ru.js?v=a817b4e9"></script>
+<script src="app.ru.js?v=7a162ddd"></script>
 <script src="fx.js?v=b9217507"></script>

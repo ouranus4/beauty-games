@@ -39,6 +39,7 @@
   --accent-lt:#FF8FC0;
   --accent-rgb:255,46,136;
 
+  --lock:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.2' stroke-linecap='round'%3E%3Crect x='4.5' y='10.5' width='15' height='10' rx='2.5'/%3E%3Cpath d='M8 10.5V7.5a4 4 0 0 1 8 0v3'/%3E%3C/svg%3E");
   --check:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='%23000' stroke-width='2.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m2.6 8.4 3.6 3.6 7.2-7.6'/%3E%3C/svg%3E");
   /* Маркер списків — емблема Beauty Games. */
   --bg-mark:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='282.88 122.06 153.76 160.69'%3E%3Cpath transform='matrix(1,0,0,-1,355.3672,197.2986)' d='M0 0 10.562-10.562H23.928L9.563-28.966-7.014-24.057V11.189L11.614 17.33 54.82-5.281 32.64-16.889 40.439 0ZM-58.827-64.757V-48.983L-24.783-31.885-24.816-14.468-34.497-6.841-24.811-3.054V18.703L-58.827 37.917V54.195L-1.423 24.153-17.576 18.828V-31.944L-3.879-36ZM-35.368-19.6-35.357-25.187-58.827-37.312V25.969L-35.373 12.342V4.157L-53.21-3.721ZM-70.302 73.151V-83.714L79.568-5.281Z' fill='%23000'/%3E%3C/svg%3E");
@@ -2394,4 +2395,95 @@ body.bio-open{overflow:hidden}
 @media (max-width:1180px) and (min-width:1081px){
   :root[lang="ru"] .nav-links{display:none}
   :root[lang="ru"] .nav-burger{display:inline-flex!important}
+}
+
+/* Результат тесту в кроці 4: людина бачить, що відповіді врахували. */
+.fork-who-test{
+  margin-top:12px;padding-top:12px;border-top:1px solid rgba(255,255,255,.12);
+  display:flex;flex-direction:column;gap:4px;
+}
+.fork-who-test-k{
+  font-family:"Montserrat",sans-serif;font-size:11px;font-weight:700;
+  letter-spacing:.14em;text-transform:uppercase;color:var(--pink-soft);
+}
+.fork-who-test b{color:#fff;font-size:15px}
+.fork-who-test p{margin:0;font-size:13px;line-height:1.5;color:var(--muted)}
+
+/* ============================================================
+   ДЕВ'ЯТЬ МОДУЛІВ — ШЛЯХ ІЗ ЗАМКАМИ
+   Модулі пов'язані вертикальною доріжкою; наступний відмикається,
+   коли відкрито попередній. Пройдена частина доріжки — золота.
+   ============================================================ */
+.acc-path{position:relative}
+.acc-path .acc-item{position:relative;z-index:1}
+.acc-rail{
+  position:absolute;left:46px;top:26px;bottom:26px;width:2px;z-index:0;
+  background:rgba(255,255,255,.12);border-radius:2px;overflow:hidden;
+}
+.acc-rail i{
+  display:block;width:100%;height:0;border-radius:2px;
+  background:linear-gradient(180deg,var(--gold-1),var(--gold-3));
+  transition:height .4s ease;
+}
+.acc-hint{
+  margin:-6px 0 14px;font-size:13.5px;color:var(--muted);
+}
+.acc-item.locked{opacity:.5}
+.acc-item.locked .acc-btn{cursor:not-allowed}
+.acc-item.locked .acc-btn .tx{color:var(--muted)}
+.acc-item.locked .acc-btn .mi{color:transparent;position:relative}
+.acc-item.locked .acc-btn .mi::after{
+  content:"";position:absolute;inset:0;margin:auto;width:11px;height:13px;
+  background:var(--muted);
+  -webkit-mask:var(--lock) center/contain no-repeat;mask:var(--lock) center/contain no-repeat;
+}
+.acc-item.locked .acc-btn .ic{opacity:.3}
+.acc-item.shake{animation:accShake .4s ease}
+@keyframes accShake{
+  0%,100%{transform:translateX(0)}
+  20%{transform:translateX(-5px)}
+  40%{transform:translateX(5px)}
+  60%{transform:translateX(-3px)}
+  80%{transform:translateX(3px)}
+}
+@media (max-width:640px){.acc-rail{left:45px}}
+
+/* ============================================================
+   ЗАВАНТАЖЕННЯ ГРИ — перший екран
+   ============================================================ */
+.boot{
+  width:100%;max-width:520px;padding:16px 18px;border-radius:var(--r-md);
+  background:linear-gradient(180deg,rgba(255,46,136,.12),rgba(255,255,255,.03));
+  border:1px solid rgba(255,46,136,.32);
+  display:flex;flex-direction:column;gap:10px;
+}
+.boot-top{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.boot-k{
+  font-family:"Montserrat",sans-serif;font-weight:800;font-size:11.5px;
+  letter-spacing:.16em;text-transform:uppercase;color:var(--pink-soft);
+}
+.boot-pct{font-family:"JetBrains Mono",monospace;font-size:12.5px;color:var(--gold-1)}
+.boot-bar{height:7px;border-radius:99px;background:rgba(255,255,255,.1);overflow:hidden}
+.boot-bar i{
+  display:block;height:100%;width:0;border-radius:99px;
+  background:linear-gradient(90deg,var(--pink),var(--gold-2));
+  transition:width .55s ease;
+}
+.boot-log{font-size:13.5px;color:var(--text);min-height:19px}
+.boot-tags{display:flex;flex-wrap:wrap;gap:6px}
+.boot-tag{
+  padding:5px 12px;border-radius:var(--r-pill);
+  border:1px solid rgba(255,255,255,.14);color:var(--muted);
+  font-family:"Montserrat",sans-serif;font-weight:700;font-size:10.5px;
+  letter-spacing:.1em;text-transform:uppercase;
+  transition:color .25s,border-color .25s,background .25s;
+}
+.boot-tag.on{
+  color:var(--gold-1);border-color:rgba(233,198,126,.5);background:rgba(233,198,126,.12);
+}
+.boot[data-done="1"]{border-color:rgba(233,198,126,.45)}
+.boot[data-done="1"] .boot-k{color:var(--gold-2)}
+@media (max-width:520px){
+  .boot{padding:14px;gap:8px}
+  .boot-log{font-size:12.5px}
 }

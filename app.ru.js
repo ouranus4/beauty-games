@@ -52,6 +52,53 @@
   var $$ = function (s, c) { return Array.prototype.slice.call((c || document).querySelectorAll(s)); };
 
   /* ============================================================
+     ЗАВАНТАЖЕННЯ ГРИ НА ПЕРШОМУ ЕКРАНІ
+     Перший блок був статичний. Тепер сезон «вантажиться»: смуга
+     заповнюється, етапи по черзі відмічаються, і наприкінці
+     сторінка передає хід людині — до першого кроку.
+     ============================================================ */
+  (function () {
+    var boot = document.getElementById('boot');
+    if (!boot) return;
+    var fill = document.getElementById('bootFill');
+    var pctEl = document.getElementById('bootPct');
+    var logEl = document.getElementById('bootLog');
+    var tags = Array.prototype.slice.call(boot.querySelectorAll('.boot-tag'));
+    var STEPS = [
+      [28, 'Готовим арену сезона…'],
+      [54, 'Собираем команды мастеров…'],
+      [78, 'Зовём жюри и экспертов…'],
+      [96, 'Включаем камеры и эфиры…'],
+      [100, 'Готово. Ваш ход — шаг 1 ниже.']
+    ];
+    var still = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    var show = function (i) {
+      var st = STEPS[i];
+      if (fill) fill.style.width = st[0] + '%';
+      if (pctEl) pctEl.textContent = st[0] + '%';
+      if (logEl) logEl.textContent = st[1];
+      tags.forEach(function (t, k) { t.classList.toggle('on', k < i + (st[0] === 100 ? 1 : 0)); });
+      if (st[0] === 100) {
+        boot.setAttribute('data-done', '1');
+        tags.forEach(function (t) { t.classList.add('on'); });
+      }
+    };
+
+    if (still) { show(STEPS.length - 1); return; }
+
+    var i = 0;
+    show(0);
+    var tick = function () {
+      i++;
+      if (i >= STEPS.length) return;
+      show(i);
+      setTimeout(tick, i === STEPS.length - 1 ? 700 : 620);
+    };
+    setTimeout(tick, 700);
+  })();
+
+  /* ============================================================
      ПІДСУМОК ВИБОРУ
      Усе, що людина обрала на сторінці, збирається в одну картку
      біля заявки — щоб не питати те саме ще раз у менеджера.
@@ -185,30 +232,97 @@
     });
   });
 
-  /* ---------- лічильник і кнопка «відкрити всі» для модулів ---------- */
+  /* ---------- модулі відкриваються по черзі ----------
+     Дев'ять модулів — це шлях, а не список. Наступний відмикається,
+     коли відкрито попередній; пройдене лишається відкритим і після
+     повернення на сайт. Так само влаштована програма на сезоні. */
   var mods = $('#modules');
   if (mods) {
     var openEl = $('#accOpen');
     var fillEl = $('#accFill');
+    var railEl = $('#accRail');
+    var hintEl = $('#accHint');
     var allBtn = $('#accAll');
     var items = $$('.acc-item', mods);
 
-    var sync = function () {
-      var n = items.filter(function (i) { return i.classList.contains('open'); }).length;
-      if (openEl) openEl.textContent = n;
-      if (fillEl) fillEl.style.width = (n / items.length * 100) + '%';
-      if (allBtn) allBtn.textContent = n === items.length ? 'Свернуть все' : 'Открыть все';
+    var num = function (i) { return ('0' + (i + 1)).slice(-2); };
+
+    var unlocked = 1;
+    var saved = parseInt(store.get('bg_mods'), 10);
+    if (saved > 1) unlocked = Math.min(saved, items.length);
+
+    var paintMods = function () {
+      var open = items.filter(function (i) { return i.classList.contains('open'); }).length;
+      var doneN = Math.max(0, unlocked - 1);
+      items.forEach(function (it, i) {
+        var lock = i + 1 > unlocked;
+        it.classList.toggle('locked', lock);
+        var btn = $('.acc-btn', it);
+        if (btn) btn.setAttribute('aria-disabled', lock ? 'true' : 'false');
+      });
+      if (openEl) openEl.textContent = doneN;
+      if (fillEl) fillEl.style.width = (doneN / items.length * 100) + '%';
+      if (railEl) railEl.style.height = (doneN / items.length * 100) + '%';
+      if (allBtn) {
+        allBtn.textContent = unlocked < items.length
+          ? 'Открыть модуль ' + num(unlocked - (items[unlocked - 1].classList.contains('open') ? 0 : 1))
+          : (open === items.length ? 'Свернуть все' : 'Открыть все');
+      }
+      if (hintEl) {
+        hintEl.textContent = unlocked < items.length
+          ? 'Модули открываются по очереди — так же, как на сезоне. Дальше модуль ' + num(unlocked - 1 + (items[unlocked - 1].classList.contains('open') ? 1 : 0)) + '.'
+          : 'Все девять модулей открыты — столько же работы ждёт на сезоне.';
+      }
     };
 
-    mods.addEventListener('acc:change', sync);
+    var unlockNext = function () {
+      if (unlocked < items.length) {
+        unlocked++;
+        store.set('bg_mods', String(unlocked));
+      }
+    };
+
+    // Клік по замкненому модулю не відкриває його, а підказує, з чого почати
+    mods.addEventListener('click', function (e) {
+      var it = e.target.closest ? e.target.closest('.acc-item') : null;
+      if (!it || !it.classList.contains('locked')) return;
+      e.stopPropagation();
+      e.preventDefault();
+      it.classList.remove('shake');
+      void it.offsetWidth;
+      it.classList.add('shake');
+      var next = items[unlocked - 1];
+      if (next) next.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      if (hintEl) hintEl.textContent = 'Сначала откройте модуль ' + num(unlocked - 1) + ' — дальше откроется следующий.';
+    }, true);
+
+    mods.addEventListener('acc:change', function () {
+      items.forEach(function (it, i) {
+        if (it.classList.contains('open') && i + 1 === unlocked) unlockNext();
+      });
+      paintMods();
+    });
+
     if (allBtn) {
       allBtn.addEventListener('click', function () {
-        var openAll = items.some(function (i) { return !i.classList.contains('open'); });
-        items.forEach(function (i) { setItem(i, openAll); });
-        sync();
+        if (unlocked < items.length) {
+          var i = unlocked - 1;
+          var it = items[i];
+          if (it.classList.contains('open')) { unlockNext(); paintMods(); items[unlocked - 1].scrollIntoView({ behavior: 'smooth', block: 'center' }); return; }
+          setItem(it, true);
+          it.classList.add('seen');
+          unlockNext();
+          paintMods();
+          it.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          return;
+        }
+        var openAll = items.some(function (i2) { return !i2.classList.contains('open'); });
+        items.forEach(function (i2) { setItem(i2, openAll); });
+        paintMods();
       });
     }
-    sync();
+
+    paintMods();
   }
 
   // перерахунок висоти відкритих панелей при зміні ширини
@@ -278,7 +392,6 @@
       fCompany: function (v) { return v.trim().length >= 2; },
       fPhone:   function (v) { return v.replace(/[^\d]/g, '').length >= 9; },
       fEmail:   function (v) { return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v.trim()); },
-      fInsta:   function (v) { return v.trim().length >= 2; },
       fPack:    function (v) { return v !== ''; }
     };
 
@@ -508,6 +621,16 @@
       if (countEl) countEl.textContent = n;
       if (verdictEl) verdictEl.textContent = v.t;
       setPick('pickRowSit', 'pickSit', n ? v.t : '', 'fSit');
+
+      // Відповіді тесту йдуть далі: у крок 4 і в карту гравця
+      var tagList = picked.map(function (b) { return b.getAttribute('data-tag'); }).filter(Boolean);
+      setPick('pickRowPains', 'pickPains', tagList.join(', '), 'fPains');
+      var fwTest = $('#forkWhoTest'), fwSit = $('#forkWhoSit'), fwPains = $('#forkWhoPains');
+      if (fwTest) {
+        fwTest.hidden = !n;
+        if (fwSit) fwSit.textContent = v.t;
+        if (fwPains) fwPains.textContent = tagList.join(' · ');
+      }
       if (textEl) textEl.textContent = v.f ? v.p + ' ' + v.f : v.p;
       if (resultEl) resultEl.classList.toggle('on', n > 0);
 
@@ -720,7 +843,13 @@
         doneLead.firstChild.nodeValue =
           'Ваши скилы — ';
       }
-      if (dirField) dirField.value = full.join(', ');
+      // У формі напрямок — список, тож ставимо перший обраний, якщо він там є.
+      // Повний перелік і так видно в карті гравця.
+      if (dirField) {
+        var first = full[0] || '';
+        var has = Array.prototype.some.call(dirField.options, function (o) { return o.value === first || o.text === first; });
+        dirField.value = has ? first : '';
+      }
 
       // Крок 3 показує, кого обрали, і типові задачі напрямку
       var whoName = $('#forkWhoName');
