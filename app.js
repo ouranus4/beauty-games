@@ -1100,6 +1100,111 @@
   }
 
   /* ============================================================
+     РЕКОМЕНДАЦІЇ В КАРТІ ГРАВЦЯ
+     Карта не просто збирає відповіді — вона підказує, що робити
+     далі. Зверху стоїть найближчий незакритий крок, під ним —
+     персональні поради з того, що людина вже обрала. Кожен рядок
+     клікабельний, тому питання «куди тепер тиснути» не виникає.
+     ============================================================ */
+  var recBox = $('#forkRec');
+  if (recBox) {
+    var recList = $('#forkRecList');
+    var recSaid = '';
+
+    var recMods = function () {
+      var out = [];
+      $$('input[data-problem]').forEach(function (b) {
+        var m = b.getAttribute('data-mod');
+        if (b.checked && m && out.indexOf(m) < 0) out.push(m);
+      });
+      return out.sort();
+    };
+
+    var recBuild = function () {
+      var name = (store.get('bg_name') || '').trim();
+      var skills = (store.get('bg_character') || '').trim();
+      var mods = recMods();
+      var missionOn = $('.fork-o.on');
+      var out = [];
+
+      // спочатку — найближчий незакритий крок
+      if (!name) {
+        out.push({ k: 'Крок 1', t: 'Напишіть своє ім’я', d: 'Карта гравця підпишеться вашим іменем', h: '#hello' });
+      }
+      if (!skills) {
+        out.push({ k: 'Крок 2', t: 'Оберіть свої скіли', d: 'Покажемо задачі саме вашого напрямку', h: '#picker' });
+      }
+      if (!mods.length) {
+        out.push({ k: 'Крок 3', t: 'Відмітьте, що заважає рости', d: 'Вісім пунктів — і побачите свою зону', h: '#about' });
+      }
+      if (!missionOn) {
+        out.push({ k: 'Крок 4', t: 'Оберіть свою місію', d: 'Під неї підберемо формат участі', h: '#format' });
+      }
+
+      // далі — персональні поради з того, що вже обрано
+      if (mods.length) {
+        out.push({
+          k: 'Модулі',
+          t: mods.length === 1 ? 'Почніть з модуля ' + mods[0] : 'Почніть з модулів ' + mods.join(' і '),
+          d: 'Саме вони закривають те, що ви відмітили',
+          h: '#program'
+        });
+      }
+      if (skills) {
+        out.push({ k: 'Бонус', t: 'Порахуйте свою ціну', d: 'Калькулятор під ваш напрямок — дві хвилини', h: 'calculator.html' });
+      }
+      if (missionOn) {
+        var fn = $('#forkName');
+        out.push({
+          k: 'Формат',
+          t: (fn && fn.textContent) || 'Ваш формат обрано',
+          d: 'Подивіться, що входить у пакети',
+          h: '#packages'
+        });
+      }
+      // коли карта зібрана, головна дія — заявка, тож вона стає першою
+      if (name && skills && mods.length && missionOn) {
+        out.unshift({ k: 'Фінал', t: 'Забронювати місце', d: 'Карта заповнена — заявка підставиться сама', h: '#apply' });
+      }
+      return out.slice(0, 4);
+    };
+
+    var recPaint = function () {
+      var items = recBuild();
+      var key = items.map(function (i) { return i.k + i.t; }).join('|');
+      if (key === recSaid) return;          // без зайвого перемальовування
+      recSaid = key;
+      if (!recList) return;
+      recList.innerHTML = items.map(function (i, n) {
+        return '<li class="frec-i' + (n === 0 ? ' now' : '') + '">' +
+               '<a href="' + i.h + '">' +
+               '<span class="frec-n">' + i.k + '</span>' +
+               '<b>' + i.t + '</b>' +
+               '<i>' + i.d + '</i>' +
+               '<em aria-hidden="true">→</em>' +
+               '</a></li>';
+      }).join('');
+    };
+
+    ['bg:character', 'bg:quiz', 'bg:fork', 'bg:hello'].forEach(function (ev) {
+      document.addEventListener(ev, function () { recPaint(); });
+    });
+    var recName = $('#heroName');
+    if (recName) recName.addEventListener('input', function () { recPaint(); });
+    $$('input[data-problem]').forEach(function (b) {
+      b.addEventListener('change', function () { recPaint(); });
+    });
+    $$('.fork-o').forEach(function (b) {
+      b.addEventListener('click', function () {
+        recPaint();
+        var opts = $('#forkOpts'); if (opts) opts.classList.remove('ask');
+        var tap = $('#forkTap'); if (tap) tap.hidden = true;
+      });
+    });
+    recPaint();
+  }
+
+  /* ============================================================
      ПРОГРЕС ПО СТОРІНЦІ
      Крапки-віхи збоку: заповнюються в міру прокрутки, поточна
      підсвічується. Дає відчуття руху по грі, а не гортання сайту.
