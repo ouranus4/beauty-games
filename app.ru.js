@@ -101,7 +101,7 @@
     var paint = function () {
       var v = Math.max(0, Math.min(1, p));
       // easeOutCubic: заливка йде рівно, без ривка наприкінці
-      var e = 1 - Math.pow(1 - v, 3);
+      var e = 0.5 - Math.cos(Math.PI * v) / 2;   // easeInOutSine: рух наростає і м'яко гасне
       if (ring) ring.style.strokeDashoffset = LEN * (1 - e);
       gate.style.setProperty('--p', v);
       gate.style.setProperty('--s', (e * 1.02).toFixed(3));
@@ -120,7 +120,13 @@
       buzz([22, 60, 90]);          // короткий відгук, як у застосунках
       if (tx) tx.textContent = 'Открыто';
       var tip = document.getElementById('tip');
-      if (tip) setTimeout(function () { tip.hidden = false; tip.classList.add('in'); }, 640);
+      if (tip) {
+        var showTip = function () {
+          setTimeout(function () { tip.hidden = false; tip.classList.add('in'); }, 900);
+        };
+        if (document.readyState === 'complete') showTip();
+        else window.addEventListener('load', showTip);
+      }
       document.documentElement.classList.remove('gated');
       setTimeout(function () { gate.remove(); }, 700);
     };
@@ -327,10 +333,7 @@
   if (mods) {
     var openEl = $('#accOpen');
     var fillEl = $('#accFill');
-    var railEl = $('#accRail');
-    var modHearts = $$('.mod-heart');
-    var modRunner = $('#accRunner');
-    var modRunnerN = $('#accRunnerN');
+    var modDots = $$('.mdot');
     var hintEl = $('#accHint');
     var allBtn = $('#accAll');
     var modItems = $$('.acc-item', mods);
@@ -353,15 +356,10 @@
       if (openEl) openEl.textContent = doneN;
       var pct = doneN / modItems.length * 100;
       if (fillEl) fillEl.style.width = pct + '%';
-      if (railEl) railEl.style.height = pct + '%';
-      modHearts.forEach(function (hrt, k) {
-        hrt.style.left = (k / (modItems.length - 1) * 100) + '%';
-        hrt.classList.toggle('got', k < doneN);
+      modDots.forEach(function (d, k) {
+        d.classList.toggle('done', k < doneN);
+        d.classList.toggle('now', k === doneN && doneN < modItems.length);
       });
-      if (modRunner) {
-        modRunner.style.left = Math.min(99, doneN / (modItems.length - 1) * 100) + '%';
-        if (modRunnerN) modRunnerN.textContent = modNum(Math.min(modItems.length - 1, doneN));
-      }
       if (allBtn) {
         allBtn.textContent = unlocked < modItems.length
           ? 'Открыть модуль ' + modNum(unlocked - (modItems[unlocked - 1].classList.contains('open') ? 0 : 1))
@@ -1173,9 +1171,22 @@
     ends();
   })();
 
-  $$('.arcv').forEach(function (card) {
+  // лічильник відкритих спогадів
+  var arcCards = $$('.arcv[data-src]');
+  var arcDone = $('#arcDone'), arcAll = $('#arcAll'), arcFill = $('#arcFill');
+  if (arcAll) arcAll.textContent = arcCards.length;
+  var arcCount = function () {
+    var n = arcCards.filter(function (c) { return c.classList.contains('seen'); }).length;
+    if (arcDone) arcDone.textContent = n;
+    if (arcFill) arcFill.style.width = (n / arcCards.length * 100) + '%';
+  };
+  arcCount();
+
+  arcCards.forEach(function (card) {
     card.addEventListener('click', function () {
       if (card.classList.contains('playing')) return;
+      card.classList.add('seen');
+      arcCount();
       var src = card.getAttribute('data-src');
       var ph = $('.arcv-ph', card);
       if (!src || !ph) return;

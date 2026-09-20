@@ -9,7 +9,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800;900&family=Oswald:wght@400;500;600&family=Manrope:wght@400;500;600;700&family=Pixelify+Sans:wght@400..700&family=JetBrains+Mono:wght@400;500;700&display=swap">
 <link rel="stylesheet" href="styles.css?v=2cf033dd">
-<link rel="stylesheet" href="squid.css?v=a0c811d1">
+<link rel="stylesheet" href="squid.css?v=2617b91f">
 
 <!-- SPRITE -->
 <div class="preloader" id="preloader">
@@ -60,6 +60,9 @@
 <!-- ============ ЗАМОК НА ВХОДІ ============ -->
 <div class="gate" id="gate">
   <span class="gate-wash" aria-hidden="true"></span>
+  <span class="gate-ripple r1" aria-hidden="true"></span>
+  <span class="gate-ripple r2" aria-hidden="true"></span>
+  <span class="gate-ripple r3" aria-hidden="true"></span>
   <div class="gate-in">
     <button class="gate-lock" type="button" id="gateLock" aria-label="Натисніть і тримайте, щоб розблокувати гру">
       <svg class="gate-ring" viewBox="0 0 120 120" aria-hidden="true">
@@ -134,10 +137,9 @@
     <div class="hero-brand">
       <img class="hero-logo" src="assets/logo-horizontal.svg" alt="Beauty Games — reality show, championship, education" width="330" height="52">
       <span class="hero-brand-rule" aria-hidden="true"></span>
-      <span class="hero-brand-tag">Season 2026 · Education · Championship · Reality show</span>
     </div>
     <h1 class="h-xl">Перше онлайн-реаліті<br>для <span class="glow">б'юті-майстрів</span></h1>
-    <p class="lede hero-lede">Ми створили Beauty Games — перше онлайн-реаліті для б'юті-майстрів: бізнес-навчання, командні змагання і чемпіонат в одному сезоні. Зараз коротко розповімо, як це працює.</p>
+    <p class="lede hero-lede">Ми створили перше онлайн-реаліті для б'юті-майстрів: бізнес-навчання, командні змагання і чемпіонат в одному сезоні.</p>
 
     <div class="tip" id="tip" hidden>
       <span class="tip-k">Підказка</span>
@@ -383,6 +385,7 @@
         <span class="fork-out-k">Місію прийнято · ваш формат</span>
         <b id="forkName"></b>
         <p id="forkText"></p>
+        <a href="#apply" class="btn btn-primary fork-cta">Забронювати місце</a>
       </div>
     </div>
 
@@ -631,23 +634,21 @@
       <button class="btn btn-ghost btn-sm" type="button" id="accAll">Відкрити модуль 01</button>
     </div>
 
-    <div class="path-track mod-track rv" aria-hidden="true">
-      <span class="path-line"><i id="accFill"></i></span>
-        <span class="path-heart mod-heart" data-i="0"><svg><use href="#bg-logo"/></svg></span>
-        <span class="path-heart mod-heart" data-i="1"><svg><use href="#bg-logo"/></svg></span>
-        <span class="path-heart mod-heart" data-i="2"><svg><use href="#bg-logo"/></svg></span>
-        <span class="path-heart mod-heart" data-i="3"><svg><use href="#bg-logo"/></svg></span>
-        <span class="path-heart mod-heart" data-i="4"><svg><use href="#bg-logo"/></svg></span>
-        <span class="path-heart mod-heart" data-i="5"><svg><use href="#bg-logo"/></svg></span>
-        <span class="path-heart mod-heart" data-i="6"><svg><use href="#bg-logo"/></svg></span>
-        <span class="path-heart mod-heart" data-i="7"><svg><use href="#bg-logo"/></svg></span>
-        <span class="path-heart mod-heart" data-i="8"><svg><use href="#bg-logo"/></svg></span>
-      <span class="path-runner" id="accRunner"><b id="accRunnerN">01</b></span>
+    <div class="mprog rv" id="mprog" aria-hidden="true">
+      <span class="mprog-line"><i id="accFill"></i></span>
+        <span class="mdot" data-i="0"><i></i><b>01</b></span>
+        <span class="mdot" data-i="1"><i></i><b>02</b></span>
+        <span class="mdot" data-i="2"><i></i><b>03</b></span>
+        <span class="mdot" data-i="3"><i></i><b>04</b></span>
+        <span class="mdot" data-i="4"><i></i><b>05</b></span>
+        <span class="mdot" data-i="5"><i></i><b>06</b></span>
+        <span class="mdot" data-i="6"><i></i><b>07</b></span>
+        <span class="mdot" data-i="7"><i></i><b>08</b></span>
+        <span class="mdot" data-i="8"><i></i><b>09</b></span>
     </div>
     <p class="acc-hint" id="accHint">Модулі відкриваються по черзі — так само, як на сезоні. Почніть з першого.</p>
 
-    <div class="acc acc-path" id="modules">
-      <span class="acc-rail" aria-hidden="true"><i id="accRail"></i></span>
+    <div class="acc" id="modules">
       <div class="acc-item glass-soft">
         <button class="acc-btn" type="button"><span class="mi">01</span><span class="tx">Мислення — від ремісника до підприємця</span><span class="ic"></span></button>
         <div class="acc-panel"><div class="acc-panel-in"><ul>
@@ -812,7 +813,7 @@
 
     <div class="ibv rv">
       <div class="ibv-head">
-        <img class="ibv-logo" src="assets/logo-ibv.png" alt="IBV — International Beauty Voyage" loading="lazy" width="607" height="132">
+        <img class="ibv-logo" src="assets/logo-ibv.png" alt="IBV — International Beauty Voyage" loading="lazy" width="920" height="200">
         <div>
           <h3 class="ibv-t">International Beauty Voyage</h3>
           <p class="ibv-s">Організація, яка стоїть за Beauty&nbsp;Games</p>
@@ -828,7 +829,7 @@
       <div class="ibv-logos">
         <img src="assets/logo-horizontal.svg" alt="Beauty Games" loading="lazy">
         <img src="assets/logo-verbova.png" alt="Iryna Verbova" loading="lazy" width="508" height="201">
-        <img src="assets/logo-ibv.png" alt="IBV" loading="lazy" width="607" height="132">
+        <img src="assets/logo-ibv.png" alt="IBV" loading="lazy" width="920" height="200">
       </div>
     </div>
 
@@ -843,6 +844,11 @@
       <h2 class="h-lg">Як це було <span class="glow">на заходах IBV</span></h2>
       <div class="sec-rule"></div>
       <p class="lede">Кадри з чемпіонатів і конгресів, з яких виріс Beauty Games. Натисніть на знімок — і він оживе.</p>
+      <div class="arc-score">
+        <span class="arc-score-k">Відкрито спогадів</span>
+        <b><span id="arcDone">0</span> / <span id="arcAll">6</span></b>
+        <span class="arc-score-bar"><i id="arcFill"></i></span>
+      </div>
     </div>
 
     <div class="arc-wrap rv">
@@ -860,6 +866,12 @@
         <button class="arcv" type="button" data-src="assets/video/arch-polivanova.mp4" aria-label="Оживити кадр: слово судді">
           <span class="arcv-ph"><img src="assets/video/arch-polivanova.jpg" alt="" loading="lazy" width="960" height="540"><span class="arcv-play" aria-hidden="true"></span></span>
         </button>
+        <button class="arcv" type="button" data-src="assets/video/arch-hall.mp4" aria-label="Оживити кадр: дорогою на захід">
+          <span class="arcv-ph"><img src="assets/video/arch-hall.jpg" alt="" loading="lazy" width="540" height="960"><span class="arcv-play" aria-hidden="true"></span></span>
+        </button>
+        <div class="arcv arcv-soon" aria-hidden="true">
+          <span class="arcv-ph arcv-ph-soon"><span class="arcv-soon-tx">Далі буде<br><b>Сезон 2026</b></span></span>
+        </div>
       </div>
       <button class="arc-nav arc-next" type="button" aria-label="Наступний кадр">›</button>
     </div>
@@ -1500,5 +1512,5 @@
 </div>
 
 <script src="leads.js?v=d5b28821"></script>
-<script src="app.js?v=a380496c"></script>
+<script src="app.js?v=68425e6b"></script>
 <script src="fx.js?v=b9217507"></script>
