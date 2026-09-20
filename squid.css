@@ -2549,7 +2549,7 @@ body.bio-open{overflow:hidden}
 .gate-wash{
   position:absolute;left:50%;top:50%;width:230vmax;height:230vmax;border-radius:50%;
   transform:translate(-50%,-50%) scale(var(--s,0));
-  background:radial-gradient(circle,rgba(255,87,160,.96) 0%,rgba(230,0,126,.94) 45%,rgba(194,0,95,.92) 100%);
+  background:radial-gradient(circle,rgba(226,0,122,.97) 0%,rgba(198,0,98,.95) 45%,rgba(150,0,74,.94) 100%);
   transition:opacity .6s ease;
   will-change:transform;
   pointer-events:none;
@@ -2577,7 +2577,8 @@ body.bio-open{overflow:hidden}
 .gate.gone .gate-wash{opacity:0}
 .gate.open{pointer-events:none}
 .gate.gone{opacity:0;visibility:hidden}
-.gate-in{display:flex;flex-direction:column;align-items:center;gap:14px}
+/* Вміст — над рожевою заливкою: інакше напис і правила ховалися під нею */
+.gate-in{position:relative;z-index:3;display:flex;flex-direction:column;align-items:center;gap:14px}
 .gate-lock{
   position:relative;width:132px;height:132px;border-radius:50%;
   background:rgba(255,46,136,.1);border:0;cursor:pointer;
@@ -2593,27 +2594,50 @@ body.bio-open{overflow:hidden}
 }
 .gate-ring{position:absolute;inset:0;width:100%;height:100%;transform:rotate(-90deg)}
 .gate-ring circle{fill:none;stroke-width:4;stroke-linecap:round}
-.gate-ring-bg{stroke:rgba(255,255,255,.16)}
-.gate-ring-fill{stroke:var(--pink);transition:stroke .5s ease}
+.gate-ring-bg{stroke:rgba(255,255,255,.22)}
+.gate-ring-fill{stroke:#fff;transition:stroke .5s ease}
 .gate-ico{
-  position:absolute;inset:0;margin:auto;width:58px;height:58px;
+  position:absolute;inset:0;margin:auto;width:66px;height:66px;
   fill:none;stroke:#fff;stroke-width:3;stroke-linecap:round;stroke-linejoin:round;
   transition:stroke .5s ease;
 }
-.gate-ico .gate-body{fill:rgba(255,46,136,.22);transition:fill .5s ease}
-.gate-ico .gate-hole{fill:#fff;stroke:none}
-.gate-shackle{transition:transform .6s cubic-bezier(.34,1.24,.5,1);transform-origin:33px 22px}
+/* Джойстик: кулька на стійці й підставка. Стійка ледь погойдується —
+   видно, що це гра, а не форма входу. */
+.gate-ball{fill:var(--pink);stroke:#fff;transition:fill .5s ease}
+.gate-base{fill:rgba(255,255,255,.14);stroke:#fff;transition:fill .5s ease}
+.gate-plate{fill:none;stroke:#fff}
+.gate-stick{
+  transform-origin:24px 34px;
+  animation:stickSway 3.4s ease-in-out infinite;
+  transition:transform .5s cubic-bezier(.34,1.24,.5,1);
+}
+@keyframes stickSway{
+  0%,100%{transform:rotate(-8deg)}
+  50%{transform:rotate(8deg)}
+}
+.gate.holding .gate-stick{animation-duration:.9s}
 .gate-tx{
   margin:0;font-family:"Montserrat",sans-serif;font-weight:800;font-size:12.5px;
   letter-spacing:.18em;text-transform:uppercase;color:#fff;
+  text-shadow:0 2px 12px rgba(60,0,30,.45);
+}
+.gate-rules{
+  list-style:none;margin:0;padding:0;display:flex;gap:10px;flex-wrap:wrap;
+  justify-content:center;max-width:380px;
+}
+.gate-rules li{
+  padding:7px 14px;border-radius:var(--r-pill);
+  background:rgba(255,255,255,.16);box-shadow:inset 0 0 0 1px rgba(255,255,255,.38);
+  font-size:13.5px;color:#fff;white-space:nowrap;
+  text-shadow:0 1px 8px rgba(60,0,30,.35);
 }
 .gate-skip{
-  background:none;border:0;cursor:pointer;color:var(--muted);
+  background:none;border:0;cursor:pointer;color:rgba(255,255,255,.7);
   font-size:12.5px;text-decoration:underline;text-underline-offset:3px;
 }
 .gate-skip:hover{color:#fff}
 html.gated,html.gated body{overflow:hidden}
-@media (max-width:520px){.gate-lock{width:112px;height:112px}.gate-ico{width:50px;height:50px}}
+@media (max-width:520px){.gate-lock{width:112px;height:112px}.gate-ico{width:58px;height:58px}}
 @media (prefers-reduced-motion: reduce){.gate{display:none}}
 
 /* ============================================================
@@ -2695,21 +2719,20 @@ html.gated,html.gated body{overflow:hidden}
 }
 .tip-x:hover{color:#fff}
 
-/* Замок відмикається як на айфоні: дужка підстрибує, знак світлішає. */
+/* Старт гри: джойстик підстрибує і світлішає. */
 .gate.open .gate-lock{
   animation:lockPop .6s cubic-bezier(.33,1.2,.5,1);
   background:rgba(255,255,255,.18);
 }
 .gate.open .gate-ico{stroke:#fff}
-.gate.open .gate-ico .gate-body{fill:rgba(255,255,255,.28)}
-.gate.open .gate-ring-fill{stroke:#fff}
+.gate.open .gate-stick{animation:none;transform:rotate(0)}
+.gate.open .gate-ball{fill:#fff}
+.gate.open .gate-base{fill:rgba(255,255,255,.3)}
 @keyframes lockPop{
   0%{transform:scale(1)}
   40%{transform:scale(1.07)}
   100%{transform:scale(1)}
 }
-/* Дужка відкидається вбік, лишаючись на своїй петлі — як у справжнього замка */
-.gate.open .gate-shackle{transform:rotate(26deg) translateY(-1px)}
 .gate.open .gate-skip{opacity:0;transition:opacity .25s ease}
 .gate.open .gate-tx{color:#fff}
 

@@ -122,7 +122,7 @@
       // спершу показуємо, як відмикається замок, і тільки потім ховаємо екран
       setTimeout(function () { gate.classList.add('gone'); }, 900);
       buzz([22, 60, 90]);          // короткий відгук, як у застосунках
-      if (tx) tx.textContent = 'Открыто';
+      if (tx) tx.textContent = 'Готово!';
       var tip = document.getElementById('tip');
       if (tip) {
         var showTip = function () {
