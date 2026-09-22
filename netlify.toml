@@ -14,6 +14,11 @@
   status = 200
 
 [[redirects]]
+  from = "/curator"
+  to = "/curator.html"
+  status = 200
+
+[[redirects]]
   from = "/calc"
   to = "/calculator.html"
   status = 200
