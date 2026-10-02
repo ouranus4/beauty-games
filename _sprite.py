@@ -65,7 +65,7 @@ def build_sprite():
 # зайвий клік перед сайтом прибрали, екран зникає сам.
 PRELOADER = """
 <div class="preloader" id="preloader">
-  <img class="pl-logo" src="assets/logo-vertical.svg" alt="Beauty Games" width="260" height="150">
+  <img class="pl-logo" src="assets/logo-vertical.svg" alt="Beauty Games by Verbova Iryna" width="260" height="121">
   <div class="pl-bar"><span class="pl-bar-fill" id="plBar"></span></div>
   <div class="pl-pct" id="plPct">0%</div>
   <div class="pl-meta">

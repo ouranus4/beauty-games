@@ -2371,7 +2371,7 @@ body.bio-open{overflow:hidden}
   .nav:has(.lang) .sfx-btn::after{display:none}
   .nav:has(.lang) .sfx-btn{width:32px;padding:0;justify-content:center}
   .nav:has(.lang){gap:5px;padding-left:12px;padding-right:6px}
-  .nav:has(.lang) .brand-logo{height:16px}
+  .nav:has(.lang) .brand-logo{height:18px}
   .nav:has(.lang) .nav-burger{padding:8px 9px;gap:5px}
   .lang{padding:2px}
   .lang-a{min-width:25px;height:26px;padding:0 4px}
