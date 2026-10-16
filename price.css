@@ -1,0 +1,166 @@
+/* ============================================================
+   СТОРІНКА ЦІН
+   Усе спільне — у styles.css і squid.css. Тут лише те, чого
+   на інших сторінках немає: смуга цін у першому екрані,
+   стрічка сезону, картки номінацій і нагороди.
+   ============================================================ */
+
+.hero-cta{display:flex;gap:12px;flex-wrap:wrap}
+.three-gap{margin-top:20px}
+.form-lede{font-size:15px}
+.form-send{margin-top:20px}
+.acc-faq{margin-top:24px}
+.packs-note{
+  margin:22px auto 0;max-width:72ch;text-align:center;
+  font-size:13.5px;line-height:1.6;color:var(--muted);
+}
+
+/* Смуга цін одразу під заголовком: три числа, на які людина прийшла */
+.pstrip{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:12px;width:100%;margin:4px 0 2px;
+}
+.pstrip-i{
+  display:flex;flex-direction:column;gap:6px;padding:18px 20px;
+  border-radius:var(--r-md);text-decoration:none;
+  background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.13);
+  transition:background .2s ease, border-color .2s ease, transform .2s ease;
+}
+.pstrip-i:hover{background:rgba(255,255,255,.09);border-color:rgba(255,255,255,.28);transform:translateY(-3px)}
+.pstrip-i .k{
+  display:flex;align-items:center;gap:8px;flex-wrap:wrap;
+  font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--muted);
+}
+.pstrip-i .k em{
+  font-style:normal;padding:3px 8px;border-radius:var(--r-pill);
+  background:var(--pink);color:#fff;font-size:8.5px;letter-spacing:.1em;
+}
+.pstrip-i b{
+  font-family:"Montserrat",sans-serif;font-weight:900;font-size:clamp(28px,3.4vw,38px);
+  line-height:1;letter-spacing:-.035em;color:var(--white);font-variant-numeric:tabular-nums;
+}
+.pstrip-i i{font-style:normal;font-size:11.5px;line-height:1.45;color:var(--faint)}
+.pstrip-i.hot{
+  background:linear-gradient(140deg,rgba(255,46,136,.22),rgba(255,46,136,.06));
+  border-color:rgba(255,46,136,.45);
+}
+.pstrip-i.hot b{text-shadow:0 0 26px rgba(255,46,136,.7)}
+.pstrip-i.hot i{color:var(--text)}
+@media (max-width:860px){
+  .pstrip{grid-template-columns:1fr;gap:10px}
+  .pstrip-i{flex-direction:row;align-items:center;gap:14px;flex-wrap:wrap;padding:14px 16px}
+  .pstrip-i b{font-size:26px}
+  .pstrip-i i{flex-basis:100%}
+}
+
+/* Стрічка сезону: крок, що відбувається і коли */
+.tl{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px}
+.tl-i{
+  position:relative;display:grid;grid-template-columns:auto 1fr auto;
+  align-items:center;column-gap:18px;padding:18px 22px;border-radius:var(--r-md);
+  background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.12);
+}
+.tl-n{
+  grid-column:1;width:40px;height:40px;border-radius:50%;display:grid;place-items:center;
+  font-family:"JetBrains Mono",monospace;font-size:13px;color:#fff;
+  background:rgba(255,46,136,.22);border:1px solid rgba(255,46,136,.42);
+}
+.tl-b{grid-column:2;display:flex;flex-direction:column;gap:4px}
+.tl-b b{font-family:"Montserrat",sans-serif;font-weight:800;font-size:16px;color:var(--white)}
+.tl-b span{font-size:13.5px;line-height:1.55;color:var(--muted)}
+.tl-w{
+  grid-column:3;white-space:nowrap;padding:7px 14px;border-radius:var(--r-pill);
+  background:rgba(255,255,255,.07);box-shadow:inset 0 0 0 1px rgba(255,255,255,.16);
+  font-family:"JetBrains Mono",monospace;font-size:10.5px;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--text);
+}
+/* Ключова дата сезону — виділена */
+.tl-i.on{background:rgba(255,46,136,.12);border-color:rgba(255,46,136,.45)}
+.tl-i.on .tl-n{background:var(--pink);border-color:var(--pink)}
+.tl-i.on .tl-w{background:var(--pink);box-shadow:none;color:#fff}
+@media (max-width:760px){
+  .tl-i{grid-template-columns:auto 1fr;row-gap:10px;padding:16px 18px}
+  .tl-w{grid-column:2;justify-self:start}
+}
+
+/* Картки номінацій чемпіонату */
+.nomc{padding:24px 26px 26px;display:flex;flex-direction:column;gap:14px}
+.nomc-k{
+  font-family:"Montserrat",sans-serif;font-weight:800;font-size:12px;
+  letter-spacing:.16em;text-transform:uppercase;color:var(--pink-soft);
+}
+.nomc-rows{display:flex;flex-direction:column;gap:9px}
+.nomc .row{
+  display:flex;justify-content:space-between;align-items:baseline;gap:14px;
+  font-size:13.5px;color:var(--muted);
+}
+.nomc .row b{
+  font-family:"Montserrat",sans-serif;font-weight:800;font-size:16px;color:var(--white);
+  font-variant-numeric:tabular-nums;white-space:nowrap;
+}
+.nomc .row.sum{
+  margin-top:3px;padding-top:11px;border-top:1px solid rgba(255,255,255,.14);
+}
+.nomc .row.sum b{color:var(--pink-soft)}
+
+/* Нагороди */
+.awards{display:grid;grid-template-columns:repeat(auto-fit,minmax(248px,1fr));gap:14px}
+.award{
+  padding:24px 24px 26px;border-radius:var(--r-md);
+  background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.12);
+  display:flex;flex-direction:column;gap:11px;
+}
+.award-i{
+  width:44px;height:44px;border-radius:14px;display:grid;place-items:center;
+  background:rgba(255,46,136,.16);border:1px solid rgba(255,46,136,.38);color:var(--pink-soft);
+}
+.award-i .icon{width:22px;height:22px}
+.award h3{
+  margin:0;font-family:"Montserrat",sans-serif;font-weight:800;font-size:17px;
+  text-transform:uppercase;letter-spacing:.01em;color:var(--white);
+}
+.award p{margin:0;font-size:13.5px;line-height:1.6;color:var(--muted)}
+
+/* ============================================================
+   СВІТЛІ СЕКЦІЇ
+   Стрічка сезону, таблиця і нагороди стоять на білому тлі —
+   там білий текст і білі підкладки не читаються.
+   ============================================================ */
+.sec-light .tl-i{background:#fff;border-color:rgba(18,13,24,.1);box-shadow:0 10px 26px rgba(18,13,24,.06)}
+.sec-light .tl-b b{color:#120D18}
+.sec-light .tl-b span{color:#4A4055}
+.sec-light .tl-w{background:rgba(18,13,24,.06);box-shadow:inset 0 0 0 1px rgba(18,13,24,.12);color:#4A4055}
+.sec-light .tl-n{background:rgba(255,46,136,.12);border-color:rgba(255,46,136,.42);color:#C2005F}
+.sec-light .tl-i.on .tl-n{background:var(--pink);border-color:var(--pink);color:#fff}
+.sec-light .tl-i.on{background:linear-gradient(140deg,rgba(255,46,136,.12),rgba(255,46,136,.04));border-color:rgba(255,46,136,.5)}
+.sec-light .tl-i.on .tl-w{background:var(--pink);box-shadow:none;color:#fff}
+
+.sec-light .award{background:#fff;border-color:rgba(18,13,24,.1);box-shadow:0 10px 26px rgba(18,13,24,.06)}
+.sec-light .award h3{color:#120D18}
+.sec-light .award p{color:#4A4055}
+.sec-light .award-i{background:rgba(255,46,136,.12);border-color:rgba(255,46,136,.34);color:#D6006F}
+
+.sec-light .tcard{background:#fff;border-color:rgba(18,13,24,.1);box-shadow:0 10px 26px rgba(18,13,24,.06)}
+.sec-light .tcard h3,.sec-light .tcard .num{color:#120D18}
+.sec-light .tcard p,.sec-light .tcard ul li{color:#4A4055}
+
+.sec-light .table-tabs button{background:#fff;border-color:rgba(18,13,24,.12);color:#4A4055}
+.sec-light .table-tabs button.on{
+  color:#fff;border-color:transparent;
+  background:linear-gradient(180deg,#FF2E88,#D6006F);
+}
+.sec-light table{background:#fff;border-radius:var(--r-md);overflow:hidden}
+.sec-light th,.sec-light td{border-bottom-color:rgba(18,13,24,.08)}
+.sec-light thead th{color:#120D18;background:rgba(18,13,24,.04)}
+.sec-light thead th .pr{color:#D6006F}
+.sec-light tbody td:first-child{color:#241C2C}
+.sec-light td:not(:first-child){color:#4A4055}
+.sec-light tr.group td{color:#C2005F;background:rgba(255,46,136,.07)}
+.sec-light .yes{color:#D6006F;text-shadow:none}
+.sec-light .no{color:#9A91A6}
+.sec-light tr.total td{background:rgba(18,13,24,.04);color:#120D18}
+
+/* Чотири нагороди: або 4 в ряд, або 2×2 — щоб остання не стояла сама */
+@media (min-width:761px) and (max-width:1180px){
+  .awards{grid-template-columns:repeat(2,1fr)}
+}
