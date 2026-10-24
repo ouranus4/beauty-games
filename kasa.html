@@ -1,0 +1,286 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Каса майстра — Beauty Games</title>
+<meta name="description" content="Каса майстра від Beauty Games: тапнула після клієнтки — і бачиш, скільки з грошей на картці насправді твої. Без таблиць і формул.">
+<meta name="theme-color" content="#08060C">
+<link rel="manifest" href="kasa.webmanifest">
+<link rel="apple-touch-icon" href="assets/kasa-192.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<script>document.documentElement.setAttribute('data-page','kasa');document.documentElement.lang='uk';</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800;900&family=Manrope:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap">
+<link rel="stylesheet" href="styles.css?v=ad1ccce0">
+<link rel="stylesheet" href="squid.css?v=db6b5ecf">
+<link rel="stylesheet" href="kasa.css?v=68d261e1">
+
+<!-- SPRITE -->
+<svg class="sprite" width="0" height="0" aria-hidden="true" focusable="false" style="position:absolute;pointer-events:none">
+  <symbol id="bg-logo" viewBox="282.88 122.06 153.76 160.69"><path transform="matrix(1,0,0,-1,355.3672,197.2986)" d="M0 0 10.562-10.562H23.928L9.563-28.966-7.014-24.057V11.189L11.614 17.33 54.82-5.281 32.64-16.889 40.439 0ZM-58.827-64.757V-48.983L-24.783-31.885-24.816-14.468-34.497-6.841-24.811-3.054V18.703L-58.827 37.917V54.195L-1.423 24.153-17.576 18.828V-31.944L-3.879-36ZM-35.368-19.6-35.357-25.187-58.827-37.312V25.969L-35.373 12.342V4.157L-53.21-3.721ZM-70.302 73.151V-83.714L79.568-5.281Z" fill="currentColor"/></symbol>
+  <symbol id="i-brow" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 13.2c1.4-3.4 4.4-5.2 9-5.2 2.6 0 4.7.5 6.4 1.5 1 .6 1.3 1.6.9 2.3-.4.7-1.4.9-2.4.5-2.3-1-4.6-1.2-7-.7-2.4.5-4.4 1.6-6 3.2-.6.6-1.3.3-.9-1.6Z"/><path d="M5 17.6c2.2-1.6 4.8-2.4 7.8-2.4 1.7 0 3.2.2 4.5.7"/></g></symbol>
+  <symbol id="i-camera" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2.6" y="6.6" width="13" height="10.8" rx="2"/><path d="m15.6 11 4.6-2.9a.8.8 0 0 1 1.2.7v6.4a.8.8 0 0 1-1.2.7l-4.6-2.9Z"/><circle cx="6.6" cy="10.2" r="1.4"/></g></symbol>
+  <symbol id="i-chart" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3.4 20.6h17.2"/><rect x="4.6" y="13" width="3.6" height="6.2" rx=".8"/><rect x="10.2" y="8.6" width="3.6" height="10.6" rx=".8"/><rect x="15.8" y="4.2" width="3.6" height="15" rx=".8"/></g></symbol>
+  <symbol id="i-coin" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="6.4" rx="7.8" ry="3.2"/><path d="M4.2 6.4v11.2c0 1.8 3.5 3.2 7.8 3.2s7.8-1.4 7.8-3.2V6.4"/><path d="M4.2 12c0 1.8 3.5 3.2 7.8 3.2s7.8-1.4 7.8-3.2"/></g></symbol>
+  <symbol id="i-crown" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8.4a1 1 0 0 1 1.6-.8l3.6 2.7 2.9-6a1 1 0 0 1 1.8 0l2.9 6 3.6-2.7a1 1 0 0 1 1.6.8l-1.6 9.2a1.4 1.4 0 0 1-1.4 1.2H6a1.4 1.4 0 0 1-1.4-1.2Z"/><path d="M6.4 21.2h11.2"/><circle cx="12" cy="13.6" r="1.4"/></g></symbol>
+  <symbol id="i-diamond" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7.6 3.4h8.8l4.2 5.6L12 20.6 3.4 9Z"/><path d="M3.4 9h17.2"/><path d="m7.6 3.4 2.2 5.6L12 20.6 14.2 9l2.2-5.6"/></g></symbol>
+  <symbol id="i-extension" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7.4 3c-1.8 3.4-2.2 6.6-1.2 9.6.8 2.6 2.4 5 4.6 7.4"/><path d="M12 3c-1.4 3.5-1.6 6.8-.6 9.8.8 2.5 2.2 4.9 4.2 7.2"/><path d="M16.6 3c-.9 3.6-.7 6.8.6 9.8 1 2.3 2.4 4.6 4.2 6.8"/></g></symbol>
+  <symbol id="i-hair" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6.4 4.2 17 15.4M17.6 4.2 7 15.4"/><circle cx="5.4" cy="18.2" r="2.6"/><circle cx="18.6" cy="18.2" r="2.6"/><path d="m7.2 16.4 1.6-1.7M16.8 16.4l-1.6-1.7"/></g></symbol>
+  <symbol id="i-heart" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20.6C5.8 16.3 2.8 12.9 2.8 9.3A4.9 4.9 0 0 1 7.7 4.4c1.8 0 3.4.9 4.3 2.3a5.2 5.2 0 0 1 4.3-2.3 4.9 4.9 0 0 1 4.9 4.9c0 3.6-3 7-9.2 11.3Z"/></g></symbol>
+  <symbol id="i-jester" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4.6 17.2C3.4 12.3 2.4 8.6 3.6 7c1.2-1.6 3.2-.4 4.6 1.2 1.4 1.6 2.6 2.4 3.8 2.4s2.4-.8 3.8-2.4c1.4-1.6 3.4-2.8 4.6-1.2 1.2 1.6.2 5.3-1 10.2Z"/><circle cx="3" cy="5.2" r="1.7"/><circle cx="21" cy="5.2" r="1.7"/><rect x="3.4" y="17.2" width="17.2" height="3.4" rx="1.1"/></g></symbol>
+  <symbol id="i-laser" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2.8" y="6.4" width="9.6" height="6.4" rx="1.4"/><path d="M12.4 9.6h3.2"/><path d="m15 5.8 3-1.8M15 13.4l3 1.8M19 9.6h2.4"/><path d="M7.6 12.8v3.4"/><path d="M4.6 20.4h6"/><path d="M7.6 16.2v4.2"/></g></symbol>
+  <symbol id="i-lash" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2.6 14.4C5 11 8.3 9.3 12 9.3s7 1.7 9.4 5.1c-2.4 3.4-5.7 5.1-9.4 5.1s-7-1.7-9.4-5.1Z"/><circle cx="12" cy="14.4" r="2.9"/><path d="M12 6.6V3.8M6.4 7.6 5 4.9M17.6 7.6 19 4.9M2.4 10.2.6 8.4M21.6 10.2l1.8-1.8"/></g></symbol>
+  <symbol id="i-makeup" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9.6 3.6h4.8v6.2H9.6Z"/><path d="M8.6 9.8h6.8v10.6H8.6Z" /><path d="M9.6 3.6c0-.4.4-.8 1-.8h2.8c.6 0 1 .4 1 .8"/><path d="M8.6 13.2h6.8"/></g></symbol>
+  <symbol id="i-massage" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M8.4 12.6V6.2a1.8 1.8 0 0 1 3.6 0v4.8"/><path d="M12 11V4.6a1.8 1.8 0 0 1 3.6 0V11"/><path d="M15.6 11.4V7.6a1.8 1.8 0 0 1 3.6 0v6.8a6.4 6.4 0 0 1-6.4 6.4h-1a4.4 4.4 0 0 1-3.6-1.9l-2.8-4.2a1.8 1.8 0 0 1 2.8-2.2l1.6 1.7"/></g></symbol>
+  <symbol id="i-nails" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M8.8 6.6c0-1.9 1.4-3.4 3.2-3.4s3.2 1.5 3.2 3.4c0 2.1-.5 5.6-1.1 8.7-.2 1.2-1 2-2.1 2s-1.9-.8-2.1-2C9.3 12.2 8.8 8.7 8.8 6.6Z"/><path d="M9.6 9.4h4.8"/><path d="M9.2 19.6h5.6"/></g></symbol>
+  <symbol id="i-pmu" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="m14.8 3.8 5.4 5.4-9.7 9.7-6.4 1 1-6.4Z"/><path d="m13.2 5.4 5.4 5.4M5.5 15.4l3.1 3.1"/><path d="m4.6 19.4-.4 1.4 1.4-.4"/></g></symbol>
+  <symbol id="i-podo" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6.6 20.4c-1.5 0-2.6-1.2-2.6-2.7 0-2 1.1-3.2 1.1-5.3 0-2.4-.5-3.6-.5-5.4 0-2.1 1.4-3.6 3.4-3.6s3.4 1.5 3.4 3.8c0 3.1-.9 4.4-.9 6.6 0 2.3 1 2.9 1 4.5 0 1.3-1 2.1-2.3 2.1Z"/><path d="m14.6 15.6 5.8-5.8M16.4 17.4l5.8-5.8"/></g></symbol>
+  <symbol id="i-program" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3.4 5.2A1.8 1.8 0 0 1 5.2 3.4h5.2a1.6 1.6 0 0 1 1.6 1.6v14.8a1.6 1.6 0 0 0-1.6-1.6H5.2a1.8 1.8 0 0 1-1.8-1.8Z"/><path d="M20.6 5.2a1.8 1.8 0 0 0-1.8-1.8h-5.2a1.6 1.6 0 0 0-1.6 1.6v14.8a1.6 1.6 0 0 1 1.6-1.6h5.2a1.8 1.8 0 0 0 1.8-1.8Z"/><path d="M6 7.4h3.4M6 10.4h3.4M14.6 7.4H18M14.6 10.4H18"/></g></symbol>
+  <symbol id="i-reality" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2.6" y="6.6" width="13" height="10.8" rx="2"/><path d="m15.6 11 4.6-2.9a.8.8 0 0 1 1.2.7v6.4a.8.8 0 0 1-1.2.7l-4.6-2.9Z"/><circle cx="6.4" cy="3.6" r="1.6"/><circle cx="11.4" cy="3.6" r="1.6"/><path d="m6.9 5.1 1.3 1.5M10.9 5.1 9.6 6.6"/></g></symbol>
+  <symbol id="i-shop" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7.6h16l-1.2 11.2a1.8 1.8 0 0 1-1.8 1.6H7a1.8 1.8 0 0 1-1.8-1.6Z"/><path d="M8.6 10V6.6a3.4 3.4 0 0 1 6.8 0V10"/></g></symbol>
+  <symbol id="i-skin" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.2c3.6 4.4 6.6 8.2 6.6 11.3A6.6 6.6 0 0 1 5.4 14.5c0-3.1 3-6.9 6.6-11.3Z"/><path d="M9.2 15.4a2.8 2.8 0 0 0 2.8 2.8"/></g></symbol>
+  <symbol id="i-star" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3.2 2.8 5.7 6.2.9-4.5 4.4 1 6.2-5.5-2.9-5.5 2.9 1-6.2L3 9.8l6.2-.9Z"/></g></symbol>
+  <symbol id="i-team" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="8.6" cy="7.6" r="3.2"/><path d="M3 20.4a5.6 5.6 0 0 1 11.2 0Z"/><path d="M16 5.4a3 3 0 0 1 0 5.6"/><path d="M17 13.6a5.2 5.2 0 0 1 4 5v1.8h-3.8"/></g></symbol>
+  <symbol id="i-trophy" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7.4 3.6h9.2v6.2a4.6 4.6 0 0 1-9.2 0Z"/><path d="M7.4 5.6H5a1.4 1.4 0 0 0-1.4 1.4 4.8 4.8 0 0 0 3.9 4.7"/><path d="M16.6 5.6H19a1.4 1.4 0 0 1 1.4 1.4 4.8 4.8 0 0 1-3.9 4.7"/><path d="M12 14.4v3.2M8.2 20.4h7.6a3.8 3.8 0 0 0-7.6 0Z"/></g></symbol>
+  <symbol id="i-tv" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2.4" y="7.4" width="19.2" height="13.2" rx="2"/><path d="M8.8 7.4 5.6 3.4M15.2 7.4l3.2-4"/><rect x="5.2" y="10.4" width="9.8" height="7.4" rx="1"/><path d="M18.4 10.8v2.2M18.4 15.2v2.2"/></g></symbol>
+  <symbol id="i-wax" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="m15.6 3.4 5 5-8.4 8.4-5-5Z"/><path d="M7.2 11.8 4 15a2.4 2.4 0 0 0 0 3.4l1.6 1.6a2.4 2.4 0 0 0 3.4 0l3.2-3.2"/><path d="M17.2 13.4c1.6 1 2.6 2.2 3 3.6"/></g></symbol>
+</svg>
+<!-- /SPRITE -->
+
+<div class="bg-mesh" aria-hidden="true"></div>
+
+<!-- ============ ШАПКА ============ -->
+<div class="nav-outer">
+  <nav class="nav kasa-nav">
+    <a href="index.html" class="brand" aria-label="Beauty Games">
+      <img class="brand-logo" src="assets/logo-horizontal.svg" alt="Beauty Games" width="330" height="46">
+    </a>
+    <div class="kasa-tools">
+      <div class="kasa-lang" role="group" aria-label="Мова / Язык">
+        <button type="button" data-lang="uk">UA</button>
+        <button type="button" data-lang="ru">RU</button>
+      </div>
+      <button type="button" class="kasa-icon-btn" id="kSettingsBtn" data-ta="settings" aria-label="Налаштування" hidden>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M4 7h10M18 7h2M4 17h4M12 17h8"/><circle cx="16" cy="7" r="2"/><circle cx="10" cy="17" r="2"/></g></svg>
+      </button>
+    </div>
+  </nav>
+</div>
+
+<main class="wrap kasa-wrap" id="kasa">
+
+  <!-- ================= ЗНАЙОМСТВО ================= -->
+  <section class="kasa-onb glass" id="kOnb" hidden>
+    <div class="kasa-dots" id="kDots" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+
+    <!-- 1. напрямок -->
+    <div class="kasa-ob" data-ob="1">
+      <div class="quiz-head">
+        <span class="quiz-kicker" data-t="ob.kick1">Хвилинка знайомства · 1 / 4</span>
+        <h1 class="quiz-title" data-t="ob.h1">Чим ти займаєшся?</h1>
+        <p class="quiz-sub" data-t="ob.s1">Нічого рахувати не треба. Відповідаєш на чотири питання — і далі просто тапаєш після кожної клієнтки.</p>
+      </div>
+      <div class="picker-grid kasa-dirs" id="kDirs" role="group"></div>
+      <label class="kasa-field">
+        <span data-t="ob.cur">Валюта</span>
+        <select id="kCur">
+          <option value="₴">₴</option>
+          <option value="€">€</option>
+          <option value="$">$</option>
+          <option value="£">£</option>
+          <option value="zł">zł</option>
+          <option value="₽">₽</option>
+          <option value="₸">₸</option>
+          <option value="лв">лв</option>
+          <option value="₾">₾</option>
+          <option value="CHF">CHF</option>
+          <option value="Kč">Kč</option>
+          <option value="lei">lei</option>
+        </select>
+      </label>
+    </div>
+
+    <!-- 2. послуги -->
+    <div class="kasa-ob" data-ob="2" hidden>
+      <div class="quiz-head">
+        <span class="quiz-kicker" data-t="ob.kick2">2 / 4</span>
+        <h2 class="quiz-title" data-t="ob.h2">Твої послуги і ціни</h2>
+        <p class="quiz-sub" data-t="ob.s2">Тапни ті, що робиш найчастіше, і впиши ціну. Це будуть кнопки, якими ти записуватимеш клієнток.</p>
+      </div>
+      <div class="pills kasa-sug" id="kSug"></div>
+      <div class="kasa-svcs" id="kSvcs"></div>
+      <button type="button" class="kasa-link" id="kAddSvc" data-t="ob.addSvc">+ своя послуга</button>
+    </div>
+
+    <!-- 3. витрати -->
+    <div class="kasa-ob" data-ob="3" hidden>
+      <div class="quiz-head">
+        <span class="quiz-kicker" data-t="ob.kick3">3 / 4</span>
+        <h2 class="quiz-title" data-t="ob.h3">Що йде не тобі</h2>
+        <p class="quiz-sub" data-t="ob.s3">Приблизно — це нормально. Потім можна поправити.</p>
+      </div>
+      <div class="kasa-q">
+        <span class="kasa-q-l" data-t="ob.rent">Оренда кабінету або місця за місяць</span>
+        <div class="pills" id="kRentMode">
+          <button type="button" class="expo" data-v="0" data-t="ob.rentNo">Не плачу</button>
+          <button type="button" class="expo" data-v="1" data-t="ob.rentYes">Плачу</button>
+        </div>
+        <label class="kasa-field kasa-money" id="kRentBox" hidden>
+          <input type="text" inputmode="decimal" id="kRent" placeholder="8000"><b data-cur></b>
+        </label>
+      </div>
+      <div class="kasa-q">
+        <span class="kasa-q-l" data-t="ob.mat">Скільки йде на матеріали з однієї клієнтки?</span>
+        <div class="pills" id="kMat">
+          <button type="button" class="expo" data-v="low" data-t="ob.matLow">Мало</button>
+          <button type="button" class="expo" data-v="mid" data-t="ob.matMid">Як у всіх</button>
+          <button type="button" class="expo" data-v="high" data-t="ob.matHigh">Багато</button>
+        </div>
+        <span class="kasa-hint" id="kMatHint"></span>
+      </div>
+    </div>
+
+    <!-- 4. податки і мета -->
+    <div class="kasa-ob" data-ob="4" hidden>
+      <div class="quiz-head">
+        <span class="quiz-kicker" data-t="ob.kick4">4 / 4</span>
+        <h2 class="quiz-title" data-t="ob.h4">Податки і мрія</h2>
+        <p class="quiz-sub" data-t="ob.s4">Податок відкладемо автоматично, щоб він не став сюрпризом.</p>
+      </div>
+      <div class="kasa-q">
+        <span class="kasa-q-l" data-t="ob.tax">Податки</span>
+        <div class="pills" id="kTaxMode">
+          <button type="button" class="expo" data-v="none" data-t="ob.taxNone">Не плачу</button>
+          <button type="button" class="expo" data-v="pct" data-t="ob.taxPct">Відсоток</button>
+          <button type="button" class="expo" data-v="fix" data-t="ob.taxFix">Фіксована сума</button>
+        </div>
+        <div class="pills" id="kTaxPcts" hidden>
+          <button type="button" class="expo" data-v="3">3%</button>
+          <button type="button" class="expo" data-v="5">5%</button>
+          <button type="button" class="expo" data-v="6">6%</button>
+          <button type="button" class="expo" data-v="10">10%</button>
+          <button type="button" class="expo" data-v="15">15%</button>
+          <button type="button" class="expo" data-v="20">20%</button>
+        </div>
+        <label class="kasa-field kasa-money" id="kTaxFixBox" hidden>
+          <input type="text" inputmode="decimal" id="kTaxFix" placeholder="1700"><b data-cur></b>
+          <small data-t="ob.perMonth">на місяць</small>
+        </label>
+      </div>
+      <div class="kasa-q">
+        <span class="kasa-q-l" data-t="ob.goal">Скільки хочеш мати собі за місяць?</span>
+        <label class="kasa-field kasa-money">
+          <input type="text" inputmode="decimal" id="kGoal" placeholder="40000"><b data-cur></b>
+        </label>
+        <span class="kasa-hint" data-t="ob.goalHint">Необов’язково. Покажемо, скільки лишилося до мети.</span>
+      </div>
+    </div>
+
+    <p class="kasa-err" id="kObErr" hidden></p>
+    <div class="kasa-ob-nav">
+      <button type="button" class="btn btn-ghost" id="kObBack" data-t="ob.back">Назад</button>
+      <button type="button" class="btn btn-primary" id="kObNext" data-t="ob.next">Далі</button>
+    </div>
+  </section>
+
+  <!-- ================= ГОЛОВНИЙ ЕКРАН ================= -->
+  <section class="kasa-app" id="kApp" hidden>
+
+    <div class="kasa-month">
+      <button type="button" id="kPrev" aria-label="‹">‹</button>
+      <b id="kMonth"></b>
+      <button type="button" id="kNext" aria-label="›">›</button>
+    </div>
+
+    <div class="kasa-hero glass bloom">
+      <span class="kasa-hero-l" data-t="app.yours">Твої в цьому місяці</span>
+      <b class="kasa-hero-n" id="kYours">0</b>
+      <span class="kasa-hero-s" id="kYoursSub"></span>
+      <div class="kasa-goal" id="kGoalBox" hidden>
+        <div class="kasa-goal-bar"><span id="kGoalBar"></span></div>
+        <span class="kasa-goal-t" id="kGoalT"></span>
+      </div>
+    </div>
+
+    <div class="kasa-actions">
+      <button type="button" class="btn btn-primary kasa-big" id="kAddClient"><span aria-hidden="true">+</span> <span data-t="app.client">Клієнтка</span></button>
+      <button type="button" class="btn btn-ghost kasa-big" id="kAddExp"><span aria-hidden="true">−</span> <span data-t="app.expense">Витрата</span></button>
+    </div>
+
+    <div class="kasa-env">
+      <div class="kasa-env-head">
+        <span data-t="app.envH">Ці гроші не чіпай</span>
+        <small data-t="app.envS">вони вже чиїсь</small>
+      </div>
+      <div class="kasa-env-grid" id="kEnv"></div>
+    </div>
+
+    <div class="kasa-total" id="kTotal"></div>
+
+    <button type="button" class="btn btn-ghost btn-block kasa-story" id="kStory" data-t="app.story">Підсумок для сторіс</button>
+
+    <div class="kasa-feed" id="kFeed"></div>
+  </section>
+
+  <p class="kasa-privacy" data-t="app.privacy">Усі цифри зберігаються тільки в твоєму телефоні й нікуди не надсилаються.</p>
+</main>
+
+<!-- ================= ШТОРКИ ================= -->
+<dialog class="kasa-sheet" id="dClient">
+  <div class="kasa-sheet-in">
+    <div class="kasa-sheet-head"><b data-t="cl.h">Що зробила?</b><button type="button" class="kasa-x" data-close aria-label="×">×</button></div>
+    <p class="kasa-hint" data-t="cl.s">Один тап — і записано.</p>
+    <div class="kasa-svc-grid" id="kSvcGrid"></div>
+    <details class="kasa-more">
+      <summary data-t="cl.other">Інша сума або чайові</summary>
+      <label class="kasa-field kasa-money"><span data-t="cl.sum">Сума</span><input type="text" inputmode="decimal" id="kClSum"><b data-cur></b></label>
+      <label class="kasa-field kasa-money"><span data-t="cl.tip">Чайові</span><input type="text" inputmode="decimal" id="kClTip" placeholder="0"><b data-cur></b></label>
+      <button type="button" class="btn btn-primary btn-block" id="kClSave" data-t="cl.save">Записати</button>
+    </details>
+  </div>
+</dialog>
+
+<dialog class="kasa-sheet" id="dExp">
+  <div class="kasa-sheet-in">
+    <div class="kasa-sheet-head"><b data-t="ex.h">На що пішли гроші?</b><button type="button" class="kasa-x" data-close aria-label="×">×</button></div>
+    <div class="pills" id="kExpCat">
+      <button type="button" class="expo on" data-v="mat" data-t="ex.mat">Матеріали</button>
+      <button type="button" class="expo" data-v="ads" data-t="ex.ads">Реклама</button>
+      <button type="button" class="expo" data-v="edu" data-t="ex.edu">Навчання</button>
+      <button type="button" class="expo" data-v="tool" data-t="ex.tool">Інструмент</button>
+      <button type="button" class="expo" data-v="other" data-t="ex.other">Інше</button>
+    </div>
+    <span class="kasa-hint" id="kExpHint"></span>
+    <label class="kasa-field kasa-money"><span data-t="cl.sum">Сума</span><input type="text" inputmode="decimal" id="kExpSum"><b data-cur></b></label>
+    <button type="button" class="btn btn-primary btn-block" id="kExpSave" data-t="cl.save">Записати</button>
+  </div>
+</dialog>
+
+<dialog class="kasa-sheet" id="dStory">
+  <div class="kasa-sheet-in">
+    <div class="kasa-sheet-head">
+      <div class="kasa-lang kasa-period" role="group">
+        <button type="button" data-per="week" data-t="st.week">Тиждень</button>
+        <button type="button" data-per="month" data-t="st.month">Місяць</button>
+      </div>
+      <button type="button" class="kasa-x" data-close aria-label="×">×</button>
+    </div>
+    <div class="kasa-card" id="kCard"></div>
+    <p class="kasa-hint" data-t="st.hint">Зроби скриншот — і в сторіс. Відмітиш @beauty_games.pro — передамо привіт.</p>
+  </div>
+</dialog>
+
+<dialog class="kasa-sheet" id="dSet">
+  <div class="kasa-sheet-in">
+    <div class="kasa-sheet-head"><b data-t="set.h">Налаштування</b><button type="button" class="kasa-x" data-close aria-label="×">×</button></div>
+    <button type="button" class="btn btn-ghost btn-block" id="kRedo" data-t="set.redo">Змінити послуги, ціни, витрати</button>
+    <button type="button" class="btn btn-ghost btn-block" id="kBackup" data-t="set.backup">Зберегти копію в файл</button>
+    <label class="btn btn-ghost btn-block kasa-file"><span data-t="set.restore">Відновити з файлу</span><input type="file" id="kRestore" accept="application/json,.json"></label>
+    <p class="kasa-hint" data-t="set.backupHint">Копія знадобиться, якщо зміниш телефон або почистиш браузер.</p>
+    <button type="button" class="kasa-link kasa-danger" id="kReset" data-t="set.reset">Стерти все і почати заново</button>
+  </div>
+</dialog>
+
+<div class="kasa-toast" id="kToast" role="status" aria-live="polite" hidden><span id="kToastT"></span><button type="button" id="kUndo" data-t="toast.undo">Скасувати</button></div>
+
+<script src="kasa.js?v=7770c7e1"></script>

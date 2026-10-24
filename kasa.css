@@ -1,0 +1,243 @@
+/* ============================================================
+   BEAUTY GAMES — каса майстра
+   ------------------------------------------------------------
+   Вузька колонка «як застосунок»: на телефоні це головний
+   сценарій, на десктопі — та сама колонка по центру.
+   ============================================================ */
+
+.kasa-wrap{
+  max-width:560px;
+  padding-top:calc(var(--nav-h) + 34px);
+  padding-bottom:calc(60px + env(safe-area-inset-bottom));
+}
+
+/* ---------- шапка ---------- */
+.kasa-nav{justify-content:space-between}
+.kasa-tools{display:flex;align-items:center;gap:10px}
+.kasa-lang{
+  display:inline-flex;padding:3px;border-radius:var(--r-pill);
+  background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);
+}
+.kasa-lang button{
+  padding:7px 12px;border:0;border-radius:var(--r-pill);background:none;cursor:pointer;
+  font-family:"Montserrat",sans-serif;font-weight:800;font-size:11px;letter-spacing:.08em;
+  color:var(--muted);transition:background .16s ease,color .16s ease;
+}
+.kasa-lang button.on{background:var(--pink);color:#fff}
+.kasa-icon-btn{
+  width:38px;height:38px;display:grid;place-items:center;border-radius:50%;cursor:pointer;
+  background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);color:var(--text);
+}
+.kasa-icon-btn svg{width:20px;height:20px}
+@media (max-width:420px){
+  .kasa-nav .brand-logo{height:20px}
+}
+
+/* ---------- знайомство ---------- */
+.kasa-onb{padding:clamp(20px,4vw,30px);border-radius:var(--r-lg)}
+.kasa-dots{display:flex;gap:6px;margin-bottom:18px}
+.kasa-dots i{flex:1;height:4px;border-radius:4px;background:rgba(255,255,255,.12);transition:background .2s}
+.kasa-dots i.on{background:var(--pink)}
+.kasa-dirs{grid-template-columns:repeat(4,1fr);margin-bottom:18px}
+@media (max-width:560px){
+  .kasa-dirs{grid-template-columns:repeat(3,1fr)}
+  .kasa-dirs .chr-nm{font-size:8.5px;overflow-wrap:normal}
+}
+
+.kasa-q{display:flex;flex-direction:column;gap:10px;margin-bottom:22px}
+.kasa-q-l{font-weight:700;color:var(--white);font-size:15px}
+.kasa-hint{font-size:13px;color:var(--muted);line-height:1.45}
+.kasa-err{margin:0 0 12px;color:var(--pink-soft);font-weight:600;font-size:14px}
+
+.kasa-field{display:flex;flex-direction:column;gap:6px;font-size:13px;color:var(--muted)}
+.kasa-field select,.kasa-field input{
+  width:100%;padding:13px 14px;border-radius:var(--r-sm);
+  background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.16);
+  color:var(--white);font:600 16px/1.2 "Manrope",sans-serif;
+}
+.kasa-field select{max-width:140px}
+.kasa-field select option{background:var(--ink-2)}
+.kasa-field input:focus,.kasa-field select:focus{outline:none;border-color:var(--pink)}
+.kasa-money{display:grid;grid-template-columns:auto 1fr auto;align-items:center;column-gap:10px;row-gap:6px}
+.kasa-money > span{grid-column:1/-1}
+.kasa-money input{grid-column:1/3}
+.kasa-money b{color:var(--white);font-size:16px;min-width:22px}
+.kasa-money small{grid-column:1/-1}
+
+.kasa-sug{margin-bottom:16px}
+.kasa-sug .expo{font-size:12px;padding:9px 14px}
+.kasa-svcs{display:flex;flex-direction:column;gap:8px;margin-bottom:12px}
+.kasa-svc{
+  display:grid;grid-template-columns:1fr 112px auto;gap:8px;align-items:center;
+}
+.kasa-svc input{
+  min-width:0;padding:12px;border-radius:var(--r-sm);
+  background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.16);
+  color:var(--white);font:600 15px/1.2 "Manrope",sans-serif;
+}
+.kasa-svc input:focus{outline:none;border-color:var(--pink)}
+.kasa-svc input.bad{border-color:var(--pink)}
+.kasa-x{
+  width:34px;height:34px;flex:none;border-radius:50%;border:0;cursor:pointer;
+  background:rgba(255,255,255,.07);color:var(--muted);font-size:20px;line-height:1;
+}
+.kasa-x:hover{color:#fff;background:rgba(255,255,255,.14)}
+.kasa-link{
+  border:0;background:none;padding:6px 0;cursor:pointer;align-self:flex-start;
+  color:var(--pink-soft);font:700 14px "Manrope",sans-serif;
+}
+.kasa-danger{color:var(--muted);margin-top:8px;text-decoration:underline}
+
+.kasa-ob-nav{display:flex;gap:10px;justify-content:space-between;margin-top:8px}
+.kasa-ob-nav .btn{flex:1}
+
+/* ---------- головний екран ---------- */
+.kasa-month{
+  display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;
+  font-family:"Montserrat",sans-serif;font-weight:800;text-transform:uppercase;
+  letter-spacing:.08em;font-size:13px;color:var(--text);
+}
+.kasa-month button{
+  width:38px;height:38px;border-radius:50%;cursor:pointer;font-size:20px;line-height:1;
+  background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);color:var(--text);
+}
+.kasa-month button:disabled{opacity:.3;cursor:default}
+
+.kasa-hero{
+  display:flex;flex-direction:column;align-items:center;text-align:center;gap:6px;
+  padding:28px 22px 24px;border-radius:var(--r-lg);
+}
+.kasa-hero-l{
+  font-family:"Montserrat",sans-serif;font-weight:700;font-size:12px;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--pink-soft);
+}
+.kasa-hero-n{
+  font-family:"Montserrat",sans-serif;font-weight:900;color:#fff;letter-spacing:-.03em;
+  font-size:clamp(44px,13vw,68px);line-height:1.02;font-variant-numeric:tabular-nums;
+  text-shadow:0 0 34px rgba(255,46,136,.45);
+}
+.kasa-hero-s{font-size:14px;color:var(--text);max-width:34ch;line-height:1.45}
+.kasa-hero-s:empty{display:none}
+.kasa-goal{width:100%;margin-top:12px;display:flex;flex-direction:column;gap:7px}
+.kasa-goal-bar{height:10px;border-radius:10px;background:rgba(255,255,255,.1);overflow:hidden}
+.kasa-goal-bar span{
+  display:block;height:100%;width:0;border-radius:10px;
+  background:linear-gradient(90deg,var(--gold-3),var(--gold-1));
+  transition:width .5s cubic-bezier(.2,.8,.2,1);
+}
+.kasa-goal-t{font-size:13px;color:var(--muted)}
+
+.kasa-actions{display:grid;grid-template-columns:1.4fr 1fr;gap:10px;margin:16px 0 22px}
+.kasa-big{padding:20px 14px;font-size:14px}
+.kasa-big > span[aria-hidden]{font-size:22px;line-height:0;margin-right:2px}
+
+.kasa-env-head{display:flex;align-items:baseline;gap:8px;margin-bottom:10px}
+.kasa-env-head span{
+  font-family:"Montserrat",sans-serif;font-weight:800;font-size:12px;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--text);
+}
+.kasa-env-head small{font-size:12px;color:var(--faint)}
+.kasa-env-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:8px}
+.kasa-tile{
+  padding:14px;border-radius:var(--r-md);
+  background:rgba(255,255,255,.045);border:1px solid rgba(255,255,255,.1);
+  display:flex;flex-direction:column;gap:4px;
+}
+.kasa-tile span{font-size:12.5px;color:var(--muted)}
+.kasa-tile b{font:800 20px "Montserrat",sans-serif;color:var(--white);font-variant-numeric:tabular-nums}
+.kasa-tile small{font-size:12px;color:var(--faint);line-height:1.35}
+.kasa-tile-bar{height:5px;border-radius:5px;background:rgba(255,255,255,.1);overflow:hidden;margin-top:4px}
+.kasa-tile-bar i{display:block;height:100%;background:var(--pink-soft);border-radius:5px}
+
+.kasa-total{margin:16px 2px;font-size:13.5px;color:var(--muted);text-align:center;line-height:1.5}
+.kasa-total b{color:var(--text)}
+.kasa-story{margin-bottom:26px}
+
+.kasa-feed{display:flex;flex-direction:column;gap:16px}
+.kasa-day h3{
+  margin:0 0 8px;font:700 12px "Montserrat",sans-serif;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--faint);display:flex;justify-content:space-between;
+}
+.kasa-row{
+  display:flex;align-items:center;gap:10px;padding:11px 12px;border-radius:var(--r-sm);
+  background:rgba(255,255,255,.035);border:1px solid rgba(255,255,255,.07);margin-bottom:6px;
+}
+.kasa-row-n{flex:1;min-width:0;font-size:14.5px;color:var(--text);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.kasa-row-n small{color:var(--faint);margin-left:6px}
+.kasa-row-a{font:800 15px "Montserrat",sans-serif;font-variant-numeric:tabular-nums;color:var(--white)}
+.kasa-row-a.neg{color:var(--muted)}
+.kasa-row .kasa-x{width:28px;height:28px;font-size:17px}
+.kasa-empty{text-align:center;color:var(--muted);font-size:14px;padding:12px 0}
+
+.kasa-privacy{margin:30px auto 0;max-width:40ch;text-align:center;font-size:12px;color:var(--faint)}
+
+/* ---------- шторки ---------- */
+.kasa-sheet{
+  width:100%;max-width:560px;max-height:88vh;margin:auto auto 0;padding:0;border:0;
+  border-radius:var(--r-lg) var(--r-lg) 0 0;
+  background:linear-gradient(180deg,#1E1124,var(--ink-2));
+  color:var(--text);box-shadow:0 -20px 60px rgba(0,0,0,.6);
+  border-top:1px solid rgba(255,255,255,.14);
+}
+@media (min-width:640px){.kasa-sheet{margin:auto;border-radius:var(--r-lg)}}
+.kasa-sheet::backdrop{background:rgba(5,4,9,.72);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
+.kasa-sheet[open]{animation:kasaUp .24s cubic-bezier(.2,.8,.2,1)}
+@keyframes kasaUp{from{transform:translateY(40px);opacity:0}to{transform:none;opacity:1}}
+.kasa-sheet-in{
+  display:flex;flex-direction:column;gap:14px;
+  padding:20px 18px calc(22px + env(safe-area-inset-bottom));
+}
+.kasa-sheet-head{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.kasa-sheet-head > b{font:900 19px "Montserrat",sans-serif;color:#fff}
+
+.kasa-svc-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}
+.kasa-svc-btn{
+  display:flex;flex-direction:column;align-items:flex-start;gap:6px;text-align:left;
+  padding:16px 14px;border-radius:var(--r-md);cursor:pointer;
+  background:rgba(255,46,136,.1);border:1.5px solid rgba(255,46,136,.4);color:var(--text);
+  font:600 14px/1.3 "Manrope",sans-serif;transition:transform .12s ease,background .16s ease;
+}
+.kasa-svc-btn b{font:900 18px "Montserrat",sans-serif;color:#fff}
+.kasa-svc-btn:hover{background:rgba(255,46,136,.2)}
+.kasa-svc-btn:active{transform:scale(.97)}
+.kasa-more summary{cursor:pointer;color:var(--pink-soft);font-weight:700;font-size:14px;padding:4px 0;list-style:none}
+.kasa-more summary::-webkit-details-marker{display:none}
+.kasa-more[open]{display:flex;flex-direction:column;gap:12px}
+.kasa-sheet .btn-block + .btn-block{margin-top:-4px}
+.kasa-file{position:relative;cursor:pointer}
+.kasa-file input{position:absolute;inset:0;opacity:0;cursor:pointer}
+.kasa-period button{padding:9px 16px;font-size:12px}
+
+/* ---------- картка для сторіс ---------- */
+.kasa-card{
+  position:relative;overflow:hidden;aspect-ratio:9/12;max-height:60vh;margin:0 auto;width:100%;
+  border-radius:22px;padding:26px 22px;display:flex;flex-direction:column;
+  background:
+    radial-gradient(120% 70% at 50% 110%,rgba(255,46,136,.75),transparent 62%),
+    radial-gradient(80% 50% at 0% 0%,rgba(233,198,126,.25),transparent 60%),
+    #120B16;
+  border:1px solid rgba(255,255,255,.14);
+}
+.kasa-card-logo{height:22px;width:auto;align-self:flex-start;opacity:.95}
+.kasa-card-per{margin-top:auto;font:800 13px "Montserrat",sans-serif;letter-spacing:.14em;text-transform:uppercase;color:var(--gold-1)}
+.kasa-card-n{font:900 clamp(40px,12vw,58px)/1 "Montserrat",sans-serif;color:#fff;letter-spacing:-.03em;margin:8px 0 4px}
+.kasa-card-s{font-size:14px;color:rgba(255,255,255,.85)}
+.kasa-card-row{display:flex;gap:10px;margin-top:20px}
+.kasa-card-row div{flex:1;padding:12px;border-radius:14px;background:rgba(0,0,0,.28);border:1px solid rgba(255,255,255,.12)}
+.kasa-card-row b{display:block;font:900 22px "Montserrat",sans-serif;color:#fff}
+.kasa-card-row span{font-size:12px;color:rgba(255,255,255,.75)}
+.kasa-card-tag{margin-top:18px;font:700 11px "Montserrat",sans-serif;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.6)}
+
+/* ---------- тост ---------- */
+.kasa-toast{
+  position:fixed;left:50%;bottom:calc(20px + env(safe-area-inset-bottom));transform:translateX(-50%);
+  z-index:90;display:flex;align-items:center;gap:14px;padding:12px 12px 12px 18px;
+  border-radius:var(--r-pill);background:#fff;color:var(--ink);
+  font:700 14px "Manrope",sans-serif;box-shadow:0 18px 40px rgba(0,0,0,.5);
+  max-width:calc(100vw - 32px);
+}
+.kasa-toast[hidden]{display:none}
+.kasa-toast button{
+  border:0;border-radius:var(--r-pill);padding:8px 14px;cursor:pointer;
+  background:var(--ink);color:#fff;font:800 12px "Montserrat",sans-serif;letter-spacing:.06em;text-transform:uppercase;
+}

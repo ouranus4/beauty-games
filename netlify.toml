@@ -23,6 +23,11 @@
   to = "/calculator.html"
   status = 200
 
+[[redirects]]
+  from = "/kasa"
+  to = "/kasa.html"
+  status = 200
+
 # ---------- безпека ----------
 [[headers]]
   for = "/*"
@@ -45,6 +50,17 @@
   for = "/*.css"
   [headers.values]
     Cache-Control = "public, max-age=3600"
+
+# Сервіс-воркер каси і маніфест мають оновлюватися одразу.
+[[headers]]
+  for = "/kasa-sw.js"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
+
+[[headers]]
+  for = "/kasa.webmanifest"
+  [headers.values]
+    Content-Type = "application/manifest+json"
 
 [[headers]]
   for = "/*.js"
