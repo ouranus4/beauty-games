@@ -24,6 +24,11 @@
   status = 200
 
 [[redirects]]
+  from = "/zakieva"
+  to = "/zakieva.html"
+  status = 200
+
+[[redirects]]
   from = "/calc"
   to = "/calculator.html"
   status = 200

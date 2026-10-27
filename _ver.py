@@ -15,7 +15,7 @@ import io
 import re
 
 ASSETS = ('styles.css', 'squid.css', 'app.js', 'fx.js', 'casting.css', 'casting.js', 'app.ru.js', 'leads.js', 'calc.js', 'calc.css', 'calc-costs.js', 'curator.css', 'price.css', 'kasa.js', 'kasa.css')
-PAGES = ('index.html', 'partners.html', 'casting.html', 'curator.html', 'price.html', 'ru.html', 'calculator.html', 'kasa.html', 'natalia.html')
+PAGES = ('index.html', 'partners.html', 'casting.html', 'curator.html', 'price.html', 'ru.html', 'calculator.html', 'kasa.html', 'natalia.html', 'zakieva.html')
 
 
 def digest(path):
