@@ -19,8 +19,8 @@
   status = 200
 
 [[redirects]]
-  from = "/romanenko"
-  to = "/romanenko.html"
+  from = "/natalia"
+  to = "/natalia.html"
   status = 200
 
 [[redirects]]
