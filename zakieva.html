@@ -11,11 +11,14 @@
 <link rel="stylesheet" href="squid.css?v=db6b5ecf">
 <link rel="stylesheet" href="curator.css?v=89fed4a8">
 <style>
-.zk-person{display:flex;align-items:center;gap:18px}
-.zk-person img{width:96px;height:96px;border-radius:50%;object-fit:cover;border:2px solid #E6007E;box-shadow:0 0 28px rgba(230,0,126,.45);flex:none}
-.zk-person b{display:block;font-family:Montserrat,sans-serif;font-weight:800;font-size:18px;color:#fff}
-.zk-person span{display:block;margin-top:4px;font-size:14px;color:rgba(255,255,255,.7)}
-@media (max-width:520px){.zk-person img{width:76px;height:76px}.zk-person b{font-size:16px}.zk-person span{font-size:13px}}
+.zk-person{display:flex;align-items:center;gap:16px}
+.zk-person img{width:84px;height:84px;border-radius:50%;object-fit:cover;object-position:center 30%;border:2px solid #E6007E;box-shadow:0 0 28px rgba(230,0,126,.45);flex:none}
+.zk-person .eyebrow{display:inline-block;margin-bottom:6px}
+.zk-person b{display:block;font-family:Montserrat,sans-serif;font-weight:800;font-size:20px;color:#fff}
+.zk-dark .cur-role-i{background:rgba(255,255,255,.04);border:1px solid rgba(255,46,136,.35);box-shadow:none}
+.zk-dark .cur-role-i h3{color:#fff}
+.zk-dark .cur-role-i p{margin:0;font-size:14.5px;line-height:1.55;color:rgba(255,255,255,.72)}
+@media (max-width:520px){.zk-person img{width:68px;height:68px}.zk-person b{font-size:17px}}
 </style>
 
 <!-- SPRITE -->
@@ -71,13 +74,13 @@
       <img class="brand-logo" src="assets/logo-horizontal.svg" alt="Beauty Games by Verbova Iryna — reality show, championship, education" width="330" height="46">
     </a>
     <div class="nav-links">
+      <a href="#show">Проект</a>
+      <a href="#get">Для вас</a>
       <a href="#why">Почему вы</a>
-      <a href="#show">Реалити</a>
       <a href="#formats">Форматы</a>
-      <a href="#options">Условия</a>
     </div>
     <a href="index.html" class="nav-switch">О сезоне</a>
-    <a href="#apply" class="btn btn-primary btn-sm">Познакомиться</a>
+    <a href="#apply" class="btn btn-primary btn-sm">Сотрудничать</a>
     <button class="nav-burger" id="burger" aria-label="Меню" aria-expanded="false">
       <span class="burger-lines"><i></i><i></i><i></i></span>
       <span class="burger-txt">Меню</span>
@@ -86,19 +89,22 @@
 </div>
 
 <div class="mobile-menu" id="mobileMenu">
-  <a href="#why">Почему именно вы</a>
-  <a href="#show">Реалити-шоу</a>
-  <a href="#formats">Форматы сотрудничества</a>
+  <a href="#show">О проекте</a>
   <a href="#get">Что вы получаете</a>
-  <a href="#options">Условия</a>
+  <a href="#why">Почему именно вы</a>
+  <a href="#formats">Ваша роль в проекте</a>
+  <a href="#options">Как начнём</a>
   <a href="index.html">О сезоне Beauty Games</a>
-  <a href="#apply" class="btn btn-primary">Познакомиться</a>
+  <a href="#apply" class="btn btn-primary">Сотрудничать</a>
 </div>
 
 <!-- ============ ГЕРОЙ ============ -->
 <header class="hero" id="top">
   <div class="wrap hero-inner">
-    <span class="eyebrow">Предложение о сотрудничестве · для Татьяны Закиевой</span>
+    <div class="zk-person">
+      <img src="assets/people/zakieva.jpg" alt="Татьяна Закиева" width="420" height="420">
+      <div><span class="eyebrow">Предложение о сотрудничестве</span><b>для Татьяны Закиевой</b></div>
+    </div>
     <h1 class="h-xl">Партнёр<br><span class="glow">Beauty Games</span></h1>
 
     <div class="pills">
@@ -107,95 +113,41 @@
       <span class="pill"><svg class="icon" aria-hidden="true"><use href="#i-team"/></svg>Европа · США · Украина</span>
     </div>
 
-    <div class="zk-person">
-      <img src="assets/people/zakieva.jpg" alt="Татьяна Закиева" width="420" height="420">
-      <div><b>Татьяна Закиева</b><span>Архитектор бизнес-симуляций · 10 лет в продажах</span></div>
-    </div>
-
-    <p class="lede cur-lede">Татьяна, вы превращаете продажи в систему, а обучение — в события. Ровно этого не хватает мастерам на пути к собственному бизнесу. Приглашаем вас партнёром в Beauty Games — ниже, как мы видим ваше участие и что оно даёт вам.</p>
+    <p class="lede cur-lede">Татьяна, приглашаем вас партнёром в Beauty Games. Ниже — коротко о проекте, что партнёрство даёт вам и как ваши симуляции и системные продажи усилят наших участниц.</p>
 
     <div class="cur-cta">
-      <a href="#formats" class="btn btn-primary">Форматы сотрудничества</a>
-      <a href="#show" class="btn btn-ghost">О реалити-шоу</a>
+      <a href="#apply" class="btn btn-primary">Сотрудничать</a>
+      <a href="#show" class="btn btn-ghost">О проекте</a>
     </div>
   </div>
 </header>
 
-<!-- ============ ПОЧЕМУ ВЫ ============ -->
-<section class="sec sec-light" id="why">
-  <div class="wrap">
-    <div class="sec-head rv">
-      <span class="eyebrow">Почему именно вы</span>
-      <h2 class="h-lg">Ваш подход — <span class="glow">то, что нужно участницам</span></h2>
-      <div class="sec-rule"></div>
-      <p class="lede">Техникам наши мастера уже научились. Им не хватает системы в продажах, умения управлять людьми и принимать решения с последствиями.</p>
-    </div>
-
-    <div class="cur-role rv">
-      <div class="cur-role-i">
-        <svg class="icon" aria-hidden="true"><use href="#i-program"/></svg>
-        <h3>Архитектор симуляций</h3>
-        <p>Вы строите симуляционные программы с полным погружением: своя роль в игре, решения с последствиями, разбор каждого решения. Мастера учатся действием, а не лекцией.</p>
-      </div>
-      <div class="cur-role-i">
-        <svg class="icon" aria-hidden="true"><use href="#i-coin"/></svg>
-        <h3>10 лет в продажах</h3>
-        <p>Вы превращаете продажи в систему. Участницам это нужно, чтобы перестать продавать «по настроению» и поднять чек.</p>
-      </div>
-      <div class="cur-role-i">
-        <svg class="icon" aria-hidden="true"><use href="#i-star"/></svg>
-        <h3>Обучение как событие</h3>
-        <p>Организатор, автор и ведущая бизнес-событий. Для реалити это готовый сюжет: зритель видит, как участницы принимают решения и меняются.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ============ РЕАЛИТИ ============ -->
+<!-- ============ ПРОЕКТ ============ -->
 <section class="sec" id="show">
   <div class="wrap">
     <div class="sec-head rv">
-      <span class="eyebrow">Beauty business reality show</span>
-      <h2 class="h-lg">Не только результат, а <span class="glow">настоящий путь</span></h2>
+      <span class="eyebrow">О проекте</span>
+      <h2 class="h-lg">Beauty Games — <span class="glow">beauty business reality show</span></h2>
       <div class="sec-rule"></div>
-      <p class="lede">Beauty Games — международный трансформационный проект бьюти-индустрии: бизнес-программа, командные соревнования, реалити-шоу и онлайн-чемпионат. Наша задача — вывести мастера из формата «работаю руками» в формат предпринимателя.</p>
+      <p class="lede">Международный трансформационный проект бьюти-индустрии: бизнес-программа, командные соревнования, реалити-шоу и онлайн-чемпионат. Наша задача — вывести мастера из формата «работаю руками» в формат предпринимателя.</p>
     </div>
 
     <div class="cur-stars rv">
       <div class="cur-star">
-        <svg class="icon" aria-hidden="true"><use href="#i-program"/></svg>
+        <svg class="icon" aria-hidden="true"><use href="#i-tv"/></svg>
         <div>
-          <h3>Вы — проекту</h3>
-          <p>Симуляции, системные продажи и экспертиза управления — внутри реалити.</p>
+          <h3>Реалити весь сезон</h3>
+          <p>Прямые эфиры, командные бизнес-задания, зрительские голосования и офлайн Гранд-Финал со съёмками.</p>
         </div>
       </div>
       <div class="cur-star">
-        <svg class="icon" aria-hidden="true"><use href="#i-tv"/></svg>
+        <svg class="icon" aria-hidden="true"><use href="#i-team"/></svg>
         <div>
-          <h3>Проект — вам</h3>
-          <p>Медийность весь сезон и выход на новый рынок — бьюти-бизнес: мастера и владельцы салонов, студий и школ.</p>
+          <h3>Аудитория — бьюти-бизнес</h3>
+          <p>Мастера, преподаватели, владельцы салонов, студий и школ из Европы, США и Украины, которые инвестируют в свой рост.</p>
         </div>
       </div>
     </div>
-  </div>
-</section>
-
-<!-- ============ ФОРМАТЫ ============ -->
-<section class="sec" id="formats">
-  <div class="wrap">
-    <div class="sec-head rv">
-      <span class="eyebrow">Как мы можем сотрудничать</span>
-      <h2 class="h-lg">От симуляции до <span class="glow">Гранд-Финала</span></h2>
-      <div class="sec-rule"></div>
-      <p class="lede">Форматы можно комбинировать — объём участия выбираем вместе.</p>
-    </div>
-
-    <ul class="cur-duties rv">
-      <li><span class="n">1</span><span><b>Бизнес-симуляция для команд реалити.</b> Ваш формат, адаптированный под бьюти-бизнес — салон, студию, школу. Команды проходят симуляцию в кадре: своя роль в игре, решения с последствиями и разбор каждого решения.</span></li>
-      <li><span class="n">2</span><span><b>Эфир «Продажи как система».</b> Прямой эфир для всех участниц: как мастеру перестать продавать «по настроению» и выстроить продажи как систему. Тема согласуется заранее, запись остаётся у вас.</span></li>
-      <li><span class="n">3</span><span><b>Эксперт и судья бизнес-заданий.</b> Оценка бизнес-заданий команд и честная обратная связь в кадре — включая финальное бизнес-задание на Гранд-Финале.</span></li>
-      <li><span class="n">4</span><span><b>Участницы из вашей аудитории.</b> Ваша аудитория — предприниматели в Румынии и Европе, наше ядро — украинки и русскоязычные мастера за границей. Вы рекомендуете проект и получаете вознаграждение за каждую участницу.</span></li>
-    </ul>
   </div>
 </section>
 
@@ -204,7 +156,7 @@
   <div class="wrap">
     <div class="sec-head rv">
       <span class="eyebrow">Что вы получаете</span>
-      <h2 class="h-lg">На экранах <span class="glow">весь сезон</span></h2>
+      <h2 class="h-lg">Медийность и <span class="glow">новый рынок</span></h2>
       <div class="sec-rule"></div>
     </div>
 
@@ -212,26 +164,15 @@
       <li><b>Медийность:</b> съёмки в контенте реалити — весь сезон на экранах аудитории проекта</li>
       <li><b>Эфиры, подкасты и YouTube-канал</b> проекта, запись выступлений для портфолио</li>
       <li><b>Анонсы</b> в Instagram @beauty_games.pro и Telegram-канале проекта</li>
-      <li><b>Выход на новый рынок:</b> мастера и владельцы салонов, студий и школ, которые инвестируют в свой рост, — потенциальные клиенты ваших программ</li>
+      <li><b>Выход на новый рынок:</b> мастера и владельцы салонов, студий и школ — потенциальные клиенты ваших программ</li>
       <li><b>Статус «Партнёр Beauty Games 2026»</b> и официальный сертификат</li>
       <li><b>Закрытый партнёрский чат</b> и нетворкинг с командой, кураторами и спикерами</li>
     </ul>
-  </div>
-</section>
 
-<!-- ============ УСЛОВИЯ ============ -->
-<section class="sec" id="options">
-  <div class="wrap">
-    <div class="sec-head rv">
-      <span class="eyebrow">Вознаграждение амбассадора</span>
-      <h2 class="h-lg">Без взноса — <span class="glow">с каждой продажи</span></h2>
-      <div class="sec-rule"></div>
-    </div>
-
-    <div class="packs" style="max-width:560px;margin:0 auto">
+    <div class="packs" style="max-width:560px;margin:clamp(34px,5vw,54px) auto 0">
       <div class="pack glass bloom spec featured rv">
         <span class="ribbon">Без вложений</span>
-        <span class="kicker">Партнёр-амбассадор</span>
+        <span class="kicker">Вознаграждение амбассадора</span>
         <h3>5–10% с каждой продажи</h3>
         <div class="tagline">Вы рекомендуете проект своей аудитории и получаете вознаграждение за каждую участницу.</div>
         <div class="price">€0</div>
@@ -241,20 +182,73 @@
           <div class="row"><span>От 8 участниц · 10% на всю сумму</span><b>10 × €1 800 → €1 800</b></div>
         </div>
         <p class="cur-fine">Выплата после получения оплаты от участницы (при рассрочке — с каждого взноса).</p>
-        <a href="#apply" class="btn btn-primary btn-block">Обсудить партнёрство</a>
       </div>
     </div>
+  </div>
+</section>
 
-    <div class="sec-head rv" style="margin-top:clamp(46px,6vw,74px)">
+<!-- ============ ПОЧЕМУ ВЫ ============ -->
+<section class="sec" id="why">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="eyebrow">Почему именно вы</span>
+      <h2 class="h-lg">Ваш подход — <span class="glow">то, что нужно нашим участницам</span></h2>
+      <div class="sec-rule"></div>
+      <p class="lede">Техникам наши мастера уже научились. Им не хватает системы в продажах, умения управлять людьми и принимать решения с последствиями.</p>
+    </div>
+
+    <div class="cur-role zk-dark rv">
+      <div class="cur-role-i">
+        <svg class="icon" aria-hidden="true"><use href="#i-program"/></svg>
+        <h3>Архитектор симуляций</h3>
+        <p>Симуляционные программы с полным погружением: своя роль в игре, решения с последствиями, разбор каждого решения.</p>
+      </div>
+      <div class="cur-role-i">
+        <svg class="icon" aria-hidden="true"><use href="#i-coin"/></svg>
+        <h3>10 лет в продажах</h3>
+        <p>Вы превращаете продажи в систему — участницам это нужно, чтобы перестать продавать «по настроению» и поднять чек.</p>
+      </div>
+      <div class="cur-role-i">
+        <svg class="icon" aria-hidden="true"><use href="#i-star"/></svg>
+        <h3>Обучение как событие</h3>
+        <p>Организатор, автор и ведущая бизнес-событий. Для реалити это готовый сюжет: зритель видит, как участницы меняются.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ФОРМАТЫ ============ -->
+<section class="sec" id="formats">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="eyebrow">Ваша роль в проекте</span>
+      <h2 class="h-lg">От симуляции до <span class="glow">Гранд-Финала</span></h2>
+      <div class="sec-rule"></div>
+      <p class="lede">Форматы можно комбинировать — объём участия выбираем вместе.</p>
+    </div>
+
+    <ul class="cur-duties rv">
+      <li><span class="n">1</span><span><b>Бизнес-симуляция для команд реалити.</b> Ваш формат, адаптированный под бьюти-бизнес — салон, студию, школу. Команды проходят симуляцию в кадре: своя роль в игре, решения с последствиями и разбор каждого решения.</span></li>
+      <li><span class="n">2</span><span><b>Эфир «Продажи как система».</b> Прямой эфир для всех участниц: как мастеру перестать продавать «по настроению» и выстроить продажи как систему. Тема согласуется заранее, запись остаётся у вас.</span></li>
+      <li><span class="n">3</span><span><b>Эксперт и судья бизнес-заданий.</b> Оценка бизнес-заданий команд и честная обратная связь в кадре — включая финальное бизнес-задание на Гранд-Финале.</span></li>
+      <li><span class="n">4</span><span><b>Участницы из вашей аудитории.</b> Ваша аудитория — предприниматели в Румынии и Европе, наше ядро — украинки и русскоязычные мастера за границей. Вы рекомендуете проект и получаете вознаграждение амбассадора.</span></li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============ ШАГИ ============ -->
+<section class="sec" id="options">
+  <div class="wrap">
+    <div class="sec-head rv">
       <span class="eyebrow">Как начнём</span>
       <h2 class="h-lg">Три <span class="glow">шага</span></h2>
       <div class="sec-rule"></div>
     </div>
-    <div class="cur-role rv">
+    <div class="cur-role zk-dark rv">
       <div class="cur-role-i">
         <svg class="icon" aria-hidden="true"><use href="#i-heart"/></svg>
-        <h3>1 · Знакомство</h3>
-        <p>Созвон на 30–40 минут.</p>
+        <h3>1 · Созвон</h3>
+        <p>30–40 минут: обсуждаем детали партнёрства.</p>
       </div>
       <div class="cur-role-i">
         <svg class="icon" aria-hidden="true"><use href="#i-program"/></svg>
@@ -275,10 +269,10 @@
   <div class="wrap">
     <div class="cur-final rv">
       <span class="eyebrow">Старт сезона — 21 декабря 2026</span>
-      <h2 class="h-lg">Будем рады <span class="glow">знакомству</span></h2>
-      <p class="lede">Уверены, на созвоне найдём формат, интересный обеим сторонам. Напишите, какие дни вам удобны.</p>
+      <h2 class="h-lg">Будем рады <span class="glow">сотрудничеству</span></h2>
+      <p class="lede">Уверены, вместе сделаем сезон сильнее. Напишите, когда вам удобно созвониться.</p>
       <div class="cur-cta">
-        <a href="https://instagram.com/verbovaya_irina" target="_blank" rel="noopener" class="btn btn-primary">Написать Ирине</a>
+        <a href="https://instagram.com/verbovaya_irina" target="_blank" rel="noopener" class="btn btn-primary">Сотрудничать</a>
         <a href="https://t.me/beauty_games_pro" target="_blank" rel="noopener" class="btn btn-ghost">Telegram</a>
       </div>
       <p class="cur-conf">© Beauty Games 2026 · beauty_games.pro · конфиденциально</p>
@@ -298,10 +292,10 @@
       </div>
       <div>
         <h5>Предложение</h5>
+        <a href="#show">О проекте</a>
+        <a href="#get">Что вы получаете</a>
         <a href="#why">Почему вы</a>
-        <a href="#show">Реалити-шоу</a>
         <a href="#formats">Форматы</a>
-        <a href="#options">Условия</a>
       </div>
       <div>
         <h5>Контакты</h5>
@@ -319,7 +313,7 @@
 </footer>
 
 <div class="mobile-bar">
-  <a href="#apply" class="btn btn-primary">Познакомиться</a>
+  <a href="#apply" class="btn btn-primary">Сотрудничать</a>
   <a href="https://t.me/beauty_games_pro" target="_blank" rel="noopener" class="tg" aria-label="Написать в Telegram">
     <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9.8 15.6l-.4 4.2c.5 0 .8-.2 1.1-.5l2.6-2.4 5.4 3.9c1 .5 1.7.3 1.9-.9l3.5-16.3c.3-1.4-.5-2-1.5-1.6L1.1 9.6C-.3 10.1-.3 11 .9 11.4l5.5 1.7L19 5.3c.6-.4 1.2-.2.7.2L9.8 15.6z"/></svg>
   </a>
