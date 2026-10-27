@@ -82,7 +82,7 @@ BLOCK_FULL = "<!-- SPRITE -->\n%s\n%s\n<!-- /SPRITE -->" % (PRELOADER.strip(), S
 # На калькуляторі немає app.js, який ховає заставку, тому туди — самі іконки.
 BLOCK_ICONS = "<!-- SPRITE -->\n%s\n<!-- /SPRITE -->" % SPRITE
 
-for page in ("index.html", "partners.html", "casting.html", "curator.html", "price.html", "calculator.html", "kasa.html"):
+for page in ("index.html", "partners.html", "casting.html", "curator.html", "price.html", "calculator.html", "kasa.html", "romanenko.html"):
     BLOCK = BLOCK_ICONS if page in ("calculator.html", "kasa.html") else BLOCK_FULL
     s = io.open(page, encoding="utf-8").read()
     if "<!-- SPRITE -->" in s:
