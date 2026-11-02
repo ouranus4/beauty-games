@@ -5,7 +5,7 @@
 Джерело правди — цей файл. Після правок запустити:
     python _people.py
 
-Скрипт збирає два блоки index.html між маркерами PEOPLE і PARTNERS:
+Скрипт збирає два блоки game.html між маркерами PEOPLE і PARTNERS:
 сітку карток (видно, хто це і чим займається) плюс приховані описи,
 які відкриваються у вікні по кліку.
 """
@@ -292,8 +292,8 @@ def build():
 
 if __name__ == '__main__':
     block = build()
-    s = io.open('index.html', encoding='utf-8').read()
+    s = io.open('game.html', encoding='utf-8').read()
     assert '<!-- PEOPLE -->' in s, 'маркер PEOPLE не знайдено'
     s = re.sub(r'<!-- PEOPLE -->.*?<!-- /PEOPLE -->', lambda m: block, s, flags=re.S)
-    io.open('index.html', 'w', encoding='utf-8').write(s)
-    print('index.html —', len(PEOPLE), 'експертів +', len(PARTNERS), 'партнерів')
+    io.open('game.html', 'w', encoding='utf-8').write(s)
+    print('game.html —', len(PEOPLE), 'експертів +', len(PARTNERS), 'партнерів')

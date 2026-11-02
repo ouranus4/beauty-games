@@ -2,15 +2,15 @@
 """
 Російська версія головної сторінки.
 
-Джерело правди — українська index.html і app.js. Переклад лежить
+Джерело правди — українська game.html і app.js. Переклад лежить
 у i18n/ru.json: {"український рядок": "російський рядок"}.
 Скрипт бере кожен текст, атрибут і рядок у JS, підставляє переклад
-і збирає ru.html + app.ru.js.
+і збирає game-ru.html + app.ru.js.
 
-    python _i18n.py            зібрати ru.html і app.ru.js
+    python _i18n.py            зібрати game-ru.html і app.ru.js
     python _i18n.py --missing  показати рядки без перекладу
 
-Після правок у index.html або app.js: запустити --missing, дописати
+Після правок у game.html або app.js: запустити --missing, дописати
 переклади нових рядків у i18n/ru.json, зібрати, потім python _ver.py.
 """
 import io
@@ -72,7 +72,7 @@ def collect():
             seen.add(k)
             keys.append(k)
 
-    s = io.open("index.html", encoding="utf-8").read()
+    s = io.open("game.html", encoding="utf-8").read()
     for kind, tok in html_parts(s):
         if kind == "tag":
             for k, v in re.findall(r'([\w:-]+)="([^"]*)"', tok):
@@ -96,7 +96,7 @@ def build(tr):
         missing.append(k)
         return k
 
-    s = io.open("index.html", encoding="utf-8").read()
+    s = io.open("game.html", encoding="utf-8").read()
     out = []
     for kind, tok in html_parts(s):
         if kind == "tag":
@@ -112,11 +112,11 @@ def build(tr):
 
     # мова, перемикач, скрипт
     page = page.replace("document.documentElement.lang='uk'", "document.documentElement.lang='ru'")
-    page = re.sub(r'<a href="index.html" class="lang-a on"[^>]*>UA</a>\s*<a href="ru.html" class="lang-a"[^>]*>RU</a>',
-                  '<a href="index.html" class="lang-a" hreflang="uk" lang="uk">UA</a>'
-                  '<a href="ru.html" class="lang-a on" aria-current="true" hreflang="ru" lang="ru">RU</a>', page)
+    page = re.sub(r'<a href="game.html" class="lang-a on"[^>]*>UA</a>\s*<a href="game-ru.html" class="lang-a"[^>]*>RU</a>',
+                  '<a href="game.html" class="lang-a" hreflang="uk" lang="uk">UA</a>'
+                  '<a href="game-ru.html" class="lang-a on" aria-current="true" hreflang="ru" lang="ru">RU</a>', page)
     page = re.sub(r'src="app\.js(\?v=[0-9a-f]+)?"', 'src="app.ru.js"', page)
-    io.open("ru.html", "w", encoding="utf-8", newline="\n").write(page)
+    io.open("game-ru.html", "w", encoding="utf-8", newline="\n").write(page)
 
     js = io.open("app.js", encoding="utf-8").read()
     parts, last = [], 0
@@ -141,7 +141,7 @@ def main():
     missing = build(tr)
     if missing:
         print("УВАГА: без перекладу лишилось %d рядків, запустіть --missing" % len(set(missing)))
-    print("ru.html і app.ru.js зібрано")
+    print("game-ru.html і app.ru.js зібрано")
 
 
 if __name__ == "__main__":
