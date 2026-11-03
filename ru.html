@@ -11,9 +11,9 @@
 <link rel="stylesheet" href="styles.css?v=ad1ccce0">
 <link rel="preload" as="image" href="assets/home/palace.jpg">
 <link rel="stylesheet" href="squid.css?v=db6b5ecf">
-<link rel="stylesheet" href="home.css?v=d721076b">
+<link rel="stylesheet" href="home.css?v=8de3a5c8">
 <noscript><style>.intro{display:none}</style></noscript>
-<script>window.BG_PLAIN=1;document.documentElement.classList.add("plain");</script>
+<script>window.BG_PLAIN=1;document.documentElement.classList.add("plain");try{localStorage.setItem("bg_sound","off");localStorage.setItem("bg_sound_hint","1")}catch(e){}</script>
 
 <!-- SPRITE -->
 <svg class="sprite" width="0" height="0" aria-hidden="true" focusable="false" style="position:absolute;pointer-events:none">
@@ -54,7 +54,7 @@
 <div class="nav-outer" id="navOuter">
   <nav class="nav">
     <a href="#top" class="brand" aria-label="Beauty Games">
-      <img class="brand-logo" src="assets/logo-horizontal.svg" alt="Beauty Games by Verbova Iryna — reality show, championship, education" width="330" height="46">
+      <img class="brand-logo" src="assets/logo-horizontal-pink.svg" alt="Beauty Games by Verbova Iryna — reality show, championship, education" width="330" height="46">
     </a>
     <div class="nav-links">
       <a href="#about">О проекте</a>
@@ -98,7 +98,7 @@
       <div class="bar"><i id="barFill"></i></div>
     </div>
     <div class="invite">
-      <svg aria-hidden="true"><use href="#bg-logo"/></svg>
+      <img class="inv-mask" src="assets/home/mask.webp" alt="" width="512" height="512">
       <span class="intro-k">Сезон 2026</span>
       <p class="invite-h">Тебя пригласили в игру</p>
       <p>Ирина Вербовая и Александра Горобец открывают двери</p>
@@ -106,8 +106,9 @@
     </div>
   </div>
 </div>
+<div class="xp" aria-hidden="true"><i id="xpFill"></i></div>
 <header class="hero" id="top">
-  <div class="world"><img src="assets/home/palace.jpg" alt="Сказочный дворец игры: Ирина Вербовая и Александра Горобец на вершине лестницы" width="1920" height="1284"></div>
+  <div class="world"><img src="assets/home/palace.jpg" alt="Сказочный дворец игры: Ирина Вербовая и Александра Горобец на вершине лестницы" width="1920" height="1284"><img class="host host-l" src="assets/home/mask.webp" alt="" width="512" height="512"><img class="host host-r" src="assets/home/mask.webp" alt="" width="512" height="512"></div>
   <canvas id="dust" aria-hidden="true"></canvas>
   <div class="wrap hero-inner">
     <div class="hero-brand">
@@ -145,9 +146,9 @@
       <p class="lede">Один сезон, три составляющие. Вы выбираете, сколько из них берёте.</p>
     </div>
     <div class="trio">
-      <article class="trio-c rv"><svg class="icon" aria-hidden="true"><use href="#i-program"/></svg><h3>Бизнес-обучение</h3><p>Девять модулей, куратор и домашние задания с проверкой.</p></article>
-      <article class="trio-c rv"><svg class="icon" aria-hidden="true"><use href="#i-trophy"/></svg><h3>Онлайн-чемпионат</h3><p>Соревнование в вашей категории: жюри из практиков, кубки, сертификат.</p></article>
-      <article class="trio-c rv"><svg class="icon" aria-hidden="true"><use href="#i-tv"/></svg><h3>Реалити-шоу</h3><p>Вас снимают: вы в кадре шоу, за вами следят зрители.</p></article>
+      <article class="trio-c rv"><img class="gi" src="assets/home/icons/program.webp" alt="" loading="lazy" width="160" height="160"><h3>Бизнес-обучение</h3><p>Девять модулей, куратор и домашние задания с проверкой.</p></article>
+      <article class="trio-c rv"><img class="gi" src="assets/home/icons/trophy.webp" alt="" loading="lazy" width="160" height="160"><h3>Онлайн-чемпионат</h3><p>Соревнование в вашей категории: жюри из практиков, кубки, сертификат.</p></article>
+      <article class="trio-c rv"><img class="gi" src="assets/home/icons/tv.webp" alt="" loading="lazy" width="160" height="160"><h3>Реалити-шоу</h3><p>Вас снимают: вы в кадре шоу, за вами следят зрители.</p></article>
     </div>
   </div>
 </section>
@@ -666,7 +667,7 @@
 
     <div class="three">
       <div class="tcard glass rv">
-        <div class="icon-chip"><svg class="icon" aria-hidden="true"><use href="#i-team"/></svg></div>
+        <div class="icon-chip"><img class="gi" src="assets/home/icons/team.webp" alt="" loading="lazy" width="160" height="160"></div>
         <h3>Кросс-функциональная команда</h3>
         <ul>
           <li>Мастера разных направлений в одной команде</li>
@@ -675,7 +676,7 @@
         </ul>
       </div>
       <div class="tcard glass bloom rv">
-        <div class="icon-chip"><svg class="icon" aria-hidden="true"><use href="#i-chart"/></svg></div>
+        <div class="icon-chip"><img class="gi" src="assets/home/icons/chart.webp" alt="" loading="lazy" width="160" height="160"></div>
         <h3>Две отдельные лиги</h3>
         <ul>
           <li><b>Бизнес-лига</b> и <b>VIP-лига</b> между собой не соревнуются</li>
@@ -684,7 +685,7 @@
         </ul>
       </div>
       <div class="tcard glass rv">
-        <div class="icon-chip"><svg class="icon" aria-hidden="true"><use href="#i-shop"/></svg></div>
+        <div class="icon-chip"><img class="gi" src="assets/home/icons/shop.webp" alt="" loading="lazy" width="160" height="160"></div>
         <h3>Баллы и магазин</h3>
         <ul>
           <li>Баллы за реальные бизнес-результаты, а не за активность</li>
@@ -795,18 +796,18 @@
     </div>
 
     <div class="tiles tiles-3 rv" style="margin-bottom:22px">
-      <div class="tile"><svg class="icon" aria-hidden="true"><use href="#i-brow"/></svg><span>Бровист</span></div>
-      <div class="tile"><svg class="icon" aria-hidden="true"><use href="#i-lash"/></svg><span>Лэшмейкер</span></div>
-      <div class="tile"><svg class="icon" aria-hidden="true"><use href="#i-nails"/></svg><span>Ногтевой сервис</span></div>
-      <div class="tile"><svg class="icon" aria-hidden="true"><use href="#i-pmu"/></svg><span>Перманентный макияж</span></div>
-      <div class="tile"><svg class="icon" aria-hidden="true"><use href="#i-makeup"/></svg><span>Визажист</span></div>
-      <div class="tile"><svg class="icon" aria-hidden="true"><use href="#i-hair"/></svg><span>Парикмахер-стилист</span></div>
-      <div class="tile"><svg class="icon" aria-hidden="true"><use href="#i-extension"/></svg><span>Наращивание волос</span></div>
-      <div class="tile"><svg class="icon" aria-hidden="true"><use href="#i-skin"/></svg><span>Косметология</span></div>
-      <div class="tile"><svg class="icon" aria-hidden="true"><use href="#i-massage"/></svg><span>Массажист</span></div>
-      <div class="tile"><svg class="icon" aria-hidden="true"><use href="#i-laser"/></svg><span>Лазерное удаление</span></div>
-      <div class="tile"><svg class="icon" aria-hidden="true"><use href="#i-wax"/></svg><span>Депиляция</span></div>
-      <div class="tile"><svg class="icon" aria-hidden="true"><use href="#i-podo"/></svg><span>Подология</span></div>
+      <div class="tile"><img class="gi" src="assets/home/icons/brow.webp" alt="" loading="lazy" width="160" height="160"><span>Бровист</span></div>
+      <div class="tile"><img class="gi" src="assets/home/icons/lash.webp" alt="" loading="lazy" width="160" height="160"><span>Лэшмейкер</span></div>
+      <div class="tile"><img class="gi" src="assets/home/icons/nails.webp" alt="" loading="lazy" width="160" height="160"><span>Ногтевой сервис</span></div>
+      <div class="tile"><img class="gi" src="assets/home/icons/pmu.webp" alt="" loading="lazy" width="160" height="160"><span>Перманентный макияж</span></div>
+      <div class="tile"><img class="gi" src="assets/home/icons/makeup.webp" alt="" loading="lazy" width="160" height="160"><span>Визажист</span></div>
+      <div class="tile"><img class="gi" src="assets/home/icons/hair.webp" alt="" loading="lazy" width="160" height="160"><span>Парикмахер-стилист</span></div>
+      <div class="tile"><img class="gi" src="assets/home/icons/extension.webp" alt="" loading="lazy" width="160" height="160"><span>Наращивание волос</span></div>
+      <div class="tile"><img class="gi" src="assets/home/icons/skin.webp" alt="" loading="lazy" width="160" height="160"><span>Косметология</span></div>
+      <div class="tile"><img class="gi" src="assets/home/icons/massage.webp" alt="" loading="lazy" width="160" height="160"><span>Массажист</span></div>
+      <div class="tile"><img class="gi" src="assets/home/icons/laser.webp" alt="" loading="lazy" width="160" height="160"><span>Лазерное удаление</span></div>
+      <div class="tile"><img class="gi" src="assets/home/icons/wax.webp" alt="" loading="lazy" width="160" height="160"><span>Депиляция</span></div>
+      <div class="tile"><img class="gi" src="assets/home/icons/podo.webp" alt="" loading="lazy" width="160" height="160"><span>Подология</span></div>
     </div>
 
     <div class="three">
@@ -1263,4 +1264,4 @@
 <script src="leads.js?v=d5b28821"></script>
 <script src="app.ru.js?v=49720741"></script>
 <script src="fx.js?v=b9217507"></script>
-<script src="home.js?v=d5e00ca0"></script>
+<script src="home.js?v=eeb7082d"></script>

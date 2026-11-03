@@ -52,7 +52,7 @@ INTRO = '''<div class="intro" id="intro" data-step="load">
       <div class="bar"><i id="barFill"></i></div>
     </div>
     <div class="invite">
-      <svg aria-hidden="true"><use href="#bg-logo"/></svg>
+      <img class="inv-mask" src="assets/home/mask.webp" alt="" width="512" height="512">
       <span class="intro-k">{season}</span>
       <p class="invite-h">{inv}</p>
       <p>{inv_sub}</p>
@@ -100,7 +100,9 @@ def build(src, out, t):
     s = cut(s, '<div class="countdown rv" id="countdown">', '  </div>\n</header>')
     s = s.replace('<header class="hero" id="top">',
                   INTRO.format(**t) + '<header class="hero" id="top">\n'
-                  '  <div class="world"><img src="assets/home/palace.jpg" alt="%s" width="1920" height="1284"></div>\n'
+                  '  <div class="world"><img src="assets/home/palace.jpg" alt="%s" width="1920" height="1284">'
+                  '<img class="host host-l" src="assets/home/mask.webp" alt="" width="512" height="512">'
+                  '<img class="host host-r" src="assets/home/mask.webp" alt="" width="512" height="512"></div>\n'
                   '  <canvas id="dust" aria-hidden="true"></canvas>' % t['logo_alt'])
 
     # про проєкт замість тесту
@@ -117,6 +119,11 @@ def build(src, out, t):
     # досьє гравця у формі
     s = cut(s, '<div class="pickbox" id="pickBox" hidden>', '<form')
 
+    s = re.sub(r'(class="brand-logo" src=")assets/logo-horizontal\.svg', r'\1assets/logo-horizontal-pink.svg', s)
+    # лінійні значки → намальовані ігрові
+    s = re.sub(r'<svg class="icon"[^>]*><use href="#i-([a-z]+)"/></svg>',
+               lambda m: '<img class="gi" src="assets/home/icons/%s.webp" alt="" loading="lazy" width="160" height="160">' % m.group(1), s)
+    s = s.replace('<header class="hero" id="top">', '<div class="xp" aria-hidden="true"><i id="xpFill"></i></div>\n<header class="hero" id="top">', 1)
     s = s.replace('href="#picker"', 'href="#apply"')
     s = s.replace('<section class="sec form-sec" id="apply">', '<section class="sec form-sec" id="apply"><span id="picker"></span>')
     # прикраси з рисунка на стиках блоків
@@ -129,7 +136,7 @@ def build(src, out, t):
     s = s.replace('<link rel="stylesheet" href="squid.css', '<link rel="preload" as="image" href="assets/home/palace.jpg">\n<link rel="stylesheet" href="squid.css', 1)
     s = re.sub(r'(<link rel="stylesheet" href="squid\.css[^>]*>)',
                r'\1\n<link rel="stylesheet" href="home.css">\n<noscript><style>.intro{display:none}</style></noscript>'
-               r'\n<script>window.BG_PLAIN=1;document.documentElement.classList.add("plain");</script>', s, count=1)
+               r'\n<script>window.BG_PLAIN=1;document.documentElement.classList.add("plain");try{localStorage.setItem("bg_sound","off");localStorage.setItem("bg_sound_hint","1")}catch(e){}</script>', s, count=1)
     s = re.sub(r'(<script src="fx\.js[^>]*></script>)', r'\1\n<script src="home.js"></script>', s, count=1)
 
     # мовний перемикач і посилання між версіями
