@@ -13,7 +13,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Playfair+Display+SC:wght@400;500&family=Lora:ital,wght@0,400;0,600;1,400&family=Montserrat:wght@600;700;800;900&family=Manrope:wght@400;500;600;700&display=swap">
-<link rel="stylesheet" href="invite.css?v=9621154c">
+<link rel="stylesheet" href="invite.css?v=22e2ac72">
 </head>
 <body class="locked">
 
@@ -48,7 +48,7 @@
         <p class="om-big rl">амбассадором</p>
         <p class="om-sub rl">первого сезона Beauty Games</p>
         <div class="om-dates rl">
-          <div><small>Старт сезона</small><b>21 декабря 2026</b></div>
+          <div><small>Старт сезона</small><b><span class="d-full">21 декабря 2026</span><span class="d-short">21 дек. 2026</span></b></div>
           <div><small>Гранд-Финал</small><b>весна 2027</b></div>
           <div><small>Оффлайн-этап</small><b>Тбилиси</b></div>
         </div>
@@ -85,7 +85,7 @@
       <h2 class="rv">{Ваша|Твоя} команда. <span class="grad">{Ваше|Твоё} имя.</span> {Ваша|Твоя} сцена.</h2>
       <p class="lead rv">{Вы приводите|Ты приводишь} в проект 7–10 мастеров из своего окружения и три месяца {ведёте|ведёшь} их в кадре как свою команду, до сцены Гранд-Финала. Программу, съёмки, эфиры и всю организацию берёт на себя команда проекта.</p>
       <div class="team rv" id="team">
-        <div class="team-c"><div><img class="team-crown" src="assets/home/real/crown.webp" alt=""><small id="teamLabel">Капитан</small><b id="teamName" data-name>Вы</b></div></div>
+        <div class="team-c"><div><img class="team-crown" src="assets/home/real/crown.webp" alt=""><small id="teamLabel">Капитан</small><b id="teamName" data-name>Вы</b><em id="teamPlus" hidden></em></div></div>
       </div>
     </div>
   </section>
@@ -102,15 +102,15 @@
       <div class="money rv">
         <div class="money-top">
           <label for="cnt">Сколько мастеров {вы приведёте|ты приведёшь}</label>
-          <div class="money-n"><span id="cntV">10</span><small>участниц</small></div>
+          <div class="money-n"><button type="button" class="step" id="cntMinus" aria-label="Меньше">−</button><span id="cntV">10</span><button type="button" class="step" id="cntPlus" aria-label="Больше">+</button><small>участниц</small></div>
         </div>
-        <input type="range" id="cnt" min="7" max="10" step="1" value="10" aria-label="Количество участниц">
-        <div class="ticks"><span>7</span><span>8</span><span>9</span><span>10</span></div>
+        <input type="range" id="cnt" min="7" max="30" step="1" value="10" aria-label="Количество участниц">
+        <div class="ticks"><span>7</span><span>10</span><span>15</span><span>20</span><span>25</span><span>30</span></div>
         <div class="money-res">
           <div class="mr"><small>Ставка</small><b id="rate">10%</b></div>
           <div class="mr hot"><small>{Ваше|Твоё} вознаграждение</small><b id="sum">€1 800</b><img src="assets/home/real/coins.webp" alt=""></div>
         </div>
-        <p class="money-foot">Расчёт при пакете участницы €1 800. Выплата приходит после оплаты участницы, а при рассрочке с каждого её взноса.</p>
+        <p class="money-foot">Расчёт при пакете участницы €1 800. Выплата приходит после оплаты участницы, а при рассрочке с каждого её взноса. <span id="bigNote" hidden>Команда больше 10 мастеров — расчёт ориентировочный, условия для большой команды Ирина обсуждает лично.</span></p>
       </div>
     </div>
   </section>
@@ -250,6 +250,6 @@
 </main>
 
 <script src="leads.js?v=bec43857"></script>
-<script src="invite.js?v=200c914a"></script>
+<script src="invite.js?v=abe02da1"></script>
 </body>
 </html>

@@ -551,3 +551,49 @@ input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;bac
 .giftbox.opened .gift-cta{display:none}
 .giftbox.opened .gift-open{margin-top:-8px}
 .pdf .gift-btn.has-vid{display:block}
+
+/* ===== правки 07.11: бордо за листом, кільце, калькулятор, видимість іконок ===== */
+#hero{background:radial-gradient(120% 80% at 50% 18%,#5c1331 0%,#3d0b20 52%,#22060f 100%)}
+#hero .scroll-cue{color:rgba(255,220,232,.7)}
+#hero .scroll-cue span{border-color:rgba(255,220,232,.45)}
+.om{box-shadow:0 30px 70px rgba(0,0,0,.45),0 4px 14px rgba(0,0,0,.25)}
+/* дати в один рядок на всіх екранах */
+.om-dates{flex-direction:row;justify-content:center;align-items:stretch;margin-top:24px;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.om-dates div{flex:1 1 0;padding:12px 4px;white-space:nowrap;min-width:0}
+.om-dates div+div{border-left:1px solid var(--line)}
+.om-dates div+div::before{display:none}
+.om-dates small{font-size:7.5px;letter-spacing:.16em;padding-left:.16em}
+.om-dates b{font-size:14px;margin-top:3px}
+.d-short{display:none}
+@media (max-width:440px){.d-full{display:none}.d-short{display:inline}}
+@media (min-width:600px){.om-dates small{font-size:9px;letter-spacing:.22em}.om-dates b{font-size:17px}.om-dates div{padding:14px 10px}}
+
+/* кільце команди обертається, іконки лишаються рівними */
+.team .ring{position:absolute;inset:0;animation:ringSpin 48s linear infinite}
+.team .ring .seat img{animation:ringSpin 48s linear infinite reverse}
+.team:hover .ring,.team:hover .ring .seat img,.team.peek .ring,.team.peek .ring .seat img{animation-play-state:paused}
+@keyframes ringSpin{to{transform:rotate(360deg)}}
+.team::before{content:"";position:absolute;inset:4%;border-radius:50%;border:1px dashed rgba(240,163,196,.28);animation:ringSpin 90s linear infinite reverse}
+.seat{cursor:pointer;padding:0;font:inherit}
+.seat:focus-visible{outline:2px solid var(--pink);outline-offset:3px}
+.seat.pick{box-shadow:0 0 0 3px rgba(240,163,196,.8),0 0 26px rgba(217,74,134,.6)}
+.team-c{transition:transform .3s}
+.team.peek .team-c{transform:translate(-50%,-50%) scale(1.04)}
+.team-c em{display:block;margin-top:4px;font:700 10px/1.2 var(--head);letter-spacing:.06em;color:var(--pink-2);font-style:normal}
+@media (prefers-reduced-motion:reduce){.team .ring,.team .ring .seat img,.team::before{animation:none}}
+
+/* калькулятор: кнопки ± */
+.money-n{align-items:center}
+.money-n .step{width:38px;height:38px;border-radius:50%;border:1px solid rgba(240,163,196,.45);background:rgba(255,255,255,.04);color:#fff;
+  font:500 22px/1 var(--head);cursor:pointer;display:grid;place-items:center;transition:background .2s,transform .15s}
+.money-n .step:hover{background:rgba(217,74,134,.35)}
+.money-n .step:active{transform:scale(.92)}
+.money-n #cntV{min-width:1.6em;text-align:center}
+#bigNote{display:block;margin-top:6px;color:var(--pink-2)}
+#bigNote[hidden]{display:none}
+
+/* іконки медійності: темні предмети на мʼякому світлому ореолі */
+.g img{width:88px;height:88px;padding:6px;border-radius:50%;
+  background:radial-gradient(circle,rgba(255,226,236,.42) 0%,rgba(240,163,196,.16) 45%,rgba(240,163,196,0) 70%);
+  filter:drop-shadow(0 0 1px rgba(255,255,255,.35)) drop-shadow(0 8px 14px rgba(0,0,0,.35))}
+@media (max-width:640px){.g img{width:72px;height:72px}}

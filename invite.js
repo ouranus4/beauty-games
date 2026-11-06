@@ -242,13 +242,31 @@
     rv.forEach(function (el) { io.observe(el); });
   } else rv.forEach(function (el) { el.classList.add('in-view'); });
 
-  /* ---------- команда: 10 місць з іконками напрямків ---------- */
+  /* ---------- команда: кільце з 10 напрямків крутиться; дотик — назва напрямку ---------- */
   var SEAT_ICONS = ['brow', 'lash', 'nails', 'pmu', 'hair', 'makeup', 'skin', 'massage', 'wax', 'extension'];
+  var SEAT_NAMES = ['Брови', 'Ресницы', 'Ногти', 'Перманент', 'Волосы', 'Макияж', 'Косметология', 'Массаж', 'Депиляция', 'Наращивание'];
   var team = $('team'), seats = [];
+  var ring = document.createElement('div'); ring.className = 'ring'; team.appendChild(ring);
+  var labelEl = $('teamLabel'), nameEl = $('teamName'), labelTimer = 0;
+  var baseLabel = labelEl.textContent, baseName = nameEl.textContent;
+  function showDir(k) {
+    clearTimeout(labelTimer);
+    labelEl.textContent = 'Мастер ' + (k + 1);
+    nameEl.textContent = SEAT_NAMES[k];
+    team.classList.add('peek');
+    seats.forEach(function (st, q) { st.classList.toggle('pick', q === k); });
+    labelTimer = setTimeout(function () {
+      labelEl.textContent = baseLabel; nameEl.textContent = baseName;
+      team.classList.remove('peek');
+      seats.forEach(function (st) { st.classList.remove('pick'); });
+    }, 1800);
+  }
   for (var i = 0; i < 10; i++) {
     var ang = -Math.PI / 2 + i * (Math.PI * 2 / 10);
-    var s = document.createElement('div');
+    var s = document.createElement('button');
+    s.type = 'button';
     s.className = 'seat';
+    s.setAttribute('aria-label', SEAT_NAMES[i]);
     s.style.left = (50 + 41 * Math.cos(ang)) + '%';
     s.style.top = (50 + 41 * Math.sin(ang)) + '%';
     s.style.transitionDelay = (i * 0.07) + 's';
@@ -256,7 +274,8 @@
     im.src = src(SEAT_ICONS[i]); im.alt = '';
     im.style.transitionDelay = (i * 0.07 + .2) + 's';
     s.appendChild(im);
-    team.appendChild(s);
+    s.addEventListener('click', (function (k) { return function () { showDir(k); }; })(i));
+    ring.appendChild(s);
     seats.push(s);
   }
   if ('IntersectionObserver' in window && !printMode) {
@@ -265,19 +284,25 @@
     }, { threshold: .35 }).observe(team);
   } else team.classList.add('on');
 
-  /* ---------- калькулятор винагороди (оффер v12) ---------- */
+  /* ---------- калькулятор винагороди: 7–30 мастерів ---------- */
   var PRICE = 1800, cnt = $('cnt'), sumEl = $('sum');
-  function fmt(n) { return '€' + String(n).replace(/\B(?=(\d{3})+(?!\d))/g, ' '); }
+  function fmt(n) { return '€' + String(n).replace(/\B(?=(\d{3})+(?!\d))/g, '\u00a0'); }
   function calc(anim) {
     var n = +cnt.value, rate = n >= 8 ? 10 : 5;
     $('cntV').textContent = n;
     $('rate').textContent = rate + '%';
     sumEl.textContent = fmt(n * PRICE * rate / 100);
     if (anim) { sumEl.classList.remove('bump'); void sumEl.offsetWidth; sumEl.classList.add('bump'); }
-    cnt.style.setProperty('--p', ((n - 7) / 3 * 100) + '%');
-    seats.forEach(function (st, k) { st.classList.toggle('fill', k < n); });
+    cnt.style.setProperty('--p', ((n - 7) / 23 * 100) + '%');
+    seats.forEach(function (st, k) { st.classList.toggle('fill', k < Math.min(n, 10)); });
+    var plus = $('teamPlus');
+    if (n > 10) { plus.hidden = false; plus.textContent = '+' + (n - 10) + ' в команде'; } else plus.hidden = true;
+    $('bigNote').hidden = n <= 10;
   }
   cnt.addEventListener('input', function () { calc(true); });
+  function stepBy(d) { cnt.value = Math.max(7, Math.min(30, +cnt.value + d)); calc(true); }
+  $('cntMinus').addEventListener('click', function () { stepBy(-1); });
+  $('cntPlus').addEventListener('click', function () { stepBy(1); });
   calc(false);
 
   /* ---------- подарунок ---------- */
