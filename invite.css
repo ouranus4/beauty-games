@@ -855,21 +855,6 @@ video.rsvp-ic{display:block;width:120px;height:120px;margin:-10px auto 4px;objec
 .calc-sum{margin-top:22px}
 .calc-sum em{display:block;margin-top:8px;font:400 13px/1.4 var(--head);font-style:normal;letter-spacing:.06em;color:rgba(251,231,191,.7)}
 
-/* відео Ірини — позолочена арочна рама, як у дзеркала */
-.lx-cream .letter-ph{overflow:visible;padding:15px;border-radius:230px 230px 8px 8px;
-  background:linear-gradient(135deg,#6e4f1e 0%,#e9cf8c 12%,#fff1c4 22%,#b8913f 36%,#f4dc9f 50%,#a77d3c 64%,#fbe7b5 78%,#8f6a35 90%,#5e4318 100%);
-  box-shadow:inset 0 0 0 1px rgba(255,244,210,.8),inset 0 0 0 4px #9b7637,inset 0 0 0 5px #f6e2ac,inset 0 0 0 9px #7a5a24,inset 0 0 0 10px rgba(255,236,190,.6),
-    0 2px 0 #5e4318,0 26px 50px rgba(60,35,15,.35)}
-.lx-cream .letter-ph::after{display:none}
-.lx-cream .letter-ph video{border-radius:215px 215px 2px 2px;box-shadow:inset 0 0 18px rgba(0,0,0,.5),0 0 0 1px #5e4318}
-.lx-cream .letter-ph::before{content:"";position:absolute;left:50%;top:-22px;width:110px;height:46px;transform:translateX(-50%);z-index:3;
-  background:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 50'><defs><linearGradient id='g' x1='0' y1='0' x2='1' y2='1'><stop offset='0' stop-color='%23fff1c4'/><stop offset='.45' stop-color='%23d3ad62'/><stop offset='1' stop-color='%237a5a24'/></linearGradient></defs><g fill='url(%23g)' stroke='%235e4318' stroke-width='.6'><path d='M60 4c6 6 8 14 4 22-2 4-6 6-4 12-4-4-4-8-4-12-4 8-2-16 4-22z'/><path d='M58 30c-10-12-26-14-36-6-6 5-4 14 4 14 6 0 7-7 2-8 8-2 18 0 30 8z'/><path d='M62 30c10-12 26-14 36-6 6 5 4 14-4 14-6 0-7-7-2-8-8-2-18 0-30 8z'/><circle cx='60' cy='40' r='5'/></g></svg>") center/contain no-repeat;filter:drop-shadow(0 3px 4px rgba(60,35,15,.4))}
-.lx-cream .letter-ph .tag{left:26px;right:26px;bottom:26px;background:linear-gradient(135deg,#8f6a35,#e9cf8c 30%,#b8913f 55%,#f4dc9f 80%,#8f6a35);
-  border:0;border-radius:2px;box-shadow:inset 0 0 0 1px rgba(255,240,200,.7),0 6px 14px rgba(0,0,0,.35);-webkit-backdrop-filter:none;backdrop-filter:none}
-.lx-cream .letter-ph .tag b{color:#2e1d0a;font-family:var(--lx-serif);font-weight:400}
-.lx-cream .letter-ph .tag small{color:#4a3214}
-@media (max-width:640px){.lx-cream .letter-ph{padding:12px}.lx-cream .letter-ph::before{width:90px;height:38px;top:-18px}}
-
 /* справжні бордові шпалери туаль де жуї */
 .wrap > .sec.lx-toile{background:
   linear-gradient(180deg,rgba(40,6,16,.86) 0%,rgba(40,6,16,.72) 22%,rgba(46,8,19,.45) 42%,rgba(46,8,19,.4) 70%,rgba(30,5,12,.7) 100%),
