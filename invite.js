@@ -96,41 +96,24 @@
     playLetter();
   }
 
-  /* ---------- картка-запрошення: розгортається, текст проявляється, наприкінці падає сургуч ---------- */
-  var cardx = $('cardx');
-  var layers = [].slice.call(cardx.querySelectorAll('.cx-l'));
-  layers.forEach(function (el) {
-    var r = el.getAttribute('data-r').split(',');
-    el.style.clipPath = 'inset(' + r[0] + '% 0 ' + (100 - parseFloat(r[1])) + '% 0)';
-  });
-  function wait(ms) { return new Promise(function (r) { setTimeout(r, ms); }); }
+  /* ---------- лист-запрошення: мʼяко проявляється рядок за рядком ---------- */
+  var om = $('om');
+  var rows = [].slice.call(om.querySelectorAll('.rl')).filter(function (el) { return el.offsetParent !== null || el.tagName === 'svg'; });
   function showLetterNow() {
-    cardx.classList.add('in', 'open');
-    layers.forEach(function (el) { el.classList.add('on'); });
-    $('cxSeal').classList.add('on');
+    om.classList.add('in');
+    rows.forEach(function (el) { el.classList.add('on'); });
     document.querySelector('.hero .scroll-cue').classList.add('on');
   }
-  // розклад у мс від появи картки: кроки накладаються, щоб рух був живим
-  var PLAN = [500, 1500, 1750, 2600, 3300, 3480, 3700, 3950, 4200, 4420];
   var letterPlayed = false;
   function playLetter() {
     if (letterPlayed) return;
     letterPlayed = true;
     if (reduce || printMode) return showLetterNow();
-    requestAnimationFrame(function () { cardx.classList.add('in'); });
-    setTimeout(function () { cardx.classList.add('open'); }, PLAN[0]);
-    layers.forEach(function (el, k) {
-      setTimeout(function () {
-        if (el.getAttribute('data-k') === 'write') el.style.setProperty('--d', k === 1 ? '1.5s' : '1.3s');
-        el.classList.add('on');
-        if (k === 2) setTimeout(function () { $('cxGlint').classList.add('go'); }, 900);
-      }, PLAN[k + 1] || (4420 + k * 200));
+    requestAnimationFrame(function () { om.classList.add('in'); });
+    rows.forEach(function (el, k) {
+      setTimeout(function () { el.classList.add('on'); }, 500 + k * 260);
     });
-    setTimeout(function () { $('cxSeal').classList.add('on'); }, 4900);
-    setTimeout(function () {
-      cardx.classList.add('idle');
-      document.querySelector('.hero .scroll-cue').classList.add('on');
-    }, 6100);
+    setTimeout(function () { document.querySelector('.hero .scroll-cue').classList.add('on'); }, 500 + rows.length * 260 + 600);
   }
 
   /* ---------- відео-вступ: конверт прилітає → чекає дотику → печатка ламається → біла картка ---------- */
