@@ -857,7 +857,7 @@ video.rsvp-ic{display:block;width:120px;height:120px;margin:-10px auto 4px;objec
 
 /* справжні бордові шпалери туаль де жуї */
 .wrap > .sec.lx-toile{background:
-  linear-gradient(180deg,rgba(30,4,12,.9) 0%,rgba(34,5,13,.82) 30%,rgba(40,6,16,.7) 55%,rgba(30,5,12,.82) 100%),
+  linear-gradient(180deg,#26050f 0%,#2b0611 34%,rgba(40,6,16,.86) 46%,rgba(40,6,16,.62) 62%,rgba(30,5,12,.78) 100%),
   url(assets/home/toile.webp) center top/min(100%,620px) auto repeat,
   #4e1022}
 .lx-toile h2,.lx-toile .lead{text-shadow:0 2px 14px rgba(20,3,8,.75)}
@@ -882,3 +882,18 @@ video.rsvp-ic{display:block;width:120px;height:120px;margin:-10px auto 4px;objec
 /* корона біля слова «амбассадор» */
 .om-crown{display:block;width:62px;margin:14px auto -6px;filter:drop-shadow(0 6px 10px rgba(60,20,30,.25))}
 .kick-crown{display:block;width:84px;margin:0 auto 6px;filter:drop-shadow(0 10px 18px rgba(0,0,0,.5)) drop-shadow(0 0 18px rgba(255,214,160,.25))}
+
+/* ===== прибрати молдинги-смуги і арку на відео Ірини ===== */
+.wrap > .sec.lx-wine::before,.wrap > .sec.lx-cream::before{display:none!important}
+.wrap > .sec.lx-wine,.wrap > .sec.lx-cream{padding-left:18px;padding-right:18px}
+.lx-cream .letter-ph{border-radius:28px!important;padding:0!important;background:#1a1220!important;overflow:hidden!important;
+  box-shadow:0 30px 70px rgba(60,30,20,.3),0 0 0 1px rgba(143,106,53,.25)!important}
+.lx-cream .letter-ph::before,.lx-cream .letter-ph::after{display:none!important}
+.lx-cream .letter-ph video{border-radius:0!important;box-shadow:none!important}
+.lx-cream .letter-ph .tag{left:14px;right:14px;bottom:14px;background:rgba(20,12,14,.6);border-radius:16px;
+  -webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px)}
+.lx-cream .letter-ph .tag b{color:#fff;font-family:var(--head);font-weight:800;font-size:15px}
+.lx-cream .letter-ph .tag small{color:rgba(255,255,255,.75)}
+/* калькулятор: заголовок на суцільному тлі, чітко */
+.lx-toile h2{color:#fff}
+.lx-toile .lead{color:rgba(255,240,230,.88)}
