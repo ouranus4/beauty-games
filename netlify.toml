@@ -29,6 +29,11 @@
   status = 200
 
 [[redirects]]
+  from = "/invite"
+  to = "/invite.html"
+  status = 200
+
+[[redirects]]
   from = "/calc"
   to = "/calculator.html"
   status = 200

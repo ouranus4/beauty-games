@@ -16,7 +16,8 @@ window.BG_LEADS_URL = '';
   var SUBJECT = {
     participant: 'Beauty Games: нова заявка — бронювання місця',
     casting: 'Beauty Games: нова заявка на кастинг',
-    calc: 'Beauty Games: контакт із калькулятора'
+    calc: 'Beauty Games: контакт із калькулятора',
+    ambassador: 'Beauty Games: відповідь на запрошення амбасадора'
   };
 
   // Назви полів у листі — людською мовою, в тому ж порядку
@@ -31,7 +32,7 @@ window.BG_LEADS_URL = '';
     ['per_month', 'Процедур на місяць'], ['materials', 'Матеріали'], ['fixed_month', 'Витрати на місяць'],
     ['tax_mode', 'Податок'], ['tax_pct', 'Податок, %'], ['tax_fixed_month', 'Податок фікс.'],
     ['net_month', 'Чистими на місяць'], ['per_hour', 'Чистими за годину'], ['goal_price', 'Ціна під ціль'],
-    ['verdict', 'Висновок калькулятора'], ['lang', 'Мова сайту'], ['page', 'Сторінка'],
+    ['verdict', 'Висновок калькулятора'], ['answer', 'Відповідь'], ['invite_to', 'Кому запрошення'], ['time', 'Коли дзвонити'], ['note', 'Питання'], ['lang', 'Мова сайту'], ['page', 'Сторінка'],
     ['utm', 'UTM'], ['referrer', 'Звідки прийшла']
   ];
   var SKIP = { 'form-name': 1, 'bot-field': 1, bot: 1, consent: 1, form: 1, sent_at: 1 };
@@ -64,7 +65,7 @@ window.BG_LEADS_URL = '';
   }
 
   function viaPing(p) {
-    var t = { participant: 'бронювання місця', casting: 'кастинг', calc: 'калькулятор' }[p.form] || p.form;
+    var t = { participant: 'бронювання місця', casting: 'кастинг', calc: 'калькулятор', ambassador: 'амбасадор' }[p.form] || p.form;
     return fetch('https://formsubmit.co/ajax/' + window.BG_LEADS_PING, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
@@ -79,6 +80,7 @@ window.BG_LEADS_URL = '';
         Контакт: p.contact || '',
         Напрямок: p.skills || p.direction || '',
         Пакет: p.package || '',
+        Відповідь: p.answer || '',
         Деталі: 'уся заявка — на пошті beautygames.pro@gmail.com'
       })
     }).catch(function () {});
