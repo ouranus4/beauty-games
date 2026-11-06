@@ -780,3 +780,7 @@ body{background:var(--lx-marble)}
 /* іконка куратора — тіара на бархатній колоні, яскравіша підсвітка ніші */
 .lx-wine .trophy{background:radial-gradient(60% 50% at 50% 8%,rgba(255,226,180,.55),rgba(255,214,160,.12) 45%,rgba(255,214,160,0) 72%),linear-gradient(180deg,#5a1428,#2a0712)}
 .lx-wine .trophy img{width:74%;animation:none;filter:drop-shadow(0 18px 24px rgba(0,0,0,.55)) drop-shadow(0 0 22px rgba(255,214,160,.25))}
+
+/* корона в центрі команди — відео, що крутиться */
+video.team-crown{display:block;width:72%;aspect-ratio:1;margin:-14% auto 0;object-fit:cover;border-radius:50%;filter:none;
+  -webkit-mask-image:radial-gradient(closest-side,#000 64%,transparent 100%);mask-image:radial-gradient(closest-side,#000 64%,transparent 100%)}
