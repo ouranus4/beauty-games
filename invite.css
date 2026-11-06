@@ -449,3 +449,40 @@ input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;bac
 .intro-white{position:absolute;inset:0;z-index:4;background:#fffefc;opacity:0;pointer-events:none;transition:opacity .6s ease}
 .stage.whiteout .intro-white{opacity:1}
 .stage.gone{transition:opacity .9s ease,visibility .9s}
+
+/* ================= КАРТКА-ЗАПРОШЕННЯ З КАРТИНКИ (після конверта) ================= */
+.cardx{--h:min(calc(100svh - 96px),calc((100vw - 32px) * 1.7917));position:relative;height:var(--h);width:calc(var(--h) * .5581);flex:none;
+  perspective:2000px;filter:drop-shadow(0 30px 50px rgba(120,0,60,.2)) drop-shadow(0 4px 10px rgba(120,0,60,.08))}
+.cx-sheet{position:absolute;inset:0;border-radius:4px;overflow:hidden;clip-path:inset(50% 0 0 0);transition:clip-path .5s ease .38s}
+.cardx.open .cx-sheet{clip-path:inset(0 0 0 0)}
+.cx-blank,.cx-l{position:absolute;inset:0;background-size:100% 100%;background-repeat:no-repeat}
+.cx-blank{background-image:url(assets/home/invite-card-blank.webp)}
+.cx-l{background-image:url(assets/home/invite-card.webp);opacity:0}
+.cx-l.on{opacity:1}
+.cx-l[data-k=fade].on{transition:opacity .9s ease}
+.cx-l[data-k=up]{transform:translateY(1.2%);transition:opacity .7s ease,transform .7s cubic-bezier(.2,.8,.2,1)}
+.cx-l[data-k=up].on{transform:none}
+.cx-l[data-k=pop]{transform:scale(.96);transform-origin:50% 48%;transition:opacity .6s ease,transform .8s cubic-bezier(.2,1.4,.4,1)}
+.cx-l[data-k=pop].on{transform:none}
+.cx-l[data-k=write]{opacity:1;-webkit-mask-image:linear-gradient(90deg,#000 0 40%,transparent 60%);mask-image:linear-gradient(90deg,#000 0 40%,transparent 60%);
+  -webkit-mask-size:250% 100%;mask-size:250% 100%;-webkit-mask-position:100% 0;mask-position:100% 0;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat}
+.cx-l[data-k=write].on{-webkit-mask-position:0 0;mask-position:0 0;transition:-webkit-mask-position var(--d,1.2s) cubic-bezier(.45,.1,.4,1),mask-position var(--d,1.2s) cubic-bezier(.45,.1,.4,1)}
+.cx-seal{position:absolute;left:28.06%;top:76.85%;width:53.78%;height:23.15%;opacity:0;transform:translateY(-40%) scale(1.7);transform-origin:39% 45%}
+.cx-seal.on{animation:sealDrop .9s cubic-bezier(.3,.1,.3,1) forwards}
+@keyframes sealDrop{0%{opacity:0;transform:translateY(-40%) scale(1.7)}55%{opacity:1;transform:translateY(0) scale(.94)}75%{transform:scale(1.03)}100%{opacity:1;transform:none}}
+.cx-flap{position:absolute;left:0;right:0;top:0;height:50%;border-radius:4px;transform-origin:50% 100%;transform:rotateX(180deg);
+  backface-visibility:hidden;-webkit-backface-visibility:hidden;
+  background:linear-gradient(0deg,#efe6dd,#fbf6f0 55%,#f4ece4);box-shadow:inset 0 8px 18px -10px rgba(80,0,40,.3);
+  transition:transform .95s cubic-bezier(.45,0,.25,1)}
+.cx-flap{transform-origin:50% 0;top:50%;transform:rotateX(0deg)}
+.cardx.open .cx-flap{transform:rotateX(180deg)}
+.cardx{opacity:0;transform:scale(.94);transition:opacity .5s ease,transform .7s cubic-bezier(.2,.8,.2,1)}
+.cardx.in{opacity:1;transform:none}
+.hero .scroll-cue{margin-top:14px}
+#hero{padding:24px 16px 20px}
+.pdf .cardx,.pdf .cx-l,.pdf .cx-seal{opacity:1!important;transform:none!important;animation:none!important}
+.pdf .cx-sheet{clip-path:none}
+.pdf .cx-flap{display:none}
+.pdf .cx-l[data-k=write]{-webkit-mask-image:none;mask-image:none}
+@media print{.cardx,.cx-l,.cx-seal{opacity:1!important;transform:none!important;animation:none!important}.cx-sheet{clip-path:none!important}.cx-flap{display:none!important}.cx-l{-webkit-mask-image:none!important;mask-image:none!important}}
+@media (prefers-reduced-motion:reduce){.cardx,.cx-l,.cx-seal{opacity:1!important;transform:none!important}.cx-sheet{clip-path:none}.cx-flap{display:none}.cx-l{-webkit-mask-image:none!important;mask-image:none!important}}

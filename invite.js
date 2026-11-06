@@ -96,35 +96,49 @@
     playLetter();
   }
 
-  /* ---------- лист: розгортається і пишеться від руки ---------- */
-  var paper = $('paper');
-  var lines = [].slice.call(document.querySelectorAll('.hw')).filter(function (el) { return el.textContent.trim(); });
+  /* ---------- картка-запрошення: розгортається, текст проявляється, наприкінці падає сургуч ---------- */
+  var cardx = $('cardx');
+  var layers = [].slice.call(cardx.querySelectorAll('.cx-l'));
+  layers.forEach(function (el) {
+    var r = el.getAttribute('data-r').split(',');
+    el.style.clipPath = 'inset(' + r[0] + '% 0 ' + (100 - parseFloat(r[1])) + '% 0)';
+  });
+  function wait(ms) { return new Promise(function (r) { setTimeout(r, ms); }); }
   function showLetterNow() {
-    paper.classList.add('in', 'u1', 'u2');
-    lines.forEach(function (el) { el.style.transition = 'none'; el.classList.add('on'); });
-    $('cardNote').classList.add('on');
+    cardx.classList.add('in', 'open');
+    layers.forEach(function (el) { el.classList.add('on'); });
+    $('cxSeal').classList.add('on');
     document.querySelector('.hero .scroll-cue').classList.add('on');
   }
-  function wait(ms) { return new Promise(function (r) { setTimeout(r, ms); }); }
-  function writeLine(el) {
-    el.classList.add('on');
-    return wait(260);
-  }
+  var STEP = { fade: 650, write: 1150, up: 330, pop: 420 };
   var letterPlayed = false;
   function playLetter() {
     if (letterPlayed) return;
     letterPlayed = true;
     if (reduce || printMode) return showLetterNow();
-    // лист уже «вийшов» з конверта у відео — показуємо його розгорнутим
-    paper.style.transition = 'none';
-    paper.classList.add('in', 'u1', 'u2');
+    cardx.classList.add('in');
     wait(450).then(function () {
-      return lines.reduce(function (pr, el) { return pr.then(function () { return writeLine(el); }); }, Promise.resolve());
+      cardx.classList.add('open');
+      return wait(1050);
     }).then(function () {
-      $('cardNote').classList.add('on');
+      return layers.reduce(function (pr, el) {
+        return pr.then(function () {
+          var k = el.getAttribute('data-k');
+          if (k === 'write') el.style.setProperty('--d', '1.2s');
+          el.classList.add('on');
+          return wait(STEP[k] || 350);
+        });
+      }, Promise.resolve());
+    }).then(function () {
+      return wait(250);
+    }).then(function () {
+      $('cxSeal').classList.add('on');
+      return wait(900);
+    }).then(function () {
       document.querySelector('.hero .scroll-cue').classList.add('on');
     });
   }
+
   /* ---------- відео-вступ: конверт прилітає → чекає дотику → печатка ламається → біла картка ---------- */
   var intro = $('introV');
   var portrait = innerWidth / innerHeight < .9;

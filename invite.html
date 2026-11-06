@@ -13,7 +13,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800;900&family=Manrope:wght@400;500;600;700&display=swap">
-<link rel="stylesheet" href="invite.css?v=02062c2e">
+<link rel="stylesheet" href="invite.css?v=d05ebf87">
 </head>
 <body class="locked">
 
@@ -37,25 +37,24 @@
   <!-- ============ КАРТКА ============ -->
   <section class="hero" id="hero">
     <div class="letter-wrap">
-      <div class="paper" id="paper">
-        <div class="sheet" id="sheet">
-          <img class="sheet-logo" src="assets/logo-vertical.svg" alt="Beauty Games by Verbova Iryna">
-          <p class="hw hw-to" id="cardTo"></p>
-          <p class="hw hw-title">Персональное приглашение</p>
-          <p class="hw hw-text"><b>Ирина Вербовая</b> приглашает {вас|тебя} стать</p>
-          <p class="hw hw-big">амбассадором</p>
-          <p class="hw hw-text">первого сезона Beauty Games</p>
-          <div class="sheet-dates">
-            <p class="hw"><small>Старт сезона</small>21 декабря 2026</p>
-            <p class="hw"><small>Гранд-Финал</small>весна 2027</p>
-            <p class="hw"><small>Оффлайн-этап</small>Тбилиси</p>
-          </div>
-          <p class="hw hw-sign">Ирина Вербовая<small>основатель Beauty Games</small></p>
-          <p class="sheet-note" id="cardNote">Место в первом составе — только по личному приглашению</p>
+      <div class="cardx" id="cardx" role="img" aria-label="Персональное приглашение. Ирина Вербовая приглашает {вас|тебя} стать амбассадором первого сезона Beauty Games. Старт сезона — 21 декабря 2026, Гранд-Финал — весна 2027, оффлайн-этап — Тбилиси.">
+        <div class="cx-sheet">
+          <div class="cx-blank"></div>
+          <div class="cx-l" data-r="5.5,16.5" data-k="fade"></div>
+          <div class="cx-l" data-r="17,28.9" data-k="write"></div>
+          <div class="cx-l" data-r="28.9,38" data-k="write"></div>
+          <div class="cx-l" data-r="38.8,43.7" data-k="up"></div>
+          <div class="cx-l" data-r="44,52" data-k="pop"></div>
+          <div class="cx-l" data-r="52,56.2" data-k="up"></div>
+          <div class="cx-l" data-r="57.6,65.7" data-k="up"></div>
+          <div class="cx-l" data-r="67.6,74.4" data-k="up"></div>
+          <div class="cx-l" data-r="75.8,79.4" data-k="up"></div>
+          <img class="cx-seal" id="cxSeal" src="assets/home/invite-seal.webp" alt="">
         </div>
-        <div class="flap flap-bot" aria-hidden="true"></div>
-        <div class="flap flap-top" aria-hidden="true"></div>
+        <div class="cx-flap" aria-hidden="true"></div>
       </div>
+      <p class="sheet-note" id="cardNote" hidden></p>
+      <p class="hw-to" id="cardTo" hidden></p>
       <div class="scroll-cue"><span></span>Листайте</div>
     </div>
   </section>
@@ -251,6 +250,6 @@
 </main>
 
 <script src="leads.js?v=bec43857"></script>
-<script src="invite.js?v=d399012d"></script>
+<script src="invite.js?v=d93a961d"></script>
 </body>
 </html>
