@@ -530,8 +530,6 @@ input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;bac
 @media (prefers-reduced-motion:reduce){.om,.om .rl{opacity:1!important;transform:none!important}}
 
 /* баланс чорного з бордо: частина секцій — глибокий винний фон */
-.wrap > .sec:nth-of-type(4n+3){background:radial-gradient(90% 70% at 50% 0%,#3a0a1c 0%,#1a0610 55%,#07060b 100%)}
-.wrap > .sec#rsvp{background:radial-gradient(90% 70% at 50% 100%,#4a0d24 0%,#1a0610 55%,#07060b 100%)}
 
 /* реалістичні іконки */
 .team-crown{width:58%;margin:-6% auto 2px;filter:drop-shadow(0 8px 14px rgba(0,0,0,.45))}
@@ -597,3 +595,184 @@ input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;bac
   background:radial-gradient(circle,rgba(255,226,236,.42) 0%,rgba(240,163,196,.16) 45%,rgba(240,163,196,0) 70%);
   filter:drop-shadow(0 0 1px rgba(255,255,255,.35)) drop-shadow(0 8px 14px rgba(0,0,0,.35))}
 @media (max-width:640px){.g img{width:72px;height:72px}}
+
+/* =====================================================================
+   LUXE — «дорогий інтерʼєр»: бордові стіни з молдингами, чорний мрамор,
+   кремовий букле, латунь. Конверт на вході не чіпаємо.
+   ===================================================================== */
+:root{
+  --lx-wine:#4e1022;--lx-wine-2:#651730;--lx-wine-d:#2e0813;
+  --lx-marble:#0f0d0e;--lx-cream:#efe6d9;--lx-cream-2:#e4d7c5;--lx-taupe:#cbb9a2;
+  --lx-ink:#2b1e1f;--lx-ink-soft:#6f5d58;--lx-ivory:#f4ebdf;--lx-ivory-soft:rgba(244,235,223,.72);
+  --lx-brass:#c9a160;--lx-brass-lt:#e8cf9b;--lx-brass-d:#8f6a35;
+  --lx-serif:"Prata",Georgia,serif;
+  /* акценти сторінки — латунь замість рожевого */
+  --pink:#c9a160;--pink-2:#e8cf9b;--magenta:#8a2a3f;--deep:#4e1022;
+  --grad:linear-gradient(100deg,#f0dcae 0%,#d4b071 45%,#a9813f 100%);
+}
+body{background:var(--lx-marble)}
+
+/* ---------- фактури ---------- */
+.wrap > .sec.lx-wine{background:
+  radial-gradient(40% 30% at 8% 0%,rgba(255,196,140,.16),transparent 70%),
+  radial-gradient(40% 30% at 92% 0%,rgba(255,196,140,.16),transparent 70%),
+  linear-gradient(180deg,var(--lx-wine-2) 0%,var(--lx-wine) 45%,var(--lx-wine-d) 100%)}
+.wrap > .sec.lx-marble{background:
+  linear-gradient(118deg,transparent 46.6%,rgba(235,225,212,.10) 46.8%,rgba(235,225,212,.03) 47.3%,transparent 47.6%),
+  linear-gradient(131deg,transparent 63.4%,rgba(235,225,212,.07) 63.55%,transparent 63.9%),
+  linear-gradient(104deg,transparent 20%,rgba(235,225,212,.06) 20.15%,transparent 20.5%),
+  linear-gradient(156deg,transparent 78%,rgba(201,161,96,.08) 78.15%,transparent 78.5%),
+  radial-gradient(60% 40% at 50% 0%,rgba(255,200,150,.10),transparent 70%),
+  linear-gradient(180deg,#161314,#0b0909)}
+.wrap > .sec.lx-cream{background:
+  url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='b'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 .4  0 0 0 0 .33  0 0 0 0 .27  0 0 0 .06 0'/></filter><rect width='100%' height='100%' filter='url(%23b)'/></svg>"),
+  radial-gradient(50% 35% at 50% 0%,rgba(255,240,215,.9),transparent 75%),
+  linear-gradient(180deg,#f3ebdf,var(--lx-cream) 60%,var(--lx-cream-2))}
+
+/* молдинги на стінах (подвійна рамка-панель) */
+.wrap > .sec.lx-wine::before,.wrap > .sec.lx-cream::before{content:"";position:absolute;inset:22px;pointer-events:none;border-radius:2px}
+.wrap > .sec.lx-wine::before{border:1px solid rgba(0,0,0,.28);box-shadow:inset 0 0 0 1px rgba(255,255,255,.05),inset 0 0 0 9px transparent,inset 0 0 0 10px rgba(0,0,0,.22),inset 0 0 0 11px rgba(255,255,255,.04)}
+.wrap > .sec.lx-cream::before{border:1px solid rgba(120,95,70,.18);box-shadow:inset 0 0 0 1px rgba(255,255,255,.6),inset 0 0 0 10px rgba(120,95,70,.12),inset 0 0 0 11px rgba(255,255,255,.5)}
+.wrap > .sec > *{position:relative;z-index:1}
+
+/* ---------- типографіка ---------- */
+.wrap h2{font:400 clamp(30px,5.4vw,50px)/1.12 var(--lx-serif);letter-spacing:.005em;text-wrap:balance}
+.wrap .grad{background:none;-webkit-background-clip:border-box;background-clip:border-box;color:var(--lx-brass);-webkit-text-fill-color:currentColor}
+.wrap .kicker{color:var(--lx-brass);letter-spacing:.32em;font-weight:600}
+.wrap .kicker::before,.wrap .center .kicker::after{width:34px;height:1px;background:linear-gradient(90deg,transparent,var(--lx-brass))}
+.wrap .center .kicker::after{background:linear-gradient(90deg,var(--lx-brass),transparent)}
+.lx-wine h2,.lx-marble h2{color:var(--lx-ivory)}
+.lx-wine .lead,.lx-marble .lead{color:var(--lx-ivory-soft)}
+.lx-cream h2{color:var(--lx-ink)}
+.lx-cream .lead,.lx-cream p{color:var(--lx-ink-soft)}
+.lx-cream .kicker{color:var(--lx-brass-d)}
+
+/* ---------- лист Ірини (крем) ---------- */
+.letter-ph{border-radius:200px 200px 4px 4px;box-shadow:0 0 0 1px var(--lx-brass),0 0 0 8px var(--lx-cream),0 0 0 9px rgba(143,106,53,.5),0 30px 60px rgba(60,30,20,.25)}
+.letter-ph .tag{border-radius:2px;background:rgba(30,18,16,.55)}
+.letter-tx .hello{font-family:var(--lx-serif);font-weight:400;color:var(--lx-ink)}
+.lx-cream .letter-tx p{color:#5b4a45}
+.letter-tx p.personal{background:rgba(201,161,96,.12);border-left-color:var(--lx-brass);color:var(--lx-ink)}
+.sign img{border-color:var(--lx-brass)}
+.lx-cream .sign b{color:var(--lx-ink)}
+.lx-cream .sign small{color:var(--lx-ink-soft)}
+
+/* ---------- команда (бордо) ---------- */
+.team::before{border-color:rgba(232,207,155,.3)}
+.team-c{background:radial-gradient(circle at 50% 30%,#7a2238,#3a0b19 70%);border:1px solid var(--lx-brass);
+  box-shadow:0 0 0 6px rgba(0,0,0,.18),0 0 0 7px rgba(201,161,96,.45),0 20px 50px rgba(0,0,0,.45)}
+.team-c small{color:var(--lx-brass-lt)}
+.team-c b{font-family:var(--lx-serif);font-weight:400;color:var(--lx-ivory)}
+.team-c em{color:var(--lx-brass-lt)}
+.seat{background:radial-gradient(circle at 50% 35%,#f6efe4,#e4d7c5 75%);border:1px solid var(--lx-brass);box-shadow:0 8px 18px rgba(0,0,0,.35)}
+.seat.fill{background:radial-gradient(circle at 50% 35%,#fbf5ea,#eadfcd 75%);border:2px solid var(--lx-brass-lt);box-shadow:0 0 0 3px rgba(201,161,96,.25),0 10px 22px rgba(0,0,0,.4)}
+.seat:not(.fill){opacity:.55}
+.seat.pick{box-shadow:0 0 0 3px var(--lx-brass-lt),0 0 30px rgba(232,207,155,.55)}
+
+/* ---------- дохід (мармур) ---------- */
+.zero{background:rgba(201,161,96,.1);border:1px solid rgba(201,161,96,.45);color:var(--lx-brass-lt)}
+.money{background:linear-gradient(160deg,rgba(255,255,255,.05),rgba(255,255,255,.015));border:1px solid rgba(201,161,96,.5);border-radius:6px;
+  box-shadow:inset 0 0 0 6px rgba(0,0,0,.25),inset 0 0 0 7px rgba(201,161,96,.25),0 30px 60px rgba(0,0,0,.45)}
+.money-top label{color:var(--lx-brass-lt)}
+.money-n{font-family:var(--lx-serif);font-weight:400;color:var(--lx-ivory)}
+.money-n .step{border-color:rgba(201,161,96,.6);color:var(--lx-brass-lt)}
+.money-n .step:hover{background:rgba(201,161,96,.2)}
+.wrap input[type=range]::-webkit-slider-runnable-track{height:3px;background:linear-gradient(90deg,var(--lx-brass) var(--p,100%),rgba(255,255,255,.14) var(--p,100%))}
+.wrap input[type=range]::-moz-range-progress{background:var(--lx-brass)}
+.wrap input[type=range]::-webkit-slider-thumb{background:radial-gradient(circle at 35% 30%,#fff3d6,#d4b071 55%,#8f6a35);border:0;box-shadow:0 3px 12px rgba(0,0,0,.55)}
+.wrap input[type=range]::-moz-range-thumb{background:#d4b071;border:0}
+.ticks{color:rgba(244,235,223,.55)}
+.mr{background:rgba(0,0,0,.3);border:1px solid rgba(201,161,96,.25);border-radius:4px}
+.mr small{color:rgba(244,235,223,.6)}
+.mr b{font-family:var(--lx-serif);font-weight:400;color:var(--lx-ivory)}
+.mr.hot{background:linear-gradient(135deg,#6b1a2f,#4e1022 55%,#2e0813);border:1px solid var(--lx-brass)}
+.mr.hot small{color:var(--lx-brass-lt)}
+.mr.hot b{color:var(--lx-brass-lt)}
+.money-foot{color:rgba(244,235,223,.6)}
+#bigNote{color:var(--lx-brass-lt)}
+
+/* ---------- медійність (крем, арочні ніші) ---------- */
+.lx-cream .grid{gap:18px}
+.lx-cream .g{background:transparent;border:0;border-radius:0;padding:0 6px 10px;text-align:center;display:block}
+.lx-cream .g:hover{transform:none;background:transparent}
+.lx-cream .g img{display:block;width:100%;height:auto;aspect-ratio:1/1.05;object-fit:contain;padding:22% 18% 12%;margin:0 0 16px;
+  border-radius:400px 400px 4px 4px;
+  background:radial-gradient(70% 55% at 50% 0%,rgba(255,236,200,.95),rgba(255,236,200,0) 70%),linear-gradient(180deg,#d9cab5,#c4b098);
+  box-shadow:inset 0 0 0 1px rgba(143,106,53,.45),inset 0 -20px 30px rgba(60,40,25,.15),0 0 0 6px var(--lx-cream),0 0 0 7px rgba(143,106,53,.35);
+  filter:none}
+.lx-cream .g:hover img{transform:none}
+.lx-cream .g h3{font:400 20px/1.25 var(--lx-serif);color:var(--lx-ink);margin:0 0 6px}
+.lx-cream .g p{font-size:14.5px;color:var(--lx-ink-soft)}
+.lx-cream .g .only{position:static;display:inline-block;margin:0 0 8px;background:var(--lx-wine);color:var(--lx-brass-lt);border-radius:2px}
+@media (max-width:860px){.lx-cream .grid{grid-template-columns:1fr 1fr;gap:22px 14px}}
+@media (max-width:640px){
+  .lx-cream .grid{grid-template-columns:1fr 1fr}
+  .lx-cream .g{display:block;padding:0}
+  .lx-cream .g img{width:100%;height:auto;margin:0 0 12px}
+  .lx-cream .g h3{font-size:16px}
+  .lx-cream .g p{font-size:12.5px;line-height:1.5}
+  .lx-cream .g .only{font-size:7.5px;padding:5px 6px}
+}
+
+/* ---------- статус (бордо) ---------- */
+.lx-wine .trophy{border-radius:400px 400px 4px 4px;background:radial-gradient(70% 55% at 50% 0%,rgba(255,214,160,.35),rgba(255,214,160,0) 70%),linear-gradient(180deg,#3a0b19,#25060f);
+  border:1px solid var(--lx-brass);box-shadow:0 0 0 7px rgba(0,0,0,.2),0 0 0 8px rgba(201,161,96,.4),0 30px 60px rgba(0,0,0,.45)}
+.lx-wine .trophy span{background:var(--lx-wine-d);border-color:var(--lx-brass);color:var(--lx-brass-lt);border-radius:2px}
+.lx-wine .checks li{background:rgba(0,0,0,.18);border:1px solid rgba(201,161,96,.22);border-radius:3px;color:var(--lx-ivory-soft)}
+.lx-wine .checks li b{color:var(--lx-ivory)}
+.lx-wine .checks li::before{background:linear-gradient(135deg,#f0dcae,#a9813f)}
+.lx-wine .checks li::after{border-color:#2e0813}
+
+/* ---------- подарунок (мармур) ---------- */
+.lx-marble .gift-cta{color:var(--lx-brass-lt)}
+.gift-sum{font-family:var(--lx-serif);font-weight:400}
+.lx-marble .gift-head p{color:var(--lx-ivory)}
+.lx-marble .mod{background:rgba(255,255,255,.03);border:1px solid rgba(201,161,96,.25);border-radius:3px}
+.lx-marble .mod b{font-family:var(--lx-serif);font-weight:400}
+.lx-marble .mod span{color:var(--lx-ivory)}
+.lx-marble .mod small{color:rgba(244,235,223,.55)}
+.lx-marble .gift-foot{color:rgba(244,235,223,.6)}
+
+/* ---------- навантаження (крем) ---------- */
+.lx-cream .load div{background:rgba(255,255,255,.45);border:1px solid rgba(143,106,53,.3);border-radius:3px}
+.lx-cream .load b{font-family:var(--lx-serif);font-weight:400}
+.lx-cream .load b.grad{color:var(--lx-wine)}
+.lx-cream .load span{color:var(--lx-ink-soft)}
+.lx-cream .load-no span{border-color:rgba(143,106,53,.35);color:var(--lx-ink-soft);text-decoration-color:var(--lx-wine)}
+
+/* ---------- відповідь (бордо) ---------- */
+.lx-wine .rsvp{background:var(--lx-cream);border:1px solid var(--lx-brass);border-radius:4px;color:var(--lx-ink);
+  box-shadow:inset 0 0 0 8px var(--lx-cream),inset 0 0 0 9px rgba(143,106,53,.35),0 40px 80px rgba(0,0,0,.45)}
+.lx-wine .rsvp h2{color:var(--lx-ink)}
+.lx-wine .rsvp .sub{color:var(--lx-ink-soft)}
+.lx-wine .rsvp .kicker{color:var(--lx-brass-d)}
+.lx-wine .fld label{color:var(--lx-ink-soft)}
+.lx-wine .fld input,.lx-wine .fld textarea{background:#fbf7f0;border:1px solid rgba(143,106,53,.35);color:var(--lx-ink);border-radius:3px}
+.lx-wine .fld input::placeholder,.lx-wine .fld textarea::placeholder{color:#a8988c}
+.lx-wine .fld input:focus,.lx-wine .fld textarea:focus{border-color:var(--lx-brass);box-shadow:0 0 0 3px rgba(201,161,96,.2)}
+.lx-wine .chips span{background:#fbf7f0;border-color:rgba(143,106,53,.35);color:var(--lx-ink);border-radius:2px}
+.lx-wine .chips input:checked+span{background:var(--lx-wine);border-color:var(--lx-wine);color:var(--lx-brass-lt)}
+.lx-wine .btn{background:linear-gradient(135deg,#6b1a2f,#4e1022);color:var(--lx-brass-lt);border:1px solid var(--lx-brass);border-radius:2px;box-shadow:0 12px 26px rgba(78,16,34,.35)}
+.lx-wine .btn:hover{box-shadow:0 16px 32px rgba(78,16,34,.45)}
+.lx-wine .btn-ghost{background:transparent;color:var(--lx-wine);border:1px solid var(--lx-wine)}
+.lx-wine .rsvp-alt{color:var(--lx-ink-soft)}
+.lx-wine .rsvp-alt a{color:var(--lx-wine)}
+.lx-wine .thanks b{color:var(--lx-wine)}
+.lx-wine .thanks p{color:var(--lx-ink-soft)}
+.lx-wine .form-err{color:#9b1a3a}
+
+/* ---------- підвал ---------- */
+.foot{background:#0b0909;border-top:1px solid rgba(201,161,96,.25)}
+.foot .links a{color:var(--lx-brass-lt)}
+
+/* ---------- перший блок: базово — молдинги на бордовій стіні ---------- */
+#hero{position:relative;background:
+  radial-gradient(35% 25% at 10% 0%,rgba(255,196,140,.18),transparent 70%),
+  radial-gradient(35% 25% at 90% 0%,rgba(255,196,140,.18),transparent 70%),
+  linear-gradient(180deg,var(--lx-wine-2) 0%,var(--lx-wine) 50%,var(--lx-wine-d) 100%)}
+#hero::before{content:"";position:absolute;inset:16px;pointer-events:none;border:1px solid rgba(0,0,0,.28);
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.05),inset 0 0 0 10px rgba(0,0,0,.2),inset 0 0 0 11px rgba(255,255,255,.04)}
+#hero > *{position:relative;z-index:1}
+#hero .om{box-shadow:0 0 0 1px rgba(201,161,96,.55),0 30px 70px rgba(0,0,0,.5)}
+#hero .scroll-cue{color:var(--lx-brass-lt)}
+#hero .scroll-cue span{border-color:rgba(232,207,155,.5)}
