@@ -784,3 +784,67 @@ body{background:var(--lx-marble)}
 /* корона в центрі команди — відео, що крутиться */
 video.team-crown{display:block;width:72%;aspect-ratio:1;margin:-14% auto 0;object-fit:cover;border-radius:50%;filter:none;
   -webkit-mask-image:radial-gradient(closest-side,#000 64%,transparent 100%);mask-image:radial-gradient(closest-side,#000 64%,transparent 100%)}
+
+/* ===== дохід: бордові шпалери + світлий інтуїтивний калькулятор ===== */
+.wrap > .sec.lx-toile{background:
+  url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220' viewBox='0 0 220 220'><g fill='none' stroke='%23c98b9b' stroke-opacity='.22' stroke-width='1.2' stroke-linecap='round'><path d='M55 30c-14 0-22 12-16 22 4 7 14 7 16-1 2-6-5-9-8-5'/><path d='M55 30c14 0 22 12 16 22-4 7-14 7-16-1-2-6 5-9 8-5'/><path d='M55 52v34M55 86c-10 4-16 12-14 22M55 86c10 4 16 12 14 22M41 108c4-2 9-1 10 3M69 108c-4-2-9-1-10 3'/><circle cx='55' cy='120' r='3'/><path d='M165 140c-14 0-22 12-16 22 4 7 14 7 16-1 2-6-5-9-8-5'/><path d='M165 140c14 0 22 12 16 22-4 7-14 7-16-1-2-6 5-9 8-5'/><path d='M165 162v34M165 196c-10 4-16 12-14 22M165 196c10 4 16 12 14 22'/><path d='M150 40c8-10 22-10 30 0M156 46c5-5 13-5 18 0M110 110l6-6 6 6-6 6z'/><path d='M0 110l6-6 6 6-6 6zM220 110l-6-6-6 6 6 6z'/></g></svg>") 0 0/220px 220px repeat,
+  radial-gradient(60% 40% at 50% 0%,rgba(255,200,150,.14),transparent 70%),
+  linear-gradient(180deg,#5c1428,#4a1021 55%,#350a17)}
+.lx-toile h2{color:var(--lx-ivory)}
+.lx-toile .lead{color:var(--lx-ivory-soft)}
+.lx-toile .zero{background:rgba(0,0,0,.25);border:1px solid rgba(232,207,155,.5);color:var(--lx-brass-lt)}
+
+.money.calc{position:relative;margin-top:34px;padding:clamp(26px,5vw,44px) clamp(18px,5vw,44px);text-align:center;border-radius:4px;
+  background:linear-gradient(180deg,#f8f2e9,#efe5d6);color:var(--lx-ink);border:1px solid var(--lx-brass);
+  box-shadow:inset 0 0 0 8px #f5ede1,inset 0 0 0 9px rgba(143,106,53,.35),0 40px 80px rgba(0,0,0,.45)}
+.calc-q{margin:0;font:400 clamp(20px,4vw,26px)/1.3 var(--lx-serif);color:var(--lx-ink)}
+.calc-step{display:flex;align-items:center;justify-content:center;gap:clamp(14px,4vw,26px);margin:18px 0 6px}
+.calc .step{width:56px;height:56px;border-radius:50%;border:1px solid var(--lx-brass);background:#fffaf2;color:var(--lx-wine);
+  font:400 30px/1 var(--lx-serif);cursor:pointer;display:grid;place-items:center;box-shadow:0 6px 14px rgba(78,16,34,.12);transition:transform .15s,background .2s}
+.calc .step:hover{background:#fff}
+.calc .step:active{transform:scale(.92)}
+.calc-n{min-width:120px}
+.calc-n span{display:block;font:400 clamp(58px,13vw,80px)/1 var(--lx-serif);color:var(--lx-wine)}
+.calc-n small{display:block;margin-top:2px;font:600 11px/1.4 var(--head);letter-spacing:.22em;text-transform:uppercase;color:var(--lx-ink-soft)}
+.calc-chips{display:flex;justify-content:center;gap:8px;flex-wrap:wrap;margin:14px 0 10px}
+.calc-chips button{min-width:48px;padding:9px 12px;border-radius:99px;border:1px solid rgba(143,106,53,.45);background:transparent;color:var(--lx-ink);
+  font:600 14px/1 var(--head);cursor:pointer;transition:.2s}
+.calc-chips button.on,.calc-chips button:hover{background:var(--lx-wine);border-color:var(--lx-wine);color:var(--lx-brass-lt)}
+.money.calc input[type=range]{margin:6px 0 4px}
+.money.calc input[type=range]::-webkit-slider-runnable-track{background:linear-gradient(90deg,var(--lx-wine) var(--p,100%),rgba(78,16,34,.15) var(--p,100%))}
+.money.calc input[type=range]::-moz-range-track{background:rgba(78,16,34,.15)}
+.money.calc input[type=range]::-moz-range-progress{background:var(--lx-wine)}
+.calc-dots{display:grid;grid-template-columns:repeat(15,1fr);gap:6px;max-width:330px;margin:12px auto 0}
+.calc-dots i{aspect-ratio:1;border-radius:50%;border:1px solid rgba(143,106,53,.4);background:transparent;transition:background .25s,transform .25s}
+.calc-dots i.on{background:var(--lx-wine);border-color:var(--lx-wine);transform:scale(1.05)}
+.calc-dots i.on.extra{background:var(--lx-brass);border-color:var(--lx-brass)}
+.calc-tiers{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:22px auto 0;max-width:380px}
+.calc-tiers div{padding:12px 8px;border:1px solid rgba(143,106,53,.3);border-radius:3px;opacity:.5;transition:.25s}
+.calc-tiers div.on{opacity:1;border-color:var(--lx-wine);background:rgba(78,16,34,.06)}
+.calc-tiers b{display:block;font:400 26px/1 var(--lx-serif);color:var(--lx-wine)}
+.calc-tiers span{display:block;margin-top:4px;font:600 10.5px/1.3 var(--head);letter-spacing:.1em;text-transform:uppercase;color:var(--lx-ink-soft)}
+.calc-formula{margin-top:22px;font:400 clamp(17px,3.4vw,20px)/1.3 var(--lx-serif);color:var(--lx-ink-soft)}
+.calc-formula span{color:var(--lx-ink)}
+.calc-sum{margin:12px auto 0;max-width:380px;padding:18px 16px;border-radius:3px;background:linear-gradient(135deg,#6b1a2f,#4e1022 60%,#350a17);
+  border:1px solid var(--lx-brass);box-shadow:0 14px 30px rgba(78,16,34,.3)}
+.calc-sum small{display:block;font:600 10.5px/1.4 var(--head);letter-spacing:.22em;text-transform:uppercase;color:var(--lx-brass-lt)}
+.calc-sum b{display:block;margin-top:6px;font:400 clamp(40px,9vw,56px)/1 var(--lx-serif);color:#fff}
+.calc-sum b.bump{animation:bump .35s ease}
+.money.calc .money-foot{margin-top:16px;color:var(--lx-ink-soft);font-size:13px}
+.money.calc #bigNote{color:var(--lx-wine)}
+
+/* подарунок: сума зʼявляється в центрі, у світлі над коробкою */
+.gift-btn.has-vid{position:relative}
+.gift-reveal{position:absolute;left:0;right:0;top:20%;z-index:3;text-align:center;pointer-events:none;
+  opacity:0;transform:translateY(14px) scale(.96);transition:opacity 1s ease,transform 1.2s cubic-bezier(.2,.8,.2,1)}
+.gift-reveal b{display:block;font:400 clamp(46px,12vw,72px)/1 var(--lx-serif);color:#fff6e3;
+  text-shadow:0 0 24px rgba(255,214,150,.85),0 0 60px rgba(255,190,110,.55),0 2px 8px rgba(0,0,0,.4)}
+.gift-reveal span{display:block;margin-top:8px;font:600 11px/1.5 var(--head);letter-spacing:.24em;text-transform:uppercase;color:#fbe7bf;
+  text-shadow:0 1px 6px rgba(0,0,0,.6)}
+.giftbox.opened .gift-reveal{opacity:1;transform:none}
+.giftbox .gift-head{display:none}
+.giftbox.opened .gift-open{margin-top:6px}
+.pdf .gift-reveal{opacity:1;transform:none}
+/* корона у «Вы с нами?» — те ж живе відео */
+video.rsvp-ic{display:block;width:120px;height:120px;margin:-10px auto 4px;object-fit:cover;border-radius:50%;filter:none;
+  -webkit-mask-image:radial-gradient(closest-side,#000 62%,transparent 100%);mask-image:radial-gradient(closest-side,#000 62%,transparent 100%)}

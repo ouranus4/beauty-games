@@ -13,7 +13,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Prata&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Playfair+Display+SC:wght@400;500&family=Lora:ital,wght@0,400;0,600;1,400&family=Montserrat:wght@600;700;800;900&family=Manrope:wght@400;500;600;700&display=swap">
-<link rel="stylesheet" href="invite.css?v=24b89d31">
+<link rel="stylesheet" href="invite.css?v=db0228ec">
 </head>
 <body class="locked">
 
@@ -91,7 +91,7 @@
   </section>
 
   <!-- ============ ДОХІД ============ -->
-  <section class="sec lx-marble">
+  <section class="sec lx-toile">
     <div class="narrow">
       <div class="center">
         <div class="kicker rv">Доход</div>
@@ -99,18 +99,25 @@
         <p class="lead rv">Подвигайте ползунок: от 8 участниц ставка удваивается и считается со всей суммы.</p>
         <div class="zero rv">Вход для {вас|тебя} — €0 · никаких взносов</div>
       </div>
-      <div class="money rv">
-        <div class="money-top">
-          <label for="cnt">Сколько мастеров {вы приведёте|ты приведёшь}</label>
-          <div class="money-n"><button type="button" class="step" id="cntMinus" aria-label="Меньше">−</button><span id="cntV">10</span><button type="button" class="step" id="cntPlus" aria-label="Больше">+</button><small>участниц</small></div>
+      <div class="money calc rv">
+        <p class="calc-q">Сколько мастеров {вы приведёте|ты приведёшь}?</p>
+        <div class="calc-step">
+          <button type="button" class="step" id="cntMinus" aria-label="Меньше">−</button>
+          <div class="calc-n"><span id="cntV">10</span><small id="cntWord">мастеров</small></div>
+          <button type="button" class="step" id="cntPlus" aria-label="Больше">+</button>
         </div>
-        <input type="range" id="cnt" min="7" max="30" step="1" value="10" aria-label="Количество участниц">
-        <div class="ticks"><span>7</span><span>10</span><span>15</span><span>20</span><span>25</span><span>30</span></div>
-        <div class="money-res">
-          <div class="mr"><small>Ставка</small><b id="rate">10%</b></div>
-          <div class="mr hot"><small>{Ваше|Твоё} вознаграждение</small><b id="sum">€1 800</b><img src="assets/home/real/coins.webp" alt=""></div>
+        <div class="calc-chips" id="calcChips">
+          <button type="button" data-n="7">7</button><button type="button" data-n="10">10</button><button type="button" data-n="15">15</button><button type="button" data-n="20">20</button><button type="button" data-n="30">30</button>
         </div>
-        <p class="money-foot">Расчёт при пакете участницы €1 800. Выплата приходит после оплаты участницы, а при рассрочке с каждого её взноса. <span id="bigNote" hidden>Команда больше 10 мастеров — расчёт ориентировочный, условия для большой команды Ирина обсуждает лично.</span></p>
+        <input type="range" id="cnt" min="7" max="30" step="1" value="10" aria-label="Количество мастеров">
+        <div class="calc-dots" id="calcDots" aria-hidden="true"></div>
+        <div class="calc-tiers">
+          <div data-t="5"><b>5%</b><span>7 мастеров</span></div>
+          <div data-t="10"><b>10%</b><span>от 8 мастеров</span></div>
+        </div>
+        <div class="calc-formula"><span id="fN">10</span> × €1 800 × <span id="rate">10%</span> =</div>
+        <div class="calc-sum"><small>{Ваше|Твоё} вознаграждение</small><b id="sum">€1 800</b></div>
+        <p class="money-foot">€1 800 — пакет участницы. Выплата приходит после оплаты участницы, а при рассрочке с каждого её взноса. <span id="bigNote" hidden>Команда больше 10 мастеров — расчёт ориентировочный, условия для большой команды Ирина обсуждает лично.</span></p>
       </div>
     </div>
   </section>
@@ -162,6 +169,7 @@
       <div class="giftbox rv" id="giftbox">
         <button class="gift-btn has-vid" type="button" id="giftBtn" aria-label="Открыть подарок">
           <video id="giftV" src="assets/video/invite-gift.mp4" poster="assets/video/invite-gift.jpg" muted playsinline preload="auto"></video>
+          <span class="gift-reveal" aria-hidden="true"><b>€3 000+</b><span>Бизнес-программа · 9 модулей</span></span>
           <span class="finger" aria-hidden="true"><i></i><i></i><svg viewBox="0 0 24 24"><path d="M9 11.24V7.5C9 6.12 10.12 5 11.5 5S14 6.12 14 7.5v3.74c1.21-.81 2-2.18 2-3.74C16 5.01 13.99 3 11.5 3S7 5.01 7 7.5c0 1.56.79 2.93 2 3.74zm9.84 4.63l-4.54-2.26c-.17-.07-.35-.11-.54-.11H13v-6c0-.83-.67-1.5-1.5-1.5S10 6.67 10 7.5v10.74l-3.43-.72c-.08-.01-.15-.03-.24-.03-.31 0-.59.13-.79.33l-.79.8 4.94 4.94c.27.27.65.44 1.06.44h6.79c.75 0 1.33-.55 1.44-1.28l.75-5.27c.01-.07.02-.14.02-.2 0-.62-.38-1.16-.91-1.38z" fill="#fff"/></svg></span>
         </button>
         <div class="gift-cta">{Нажмите|Нажми}, чтобы открыть<small>Внутри то, что обычно стоит больше €3 000</small></div>
@@ -205,7 +213,7 @@
   <!-- ============ RSVP ============ -->
   <section class="sec lx-wine sec-break" id="rsvp">
     <div class="rsvp rv" id="rsvpCard">
-      <img class="rsvp-ic" src="assets/home/real/crown.webp" alt="">
+      <video class="rsvp-ic" src="assets/video/invite-crown.mp4" poster="assets/video/invite-crown.jpg" muted loop playsinline autoplay preload="metadata" aria-hidden="true"></video>
       <div class="kicker">Ответ на приглашение</div>
       <h2>{Вы|Ты} <span class="grad">с нами?</span></h2>
       <p class="sub">Оставьте, как с {вами|тобой} связаться, и Ирина позвонит лично. Двадцати минут хватит, чтобы обсудить всё.</p>
@@ -250,6 +258,6 @@
 </main>
 
 <script src="leads.js?v=bec43857"></script>
-<script src="invite.js?v=278f6627"></script>
+<script src="invite.js?v=6316016b"></script>
 </body>
 </html>
