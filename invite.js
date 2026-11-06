@@ -287,9 +287,6 @@
   /* ---------- калькулятор винагороди: 7–30 мастерів ---------- */
   var PRICE = 1800, cnt = $('cnt'), sumEl = $('sum');
   function fmt(n) { return '€' + String(n).replace(/\B(?=(\d{3})+(?!\d))/g, '\u00a0'); }
-  var dotsEl = $('calcDots'), chips = [].slice.call(document.querySelectorAll('#calcChips button'));
-  for (var d = 0; d < 30; d++) { var dot = document.createElement('i'); dotsEl.appendChild(dot); }
-  var dots = [].slice.call(dotsEl.children);
   function word(n) { var a = n % 10, b = n % 100; return (a === 1 && b !== 11) ? 'мастер' : (a >= 2 && a <= 4 && (b < 12 || b > 14)) ? 'мастера' : 'мастеров'; }
   function calc(anim) {
     var n = +cnt.value, rate = n >= 8 ? 10 : 5;
@@ -300,9 +297,6 @@
     sumEl.textContent = fmt(n * PRICE * rate / 100);
     if (anim) { sumEl.classList.remove('bump'); void sumEl.offsetWidth; sumEl.classList.add('bump'); }
     cnt.style.setProperty('--p', ((n - 7) / 23 * 100) + '%');
-    dots.forEach(function (el, k) { el.classList.toggle('on', k < n); el.classList.toggle('extra', k >= 10); });
-    chips.forEach(function (b) { b.classList.toggle('on', +b.getAttribute('data-n') === n); });
-    document.querySelectorAll('.calc-tiers > div').forEach(function (t) { t.classList.toggle('on', +t.getAttribute('data-t') === rate); });
     seats.forEach(function (st, k) { st.classList.toggle('fill', k < Math.min(n, 10)); });
     var plus = $('teamPlus');
     if (n > 10) { plus.hidden = false; plus.textContent = '+' + (n - 10) + ' в команде'; } else plus.hidden = true;
@@ -312,7 +306,6 @@
   function stepBy(d) { cnt.value = Math.max(7, Math.min(30, +cnt.value + d)); calc(true); }
   $('cntMinus').addEventListener('click', function () { stepBy(-1); });
   $('cntPlus').addEventListener('click', function () { stepBy(1); });
-  chips.forEach(function (b) { b.addEventListener('click', function () { cnt.value = b.getAttribute('data-n'); calc(true); }); });
   calc(false);
 
   /* ---------- подарунок ---------- */
