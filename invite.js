@@ -46,8 +46,7 @@
   /* ---------- персоналізація ---------- */
   if (name) {
     var greet = (D.g || 'Дорогая').trim();
-    document.querySelector('.env-to strong').textContent = name;
-    $('envSmall').textContent = 'Персональное приглашение';
+    $('envSmall').textContent = 'для: ' + name;
     $('cardTo').textContent = greet + ' ' + name + ',';
     $('hello').textContent = greet + ' ' + name + '!';
     $('teamName').textContent = name;
@@ -99,7 +98,7 @@
   }
 
   /* ---------- лист: розгортається і пишеться від руки ---------- */
-  var paper = $('paper'), sheet = $('sheet'), pen = $('pen');
+  var paper = $('paper');
   var lines = [].slice.call(document.querySelectorAll('.hw')).filter(function (el) { return el.textContent.trim(); });
   function showLetterNow() {
     paper.classList.add('in', 'u1', 'u2');
@@ -109,30 +108,8 @@
   }
   function wait(ms) { return new Promise(function (r) { setTimeout(r, ms); }); }
   function writeLine(el) {
-    var len = el.textContent.trim().length;
-    var dur = Math.max(450, Math.min(2200, len * 55));
-    el.style.setProperty('--d', dur + 'ms');
-    var er = el.getBoundingClientRect();
-    if (er.bottom > innerHeight - 70) window.scrollBy({ top: er.bottom - innerHeight + 140, behavior: 'smooth' });
-    return wait(er.bottom > innerHeight - 70 ? 450 : 0).then(function () { return writeNow(el, dur); });
-  }
-  function writeNow(el, dur) {
-    var sr = sheet.getBoundingClientRect(), r = el.getBoundingClientRect();
-    // текст по центру — знаходимо реальну ширину рядка через Range
-    var rg = document.createRange(); rg.selectNodeContents(el);
-    var rects = rg.getClientRects(), last = rects[rects.length - 1] || r, first = rects[0] || r;
-    var x0 = first.left - sr.left, x1 = last.right - sr.left, y = last.bottom - sr.top - last.height * .25;
-    var ph = pen.offsetHeight || 58;
     el.classList.add('on');
-    if (pen.animate) {
-      pen.classList.add('on');
-      pen.animate([
-        { transform: 'translate(' + x0 + 'px,' + (y - ph) + 'px) rotate(0deg)' },
-        { transform: 'translate(' + (x0 + (x1 - x0) * .5) + 'px,' + (y - ph - 3) + 'px) rotate(-4deg)', offset: .5 },
-        { transform: 'translate(' + x1 + 'px,' + (y - ph) + 'px) rotate(0deg)' }
-      ], { duration: dur, easing: 'linear', fill: 'forwards' });
-    }
-    return wait(dur + 140);
+    return wait(260);
   }
   var letterPlayed = false;
   function playLetter() {
@@ -147,11 +124,10 @@
       return wait(750);
     }).then(function () {
       paper.classList.add('u2');
-      return wait(900);
+      return wait(650);
     }).then(function () {
       return lines.reduce(function (pr, el) { return pr.then(function () { return writeLine(el); }); }, Promise.resolve());
     }).then(function () {
-      pen.classList.remove('on');
       $('cardNote').classList.add('on');
       document.querySelector('.hero .scroll-cue').classList.add('on');
     });
