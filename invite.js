@@ -100,6 +100,8 @@
   var om = $('om');
   var rows = [].slice.call(om.querySelectorAll('.rl')).filter(function (el) { return el.offsetParent !== null || el.tagName === 'svg'; });
   function showLetterNow() {
+    var sv = $('sealV');
+    if (sv) { sv.addEventListener('loadedmetadata', function () { sv.currentTime = Math.max(0, sv.duration - .1); }); if (sv.readyState >= 1) sv.currentTime = Math.max(0, sv.duration - .1); }
     om.classList.add('in');
     rows.forEach(function (el) { el.classList.add('on'); });
     document.querySelector('.hero .scroll-cue').classList.add('on');
@@ -113,8 +115,34 @@
     rows.forEach(function (el, k) {
       setTimeout(function () { el.classList.add('on'); }, 500 + k * 260);
     });
-    setTimeout(function () { document.querySelector('.hero .scroll-cue').classList.add('on'); }, 500 + rows.length * 260 + 600);
+    var done = 500 + rows.length * 260 + 400;
+    setTimeout(playSeal, done);
+    setTimeout(function () { document.querySelector('.hero .scroll-cue').classList.add('on'); }, done + 6500);
   }
+
+  /* ---------- сургуч: відео стає на лист після тексту, наприкінці завмирає ---------- */
+  var sealV = $('sealV');
+  var sealReady = false, sealSeen = false, sealStarted = false;
+  if (sealV && 'IntersectionObserver' in window) {
+    new IntersectionObserver(function (es) {
+      sealSeen = es[0].isIntersecting && es[0].intersectionRatio > .5;
+      if (sealSeen && sealReady) startSeal();
+    }, { threshold: [0, .5, 1] }).observe(sealV);
+  } else sealSeen = true;
+  function playSeal() {
+    sealReady = true;
+    if (sealSeen) startSeal();
+  }
+  function startSeal() {
+    if (!sealV || sealStarted) return;
+    sealStarted = true;
+    sealV.currentTime = 0;
+    sealV.muted = false;          // людина вже торкнулася конверта — звук дозволено
+    sealV.volume = .7;
+    var pr = sealV.play();
+    if (pr && pr.catch) pr.catch(function () { sealV.muted = true; sealV.play().catch(function () {}); });
+  }
+  if (sealV) sealV.addEventListener('ended', function () { sealV.pause(); });
 
   /* ---------- відео-вступ: конверт прилітає → чекає дотику → печатка ламається → біла картка ---------- */
   var intro = $('introV');
