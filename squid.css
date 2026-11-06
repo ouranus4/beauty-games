@@ -2925,3 +2925,11 @@ html.gated,html.gated body{overflow:hidden}
 @media (prefers-reduced-motion:reduce){
   .tap-k::before,.fork-opts.ask .fork-o{animation:none}
 }
+
+/* Намальовані значки замість лінійних: картинка, без неонового світіння */
+img.icon.gi{object-fit:contain;color:inherit;filter:drop-shadow(0 6px 12px rgba(0,0,0,.35));transition:transform .25s cubic-bezier(.2,1.5,.4,1)}
+.icon-chip img.gi{width:42px;height:42px}
+.tile img.gi{width:56px;height:56px}
+.tile:hover img.gi{transform:translateY(-3px) scale(1.08);filter:drop-shadow(0 8px 16px rgba(255,46,136,.45))}
+.chr-ph img.gi{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:64%;height:64%;object-fit:contain;mix-blend-mode:normal;opacity:1}
+.chr:hover .chr-ph img.gi{transform:translate(-50%,-50%) scale(1.08) rotate(-4deg)}

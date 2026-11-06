@@ -365,7 +365,6 @@
     var unlocked = 1;
     var saved = parseInt(store.get('bg_mods'), 10);
     if (saved > 1) unlocked = Math.min(saved, modItems.length);
-    if (window.BG_PLAIN) unlocked = modItems.length;
 
     var paintMods = function () {
       var open = modItems.filter(function (i) { return i.classList.contains('open'); }).length;

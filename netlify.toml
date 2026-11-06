@@ -9,11 +9,6 @@
 
 # ---------- гарні адреси ----------
 [[redirects]]
-  from = "/game"
-  to = "/game.html"
-  status = 200
-
-[[redirects]]
   from = "/partners"
   to = "/partners.html"
   status = 200
