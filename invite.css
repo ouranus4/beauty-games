@@ -451,56 +451,80 @@ input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;bac
 .stage.gone{transition:opacity .9s ease,visibility .9s}
 
 /* ================= ЛИСТ-ЗАПРОШЕННЯ (білий папір, old money) ================= */
-#hero{background:#fff;padding:28px 16px 22px}
-.om{--acc:#8e1a47;--ink:#2a1d22;--soft:#7b6a70;--paper:#fdfbf6;
-  position:relative;width:min(600px,100%);padding:clamp(40px,8vw,64px) clamp(26px,7vw,64px) clamp(36px,7vw,56px);text-align:center;color:var(--ink);
+#hero{background:#fff;padding:28px 14px 22px}
+.om{--acc:#8e1a47;--ink:#2a1d22;--soft:#86747b;--line:rgba(142,26,71,.28);--paper:#fdfbf6;
+  position:relative;width:min(560px,100%);padding:56px 30px 44px;text-align:center;color:var(--ink);
   background:
-    radial-gradient(120% 80% at 50% 0%,rgba(255,255,255,.9),rgba(255,255,255,0) 60%),
+    radial-gradient(120% 70% at 50% 0%,rgba(255,255,255,.95),rgba(255,255,255,0) 60%),
     url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 .45  0 0 0 0 .38  0 0 0 0 .32  0 0 0 .05 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>"),
     var(--paper);
-  box-shadow:0 1px 1px rgba(60,20,30,.06),0 12px 28px rgba(60,20,30,.08),0 40px 80px rgba(60,20,30,.07);
+  box-shadow:0 1px 1px rgba(60,20,30,.05),0 14px 30px rgba(60,20,30,.07),0 40px 80px rgba(60,20,30,.06);
   opacity:0;transform:translateY(14px);transition:opacity 1.2s ease,transform 1.4s cubic-bezier(.2,.8,.2,1)}
 .om.in{opacity:1;transform:none}
-/* подвійна тонка рамка */
 .om::before,.om::after{content:"";position:absolute;pointer-events:none;border:1px solid var(--acc)}
-.om::before{inset:14px;opacity:.55}
-.om::after{inset:19px;opacity:.25}
-.om-k{font:500 11px/1.6 "Playfair Display SC","Playfair Display",serif;letter-spacing:.32em;text-transform:uppercase;color:var(--acc)}
-.om-mark{width:40px;height:40px;margin:0 auto 14px;color:var(--acc)}
-.om-rule{display:flex;align-items:center;justify-content:center;gap:12px;margin:22px auto;color:var(--acc)}
-.om-rule::before,.om-rule::after{content:"";width:min(90px,22vw);height:1px;background:currentColor;opacity:.5}
-.om-rule i{width:5px;height:5px;transform:rotate(45deg);border:1px solid currentColor;display:block}
-.om-to{margin:0 0 6px;font:italic 400 clamp(18px,3.4vw,22px)/1.4 "Playfair Display",serif;color:var(--soft)}
+.om::before{inset:12px;opacity:.5}
+.om::after{inset:16px;opacity:.22}
+
+.om-mark{width:34px;height:34px;margin:0 auto 16px;color:var(--acc)}
+.om-k{font:500 9.5px/1.6 "Playfair Display SC","Playfair Display",serif;letter-spacing:.34em;text-transform:uppercase;color:var(--acc);padding-left:.34em}
+.om-rule{display:flex;align-items:center;justify-content:center;gap:10px;margin:18px auto;color:var(--acc)}
+.om-rule::before,.om-rule::after{content:"";width:56px;height:1px;background:currentColor;opacity:.45}
+.om-rule i{width:4px;height:4px;transform:rotate(45deg);border:1px solid currentColor;display:block}
+
+.om-to{margin:0 0 4px;font:italic 400 16px/1.4 "Lora",serif;color:var(--soft)}
 .om-to:empty{display:none}
-.om-title{margin:6px 0 0;font:400 clamp(26px,7.2vw,50px)/1.15 "Great Vibes",cursive;color:var(--acc);letter-spacing:0;white-space:nowrap}
-.om-p{margin:22px auto 0;max-width:420px;font:400 clamp(17px,3vw,20px)/1.55 "Lora",serif;color:var(--ink)}
-.om-p b{font-weight:600}
-.om-big{margin:2px 0 0;font:400 clamp(42px,11vw,68px)/1.1 "Great Vibes",cursive;color:var(--acc);letter-spacing:0}
-.om-sub{margin:0;font:italic 400 clamp(16.5px,2.8vw,19px)/1.5 "Lora",serif;color:var(--soft)}
-.om-dates{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));margin:26px 0 0;border-top:1px solid rgba(142,26,71,.25);border-bottom:1px solid rgba(142,26,71,.25)}
-.om-dates div{padding:14px 6px}
-.om-dates div+div{border-left:1px solid rgba(142,26,71,.18)}
-.om-dates small{display:block;font:500 9.5px/1.5 "Playfair Display SC","Playfair Display",serif;letter-spacing:.22em;text-transform:uppercase;color:var(--soft)}
-.om-dates b{display:block;margin-top:4px;font:500 clamp(15px,2.8vw,18px)/1.3 "Playfair Display",serif;color:var(--ink)}
-.om-sign{margin-top:28px}
-.om-sign b{display:block;font:italic 500 clamp(22px,4.4vw,28px)/1.2 "Playfair Display",serif;color:var(--ink)}
-.om-sign small{display:block;margin-top:4px;font:400 13px/1.4 "Lora",serif;color:var(--soft);letter-spacing:.04em}
-.om-note{margin:22px auto 0;max-width:380px;font:500 10px/1.7 "Playfair Display SC","Playfair Display",serif;letter-spacing:.2em;text-transform:uppercase;color:var(--soft)}
-/* місце під сургуч / відео з печаткою (додамо пізніше) */
+.om-title{margin:0;font:400 31px/1.2 "Great Vibes",cursive;color:var(--acc);white-space:nowrap}
+
+.om-name{margin:26px 0 0;font:500 12px/1.5 "Playfair Display SC","Playfair Display",serif;letter-spacing:.26em;text-transform:uppercase;color:var(--ink);padding-left:.26em}
+.om-p{margin:6px auto 0;font:italic 400 16px/1.5 "Lora",serif;color:var(--soft)}
+.om-big{margin:6px 0 2px;font:400 46px/1.05 "Great Vibes",cursive;color:var(--acc)}
+.om-sub{margin:0;font:italic 400 16px/1.5 "Lora",serif;color:var(--soft)}
+
+/* дати: класичний стовпчик з ромбиками */
+.om-dates{margin:26px auto 0;display:flex;flex-direction:column;align-items:center;gap:0}
+.om-dates div{padding:0}
+.om-dates div+div::before{content:"";display:block;width:4px;height:4px;margin:12px auto;transform:rotate(45deg);border:1px solid var(--acc);opacity:.6}
+.om-dates small{display:block;font:500 9px/1.6 "Playfair Display SC","Playfair Display",serif;letter-spacing:.28em;text-transform:uppercase;color:var(--soft);padding-left:.28em}
+.om-dates b{display:block;margin-top:2px;font:400 18px/1.3 "Playfair Display",serif;color:var(--ink)}
+
+.om-sign{margin-top:26px}
+.om-sign b{display:block;font:400 34px/1.1 "Great Vibes",cursive;color:var(--ink)}
+.om-sign small{display:block;margin-top:2px;font:500 9px/1.6 "Playfair Display SC","Playfair Display",serif;letter-spacing:.28em;text-transform:uppercase;color:var(--soft);padding-left:.28em}
+.om-note{margin:20px auto 0;max-width:260px;font:italic 400 13.5px/1.55 "Lora",serif;color:var(--soft)}
+
 /* сургуч: відео з печаткою, краї розчиняються в папері */
-.om-seal{position:relative;z-index:0;width:min(220px,50%);aspect-ratio:1;margin:-2% auto -6%}
-@media (max-width:640px){.om-seal{width:62%;margin:-4% auto -8%}}
-.om-note,.om-sign{position:relative;z-index:1}
+.om-seal{position:relative;z-index:0;width:62%;max-width:230px;aspect-ratio:1;margin:-8% auto -14%}
 .om-seal video{width:100%;height:100%;display:block;object-fit:cover;
   -webkit-mask-image:radial-gradient(closest-side,#000 62%,transparent 100%);mask-image:radial-gradient(closest-side,#000 62%,transparent 100%)}
+.om-note,.om-sign{position:relative;z-index:1}
 .pdf .om-seal video{display:none}
 .pdf .om-seal{background:url(assets/video/invite-seal-end.jpg) center/cover;
   -webkit-mask-image:radial-gradient(closest-side,#000 62%,transparent 100%);mask-image:radial-gradient(closest-side,#000 62%,transparent 100%)}
-/* поява рядків */
+
+/* великий екран — трохи більше повітря і розміру, дати в рядок */
+@media (min-width:600px){
+  .om{padding:68px 56px 52px}
+  .om::before{inset:14px}.om::after{inset:19px}
+  .om-mark{width:40px;height:40px}
+  .om-k{font-size:10.5px}
+  .om-rule::before,.om-rule::after{width:84px}
+  .om-title{font-size:48px}
+  .om-name{font-size:13px;margin-top:30px}
+  .om-p,.om-sub{font-size:18px}
+  .om-big{font-size:64px}
+  .om-dates{flex-direction:row;justify-content:center;gap:0}
+  .om-dates div{padding:0 18px;white-space:nowrap}
+  .om-dates div+div{border-left:1px solid var(--line)}
+  .om-dates div+div::before{display:none}
+  .om-dates b{font-size:18px}
+  .om-sign b{font-size:40px}
+  .om-seal{width:44%}
+}
+@media (max-width:360px){.om{padding:50px 22px 40px}.om-title{font-size:27px}.om-big{font-size:40px}}
+
 .om .rl{opacity:0;transform:translateY(8px);transition:opacity 1.1s ease,transform 1.2s cubic-bezier(.2,.8,.2,1)}
 .om .rl.on{opacity:1;transform:none}
 .hero .scroll-cue{margin-top:16px}
-@media (max-width:420px){.om-dates div{padding:12px 4px}.om-dates b{font-size:14.5px}.om-dates small{font-size:8.5px;letter-spacing:.14em}}
 .pdf .om,.pdf .om .rl{opacity:1!important;transform:none!important}
 @media print{.om,.om .rl{opacity:1!important;transform:none!important}}
 @media (prefers-reduced-motion:reduce){.om,.om .rl{opacity:1!important;transform:none!important}}
