@@ -61,9 +61,9 @@
   if (D.d) $('cardNote').textContent = (ty ? 'Жду твой ответ до ' : 'Жду ваш ответ до ') + D.d;
 
   /* ---------- іконки, що розлітаються ---------- */
-  var ICONS = ['brow', 'lash', 'nails', 'pmu', 'hair', 'makeup', 'skin', 'massage', 'wax', 'extension', 'trophy', 'shop'];
-  function src(n) { return 'assets/home/icons/' + n + '.webp'; }
-  ICONS.concat(['program', 'chart', 'team', 'tv']).forEach(function (n) { var i = new Image(); i.src = src(n); });
+  var ICONS = ['brow', 'lash', 'nails', 'pmu', 'hair', 'makeup', 'skin', 'massage', 'wax', 'extension', 'trophy', 'gift'];
+  function src(n) { return 'assets/home/real/' + n + '.webp'; }
+  ICONS.concat(['crown', 'coins']).forEach(function (n) { var i = new Image(); i.src = src(n); });
   function popIcons(x, y, count, spread) {
     if (reduce || !document.body.animate) return;
     for (var k = 0; k < count; k++) {
