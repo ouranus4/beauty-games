@@ -110,33 +110,27 @@
     $('cxSeal').classList.add('on');
     document.querySelector('.hero .scroll-cue').classList.add('on');
   }
-  var STEP = { fade: 650, write: 1150, up: 330, pop: 420 };
+  // розклад у мс від появи картки: кроки накладаються, щоб рух був живим
+  var PLAN = [500, 1500, 1750, 2600, 3300, 3480, 3700, 3950, 4200, 4420];
   var letterPlayed = false;
   function playLetter() {
     if (letterPlayed) return;
     letterPlayed = true;
     if (reduce || printMode) return showLetterNow();
-    cardx.classList.add('in');
-    wait(450).then(function () {
-      cardx.classList.add('open');
-      return wait(1050);
-    }).then(function () {
-      return layers.reduce(function (pr, el) {
-        return pr.then(function () {
-          var k = el.getAttribute('data-k');
-          if (k === 'write') el.style.setProperty('--d', '1.2s');
-          el.classList.add('on');
-          return wait(STEP[k] || 350);
-        });
-      }, Promise.resolve());
-    }).then(function () {
-      return wait(250);
-    }).then(function () {
-      $('cxSeal').classList.add('on');
-      return wait(900);
-    }).then(function () {
-      document.querySelector('.hero .scroll-cue').classList.add('on');
+    requestAnimationFrame(function () { cardx.classList.add('in'); });
+    setTimeout(function () { cardx.classList.add('open'); }, PLAN[0]);
+    layers.forEach(function (el, k) {
+      setTimeout(function () {
+        if (el.getAttribute('data-k') === 'write') el.style.setProperty('--d', k === 1 ? '1.5s' : '1.3s');
+        el.classList.add('on');
+        if (k === 2) setTimeout(function () { $('cxGlint').classList.add('go'); }, 900);
+      }, PLAN[k + 1] || (4420 + k * 200));
     });
+    setTimeout(function () { $('cxSeal').classList.add('on'); }, 4900);
+    setTimeout(function () {
+      cardx.classList.add('idle');
+      document.querySelector('.hero .scroll-cue').classList.add('on');
+    }, 6100);
   }
 
   /* ---------- відео-вступ: конверт прилітає → чекає дотику → печатка ламається → біла картка ---------- */
