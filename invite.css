@@ -472,10 +472,10 @@ input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;bac
 .om-rule i{width:5px;height:5px;transform:rotate(45deg);border:1px solid currentColor;display:block}
 .om-to{margin:0 0 6px;font:italic 400 clamp(18px,3.4vw,22px)/1.4 "Playfair Display",serif;color:var(--soft)}
 .om-to:empty{display:none}
-.om-title{margin:4px 0 0;font:400 clamp(50px,12.5vw,84px)/.98 "Great Vibes",cursive;color:var(--acc);letter-spacing:0}
+.om-title{margin:6px 0 0;font:400 clamp(26px,7.2vw,50px)/1.15 "Great Vibes",cursive;color:var(--acc);letter-spacing:0;white-space:nowrap}
 .om-p{margin:22px auto 0;max-width:420px;font:400 clamp(17px,3vw,20px)/1.55 "Lora",serif;color:var(--ink)}
 .om-p b{font-weight:600}
-.om-big{margin:2px 0 0;font:400 clamp(52px,13vw,86px)/1.05 "Great Vibes",cursive;color:var(--acc);letter-spacing:0}
+.om-big{margin:2px 0 0;font:400 clamp(42px,11vw,68px)/1.1 "Great Vibes",cursive;color:var(--acc);letter-spacing:0}
 .om-sub{margin:0;font:italic 400 clamp(16.5px,2.8vw,19px)/1.5 "Lora",serif;color:var(--soft)}
 .om-dates{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));margin:26px 0 0;border-top:1px solid rgba(142,26,71,.25);border-bottom:1px solid rgba(142,26,71,.25)}
 .om-dates div{padding:14px 6px}
