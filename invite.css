@@ -539,3 +539,15 @@ input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;bac
 .seat img{width:84%;height:84%;filter:drop-shadow(0 4px 6px rgba(0,0,0,.4))}
 .g img,.trophy img,.mr.hot img,.rsvp-ic,.gift-btn img{filter:drop-shadow(0 10px 18px rgba(0,0,0,.45))}
 .mr.hot img{width:104px;right:-2px;bottom:-14px}
+
+/* подарунок: відео коробки з логотипом */
+.gift-btn.has-vid{width:min(340px,80vw);aspect-ratio:3/4;border-radius:0;background:none;display:block;margin:0 auto}
+.gift-btn.has-vid::after{display:none}
+.gift-btn.has-vid video{width:100%;height:100%;object-fit:cover;display:block;
+  -webkit-mask-image:radial-gradient(70% 62% at 50% 52%,#000 62%,transparent 100%);mask-image:radial-gradient(70% 62% at 50% 52%,#000 62%,transparent 100%)}
+.gift-btn.has-vid .finger{right:6%;bottom:16%;width:24%}
+.giftbox.playing .finger,.giftbox.playing .gift-cta{opacity:0;transition:opacity .4s;pointer-events:none}
+.giftbox.opened .gift-btn.has-vid{display:block;cursor:default}
+.giftbox.opened .gift-cta{display:none}
+.giftbox.opened .gift-open{margin-top:-8px}
+.pdf .gift-btn.has-vid{display:block}

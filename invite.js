@@ -282,21 +282,27 @@
 
   /* ---------- подарунок ---------- */
   var box = $('giftbox'), gbtn = $('giftBtn');
+  var giftV = $('giftV'), giftPlaying = false;
+  function revealGift() {
+    if (box.classList.contains('opened')) return;
+    box.classList.add('opened');
+    box.querySelectorAll('.mod').forEach(function (md, k) { md.style.animationDelay = (.25 + k * .08) + 's'; });
+  }
   function openGift() {
-    if (box.classList.contains('opened') || box.classList.contains('shake')) return;
-    var r = gbtn.getBoundingClientRect();
-    box.classList.add('shake');
-    setTimeout(function () {
-      popIcons(r.left + r.width / 2, r.top + r.height / 2, 12, Math.min(innerWidth, 640) * .5);
-      box.classList.remove('shake');
-      box.classList.add('opened');
-      box.querySelectorAll('.mod').forEach(function (md, k) { md.style.animationDelay = (.25 + k * .08) + 's'; });
-      var top = box.getBoundingClientRect().top + scrollY - 90;
-      window.scrollTo({ top: top, behavior: reduce ? 'auto' : 'smooth' });
-    }, reduce ? 0 : 560);
+    if (giftPlaying || box.classList.contains('opened')) return;
+    giftPlaying = true;
+    box.classList.add('playing');
+    if (!giftV || reduce) return revealGift();
+    giftV.muted = false; giftV.volume = .7;
+    var pr = giftV.play();
+    if (pr && pr.catch) pr.catch(function () { giftV.muted = true; giftV.play().catch(revealGift); });
+    // коробка відкривається і світиться приблизно на 4-й секунді — тоді показуємо програму
+    var t = setInterval(function () {
+      if (giftV.currentTime >= 4.3 || giftV.ended) { clearInterval(t); revealGift(); }
+    }, 120);
   }
   gbtn.addEventListener('click', openGift);
-  if (printMode) box.classList.add('opened');
+  if (printMode) { box.classList.add('opened'); if (giftV) giftV.addEventListener('loadedmetadata', function () { giftV.currentTime = giftV.duration - .1; }); }
 
   /* ---------- RSVP ---------- */
   var form = $('form'), err = $('err'), answer = 'Принимаю приглашение';
