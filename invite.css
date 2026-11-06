@@ -428,3 +428,24 @@ input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;bac
 .pdf *,.pdf *::before,.pdf *::after{transition:none!important}
 
 .stage-hint{display:none!important}
+
+/* ================= ВІДЕО-ВСТУП (конверт із Flow) ================= */
+.stage{padding:0;background:radial-gradient(90% 70% at 50% 50%,#3a1826,#241119 70%)}
+.stage::before{display:none}
+.intro{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;background:transparent}
+.intro-top{position:absolute;left:0;right:0;top:max(28px,env(safe-area-inset-top));z-index:2;text-align:center;padding:0 16px;
+  opacity:0;transform:translateY(-10px);transition:opacity .7s ease,transform .7s ease;pointer-events:none}
+.intro-top img{width:140px;margin:0 auto 18px;opacity:.9}
+.intro-title{margin:0;font:900 clamp(26px,6.4vw,46px)/1 var(--head);text-transform:uppercase;letter-spacing:-.02em;color:#fff;
+  text-shadow:0 4px 24px rgba(0,0,0,.45)}
+.stage.wait .intro-top{opacity:1;transform:none}
+.intro-tap{position:absolute;z-index:3;width:92px;height:92px;margin:-46px 0 0 -46px;left:50%;top:50%;border:0;padding:0;border-radius:50%;
+  background:transparent;cursor:pointer;opacity:0;pointer-events:none;transition:opacity .5s}
+.stage.wait .intro-tap{opacity:1;pointer-events:auto}
+.intro-tap i{position:absolute;inset:0;border-radius:50%;border:2px solid rgba(255,190,225,.9);animation:sealRing 2s ease-out infinite}
+.intro-tap i+i{animation-delay:1s}
+@keyframes sealRing{0%{transform:scale(.55);opacity:1}100%{transform:scale(1.5);opacity:0}}
+.stage.wait{cursor:pointer}
+.intro-white{position:absolute;inset:0;z-index:4;background:#fffefc;opacity:0;pointer-events:none;transition:opacity .6s ease}
+.stage.whiteout .intro-white{opacity:1}
+.stage.gone{transition:opacity .9s ease,visibility .9s}

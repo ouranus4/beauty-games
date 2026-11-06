@@ -59,7 +59,6 @@
   if (D.p) $('personal').textContent = D.p;
   if (D.team) { $('teamLabel').textContent = 'Команда'; $('teamName').textContent = D.team; }
   if (D.d) $('cardNote').textContent = (ty ? 'Жду твой ответ до ' : 'Жду ваш ответ до ') + D.d;
-  if (ty) document.querySelector('.stage-hint').textContent = 'Нажми на печать';
 
   /* ---------- іконки, що розлітаються ---------- */
   var ICONS = ['brow', 'lash', 'nails', 'pmu', 'hair', 'makeup', 'skin', 'massage', 'wax', 'extension', 'trophy', 'shop'];
@@ -87,7 +86,7 @@
   }
 
   /* ---------- конверт ---------- */
-  var stage = $('stage'), env = $('env'), wrap = $('wrap'), opened = false;
+  var stage = $('stage'), wrap = $('wrap'), opened = false;
   function reveal() {
     stage.classList.add('gone');
     wrap.classList.add('shown');
@@ -116,36 +115,83 @@
     if (letterPlayed) return;
     letterPlayed = true;
     if (reduce || printMode) return showLetterNow();
-    wait(250).then(function () {
-      paper.classList.add('in');
-      return wait(800);
-    }).then(function () {
-      paper.classList.add('u1');
-      return wait(750);
-    }).then(function () {
-      paper.classList.add('u2');
-      return wait(650);
-    }).then(function () {
+    // лист уже «вийшов» з конверта у відео — показуємо його розгорнутим
+    paper.style.transition = 'none';
+    paper.classList.add('in', 'u1', 'u2');
+    wait(450).then(function () {
       return lines.reduce(function (pr, el) { return pr.then(function () { return writeLine(el); }); }, Promise.resolve());
     }).then(function () {
       $('cardNote').classList.add('on');
       document.querySelector('.hero .scroll-cue').classList.add('on');
     });
   }
+  /* ---------- відео-вступ: конверт прилітає → чекає дотику → печатка ламається → біла картка ---------- */
+  var intro = $('introV');
+  var portrait = innerWidth / innerHeight < .9;
+  var CLIP = portrait
+    ? { src: 'assets/video/invite-v.mp4', poster: 'assets/video/invite-v.jpg', pause: 1.6, seal: [.47, .45] }
+    : { src: 'assets/video/invite-h.mp4', poster: 'assets/video/invite-h.jpg', pause: 1.9, seal: [.5, .5] };
+  var waiting = false, finishing = false;
+
+  function placeTap() {
+    // переводимо позицію печатки з кадру відео в координати екрана (object-fit: contain)
+    var vw = intro.videoWidth || (portrait ? 720 : 1280), vh = intro.videoHeight || (portrait ? 1280 : 720);
+    var W = stage.clientWidth, H = stage.clientHeight, k = Math.min(W / vw, H / vh);
+    var x = (W - vw * k) / 2 + CLIP.seal[0] * vw * k, y = (H - vh * k) / 2 + CLIP.seal[1] * vh * k;
+    var t = $('introTap'); t.style.left = x + 'px'; t.style.top = y + 'px';
+  }
+  function holdOnEnvelope() {
+    if (waiting || opened) return;
+    waiting = true;
+    intro.pause();
+    placeTap();
+    stage.classList.add('wait');
+  }
+  function watch() {
+    if (opened) return;
+    if (intro.currentTime >= CLIP.pause) return holdOnEnvelope();
+    requestAnimationFrame(watch);
+  }
+  function finish() {
+    if (finishing) return;
+    finishing = true;
+    stage.classList.add('whiteout');
+    setTimeout(reveal, 550);
+  }
   function openEnv() {
     if (opened) return;
     opened = true;
-    env.classList.add('open');
-    stage.classList.add('opening');
-    var r = env.getBoundingClientRect();
-    setTimeout(function () { popIcons(r.left + r.width / 2, r.top + r.height * .45, 14, Math.min(innerWidth, 700) * .55); }, 250);
-    setTimeout(function () { stage.classList.add('zoom'); }, 1500);
-    setTimeout(reveal, 1750);
+    stage.classList.remove('wait');
+    intro.muted = false;
+    intro.volume = .8;
+    if (intro.currentTime < CLIP.pause) intro.currentTime = CLIP.pause;
+    var pr = intro.play();
+    if (pr && pr.catch) pr.catch(function () { intro.muted = true; intro.play().catch(finish); });
   }
-  env.addEventListener('click', openEnv);
-  env.addEventListener('keydown', function (e) {
-    if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openEnv(); }
+  intro.addEventListener('timeupdate', function () {
+    if (opened && intro.duration && intro.currentTime > intro.duration - .45) finish();
   });
+  intro.addEventListener('ended', finish);
+  intro.addEventListener('error', function () { opened = true; finish(); });
+  stage.addEventListener('click', function () { if (waiting) openEnv(); });
+  addEventListener('resize', function () { if (waiting) placeTap(); });
+  addEventListener('keydown', function (e) {
+    if (waiting && !opened && (e.key === 'Enter' || e.key === ' ')) { e.preventDefault(); openEnv(); }
+  });
+  if (!printMode) {
+    intro.poster = CLIP.poster;
+    intro.src = CLIP.src;
+    var p0 = intro.play();
+    if (p0 && p0.then) p0.then(function () { requestAnimationFrame(watch); }, function () {
+      // автозапуск заборонено (режим енергозбереження) — одразу показуємо конверт і чекаємо дотику
+      intro.addEventListener('loadeddata', function once() {
+        intro.removeEventListener('loadeddata', once);
+        intro.currentTime = CLIP.pause; holdOnEnvelope();
+      });
+      if (intro.readyState >= 2) { intro.currentTime = CLIP.pause; holdOnEnvelope(); }
+    });
+    else requestAnimationFrame(watch);
+  }
   if (printMode) {
     document.body.classList.add('pdf');
     opened = true; stage.remove(); wrap.classList.add('shown'); document.body.classList.remove('locked');
