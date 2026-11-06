@@ -65,6 +65,7 @@
   function src(n) { return 'assets/home/icons/' + n + '.webp'; }
   ICONS.concat(['program', 'chart', 'team', 'tv']).forEach(function (n) { var i = new Image(); i.src = src(n); });
   function popIcons(x, y, count, spread) {
+    return; // у стилі old money — без іконок, що розлітаються
     if (reduce || !document.body.animate) return;
     for (var k = 0; k < count; k++) {
       var img = document.createElement('img');
@@ -252,10 +253,10 @@
     s.style.left = (50 + 41 * Math.cos(ang)) + '%';
     s.style.top = (50 + 41 * Math.sin(ang)) + '%';
     s.style.transitionDelay = (i * 0.07) + 's';
-    var im = document.createElement('img');
-    im.src = src(SEAT_ICONS[i]); im.alt = '';
-    im.style.transitionDelay = (i * 0.07 + .2) + 's';
-    s.appendChild(im);
+    var rn = document.createElement('span');
+    rn.className = 'rn';
+    rn.textContent = ['I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX', 'X'][i];
+    s.appendChild(rn);
     team.appendChild(s);
     seats.push(s);
   }
