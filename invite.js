@@ -321,10 +321,16 @@
     giftV.muted = false; giftV.volume = .7;
     var pr = giftV.play();
     if (pr && pr.catch) pr.catch(function () { giftV.muted = true; giftV.play().catch(revealGift); });
-    // коробка відкривається і світиться приблизно на 4-й секунді — тоді показуємо програму
+    // коробка відкривається і світиться приблизно на 4-й секунді — тоді показуємо програму.
+    // Страховка для телефонів: якщо відео не пішло або застигло — відкриваємо програму все одно.
+    var last = -1, still = 0, started = Date.now();
     var t = setInterval(function () {
-      if (giftV.currentTime >= 4.3 || giftV.ended) { clearInterval(t); revealGift(); }
+      var ct = giftV.currentTime;
+      still = (ct === last) ? still + 1 : 0; last = ct;
+      if (ct >= 4.3 || giftV.ended || still >= 12 || Date.now() - started > 7000) { clearInterval(t); revealGift(); }
     }, 120);
+    giftV.addEventListener('error', revealGift);
+    giftV.addEventListener('stalled', function () { setTimeout(revealGift, 1500); });
   }
   gbtn.addEventListener('click', openGift);
   if (printMode) { box.classList.add('opened'); if (giftV) giftV.addEventListener('loadedmetadata', function () { giftV.currentTime = giftV.duration - .1; }); }
