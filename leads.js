@@ -121,7 +121,8 @@ window.BG_LEADS_URL = '';
 
     var jobs = [];
     if (window.BG_LEADS_EMAIL) jobs.push(viaEmail(p));
-    if (window.BG_LEADS_PING) viaPing(p);   // сповіщення, на успіх заявки не впливає
+    // запасне сповіщення через @email2telegrambot (ліміт 30/міс) — лише поки немає свого бота через BG_LEADS_URL
+    if (window.BG_LEADS_PING && !window.BG_LEADS_URL) viaPing(p);
     if (window.BG_LEADS_URL) jobs.push(viaScript(p));
 
     return new Promise(function (resolve, reject) {
