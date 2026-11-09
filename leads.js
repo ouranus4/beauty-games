@@ -119,6 +119,9 @@ window.BG_LEADS_URL = '';
     };
     Object.keys(data || {}).forEach(function (k) { p[k] = data[k]; });
 
+    // Meta-піксель (pixel.js): заявка з будь-якої форми = подія Lead
+    if (window.fbq) window.fbq('track', 'Lead', { content_name: form });
+
     var jobs = [];
     if (window.BG_LEADS_EMAIL) jobs.push(viaEmail(p));
     // запасне сповіщення через @email2telegrambot (ліміт 30/міс) — лише поки немає свого бота через BG_LEADS_URL

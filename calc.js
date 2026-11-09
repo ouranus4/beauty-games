@@ -785,7 +785,6 @@
         });
       }
       if (window.gtag) window.gtag('event', 'form_submit', { form: 'calc' });
-      if (window.fbq) window.fbq('track', 'Lead');
 
       form.hidden = true;
       var okBox = $('#rLeadOk');
