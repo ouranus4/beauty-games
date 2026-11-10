@@ -64,10 +64,12 @@
   .s .stats b{display:block;font-size:28px;color:var(--acc);line-height:1.1}
   .s .stats span{font-size:14px;color:var(--mut)}
   .s .stars{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:12px;margin:0 0 14px}
-  .s .stars div{background:var(--card);border:1px solid var(--line);border-radius:12px;overflow:hidden;font-size:13px;color:var(--mut)}
-  .s .stars img{width:100%;aspect-ratio:1;object-fit:cover;display:block;background:#eee}
-  .s .stars b{display:block;color:var(--ink);font-size:15px;padding:10px 10px 2px}
-  .s .stars span{display:block;padding:0 10px 12px}
+  .s .stars>div{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px 10px 14px;text-align:center;font-size:13px;color:var(--mut)}
+  .s .stars .av{width:112px;height:112px;margin:0 auto 10px;border-radius:50%;overflow:hidden;box-shadow:0 0 0 3px #fff,0 0 0 5px var(--acc)}
+  .s .stars .av img{width:100%;height:100%;object-fit:cover;display:block;transform:scale(1.16)}
+  .s .stars b{display:block;color:var(--ink);font-size:15px;margin-bottom:4px}
+  .s .stars span{display:block}
+  .s .excard img.round{width:120px;height:120px;border-radius:50%;transform:none}
   .s .ex{display:grid;gap:14px}
   .s .excard{display:grid;grid-template-columns:120px 1fr;gap:16px;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px}
   .s .excard img,.s .excard .noimg{width:120px;height:150px;object-fit:cover;border-radius:10px;display:block}
@@ -75,7 +77,7 @@
   .s .excard h3{margin:2px 0 6px;font-size:19px}
   .s .excard p{margin:0 0 8px;font-size:15px}
   .s .q{font-style:italic;color:var(--mut);border-left:3px solid var(--acc);padding-left:10px}
-  @media (max-width:600px){.s .bio{grid-template-columns:1fr}.s .bio img{max-width:240px}.s .excard{grid-template-columns:1fr}.s .excard img,.s .excard .noimg{width:100%;height:auto;aspect-ratio:4/3}}
+  @media (max-width:600px){.s .bio{grid-template-columns:1fr}.s .bio img{max-width:240px}.s .excard{grid-template-columns:1fr}.s .excard img,.s .excard .noimg{width:100%;height:auto;aspect-ratio:4/3}.s .excard img.round{width:140px;height:140px;aspect-ratio:1}}
   @media print{.s nav.toc{display:none}.s .card,.s .tw{break-inside:avoid}}
 </style>
 <div class="s">
@@ -141,13 +143,13 @@
   <h3>Имена, которые Ирина вывела на сцену</h3>
   <p>Это лучший аргумент для клиентки: вот кем становятся мастера, которых замечает Ирина.</p>
   <div class="stars">
-    <div><img src="assets/people/star-druzhinina.jpg" alt="" loading="lazy"><b>Юлианна Дружинина</b><span>375 тыс. подписчиков · чемпионка мира, организатор WULOP Poland</span></div>
-    <div><img src="assets/people/star-onika.jpg" alt="" loading="lazy"><b>Елена Оника</b><span>121 тыс. · PMU, международный эксперт, основательница Fusion PMU</span></div>
-    <div><img src="assets/people/star-lux.jpg" alt="" loading="lazy"><b>Роза Люкс</b><span>101 тыс. · PMU Master Trainer, судья, 10 000+ учениц</span></div>
-    <div><img src="assets/people/star-ovcharuk.jpg" alt="" loading="lazy"><b>Екатерина Овчарук</b><span>67,1 тыс. · абсолютная чемпионка мира WULOP 2025</span></div>
-    <div><img src="assets/people/star-orexanova.jpg" alt="" loading="lazy"><b>Дарья Ореханова</b><span>66,2 тыс. · студия OREX в Киеве, свой бренд пигментов</span></div>
-    <div><img src="assets/people/star-agaeva.jpg" alt="" loading="lazy"><b>Элеонора Агаева</b><span>56,9 тыс. · International Academy, 1000+ учениц из 20 стран</span></div>
-    <div><img src="assets/people/star-moskalenko.jpg" alt="" loading="lazy"><b>Яна Москаленко</b><span>37,2 тыс. · PMU, обучение, лазер · Киев и Варшава</span></div>
+    <div><div class="av"><img src="assets/people/star-druzhinina.jpg" alt="" loading="lazy"></div><b>Юлианна Дружинина</b><span>375 тыс. подписчиков · чемпионка мира, организатор WULOP Poland</span></div>
+    <div><div class="av"><img src="assets/people/star-onika.jpg" alt="" loading="lazy"></div><b>Елена Оника</b><span>121 тыс. · PMU, международный эксперт, основательница Fusion PMU</span></div>
+    <div><div class="av"><img src="assets/people/star-lux.jpg" alt="" loading="lazy"></div><b>Роза Люкс</b><span>101 тыс. · PMU Master Trainer, судья, 10 000+ учениц</span></div>
+    <div><div class="av"><img src="assets/people/star-ovcharuk.jpg" alt="" loading="lazy"></div><b>Екатерина Овчарук</b><span>67,1 тыс. · абсолютная чемпионка мира WULOP 2025</span></div>
+    <div><div class="av"><img src="assets/people/star-orexanova.jpg" alt="" loading="lazy"></div><b>Дарья Ореханова</b><span>66,2 тыс. · студия OREX в Киеве, свой бренд пигментов</span></div>
+    <div><div class="av"><img src="assets/people/star-agaeva.jpg" alt="" loading="lazy"></div><b>Элеонора Агаева</b><span>56,9 тыс. · International Academy, 1000+ учениц из 20 стран</span></div>
+    <div><div class="av"><img src="assets/people/star-moskalenko.jpg" alt="" loading="lazy"></div><b>Яна Москаленко</b><span>37,2 тыс. · PMU, обучение, лазер · Киев и Варшава</span></div>
   </div>
 </section>
 
@@ -160,7 +162,7 @@
     <div class="excard"><img src="assets/people/vyshnyvetska.jpg" alt="" loading="lazy"><div><span class="pill">Бизнес-системы</span><h3>Екатерина Вишневецкая</h3><p>Партнёр Genius Space Телепорт, совладелица международного проекта Proriv. <b>Вырастила компанию в 21 раз за 4 года</b>, 27 000+ участников программ по всему миру. Трижды стартовала с нуля и трижды возвращала компанию в рост. Покажет, как разложить любую цель на цифры и шаги.</p></div></div>
     <div class="excard"><img src="assets/people/zaremba.jpg" alt="" loading="lazy"><div><span class="pill">Стратегия и финансы</span><h3>Татьяна Заремба</h3><p>20+ лет в предпринимательстве, бизнес-ментор и аналитик. Стратегическое и антикризисное сопровождение собственников: управленческий учёт, финмодель, юнит-экономика, команда и мотивация.</p></div></div>
     <div class="excard"><img src="assets/people/kuimova.jpg" alt="" loading="lazy"><div><span class="pill">Налоги и легализация</span><h3>Ирина Куимова</h3><p>20+ лет международного опыта, налоговый консультант и бухгалтер. Как открыть ФОП, выбрать выгодную систему налогообложения, не переплачивать и не бояться блокировки карт — фундамент, чтобы открывать салоны и продавать услуги дорого по всему миру.</p></div></div>
-    <div class="excard"><div class="noimg">ТГ</div><div><span class="pill">Позиционирование · бренд-наставник VIP</span><h3>Татьяна Горильчана</h3><p>Топ-методолог и стратег, 36,9 тыс. подписчиков. Работает с позиционированием и личным брендом — ведёт VIP-участниц к узнаваемому имени.</p></div></div>
+    <div class="excard"><img class="round" src="assets/people/gorilchana.jpg" alt="Татьяна Горильчана" loading="lazy"><div><span class="pill">Позиционирование · бренд-наставник VIP</span><h3>Татьяна Горильчана</h3><p>Топ-методолог и стратег, 36,9 тыс. подписчиков. Работает с позиционированием и личным брендом — ведёт VIP-участниц к узнаваемому имени.</p></div></div>
   </div>
   <p style="margin-top:14px">А ещё с участницами работают психолог, стилист, маркетолог, астролог-нумеролог, цифровой психолог, энергопрактик, кураторы команд и бренд-наставник для VIP.</p>
   <div class="key"><b>Что говорить клиентке:</b> «Вы могли пройти не один курс по рилсам и таргету. Мы собрали выжимку из более чем 70 курсов и оставили то, что работает, — и ведут это люди, которые сами заработали своим клиентам миллионы».</div>
