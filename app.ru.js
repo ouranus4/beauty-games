@@ -272,22 +272,39 @@
 
   /* ============================================================
      ВХІД: ролик із розпорядницею. Грає без звуку (так дозволяє
-     браузер), звук — окремою кнопкою. Коли вона торкається скла,
+     браузер), звук — окремою кнопкою. Показуємо щоразу. Коли вона торкається скла,
      на місці пальця зʼявляється точка: торкнулась — сайт відкрито.
      ============================================================ */
   var vg = $('#vgate');
   if (vg && !vg.hidden) {
     var vv = $('#vgVideo'), shown = false, gone = false;
+    var hint = $('#vgHint'), HINT = hint.textContent;
     var TOUCH_AT = 4.4;   // секунда, коли палець торкається скла
     var ready = function () {
       if (shown) return;
       shown = true;
+      vg.classList.remove('blocked');
+      hint.textContent = HINT;
       vg.classList.add('ready');
+    };
+    // Автозапуск заборонено (енергозбереження на iPhone, вкладка у фоні):
+    // перше торкання вмикає ролик одразу зі звуком, друге — відкриває сайт.
+    var blocked = function () {
+      if (shown || gone) return;
+      vg.classList.add('blocked');
+      hint.textContent = 'Коснись, чтобы начать';
+    };
+    var start = function () {
+      vg.classList.remove('blocked');
+      hint.textContent = HINT;
+      vv.muted = false;
+      $('#vgSound').hidden = true;
+      var q = vv.play();
+      if (q && q.catch) q.catch(ready);
     };
     var enter = function () {
       if (gone) return;
       gone = true;
-      try { sessionStorage.setItem('bg_intro', '1'); } catch (e) {}
       vg.classList.add('go');
       try { if (navigator.vibrate) navigator.vibrate(18); } catch (e) {}
       setTimeout(function () { vg.classList.add('open'); document.documentElement.classList.remove('gated'); }, 520);
@@ -297,9 +314,11 @@
     vv.addEventListener('ended', ready);
     vv.addEventListener('error', ready);
     var p = vv.play();
-    if (p && p.catch) p.catch(ready);          // автозапуск заборонено — одразу кличемо торкнутись
-    setTimeout(ready, 9000);                    // повільний інтернет не тримає людину на заставці
-    $('#vgTouch').addEventListener('click', enter);
+    if (p && p.catch) p.catch(blocked);
+    setTimeout(function () { if (vv.paused && !shown) blocked(); }, 2500);
+    $('#vgTouch').addEventListener('click', function () {
+      if (vg.classList.contains('blocked')) start(); else enter();
+    });
     $('#vgSkip').addEventListener('click', enter);
     $('#vgSound').addEventListener('click', function () {
       vv.muted = false;
