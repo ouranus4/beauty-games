@@ -271,6 +271,47 @@
   }
 
   /* ============================================================
+     ВХІД: ролик із розпорядницею. Грає без звуку (так дозволяє
+     браузер), звук — окремою кнопкою. Коли вона торкається скла,
+     на місці пальця зʼявляється точка: торкнулась — сайт відкрито.
+     ============================================================ */
+  var vg = $('#vgate');
+  if (vg && !vg.hidden) {
+    var vv = $('#vgVideo'), shown = false, gone = false;
+    var TOUCH_AT = 4.4;   // секунда, коли палець торкається скла
+    var ready = function () {
+      if (shown) return;
+      shown = true;
+      vg.classList.add('ready');
+    };
+    var enter = function () {
+      if (gone) return;
+      gone = true;
+      try { sessionStorage.setItem('bg_intro', '1'); } catch (e) {}
+      vg.classList.add('go');
+      try { if (navigator.vibrate) navigator.vibrate(18); } catch (e) {}
+      setTimeout(function () { vg.classList.add('open'); document.documentElement.classList.remove('gated'); }, 520);
+      setTimeout(function () { vg.hidden = true; vv.pause(); }, 1400);
+    };
+    vv.addEventListener('timeupdate', function () { if (vv.currentTime >= TOUCH_AT) ready(); });
+    vv.addEventListener('ended', ready);
+    vv.addEventListener('error', ready);
+    var p = vv.play();
+    if (p && p.catch) p.catch(ready);          // автозапуск заборонено — одразу кличемо торкнутись
+    setTimeout(ready, 9000);                    // повільний інтернет не тримає людину на заставці
+    $('#vgTouch').addEventListener('click', enter);
+    $('#vgSkip').addEventListener('click', enter);
+    $('#vgSound').addEventListener('click', function () {
+      vv.muted = false;
+      vv.currentTime = 0;
+      shown = false;
+      vg.classList.remove('ready');
+      vv.play();
+      this.hidden = true;
+    });
+  }
+
+  /* ============================================================
      ТАЙМЕР ДО СТАРТУ СЕЗОНУ — 21 грудня 2026, 00:00 за Києвом
      ============================================================ */
   var cdD = $('#cdD'), cdH = $('#cdH'), cdM = $('#cdM'), cdS = $('#cdS');

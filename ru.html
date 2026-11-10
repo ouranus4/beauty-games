@@ -10,7 +10,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800;900&family=Oswald:wght@400;500;600&family=Manrope:wght@400;500;600;700&family=Pixelify+Sans:wght@400..700&family=JetBrains+Mono:wght@400;500;700&display=swap">
 <link rel="stylesheet" href="styles.css?v=ad1ccce0">
-<link rel="stylesheet" href="squid.css?v=d5f6ad11">
+<link rel="stylesheet" href="squid.css?v=aff5ece8">
 
 <!-- SPRITE -->
 <div class="preloader" id="preloader">
@@ -58,26 +58,20 @@
 <div class="bg-mesh" aria-hidden="true"></div>
 <div class="bg-grid" aria-hidden="true"></div>
 
-<!-- ============ ЗАМОК НА ВХОДІ ============ -->
-<div class="gate" id="gate">
-  <span class="gate-wash" aria-hidden="true"></span>
-  <span class="gate-ripple r1" aria-hidden="true"></span>
-  <span class="gate-ripple r2" aria-hidden="true"></span>
-  <span class="gate-ripple r3" aria-hidden="true"></span>
-  <div class="gate-in">
-    <p class="gate-lede">Первое онлайн-реалити для бьюти-мастеров: реалити-шоу, бизнес-обучение и чемпионат в одном сезоне.</p>
-    <button class="gate-lock" type="button" id="gateLock" aria-label="Нажмите и держите, чтобы начать игру">
-      <svg class="gate-ring" viewBox="0 0 120 120" aria-hidden="true">
-        <circle class="gate-ring-bg" cx="60" cy="60" r="54"/>
-        <circle class="gate-ring-fill" id="gateRing" cx="60" cy="60" r="54"/>
-      </svg>
-      <span class="gate-fp" aria-hidden="true"><img src="assets/home/icons/fingerprint.webp" alt="" width="201" height="240"><i class="fp-scan"></i></span>
-    </button>
-    <p class="gate-tx" id="gateTx">Начать игру</p>
-    <p class="gate-sub" id="gateSub">Приложите палец и держите</p>
-    <button class="gate-skip" type="button" id="gateSkip">Пропустить</button>
+<!-- ============ ВХІД: РОЛИК «WELCOME TO BEAUTY GAMES» ============
+     Розпорядниця підходить до скла й торкається його пальцем —
+     у цьому місці зʼявляється точка, людина торкається у відповідь. -->
+<div class="vgate" id="vgate" hidden>
+  <div class="vg-bg" aria-hidden="true"></div>
+  <div class="vg-frame">
+    <video id="vgVideo" src="assets/intro/welcome.mp4" poster="assets/intro/welcome-poster.jpg" playsinline muted preload="auto"></video>
+    <button class="vg-touch" id="vgTouch" type="button" aria-label="Войти в игру"><span class="vg-ring"></span><span class="vg-ring r2"></span><span class="vg-dot"></span></button>
+    <span class="vg-hint" id="vgHint">Коснись, чтобы войти</span>
   </div>
+  <button class="vg-sound" id="vgSound" type="button">Включить звук</button>
+  <button class="vg-skip" id="vgSkip" type="button">Пропустить</button>
 </div>
+<script>try{if(sessionStorage.getItem('bg_intro')!=='1'){document.getElementById('vgate').hidden=false;document.documentElement.classList.add('gated');}}catch(e){}</script>
 
 <!-- Прогрес по сторінці: крапки-віхи, які підсвічуються в міру
      прокрутки. Людина бачить, що рухається по грі, а не гортає сайт. -->
@@ -1370,5 +1364,5 @@
 </div>
 
 <script src="leads.js?v=15ac5189"></script>
-<script src="app.ru.js?v=08939575"></script>
+<script src="app.ru.js?v=24393c86"></script>
 <script src="fx.js?v=b9217507"></script>
