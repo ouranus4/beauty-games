@@ -275,7 +275,17 @@
      браузер), звук — окремою кнопкою. Показуємо щоразу. Коли вона торкається скла,
      на місці пальця зʼявляється точка: торкнулась — сайт відкрито.
      ============================================================ */
+  // Ролик першого блоку стартує, коли заставку пройдено (або її не було)
+  var heroReel = $('#heroReel');
+  var startReel = function () {
+    if (!heroReel || heroReel.src) return;
+    heroReel.src = heroReel.getAttribute('data-src');
+    var r = heroReel.play();
+    if (r && r.catch) r.catch(function () {});
+  };
+
   var vg = $('#vgate');
+  if (!vg || vg.hidden) startReel();
   if (vg && !vg.hidden) {
     var vv = $('#vgVideo'), shown = false, gone = false;
     var hint = $('#vgHint'), HINT = hint.textContent;
@@ -309,6 +319,7 @@
       try { if (navigator.vibrate) navigator.vibrate(18); } catch (e) {}
       setTimeout(function () { vg.classList.add('open'); document.documentElement.classList.remove('gated'); }, 520);
       setTimeout(function () { vg.hidden = true; vv.pause(); }, 1400);
+      startReel();
     };
     vv.addEventListener('timeupdate', function () { if (vv.currentTime >= TOUCH_AT) ready(); });
     vv.addEventListener('ended', ready);
