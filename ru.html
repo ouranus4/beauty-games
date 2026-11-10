@@ -10,7 +10,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800;900&family=Oswald:wght@400;500;600&family=Manrope:wght@400;500;600;700&family=Pixelify+Sans:wght@400..700&family=JetBrains+Mono:wght@400;500;700&display=swap">
 <link rel="stylesheet" href="styles.css?v=ad1ccce0">
-<link rel="stylesheet" href="squid.css?v=100de459">
+<link rel="stylesheet" href="squid.css?v=4cdc4fe1">
 
 <!-- SPRITE -->
 <div class="preloader" id="preloader">
@@ -65,25 +65,26 @@
   <span class="gate-ripple r2" aria-hidden="true"></span>
   <span class="gate-ripple r3" aria-hidden="true"></span>
   <div class="gate-in">
-    <p class="gate-lede">Первое онлайн-реалити для бьюти-мастеров. Дальше всё устроено как игра: девять шагов — и в конце ваша карта игрока.</p>
+    <p class="gate-lede">Первое онлайн-реалити для бьюти-мастеров: реалити-шоу, бизнес-обучение и чемпионат в одном сезоне.</p>
     <button class="gate-lock" type="button" id="gateLock" aria-label="Нажмите и держите, чтобы начать игру">
       <svg class="gate-ring" viewBox="0 0 120 120" aria-hidden="true">
         <circle class="gate-ring-bg" cx="60" cy="60" r="54"/>
         <circle class="gate-ring-fill" id="gateRing" cx="60" cy="60" r="54"/>
       </svg>
       <svg class="gate-ico" viewBox="0 0 48 48" aria-hidden="true">
-        <g class="gate-pad">
-          <path class="gpad-body" d="M17.5 18h13a9.5 9.5 0 0 1 9.2 7.2l1.9 7.6a4.3 4.3 0 0 1-8 3.1L30.6 30H17.4l-3.1 5.9a4.3 4.3 0 0 1-8-3.1l1.9-7.6A9.5 9.5 0 0 1 17.5 18Z"/>
-          <path class="gpad-dpad" d="M13.4 24.6h5.6M16.2 21.8v5.6"/>
-          <circle class="gpad-key" cx="32.2" cy="21.6" r="1.5"/>
-          <circle class="gpad-key" cx="35" cy="24.4" r="1.5"/>
-          <circle class="gpad-key" cx="32.2" cy="27.2" r="1.5"/>
-          <circle class="gpad-key" cx="29.4" cy="24.4" r="1.5"/>
+        <g class="fp">
+          <path d="M16.6 11.2a15.4 15.4 0 0 1 14.8 0"/>
+          <path d="M11.2 30.6c-.8-2.4-1.2-4.9-1.2-7.6 0-7.7 6.3-14 14-14s14 6.3 14 14v1"/>
+          <path d="M15.6 36.4c-1.6-3.2-2.6-6.9-2.6-10.6 0-6.1 4.9-11 11-11s11 4.9 11 11c0 2-1.6 3.6-3.6 3.6s-3.6-1.6-3.6-3.6c0-2.1-1.7-3.8-3.8-3.8s-3.8 1.7-3.8 3.8c0 5.4 2.5 10.2 6.4 13.4"/>
+          <path d="M21.4 39.6c-2.6-3.8-4.1-8.4-4.1-13.4"/>
+          <path d="M24 25.8c0 6.3 3.9 11.6 9.4 13.8"/>
+          <path d="M37 33.8c.4-1.6.6-3.2.6-4.9"/>
         </g>
+        <rect class="fp-scan" x="9" y="9" width="30" height="2.6" rx="1.3"/>
       </svg>
     </button>
     <p class="gate-tx" id="gateTx">Начать игру</p>
-    <p class="gate-sub" id="gateSub">Зажмите и держите</p>
+    <p class="gate-sub" id="gateSub">Приложите палец и держите</p>
     <button class="gate-skip" type="button" id="gateSkip">Пропустить</button>
   </div>
 </div>
@@ -92,15 +93,13 @@
      прокрутки. Людина бачить, що рухається по грі, а не гортає сайт. -->
 <nav class="prog" id="prog" aria-label="Прогресс страницы">
   <span class="prog-line" aria-hidden="true"><i id="progFill"></i></span>
-  <a class="prog-dot" href="#hello"    data-t="Шаг 1 · Знакомство"><b>1</b></a>
-  <a class="prog-dot" href="#picker"   data-t="Шаг 2 · Скилы"><b>2</b></a>
-  <a class="prog-dot" href="#about"    data-t="Шаг 3 · Тест"><b>3</b></a>
-  <a class="prog-dot" href="#format"   data-t="Шаг 4 · Миссия"><b>4</b></a>
-  <a class="prog-dot" href="#how"      data-t="Как устроен сезон"><b>5</b></a>
-  <a class="prog-dot" href="#founders" data-t="Кто за этим стоит"><b>6</b></a>
-  <a class="prog-dot" href="#program"  data-t="Бизнес-программа"><b>7</b></a>
-  <a class="prog-dot" href="#packages" data-t="Пакеты"><b>8</b></a>
-  <a class="prog-dot" href="#apply"    data-t="Досье и заявка"><b>9</b></a>
+  <a class="prog-dot" href="#about" data-t="О проекте"><b>1</b></a>
+  <a class="prog-dot" href="#format" data-t="Формат участия"><b>2</b></a>
+  <a class="prog-dot" href="#how" data-t="Как устроен сезон"><b>3</b></a>
+  <a class="prog-dot" href="#founders" data-t="Кто за этим стоит"><b>4</b></a>
+  <a class="prog-dot" href="#program" data-t="Бизнес-программа"><b>5</b></a>
+  <a class="prog-dot" href="#packages" data-t="Пакеты"><b>6</b></a>
+  <a class="prog-dot" href="#apply" data-t="Заявка"><b>7</b></a>
 </nav>
 
 <!-- ============ ШАПКА ============ -->
@@ -146,110 +145,11 @@
       <img class="hero-logo" src="assets/logo-horizontal.svg" alt="Beauty Games by Verbova Iryna — reality show, championship, education" width="330" height="46">
     </div>
     <h1 class="h-xl">Первое онлайн-реалити<br>для <span class="glow">бьюти-мастеров</span></h1>
-    <div class="tip" id="tip" hidden>
-      <span class="tip-k">Подсказка</span>
-      <p class="tip-tx"><b>Шаг 1.</b> Напишите своё имя — и игра начнётся.</p>
-      <div class="tip-row">
-        <button class="btn btn-primary btn-sm" type="button" id="tipGo">Начать</button>
-        <button class="tip-x" type="button" id="tipX" aria-label="Закрыть подсказку">Понятно</button>
-      </div>
-    </div>
+    <p class="lede hero-lede">Реалити-шоу, бизнес-обучение и онлайн-чемпионат в одном сезоне. Три месяца ты прокачиваешь бизнес, соревнуешься в своей категории и становишься заметной на рынке.</p>
 
-    <div class="hello rv" id="hello">
-      <div class="hello-head">
-        <span class="hello-kicker">Шаг 1</span>
-        <h2 class="hello-title">Как вас зовут?</h2>
-        <p class="hello-sub">Заполняйте по ходу — в конце всё сложится в вашу карту игрока.</p>
-      </div>
-
-      <div class="hello-row">
-        <label class="hello-fld">
-          <span>Укажите имя</span>
-          <input type="text" id="heroName" autocomplete="given-name" placeholder="Ваше имя" maxlength="30">
-        </label>
-      </div>
-
-      <div class="hello-exp">
-        <span class="hello-exp-k">Сколько лет вы в beauty?</span>
-        <div class="hello-exp-opts" role="group">
-          <button class="expo" type="button" data-exp="меньше года">До года</button>
-          <button class="expo" type="button" data-exp="1–3 года">1–3</button>
-          <button class="expo" type="button" data-exp="3–5 лет">3–5</button>
-          <button class="expo" type="button" data-exp="5–10 лет">5–10</button>
-          <button class="expo" type="button" data-exp="больше 10 лет">10+</button>
-        </div>
-      </div>
-
-    </div>
-
-    <div class="picker rv" id="picker">
-      <div class="picker-head">
-        <span class="picker-kicker">Шаг 2</span>
-        <h2 class="picker-title" id="pickerTitle">Выберите свои скилы</h2>
-        <p class="picker-sub">Что вы умеете делать руками. Это определяет категорию в чемпионате и подбор команды — если работаете в нескольких направлениях, выбирайте несколько.</p>
-      </div>
-      <div class="picker-grid">
-        <button class="chr" type="button" data-dir="Бровист" data-pain="Низкий чек за коррекцию, клиентки ходят раз в месяц и легко уходят к тем, кто дешевле" data-hero="бровист">
-          <span class="chr-ph"><img class="icon gi" src="assets/home/icons/brow.webp" alt="" width="160" height="160" loading="lazy"></span>
-          <span class="chr-nm">Брови</span>
-        </button>
-        <button class="chr" type="button" data-dir="Лэшмейкер" data-pain="Долгие процедуры, спина и глаза, а чек стоит на месте годами" data-hero="лэшмейкер">
-          <span class="chr-ph"><img class="icon gi" src="assets/home/icons/lash.webp" alt="" width="160" height="160" loading="lazy"></span>
-          <span class="chr-nm">Ресницы</span>
-        </button>
-        <button class="chr" type="button" data-dir="Ногтевой сервис" data-pain="Плотный график, отмены в последний момент и конкуренция по цене" data-hero="мастер ногтевого сервиса">
-          <span class="chr-ph"><img class="icon gi" src="assets/home/icons/nails.webp" alt="" width="160" height="160" loading="lazy"></span>
-          <span class="chr-nm">Ногти</span>
-        </button>
-        <button class="chr" type="button" data-dir="Перманент" data-pain="Процедура дорогая, но заявок мало: клиентка боится и долго решается" data-hero="мастер перманента" data-form="Перманентный макияж">
-          <span class="chr-ph"><img class="icon gi" src="assets/home/icons/pmu.webp" alt="" width="160" height="160" loading="lazy"></span>
-          <span class="chr-nm">Перманент</span>
-        </button>
-        <button class="chr" type="button" data-dir="Визажист" data-pain="Доход скачет от сезона — свадьбы, праздники, а потом пустые месяцы" data-hero="визажист">
-          <span class="chr-ph"><img class="icon gi" src="assets/home/icons/makeup.webp" alt="" width="160" height="160" loading="lazy"></span>
-          <span class="chr-nm">Макияж</span>
-        </button>
-        <button class="chr" type="button" data-dir="Парикмахер-стилист" data-pain="Клиентов много, а прибыли мало: расходники, аренда и время считаются «на глаз»" data-hero="парикмахер-стилист">
-          <span class="chr-ph"><img class="icon gi" src="assets/home/icons/hair.webp" alt="" width="160" height="160" loading="lazy"></span>
-          <span class="chr-nm">Парикмахер</span>
-        </button>
-        <button class="chr" type="button" data-dir="Наращивание волос" data-pain="Работа на несколько часов, а цена такая же, как у соседнего мастера" data-hero="мастер по наращиванию волос">
-          <span class="chr-ph"><img class="icon gi" src="assets/home/icons/extension.webp" alt="" width="160" height="160" loading="lazy"></span>
-          <span class="chr-nm">Наращивание</span>
-        </button>
-        <button class="chr" type="button" data-dir="Косметология" data-pain="Дорогие аппараты и препараты, а окупаемость процедуры никто не считал" data-hero="косметолог">
-          <span class="chr-ph"><img class="icon gi" src="assets/home/icons/skin.webp" alt="" width="160" height="160" loading="lazy"></span>
-          <span class="chr-nm">Косметолог</span>
-        </button>
-        <button class="chr" type="button" data-dir="Массажист" data-pain="Доход равен вашим рукам и часам — больше в сутки не поместится" data-hero="массажист">
-          <span class="chr-ph"><img class="icon gi" src="assets/home/icons/massage.webp" alt="" width="160" height="160" loading="lazy"></span>
-          <span class="chr-nm">Массаж</span>
-        </button>
-        <button class="chr" type="button" data-dir="Лазерное удаление" data-pain="Большие вложения в аппарат, а курс из нескольких процедур трудно продать целиком" data-hero="мастер лазерного удаления">
-          <span class="chr-ph"><img class="icon gi" src="assets/home/icons/laser.webp" alt="" width="160" height="160" loading="lazy"></span>
-          <span class="chr-nm">Лазер</span>
-        </button>
-        <button class="chr" type="button" data-dir="Депиляция" data-pain="Низкий чек и частые визиты: клиентку легко переманить ценой" data-hero="мастер депиляции">
-          <span class="chr-ph"><img class="icon gi" src="assets/home/icons/wax.webp" alt="" width="160" height="160" loading="lazy"></span>
-          <span class="chr-nm">Депиляция</span>
-        </button>
-        <button class="chr" type="button" data-dir="Подология" data-pain="Медицинская ответственность высокая, а цена часто как за обычный педикюр" data-hero="подолог">
-          <span class="chr-ph"><img class="icon gi" src="assets/home/icons/podo.webp" alt="" width="160" height="160" loading="lazy"></span>
-          <span class="chr-nm">Подология</span>
-        </button>
-      </div>
-      <div class="picker-done" id="pickerDone" hidden>
-        <span class="picker-check" aria-hidden="true">✓</span>
-        <span id="pickerLead">Ваши скилы — <b id="pickerName"></b></span>
-        <a href="#quiz" class="btn btn-primary btn-sm">Дальше: шаг 3 →</a>
-      </div>
-    </div>
-
-
-
-    <div style="display:flex;gap:12px;flex-wrap:wrap">
+    <div class="hero-cta">
       <a href="#packages" class="btn btn-primary">Забронировать место</a>
-      <a href="#format" class="btn btn-ghost">Как это работает</a>
+      <button type="button" class="btn btn-ghost avatar-go">Собрать своего аватара</button>
     </div>
 
     <div class="hero-dates">
@@ -266,9 +166,9 @@
     </div>
 
     <div class="countdown rv" id="countdown">
-      <div class="cd-cap">До конца набора по специальной цене</div>
-      <div class="cd-clock"><span id="cdH">24</span>:<span id="cdM">00</span>:<span id="cdS">00</span></div>
-      <div class="cd-label">Забронируйте место в течение 24 часов — и цена пакета будет со скидкой. Дальше — цена недели, потом стандартная.</div>
+      <div class="cd-cap">До старта сезона · 21 декабря</div>
+      <div class="cd-clock cd-days"><span><b id="cdD">00</b><i>дней</i></span><span><b id="cdH">00</b><i>часов</i></span><span><b id="cdM">00</b><i>минут</i></span><span><b id="cdS">00</b><i>секунд</i></span></div>
+      <div class="cd-label">Сезон стартует 21 декабря 2026. Мест ограничено — бронируйте сейчас, пока действует ваша цена.</div>
     </div>
   </div>
 </header>
@@ -276,65 +176,16 @@
 <!-- ============ ПРОБЛЕМА ============ -->
 <section class="sec" id="about">
   <div class="wrap">
-    <div class="quiz glass rv" id="quiz">
-      <div class="quiz-head">
-        <span class="quiz-kicker">Шаг 3</span>
-        <h2 class="quiz-title">Пройдите короткий тест, чтобы определить вашу текущую ситуацию</h2>
-        <p class="quiz-sub">Отметьте то, что про вас. Результат зависит не от количества галочек, а от того, какие именно вы поставите.</p>
-      </div>
-      <div class="quiz-list">
-        <label class="chk">
-          <input type="checkbox" data-problem data-zone="gro" data-mod="04" data-tag="доход есть, но не растёт">
-          <span class="chk-box" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="m3.2 8.4 3.3 3.4 6.3-7"/></svg></span>
-          <span class="chk-tx">Доход есть, но годами стоит на месте — сколько ни работай</span>
-        </label>
-        <label class="chk">
-          <input type="checkbox" data-problem data-zone="res" data-mod="07" data-tag="запись под завязку без выходных">
-          <span class="chk-box" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="m3.2 8.4 3.3 3.4 6.3-7"/></svg></span>
-          <span class="chk-tx">Запись плотная, выходных нет, а отпуск — это минус месяц дохода</span>
-        </label>
-        <label class="chk">
-          <input type="checkbox" data-problem data-zone="gro" data-mod="04" data-tag="не вижу реальной прибыли">
-          <span class="chk-box" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="m3.2 8.4 3.3 3.4 6.3-7"/></svg></span>
-          <span class="chk-tx">Не считаю себестоимость: не знаю, сколько на самом деле остаётся с услуги</span>
-        </label>
-        <label class="chk">
-          <input type="checkbox" data-problem data-zone="gro" data-mod="02" data-tag="страшно поднять цену">
-          <span class="chk-box" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="m3.2 8.4 3.3 3.4 6.3-7"/></svg></span>
-          <span class="chk-tx">Цены ниже рынка, поднять страшно — кажется, клиенты уйдут</span>
-        </label>
-        <label class="chk">
-          <input type="checkbox" data-problem data-zone="cli" data-mod="03" data-tag="нет системы записи">
-          <span class="chk-box" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="m3.2 8.4 3.3 3.4 6.3-7"/></svg></span>
-          <span class="chk-tx">Окна в графике и отмены в последний момент — поток неуправляемый</span>
-        </label>
-        <label class="chk">
-          <input type="checkbox" data-problem data-zone="cli" data-mod="05" data-tag="соцсети не дают записей">
-          <span class="chk-box" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="m3.2 8.4 3.3 3.4 6.3-7"/></svg></span>
-          <span class="chk-tx">Instagram веду, лайки есть, а записей из него почти нет</span>
-        </label>
-        <label class="chk">
-          <input type="checkbox" data-problem data-zone="res" data-mod="08" data-tag="держу всё на себе">
-          <span class="chk-box" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="m3.2 8.4 3.3 3.4 6.3-7"/></svg></span>
-          <span class="chk-tx">Всё замкнуто на мне: администратор, закупки, реклама, руки</span>
-        </label>
-        <label class="chk">
-          <input type="checkbox" data-problem data-zone="dir" data-mod="09" data-tag="не знаю, что дальше">
-          <span class="chk-box" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="m3.2 8.4 3.3 3.4 6.3-7"/></svg></span>
-          <span class="chk-tx">Хочу больше — салон, команду, обучение — но не знаю, с чего начать</span>
-        </label>
-      </div>
-      <div class="quiz-result" id="quizResult">
-        <div class="quiz-score"><span id="quizCount">0</span><s>из 8</s></div>
-        <div class="quiz-out">
-          <b class="quiz-verdict" id="quizVerdict">Отметьте пункты выше</b>
-          <p class="quiz-picked" id="quizPicked" hidden></p>
-          <p class="quiz-text" id="quizText">Результат зависит от того, что именно вы выберете.</p>
-          <div class="quiz-fix" id="quizFix" hidden></div>
-          <p class="quiz-mods" id="quizMods" hidden></p>
-        </div>
-      </div>
-      <a href="#format" class="btn btn-primary quiz-cta" id="quizCta" hidden>Показать, как это устроено</a>
+    <div class="sec-head rv">
+      <span class="eyebrow">О проекте</span>
+      <h2 class="h-lg">Три составляющие <span class="glow">одного сезона</span></h2>
+      <div class="sec-rule"></div>
+      <p class="lede">Beauty Games — первое онлайн-реалити для бьюти-мастеров. Вы сами выбираете, сколько из этого берёте.</p>
+    </div>
+    <div class="trio">
+      <article class="trio-c glass rv"><img class="icon gi" src="assets/home/icons/program.webp" alt="" width="160" height="160" loading="lazy"><h3>Бизнес-обучение</h3><p>Девять модулей, куратор и домашние задания с проверкой.</p></article>
+      <article class="trio-c glass rv"><img class="icon gi" src="assets/home/icons/trophy.webp" alt="" width="160" height="160" loading="lazy"><h3>Онлайн-чемпионат</h3><p>Соревнование в вашей категории: жюри из практиков, кубки, сертификат.</p></article>
+      <article class="trio-c glass rv"><img class="icon gi" src="assets/home/icons/tv.webp" alt="" width="160" height="160" loading="lazy"><h3>Реалити-шоу</h3><p>Вас снимают: вы в кадре шоу, за вами следят зрители.</p></article>
     </div>
   </div>
 </section>
@@ -343,60 +194,9 @@
 <section class="sec" id="format">
   <div class="wrap">
     <div class="sec-head rv">
-      <span class="eyebrow">Шаг 4</span>
-      <h2 class="h-lg">Выберите <span class="glow">формат участия</span></h2>
-      <p class="lede">Две дороги. Обе ведут к бизнесу — просто одна тише, а другая выводит вас на экран.</p>
-    </div>
-
-    <div class="fork rv" id="fork">
-      <div class="fork-who" id="forkWho">
-        <span class="fork-who-k">Ваша карта игрока с персонализированными рекомендациями</span>
-        <b id="forkWhoName">Выберите свои скилы в шаге 2</b>
-        <span class="fork-who-exp" id="forkWhoExp" hidden></span>
-        <p id="forkWhoPain">Тогда покажем, какие задачи типичны именно для вашего направления.</p>
-        <div class="fork-who-test" id="forkWhoTest" hidden>
-          <span class="fork-who-test-k">По тесту</span>
-          <b id="forkWhoSit"></b>
-          <p id="forkWhoPains"></p>
-        </div>
-        <div class="frec" id="forkRec">
-          <span class="frec-k"><svg class="icon" aria-hidden="true"><use href="#i-star"/></svg>Рекомендации для вас</span>
-          <ul class="frec-list" id="forkRecList"></ul>
-        </div>
-        <a class="fork-who-back" href="#picker" id="forkWhoBack">Выбрать скилы →</a>
-      </div>
-
-      <div class="fork-q">
-        <span class="fork-lvl">Уровень игрока определён</span>
-        <h3 class="fork-t">Выберите свою миссию</h3>
-        <p class="fork-sub">Что вы хотите сделать в течение следующего года?</p>
-        <span class="tap-k" id="forkTap">Нажмите одну из трёх</span>
-      </div>
-
-      <div class="fork-opts ask" id="forkOpts" role="group">
-        <button class="fork-o" type="button" data-pick="money">
-          <span class="fork-o-n">Миссия 01</span>
-          <span class="fork-o-i" aria-hidden="true"><svg class="icon"><use href="#i-coin"/></svg></span>
-          <span class="fork-o-nm">Зарабатывать<br>больше</span>
-        </button>
-        <button class="fork-o" type="button" data-pick="fame">
-          <span class="fork-o-n">Миссия 02</span>
-          <span class="fork-o-i" aria-hidden="true"><img class="icon gi" src="assets/home/icons/tv.webp" alt="" width="160" height="160" loading="lazy"></span>
-          <span class="fork-o-nm">Стать<br>заметной</span>
-        </button>
-        <button class="fork-o" type="button" data-pick="both">
-          <span class="fork-o-n">Миссия 03</span>
-          <span class="fork-o-i" aria-hidden="true"><svg class="icon"><use href="#i-star"/></svg></span>
-          <span class="fork-o-nm">И то,<br>и другое</span>
-        </button>
-      </div>
-
-      <div class="fork-out" id="forkOut" hidden>
-        <span class="fork-out-k">Миссия принята · ваш формат</span>
-        <b id="forkName"></b>
-        <p id="forkText"></p>
-        <a href="#apply" class="btn btn-primary fork-cta">Забронировать место</a>
-      </div>
+      <span class="eyebrow">Формат участия</span>
+      <h2 class="h-lg">Три пути <span class="glow">в сезоне</span></h2>
+      <p class="lede">Все ведут к бизнесу. Разница в том, насколько публичным будет ваш путь.</p>
     </div>
 
     <p class="ways-k">Три пути. Каждая выбирает свой — правильного для всех нет.</p>
@@ -433,6 +233,21 @@
   </div>
 </section>
 
+<!-- ============ АВАТАР ============ -->
+<section class="sec" id="avatar">
+  <div class="wrap">
+    <div class="avatar-cta glass bloom rv">
+      <img class="avatar-cta-ic" src="assets/home/icons/team.webp" alt="" width="160" height="160" loading="lazy">
+      <div>
+        <span class="eyebrow">Игра для вас</span>
+        <h2 class="h-lg">Собери своего <span class="glow">аватара</span></h2>
+        <p class="lede">Четыре шага: скилы, короткий тест, миссия на год — и готовая карта игрока с советами именно для вашего направления.</p>
+      </div>
+      <button type="button" class="btn btn-primary avatar-go">Собрать аватара</button>
+    </div>
+  </div>
+</section>
+
 <!-- ============ РЕЗУЛЬТАТИ ============ -->
 <section class="sec sec-light" id="results">
   <div class="wrap">
@@ -440,6 +255,35 @@
       <span class="eyebrow">Результат, а не обещание</span>
       <h2 class="h-lg">Имена, которые сегодня <span class="glow">знает весь рынок</span></h2>
       <p class="lede">Главный результат Ирины — не строчка в ежегодном рейтинге, а сотни имён, которые она вывела на сцену. Вот лишь малая часть.</p>
+    </div>
+
+    <div class="cases">
+      <article class="case glass rv">
+        <div class="case-ph"><img src="assets/people/star-lux.jpg" alt="Роза Люкс" loading="lazy" width="400" height="400"></div>
+        <div class="case-tx">
+          <span class="case-k">Кейс</span>
+          <h3>Роза Люкс</h3>
+          <p>PMU Master Trainer, судья и спикер. Более 11 лет в перманентном макияже.</p>
+          <div class="case-nums">
+            <div><b>101 тыс.</b><span>подписчиков</span></div>
+            <div><b>11+</b><span>лет в профессии</span></div>
+            <div><b>10 000+</b><span>учениц</span></div>
+          </div>
+        </div>
+      </article>
+      <article class="case glass rv">
+        <div class="case-ph"><img src="assets/people/star-orexanova.jpg" alt="Дарья Ореханова" loading="lazy" width="360" height="360"></div>
+        <div class="case-tx">
+          <span class="case-k">Кейс</span>
+          <h3>Дарья Ореханова</h3>
+          <p>Перманентный макияж, косметология и инъекционные методики. Своя студия OREX в Киеве и обучение для мастеров.</p>
+          <div class="case-nums">
+            <div><b>66,2 тыс.</b><span>подписчиков</span></div>
+            <div><b>3</b><span>направления</span></div>
+            <div><b>OREX</b><span>собственный бренд пигментов</span></div>
+          </div>
+        </div>
+      </article>
     </div>
 
     <div class="stars">
@@ -456,20 +300,12 @@
         <div><h3>Елена Оника</h3><span class="star-aud">121 тыс. подписчиков</span><p>PMU · biohacking · AI · international expert · основательница Fusion PMU</p></div>
       </article>
       <article class="star rv">
-        <div class="star-ph"><img src="assets/people/star-orexanova.jpg" alt="Дарья Ореханова" loading="lazy" width="360" height="360"></div>
-        <div><h3>Дарья Ореханова</h3><span class="star-aud">66,2 тыс. подписчиков</span><p>OREX · перманент, косметология, инъекционные методики · Киев</p></div>
-      </article>
-      <article class="star rv">
         <div class="star-ph"><img src="assets/people/star-agaeva.jpg" alt="Элеонора Агаева" loading="lazy" width="360" height="360"></div>
         <div><h3>Элеонора Агаева</h3><span class="star-aud">56,9 тыс. подписчиков</span><p>Основательница International Academy · спикер, судья · 1000+ учениц из 20 стран</p></div>
       </article>
       <article class="star rv">
         <div class="star-ph"><img src="assets/people/star-ovcharuk.jpg" alt="Екатерина Овчарук" loading="lazy" width="400" height="400"></div>
         <div><h3>Екатерина Овчарук</h3><span class="star-aud">67,1 тыс. подписчиков</span><p>Абсолютная чемпионка мира WULOP 2025 · hairstroke</p></div>
-      </article>
-      <article class="star rv">
-        <div class="star-ph"><img src="assets/people/star-lux.jpg" alt="Роза Люкс" loading="lazy" width="400" height="400"></div>
-        <div><h3>Роза Люкс</h3><span class="star-aud">101 тыс. подписчиков</span><p>PMU Master Trainer 11+ лет · судья, спикер · 10 000+ учениц</p></div>
       </article>
     </div>
 
@@ -1479,6 +1315,21 @@
   </div>
 </section>
 
+<dialog class="av-box" id="avBox" aria-labelledby="avTitle">
+  <form class="av-form" id="avForm" method="dialog" novalidate>
+    <button class="av-x" type="button" id="avX" aria-label="Закрыть">×</button>
+    <span class="eyebrow">Твой аватар</span>
+    <h2 class="h-md" id="avTitle">Начнём с тебя</h2>
+    <p class="lede">Оставь контакт — и переходи к шагам. Менеджер увидит твою карту, когда она будет готова.</p>
+    <label class="fld"><span>Имя</span><input name="name" id="avName" autocomplete="given-name" required maxlength="30"></label>
+    <label class="fld"><span>Телефон</span><input name="phone" id="avPhone" type="tel" inputmode="tel" autocomplete="tel" required></label>
+    <label class="fld"><span>Instagram</span><input name="instagram" placeholder="@" autocomplete="off"></label>
+    <input type="text" name="bot-field" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+    <button class="btn btn-primary" type="submit" id="avGo">Собрать аватара →</button>
+    <p class="av-msg" id="avMsg" role="status"></p>
+  </form>
+</dialog>
+
 <!-- ============ ФУТЕР ============ -->
 <footer>
   <div class="wrap">
@@ -1522,6 +1373,6 @@
   </a>
 </div>
 
-<script src="leads.js?v=e09c34ab"></script>
-<script src="app.ru.js?v=c72503ad"></script>
+<script src="leads.js?v=15ac5189"></script>
+<script src="app.ru.js?v=2e5759a1"></script>
 <script src="fx.js?v=b9217507"></script>

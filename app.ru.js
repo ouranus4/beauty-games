@@ -271,40 +271,61 @@
   }
 
   /* ============================================================
-     ТАЙМЕР СПЕЦЦІНИ — 24 години з першого візиту
+     ТАЙМЕР ДО СТАРТУ СЕЗОНУ — 21 грудня 2026, 00:00 за Києвом
      ============================================================ */
-  var cdH = $('#cdH'), cdM = $('#cdM'), cdS = $('#cdS'), cdBox = $('#countdown');
-  if (cdH && cdM && cdS) {
-    var KEY = 'bg_offer_start';
-    var start = parseInt(store.get(KEY), 10);
-    if (!start || isNaN(start) || start > Date.now()) {
-      start = Date.now();
-      store.set(KEY, String(start));
-    }
-    var END = start + 24 * 60 * 60 * 1000;
-
+  var cdD = $('#cdD'), cdH = $('#cdH'), cdM = $('#cdM'), cdS = $('#cdS');
+  if (cdD && cdH && cdM && cdS) {
+    var START = Date.parse('2026-12-21T00:00:00+02:00');
     var pad = function (n) { return n < 10 ? '0' + n : String(n); };
-
     var tick = function () {
-      var left = END - Date.now();
-      if (left <= 0) {
-        cdH.textContent = '00'; cdM.textContent = '00'; cdS.textContent = '00';
-        var lbl = cdBox && $('.cd-label', cdBox);
-        if (lbl) {
-          lbl.innerHTML = '<b>Специальная цена 24 часов закончилась.</b> Действует цена недели — напишите менеджеру, чтобы закрепить её за собой.';
-        }
-        clearInterval(timer);
-        return;
-      }
-      var h = Math.floor(left / 3600000);
-      var m = Math.floor((left % 3600000) / 60000);
-      var s = Math.floor((left % 60000) / 1000);
-      cdH.textContent = pad(h); cdM.textContent = pad(m); cdS.textContent = pad(s);
-      // fx.js слухає цю подію: терміновість у тексті + тікання в останню хвилину
-      document.dispatchEvent(new CustomEvent('bg:tick', { detail: { h: h, m: m, s: s } }));
+      var left = Math.max(0, START - Date.now());
+      cdD.textContent = pad(Math.floor(left / 86400000));
+      cdH.textContent = pad(Math.floor(left % 86400000 / 3600000));
+      cdM.textContent = pad(Math.floor(left % 3600000 / 60000));
+      cdS.textContent = pad(Math.floor(left % 60000 / 1000));
+      if (!left) clearInterval(timer);
     };
     tick();
     var timer = setInterval(tick, 1000);
+  }
+
+  /* ============================================================
+     СКЛАСТИ АВАТАРА: контакт → кроки на окремій сторінці
+     Заявку надсилаємо одразу, щоб контакт не загубився, навіть
+     якщо людина не дійде до кінця. Ім'я чекає на сторінці кроків.
+     ============================================================ */
+  var avBox = $('#avBox'), avForm = $('#avForm');
+  if (avBox && avForm) {
+    var avMsg = $('#avMsg'), avBtn = $('#avGo');
+    var avPage = document.documentElement.lang === 'ru' ? 'avatar-ru.html' : 'avatar.html';
+    $$('.avatar-go').forEach(function (b) {
+      b.addEventListener('click', function () {
+        if (avBox.showModal) avBox.showModal(); else location.href = avPage;
+        var nm = $('#avName'); if (nm) setTimeout(function () { nm.focus(); }, 60);
+      });
+    });
+    $('#avX').addEventListener('click', function () { avBox.close(); });
+    avBox.addEventListener('click', function (e) { if (e.target === avBox) avBox.close(); });
+    avForm.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var d = {};
+      ['name', 'phone', 'instagram', 'bot-field'].forEach(function (k) { d[k] = (avForm.elements[k].value || '').trim(); });
+      var bad = false;
+      ['name', 'phone'].forEach(function (k) {
+        var miss = !d[k];
+        avForm.elements[k].classList.toggle('bad', miss);
+        bad = bad || miss;
+      });
+      if (bad) { avMsg.textContent = 'Укажите имя и телефон'; return; }
+      store.set('bg_name', d.name);
+      d.page = 'avatar-start';
+      avBtn.disabled = true;
+      avMsg.textContent = 'Открываем шаги…';
+      var go = function () { location.href = avPage; };
+      var sent = window.bgSendLead ? window.bgSendLead('participant', d) : null;
+      if (sent && sent.then) sent.then(go, go); else go();
+      setTimeout(go, 4000);   // повільна мережа не тримає людину на формі
+    });
   }
 
   /* ============================================================

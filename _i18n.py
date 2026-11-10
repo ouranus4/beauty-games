@@ -19,6 +19,8 @@ import re
 import sys
 
 CYR = re.compile("[А-Яа-яІіЇїЄєҐґ]")
+# пари сторінок: українська → російська
+PAGES = (("index.html", "ru.html"), ("avatar.html", "avatar-ru.html"))
 # атрибути, які не перекладаємо: адреси, id, класи
 SKIP_ATTR = {"href", "src", "id", "class", "for", "name", "type", "role", "rel", "target",
              "width", "height", "loading", "viewBox", "d", "transform", "fill", "stroke"}
@@ -72,14 +74,15 @@ def collect():
             seen.add(k)
             keys.append(k)
 
-    s = io.open("index.html", encoding="utf-8").read()
-    for kind, tok in html_parts(s):
-        if kind == "tag":
-            for k, v in re.findall(r'([\w:-]+)="([^"]*)"', tok):
-                if k not in SKIP_ATTR and CYR.search(v):
-                    add(v)
-        elif kind == "text" and CYR.search(tok):
-            add(tok.strip())
+    for src, _ in PAGES:
+        s = io.open(src, encoding="utf-8").read()
+        for kind, tok in html_parts(s):
+            if kind == "tag":
+                for k, v in re.findall(r'([\w:-]+)="([^"]*)"', tok):
+                    if k not in SKIP_ATTR and CYR.search(v):
+                        add(v)
+            elif kind == "text" and CYR.search(tok):
+                add(tok.strip())
     js = io.open("app.js", encoding="utf-8").read()
     for a, b in js_strings(js):
         if CYR.search(js[a:b]):
@@ -96,27 +99,28 @@ def build(tr):
         missing.append(k)
         return k
 
-    s = io.open("index.html", encoding="utf-8").read()
-    out = []
-    for kind, tok in html_parts(s):
-        if kind == "tag":
-            tok = re.sub(r'([\w:-]+)="([^"]*)"',
-                         lambda m: '%s="%s"' % (m.group(1), t(m.group(2)))
-                         if m.group(1) not in SKIP_ATTR and CYR.search(m.group(2)) else m.group(0),
-                         tok)
-        elif kind == "text" and CYR.search(tok):
-            core = tok.strip()
-            tok = tok.replace(core, t(core), 1)
-        out.append(tok)
-    page = "".join(out)
+    for src, dst in PAGES:
+        s = io.open(src, encoding="utf-8").read()
+        out = []
+        for kind, tok in html_parts(s):
+            if kind == "tag":
+                tok = re.sub(r'([\w:-]+)="([^"]*)"',
+                             lambda m: '%s="%s"' % (m.group(1), t(m.group(2)))
+                             if m.group(1) not in SKIP_ATTR and CYR.search(m.group(2)) else m.group(0),
+                             tok)
+            elif kind == "text" and CYR.search(tok):
+                core = tok.strip()
+                tok = tok.replace(core, t(core), 1)
+            out.append(tok)
+        page = "".join(out)
 
-    # мова, перемикач, скрипт
-    page = page.replace("document.documentElement.lang='uk'", "document.documentElement.lang='ru'")
-    page = re.sub(r'<a href="index.html" class="lang-a on"[^>]*>UA</a>\s*<a href="ru.html" class="lang-a"[^>]*>RU</a>',
-                  '<a href="index.html" class="lang-a" hreflang="uk" lang="uk">UA</a>'
-                  '<a href="ru.html" class="lang-a on" aria-current="true" hreflang="ru" lang="ru">RU</a>', page)
-    page = re.sub(r'src="app\.js(\?v=[0-9a-f]+)?"', 'src="app.ru.js"', page)
-    io.open("ru.html", "w", encoding="utf-8", newline="\n").write(page)
+        # мова, перемикач, скрипт
+        page = page.replace("document.documentElement.lang='uk'", "document.documentElement.lang='ru'")
+        page = re.sub(r'<a href="%s" class="lang-a on"[^>]*>UA</a>\s*<a href="%s" class="lang-a"[^>]*>RU</a>' % (re.escape(src), re.escape(dst)),
+                      '<a href="%s" class="lang-a" hreflang="uk" lang="uk">UA</a>'
+                      '<a href="%s" class="lang-a on" aria-current="true" hreflang="ru" lang="ru">RU</a>' % (src, dst), page)
+        page = re.sub(r'src="app\.js(\?v=[0-9a-f]+)?"', 'src="app.ru.js"', page)
+        io.open(dst, "w", encoding="utf-8", newline="\n").write(page)
 
     js = io.open("app.js", encoding="utf-8").read()
     parts, last = [], 0
@@ -141,7 +145,7 @@ def main():
     missing = build(tr)
     if missing:
         print("УВАГА: без перекладу лишилось %d рядків, запустіть --missing" % len(set(missing)))
-    print("ru.html і app.ru.js зібрано")
+    print("ru.html, avatar-ru.html і app.ru.js зібрано")
 
 
 if __name__ == "__main__":

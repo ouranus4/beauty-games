@@ -10,7 +10,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800;900&family=Oswald:wght@400;500;600&family=Manrope:wght@400;500;600;700&family=Pixelify+Sans:wght@400..700&family=JetBrains+Mono:wght@400;500;700&display=swap">
 <link rel="stylesheet" href="styles.css?v=ad1ccce0">
-<link rel="stylesheet" href="squid.css?v=100de459">
+<link rel="stylesheet" href="squid.css?v=4cdc4fe1">
 
 <!-- SPRITE -->
 <div class="preloader" id="preloader">
@@ -65,25 +65,26 @@
   <span class="gate-ripple r2" aria-hidden="true"></span>
   <span class="gate-ripple r3" aria-hidden="true"></span>
   <div class="gate-in">
-    <p class="gate-lede">Перше онлайн-реаліті для б'юті-майстрів. Далі все влаштовано як гра: дев'ять кроків — і наприкінці ваша карта гравця.</p>
+    <p class="gate-lede">Перше онлайн-реаліті для б'юті-майстрів: реаліті-шоу, бізнес-навчання і чемпіонат в одному сезоні.</p>
     <button class="gate-lock" type="button" id="gateLock" aria-label="Натисніть і тримайте, щоб почати гру">
       <svg class="gate-ring" viewBox="0 0 120 120" aria-hidden="true">
         <circle class="gate-ring-bg" cx="60" cy="60" r="54"/>
         <circle class="gate-ring-fill" id="gateRing" cx="60" cy="60" r="54"/>
       </svg>
       <svg class="gate-ico" viewBox="0 0 48 48" aria-hidden="true">
-        <g class="gate-pad">
-          <path class="gpad-body" d="M17.5 18h13a9.5 9.5 0 0 1 9.2 7.2l1.9 7.6a4.3 4.3 0 0 1-8 3.1L30.6 30H17.4l-3.1 5.9a4.3 4.3 0 0 1-8-3.1l1.9-7.6A9.5 9.5 0 0 1 17.5 18Z"/>
-          <path class="gpad-dpad" d="M13.4 24.6h5.6M16.2 21.8v5.6"/>
-          <circle class="gpad-key" cx="32.2" cy="21.6" r="1.5"/>
-          <circle class="gpad-key" cx="35" cy="24.4" r="1.5"/>
-          <circle class="gpad-key" cx="32.2" cy="27.2" r="1.5"/>
-          <circle class="gpad-key" cx="29.4" cy="24.4" r="1.5"/>
+        <g class="fp">
+          <path d="M16.6 11.2a15.4 15.4 0 0 1 14.8 0"/>
+          <path d="M11.2 30.6c-.8-2.4-1.2-4.9-1.2-7.6 0-7.7 6.3-14 14-14s14 6.3 14 14v1"/>
+          <path d="M15.6 36.4c-1.6-3.2-2.6-6.9-2.6-10.6 0-6.1 4.9-11 11-11s11 4.9 11 11c0 2-1.6 3.6-3.6 3.6s-3.6-1.6-3.6-3.6c0-2.1-1.7-3.8-3.8-3.8s-3.8 1.7-3.8 3.8c0 5.4 2.5 10.2 6.4 13.4"/>
+          <path d="M21.4 39.6c-2.6-3.8-4.1-8.4-4.1-13.4"/>
+          <path d="M24 25.8c0 6.3 3.9 11.6 9.4 13.8"/>
+          <path d="M37 33.8c.4-1.6.6-3.2.6-4.9"/>
         </g>
+        <rect class="fp-scan" x="9" y="9" width="30" height="2.6" rx="1.3"/>
       </svg>
     </button>
     <p class="gate-tx" id="gateTx">Почати гру</p>
-    <p class="gate-sub" id="gateSub">Затисніть і тримайте</p>
+    <p class="gate-sub" id="gateSub">Прикладіть палець і тримайте</p>
     <button class="gate-skip" type="button" id="gateSkip">Пропустити</button>
   </div>
 </div>
@@ -92,15 +93,13 @@
      прокрутки. Людина бачить, що рухається по грі, а не гортає сайт. -->
 <nav class="prog" id="prog" aria-label="Прогрес сторінки">
   <span class="prog-line" aria-hidden="true"><i id="progFill"></i></span>
-  <a class="prog-dot" href="#hello"    data-t="Крок 1 · Знайомство"><b>1</b></a>
-  <a class="prog-dot" href="#picker"   data-t="Крок 2 · Скіли"><b>2</b></a>
-  <a class="prog-dot" href="#about"    data-t="Крок 3 · Тест"><b>3</b></a>
-  <a class="prog-dot" href="#format"   data-t="Крок 4 · Місія"><b>4</b></a>
-  <a class="prog-dot" href="#how"      data-t="Як влаштований сезон"><b>5</b></a>
-  <a class="prog-dot" href="#founders" data-t="Хто за цим стоїть"><b>6</b></a>
-  <a class="prog-dot" href="#program"  data-t="Бізнес-програма"><b>7</b></a>
-  <a class="prog-dot" href="#packages" data-t="Пакети"><b>8</b></a>
-  <a class="prog-dot" href="#apply"    data-t="Досьє і заявка"><b>9</b></a>
+  <a class="prog-dot" href="#about" data-t="Про проєкт"><b>1</b></a>
+  <a class="prog-dot" href="#format" data-t="Формат участі"><b>2</b></a>
+  <a class="prog-dot" href="#how" data-t="Як влаштований сезон"><b>3</b></a>
+  <a class="prog-dot" href="#founders" data-t="Хто за цим стоїть"><b>4</b></a>
+  <a class="prog-dot" href="#program" data-t="Бізнес-програма"><b>5</b></a>
+  <a class="prog-dot" href="#packages" data-t="Пакети"><b>6</b></a>
+  <a class="prog-dot" href="#apply" data-t="Заявка"><b>7</b></a>
 </nav>
 
 <!-- ============ ШАПКА ============ -->
@@ -146,110 +145,11 @@
       <img class="hero-logo" src="assets/logo-horizontal.svg" alt="Beauty Games by Verbova Iryna — reality show, championship, education" width="330" height="46">
     </div>
     <h1 class="h-xl">Перше онлайн-реаліті<br>для <span class="glow">б'юті-майстрів</span></h1>
-    <div class="tip" id="tip" hidden>
-      <span class="tip-k">Підказка</span>
-      <p class="tip-tx"><b>Крок 1.</b> Напишіть своє ім'я — і гра почнеться.</p>
-      <div class="tip-row">
-        <button class="btn btn-primary btn-sm" type="button" id="tipGo">Почати</button>
-        <button class="tip-x" type="button" id="tipX" aria-label="Закрити підказку">Зрозуміло</button>
-      </div>
-    </div>
+    <p class="lede hero-lede">Реаліті-шоу, бізнес-навчання і онлайн-чемпіонат в одному сезоні. Три місяці ти прокачуєш бізнес, змагаєшся у своїй категорії і стаєш помітною на ринку.</p>
 
-    <div class="hello rv" id="hello">
-      <div class="hello-head">
-        <span class="hello-kicker">Крок 1</span>
-        <h2 class="hello-title">Як вас звати?</h2>
-        <p class="hello-sub">Заповнюйте по дорозі — наприкінці все складеться у вашу карту гравця.</p>
-      </div>
-
-      <div class="hello-row">
-        <label class="hello-fld">
-          <span>Вкажіть ім’я</span>
-          <input type="text" id="heroName" autocomplete="given-name" placeholder="Ваше ім’я" maxlength="30">
-        </label>
-      </div>
-
-      <div class="hello-exp">
-        <span class="hello-exp-k">Скільки років ви в beauty?</span>
-        <div class="hello-exp-opts" role="group">
-          <button class="expo" type="button" data-exp="менше року">До року</button>
-          <button class="expo" type="button" data-exp="1–3 роки">1–3</button>
-          <button class="expo" type="button" data-exp="3–5 років">3–5</button>
-          <button class="expo" type="button" data-exp="5–10 років">5–10</button>
-          <button class="expo" type="button" data-exp="понад 10 років">10+</button>
-        </div>
-      </div>
-
-    </div>
-
-    <div class="picker rv" id="picker">
-      <div class="picker-head">
-        <span class="picker-kicker">Крок 2</span>
-        <h2 class="picker-title" id="pickerTitle">Оберіть свої скіли</h2>
-        <p class="picker-sub">Що ви вмієте робити руками. Це визначає категорію в чемпіонаті й підбір команди — якщо працюєте в кількох напрямках, обирайте кілька.</p>
-      </div>
-      <div class="picker-grid">
-        <button class="chr" type="button" data-dir="Броу-майстер" data-pain="Низький чек за корекцію, клієнтки ходять раз на місяць і легко йдуть до тих, хто дешевше" data-hero="броу-майстер">
-          <span class="chr-ph"><img class="icon gi" src="assets/home/icons/brow.webp" alt="" width="160" height="160" loading="lazy"></span>
-          <span class="chr-nm">Брови</span>
-        </button>
-        <button class="chr" type="button" data-dir="Лашмейкер" data-pain="Довгі процедури, спина й очі, а чек стоїть на місці роками" data-hero="лашмейкер">
-          <span class="chr-ph"><img class="icon gi" src="assets/home/icons/lash.webp" alt="" width="160" height="160" loading="lazy"></span>
-          <span class="chr-nm">Вії</span>
-        </button>
-        <button class="chr" type="button" data-dir="Нігтьовий сервіс" data-pain="Щільний графік, відміни в останній момент і конкуренція за ціною" data-hero="майстер нігтьового сервісу">
-          <span class="chr-ph"><img class="icon gi" src="assets/home/icons/nails.webp" alt="" width="160" height="160" loading="lazy"></span>
-          <span class="chr-nm">Нігті</span>
-        </button>
-        <button class="chr" type="button" data-dir="Перманент" data-pain="Процедура дорога, але заявок мало: клієнтка боїться і довго вирішує" data-hero="майстер з перманенту" data-form="Перманентний макіяж">
-          <span class="chr-ph"><img class="icon gi" src="assets/home/icons/pmu.webp" alt="" width="160" height="160" loading="lazy"></span>
-          <span class="chr-nm">Перманент</span>
-        </button>
-        <button class="chr" type="button" data-dir="Візажист" data-pain="Дохід стрибає від сезону — весілля, свята, а потім порожні місяці" data-hero="візажист">
-          <span class="chr-ph"><img class="icon gi" src="assets/home/icons/makeup.webp" alt="" width="160" height="160" loading="lazy"></span>
-          <span class="chr-nm">Макіяж</span>
-        </button>
-        <button class="chr" type="button" data-dir="Перукар-стиліст" data-pain="Клієнтів багато, а прибутку мало: витратні, оренда й час рахуються «на око»" data-hero="перукар-стиліст">
-          <span class="chr-ph"><img class="icon gi" src="assets/home/icons/hair.webp" alt="" width="160" height="160" loading="lazy"></span>
-          <span class="chr-nm">Перукар</span>
-        </button>
-        <button class="chr" type="button" data-dir="Нарощування волосся" data-pain="Робота на кілька годин, а ціна така сама, як у сусіднього майстра" data-hero="майстер з нарощування волосся">
-          <span class="chr-ph"><img class="icon gi" src="assets/home/icons/extension.webp" alt="" width="160" height="160" loading="lazy"></span>
-          <span class="chr-nm">Нарощення</span>
-        </button>
-        <button class="chr" type="button" data-dir="Косметологія" data-pain="Дорогі апарати й препарати, а окупність процедури ніхто не рахував" data-hero="косметолог">
-          <span class="chr-ph"><img class="icon gi" src="assets/home/icons/skin.webp" alt="" width="160" height="160" loading="lazy"></span>
-          <span class="chr-nm">Косметолог</span>
-        </button>
-        <button class="chr" type="button" data-dir="Масажист" data-pain="Дохід дорівнює вашим рукам і годинам — більше в добу не влізе" data-hero="масажист">
-          <span class="chr-ph"><img class="icon gi" src="assets/home/icons/massage.webp" alt="" width="160" height="160" loading="lazy"></span>
-          <span class="chr-nm">Масаж</span>
-        </button>
-        <button class="chr" type="button" data-dir="Лазерне видалення" data-pain="Великі вкладення в апарат, а курс із кількох процедур важко продати цілком" data-hero="майстер лазерного видалення">
-          <span class="chr-ph"><img class="icon gi" src="assets/home/icons/laser.webp" alt="" width="160" height="160" loading="lazy"></span>
-          <span class="chr-nm">Лазер</span>
-        </button>
-        <button class="chr" type="button" data-dir="Депіляція" data-pain="Низький чек і часті візити: клієнтку легко переманити ціною" data-hero="майстер депіляції">
-          <span class="chr-ph"><img class="icon gi" src="assets/home/icons/wax.webp" alt="" width="160" height="160" loading="lazy"></span>
-          <span class="chr-nm">Депіляція</span>
-        </button>
-        <button class="chr" type="button" data-dir="Подологія" data-pain="Медична відповідальність висока, а ціна часто як за звичайний педикюр" data-hero="подолог">
-          <span class="chr-ph"><img class="icon gi" src="assets/home/icons/podo.webp" alt="" width="160" height="160" loading="lazy"></span>
-          <span class="chr-nm">Подологія</span>
-        </button>
-      </div>
-      <div class="picker-done" id="pickerDone" hidden>
-        <span class="picker-check" aria-hidden="true">✓</span>
-        <span id="pickerLead">Ваші скіли — <b id="pickerName"></b></span>
-        <a href="#quiz" class="btn btn-primary btn-sm">Далі: крок 3 →</a>
-      </div>
-    </div>
-
-
-
-    <div style="display:flex;gap:12px;flex-wrap:wrap">
+    <div class="hero-cta">
       <a href="#packages" class="btn btn-primary">Забронювати місце</a>
-      <a href="#format" class="btn btn-ghost">Як це працює</a>
+      <button type="button" class="btn btn-ghost avatar-go">Скласти свого аватара</button>
     </div>
 
     <div class="hero-dates">
@@ -266,9 +166,9 @@
     </div>
 
     <div class="countdown rv" id="countdown">
-      <div class="cd-cap">До кінця набору за спеціальною ціною</div>
-      <div class="cd-clock"><span id="cdH">24</span>:<span id="cdM">00</span>:<span id="cdS">00</span></div>
-      <div class="cd-label">Забронюйте місце протягом 24 годин — і ціна пакета буде зі знижкою. Далі — ціна тижня, потім стандартна.</div>
+      <div class="cd-cap">До старту сезону · 21 грудня</div>
+      <div class="cd-clock cd-days"><span><b id="cdD">00</b><i>днів</i></span><span><b id="cdH">00</b><i>годин</i></span><span><b id="cdM">00</b><i>хвилин</i></span><span><b id="cdS">00</b><i>секунд</i></span></div>
+      <div class="cd-label">Сезон стартує 21 грудня 2026. Місць обмежено — бронюйте зараз, поки діє ваша ціна.</div>
     </div>
   </div>
 </header>
@@ -276,65 +176,16 @@
 <!-- ============ ПРОБЛЕМА ============ -->
 <section class="sec" id="about">
   <div class="wrap">
-    <div class="quiz glass rv" id="quiz">
-      <div class="quiz-head">
-        <span class="quiz-kicker">Крок 3</span>
-        <h2 class="quiz-title">Пройдіть короткий тест, щоб визначити вашу поточну ситуацію</h2>
-        <p class="quiz-sub">Відмітьте те, що про вас. Результат залежить не від кількості галочок, а від того, які саме ви поставите.</p>
-      </div>
-      <div class="quiz-list">
-        <label class="chk">
-          <input type="checkbox" data-problem data-zone="gro" data-mod="04" data-tag="дохід є, але не росте">
-          <span class="chk-box" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="m3.2 8.4 3.3 3.4 6.3-7"/></svg></span>
-          <span class="chk-tx">Дохід є, але роками стоїть на місці — скільки не працюй</span>
-        </label>
-        <label class="chk">
-          <input type="checkbox" data-problem data-zone="res" data-mod="07" data-tag="запис під зав’язку без вихідних">
-          <span class="chk-box" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="m3.2 8.4 3.3 3.4 6.3-7"/></svg></span>
-          <span class="chk-tx">Запис щільний, вихідних немає, а відпустка — це мінус місяць доходу</span>
-        </label>
-        <label class="chk">
-          <input type="checkbox" data-problem data-zone="gro" data-mod="04" data-tag="не бачу реального прибутку">
-          <span class="chk-box" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="m3.2 8.4 3.3 3.4 6.3-7"/></svg></span>
-          <span class="chk-tx">Не рахую собівартість: не знаю, скільки насправді лишається з послуги</span>
-        </label>
-        <label class="chk">
-          <input type="checkbox" data-problem data-zone="gro" data-mod="02" data-tag="страшно підняти ціну">
-          <span class="chk-box" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="m3.2 8.4 3.3 3.4 6.3-7"/></svg></span>
-          <span class="chk-tx">Ціни нижчі за ринок, підняти страшно — здається, клієнти підуть</span>
-        </label>
-        <label class="chk">
-          <input type="checkbox" data-problem data-zone="cli" data-mod="03" data-tag="нема системи запису">
-          <span class="chk-box" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="m3.2 8.4 3.3 3.4 6.3-7"/></svg></span>
-          <span class="chk-tx">Вікна в графіку й відміни в останній момент — потік некерований</span>
-        </label>
-        <label class="chk">
-          <input type="checkbox" data-problem data-zone="cli" data-mod="05" data-tag="соцмережі не дають записів">
-          <span class="chk-box" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="m3.2 8.4 3.3 3.4 6.3-7"/></svg></span>
-          <span class="chk-tx">Instagram веду, лайки є, а записів із нього майже немає</span>
-        </label>
-        <label class="chk">
-          <input type="checkbox" data-problem data-zone="res" data-mod="08" data-tag="тримаю все на собі">
-          <span class="chk-box" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="m3.2 8.4 3.3 3.4 6.3-7"/></svg></span>
-          <span class="chk-tx">Все замкнено на мені: адміністратор, закупівлі, реклама, руки</span>
-        </label>
-        <label class="chk">
-          <input type="checkbox" data-problem data-zone="dir" data-mod="09" data-tag="не знаю, що далі">
-          <span class="chk-box" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="m3.2 8.4 3.3 3.4 6.3-7"/></svg></span>
-          <span class="chk-tx">Хочу більше — салон, команду, навчання — але не знаю, з чого починати</span>
-        </label>
-      </div>
-      <div class="quiz-result" id="quizResult">
-        <div class="quiz-score"><span id="quizCount">0</span><s>з 8</s></div>
-        <div class="quiz-out">
-          <b class="quiz-verdict" id="quizVerdict">Відмітьте пункти вище</b>
-          <p class="quiz-picked" id="quizPicked" hidden></p>
-          <p class="quiz-text" id="quizText">Результат залежить від того, що саме ви оберете.</p>
-          <div class="quiz-fix" id="quizFix" hidden></div>
-          <p class="quiz-mods" id="quizMods" hidden></p>
-        </div>
-      </div>
-      <a href="#format" class="btn btn-primary quiz-cta" id="quizCta" hidden>Показати, як це влаштовано</a>
+    <div class="sec-head rv">
+      <span class="eyebrow">Про проєкт</span>
+      <h2 class="h-lg">Три складові <span class="glow">одного сезону</span></h2>
+      <div class="sec-rule"></div>
+      <p class="lede">Beauty Games — перше онлайн-реаліті для б'юті-майстрів. Ви самі обираєте, скільки з цього берете.</p>
+    </div>
+    <div class="trio">
+      <article class="trio-c glass rv"><img class="icon gi" src="assets/home/icons/program.webp" alt="" width="160" height="160" loading="lazy"><h3>Бізнес-навчання</h3><p>Дев’ять модулів, куратор і домашні завдання з перевіркою.</p></article>
+      <article class="trio-c glass rv"><img class="icon gi" src="assets/home/icons/trophy.webp" alt="" width="160" height="160" loading="lazy"><h3>Онлайн-чемпіонат</h3><p>Змагання у вашій категорії: журі з практиків, кубки, сертифікат.</p></article>
+      <article class="trio-c glass rv"><img class="icon gi" src="assets/home/icons/tv.webp" alt="" width="160" height="160" loading="lazy"><h3>Реаліті-шоу</h3><p>Вас знімають: ви в кадрі шоу, за вами стежать глядачі.</p></article>
     </div>
   </div>
 </section>
@@ -343,60 +194,9 @@
 <section class="sec" id="format">
   <div class="wrap">
     <div class="sec-head rv">
-      <span class="eyebrow">Крок 4</span>
-      <h2 class="h-lg">Оберіть <span class="glow">формат участі</span></h2>
-      <p class="lede">Дві дороги. Обидві ведуть до бізнесу — просто одна тихіша, а друга виводить вас на екран.</p>
-    </div>
-
-    <div class="fork rv" id="fork">
-      <div class="fork-who" id="forkWho">
-        <span class="fork-who-k">Ваша карта гравця з персоналізованими рекомендаціями</span>
-        <b id="forkWhoName">Оберіть свої скіли у кроці 2</b>
-        <span class="fork-who-exp" id="forkWhoExp" hidden></span>
-        <p id="forkWhoPain">Тоді покажемо, які задачі типові саме для вашого напрямку.</p>
-        <div class="fork-who-test" id="forkWhoTest" hidden>
-          <span class="fork-who-test-k">За тестом</span>
-          <b id="forkWhoSit"></b>
-          <p id="forkWhoPains"></p>
-        </div>
-        <div class="frec" id="forkRec">
-          <span class="frec-k"><svg class="icon" aria-hidden="true"><use href="#i-star"/></svg>Рекомендації для вас</span>
-          <ul class="frec-list" id="forkRecList"></ul>
-        </div>
-        <a class="fork-who-back" href="#picker" id="forkWhoBack">Обрати скіли →</a>
-      </div>
-
-      <div class="fork-q">
-        <span class="fork-lvl">Рівень гравця визначено</span>
-        <h3 class="fork-t">Оберіть свою місію</h3>
-        <p class="fork-sub">Що ви хочете зробити протягом наступного року?</p>
-        <span class="tap-k" id="forkTap">Натисніть одну з трьох</span>
-      </div>
-
-      <div class="fork-opts ask" id="forkOpts" role="group">
-        <button class="fork-o" type="button" data-pick="money">
-          <span class="fork-o-n">Місія 01</span>
-          <span class="fork-o-i" aria-hidden="true"><svg class="icon"><use href="#i-coin"/></svg></span>
-          <span class="fork-o-nm">Заробляти<br>більше</span>
-        </button>
-        <button class="fork-o" type="button" data-pick="fame">
-          <span class="fork-o-n">Місія 02</span>
-          <span class="fork-o-i" aria-hidden="true"><img class="icon gi" src="assets/home/icons/tv.webp" alt="" width="160" height="160" loading="lazy"></span>
-          <span class="fork-o-nm">Стати<br>помітною</span>
-        </button>
-        <button class="fork-o" type="button" data-pick="both">
-          <span class="fork-o-n">Місія 03</span>
-          <span class="fork-o-i" aria-hidden="true"><svg class="icon"><use href="#i-star"/></svg></span>
-          <span class="fork-o-nm">І те,<br>і інше</span>
-        </button>
-      </div>
-
-      <div class="fork-out" id="forkOut" hidden>
-        <span class="fork-out-k">Місію прийнято · ваш формат</span>
-        <b id="forkName"></b>
-        <p id="forkText"></p>
-        <a href="#apply" class="btn btn-primary fork-cta">Забронювати місце</a>
-      </div>
+      <span class="eyebrow">Формат участі</span>
+      <h2 class="h-lg">Три шляхи <span class="glow">в сезоні</span></h2>
+      <p class="lede">Усі ведуть до бізнесу. Різниця в тому, наскільки публічним буде ваш шлях.</p>
     </div>
 
     <p class="ways-k">Три шляхи. Кожна обирає свій — правильного для всіх немає.</p>
@@ -433,6 +233,21 @@
   </div>
 </section>
 
+<!-- ============ АВАТАР ============ -->
+<section class="sec" id="avatar">
+  <div class="wrap">
+    <div class="avatar-cta glass bloom rv">
+      <img class="avatar-cta-ic" src="assets/home/icons/team.webp" alt="" width="160" height="160" loading="lazy">
+      <div>
+        <span class="eyebrow">Гра для вас</span>
+        <h2 class="h-lg">Склади свого <span class="glow">аватара</span></h2>
+        <p class="lede">Чотири кроки: скіли, короткий тест, місія на рік — і готова карта гравчині з порадами саме для вашого напрямку.</p>
+      </div>
+      <button type="button" class="btn btn-primary avatar-go">Скласти аватара</button>
+    </div>
+  </div>
+</section>
+
 <!-- ============ РЕЗУЛЬТАТИ ============ -->
 <section class="sec sec-light" id="results">
   <div class="wrap">
@@ -440,6 +255,35 @@
       <span class="eyebrow">Результат, а не обіцянка</span>
       <h2 class="h-lg">Імена, які сьогодні <span class="glow">знає весь ринок</span></h2>
       <p class="lede">Головний результат Ірини — не рядок у щорічному рейтингу, а сотні імен, які вона вивела на сцену. Ось лише мала частина.</p>
+    </div>
+
+    <div class="cases">
+      <article class="case glass rv">
+        <div class="case-ph"><img src="assets/people/star-lux.jpg" alt="Роза Люкс" loading="lazy" width="400" height="400"></div>
+        <div class="case-tx">
+          <span class="case-k">Кейс</span>
+          <h3>Роза Люкс</h3>
+          <p>PMU Master Trainer, суддя і спікерка. Понад 11 років у перманентному макіяжі.</p>
+          <div class="case-nums">
+            <div><b>101 тис.</b><span>підписників</span></div>
+            <div><b>11+</b><span>років у професії</span></div>
+            <div><b>10 000+</b><span>учениць</span></div>
+          </div>
+        </div>
+      </article>
+      <article class="case glass rv">
+        <div class="case-ph"><img src="assets/people/star-orexanova.jpg" alt="Дар’я Ореханова" loading="lazy" width="360" height="360"></div>
+        <div class="case-tx">
+          <span class="case-k">Кейс</span>
+          <h3>Дар’я Ореханова</h3>
+          <p>Перманентний макіяж, косметологія та ін’єкційні методики. Своя студія OREX у Києві і навчання для майстрів.</p>
+          <div class="case-nums">
+            <div><b>66,2 тис.</b><span>підписників</span></div>
+            <div><b>3</b><span>напрями</span></div>
+            <div><b>OREX</b><span>власний бренд пігментів</span></div>
+          </div>
+        </div>
+      </article>
     </div>
 
     <div class="stars">
@@ -456,20 +300,12 @@
         <div><h3>Олена Оніка</h3><span class="star-aud">121 тис. підписників</span><p>PMU · biohacking · AI · international expert · засновниця Fusion PMU</p></div>
       </article>
       <article class="star rv">
-        <div class="star-ph"><img src="assets/people/star-orexanova.jpg" alt="Дар’я Ореханова" loading="lazy" width="360" height="360"></div>
-        <div><h3>Дар’я Ореханова</h3><span class="star-aud">66,2 тис. підписників</span><p>OREX · перманент, косметологія, ін’єкційні методики · Київ</p></div>
-      </article>
-      <article class="star rv">
         <div class="star-ph"><img src="assets/people/star-agaeva.jpg" alt="Елеонора Агаєва" loading="lazy" width="360" height="360"></div>
         <div><h3>Елеонора Агаєва</h3><span class="star-aud">56,9 тис. підписників</span><p>Засновниця International Academy · спікерка, суддя · 1000+ учениць із 20 країн</p></div>
       </article>
       <article class="star rv">
         <div class="star-ph"><img src="assets/people/star-ovcharuk.jpg" alt="Катерина Овчарук" loading="lazy" width="400" height="400"></div>
         <div><h3>Катерина Овчарук</h3><span class="star-aud">67,1 тис. підписників</span><p>Абсолютна чемпіонка світу WULOP 2025 · hairstroke</p></div>
-      </article>
-      <article class="star rv">
-        <div class="star-ph"><img src="assets/people/star-lux.jpg" alt="Роза Люкс" loading="lazy" width="400" height="400"></div>
-        <div><h3>Роза Люкс</h3><span class="star-aud">101 тис. підписників</span><p>PMU Master Trainer 11+ років · суддя, спікерка · 10 000+ учениць</p></div>
       </article>
     </div>
 
@@ -1479,6 +1315,21 @@
   </div>
 </section>
 
+<dialog class="av-box" id="avBox" aria-labelledby="avTitle">
+  <form class="av-form" id="avForm" method="dialog" novalidate>
+    <button class="av-x" type="button" id="avX" aria-label="Закрити">×</button>
+    <span class="eyebrow">Твій аватар</span>
+    <h2 class="h-md" id="avTitle">Почнемо з тебе</h2>
+    <p class="lede">Залиш контакт — і переходь до кроків. Менеджер побачить твою карту, коли вона буде готова.</p>
+    <label class="fld"><span>Ім’я</span><input name="name" id="avName" autocomplete="given-name" required maxlength="30"></label>
+    <label class="fld"><span>Телефон</span><input name="phone" id="avPhone" type="tel" inputmode="tel" autocomplete="tel" required></label>
+    <label class="fld"><span>Instagram</span><input name="instagram" placeholder="@" autocomplete="off"></label>
+    <input type="text" name="bot-field" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+    <button class="btn btn-primary" type="submit" id="avGo">Скласти аватара →</button>
+    <p class="av-msg" id="avMsg" role="status"></p>
+  </form>
+</dialog>
+
 <!-- ============ ФУТЕР ============ -->
 <footer>
   <div class="wrap">
@@ -1522,6 +1373,6 @@
   </a>
 </div>
 
-<script src="leads.js?v=e09c34ab"></script>
-<script src="app.js?v=0a743069"></script>
+<script src="leads.js?v=15ac5189"></script>
+<script src="app.js?v=999ef0d7"></script>
 <script src="fx.js?v=b9217507"></script>
