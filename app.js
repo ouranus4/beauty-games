@@ -290,6 +290,24 @@
   }
 
   /* ============================================================
+     ДОВГІ СІТКИ: спершу кілька карток, решта — по кнопці
+     ============================================================ */
+  $$('[data-fold]').forEach(function (box) {
+    if (box.children.length <= 3) return;
+    box.classList.add('folded');
+    var btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'btn btn-ghost fold-btn';
+    btn.textContent = 'Показати всіх';
+    btn.addEventListener('click', function () {
+      var shut = box.classList.toggle('folded');
+      btn.textContent = shut ? 'Показати всіх' : 'Згорнути';
+      if (shut) box.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+    box.parentNode.insertBefore(btn, box.nextSibling);
+  });
+
+  /* ============================================================
      СКЛАСТИ АВАТАРА: контакт → кроки на окремій сторінці
      Заявку надсилаємо одразу, щоб контакт не загубився, навіть
      якщо людина не дійде до кінця. Ім'я чекає на сторінці кроків.

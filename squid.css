@@ -3018,3 +3018,19 @@ img.icon.gi{object-fit:contain;color:inherit;filter:drop-shadow(0 6px 12px rgba(
   .case-nums span{font-size:10px}
   .cd-days{gap:6px}
 }
+
+/* ============================================================
+   ІЛЮСТРАЦІЇ ДО РОЗДІЛІВ і згортання довгих сіток
+   ============================================================ */
+.sec>.wrap{position:relative}
+.sec-art{position:absolute;right:0;top:-34px;width:clamp(170px,19vw,250px);height:auto;pointer-events:none;z-index:0;
+  filter:drop-shadow(0 18px 30px rgba(255,46,136,.28));animation:artFloat 6s ease-in-out infinite}
+.sec-art~*{position:relative;z-index:1}
+@keyframes artFloat{50%{transform:translateY(-10px) rotate(-2deg)}}
+@media (max-width:900px){
+  .sec-art{position:static;display:block;width:150px;margin:0 auto 6px}
+}
+@media (prefers-reduced-motion:reduce){.sec-art{animation:none}}
+
+[data-fold].folded>*:nth-child(n+4){display:none}
+.fold-btn{display:flex;margin:22px auto 0}
