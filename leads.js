@@ -10,7 +10,9 @@ window.BG_LEADS_EMAIL = 'beautygames.pro@gmail.com';
 // Сповіщення в робочий чат менеджерів: @email2telegrambot пересилає лист
 // у групу. Шлемо коротко — звідки заявка і як зв'язатися; решта в пошті.
 window.BG_LEADS_PING = 'group-5500606997@e2t.link';
-window.BG_LEADS_URL = '';
+window.BG_LEADS_URL = 'https://script.google.com/macros/s/AKfycby6AqSiF9ECT73he1AXcqWCfHNw8jiS9DPEqyEj-2niqJ9w0dRe_qR8DXjANs9Y-y4_/exec';
+// Які форми йдуть у таблицю й бота з BG_LEADS_URL. Решта — як раніше: пошта + сповіщення.
+window.BG_LEADS_URL_FORMS = ['earn'];
 
 (function () {
   var SUBJECT = {
@@ -127,8 +129,9 @@ window.BG_LEADS_URL = '';
     var jobs = [];
     if (window.BG_LEADS_EMAIL) jobs.push(viaEmail(p));
     // запасне сповіщення через @email2telegrambot (ліміт 30/міс) — лише поки немає свого бота через BG_LEADS_URL
-    if (window.BG_LEADS_PING && !window.BG_LEADS_URL) viaPing(p);
-    if (window.BG_LEADS_URL) jobs.push(viaScript(p));
+    var toScript = window.BG_LEADS_URL && (window.BG_LEADS_URL_FORMS || []).indexOf(form) >= 0;
+    if (window.BG_LEADS_PING && !toScript) viaPing(p);
+    if (toScript) jobs.push(viaScript(p));
 
     return new Promise(function (resolve, reject) {
       var left = jobs.length, lastErr;
