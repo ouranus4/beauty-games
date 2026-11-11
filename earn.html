@@ -13,7 +13,7 @@
 <link rel="stylesheet" href="styles.css?v=ad1ccce0">
 <link rel="stylesheet" href="squid.css?v=1d4bd8d0">
 <link rel="stylesheet" href="calc.css?v=83b8073b">
-<link rel="stylesheet" href="earn.css?v=e186d386">
+<link rel="stylesheet" href="earn.css?v=8fdeeb4f">
 <link rel="icon" href="assets/earn/calc.webp" type="image/webp">
 <link rel="preload" as="image" href="assets/earn/hero.webp">
 
@@ -57,6 +57,11 @@
       </div>
     </div>
 
+    <div class="en-mode" id="enMode" role="tablist" aria-label="Версія калькулятора">
+      <button type="button" role="tab" data-mode="simple"><b>Проста</b><small>4 цифри · 1 хвилина</small></button>
+      <button type="button" role="tab" data-mode="pro"><b>Розширена</b><small>+ податок, година роботи, ціна під ціль</small></button>
+    </div>
+
     <div class="en-fields">
       <div class="en-f">
         <label class="cf-l" for="enPrice"><img class="en-ic" src="assets/earn/price.webp" alt="" width="360" height="360">Ціна однієї процедури</label>
@@ -76,7 +81,33 @@
       <div class="en-f">
         <label class="cf-l" for="enRent"><img class="en-ic" src="assets/earn/rent.webp" alt="" width="360" height="360">Оренда та інші витрати на місяць</label>
         <div class="cf-in"><input type="text" inputmode="numeric" id="enRent" data-k="rent" autocomplete="off"><span class="cf-u" data-u></span></div>
-        <span class="cf-h">Кабінет, реклама, зв'язок, податок. Працюєте вдома — ставте 0</span>
+        <span class="cf-h">Кабінет, реклама, зв'язок. Працюєте вдома — ставте 0</span>
+      </div>
+    </div>
+
+    <div class="en-pro" id="enPro" hidden>
+      <span class="en-pro-k">Розширена версія</span>
+      <div class="en-fields">
+        <div class="en-f">
+          <label class="cf-l" for="enDur"><b>5</b>Скільки триває одна процедура</label>
+          <div class="cf-in"><input type="text" inputmode="decimal" id="enDur" data-k="dur" data-dec autocomplete="off"><span class="cf-u">год</span></div>
+          <span class="cf-h">Разом із підготовкою і прибиранням, наприклад 1,5</span>
+        </div>
+        <div class="en-f">
+          <label class="cf-l" for="enTax"><b>6</b>Податок</label>
+          <div class="cf-in"><input type="text" inputmode="decimal" id="enTax" data-k="tax" data-dec autocomplete="off"><span class="cf-u">% від доходу</span></div>
+          <span class="cf-h">Наприклад, ФОП 3 групи — 5%. Не платите — ставте 0</span>
+        </div>
+        <div class="en-f">
+          <label class="cf-l" for="enWeeks"><b>7</b>Робочих тижнів на рік</label>
+          <div class="cf-in"><input type="text" inputmode="numeric" id="enWeeks" data-k="weeks" autocomplete="off"><span class="cf-u">з 52</span></div>
+          <span class="cf-h">Мінус відпустка, свята, лікарняні. Зазвичай 46–48</span>
+        </div>
+        <div class="en-f">
+          <label class="cf-l" for="enGoal"><b>8</b>Скільки хочете заробляти на місяць</label>
+          <div class="cf-in"><input type="text" inputmode="numeric" id="enGoal" data-k="goal" autocomplete="off"><span class="cf-u" data-u></span></div>
+          <span class="cf-h">Чистими, після всіх витрат — покажемо, яка ціна для цього потрібна</span>
+        </div>
       </div>
     </div>
   </section>
@@ -91,6 +122,13 @@
         <input type="hidden" name="per_week">
         <input type="hidden" name="fixed_month">
         <input type="hidden" name="net_month">
+        <input type="hidden" name="mode">
+        <input type="hidden" name="duration_h">
+        <input type="hidden" name="tax_pct">
+        <input type="hidden" name="weeks_year">
+        <input type="hidden" name="per_hour">
+        <input type="hidden" name="goal_income">
+        <input type="hidden" name="goal_price">
         <p hidden><label>Не заповнюйте це поле: <input name="bot-field"></label></p>
 
         <div class="r-lead-head en-lead-head">
@@ -142,6 +180,15 @@
       <div><span class="en-k">Йде на витрати</span><b id="enCost">—</b></div>
       <div><span class="en-k">Лишається з 1 процедури</span><b id="enPer">—</b></div>
     </div>
+    <div class="en-split en-pro-res" id="enProRes" hidden>
+      <div><span class="en-k">Чистими за годину роботи</span><b id="enHour">—</b></div>
+      <div><span class="en-k">Податок на місяць</span><b id="enTaxM">—</b></div>
+      <div><span class="en-k">Годин роботи на місяць</span><b id="enHours">—</b></div>
+    </div>
+    <div class="en-goal" id="enGoalBox" hidden>
+      <span class="en-k">Ціна під вашу ціль</span>
+      <p id="enGoalT"></p>
+    </div>
     <div class="en-bar" aria-hidden="true"><i id="enBarCost"></i><i id="enBarNet"></i></div>
     <p class="en-verdict" id="enVerdict"></p>
 
@@ -191,5 +238,5 @@
   </div>
 </footer>
 
-<script src="leads.js?v=ce943011"></script>
-<script src="earn.js?v=2e19f9f5"></script>
+<script src="leads.js?v=d306dca8"></script>
+<script src="earn.js?v=51a27bdd"></script>

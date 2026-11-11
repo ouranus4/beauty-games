@@ -193,3 +193,26 @@ html[data-page="earn"],html[data-page="earn"] body{background:#fff;color:#2A2331
 [data-page="earn"] .en-up{background:#fff}
 [data-page="earn"] .en-lock{gap:2px;padding:10px 22px 16px}
 [data-page="earn"] .en-lock img{margin-top:0;width:88px;height:88px;box-shadow:none;border-radius:0}
+
+
+/* ---------- розширена версія ---------- */
+.en-mode{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-bottom:22px}
+.en-mode button{
+  display:flex;flex-direction:column;align-items:flex-start;gap:3px;padding:14px 18px;border-radius:var(--r-md);text-align:left;
+  background:#fff;border:1.5px solid rgba(20,10,26,.12);color:#3A3145;transition:border-color .18s ease,box-shadow .18s ease,background .18s ease;
+}
+.en-mode b{font-family:"Montserrat",sans-serif;font-weight:900;font-size:15px;text-transform:uppercase;letter-spacing:.02em;color:#120D18}
+.en-mode small{font-size:12.5px;line-height:1.35;color:#8A8296}
+.en-mode button:hover{border-color:#E9C67E}
+.en-mode button.on{background:linear-gradient(180deg,#FFF6E6,#FFFDF8);border-color:#E9C67E;box-shadow:0 8px 22px rgba(207,164,83,.28)}
+.en-mode button.on b{color:#8A5A12}
+.en-pro{margin-top:24px;padding-top:22px;border-top:1px dashed rgba(207,164,83,.55)}
+.en-pro-k{display:inline-block;margin-bottom:16px;padding:6px 14px;border-radius:var(--r-pill);background:#FFF1D6;
+  font-family:"Montserrat",sans-serif;font-weight:800;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#8A5A12}
+.en-pro .en-f .cf-l b{background:#FFF1D6;box-shadow:inset 0 0 0 1.5px rgba(207,164,83,.7);color:#8A5A12}
+.en-goal{padding:16px 18px;border-radius:var(--r-md);background:#FFF8EC;border:1px solid rgba(207,164,83,.45);display:flex;flex-direction:column;gap:8px}
+.en-goal .en-k{color:#8A5A12}
+.en-goal p{margin:0;font-size:15px;line-height:1.55;color:#3A3145}
+.en-goal b{font-family:"Montserrat",sans-serif;font-weight:800;color:#120D18}
+@media (max-width:640px){.en-mode button{padding:12px 14px}.en-mode small{font-size:11.5px}}
+.en-split[hidden],.en-goal[hidden],.en-pro[hidden]{display:none}
