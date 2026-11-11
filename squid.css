@@ -3668,3 +3668,5 @@ html:not(.gated) .hero-reel{animation:reelIn 1.1s cubic-bezier(.2,.8,.2,1) both}
   #youtube .wrap>.sec-art-ic{width:40vw;max-width:180px;right:4%;top:6px;transform:perspective(600px) rotateY(-18deg) rotate(-4deg);animation:none}
   .sec:has(.seatbar) .wrap>.sec-art-ic{right:10%;width:36vw}
 }
+.h-ic{width:92px;height:92px;margin:-10px -4px -10px -8px}
+.trio-c .trio-n{z-index:3!important;top:24px;left:24px;padding:7px 12px;border-radius:999px;background:#FF2E88;color:#fff;font:800 11px/1 "JetBrains Mono",monospace;letter-spacing:.12em;text-transform:uppercase;box-shadow:0 6px 16px rgba(255,46,136,.45)}
