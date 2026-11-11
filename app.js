@@ -241,6 +241,8 @@
   function onScroll() {
     if (!navOuter) return;
     navOuter.classList.toggle('scrolled', window.scrollY > 20);
+    // на самому верху головної — тільки ролик, шапка зʼявляється при прокрутці
+    document.documentElement.classList.toggle('at-top', window.scrollY < 40);
   }
   window.addEventListener('scroll', onScroll, { passive: true });
   onScroll();
@@ -373,6 +375,17 @@
       dio.observe(deck);
     } else deal();
   }
+
+  // «Формати участі»: точки на порталах ведуть до карток
+  document.querySelectorAll('.fmt-spot').forEach(function (b) {
+    b.addEventListener('click', function () {
+      var card = document.getElementById('fmt' + b.getAttribute('data-fmt'));
+      if (!card) return;
+      document.querySelectorAll('.fmt-spot').forEach(function (x) { x.classList.toggle('on', x === b); });
+      card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      card.classList.remove('fmt-flash'); void card.offsetWidth; card.classList.add('fmt-flash');
+    });
+  });
 
   var vg = $('#vgate');
   if (!vg || vg.hidden) startReel();
