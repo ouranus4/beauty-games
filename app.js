@@ -277,9 +277,17 @@
      ============================================================ */
   // Ролик першого блоку стартує, коли заставку пройдено (або її не було)
   var heroReel = $('#heroReel');
+  // Логотип зʼявляється, коли Ірина зняла маску (5,5 с ролика)
+  var heroBox = $('.hero'), UNMASK_AT = 5.6;
+  var unmask = function () { if (heroBox) { heroBox.classList.remove('masked'); heroBox.classList.add('unmasked'); } };
+  if (heroBox && heroReel) heroBox.classList.add('masked');
   var startReel = function () {
     if (!heroReel || heroReel.src) return;
     heroReel.src = heroReel.getAttribute('data-src');
+    heroReel.addEventListener('timeupdate', function () { if (heroReel.currentTime >= UNMASK_AT) unmask(); });
+    heroReel.addEventListener('ended', unmask);
+    heroReel.addEventListener('error', unmask);
+    setTimeout(unmask, 10000);
     // Після вступу — безшовна петля: Ірина стоїть, призи навколо летять
     var heroLoop = $('#heroLoop');
     if (heroLoop) { heroLoop.src = heroLoop.getAttribute('data-src'); heroLoop.load(); }
@@ -290,7 +298,7 @@
       if (q && q.then) q.then(show, function () { heroReel.parentNode.classList.add('done'); }); else show();
     });
     var r = heroReel.play();
-    if (r && r.catch) r.catch(function () {});
+    if (r && r.catch) r.catch(unmask);
   };
 
   var vg = $('#vgate');
