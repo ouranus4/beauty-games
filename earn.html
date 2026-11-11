@@ -1,6 +1,6 @@
 <!doctype html>
 <meta charset="utf-8">
-<script src="pixel.js?v=1b0a4353"></script>
+<script src="pixel.js?v=c5a56b9a"></script>
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Скільки ви заробляєте насправді — Beauty Games</title>
 <meta name="description" content="Простий калькулятор для б'юті-майстра: 4 цифри — і ви бачите, скільки чистими лишається вам за місяць і з кожної процедури.">
@@ -11,9 +11,11 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800;900&family=Manrope:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap">
 <link rel="stylesheet" href="styles.css?v=ad1ccce0">
-<link rel="stylesheet" href="squid.css?v=91221163">
-<link rel="stylesheet" href="calc.css?v=3c346e29">
-<link rel="stylesheet" href="earn.css?v=040fefee">
+<link rel="stylesheet" href="squid.css?v=1d4bd8d0">
+<link rel="stylesheet" href="calc.css?v=83b8073b">
+<link rel="stylesheet" href="earn.css?v=b578e033">
+<link rel="icon" href="assets/earn/calc.webp" type="image/webp">
+<link rel="preload" as="image" href="assets/earn/hero.webp">
 
 <div class="bg-mesh" aria-hidden="true"></div>
 
@@ -30,11 +32,14 @@
 
 <!-- ============ ГЕРОЙ ============ -->
 <header class="en-hero">
-  <div class="wrap">
+  <div class="wrap en-hero-in">
+   <div class="en-hero-txt">
     <span class="eyebrow">Безкоштовний калькулятор Beauty Games</span>
     <h1 class="h-xl">Скільки ви <span class="glow">заробляєте</span> насправді?</h1>
     <p class="lede">Ціна процедури — це ще не ваш дохід. Введіть 4 цифри, і побачите, скільки чистими лишається вам за місяць.</p>
     <div class="en-meta"><span><b>4</b> цифри</span><span><b>1</b> хвилина</span><span>безкоштовно</span></div>
+   </div>
+    <img class="en-hero-img" src="assets/earn/hero.webp" alt="" width="1100" height="982" fetchpriority="high">
   </div>
 </header>
 
@@ -54,22 +59,22 @@
 
     <div class="en-fields">
       <div class="en-f">
-        <label class="cf-l" for="enPrice"><b>1</b>Ціна однієї процедури</label>
+        <label class="cf-l" for="enPrice"><img class="en-ic" src="assets/earn/price.webp" alt="" width="360" height="360">Ціна однієї процедури</label>
         <div class="cf-in"><input type="text" inputmode="numeric" id="enPrice" data-k="price" autocomplete="off"><span class="cf-u" data-u></span></div>
         <span class="cf-h">Ваша основна послуга, скільки платить клієнтка</span>
       </div>
       <div class="en-f">
-        <label class="cf-l" for="enMat"><b>2</b>Матеріали на одну процедуру</label>
+        <label class="cf-l" for="enMat"><img class="en-ic" src="assets/earn/materials.webp" alt="" width="360" height="360">Матеріали на одну процедуру</label>
         <div class="cf-in"><input type="text" inputmode="numeric" id="enMat" data-k="mat" autocomplete="off"><span class="cf-u" data-u></span></div>
         <span class="cf-h">Гель, фарба, віск, одноразове — приблизно</span>
       </div>
       <div class="en-f">
-        <label class="cf-l" for="enClients"><b>3</b>Клієнток на тиждень</label>
+        <label class="cf-l" for="enClients"><img class="en-ic" src="assets/home/icons/calendar.webp" alt="" width="320" height="320">Клієнток на тиждень</label>
         <div class="cf-in"><input type="text" inputmode="numeric" id="enClients" data-k="clients" autocomplete="off"><span class="cf-u">осіб</span></div>
         <span class="cf-h">Скільки процедур у середньому за тиждень</span>
       </div>
       <div class="en-f">
-        <label class="cf-l" for="enRent"><b>4</b>Оренда та інші витрати на місяць</label>
+        <label class="cf-l" for="enRent"><img class="en-ic" src="assets/earn/rent.webp" alt="" width="360" height="360">Оренда та інші витрати на місяць</label>
         <div class="cf-in"><input type="text" inputmode="numeric" id="enRent" data-k="rent" autocomplete="off"><span class="cf-u" data-u></span></div>
         <span class="cf-h">Кабінет, реклама, зв'язок, податок. Працюєте вдома — ставте 0</span>
       </div>
@@ -88,7 +93,8 @@
         <input type="hidden" name="net_month">
         <p hidden><label>Не заповнюйте це поле: <input name="bot-field"></label></p>
 
-        <div class="r-lead-head">
+        <div class="r-lead-head en-lead-head">
+          <img class="en-gift" src="assets/earn/gift.webp" alt="" width="360" height="360">
           <span class="hello-kicker">Ваш результат готовий</span>
           <h3 class="hello-title">Куди надіслати ваш розрахунок?</h3>
           <p class="hello-sub">Залиште ім'я і контакт — одразу побачите, скільки чистими лишається вам і скільки дасть підняття ціни. А бонусом експерти Beauty Games безкоштовно розберуть вашу ціну.</p>
@@ -112,7 +118,7 @@
         <button type="submit" class="btn btn-primary btn-block r-lead-btn">Показати мій результат</button>
       </form>
       <div class="r-lead-ok" id="enOk" hidden>
-        <span class="hello-check" aria-hidden="true">✓</span>
+        <img class="en-ok-img" src="assets/earn/unlock.webp" alt="" width="360" height="360">
         <div>
           <b>Результат відкрито!</b>
           <p>Він уже на сторінці нижче. Менеджер напише вам щодо безкоштовного розбору ціни. А поки — заходьте в Telegram-канал проєкту: там ефіри й розбори.</p>
@@ -125,7 +131,7 @@
 
   <!-- ---------- результат ---------- -->
   <section class="en-res glass en-locked" id="enRes" aria-live="polite">
-    <span class="en-lock" id="enLock">Результат відкриється після форми вище</span>
+    <div class="en-lock" id="enLock"><img src="assets/earn/lock.webp" alt="" width="360" height="360"><span>Результат відкриється після форми вище</span></div>
     <span class="en-k">Ваш результат</span>
     <div class="en-big">
       <span class="en-big-k">Чистими на місяць</span>
@@ -140,6 +146,7 @@
     <p class="en-verdict" id="enVerdict"></p>
 
     <div class="en-up" id="enUp">
+      <img class="en-up-img" src="assets/earn/up.webp" alt="" width="360" height="360" loading="lazy">
       <span class="en-k">А якщо підняти ціну?</span>
       <div class="en-up-opts" id="enUpOpts">
         <button type="button" class="expo" data-up="10">+10%</button>
