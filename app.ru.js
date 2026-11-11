@@ -298,7 +298,7 @@
   if (vg && !vg.hidden) {
     var vv = $('#vgVideo'), shown = false, gone = false;
     var hint = $('#vgHint'), HINT = hint.textContent;
-    var TOUCH_AT = 3.8;   // секунда, коли палець торкається скла
+    var TOUCH_AT = 4.4;   // секунда, коли палець торкається скла
     var ready = function () {
       if (shown) return;
       shown = true;
@@ -333,8 +333,15 @@
     vv.addEventListener('timeupdate', function () { if (vv.currentTime >= TOUCH_AT) ready(); });
     vv.addEventListener('ended', ready);
     vv.addEventListener('error', ready);
+    // Спершу — одразу зі звуком. Браузер дозволяє це не завжди (новим відвідувачам
+    // часто ні): тоді граємо без звуку і лишаємо кнопку «Увімкнути звук».
+    vv.muted = false;
     var p = vv.play();
-    if (p && p.catch) p.catch(blocked);
+    if (p && p.then) p.then(function () { $('#vgSound').hidden = true; }, function () {
+      vv.muted = true;
+      var p2 = vv.play();
+      if (p2 && p2.catch) p2.catch(blocked);
+    });
     setTimeout(function () { if (vv.paused && !shown) blocked(); }, 2500);
     $('#vgTouch').addEventListener('click', function () {
       if (vg.classList.contains('blocked')) start(); else enter();
