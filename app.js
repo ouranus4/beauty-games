@@ -280,6 +280,7 @@
   var startReel = function () {
     if (!heroReel || heroReel.src) return;
     heroReel.src = heroReel.getAttribute('data-src');
+    heroReel.addEventListener('ended', function () { heroReel.parentNode.classList.add('done'); });
     var r = heroReel.play();
     if (r && r.catch) r.catch(function () {});
   };
