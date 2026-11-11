@@ -10,7 +10,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800;900&family=Oswald:wght@400;500;600&family=Manrope:wght@400;500;600;700&family=Pixelify+Sans:wght@400..700&family=JetBrains+Mono:wght@400;500;700&display=swap">
 <link rel="stylesheet" href="styles.css?v=ad1ccce0">
-<link rel="stylesheet" href="squid.css?v=7eef2a47">
+<link rel="stylesheet" href="squid.css?v=2e499d80">
 
 <!-- SPRITE -->
 <div class="preloader" id="preloader">
@@ -72,7 +72,7 @@
   <button class="vg-sound" id="vgSound" type="button">Увімкнути звук</button>
   <button class="vg-skip" id="vgSkip" type="button">Пропустити</button>
 </div>
-<script>if(!location.hash){document.getElementById('vgate').hidden=false;document.documentElement.classList.add('gated');}else{var _v=document.getElementById('vgVideo');_v.preload='none';_v.removeAttribute('src');}</script>
+<script>if(!location.hash||location.hash==='#top'){document.getElementById('vgate').hidden=false;document.documentElement.classList.add('gated');}else{var _v=document.getElementById('vgVideo');_v.preload='none';_v.removeAttribute('src');}</script>
 
 <!-- Прогрес по сторінці: крапки-віхи, які підсвічуються в міру
      прокрутки. Людина бачить, що рухається по грі, а не гортає сайт. -->
@@ -144,19 +144,6 @@
       <a href="#about" class="btn btn-ghost">Більше про шоу</a>
     </div>
 
-    <div class="hero-dates">
-      <div class="date-card glass rv">
-        <span class="label">Старт сезону</span>
-        <div class="d">21 грудня 2026</div>
-        <div class="n">Передпідготовка відкривається одразу після оплати. Активна фаза: ефіри, змагання, чемпіонат</div>
-      </div>
-      <div class="date-card glass bloom spec rv">
-        <span class="label">Гранд-Фінал</span>
-        <div class="d">Весна 2027</div>
-        <div class="n">5 днів офлайн · фінал у прямому ефірі на YouTube</div>
-      </div>
-    </div>
-
     <div class="countdown rv" id="countdown">
       <div class="cd-cap">До старту сезону · 21 грудня</div>
       <div class="cd-clock cd-days"><span><b id="cdD">00</b><i>днів</i></span><span><b id="cdH">00</b><i>годин</i></span><span><b id="cdM">00</b><i>хвилин</i></span><span><b id="cdS">00</b><i>секунд</i></span></div>
@@ -169,7 +156,7 @@
 <section class="sec" id="about">
   <div class="wrap">
     <div class="sec-head rv">
-      <h2 class="h-lg">Про <span class="glow">проєкт</span></h2>
+      <h2 class="h-lg h-with-ic"><img class="h-ic" src="assets/home/mask.webp" alt="" width="400" height="400" loading="lazy"><span>Про <span class="glow">проєкт</span></span></h2>
       <div class="sec-rule"></div>
     </div>
     <div class="trio">
@@ -239,13 +226,15 @@
 <!-- ============ АВАТАР ============ -->
 <section class="sec" id="avatar">
   <div class="wrap">
-    <div class="avatar-cta glass bloom rv">
-      <img class="avatar-cta-ph" src="assets/home/photo/test-master.webp" alt="" width="900" height="1205" loading="lazy">
-      <div>
-        <span class="eyebrow">Пройдіть тест</span>
-        <h2 class="h-lg">Що заважає вам <span class="glow">рости?</span></h2>
-        <p class="lede">Кілька коротких питань про вашу роботу: запис, клієнти, ціни, соцмережі. Тест покаже, де ви втрачаєте клієнтів і гроші і що варто підтягнути насамперед — з порадами саме для вашого напрямку.</p>
+    <div class="tst rv">
+      <div class="tst-art" aria-hidden="true">
+        <span class="tst-glow"></span>
+        <img class="tst-mask tst-logo" src="assets/home/logo-emblem-pink.svg" alt="" width="400" height="400" loading="lazy">
+        <img class="tst-ic i1" src="assets/home/icons/brow.webp" alt="" width="320" height="320" loading="lazy"><img class="tst-ic i2" src="assets/home/icons/lash.webp" alt="" width="320" height="320" loading="lazy"><img class="tst-ic i3" src="assets/home/icons/nails.webp" alt="" width="320" height="320" loading="lazy"><img class="tst-ic i4" src="assets/home/icons/makeup.webp" alt="" width="320" height="320" loading="lazy"><img class="tst-ic i5" src="assets/home/icons/chart.webp" alt="" width="320" height="320" loading="lazy"><img class="tst-ic i6" src="assets/home/icons/star.webp" alt="" width="320" height="320" loading="lazy">
       </div>
+      <span class="tst-pill">Тест · 4 кроки · 3 хвилини</span>
+      <h2 class="h-lg">Знайдіть свою <span class="glow">точку зростання</span></h2>
+      <p class="lede">Чотири кроки, як у грі: ваші скіли, запис і клієнти, ціни й соцмережі, місія на рік. Наприкінці — карта гравчині: сильні сторони, де ви втрачаєте гроші і що підтягнути насамперед.</p>
       <button type="button" class="btn btn-primary avatar-go">Пройти тест</button>
     </div>
   </div>
@@ -332,7 +321,7 @@
       <div class="path-stage">
         <div class="pstep on" data-step="0">
           <div class="pstep-head">
-            <img class="pstep-art" src="assets/home/art/ticket.webp" alt="" width="200" height="200" loading="lazy">
+            <img class="pstep-art" src="assets/home/icons/ticket.webp" alt="" width="200" height="200" loading="lazy">
             <span class="pstep-dur">одразу</span>
             <h3 class="pstep-t">Бронювання</h3>
           </div>
@@ -349,7 +338,7 @@
         </div>
         <div class="pstep" data-step="1">
           <div class="pstep-head">
-            <img class="pstep-art" src="assets/home/art/calendar.webp" alt="" width="200" height="200" loading="lazy">
+            <img class="pstep-art" src="assets/home/icons/calendar.webp" alt="" width="200" height="200" loading="lazy">
             <span class="pstep-dur">1 місяць</span>
             <h3 class="pstep-t">Передпідготовка</h3>
           </div>
@@ -383,7 +372,7 @@
         </div>
         <div class="pstep" data-step="3">
           <div class="pstep-head">
-            <img class="pstep-art" src="assets/home/art/show.webp" alt="" width="200" height="200" loading="lazy">
+            <img class="pstep-art" src="assets/home/icons/tv.webp" alt="" width="200" height="200" loading="lazy">
             <span class="pstep-dur">2 місяці</span>
             <h3 class="pstep-t">Активна фаза</h3>
           </div>
@@ -400,7 +389,7 @@
         </div>
         <div class="pstep" data-step="4">
           <div class="pstep-head">
-            <img class="pstep-art" src="assets/home/art/final-stage.webp" alt="" width="200" height="200" loading="lazy">
+            <img class="pstep-art" src="assets/home/icons/trophy.webp" alt="" width="200" height="200" loading="lazy">
             <span class="pstep-dur">5 днів офлайн</span>
             <h3 class="pstep-t">Гранд-Фінал</h3>
           </div>
@@ -429,13 +418,13 @@
 <!-- ============ ПРОГРАМА ============ -->
 <section class="sec" id="program">
   <div class="wrap">
-    <img class="sec-art" src="assets/home/art/edu.webp" alt="" loading="lazy" width="440" height="440">
+    <img class="sec-art sec-art-ic" src="assets/home/icons/program.webp" alt="" loading="lazy" width="320" height="320">
     <div class="sec-head rv">
       <div class="prog-mark">
         <svg class="prog-emblem" aria-hidden="true"><use href="#bg-logo"/></svg>
         <span class="prog-mark-tx"><b>Beauty Games</b><span>Бізнес-програма</span></span>
       </div>
-      <h2 class="h-lg">Дев'ять модулів, <span class="glow">які змінюють систему</span></h2>
+      <h2 class="h-lg">Бізнес-<span class="glow">програма</span></h2>
       <div class="sec-rule"></div>
       <p class="lede">Це не набір лекцій, а перебудова того, як ви заробляєте. Ви заходите майстром, який продає години, а виходите підприємцем із системою: порахованою економікою, потоком клієнтів і командою. Ціль сезону — подвоїти дохід, а не додати ще один сертифікат у папку.</p>
       <p class="lede">Дев'ять модулів Олександри Горобець: відеоуроки, живі розбори і домашні завдання, які перевіряють. Поруч весь час куратор і експерти проєкту — ви не залишаєтесь наодинці з матеріалом. Доступ залишається після сезону.</p>
@@ -550,10 +539,9 @@
 </section>
 
 <!-- ============ ЗАСНОВНИЦІ ============ -->
-<section class="sec sec-light" id="founders">
+<section class="sec sec-light founders-dark" id="founders">
   <div class="wrap">
     <div class="sec-head rv">
-      <span class="eyebrow">Хто за цим стоїть</span>
       <h2 class="h-lg">Засновниці <span class="glow">проєкту</span></h2>
     </div>
 
@@ -676,27 +664,23 @@
       </div>
     </div>
 
-    <div class="arc-reel full-vid rv">
-      <video class="arc-reel-v" data-src="assets/video/arch-reel.mp4" poster="assets/video/arch-reel.jpg" muted playsinline loop preload="none" aria-hidden="true"></video>
-    </div>
-
     <div class="arc-wrap rv">
       <button class="arc-nav arc-prev" type="button" aria-label="Попередній кадр">‹</button>
       <div class="arc" id="arc">
         <button class="arcv" type="button" data-src="assets/video/arch-champ.mp4" aria-label="Оживити кадр: чемпіонат у роботі">
-          <span class="arcv-ph"><img src="assets/video/arch-champ.jpg" alt="" loading="lazy" width="960" height="540"><span class="arcv-play" aria-hidden="true"></span></span>
+          <span class="arcv-ph"><img src="assets/video/arch-champ.jpg" alt="" loading="lazy" width="960" height="540"><span class="arcv-lock" aria-hidden="true"><span class="vg-ring"></span><span class="vg-ring r2"></span><span class="vg-dot"></span><em>Торкнись — розблокуй спогад</em></span></span>
         </button>
         <button class="arcv" type="button" data-src="assets/video/arch-award.mp4" aria-label="Оживити кадр: нагородження">
-          <span class="arcv-ph"><img src="assets/video/arch-award.jpg" alt="" loading="lazy" width="960" height="540"><span class="arcv-play" aria-hidden="true"></span></span>
+          <span class="arcv-ph"><img src="assets/video/arch-award.jpg" alt="" loading="lazy" width="960" height="540"><span class="arcv-lock" aria-hidden="true"><span class="vg-ring"></span><span class="vg-ring r2"></span><span class="vg-dot"></span><em>Торкнись — розблокуй спогад</em></span></span>
         </button>
         <button class="arcv" type="button" data-src="assets/video/arch-loginova.mp4" aria-label="Оживити кадр: слово судді">
-          <span class="arcv-ph"><img src="assets/video/arch-loginova.jpg" alt="" loading="lazy" width="960" height="540"><span class="arcv-play" aria-hidden="true"></span></span>
+          <span class="arcv-ph"><img src="assets/video/arch-loginova.jpg" alt="" loading="lazy" width="960" height="540"><span class="arcv-lock" aria-hidden="true"><span class="vg-ring"></span><span class="vg-ring r2"></span><span class="vg-dot"></span><em>Торкнись — розблокуй спогад</em></span></span>
         </button>
         <button class="arcv" type="button" data-src="assets/video/arch-polivanova.mp4" aria-label="Оживити кадр: слово судді">
-          <span class="arcv-ph"><img src="assets/video/arch-polivanova.jpg" alt="" loading="lazy" width="960" height="540"><span class="arcv-play" aria-hidden="true"></span></span>
+          <span class="arcv-ph"><img src="assets/video/arch-polivanova.jpg" alt="" loading="lazy" width="960" height="540"><span class="arcv-lock" aria-hidden="true"><span class="vg-ring"></span><span class="vg-ring r2"></span><span class="vg-dot"></span><em>Торкнись — розблокуй спогад</em></span></span>
         </button>
         <button class="arcv" type="button" data-src="assets/video/arch-hall.mp4" aria-label="Оживити кадр: дорогою на захід">
-          <span class="arcv-ph"><img src="assets/video/arch-hall.jpg" alt="" loading="lazy" width="540" height="960"><span class="arcv-play" aria-hidden="true"></span></span>
+          <span class="arcv-ph"><img src="assets/video/arch-hall.jpg" alt="" loading="lazy" width="540" height="960"><span class="arcv-lock" aria-hidden="true"><span class="vg-ring"></span><span class="vg-ring r2"></span><span class="vg-dot"></span><em>Торкнись — розблокуй спогад</em></span></span>
         </button>
         <div class="arcv arcv-soon" aria-hidden="true">
           <span class="arcv-ph arcv-ph-soon"><span class="arcv-soon-tx">Далі буде<br><b>Сезон 2026</b></span></span>
@@ -710,7 +694,7 @@
 <!-- ============ КОМАНДИ ============ -->
 <section class="sec">
   <div class="wrap">
-    <img class="sec-art" src="assets/home/art/show.webp" alt="" loading="lazy" width="440" height="440">
+    <img class="sec-art sec-art-ic" src="assets/home/icons/tv.webp" alt="" loading="lazy" width="320" height="320">
     <div class="sec-head rv">
       <span class="eyebrow">Змагання</span>
       <h2 class="h-lg">Команда, бали <span class="glow">і прямий ефір</span></h2>
@@ -962,7 +946,7 @@
 <!-- ============ ПАКЕТИ ============ -->
 <section class="sec" id="packages">
   <div class="wrap">
-    <img class="sec-art" src="assets/home/art/gifts.webp" alt="" loading="lazy" width="440" height="440">
+    <img class="sec-art sec-art-ic" src="assets/home/icons/crown.webp" alt="" loading="lazy" width="320" height="320">
     <div class="sec-head rv">
       <span class="eyebrow">Три формати участі</span>
       <h2 class="h-lg">Пакети <span class="glow">участі</span></h2>
@@ -974,7 +958,7 @@
       <!-- СТАНДАРТ -->
       <div class="pack pack-std glass rv">
         <span class="kicker">Пакет 01</span>
-        <h3>Стандарт</h3>
+        <div class="pack-top"><div class="fmt-ic"><img src="assets/home/icons/program.webp" alt="" width="320" height="320" loading="lazy"></div><h3>Стандарт</h3></div>
         <div class="tagline">Самостійне навчання без кураторства. Для досвідчених майстринь.</div>
         <div class="benefit">
           <span class="benefit-badge">−20%</span>
@@ -999,7 +983,7 @@
       <div class="pack pack-biz glass bloom spec featured rv">
         <span class="ribbon">Рекомендовано</span>
         <span class="kicker">Пакет 02</span>
-        <h3>Бізнес</h3>
+        <div class="pack-top"><div class="fmt-ic"><img src="assets/home/icons/program.webp" alt="" width="320" height="320" loading="lazy"><img src="assets/home/icons/trophy.webp" alt="" width="320" height="320" loading="lazy"></div><h3>Бізнес</h3></div>
         <div class="tagline">Повна програма, куратор і командні змагання Бізнес-ліги.</div>
         <div class="benefit">
           <span class="benefit-badge">−20%</span>
@@ -1024,7 +1008,7 @@
       <!-- VIP -->
       <div class="pack pack-vip glass rv">
         <span class="kicker">Пакет 03 · максимум</span>
-        <h3>VIP</h3>
+        <div class="pack-top"><div class="fmt-ic"><img src="assets/home/icons/program.webp" alt="" width="320" height="320" loading="lazy"><img src="assets/home/icons/trophy.webp" alt="" width="320" height="320" loading="lazy"><img src="assets/home/icons/tv.webp" alt="" width="320" height="320" loading="lazy"></div><h3>VIP</h3></div>
         <div class="tagline">Бренд-наставник, масштабування, YouTube-реаліті та особистий бренд.</div>
         <div class="benefit">
           <span class="benefit-badge">−20%</span>
@@ -1052,7 +1036,7 @@
 <!-- ============ YOUTUBE ============ -->
 <section class="sec sec-light" id="youtube">
   <div class="wrap">
-    <img class="sec-art" src="assets/home/art/live.webp" alt="" loading="lazy" width="440" height="440">
+    <img class="sec-art sec-art-ic" src="assets/home/icons/tv.webp" alt="" loading="lazy" width="320" height="320">
     <div class="sec-head rv">
       <span class="eyebrow">Ми на YouTube</span>
       <h2 class="h-lg">Ефіри й розбори <span class="glow">вже на каналі</span></h2>
@@ -1102,7 +1086,7 @@
 <!-- ============ МІСЦЯ ============ -->
 <section class="sec">
   <div class="wrap">
-    <img class="sec-art" src="assets/home/art/calendar.webp" alt="" loading="lazy" width="440" height="440">
+    <img class="sec-art sec-art-ic" src="assets/home/icons/calendar.webp" alt="" loading="lazy" width="320" height="320">
     <div class="sec-head rv">
       <span class="eyebrow">Потік</span>
       <h2 class="h-lg">Скільки місць <span class="glow">у сезоні</span></h2>
@@ -1318,6 +1302,64 @@
   </form>
 </dialog>
 
+<!-- ============ ПРОФІЛІ ЕКСПЕРТІВ (вікно) ============ -->
+<div class="bio" id="bioModal" hidden>
+  <div class="bio-back" data-bio-close></div>
+  <div class="bio-win" role="dialog" aria-modal="true" aria-labelledby="bioTitle">
+    <button class="bio-x" type="button" data-bio-close aria-label="Закрити">×</button>
+    <div class="bio-photo"><img id="bioPhoto" src="" alt=""></div>
+    <div class="bio-tx" id="bioTx"></div>
+  </div>
+</div>
+
+  <div class="bio-src" id="bio-horobets" hidden>
+    <span class="bio-tag">Співзасновниця</span>
+    <h3 class="bio-nm">Олександра Горобець</h3>
+    <p class="bio-rl">Напрямок бізнес-навчання Beauty Games</p>
+    <p class="bio-lead">Співзасновниця Beauty Games. Саме вона відповідає за напрямок бізнес-навчання — від структури програми до живих розборів протягом сезону.</p>
+    <ul class="bio-list"><li>Магістр фінансів, підприємець і наставник</li><li>Понад 10 років у б'юті-індустрії</li><li>Навчила сотні майстрів перманентного макіяжу, ламінування вій та оформлення брів</li><li>Сама пройшла повну трансформацію: від майстра, який працює тільки руками, до підприємця, який будує системний бізнес і масштабує процеси</li></ul>
+    <blockquote class="bio-q">Б'юті-індустрія працює за тими самими законами, що й готельний чи ресторанний бізнес. Без чітких процесів неможливо стабільно заробляти великі гроші.</blockquote>
+    <p class="bio-tail">У бізнес-програмі Олександра дає найпрактичніші інструменти: сучасний SMM та упаковку особистого бренду, таргетовану рекламу й залучення платоспроможних клієнтів, побудову системи, делегування та вихід із вигорання.</p>
+    <a class="bio-ig" href="https://instagram.com/alexa.horobets" target="_blank" rel="noopener">@alexa.horobets</a>
+  </div>
+  <div class="bio-src" id="bio-vyshnyvetska" hidden>
+    <span class="bio-tag">Спікер</span>
+    <h3 class="bio-nm">Катерина Вишневецька</h3>
+    <p class="bio-rl">Декомпозиція та побудова бізнес-систем</p>
+    <p class="bio-lead">Є люди, яких запрошують виступити, а є ті, заради кого збирають зал. Катерина — з других. Спікер бізнес-напряму Beauty Games, експерт з декомпозиції та побудови бізнес-систем.</p>
+    <ul class="bio-list"><li>Партнер Genius Space Телепорт — одного з найбільших освітніх проєктів</li><li>Співвласниця міжнародного навчального проєкту Proriv</li><li>Виростила компанію у 21 раз за 4 роки</li><li>Понад 27 000 учасників програм по всьому світу</li><li>12+ років у бізнесі, 8 із них — в інфобізнесі</li><li>Тричі стартувала з нуля без капіталу, витягувала компанію з касового розриву і тричі повертала її в ріст</li><li>Авторка методології декомпозиції: будує воронки, тестує гіпотези, створює бізнес-клуби</li><li>І автоспортсменка</li></ul>
+    <p class="bio-tail">Тисячі підприємців побудували свої результати на системі Катерини. На Beauty Games вона покаже, як розкласти будь-яку мету на цифри й кроки — саме так, як це роблять компанії, що виросли вдесятеро.</p>
+    <a class="bio-ig" href="https://instagram.com/kateryna.vish" target="_blank" rel="noopener">@kateryna.vish</a>
+  </div>
+  <div class="bio-src" id="bio-holovashchenko" hidden>
+    <span class="bio-tag">Експертка</span>
+    <h3 class="bio-nm">Олена Головащенко</h3>
+    <p class="bio-rl">Системні продажі · ТОП-10 тренерів України</p>
+    <p class="bio-lead">Експертка зі створення системних продажів для власників бізнесу та експертів, які продають свої знання, послуги й продукти. Входить до ТОП-10 тренерів України з продажів.</p>
+    <ul class="bio-list"><li>Співвласниця консалтингової компанії DIA Consulting</li><li>Бізнес-тренерка, спікерка бізнес-форумів та освітніх програм</li><li>12 років у продажах, 7+ років у консалтингу та навчанні</li><li>560+ реалізованих проєктів у 61 ніші бізнесу</li><li>$17,6 млн підтвердженого чистого прибутку клієнтів в Україні, Польщі та Казахстані</li><li>900+ менеджерів проходять навчання щороку</li><li>12 000+ учасників офлайн- та онлайн-програм</li></ul>
+    <p class="bio-tail">Допомогла сотням власників бізнесу й експертів перейти від хаотичних продажів до прогнозованої системи, яка стабільно приносить клієнтів і прибуток.</p>
+    <a class="bio-ig" href="https://instagram.com/olena.golovashchenko.sales" target="_blank" rel="noopener">@olena.golovashchenko.sales</a>
+  </div>
+  <div class="bio-src" id="bio-zaremba" hidden>
+    <span class="bio-tag">Спікер і експерт</span>
+    <h3 class="bio-nm">Тетяна Заремба</h3>
+    <p class="bio-rl">Стратегічний та антикризовий супровід бізнесу</p>
+    <p class="bio-lead">Підприємець, бізнес-ментор, коуч та аналітик з понад 20-річним досвідом у підприємництві, управлінні та супроводі бізнесу.</p>
+    <ul class="bio-list"><li>Ключовий напрям — стратегічний та антикризовий супровід власників бізнесу</li><li>Працює на стику мислення підприємця, його управлінських рішень, систематизації та фінансової стійкості компанії</li><li>У фокусі — управлінська звітність, цифри, фінансова модель, юніт-економіка, ефективність напрямів, команд і локацій</li><li>Окремий напрям — побудова та автоматизація управлінського обліку всередині бізнесу</li><li>Супровід у питаннях відділу продажів, структури, підбору й розстановки людей і мотивації команди</li></ul>
+    <p class="bio-tail">Тетяна бачить бізнес не лише через цифри, а й через контекст країни, менталітету, криз, адаптації та реальних можливостей для зростання — як окремої людини, так і компанії.</p>
+    <a class="bio-ig" href="https://instagram.com/zaremba.tatiana" target="_blank" rel="noopener">@zaremba.tatiana</a>
+  </div>
+  <div class="bio-src" id="bio-kuimova" hidden>
+    <span class="bio-tag">Експертка</span>
+    <h3 class="bio-nm">Ірина Куімова</h3>
+    <p class="bio-rl">Легалізація, податки і фінансова безпека</p>
+    <p class="bio-lead">У б'юті є ілюзія, що для високого чека достатньо робити гарні роботи. Але реальний бізнес починається там, де зникає страх перед податковою, фінансовим моніторингом і блокуванням карток. Ірина відповідає за те, щоб ваш перехід від майстра до власника системного бізнесу був юридично захищеним.</p>
+    <ul class="bio-list"><li>Легальний старт: правильно відкрити ФОП і обрати найвигіднішу систему оподаткування саме для вашої діяльності</li><li>Законна оптимізація: сплачувати податки грамотно й не переплачувати там, де цього можна уникнути</li><li>Облік без головного болю: вести облік, подавати звітність і контролювати фінанси без найму дорогих спеціалістів</li><li>Робота без «сюрпризів»: правила, ліміти та актуальні зміни в законодавстві</li></ul>
+    <blockquote class="bio-q">Я не вчу сухої теорії. Моє завдання в Beauty Games — дати вам фінансову свободу. Щоб ви чітко розуміли свій бізнес з точки зору закону, не працювали наосліп і не переплачували там, де можна законно зекономити.</blockquote>
+    <p class="bio-tail">З Іриною ви побудуєте юридичний фундамент, який дозволить відкривати салони, запускати франшизи та продавати свої послуги дорого по всьому світу.</p>
+    <a class="bio-ig" href="https://instagram.com/buhgalter.prof.iryna" target="_blank" rel="noopener">@buhgalter.prof.iryna</a>
+  </div>
+
 <!-- ============ ФУТЕР ============ -->
 <footer>
   <div class="wrap">
@@ -1362,5 +1404,5 @@
 </div>
 
 <script src="leads.js?v=15ac5189"></script>
-<script src="app.js?v=f431195a"></script>
+<script src="app.js?v=b3dcdaf9"></script>
 <script src="fx.js?v=b9217507"></script>

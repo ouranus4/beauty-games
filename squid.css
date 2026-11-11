@@ -3105,7 +3105,7 @@ html:not(.gated) .hero-reel{animation:reelIn 1.1s cubic-bezier(.2,.8,.2,1) both}
   .hero-inner{display:contents}
   .hero-reel{order:0}
   .hero-inner>*:not(.hero-head){order:2;margin-left:16px;margin-right:16px}
-  .hero-head{position:absolute;z-index:3;left:0;right:0;top:calc(17.1vw - min(6.19vw, 36.5px));padding:0 16px;align-items:center;text-align:center;gap:8px}
+  .hero-head{position:absolute;z-index:3;left:0;right:0;top:calc(22vw - min(6.19vw, 36.5px));padding:0 16px;align-items:center;text-align:center;gap:8px}
   .hero-head .hero-title{margin:0;font-size:15vw;line-height:.95;text-shadow:0 4px 24px rgba(8,6,12,.55)}
   .hero-head .hero-sub{max-width:30ch;font-size:15px;text-shadow:0 2px 12px rgba(8,6,12,.8)}
   .hero-reel-shade{display:block;position:absolute;left:0;right:0;top:0;height:46%;z-index:1;pointer-events:none;
@@ -3476,3 +3476,137 @@ html:not(.gated) .hero-reel{animation:reelIn 1.1s cubic-bezier(.2,.8,.2,1) both}
 .avatar-cta>div{margin-top:-90px;padding-top:0}
 .avatar-cta>div::before{display:none}
 .avatar-cta .h-lg{text-shadow:0 4px 18px rgba(0,0,0,.8)}
+
+/* ===== тест: маска BG і наші іконки ===== */
+.tst{max-width:620px;margin:0 auto;text-align:center;display:flex;flex-direction:column;align-items:center}
+.tst-art{position:relative;width:min(340px,86vw);aspect-ratio:1;margin:0 auto 6px}
+.tst-glow{position:absolute;inset:12%;border-radius:50%;background:radial-gradient(closest-side,rgba(255,46,136,.55),rgba(255,46,136,.12) 60%,transparent);filter:blur(6px);animation:tstGlow 3.5s ease-in-out infinite alternate}
+@keyframes tstGlow{from{opacity:.6;transform:scale(.92)}to{opacity:1;transform:scale(1.05)}}
+.tst-mask{position:absolute;left:22%;top:16%;width:56%;height:auto;filter:drop-shadow(0 18px 34px rgba(255,46,136,.45));animation:avFloat 4.5s ease-in-out infinite}
+.tst-ic{position:absolute;width:24%;height:auto;filter:drop-shadow(0 10px 18px rgba(255,46,136,.35))}
+.tst-ic.i1{left:0;top:6%;animation:avFloat 3.8s ease-in-out infinite}
+.tst-ic.i2{right:0;top:2%;animation:avFloat 4.2s ease-in-out .4s infinite}
+.tst-ic.i3{left:-4%;top:46%;animation:avFloat 4s ease-in-out .8s infinite}
+.tst-ic.i4{right:-4%;top:44%;animation:avFloat 3.6s ease-in-out .2s infinite}
+.tst-ic.i5{left:12%;bottom:-2%;animation:avFloat 4.4s ease-in-out .6s infinite}
+.tst-ic.i6{right:12%;bottom:0;animation:avFloat 3.9s ease-in-out 1s infinite}
+.js .tst.rv:not(.in) .tst-ic{opacity:0;transform:scale(.3)}
+.tst.in .tst-ic{transition:opacity .5s ease,transform .5s cubic-bezier(.2,1.4,.4,1)}
+.tst-pill{display:inline-block;margin:6px 0 12px;padding:8px 16px;border-radius:999px;background:#fff;color:#D3106A;font:800 11px/1 "JetBrains Mono",monospace;letter-spacing:.14em;text-transform:uppercase;box-shadow:0 8px 22px rgba(255,46,136,.35)}
+.tst .h-lg{margin:0 0 10px;color:#fff}
+.tst .lede{margin:0 0 20px;max-width:46ch}
+@media (max-width:760px){.tst .btn{width:100%}}
+@media (prefers-reduced-motion:reduce){.tst-ic,.tst-mask,.tst-glow{animation:none}}
+
+/* ===== шлях: фішка гравчині — маска BG ===== */
+.path-runner{width:48px;height:48px;border:2px solid #fff;background:#0C0810 url(assets/home/mask.webp) center 30%/120% no-repeat}
+.path-runner b{display:none}
+@media (max-width:760px){.path-runner{width:40px;height:40px;bottom:11px}}
+
+/* ===== бізнес-програма: наша іконка ===== */
+.sec-art-ic{filter:drop-shadow(0 16px 34px rgba(255,46,136,.4))}
+
+/* ===== засновниці: чорне тло ===== */
+.founders-dark{background:#08060C}
+.founders-dark .sec-head .h-lg{color:#fff}
+
+/* ===== архів: заблоковані спогади, рожевий відбиток як на вході ===== */
+.arcv{padding:0;border-radius:20px;background:#0C0810;border:1px solid rgba(255,46,136,.35);box-shadow:0 18px 40px rgba(0,0,0,.5);transform:none}
+.arcv:nth-child(even){transform:none}
+.arcv:hover{transform:translateY(-4px)}
+.arcv-ph{aspect-ratio:4/5;border-radius:20px}
+.arcv-ph img{filter:grayscale(1) blur(2px) brightness(.55);transform:scale(1.06)}
+.arcv:hover .arcv-ph img{filter:grayscale(.6) blur(1px) brightness(.6)}
+.arcv-lock{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px}
+.arcv-lock .vg-ring{position:absolute;left:50%;top:calc(50% - 22px);width:92px;height:92px;margin:-46px 0 0 -46px;inset:auto}
+.arcv-lock img{position:relative;width:96px;height:96px;object-fit:contain;filter:drop-shadow(0 0 22px rgba(255,46,136,.8))}
+.arcv-lock em{position:relative;font:600 14px/1.2 "Manrope",sans-serif;font-style:normal;color:#fff;padding:7px 14px;border-radius:999px;background:rgba(10,4,8,.6);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
+.arcv.playing .arcv-ph{aspect-ratio:auto}
+.arcv-soon .arcv-ph-soon{aspect-ratio:4/5}
+@media (max-width:760px){.arcv{flex-basis:72vw}}
+
+/* ===== сезон у цифрах: 300+ — прапор збоку ===== */
+@media (max-width:760px){
+  .stats .stat:last-child{display:grid;grid-template-columns:auto 1fr;column-gap:16px;align-items:center}
+  .stats .stat:last-child .stat-ic{grid-row:1/4;width:96px;height:96px;margin:0}
+  .stats .stat:last-child>*:not(.stat-ic){grid-column:2}
+}
+
+/* ===== «Команда, бали»: іконка більша, назва поруч ===== */
+.tcard:has(>.icon-chip){display:grid;grid-template-columns:auto minmax(0,1fr);column-gap:14px;align-items:center}
+.tcard>.icon-chip{grid-column:1;margin:0;width:auto;height:auto;padding:0;background:none!important;border:0;box-shadow:none}
+.tcard>.icon-chip .icon{width:76px;height:76px}
+.tcard:has(>.icon-chip)>h3{grid-column:2;margin:0}
+.tcard:has(>.icon-chip)>ul{grid-column:1/-1;margin-top:16px}
+
+/* ===== кубок BG: великий, поруч із заголовком, гойдається ===== */
+@keyframes cupSwing{0%,100%{transform:translateY(0) rotate(-5deg)}50%{transform:translateY(-12px) rotate(5deg)}}
+#champ .wrap{position:relative}
+#champ .sec-art-cup{animation:cupSwing 4.2s ease-in-out infinite;transform-origin:50% 90%;width:clamp(220px,26vw,340px);top:-40px;filter:drop-shadow(0 22px 40px rgba(255,46,136,.45))}
+@media (max-width:760px){
+  #champ .sec-art-cup{position:absolute;display:block;right:-14px;top:-18px;width:46vw;margin:0;z-index:0}
+  #champ .sec-head .eyebrow,#champ .sec-head .h-lg{max-width:60%}
+  #champ .sec-head .h-lg{font-size:clamp(26px,8vw,34px)}
+}
+@media (prefers-reduced-motion:reduce){#champ .sec-art-cup{animation:none}}
+@media (max-width:760px){#champ .sec-head .h-lg{font-size:clamp(22px,6.4vw,30px);max-width:62%;word-break:normal;overflow-wrap:normal;hyphens:none}#champ .sec-art-cup{top:6px;width:44vw}}
+
+/* ===== профіль експерта на телефоні: шторка знизу з великим фото ===== */
+@media (max-width:760px){
+  .bio{padding:0;place-items:end stretch;align-items:end}
+  .bio-win{display:block;width:100%;min-height:0;max-height:92vh;max-height:92svh;overflow-y:auto;padding:0 0 34px;border-radius:26px 26px 0 0;box-shadow:0 -20px 60px rgba(0,0,0,.6);animation:sheetUp .38s cubic-bezier(.2,.8,.2,1)}
+  .bio-photo{width:100%;height:auto;aspect-ratio:4/4.2;border-radius:0;position:relative}
+  .bio-photo::after{content:"";position:absolute;left:0;right:0;bottom:0;height:40%;background:linear-gradient(180deg,rgba(255,255,255,0),#fff)}
+  .bio-tx{padding:0 20px;margin-top:-34px;position:relative;z-index:1}
+  .bio-x{position:sticky;top:12px;margin:12px 12px -48px auto;display:grid;background:rgba(18,13,24,.75);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);z-index:3}
+}
+@keyframes sheetUp{from{transform:translateY(100%)}to{transform:none}}
+
+/* ===== перший екран: текст вище, густіша тінь унизу ролика ===== */
+@media (max-width:999px){
+  .hero-reel::after{height:42%;background:linear-gradient(180deg,rgba(8,6,12,0) 0%,rgba(8,6,12,.75) 45%,#08060C 88%)}
+  .hero-inner>.hero-lede{margin-top:-150px}
+}
+@media (max-width:999px){.hero .countdown{margin-top:18px}}
+
+/* ===== пакети: іконки форматів поруч із назвою ===== */
+.pack-top{display:flex;align-items:center;gap:12px;margin:8px 0 6px}
+.pack-top .fmt-ic{margin:0;flex:none}
+.pack-top .fmt-ic img{width:54px;height:54px;object-fit:contain;filter:drop-shadow(0 8px 16px rgba(255,46,136,.3))}
+.pack-top .fmt-ic img+img{margin-left:-16px}
+.pack-top h3{margin:0}
+.js .pack.rv:not(.in) .fmt-ic img{opacity:0;transform:scale(.2) rotate(-25deg)}
+.pack.in .fmt-ic img{animation:icPop .55s cubic-bezier(.2,1.4,.4,1) both}
+.pack.in .fmt-ic img:nth-child(2){animation-delay:.2s}
+.pack.in .fmt-ic img:nth-child(3){animation-delay:.4s}
+
+/* ===== іконки розділів — праворуч від заголовка ===== */
+@media (max-width:900px){
+  .wrap:has(>.sec-art-ic){position:relative}
+  .wrap>.sec-art-ic{position:absolute;display:block;right:-6px;top:-6px;width:34vw;max-width:150px;margin:0;z-index:0}
+  .wrap:has(>.sec-art-ic) .sec-head .eyebrow,.wrap:has(>.sec-art-ic) .sec-head .h-lg,.wrap:has(>.sec-art-ic) .sec-head .prog-mark{max-width:64%}
+}
+.h-with-ic{display:flex;align-items:center;gap:14px}
+.h-ic{width:64px;height:64px;object-fit:contain;flex:none;filter:drop-shadow(0 8px 18px rgba(255,46,136,.5));animation:avFloat 4s ease-in-out infinite}
+@media (max-width:999px){
+  .hero-reel{background:#08060C}
+  .hero-reel::after{bottom:-2px;height:calc(42% + 2px)}
+  .hero-reel-v{margin-bottom:-1px}
+}
+.trio-ph{aspect-ratio:4/3;object-position:50% 30%}
+.h-ic{width:58px;height:58px}
+.tst-logo{left:27%;top:24%;width:46%;filter:drop-shadow(0 0 14px rgba(255,46,136,.9)) drop-shadow(0 0 40px rgba(255,46,136,.55))}
+.ir-quote{padding:46px 22px 20px}
+.ir-q-mark{top:-14px;left:16px;font-size:84px}
+.ir-quote p{font-size:15.5px;line-height:1.55;margin-bottom:10px;font-style:italic}
+.ir-quote p b{font-style:normal;font-weight:700}
+.ir-quote figcaption{margin-top:14px;padding-top:14px}
+.ir-q-ph{width:50px;height:50px}
+.ir-quote figcaption b{font-size:14px}
+.ir-quote figcaption i{font-size:11px}
+.arcv{border:0;box-shadow:none;background:transparent}
+.arcv-lock .vg-ring{top:calc(50% - 22px);width:120px;height:120px;margin:-60px 0 0 -60px}
+.arcv-lock .vg-dot{position:relative;left:auto;top:auto;margin:0 0 24px;width:24px;height:24px}
+/* іконки на білих картках — без брудної тіні */
+.tcard-white .icon,.tcard-white .icon-chip .icon,.fmt .fmt-ic img,.pack-std .fmt-ic img,.trio-c .trio-ic{filter:drop-shadow(0 6px 8px rgba(60,10,40,.12))!important}
+.tcard-white .icon-chip::before,.tcard-white .icon-chip::after{display:none!important}
