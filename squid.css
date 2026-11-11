@@ -3618,3 +3618,53 @@ html:not(.gated) .hero-reel{animation:reelIn 1.1s cubic-bezier(.2,.8,.2,1) both}
 .prizes figcaption{margin-top:12px;text-align:center;font-size:13.5px;color:var(--muted)}
 @media (max-width:760px){.prizes img{width:100vw;margin-left:calc(50% - 50vw);border-radius:0;aspect-ratio:4/3;object-fit:cover}}
 .tst-mask{left:24%;top:14%;width:52%}
+
+/* ===== текст першого екрана — разом із логотипом, після зняття маски ===== */
+.hero-l2 b{color:#FF6FB0;font-weight:800}
+.hero.masked .hero-inner>.hero-lede,.hero.masked .hero-inner>.hero-cta{opacity:0!important;transform:translateY(16px);animation:none!important}
+.hero.unmasked .hero-inner>.hero-lede{animation:heroIn .9s cubic-bezier(.2,.8,.2,1) .35s both!important}
+.hero.unmasked .hero-inner>.hero-cta{animation:heroIn .9s cubic-bezier(.2,.8,.2,1) .6s both!important}
+@media (prefers-reduced-motion:reduce){.hero.masked .hero-inner>.hero-lede,.hero.masked .hero-inner>.hero-cta{opacity:1!important;transform:none}}
+
+/* ===== таймер: великі дні + маленький годинник ===== */
+.cd2{display:block;padding:20px 20px 18px;text-align:left}
+.cd2-top{display:flex;align-items:center;gap:18px}
+.cd2-days{flex:none;display:flex;flex-direction:column;align-items:center;justify-content:center;width:112px;height:112px;border-radius:26px;
+  background:linear-gradient(180deg,#FF6FB0,#FF2E88 50%,#D3106A);box-shadow:inset 0 1px 0 rgba(255,255,255,.5),0 14px 30px rgba(255,46,136,.4)}
+.cd2-days b{font:900 56px/1 "Montserrat",sans-serif;color:#fff;letter-spacing:-.03em}
+.cd2-days span{margin-top:4px;font:700 11px/1 "JetBrains Mono",monospace;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.9)}
+.cd2-tx{display:flex;flex-direction:column;gap:4px;min-width:0}
+.cd2-k{font:700 11px/1.2 "JetBrains Mono",monospace;letter-spacing:.14em;text-transform:uppercase;color:#FFB3D3}
+.cd2-date{font:900 26px/1.1 "Montserrat",sans-serif;color:#fff;text-transform:uppercase}
+.cd2-time{margin-top:4px;font:700 18px/1 "JetBrains Mono",monospace;color:#fff;font-variant-numeric:tabular-nums;letter-spacing:.04em}
+.cd2-time b{display:inline-block;min-width:2ch;padding:5px 6px;border-radius:8px;background:rgba(255,255,255,.1);text-align:center;font-weight:700}
+.cd2 .cd-label{margin-top:16px;max-width:none;text-align:left}
+
+/* ===== ролики «Такого формату» і «Засновниці» — квадратом ===== */
+.newfmt-v .full-vid .sec-vid,.founders-vid .sec-vid{height:auto;aspect-ratio:1/1;object-fit:cover;object-position:50% 22%}
+@media (min-width:1000px){.newfmt-v .full-vid .sec-vid,.founders-vid .sec-vid{width:min(720px,100%);margin:0 auto;display:block}}
+
+/* ===== архів: відбиток по центру, фото без розмиття ===== */
+.arcv-ph img{filter:grayscale(.85) brightness(.62);transform:none}
+.arcv:hover .arcv-ph img{filter:grayscale(.5) brightness(.7)}
+.arcv-tap{position:relative;display:grid;place-items:center;width:120px;height:120px}
+.arcv-tap .vg-ring{position:absolute;inset:14px;width:auto;height:auto;margin:0;left:14px;top:14px}
+.arcv-fp{position:relative;width:64px;height:64px;color:#FF5AA5;filter:drop-shadow(0 0 6px rgba(255,46,136,.9)) drop-shadow(0 0 18px rgba(255,46,136,.6))}
+.arcv-lock{gap:10px}
+
+/* ===== 300+: прапор більший ===== */
+@media (max-width:760px){.stats .stat:last-child .stat-ic{width:128px;height:128px;margin:-6px 0 -6px -8px}}
+
+/* ===== бізнес-програма: іконка ближче й більша ===== */
+@media (max-width:900px){#program .wrap>.sec-art-ic{width:46vw;max-width:210px;right:-4px;top:40px}}
+.pk{color:#FF2E88}
+.tcard:has(>.icon-chip)>h3{font-size:clamp(15px,4.4vw,19px);line-height:1.2;overflow-wrap:anywhere;hyphens:auto}
+@media (max-width:760px){
+  #champ .sec-art-cup{top:-34px;width:38vw}
+  #champ .sec-head .lede{position:relative;z-index:2;text-shadow:0 2px 12px #08060C,0 0 2px #08060C}
+}
+@media (max-width:900px){#packages .wrap>.sec-art-ic{width:44vw;max-width:200px;top:-10px}}
+@media (max-width:900px){
+  #youtube .wrap>.sec-art-ic{width:40vw;max-width:180px;right:4%;top:6px;transform:perspective(600px) rotateY(-18deg) rotate(-4deg);animation:none}
+  .sec:has(.seatbar) .wrap>.sec-art-ic{right:10%;width:36vw}
+}
