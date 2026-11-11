@@ -302,7 +302,7 @@
   };
 
   // Ролики в розділах («Такого формату не існувало», «Засновниці»): вантажимо й граємо раз, коли видно
-  var secVids = document.querySelectorAll('.sec-vid[data-src]');
+  var secVids = document.querySelectorAll('.sec-vid[data-src],.arc-reel-v[data-src]');
   if (secVids.length) {
     var playSec = function (v) {
       if (!v.src) { v.src = v.getAttribute('data-src'); }
@@ -314,6 +314,64 @@
       }, { threshold: .45 });
       secVids.forEach(function (v) { vio.observe(v); });
     } else secVids.forEach(playSec);
+  }
+
+  // Колода «Імена, які знає ринок»: свайп або стрілки, картки лежать стосом
+  var deck = $('#deck');
+  if (deck) {
+    var cards = Array.prototype.slice.call(deck.querySelectorAll('.dk-card'));
+    var dn = cards.length, cur = 0, dealt = false;
+    var tilt = [0, -4, 4, -2];
+    var lay = function () {
+      cards.forEach(function (c, k) {
+        var r = (k - cur + dn) % dn;
+        c.style.zIndex = dn - r;
+        if (!dealt) { c.style.transform = 'translateY(60px) rotate(' + (k % 2 ? 8 : -8) + 'deg) scale(.9)'; c.style.opacity = 0; return; }
+        if (r === 0) { c.style.transform = 'none'; c.style.opacity = 1; }
+        else if (r < 4) { c.style.transform = 'translateY(' + (r * 12) + 'px) scale(' + (1 - r * .045) + ') rotate(' + tilt[r] + 'deg)'; c.style.opacity = 1; }
+        else { c.style.transform = 'translateY(40px) scale(.85)'; c.style.opacity = 0; }
+        c.setAttribute('aria-hidden', r === 0 ? 'false' : 'true');
+      });
+      $('#deckI').textContent = cur + 1;
+    };
+    $('#deckN').textContent = dn;
+    var goDeck = function (d) {
+      var top = cards[cur];
+      top.style.transform = 'translateX(' + (d > 0 ? -120 : 120) + '%) rotate(' + (d > 0 ? -16 : 16) + 'deg)';
+      top.style.opacity = 0;
+      cur = (cur + d + dn) % dn;
+      setTimeout(lay, 180);
+    };
+    $('#deckNext').addEventListener('click', function () { goDeck(1); });
+    $('#deckPrev').addEventListener('click', function () { goDeck(-1); });
+    var sx = null, ddx = 0;
+    deck.addEventListener('pointerdown', function (e) { sx = e.clientX; ddx = 0; cards[cur].classList.add('drag'); });
+    deck.addEventListener('pointermove', function (e) {
+      if (sx === null) return;
+      ddx = e.clientX - sx;
+      cards[cur].style.transform = 'translateX(' + ddx + 'px) rotate(' + (ddx / 18) + 'deg)';
+    });
+    var upDeck = function () {
+      if (sx === null) return;
+      cards[cur].classList.remove('drag');
+      sx = null;
+      if (Math.abs(ddx) > 70) goDeck(ddx < 0 ? 1 : -1); else lay();
+    };
+    deck.addEventListener('pointerup', upDeck);
+    deck.addEventListener('pointercancel', upDeck);
+    deck.addEventListener('pointerleave', upDeck);
+    lay();
+    var deal = function () {
+      if (dealt) return;
+      dealt = true;
+      cards.forEach(function (c, k) { c.style.transitionDelay = ((dn - k) * .09) + 's'; });
+      lay();
+      setTimeout(function () { cards.forEach(function (c) { c.style.transitionDelay = ''; }); }, 1400);
+    };
+    if ('IntersectionObserver' in window) {
+      var dio = new IntersectionObserver(function (es) { if (es[0].isIntersecting) { deal(); dio.disconnect(); } }, { threshold: .3 });
+      dio.observe(deck);
+    } else deal();
   }
 
   var vg = $('#vgate');
