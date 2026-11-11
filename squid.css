@@ -3741,3 +3741,25 @@ html:not(.gated) .hero-reel{animation:reelIn 1.1s cubic-bezier(.2,.8,.2,1) both}
 html,body{overflow-x:clip;max-width:100%}
 @supports not (overflow:clip){html,body{overflow-x:hidden}}
 body{touch-action:pan-y pinch-zoom;overscroll-behavior-x:none}
+/* «Ваші результати»: заголовок пункту звичайним шрифтом, між пунктами повітря */
+.trio-res ul{gap:14px}
+.trio-res li b{display:block;margin:0 0 2px;font:800 15px/1.3 "Manrope",sans-serif;letter-spacing:0;text-transform:none;color:#14080F}
+.trio-res li{font-size:14px;line-height:1.5;color:#4A3A44}
+/* формати: фото плавно виходить із чорного тла */
+.fmts-stage{background:#08060C}
+.fmts-stage .fmts-ph{-webkit-mask:linear-gradient(180deg,transparent 0,#000 14%,#000 86%,transparent 100%);mask:linear-gradient(180deg,transparent 0,#000 14%,#000 86%,transparent 100%)}
+#format{background:#08060C}
+/* описи на білих картках — сірим, списки — темним */
+.fmt .fmt-d,.fmt-hi .fmt-d,.trio-c>p{color:#7A6A74!important;font-size:14.5px;line-height:1.55}
+/* цитата Ірини — стримано, у стилі журналу */
+.ir-quote{background:transparent;box-shadow:none;border:0;border-left:3px solid #FF2E88;border-radius:0;padding:4px 0 4px 20px;margin:8px 0}
+.ir-q-mark{display:none}
+.ir-quote p{font:400 16px/1.6 "Manrope",sans-serif;font-style:normal;color:#BFB3C4;margin:0 0 14px}
+.ir-quote p b{font:600 19px/1.45 "Manrope",sans-serif;color:#fff;letter-spacing:-.005em}
+.ir-quote .pk{color:#FF5AA5}
+.ir-quote p:first-child .pk{color:#BFB3C4;text-decoration:none}
+.ir-quote figcaption{border-top:0;padding-top:4px;margin-top:6px}
+.ir-quote figcaption b{color:#fff;font-size:13px;letter-spacing:.08em}
+.ir-quote figcaption i{color:#FF6FB0}
+.ir-q-ph{width:44px;height:44px;box-shadow:0 0 0 2px #FF2E88}
+@media (max-width:900px){#program .wrap>.sec-art-ic{opacity:1;filter:drop-shadow(0 14px 30px rgba(255,46,136,.45));width:40vw;max-width:180px;top:24px;right:-6px}}
