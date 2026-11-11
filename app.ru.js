@@ -298,7 +298,7 @@
   if (vg && !vg.hidden) {
     var vv = $('#vgVideo'), shown = false, gone = false;
     var hint = $('#vgHint'), HINT = hint.textContent;
-    var TOUCH_AT = 4.4;   // секунда, коли палець торкається скла
+    var TOUCH_AT = 3.7;   // секунда, коли палець торкається скла
     var ready = function () {
       if (shown) return;
       shown = true;
