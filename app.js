@@ -301,6 +301,21 @@
     if (r && r.catch) r.catch(unmask);
   };
 
+  // Ролики в розділах («Такого формату не існувало», «Засновниці»): вантажимо й граємо раз, коли видно
+  var secVids = document.querySelectorAll('.sec-vid[data-src]');
+  if (secVids.length) {
+    var playSec = function (v) {
+      if (!v.src) { v.src = v.getAttribute('data-src'); }
+      var q = v.play(); if (q && q.catch) q.catch(function () {});
+    };
+    if ('IntersectionObserver' in window) {
+      var vio = new IntersectionObserver(function (es) {
+        es.forEach(function (e) { if (e.isIntersecting) { playSec(e.target); vio.unobserve(e.target); } });
+      }, { threshold: .45 });
+      secVids.forEach(function (v) { vio.observe(v); });
+    } else secVids.forEach(playSec);
+  }
+
   var vg = $('#vgate');
   if (!vg || vg.hidden) startReel();
   if (vg && !vg.hidden) {
