@@ -17,7 +17,9 @@ window.BG_LEADS_URL = '';
     participant: 'Beauty Games: нова заявка — бронювання місця',
     casting: 'Beauty Games: нова заявка на кастинг',
     calc: 'Beauty Games: контакт із калькулятора',
-    ambassador: 'Beauty Games: відповідь на запрошення амбасадора'
+    ambassador: 'Beauty Games: відповідь на запрошення амбасадора',
+    profile: 'Beauty Games: контакт із гайду «Дорога упаковка профілю»',
+    earn: 'Beauty Games: контакт із калькулятора «Скільки заробляєте»'
   };
 
   // Назви полів у листі — людською мовою, в тому ж порядку
@@ -29,10 +31,10 @@ window.BG_LEADS_URL = '';
     ['tried', 'Що пробувала'], ['situation', 'Ситуація (тест)'], ['goal', 'Місія / ціль'],
     ['format', 'Формат участі'], ['why', 'Чому саме вона'], ['camera', 'Зйомки'], ['video', 'Відео'],
     ['service', 'Послуга'], ['currency', 'Валюта'], ['price', 'Ціна'], ['duration_h', 'Тривалість, год'],
-    ['per_month', 'Процедур на місяць'], ['materials', 'Матеріали'], ['fixed_month', 'Витрати на місяць'],
+    ['per_month', 'Процедур на місяць'], ['per_week', 'Клієнток на тиждень'], ['materials', 'Матеріали'], ['fixed_month', 'Витрати на місяць'],
     ['tax_mode', 'Податок'], ['tax_pct', 'Податок, %'], ['tax_fixed_month', 'Податок фікс.'],
     ['net_month', 'Чистими на місяць'], ['per_hour', 'Чистими за годину'], ['goal_price', 'Ціна під ціль'],
-    ['verdict', 'Висновок калькулятора'], ['answer', 'Відповідь'], ['invite_to', 'Кому запрошення'], ['time', 'Коли дзвонити'], ['note', 'Питання'], ['lang', 'Мова сайту'], ['page', 'Сторінка'],
+    ['verdict', 'Висновок калькулятора'], ['level', 'Досвід'], ['score', 'Самоперевірка профілю'], ['missing', 'Чого бракує в профілі'], ['bio', 'Шапка з генератора'], ['answer', 'Відповідь'], ['invite_to', 'Кому запрошення'], ['time', 'Коли дзвонити'], ['note', 'Питання'], ['lang', 'Мова сайту'], ['page', 'Сторінка'],
     ['utm', 'UTM'], ['referrer', 'Звідки прийшла']
   ];
   var SKIP = { 'form-name': 1, 'bot-field': 1, bot: 1, consent: 1, form: 1, sent_at: 1 };
@@ -65,7 +67,7 @@ window.BG_LEADS_URL = '';
   }
 
   function viaPing(p) {
-    var t = { participant: 'бронювання місця', casting: 'кастинг', calc: 'калькулятор', ambassador: 'амбасадор' }[p.form] || p.form;
+    var t = { participant: 'бронювання місця', casting: 'кастинг', calc: 'калькулятор', ambassador: 'амбасадор', profile: 'гайд «Упаковка профілю»', earn: 'калькулятор «Скільки заробляєте»' }[p.form] || p.form;
     return fetch('https://formsubmit.co/ajax/' + window.BG_LEADS_PING, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', Accept: 'application/json' },

@@ -1,0 +1,188 @@
+<!doctype html>
+<meta charset="utf-8">
+<script src="pixel.js?v=1b0a4353"></script>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Скільки ви заробляєте насправді — Beauty Games</title>
+<meta name="description" content="Простий калькулятор для б'юті-майстра: 4 цифри — і ви бачите, скільки чистими лишається вам за місяць і з кожної процедури.">
+<meta property="og:title" content="Скільки б'юті-майстер заробляє насправді">
+<meta property="og:description" content="4 цифри — і видно ваш чистий дохід за місяць. Безкоштовно від Beauty Games.">
+<script>document.documentElement.setAttribute('data-page','earn');document.documentElement.lang='uk';</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800;900&family=Manrope:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap">
+<link rel="stylesheet" href="styles.css?v=ad1ccce0">
+<link rel="stylesheet" href="squid.css?v=91221163">
+<link rel="stylesheet" href="calc.css?v=3c346e29">
+<link rel="stylesheet" href="earn.css?v=040fefee">
+
+<div class="bg-mesh" aria-hidden="true"></div>
+
+<!-- ============ ШАПКА ============ -->
+<div class="nav-outer">
+  <nav class="nav">
+    <a href="index.html" class="brand" aria-label="Beauty Games — на головну">
+      <img class="brand-logo" src="assets/logo-horizontal.svg" alt="Beauty Games by Verbova Iryna — reality show, championship, education" width="330" height="46">
+    </a>
+    <a href="index.html" class="nav-switch calc-nav-home">Про проєкт</a>
+    <a href="index.html#picker" class="btn btn-primary btn-sm">Забронювати місце</a>
+  </nav>
+</div>
+
+<!-- ============ ГЕРОЙ ============ -->
+<header class="en-hero">
+  <div class="wrap">
+    <span class="eyebrow">Безкоштовний калькулятор Beauty Games</span>
+    <h1 class="h-xl">Скільки ви <span class="glow">заробляєте</span> насправді?</h1>
+    <p class="lede">Ціна процедури — це ще не ваш дохід. Введіть 4 цифри, і побачите, скільки чистими лишається вам за місяць.</p>
+    <div class="en-meta"><span><b>4</b> цифри</span><span><b>1</b> хвилина</span><span>безкоштовно</span></div>
+  </div>
+</header>
+
+<main class="wrap en-wrap">
+
+  <!-- ---------- поля ---------- -->
+  <section class="en-box glass" id="enCalc">
+    <div class="en-cur" role="group" aria-label="Валюта">
+      <span class="en-k">Валюта</span>
+      <div class="en-cur-opts" id="enCur">
+        <button type="button" class="expo" data-cur="грн">грн</button>
+        <button type="button" class="expo" data-cur="€">€</button>
+        <button type="button" class="expo" data-cur="zł">zł</button>
+        <button type="button" class="expo" data-cur="$">$</button>
+      </div>
+    </div>
+
+    <div class="en-fields">
+      <div class="en-f">
+        <label class="cf-l" for="enPrice"><b>1</b>Ціна однієї процедури</label>
+        <div class="cf-in"><input type="text" inputmode="numeric" id="enPrice" data-k="price" autocomplete="off"><span class="cf-u" data-u></span></div>
+        <span class="cf-h">Ваша основна послуга, скільки платить клієнтка</span>
+      </div>
+      <div class="en-f">
+        <label class="cf-l" for="enMat"><b>2</b>Матеріали на одну процедуру</label>
+        <div class="cf-in"><input type="text" inputmode="numeric" id="enMat" data-k="mat" autocomplete="off"><span class="cf-u" data-u></span></div>
+        <span class="cf-h">Гель, фарба, віск, одноразове — приблизно</span>
+      </div>
+      <div class="en-f">
+        <label class="cf-l" for="enClients"><b>3</b>Клієнток на тиждень</label>
+        <div class="cf-in"><input type="text" inputmode="numeric" id="enClients" data-k="clients" autocomplete="off"><span class="cf-u">осіб</span></div>
+        <span class="cf-h">Скільки процедур у середньому за тиждень</span>
+      </div>
+      <div class="en-f">
+        <label class="cf-l" for="enRent"><b>4</b>Оренда та інші витрати на місяць</label>
+        <div class="cf-in"><input type="text" inputmode="numeric" id="enRent" data-k="rent" autocomplete="off"><span class="cf-u" data-u></span></div>
+        <span class="cf-h">Кабінет, реклама, зв'язок, податок. Працюєте вдома — ставте 0</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ---------- заявка ---------- -->
+  <section class="en-lead glass">
+    <div class="r-lead">
+      <form id="enForm" name="earn" novalidate>
+        <input type="hidden" name="currency">
+        <input type="hidden" name="price">
+        <input type="hidden" name="materials">
+        <input type="hidden" name="per_week">
+        <input type="hidden" name="fixed_month">
+        <input type="hidden" name="net_month">
+        <p hidden><label>Не заповнюйте це поле: <input name="bot-field"></label></p>
+
+        <div class="r-lead-head">
+          <span class="hello-kicker">Ваш результат готовий</span>
+          <h3 class="hello-title">Куди надіслати ваш розрахунок?</h3>
+          <p class="hello-sub">Залиште ім'я і контакт — одразу побачите, скільки чистими лишається вам і скільки дасть підняття ціни. А бонусом експерти Beauty Games безкоштовно розберуть вашу ціну.</p>
+        </div>
+        <div class="cf-grid">
+          <div class="cf" data-lead>
+            <label class="cf-l" for="enName">Ім'я</label>
+            <div class="cf-in"><input type="text" id="enName" name="name" autocomplete="given-name" maxlength="40" placeholder="Як до вас звертатися"></div>
+            <span class="cf-msg">Вкажіть ім'я</span>
+          </div>
+          <div class="cf" data-lead>
+            <label class="cf-l" for="enContact">Telegram, Instagram або телефон</label>
+            <div class="cf-in"><input type="text" id="enContact" name="contact" maxlength="60" placeholder="@nick або +380…"></div>
+            <span class="cf-msg">Вкажіть, як з вами зв'язатися</span>
+          </div>
+          <label class="consent full">
+            <input type="checkbox" name="consent" value="yes" checked>
+            <span>Погоджуюсь на обробку персональних даних відповідно до <a href="#">політики конфіденційності</a>.</span>
+          </label>
+        </div>
+        <button type="submit" class="btn btn-primary btn-block r-lead-btn">Показати мій результат</button>
+      </form>
+      <div class="r-lead-ok" id="enOk" hidden>
+        <span class="hello-check" aria-hidden="true">✓</span>
+        <div>
+          <b>Результат відкрито!</b>
+          <p>Він уже на сторінці нижче. Менеджер напише вам щодо безкоштовного розбору ціни. А поки — заходьте в Telegram-канал проєкту: там ефіри й розбори.</p>
+          <a href="https://t.me/beauty_games_pro" target="_blank" rel="noopener" class="btn btn-primary btn-sm">Telegram-канал</a>
+        </div>
+      </div>
+    </div>
+    <p class="r-foot">Без спаму: ми напишемо лише щодо розбору вашої ціни.</p>
+  </section>
+
+  <!-- ---------- результат ---------- -->
+  <section class="en-res glass en-locked" id="enRes" aria-live="polite">
+    <span class="en-lock" id="enLock">Результат відкриється після форми вище</span>
+    <span class="en-k">Ваш результат</span>
+    <div class="en-big">
+      <span class="en-big-k">Чистими на місяць</span>
+      <span class="en-big-n" id="enNet">—</span>
+    </div>
+    <div class="en-split">
+      <div><span class="en-k">Обіг за місяць</span><b id="enGross">—</b></div>
+      <div><span class="en-k">Йде на витрати</span><b id="enCost">—</b></div>
+      <div><span class="en-k">Лишається з 1 процедури</span><b id="enPer">—</b></div>
+    </div>
+    <div class="en-bar" aria-hidden="true"><i id="enBarCost"></i><i id="enBarNet"></i></div>
+    <p class="en-verdict" id="enVerdict"></p>
+
+    <div class="en-up" id="enUp">
+      <span class="en-k">А якщо підняти ціну?</span>
+      <div class="en-up-opts" id="enUpOpts">
+        <button type="button" class="expo" data-up="10">+10%</button>
+        <button type="button" class="expo" data-up="20">+20%</button>
+        <button type="button" class="expo" data-up="30">+30%</button>
+      </div>
+      <p class="en-up-t" id="enUpT"></p>
+    </div>
+  </section>
+
+</main>
+
+<!-- ============ ФУТЕР ============ -->
+<footer>
+  <div class="wrap">
+    <div class="foot">
+      <div>
+        <a href="index.html" class="foot-brand" aria-label="Beauty Games">
+          <img class="foot-logo" src="assets/logo-vertical.svg" alt="Beauty Games by Verbova Iryna" width="260" height="121">
+        </a>
+        <p class="about">Перший міжнародний трансформаційний проєкт б'юті-індустрії: бізнес-програма, командні змагання, реаліті-шоу та онлайн-чемпіонат. Сезон 2026.</p>
+      </div>
+      <div>
+        <h5>Проєкт</h5>
+        <a href="index.html#about">Про проєкт</a>
+        <a href="index.html#program">Бізнес-програма</a>
+        <a href="index.html#champ">Онлайн-чемпіонат</a>
+        <a href="index.html#packages">Пакети участі</a>
+      </div>
+      <div>
+        <h5>Контакти</h5>
+        <a href="https://instagram.com/beauty_games.pro" target="_blank" rel="noopener">@beauty_games.pro</a>
+        <a href="https://www.youtube.com/@BeautyGames-PRO" target="_blank" rel="noopener">YouTube-канал</a>
+        <a href="https://t.me/beauty_games_pro" target="_blank" rel="noopener">Telegram-канал</a>
+        <a href="partners.html">Партнерам і спонсорам</a>
+      </div>
+    </div>
+    <div class="foot-btm">
+      <span>© Beauty Games 2026. Усі права захищені.</span>
+      <span><a href="#">Публічна оферта</a> · <a href="#">Політика конфіденційності</a></span>
+    </div>
+  </div>
+</footer>
+
+<script src="leads.js?v=ce943011"></script>
+<script src="earn.js?v=2e19f9f5"></script>

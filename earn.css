@@ -1,0 +1,79 @@
+/* ============================================================
+   BEAUTY GAMES — «Скільки ви заробляєте насправді» (простий калькулятор)
+   Шар поверх styles.css, squid.css і calc.css: токени, скло, кнопки,
+   поля (.cf-*), пігулки (.expo), заявка (.r-lead) беруться звідти.
+   ============================================================ */
+
+.en-hero{padding:calc(var(--nav-h) + 64px) 0 26px;position:relative;z-index:2}
+.en-hero .wrap{display:flex;flex-direction:column;gap:18px}
+.en-hero .lede{margin:0}
+.en-meta{display:flex;flex-wrap:wrap;gap:8px 18px;font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.en-meta b{color:var(--pink-soft);font-weight:700}
+
+.en-wrap{max-width:880px;padding-bottom:clamp(56px,8vw,96px);display:flex;flex-direction:column;gap:18px}
+.en-box,.en-res,.en-lead{padding:24px clamp(18px,3vw,32px)}
+.en-lead .r-lead{margin-top:0}
+
+.en-k{display:block;font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+
+/* ---------- валюта ---------- */
+.en-cur{display:flex;align-items:center;flex-wrap:wrap;gap:10px 14px;margin-bottom:22px}
+.en-cur-opts,.en-up-opts{display:flex;flex-wrap:wrap;gap:8px}
+
+/* ---------- поля ---------- */
+.en-fields{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
+.en-f{display:flex;flex-direction:column;gap:8px;min-width:0}
+.en-f .cf-l{display:flex;align-items:center;gap:10px}
+.en-f .cf-l b{
+  flex:none;width:26px;height:26px;display:grid;place-items:center;border-radius:50%;
+  background:rgba(255,46,136,.16);box-shadow:inset 0 0 0 1.5px rgba(255,46,136,.55);
+  font-family:"Montserrat",sans-serif;font-weight:900;font-size:12px;color:#fff;
+}
+
+/* ---------- результат ---------- */
+.en-res{display:flex;flex-direction:column;gap:18px}
+.en-big{display:flex;flex-direction:column;gap:4px}
+.en-big-k{font-family:"Montserrat",sans-serif;font-weight:700;font-size:15px;color:var(--text)}
+.en-big-n{
+  font-family:"Montserrat",sans-serif;font-weight:900;font-size:clamp(40px,7vw,64px);line-height:1;
+  font-variant-numeric:tabular-nums;letter-spacing:-.02em;
+  background:linear-gradient(90deg,#fff,var(--gold-1));-webkit-background-clip:text;background-clip:text;color:transparent;
+}
+.en-big-n.neg{background:none;color:#FF8FA3}
+
+.en-split{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.en-split > div{padding:14px 16px;border-radius:var(--r-sm);background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.09);display:flex;flex-direction:column;gap:6px}
+.en-split b{font-family:"Montserrat",sans-serif;font-weight:800;font-size:20px;color:#fff;font-variant-numeric:tabular-nums}
+
+.en-bar{display:flex;height:10px;border-radius:var(--r-pill);overflow:hidden;background:rgba(255,255,255,.08)}
+.en-bar i{display:block;height:100%;transition:width .35s ease}
+.en-bar i:first-child{background:rgba(255,92,122,.6)}
+.en-bar i:last-child{background:linear-gradient(90deg,var(--pink-deep),var(--gold-2))}
+
+.en-verdict{margin:0;padding:14px 16px;border-left:3px solid var(--pink);background:rgba(255,46,136,.06);border-radius:0 var(--r-sm) var(--r-sm) 0;font-size:15px;line-height:1.55;color:var(--text)}
+.en-verdict:empty{display:none}
+.en-verdict b{color:var(--pink-soft)}
+
+.en-up{padding:18px;border-radius:var(--r-md);background:rgba(233,198,126,.07);border:1px solid rgba(233,198,126,.35);display:flex;flex-direction:column;gap:12px}
+.en-up .en-k{color:var(--gold-1)}
+.en-up-t{margin:0;font-size:15px;line-height:1.55;color:var(--text)}
+.en-up-t b{font-family:"Montserrat",sans-serif;font-weight:800;color:#fff}
+
+/* ---------- замок: результат до заявки ---------- */
+.en-res{position:relative}
+.en-locked > :not(.en-lock){filter:blur(7px);opacity:.55;pointer-events:none;user-select:none}
+.en-lock{
+  position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);z-index:5;
+  display:inline-flex;align-items:center;gap:10px;padding:12px 20px;border-radius:var(--r-pill);
+  background:rgba(18,11,22,.92);border:1px solid rgba(233,198,126,.5);
+  font-family:"Montserrat",sans-serif;font-weight:800;font-size:13px;color:var(--gold-1);text-align:center;
+  width:max-content;max-width:86%;
+}
+.en-lock::before{content:"";flex:none;width:16px;height:16px;background:var(--gold-1);-webkit-mask:var(--lock) center/contain no-repeat;mask:var(--lock) center/contain no-repeat}
+.en-lock[hidden]{display:none}
+.en-res .en-lock + .en-k{margin-top:0}
+
+@media (max-width:640px){
+  .en-fields,.en-split{grid-template-columns:1fr}
+  .en-split b{font-size:18px}
+}
