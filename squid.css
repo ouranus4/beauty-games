@@ -3763,3 +3763,26 @@ body{touch-action:pan-y pinch-zoom;overscroll-behavior-x:none}
 .ir-quote figcaption i{color:#FF6FB0}
 .ir-q-ph{width:44px;height:44px;box-shadow:0 0 0 2px #FF2E88}
 @media (max-width:900px){#program .wrap>.sec-art-ic{opacity:1;filter:drop-shadow(0 14px 30px rgba(255,46,136,.45));width:40vw;max-width:180px;top:24px;right:-6px}}
+/* засновниці: повітря в тексті */
+.founder p{font-size:15px;line-height:1.7;color:#5A4A54;margin:0 0 16px}
+.founder .founder-q{margin:22px 0;padding:16px 18px;line-height:1.6}
+.founder .founder-sub{margin-top:22px;margin-bottom:10px;color:#14080F;font-weight:700}
+.founder .founder-list{gap:12px;margin-bottom:20px}
+.founder .founder-list li{line-height:1.55}
+.founders{gap:26px}
+.founders>*+*{margin-top:0}
+#founders .ibv-card,#founders .glass+.glass{margin-top:26px}
+/* архів: відбиток на темному колі, щоб було зрозуміло, що це кнопка */
+.arcv-tap{width:132px;height:132px}
+.arcv-tap::before{content:"";position:absolute;inset:16px;border-radius:50%;background:rgba(8,4,8,.62);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);box-shadow:0 0 0 2px rgba(255,46,136,.7),0 0 30px rgba(255,46,136,.5)}
+.arcv-fp{position:relative;width:72px;height:72px}
+/* VIP: металеве золото (статичне) */
+.pack-vip{background:linear-gradient(135deg,#FFF3C9 0%,#F6D47E 14%,#D9A845 30%,#FFE9A8 46%,#E3B556 58%,#B8862F 74%,#F2CF7A 88%,#C9963A 100%);
+  box-shadow:0 0 0 1.5px #FFE7A3 inset,0 0 0 3px rgba(150,105,30,.55),0 26px 60px rgba(0,0,0,.55),0 0 46px rgba(246,212,126,.25)}
+.pack-vip::after{background:linear-gradient(115deg,transparent 0 38%,rgba(255,255,255,.42) 44%,rgba(255,255,255,.08) 52%,transparent 60%),radial-gradient(60% 50% at 88% 6%,rgba(255,252,236,.85),transparent 60%);width:100%;height:100%;inset:0}
+.pack-vip .benefit{background:rgba(255,250,232,.45);border-color:rgba(120,80,15,.35)}
+.pack-vip ul li,.pack-vip .benefit-note,.pack-vip .tagline{color:#2A1B05}
+@media (max-width:900px){
+  .sec:has(.seatbar) .wrap>.sec-art-ic{width:30vw;max-width:130px;right:-4px;top:-26px;z-index:0}
+  .sec:has(.seatbar) .sec-head .h-lg{position:relative;z-index:2;max-width:68%;text-shadow:0 2px 12px #08060C}
+}
