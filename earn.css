@@ -216,3 +216,16 @@ html[data-page="earn"],html[data-page="earn"] body{background:#fff;color:#2A2331
 .en-goal b{font-family:"Montserrat",sans-serif;font-weight:800;color:#120D18}
 @media (max-width:640px){.en-mode button{padding:12px 14px}.en-mode small{font-size:11.5px}}
 .en-split[hidden],.en-goal[hidden],.en-pro[hidden]{display:none}
+
+
+/* ---------- усередині Telegram (міні-застосунок бота) ---------- */
+html.tg .nav-outer,html.tg footer,html.tg .en-meta{display:none}
+html.tg .en-hero{padding-top:18px}
+html.tg .en-hero-img{max-width:200px}
+html.tg .h-xl{font-size:clamp(28px,8vw,40px)}
+.en-tg{margin-top:4px}
+.en-tg .r-lead-btn{margin-top:6px}
+.en-tg-note{margin:10px 0 0;font-size:13px;line-height:1.5;color:#6B6478;text-align:center}
+.en-tg-note.err{color:#D4234A;font-weight:700}
+html.tg .en-lead .cf-grid,html.tg #enForm > .r-lead-btn,html.tg .r-foot{display:none}
+.en-tg .r-lead-btn{white-space:normal;line-height:1.3;height:auto;min-height:54px;padding-left:14px;padding-right:14px}

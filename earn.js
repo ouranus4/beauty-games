@@ -162,7 +162,7 @@
     e.preventDefault();
     var ok = true;
     [].forEach.call(form.querySelectorAll('[data-lead]'), function (c) {
-      var bad = !c.querySelector('input').value.trim();
+      var bad = !c.querySelector('input').value.trim() && !document.documentElement.classList.contains('tg');
       c.classList.toggle('err', bad);
       if (bad) ok = false;
     });
@@ -192,4 +192,55 @@
   // Повторний візит: контакт уже залишили — форму не показуємо
   if (state.open) $('.en-lead').hidden = true;
   paintLock(); fill(); calc();
+
+  /* ---------- усередині Telegram ----------
+     Калькулятор відкривається як міні-застосунок бота (посилання t.me/<бот>?startapp=...).
+     Замість полів «ім'я / контакт» — кнопка: Telegram просить дозволу поділитися номером,
+     і за номер відкривається результат. Ім'я, нік і ID беремо з Telegram. */
+  var inTg = /tgWebApp/.test(location.hash) || /[?&]tg\b/.test(location.search);
+  if (!inTg) return;
+  document.documentElement.classList.add('tg');
+  var s = document.createElement('script');
+  s.src = 'https://telegram.org/js/telegram-web-app.js';
+  s.onload = setupTg;
+  document.head.appendChild(s);
+
+  function setupTg() {
+    var app = window.Telegram && window.Telegram.WebApp;
+    if (!app || !app.initData) { document.documentElement.classList.remove('tg'); return; } // відкрили не в Telegram
+    app.ready(); app.expand();
+    try { app.setHeaderColor('#120D18'); app.setBackgroundColor('#ffffff'); } catch (e) {}
+    var u = (app.initDataUnsafe || {}).user || {};
+    $('#enTgBox').hidden = false;
+    $('.en-lead .hello-kicker').textContent = 'Ваш результат готовий';
+    $('.en-lead .hello-title').textContent = 'Відкрийте його одним натисканням';
+    $('.en-lead .hello-sub').textContent = 'Поділіться номером телефону — і результат одразу з’явиться нижче. А ще бот надсилатиме вам ефіри, вебінари й заходи для майстрів.';
+    var okP = $('#enOk p'), okA = $('#enTg');
+    okP.textContent = 'Він уже нижче. А ефіри, вебінари й заходи для майстрів бот надсилатиме вам сюди, у Telegram.';
+    okA.hidden = true;
+
+    $('#enTgShare').addEventListener('click', function () {
+      var note = $('#enTgNote');
+      if (!app.isVersionAtLeast || !app.isVersionAtLeast('6.9')) {
+        note.textContent = 'Оновіть Telegram до останньої версії — і спробуйте ще раз.'; note.classList.add('err'); return;
+      }
+      app.requestContact(function (shared, res) {
+        if (!shared) {
+          note.textContent = 'Без номера результат не відкриється. Натисніть кнопку ще раз і оберіть «Поділитися».';
+          note.classList.add('err'); return;
+        }
+        var c = (res && res.responseUnsafe && res.responseUnsafe.contact) || {};
+        var f = form.elements;
+        f.name.value = [c.first_name || u.first_name, c.last_name || u.last_name].filter(Boolean).join(' ');
+        f.phone.value = c.phone_number ? '+' + String(c.phone_number).replace(/^\+/, '') : '';
+        f.tg_user.value = u.username ? '@' + u.username : '';
+        f.contact.value = f.tg_user.value || f.phone.value;
+        f.tg_id.value = u.id || c.user_id || '';
+        f.source.value = 'Telegram, міні-застосунок';
+        f.start.value = (app.initDataUnsafe || {}).start_param || '';
+        try { app.HapticFeedback.notificationOccurred('success'); } catch (e) {}
+        if (form.requestSubmit) form.requestSubmit(); else form.dispatchEvent(new Event('submit', { cancelable: true }));
+      });
+    });
+  }
 })();
