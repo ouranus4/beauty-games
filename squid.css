@@ -3610,3 +3610,4 @@ html:not(.gated) .hero-reel{animation:reelIn 1.1s cubic-bezier(.2,.8,.2,1) both}
 /* іконки на білих картках — без брудної тіні */
 .tcard-white .icon,.tcard-white .icon-chip .icon,.fmt .fmt-ic img,.pack-std .fmt-ic img,.trio-c .trio-ic{filter:drop-shadow(0 6px 8px rgba(60,10,40,.12))!important}
 .tcard-white .icon-chip::before,.tcard-white .icon-chip::after{display:none!important}
+.live-vid{margin:6px 0 26px}
