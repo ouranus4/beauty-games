@@ -3731,3 +3731,9 @@ html:not(.gated) .hero-reel{animation:reelIn 1.1s cubic-bezier(.2,.8,.2,1) both}
 /* live-відео по центру на всю ширину */
 .live-vid{margin-left:calc(50% - 50vw);margin-right:calc(50% - 50vw)}
 .arcv-fp{filter:drop-shadow(0 0 6px rgba(255,46,136,1)) drop-shadow(0 0 18px rgba(255,46,136,.8))}
+/* перший екран: «wow»-плашка і перший рядок в одну строку */
+.hero-wow{display:inline-block;margin:0 0 12px;padding:8px 14px;border-radius:12px;background:linear-gradient(135deg,#FF6FB0,#FF2E88 55%,#C40C62);color:#fff;font:800 12px/1.2 "Montserrat",sans-serif;letter-spacing:.02em;box-shadow:0 10px 26px rgba(255,46,136,.45),inset 0 1px 0 rgba(255,255,255,.4)}
+.hero.unmasked .hero-wow{animation:wowPop .7s cubic-bezier(.2,1.5,.4,1) .2s both}
+.hero.masked .hero-wow{opacity:0}
+@keyframes wowPop{0%{opacity:0;transform:scale(.4) rotate(-6deg)}70%{opacity:1;transform:scale(1.08) rotate(1deg)}100%{opacity:1;transform:none}}
+@media (max-width:999px){.hero-lede .hero-l1{white-space:nowrap;font-size:clamp(11px,3.55vw,16px)}}
