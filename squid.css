@@ -3107,7 +3107,7 @@ html:not(.gated) .hero-reel{animation:reelIn 1.1s cubic-bezier(.2,.8,.2,1) both}
   .hero-inner{display:contents}
   .hero-reel{order:0}
   .hero-inner>*:not(.hero-head){order:2;margin-left:16px;margin-right:16px}
-  .hero-head{position:absolute;z-index:3;left:0;right:0;top:calc(var(--nav-h) + 54px);padding:0 16px;align-items:center;text-align:center;gap:8px}
+  .hero-head{position:absolute;z-index:3;left:0;right:0;top:calc(var(--nav-h) + 36px + 17.1vw - min(6.19vw, 36.5px));padding:0 16px;align-items:center;text-align:center;gap:8px}
   .hero-head .hero-title{margin:0;font-size:15vw;line-height:.95;text-shadow:0 4px 24px rgba(8,6,12,.55)}
   .hero-head .hero-sub{max-width:30ch;font-size:15px;text-shadow:0 2px 12px rgba(8,6,12,.8)}
   .hero-reel-shade{display:block;position:absolute;left:0;right:0;top:0;height:46%;z-index:1;pointer-events:none;
@@ -3124,4 +3124,4 @@ html:not(.gated) .hero-reel{animation:reelIn 1.1s cubic-bezier(.2,.8,.2,1) both}
 /* Логотип «Beauty Games by Verbova Iryna» замість текстової назви */
 .hero-logo-h{margin:0}
 .hero-logo-h img{display:block;width:min(560px,100%);height:auto;filter:drop-shadow(0 6px 26px rgba(255,46,136,.35))}
-@media (max-width:999px){.hero-head .hero-logo-h img{width:88vw;max-width:520px;margin:0 auto;filter:drop-shadow(0 4px 18px rgba(8,6,12,.7))}}
+@media (max-width:999px){.hero-head .hero-logo-h img{width:88vw;max-width:520px;margin:0 auto;transform:translateX(-3.2%);filter:drop-shadow(0 4px 18px rgba(8,6,12,.7))}} /* треугольник BG — по центру екрана: BEAUTY довше за GAMES */
