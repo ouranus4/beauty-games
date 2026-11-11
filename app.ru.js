@@ -280,7 +280,15 @@
   var startReel = function () {
     if (!heroReel || heroReel.src) return;
     heroReel.src = heroReel.getAttribute('data-src');
-    heroReel.addEventListener('ended', function () { heroReel.parentNode.classList.add('done'); });
+    // Після вступу — безшовна петля: Ірина стоїть, призи навколо летять
+    var heroLoop = $('#heroLoop');
+    if (heroLoop) { heroLoop.src = heroLoop.getAttribute('data-src'); heroLoop.load(); }
+    heroReel.addEventListener('ended', function () {
+      if (!heroLoop) { heroReel.parentNode.classList.add('done'); return; }
+      var q = heroLoop.play();
+      var show = function () { heroLoop.classList.add('on'); };
+      if (q && q.then) q.then(show, function () { heroReel.parentNode.classList.add('done'); }); else show();
+    });
     var r = heroReel.play();
     if (r && r.catch) r.catch(function () {});
   };

@@ -10,7 +10,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800;900&family=Oswald:wght@400;500;600&family=Manrope:wght@400;500;600;700&family=Pixelify+Sans:wght@400..700&family=JetBrains+Mono:wght@400;500;700&display=swap">
 <link rel="stylesheet" href="styles.css?v=ad1ccce0">
-<link rel="stylesheet" href="squid.css?v=3330168b">
+<link rel="stylesheet" href="squid.css?v=5b0768d0">
 
 <!-- SPRITE -->
 <div class="preloader" id="preloader">
@@ -125,14 +125,15 @@
 
 <!-- ============ ГЕРОЙ ============ -->
 <header class="hero" id="top">
-  <!-- Ролик першого блоку: символ, Ірина з призами, повітряний поцілунок; грає раз і лишається на Ірині. Вантажимо після заставки. -->
+  <!-- Ролик першого блоку: вступ (символ, Ірина) грає раз, далі безшовна петля — Ірина стоїть, призи летять. Вантажимо після заставки. -->
   <div class="hero-reel" aria-hidden="true">
     <video class="hero-reel-v" id="heroReel" data-src="assets/intro/hero.mp4" poster="assets/intro/hero-poster.jpg" muted playsinline preload="none"></video>
+    <video class="hero-reel-v hero-reel-loop" id="heroLoop" data-src="assets/intro/hero-loop.mp4" muted loop playsinline preload="none"></video>
     <span class="hero-reel-shade"></span>
   </div>
   <div class="wrap hero-inner">
     <div class="hero-head">
-      <h1 class="h-xl hero-title">Beauty <span class="glow">Games</span></h1>
+      <h1 class="hero-title hero-logo-h"><img src="assets/logo-horizontal.svg" alt="Beauty Games by Verbova Iryna" width="576" height="81"></h1>
       <p class="hero-sub">Перше реаліті-шоу та бізнес-навчання для б'юті-майстрів</p>
     </div>
     <p class="lede hero-lede">Реаліті-шоу, бізнес-навчання і онлайн-чемпіонат в одному сезоні. Три місяці ти прокачуєш бізнес, змагаєшся у своїй категорії і стаєш помітною на ринку.</p>
@@ -1370,5 +1371,5 @@
 </div>
 
 <script src="leads.js?v=15ac5189"></script>
-<script src="app.js?v=a4f41372"></script>
+<script src="app.js?v=0ec9698a"></script>
 <script src="fx.js?v=b9217507"></script>

@@ -3117,3 +3117,11 @@ html:not(.gated) .hero-reel{animation:reelIn 1.1s cubic-bezier(.2,.8,.2,1) both}
 }
 @keyframes titleIn{0%{opacity:0;transform:scale(.7);letter-spacing:.3em;filter:blur(10px)}60%{opacity:1;filter:blur(0)}100%{opacity:1;transform:none;letter-spacing:-.01em;filter:none}}
 @media (prefers-reduced-motion:reduce){.hero-reel.done .hero-reel-v,.hero-reel.done::before{animation:none}html:not(.gated) .hero-inner>.hero-title{animation:none}}
+
+/* Петля поверх вступу: показуємо, коли вступ дограв */
+.hero-reel-loop{position:absolute;inset:0;opacity:0;transition:opacity .15s linear}
+.hero-reel-loop.on{opacity:1}
+/* Логотип «Beauty Games by Verbova Iryna» замість текстової назви */
+.hero-logo-h{margin:0}
+.hero-logo-h img{display:block;width:min(560px,100%);height:auto;filter:drop-shadow(0 6px 26px rgba(255,46,136,.35))}
+@media (max-width:999px){.hero-head .hero-logo-h img{width:88vw;max-width:520px;margin:0 auto;filter:drop-shadow(0 4px 18px rgba(8,6,12,.7))}}
