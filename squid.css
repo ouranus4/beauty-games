@@ -3787,3 +3787,6 @@ body{touch-action:pan-y pinch-zoom;overscroll-behavior-x:none}
   .sec:has(.seatbar) .sec-head .h-lg{position:relative;z-index:2;max-width:68%;text-shadow:0 2px 12px #08060C}
 }
 .arcv-fp{width:64px;height:64px;filter:drop-shadow(0 0 3px #FF2E88) drop-shadow(0 0 12px rgba(255,46,136,.85))!important}
+.arcv-fp{width:40px!important;height:40px!important}
+.arcv-tap{width:96px;height:96px}
+.arcv-tap::before{inset:18px}
