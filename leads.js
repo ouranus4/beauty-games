@@ -129,7 +129,9 @@ window.BG_LEADS_URL_FORMS = ['earn'];
     var jobs = [];
     if (window.BG_LEADS_EMAIL) jobs.push(viaEmail(p));
     // запасне сповіщення через @email2telegrambot (ліміт 30/міс) — лише поки немає свого бота через BG_LEADS_URL
-    var toScript = window.BG_LEADS_URL && (window.BG_LEADS_URL_FORMS || []).indexOf(form) >= 0;
+    // Black Friday (/black-friday) — у ту саму Google Таблицю й Telegram-бот, що й калькулятор (вкладка «Бронювання»)
+    var isBF = form === 'participant' && /Black Friday/.test(p.source || '');
+    var toScript = window.BG_LEADS_URL && ((window.BG_LEADS_URL_FORMS || []).indexOf(form) >= 0 || isBF);
     if (window.BG_LEADS_PING && !toScript) viaPing(p);
     if (toScript) jobs.push(viaScript(p));
 
