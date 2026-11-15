@@ -50,6 +50,11 @@
 .pack-vip .rows{border-top-color:rgba(120,80,20,.3)}
 .bf-l1{white-space:normal!important;line-height:1.45}
 .bf-l1 s{opacity:.6;font-weight:500}
+@media (max-width:999px){
+  .hero-head{position:static;order:-1;padding:calc(var(--nav-h,64px) + 18px) 16px 16px}
+  .hero-reel{margin:0 0 22px}
+  .hero-reel-shade{display:none!important}
+}
 .bf-irina{margin:24px 0 0;font-size:15px;line-height:1.6;color:var(--muted)}
 .bf-irina b{color:var(--white)}.bf-irina a{color:#FF2E88}
 </style>
@@ -135,7 +140,7 @@
 <!-- ============ ГЕРОЙ ============ -->
 <header class="hero" id="top">
   <div class="hero-reel done" aria-hidden="true">
-    <video class="hero-reel-v" src="assets/bf/bf-hero.mp4" poster="assets/bf/bf-hero-poster.jpg" autoplay muted loop playsinline preload="auto"></video>
+    <video class="hero-reel-v" id="bfReel" src="assets/bf/bf-hero2.mp4" poster="assets/bf/bf-hero2-poster.jpg" autoplay muted playsinline preload="auto"></video>
     <span class="hero-reel-shade"></span>
   </div>
   <div class="wrap hero-inner">
