@@ -77,6 +77,10 @@
 .bfg-skip{position:absolute;top:16px;right:16px;z-index:2;font:800 11px/1 "Montserrat",sans-serif;letter-spacing:.09em;text-transform:uppercase;color:rgba(255,255,255,.8);background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.2);border-radius:999px;padding:9px 14px;cursor:pointer}
 html.bfg-on,html.bfg-on body{overflow:hidden}
 @media (prefers-reduced-motion:reduce){.bfg-ring{animation:none}}
+.bf-clamp{position:relative;overflow:hidden;transition:max-height .7s ease}
+.bf-clamp::after{content:"";position:absolute;left:0;right:0;bottom:0;height:180px;background:linear-gradient(180deg,transparent,var(--bf-fade,#08060C));pointer-events:none;transition:opacity .4s ease}
+.bf-clamp.open::after{opacity:0}
+.bf-more{display:flex;margin:18px auto 0;position:relative;z-index:2}
 .bf-irina{margin:24px 0 0;font-size:15px;line-height:1.6;color:var(--muted)}
 .bf-irina b{color:var(--white)}.bf-irina a{color:#FF2E88}
 </style>
@@ -938,6 +942,39 @@ html.bfg-on,html.bfg-on body{overflow:hidden}
     reel.addEventListener('ended', showLogo);
     reel.addEventListener('error', showLogo);
   }
+
+  // Довгі блоки — згортаємо до головного, решта під «Детальніше»
+  ['season', 'founders', 'program', 'champ'].forEach(function (id) {
+    var sec = $(id); if (!sec) return;
+    var wrap = sec.querySelector('.wrap'); if (!wrap) return;
+    var kids = Array.prototype.filter.call(wrap.children, function (c) { return !c.classList.contains('sec-head'); });
+    if (!kids.length) return;
+    var box = document.createElement('div'); box.className = 'bf-clamp';
+    wrap.insertBefore(box, kids[0]);
+    kids.forEach(function (c) { box.appendChild(c); });
+    var bg = 'rgba(0, 0, 0, 0)', el = sec;
+    while (el && (bg === 'rgba(0, 0, 0, 0)' || bg === 'transparent')) { bg = getComputedStyle(el).backgroundColor; el = el.parentElement; }
+    box.style.setProperty('--bf-fade', bg === 'rgba(0, 0, 0, 0)' ? '#08060C' : bg);
+    var btn = document.createElement('button'); btn.type = 'button'; btn.className = 'btn btn-ghost bf-more'; btn.textContent = 'Детальніше';
+    wrap.appendChild(btn);
+    function limit() { return Math.round(window.innerHeight * (window.innerWidth < 1000 ? 1.25 : 0.95)); }
+    function apply() {
+      if (box.classList.contains('open')) return;
+      var full = box.scrollHeight;
+      if (full < limit() * 1.4) { box.style.maxHeight = ''; box.classList.add('open'); btn.style.display = 'none'; return; }
+      box.style.maxHeight = limit() + 'px';
+    }
+    btn.addEventListener('click', function () {
+      if (box.classList.contains('open')) {
+        box.classList.remove('open'); box.style.maxHeight = limit() + 'px'; btn.textContent = 'Детальніше';
+        sec.scrollIntoView({ block: 'start' });
+      } else {
+        box.style.maxHeight = box.scrollHeight + 'px'; box.classList.add('open'); btn.textContent = 'Згорнути';
+        setTimeout(function () { if (box.classList.contains('open')) box.style.maxHeight = 'none'; }, 750);
+      }
+    });
+    apply(); window.addEventListener('load', apply);
+  });
 
   // Персональне посилання куратора: black-friday.html?from=Ім'я
   try {
