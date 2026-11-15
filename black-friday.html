@@ -54,10 +54,12 @@
   .hero-head{display:none!important}
   .hero-reel{margin:0 0 22px}
   .hero-reel-shade{display:none!important}
-  .hero-inner>.hero-lede{margin-top:-30vw!important;position:relative;z-index:5}
+  .hero-inner>.hero-lede{margin-top:-45vw!important;position:relative;z-index:5}
+  .hero-inner>.hero-lede,.hero-inner>.hero-cta,.hero-inner>.countdown{opacity:0!important;transform:translateY(14px)!important;transition:opacity .9s ease,transform .9s ease;animation:none!important}
+  html.bf-shown .hero-inner>.hero-lede,html.bf-shown .hero-inner>.hero-cta,html.bf-shown .hero-inner>.countdown{opacity:1!important;transform:none!important}
   .bf-reel-logo{width:88%}
 }
-.bf-reel-logo{position:absolute;z-index:4;left:50%;top:60%;width:86%;max-width:540px;height:auto;transform:translate(-50%,10px);opacity:0;transition:opacity 1.2s ease,transform 1.2s ease;filter:drop-shadow(0 0 18px rgba(255,46,136,.55));pointer-events:none}
+.bf-reel-logo{position:absolute;z-index:4;left:50%;top:63%;width:86%;max-width:540px;height:auto;transform:translate(-50%,10px);opacity:0;transition:opacity 1.2s ease,transform 1.2s ease;filter:drop-shadow(0 0 18px rgba(255,46,136,.55));pointer-events:none}
 .bf-reel-logo.on{opacity:1;transform:translate(-50%,0)}
 .bfg{position:fixed;inset:0;z-index:10000;background:#000;display:flex;align-items:center;justify-content:center;transition:opacity .9s ease}
 .bfg.out{opacity:0;pointer-events:none}
@@ -818,7 +820,8 @@ html.bfg-on,html.bfg-on body{overflow:hidden}
     gate.classList.add('out');
     document.documentElement.classList.remove('bfg-on');
     setTimeout(function () { gate.style.display = 'none'; try { gv.pause(); } catch (e) {} }, 950);
-    if (hero) { var p = hero.play(); if (p && p.catch) p.catch(function () {}); }
+    if (hero) { var p = hero.play(); if (p && p.catch) p.catch(function () { document.documentElement.classList.add('bf-shown'); var l = $('bfReelLogo'); if (l) l.classList.add('on'); }); }
+    else document.documentElement.classList.add('bf-shown');
   }
   function openSeal() {
     if (opened) return; opened = true;
@@ -843,7 +846,8 @@ html.bfg-on,html.bfg-on body{overflow:hidden}
   // Логотип BEAUTY GAMES внизу ролика — з'являється, коли з пилу складається напис
   var reel = $('bfReel'), rl = $('bfReelLogo');
   if (reel && rl) {
-    var showLogo = function () { rl.classList.add('on'); };
+    var showLogo = function () { rl.classList.add('on'); document.documentElement.classList.add('bf-shown'); };
+    reel.addEventListener('play', function () { setTimeout(showLogo, 9000); });
     reel.addEventListener('timeupdate', function () { if (reel.currentTime > 7.2) showLogo(); });
     reel.addEventListener('ended', showLogo);
     reel.addEventListener('error', showLogo);
