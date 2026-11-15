@@ -54,7 +54,11 @@
   .hero-head{display:none!important}
   .hero-reel{margin:0 0 22px}
   .hero-reel-shade{display:none!important}
+  .hero-inner>.hero-lede{margin-top:0!important}
+  .bf-reel-logo{bottom:7%;width:72%}
 }
+.bf-reel-logo{position:absolute;z-index:4;left:50%;bottom:6.5%;width:76%;max-width:420px;height:auto;transform:translate(-50%,10px);opacity:0;transition:opacity 1s ease,transform 1s ease;filter:drop-shadow(0 0 18px rgba(255,46,136,.55));pointer-events:none}
+.bf-reel-logo.on{opacity:1;transform:translate(-50%,0)}
 .bf-irina{margin:24px 0 0;font-size:15px;line-height:1.6;color:var(--muted)}
 .bf-irina b{color:var(--white)}.bf-irina a{color:#FF2E88}
 </style>
@@ -140,7 +144,8 @@
 <!-- ============ ГЕРОЙ ============ -->
 <header class="hero" id="top">
   <div class="hero-reel done" aria-hidden="true">
-    <video class="hero-reel-v" id="bfReel" src="assets/bf/bf-hero3.mp4" poster="assets/bf/bf-hero3-poster.jpg" autoplay muted playsinline preload="auto"></video>
+    <video class="hero-reel-v" id="bfReel" src="assets/bf/bf-hero4.mp4" poster="assets/bf/bf-hero4-poster.jpg" autoplay muted playsinline preload="auto"></video>
+    <img class="bf-reel-logo" id="bfReelLogo" src="assets/logo-horizontal.svg" alt="Beauty Games by Verbova Iryna" width="576" height="81">
     <span class="hero-reel-shade"></span>
   </div>
   <div class="wrap hero-inner">
@@ -775,6 +780,16 @@
     $('bfS').textContent = pad(t % 60);
   }
   tick(); setInterval(tick, 1000);
+
+  // Логотип BEAUTY GAMES внизу ролика — з'являється, коли з пилу складається напис
+  var reel = $('bfReel'), rl = $('bfReelLogo');
+  if (reel && rl) {
+    var showLogo = function () { rl.classList.add('on'); };
+    reel.addEventListener('timeupdate', function () { if (reel.currentTime > 5.6) showLogo(); });
+    reel.addEventListener('ended', showLogo);
+    reel.addEventListener('error', showLogo);
+    setTimeout(function () { if (reel.paused && reel.currentTime < 0.1) showLogo(); }, 2500);
+  }
 
   // Персональне посилання куратора: black-friday.html?from=Ім'я
   try {
