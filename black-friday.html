@@ -1025,7 +1025,7 @@ html.bfg-on,html.bfg-on body{overflow:hidden}
     if (gv.currentTime < PAUSE_AT - 0.2) gv.currentTime = PAUSE_AT;
     var p = gv.play(); if (p && p.catch) p.catch(function () { closeGate(); });
   }
-  var seen = false; try { seen = sessionStorage.getItem('bfGateSeen') === '1'; } catch (e) {}
+  var seen = false; // заставка з конвертом — при кожному відкритті сторінки
   if (gate && gv && seen) { gate.style.display = 'none'; document.documentElement.classList.remove('bfg-on'); gv.removeAttribute('src'); if (hero) { var ph = hero.play(); if (ph && ph.catch) ph.catch(function () { document.documentElement.classList.add('bf-shown'); }); } }
   else if (gate && gv) {
     gv.addEventListener('timeupdate', function () {
