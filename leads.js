@@ -21,7 +21,8 @@ window.BG_LEADS_URL_FORMS = ['earn'];
     calc: 'Beauty Games: контакт із калькулятора',
     ambassador: 'Beauty Games: відповідь на запрошення амбасадора',
     profile: 'Beauty Games: контакт із гайду «Дорога упаковка профілю»',
-    earn: 'Beauty Games: контакт із калькулятора «Скільки заробляєте»'
+    earn: 'Beauty Games: контакт із калькулятора «Скільки заробляєте»',
+    blackfriday: 'Beauty Games: BLACK FRIDAY — нова заявка (за запрошенням)'
   };
 
   // Назви полів у листі — людською мовою, в тому ж порядку
@@ -127,10 +128,11 @@ window.BG_LEADS_URL_FORMS = ['earn'];
     if (window.fbq) window.fbq('track', 'Lead', { content_name: form });
 
     var jobs = [];
+    // Black Friday (/black-friday) — у ту саму Google Таблицю й Telegram-бот, що й калькулятор (вкладка «Black Friday»)
+    var isBF = form === 'participant' && /Black Friday/.test(p.source || '');
+    if (isBF) p.form = 'blackfriday';   // окрема вкладка «Black Friday» і окреме повідомлення в Telegram
     if (window.BG_LEADS_EMAIL) jobs.push(viaEmail(p));
     // запасне сповіщення через @email2telegrambot (ліміт 30/міс) — лише поки немає свого бота через BG_LEADS_URL
-    // Black Friday (/black-friday) — у ту саму Google Таблицю й Telegram-бот, що й калькулятор (вкладка «Бронювання»)
-    var isBF = form === 'participant' && /Black Friday/.test(p.source || '');
     var toScript = window.BG_LEADS_URL && ((window.BG_LEADS_URL_FORMS || []).indexOf(form) >= 0 || isBF);
     if (window.BG_LEADS_PING && !toScript) viaPing(p);
     if (toScript) jobs.push(viaScript(p));
