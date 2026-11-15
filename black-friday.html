@@ -111,9 +111,9 @@ html.bfg-on,html.bfg-on body{overflow:hidden}
 .bf-intro{display:block!important;max-width:760px!important}
 .bf-proof-sec{padding-top:10px!important;padding-bottom:10px!important}
 .bf-proof{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
-.bf-proof>div{padding:18px 16px;border-radius:18px;background:rgba(255,255,255,.04);border:1px solid rgba(255,46,136,.3);text-align:center}
-.bf-proof b{display:block;font:900 clamp(34px,4vw,46px)/1 Montserrat,sans-serif;color:#FF2E88;text-shadow:0 0 22px rgba(255,46,136,.45)}
-.bf-proof span{display:block;margin-top:8px;font-size:13.5px;line-height:1.4;color:var(--muted)}
+.bf-proof>div{display:flex;flex-direction:column;align-items:center;padding:18px 14px 20px;border-radius:22px;background:#fff;border:0;text-align:center;box-shadow:0 14px 36px rgba(194,0,95,.22)}
+.bf-proof b{display:flex;align-items:center;justify-content:center;min-width:96px;height:96px;padding:0 14px;border-radius:24px;background:linear-gradient(145deg,#FF6FB0,#FF2E88 55%,#C40C62);box-shadow:0 12px 30px rgba(255,46,136,.45),inset 0 1px 0 rgba(255,255,255,.35);font:900 44px/1 Montserrat,sans-serif;color:#fff;letter-spacing:-.03em;text-shadow:none}
+.bf-proof span{display:block;margin-top:12px;font-size:13.5px;line-height:1.4;color:#4A3443;font-weight:600}
 @media (max-width:760px){.bf-proof{grid-template-columns:repeat(2,minmax(0,1fr))}}
 .bf-bridge{display:flex;align-items:center;justify-content:center;gap:10px;margin:30px auto 0;max-width:560px;text-align:center;font:800 15px/1.35 Montserrat,sans-serif;color:#FF2E88;text-decoration:none}
 .sec-light .bf-bridge{color:#D6006F}
