@@ -6,7 +6,11 @@
 <meta name="robots" content="noindex">
 <meta property="og:title" content="Black Friday у Beauty Games">
 <meta property="og:description" content="−25% на «Бізнес», −30% на VIP для запрошених амбасадорками. 50% зараз — решта 21 грудня.">
-<meta property="og:image" content="https://beauty-games.pro/assets/bf/bf-box.webp">
+<meta property="og:image" content="https://beauty-games.pro/assets/bf/bf-og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
 <meta property="og:url" content="https://beauty-games.pro/black-friday.html">
 <script>document.documentElement.setAttribute('data-page','main');document.documentElement.lang='uk';</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -89,6 +93,14 @@ html.bfg-on,html.bfg-on body{overflow:hidden}
 .bf-short:not(.bf-full) .champ-get{display:none!important}
 @media (max-width:760px){#how .sec-head .h-lg{white-space:normal!important;font-size:clamp(26px,8vw,36px)}#champ .sec-head .h-lg{font-size:clamp(20px,5.7vw,30px)}}
 @media (min-width:1000px){.bf-aside-ph{max-width:190px}}
+.bf-mini{display:flex;align-items:center;justify-content:center;gap:12px;flex-wrap:wrap;max-width:880px;margin:0 auto 22px;padding:12px 18px;border-radius:16px;background:linear-gradient(135deg,rgba(255,111,176,.16),rgba(196,12,98,.12));border:1px solid rgba(255,46,136,.45)}
+.bf-mini-k{font:800 12px/1 Montserrat,sans-serif;letter-spacing:.09em;text-transform:uppercase;color:#FF6FB0}
+.bf-mini b{font:900 20px/1 Montserrat,sans-serif;color:#fff;font-variant-numeric:tabular-nums;letter-spacing:.02em}
+.form-aside .bf-mini{justify-content:flex-start;margin:14px 0 6px}
+.bf-save span,.bf-save b{font-weight:800!important}
+.pack-biz .bf-save b{color:#fff;background:rgba(255,255,255,.22);padding:3px 9px;border-radius:999px}
+.pack-vip .bf-save b{color:#fff;background:#2A1B06;padding:3px 9px;border-radius:999px}
+.bf-cta-mid{display:flex;justify-content:center;margin-top:18px}
 .bf-irina{margin:24px 0 0;font-size:15px;line-height:1.6;color:var(--muted)}
 .bf-irina b{color:var(--white)}.bf-irina a{color:#FF2E88}
 </style>
@@ -260,6 +272,7 @@ html.bfg-on,html.bfg-on body{overflow:hidden}
     </div>
 
     <p class="stars-note">Наступне ім’я в цьому списку — ваше.</p>
+    <div class="bf-cta-mid"><a href="#prices" class="btn btn-primary">Моє місце за ціною Black Friday</a></div>
   </div>
 </section>
 
@@ -634,6 +647,7 @@ html.bfg-on,html.bfg-on body{overflow:hidden}
       <img src="assets/bf/bf-neon.webp" alt="" width="1000" height="1000" loading="lazy">
     </div>
 
+    <div class="bf-mini rv"><span class="bf-mini-k" data-bfk>До старту Black Friday</span><b data-bfcd>00 дн 00:00:00</b></div>
     <div class="packs bf-packs">
       <!-- БІЗНЕС -->
       <div class="pack pack-biz glass bloom spec featured rv">
@@ -650,6 +664,7 @@ html.bfg-on,html.bfg-on body{overflow:hidden}
         <div class="rows">
           <div class="row"><span>Зараз — 50%</span><b>€595</b></div>
           <div class="row"><span>21 грудня — 50%</span><b>€595</b></div>
+          <div class="row bf-save"><span>Ваша економія</span><b>€400</b></div>
         </div>
         <ul>
           <li><b>Усе з тарифу «Стандарт» — повністю</b></li>
@@ -680,6 +695,7 @@ html.bfg-on,html.bfg-on body{overflow:hidden}
         <div class="rows">
           <div class="row"><span>Зараз — 50%</span><b>€870</b></div>
           <div class="row"><span>21 грудня — 50%</span><b>€870</b></div>
+          <div class="row bf-save"><span>Ваша економія</span><b>€750</b></div>
         </div>
         <ul>
           <li><b>Усе зі «Стандарт» і «Бізнес» — повністю</b></li>
@@ -782,6 +798,7 @@ html.bfg-on,html.bfg-on body{overflow:hidden}
         <img class="bf-aside-ph" src="assets/bf/bf-mask.webp" alt="" width="800" height="1433" loading="lazy">
         <span class="eyebrow">Black Friday · 20.11 — 05.12</span>
         <h2 class="h-lg">Забронюйте<br><span class="glow">своє місце</span></h2>
+        <div class="bf-mini"><span class="bf-mini-k" data-bfk>До старту Black Friday</span><b data-bfcd>00 дн 00:00:00</b></div>
         <p class="lede" style="font-size:15px">Залиште заявку — менеджер напише вам у месенджері, відповість на питання і надішле посилання на оплату першої половини.</p>
         <div class="facts">
           <div class="fact"><span class="b">1</span><span><b>Бізнес €1190, VIP €1740</b> — лише до 5 грудня.</span></div>
@@ -907,6 +924,9 @@ html.bfg-on,html.bfg-on body{overflow:hidden}
     $('bfH').textContent = pad(Math.floor(t % 86400 / 3600));
     $('bfM').textContent = pad(Math.floor(t % 3600 / 60));
     $('bfS').textContent = pad(t % 60);
+    var mini = pad(Math.floor(t / 86400)) + ' дн ' + pad(Math.floor(t % 86400 / 3600)) + ':' + pad(Math.floor(t % 3600 / 60)) + ':' + pad(t % 60);
+    Array.prototype.forEach.call(document.querySelectorAll('[data-bfcd]'), function (e) { e.textContent = mini; });
+    Array.prototype.forEach.call(document.querySelectorAll('[data-bfk]'), function (e) { e.textContent = before ? 'До старту Black Friday' : (now <= END ? 'До кінця Black Friday' : 'Black Friday завершилась'); });
   }
   tick(); setInterval(tick, 1000);
 
@@ -916,6 +936,7 @@ html.bfg-on,html.bfg-on body{overflow:hidden}
   if (hero) { hero.removeAttribute('autoplay'); try { hero.pause(); hero.currentTime = 0; } catch (e) {} }
   function closeGate() {
     if (!gate || gate.classList.contains('out')) return;
+    try { sessionStorage.setItem('bfGateSeen', '1'); } catch (e) {}
     gate.classList.add('out');
     document.documentElement.classList.remove('bfg-on');
     setTimeout(function () { gate.style.display = 'none'; try { gv.pause(); } catch (e) {} }, 950);
@@ -929,7 +950,9 @@ html.bfg-on,html.bfg-on body{overflow:hidden}
     if (gv.currentTime < PAUSE_AT - 0.2) gv.currentTime = PAUSE_AT;
     var p = gv.play(); if (p && p.catch) p.catch(function () { closeGate(); });
   }
-  if (gate && gv) {
+  var seen = false; try { seen = sessionStorage.getItem('bfGateSeen') === '1'; } catch (e) {}
+  if (gate && gv && seen) { gate.style.display = 'none'; document.documentElement.classList.remove('bfg-on'); gv.removeAttribute('src'); if (hero) { var ph = hero.play(); if (ph && ph.catch) ph.catch(function () { document.documentElement.classList.add('bf-shown'); }); } }
+  else if (gate && gv) {
     gv.addEventListener('timeupdate', function () {
       if (!opened && gv.currentTime >= PAUSE_AT) { gv.pause(); gate.classList.add('wait'); }
       if (opened && gv.currentTime >= 7.55) closeGate();
