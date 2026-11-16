@@ -3810,5 +3810,23 @@ body{touch-action:pan-y pinch-zoom;overscroll-behavior-x:none}
 .bf-short:not(.bf-full) .champ-get{display:none!important}
 @media (max-width:760px){#champ .sec-head .h-lg{font-size:clamp(20px,5.7vw,30px)}}
 #experts .pcard-ph img{filter:none!important}
-.bf-proof .bfp-ic{display:block;width:58px;height:58px;object-fit:contain;margin:-4px 0 10px -4px;filter:drop-shadow(0 8px 14px rgba(255,46,136,.28))}
-@media (max-width:760px){.bf-proof .bfp-ic{width:48px;height:48px;margin-bottom:8px}}
+
+/* Цифри під першим екраном — як «Сезон 2026 у цифрах»: іконка поруч із цифрою, текст під ними */
+.bf-stats{grid-template-columns:repeat(4,minmax(0,1fr))!important;gap:12px}
+.bf-stats .stat{display:grid!important;grid-template-columns:auto minmax(0,1fr);column-gap:12px;row-gap:0;align-items:center;align-content:start;padding:18px 18px 20px!important}
+.bf-stats .stat .stat-ic{grid-column:1;grid-row:1;width:64px;height:64px;margin:0;filter:none!important}
+.bf-stats .stat .v{grid-column:2;grid-row:1}
+.bf-stats .stat .u,.bf-stats .stat .k{grid-column:1/-1}
+.bf-stats .stat .u{margin-top:10px}
+.bf-stats .stat .k{margin-top:4px}
+.bf-stats .stat:last-child{grid-column:auto!important}
+@media (max-width:760px){
+  .bf-stats{grid-template-columns:1fr 1fr!important;gap:10px}
+  .bf-stats .stat{padding:14px 14px 16px!important;column-gap:8px}
+  .bf-stats .stat .stat-ic,.bf-stats .stat:last-child .stat-ic{width:46px!important;height:46px!important;margin:0!important;grid-row:1!important}
+  .bf-stats .stat .v{font-size:clamp(34px,10vw,44px)!important}
+  .bf-stats .stat:last-child{display:grid!important;grid-template-columns:auto minmax(0,1fr)!important}
+  .bf-stats .stat:last-child>*:not(.stat-ic){grid-column:auto}
+  .bf-stats .stat:last-child .v{grid-column:2}
+  .bf-stats .stat:last-child .u,.bf-stats .stat:last-child .k{grid-column:1/-1}
+}
