@@ -3866,3 +3866,11 @@ body{touch-action:pan-y pinch-zoom;overscroll-behavior-x:none}
 
 @media (max-width:760px){.pgrid-row .pcard-ph img.is-logo{object-fit:contain;object-position:center;padding:6px}}
 .pgrid-row .pcard-ph img.is-logo{object-fit:contain;object-position:center;padding:10px}
+
+/* Рядок фактів у списку експертів: велика цифра + підпис */
+@media (max-width:760px){
+  .pgrid-row .pcard-hook{display:flex;gap:14px;margin-top:4px}
+  .pgrid-row .pcard-hook .st{display:flex;flex-direction:column;gap:2px;min-width:0;flex:1}
+  .pgrid-row .pcard-hook .st b{font:900 17px/1.05 Montserrat,sans-serif;color:#FF2E88;letter-spacing:-.01em;white-space:nowrap}
+  .pgrid-row .pcard-hook .st>span{font-size:11px;line-height:1.25;color:#6B6478}
+}
