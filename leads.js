@@ -9,7 +9,8 @@
 window.BG_LEADS_EMAIL = 'beautygames.pro@gmail.com';
 // Сповіщення в робочий чат менеджерів: @email2telegrambot пересилає лист
 // у групу. Шлемо коротко — звідки заявка і як зв'язатися; решта в пошті.
-window.BG_LEADS_PING = 'group-5500606997@e2t.link';
+// Група «BG заявки сайт» (стара «Заявки Beauty Games» стала супергрупою 20.09 і більше не отримує)
+window.BG_LEADS_PING = 'group-5508883621@e2t.link';
 // Окрема Telegram-група «BG заявки Black Friday» — тільки заявки з /black-friday
 window.BG_LEADS_PING_BF = 'group-1004494100276@e2t.link';
 // Окрема Telegram-група «BG заявки Калькулятор» — контакти з /calculator і /earn
@@ -82,7 +83,7 @@ window.BG_LEADS_URL_BF = 'https://script.google.com/macros/s/AKfycbwF5A4k7hhgBgt
       headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
       body: JSON.stringify(clean({
         _subject: p.form === 'blackfriday' ? '🖤 BLACK FRIDAY — нова заявка' : (p.form === 'calc' || p.form === 'earn') ? '🧮 Калькулятор — новий контакт' : 'Beauty Games: нова заявка — ' + t,
-        _template: to ? 'basic' : 'table',   // в окремих Telegram-групах «basic» показує назви полів
+        _template: 'basic',   // у Telegram «basic» показує назви полів, «table» їх губить
         _captcha: 'false',
         Заявка: t,
         "Ім'я": p.name || '',
