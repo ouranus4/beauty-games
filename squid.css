@@ -3829,3 +3829,6 @@ body{touch-action:pan-y pinch-zoom;overscroll-behavior-x:none}
 .hero-cta{flex-wrap:wrap}
 @media (prefers-reduced-motion:reduce){.bf-bridge span{animation:none}}
 @media (max-width:999px){.hero-lede .hero-l1{white-space:normal;font-size:clamp(14px,4vw,17px);line-height:1.35}}
+.trio-note{max-width:760px;margin:22px auto 0;padding:14px 18px;border-radius:16px;background:rgba(255,46,136,.08);border:1px solid rgba(255,46,136,.3);font-size:15px;line-height:1.55;color:var(--muted);text-align:center}
+.trio-note b{color:#fff}
+#about .newfmt{margin-top:34px}

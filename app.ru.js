@@ -1409,7 +1409,7 @@
         out.push({ k: 'Шаг 3', t: 'Отметьте, что мешает расти', d: 'Восемь пунктов — и увидите свою зону', h: '#about' });
       }
       if (!missionOn) {
-        out.push({ k: 'Шаг 4', t: 'Выберите свою миссию', d: 'Под неё подберём формат участия', h: '#format' });
+        out.push({ k: 'Шаг 4', t: 'Выберите свою миссию', d: 'Под неё подберём формат участия', h: '#packages' });
       }
 
       // далі — персональні поради з того, що вже обрано
@@ -1643,7 +1643,7 @@
      ============================================================ */
   (function () {
     var bar = $('.mobile-bar');
-    var from = $('#format');
+    var from = $('#format') || $('#how');
     if (!bar || !from) return;
     var check = function () {
       var top = from.getBoundingClientRect().top;
@@ -1702,7 +1702,7 @@
     var wrap = sec.querySelector('.wrap'); if (!wrap) return;
     sec.classList.add('bf-short');
     var btn = document.createElement('button'); btn.type = 'button'; btn.className = 'btn btn-ghost bf-more'; btn.textContent = 'Подробнее';
-    wrap.insertBefore(btn, wrap.querySelector('.bf-bridge'));
+    wrap.insertBefore(btn, wrap.querySelector('.trio-note, .bf-bridge'));
     btn.addEventListener('click', function () {
       var full = sec.classList.toggle('bf-full');
       btn.textContent = full ? 'Свернуть' : 'Подробнее';
