@@ -3863,3 +3863,6 @@ body{touch-action:pan-y pinch-zoom;overscroll-behavior-x:none}
   .pgrid-row .pcard-hook{display:block;font-size:13px;line-height:1.35;color:#5A4F63}
   .pgrid-row .pcard::after{content:"›";grid-column:3;grid-row:1;justify-self:end;font:700 26px/1 Montserrat,sans-serif;color:#FF2E88}
 }
+
+@media (max-width:760px){.pgrid-row .pcard-ph img.is-logo{object-fit:contain;object-position:center;padding:6px}}
+.pgrid-row .pcard-ph img.is-logo{object-fit:contain;object-position:center;padding:10px}
