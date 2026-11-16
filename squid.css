@@ -3830,3 +3830,8 @@ body{touch-action:pan-y pinch-zoom;overscroll-behavior-x:none}
   .bf-stats .stat:last-child .v{grid-column:2}
   .bf-stats .stat:last-child .u,.bf-stats .stat:last-child .k{grid-column:1/-1}
 }
+/* слово під цифрою, праворуч від іконки */
+.bf-stats .stat .stat-ic,.bf-stats .stat:last-child .stat-ic{grid-column:1!important;grid-row:1/3!important;align-self:center}
+.bf-stats .stat .v,.bf-stats .stat:last-child .v{grid-column:2!important;grid-row:1!important;align-self:end}
+.bf-stats .stat .u,.bf-stats .stat:last-child .u{grid-column:2!important;grid-row:2!important;margin-top:4px!important;align-self:start}
+.bf-stats .stat .k,.bf-stats .stat:last-child .k{grid-column:1/-1!important;grid-row:3!important;margin-top:10px!important}
