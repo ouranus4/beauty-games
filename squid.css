@@ -3818,3 +3818,14 @@ body{touch-action:pan-y pinch-zoom;overscroll-behavior-x:none}
   .stats.bf-stats .stat:last-child{grid-column:auto;display:flex;flex-direction:column;align-items:flex-start}
   .stats.bf-stats .stat:last-child .stat-ic{width:62px;height:62px;margin:0 0 8px -4px}
 }
+
+/* Містки між блоками, заклик посередині, мікротекст під кнопкою (як на /black-friday) */
+.bf-bridge{display:flex;align-items:center;justify-content:center;gap:10px;margin:30px auto 0;max-width:560px;text-align:center;font:800 15px/1.35 Montserrat,sans-serif;color:#FF2E88;text-decoration:none}
+.sec-light .bf-bridge{color:#D6006F}
+.bf-bridge span{display:inline-block;animation:bfBounce 1.6s ease-in-out infinite}
+@keyframes bfBounce{0%,100%{transform:translateY(0)}50%{transform:translateY(5px)}}
+.bf-cta-mid{display:flex;justify-content:center;margin-top:18px}
+.bf-micro{display:block;width:100%;margin-top:8px;font-size:12.5px;color:var(--muted);letter-spacing:.02em}
+.hero-cta{flex-wrap:wrap}
+@media (prefers-reduced-motion:reduce){.bf-bridge span{animation:none}}
+@media (max-width:999px){.hero-lede .hero-l1{white-space:normal;font-size:clamp(14px,4vw,17px);line-height:1.35}}
