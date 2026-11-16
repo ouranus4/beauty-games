@@ -15,6 +15,8 @@ window.BG_LEADS_PING_BF = 'group-1004494100276@e2t.link';
 window.BG_LEADS_URL = 'https://script.google.com/macros/s/AKfycby6AqSiF9ECT73he1AXcqWCfHNw8jiS9DPEqyEj-2niqJ9w0dRe_qR8DXjANs9Y-y4_/exec';
 // Які форми йдуть у таблицю й бота з BG_LEADS_URL. Решта — як раніше: пошта + сповіщення.
 window.BG_LEADS_URL_FORMS = ['earn'];
+// Окрема таблиця для Black Friday (код: Заявки_Telegram/Black_Friday_таблица.gs). Порожньо — BF іде в BG_LEADS_URL.
+window.BG_LEADS_URL_BF = 'https://script.google.com/macros/s/AKfycbwF5A4k7hhgBgt4eiMTWJ8e5ayoWMeQmvgz9jeT8xzCq8wv3hfjSB6oQydCDL6eqaLL/exec';
 
 (function () {
   var SUBJECT = {
@@ -102,9 +104,9 @@ window.BG_LEADS_URL_FORMS = ['earn'];
     return r;
   }
 
-  function viaScript(p) {
+  function viaScript(p, url) {
     // text/plain — простий запит без CORS-перевірки, Apps Script його приймає
-    return fetch(window.BG_LEADS_URL, {
+    return fetch(url || window.BG_LEADS_URL, {
       method: 'POST',
       headers: { 'Content-Type': 'text/plain;charset=utf-8' },
       body: JSON.stringify(p)
@@ -144,10 +146,12 @@ window.BG_LEADS_URL_FORMS = ['earn'];
     if (isBF) p.form = 'blackfriday';   // окрема вкладка «Black Friday» і окреме повідомлення в Telegram
     if (window.BG_LEADS_EMAIL) jobs.push(viaEmail(p));
     // запасне сповіщення через @email2telegrambot (ліміт 30/міс) — лише поки немає свого бота через BG_LEADS_URL
-    var toScript = window.BG_LEADS_URL && ((window.BG_LEADS_URL_FORMS || []).indexOf(form) >= 0 || isBF);
+    var bfUrl = isBF && window.BG_LEADS_URL_BF;
+    var toScript = window.BG_LEADS_URL && !bfUrl && ((window.BG_LEADS_URL_FORMS || []).indexOf(form) >= 0 || isBF);
     if (window.BG_LEADS_PING && !toScript) viaPing(p);
     if (isBF && window.BG_LEADS_PING_BF) viaPing(p, window.BG_LEADS_PING_BF);
     if (toScript) jobs.push(viaScript(p));
+    if (bfUrl) jobs.push(viaScript(p, bfUrl));
 
     return new Promise(function (resolve, reject) {
       var left = jobs.length, lastErr;
