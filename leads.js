@@ -18,7 +18,7 @@ window.BG_LEADS_PING_CALC = 'group-5308257531@e2t.link';
 // Тест «Точка зростання» (поп-ап на головній + карта гравця на /avatar): своя група й таблиця.
 // Поки порожньо — заявки тесту йдуть як звичайні заявки сайту.
 window.BG_LEADS_PING_TEST = 'group-5213334208@e2t.link';
-window.BG_LEADS_URL_TEST = '';
+window.BG_LEADS_URL_TEST = 'https://script.google.com/macros/s/AKfycbwIwc-EdrhpWgQMW9FneKu723L3MZpCfPNa1fVlUcIxg12l2JmltsJbqoo1UFK0T4FXhQ/exec';
 window.BG_LEADS_URL = 'https://script.google.com/macros/s/AKfycby6AqSiF9ECT73he1AXcqWCfHNw8jiS9DPEqyEj-2niqJ9w0dRe_qR8DXjANs9Y-y4_/exec';
 // Які форми йдуть у таблицю й бота з BG_LEADS_URL. Решта — як раніше: пошта + сповіщення.
 window.BG_LEADS_URL_FORMS = ['earn'];
