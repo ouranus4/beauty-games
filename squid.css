@@ -3790,3 +3790,23 @@ body{touch-action:pan-y pinch-zoom;overscroll-behavior-x:none}
 .arcv-fp{width:40px!important;height:40px!important}
 .arcv-tap{width:96px;height:96px}
 .arcv-tap::before{inset:18px}
+
+/* ===== Блоки з Black Friday на головній: цифри-докази, «Детальніше», кольорові фото експертів ===== */
+.bf-proof-sec{padding-top:10px!important;padding-bottom:10px!important}
+.bf-proof{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+.bf-proof>div{display:flex;flex-direction:column;justify-content:center;padding:20px 16px;border-radius:20px;background:#fff;border:0;text-align:left;box-shadow:0 10px 30px rgba(0,0,0,.35)}
+.bf-proof b{display:block;font:900 clamp(40px,5vw,54px)/1 Montserrat,sans-serif;letter-spacing:-.03em;background:linear-gradient(135deg,#FF6FB0,#FF2E88 50%,#C40C62);-webkit-background-clip:text;background-clip:text;color:transparent;text-shadow:none}
+.bf-proof span{display:block;margin-top:8px;font-size:13.5px;line-height:1.35;color:#2E1E28;font-weight:600}
+@media (max-width:760px){.bf-proof{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.bf-more{display:flex;margin:22px auto 0;position:relative;z-index:2}
+.bf-short:not(.bf-full) .trio-res,
+.bf-short:not(.bf-full) .founder>.founder-q,
+.bf-short:not(.bf-full) .founder>.founder-sub,
+.bf-short:not(.bf-full) .founder>.founder-list,
+.bf-short:not(.bf-full) .founder>p:not(:nth-of-type(1)),
+.bf-short:not(.bf-full) .founder>.founder-more,
+.bf-short:not(.bf-full) .ibv,
+.bf-short:not(.bf-full) .tiles .tile:nth-child(n+7),
+.bf-short:not(.bf-full) .champ-get{display:none!important}
+@media (max-width:760px){#champ .sec-head .h-lg{font-size:clamp(20px,5.7vw,30px)}}
+#experts .pcard-ph img{filter:none!important}

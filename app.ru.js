@@ -1692,3 +1692,21 @@
   });
 
 })();
+
+// Довгі блоки (як на /black-friday): другорядне сховано, кнопка «Детальніше» показує все
+(function () {
+  if (!document.getElementById('proof')) return;   // тільки головна (і /black-friday)
+  ['about', 'season', 'founders', 'champ'].forEach(function (id) {
+    var sec = document.getElementById(id); if (!sec || sec.classList.contains('bf-short')) return;
+    if (!sec.querySelector('.trio-res, .founder, .champ-get')) return;
+    var wrap = sec.querySelector('.wrap'); if (!wrap) return;
+    sec.classList.add('bf-short');
+    var btn = document.createElement('button'); btn.type = 'button'; btn.className = 'btn btn-ghost bf-more'; btn.textContent = 'Подробнее';
+    wrap.insertBefore(btn, wrap.querySelector('.bf-bridge'));
+    btn.addEventListener('click', function () {
+      var full = sec.classList.toggle('bf-full');
+      btn.textContent = full ? 'Свернуть' : 'Подробнее';
+      if (!full) sec.scrollIntoView({ block: 'start' });
+    });
+  });
+})();
