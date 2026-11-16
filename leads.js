@@ -10,6 +10,8 @@ window.BG_LEADS_EMAIL = 'beautygames.pro@gmail.com';
 // Сповіщення в робочий чат менеджерів: @email2telegrambot пересилає лист
 // у групу. Шлемо коротко — звідки заявка і як зв'язатися; решта в пошті.
 window.BG_LEADS_PING = 'group-5500606997@e2t.link';
+// Окрема Telegram-група «BG заявки Black Friday» — тільки заявки з /black-friday
+window.BG_LEADS_PING_BF = 'group-1004494100276@e2t.link';
 window.BG_LEADS_URL = 'https://script.google.com/macros/s/AKfycby6AqSiF9ECT73he1AXcqWCfHNw8jiS9DPEqyEj-2niqJ9w0dRe_qR8DXjANs9Y-y4_/exec';
 // Які форми йдуть у таблицю й бота з BG_LEADS_URL. Решта — як раніше: пошта + сповіщення.
 window.BG_LEADS_URL_FORMS = ['earn'];
@@ -69,9 +71,9 @@ window.BG_LEADS_URL_FORMS = ['earn'];
       });
   }
 
-  function viaPing(p) {
-    var t = { participant: 'бронювання місця', casting: 'кастинг', calc: 'калькулятор', ambassador: 'амбасадор', profile: 'гайд «Упаковка профілю»', earn: 'калькулятор «Скільки заробляєте»' }[p.form] || p.form;
-    return fetch('https://formsubmit.co/ajax/' + window.BG_LEADS_PING, {
+  function viaPing(p, to) {
+    var t = { participant: 'бронювання місця', casting: 'кастинг', calc: 'калькулятор', ambassador: 'амбасадор', blackfriday: 'BLACK FRIDAY (за запрошенням)', profile: 'гайд «Упаковка профілю»', earn: 'калькулятор «Скільки заробляєте»' }[p.form] || p.form;
+    return fetch('https://formsubmit.co/ajax/' + (to || window.BG_LEADS_PING), {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
       body: JSON.stringify({
@@ -85,6 +87,8 @@ window.BG_LEADS_URL_FORMS = ['earn'];
         Контакт: p.contact || '',
         Напрямок: p.skills || p.direction || '',
         Пакет: p.package || '',
+        Месенджер: p.messenger || '',
+        'Хто запросив': p.invited_by || '',
         Відповідь: p.answer || '',
         Деталі: 'уся заявка — на пошті beautygames.pro@gmail.com'
       })
@@ -135,6 +139,7 @@ window.BG_LEADS_URL_FORMS = ['earn'];
     // запасне сповіщення через @email2telegrambot (ліміт 30/міс) — лише поки немає свого бота через BG_LEADS_URL
     var toScript = window.BG_LEADS_URL && ((window.BG_LEADS_URL_FORMS || []).indexOf(form) >= 0 || isBF);
     if (window.BG_LEADS_PING && !toScript) viaPing(p);
+    if (isBF && window.BG_LEADS_PING_BF) viaPing(p, window.BG_LEADS_PING_BF);
     if (toScript) jobs.push(viaScript(p));
 
     return new Promise(function (resolve, reject) {
