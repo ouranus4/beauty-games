@@ -76,7 +76,7 @@ window.BG_LEADS_URL_FORMS = ['earn'];
     return fetch('https://formsubmit.co/ajax/' + (to || window.BG_LEADS_PING), {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-      body: JSON.stringify({
+      body: JSON.stringify(clean({
         _subject: to ? '🖤 BLACK FRIDAY — нова заявка' : 'Beauty Games: нова заявка — ' + t,
         _template: to ? 'basic' : 'table',   // у Telegram-групі Black Friday «basic» показує назви полів
         _captcha: 'false',
@@ -91,8 +91,15 @@ window.BG_LEADS_URL_FORMS = ['earn'];
         'Хто запросив': p.invited_by || '',
         Відповідь: p.answer || '',
         Деталі: 'уся заявка — на пошті beautygames.pro@gmail.com'
-      })
+      }))
     }).catch(function () {});
+  }
+
+  // порожні поля не показуємо
+  function clean(o) {
+    var r = {};
+    Object.keys(o).forEach(function (k) { if (String(o[k]).trim() !== '') r[k] = o[k]; });
+    return r;
   }
 
   function viaScript(p) {
