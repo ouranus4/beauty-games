@@ -15,6 +15,10 @@ window.BG_LEADS_PING = 'group-5508883621@e2t.link';
 window.BG_LEADS_PING_BF = 'group-1004494100276@e2t.link';
 // Окрема Telegram-група «BG заявки Калькулятор» — контакти з /calculator і /earn
 window.BG_LEADS_PING_CALC = 'group-5308257531@e2t.link';
+// Тест «Точка зростання» (поп-ап на головній + карта гравця на /avatar): своя група й таблиця.
+// Поки порожньо — заявки тесту йдуть як звичайні заявки сайту.
+window.BG_LEADS_PING_TEST = '';
+window.BG_LEADS_URL_TEST = '';
 window.BG_LEADS_URL = 'https://script.google.com/macros/s/AKfycby6AqSiF9ECT73he1AXcqWCfHNw8jiS9DPEqyEj-2niqJ9w0dRe_qR8DXjANs9Y-y4_/exec';
 // Які форми йдуть у таблицю й бота з BG_LEADS_URL. Решта — як раніше: пошта + сповіщення.
 window.BG_LEADS_URL_FORMS = ['earn'];
@@ -29,7 +33,8 @@ window.BG_LEADS_URL_BF = 'https://script.google.com/macros/s/AKfycbwF5A4k7hhgBgt
     ambassador: 'Beauty Games: відповідь на запрошення амбасадора',
     profile: 'Beauty Games: контакт із гайду «Дорога упаковка профілю»',
     earn: 'Beauty Games: контакт із калькулятора «Скільки заробляєте»',
-    blackfriday: 'Beauty Games: BLACK FRIDAY — нова заявка (за запрошенням)'
+    blackfriday: 'Beauty Games: BLACK FRIDAY — нова заявка (за запрошенням)',
+    test: 'Beauty Games: тест «Точка зростання»'
   };
 
   // Назви полів у листі — людською мовою, в тому ж порядку
@@ -77,12 +82,12 @@ window.BG_LEADS_URL_BF = 'https://script.google.com/macros/s/AKfycbwF5A4k7hhgBgt
   }
 
   function viaPing(p, to) {
-    var t = { participant: 'бронювання місця', casting: 'кастинг', calc: 'калькулятор', ambassador: 'амбасадор', blackfriday: 'BLACK FRIDAY (за запрошенням)', profile: 'гайд «Упаковка профілю»', earn: 'калькулятор «Скільки заробляєте»' }[p.form] || p.form;
+    var t = { participant: 'бронювання місця', casting: 'кастинг', calc: 'калькулятор', ambassador: 'амбасадор', blackfriday: 'BLACK FRIDAY (за запрошенням)', test: 'тест «Точка зростання»', profile: 'гайд «Упаковка профілю»', earn: 'калькулятор «Скільки заробляєте»' }[p.form] || p.form;
     return fetch('https://formsubmit.co/ajax/' + (to || window.BG_LEADS_PING), {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
       body: JSON.stringify(clean({
-        _subject: p.form === 'blackfriday' ? '🖤 BLACK FRIDAY — нова заявка' : (p.form === 'calc' || p.form === 'earn') ? '🧮 Калькулятор — новий контакт' : 'Beauty Games: нова заявка — ' + t,
+        _subject: p.form === 'blackfriday' ? '🖤 BLACK FRIDAY — нова заявка' : (p.form === 'calc' || p.form === 'earn') ? '🧮 Калькулятор — новий контакт' : p.form === 'test' ? (p.page === 'avatar-start' ? '🎮 Тест — новий контакт' : '🎮 Тест — карта гравця') : 'Beauty Games: нова заявка — ' + t,
         _template: 'basic',   // у Telegram «basic» показує назви полів, «table» їх губить
         _captcha: 'false',
         Заявка: t,
@@ -95,6 +100,11 @@ window.BG_LEADS_URL_BF = 'https://script.google.com/macros/s/AKfycbwF5A4k7hhgBgt
         Месенджер: p.messenger || '',
         'Хто запросив': p.invited_by || '',
         Відповідь: p.answer || '',
+        'Років у beauty': p.experience || '',
+        'Ситуація за тестом': p.situation || '',
+        'Що заважає рости': p.pains || '',
+        'Місія на рік': p.goal || '',
+        'Формат участі': p.format || '',
         Telegram: p.tg_user || '',
         Послуга: p.service || '',
         'Чистими на місяць': p.net_month || '',
@@ -151,12 +161,18 @@ window.BG_LEADS_URL_BF = 'https://script.google.com/macros/s/AKfycbwF5A4k7hhgBgt
     // Black Friday (/black-friday) — у ту саму Google Таблицю й Telegram-бот, що й калькулятор (вкладка «Black Friday»)
     var isBF = form === 'participant' && /Black Friday/.test(p.source || '');
     if (isBF) p.form = 'blackfriday';   // окрема вкладка «Black Friday» і окреме повідомлення в Telegram
+    // Тест: старт із поп-апа, сторінка /avatar або заявка з уже заповненою картою гравця
+    var isTest = !isBF && form === 'participant' && (p.page === 'avatar-start' || /avatar/.test(location.pathname) || !!(p.situation || p.goal || p.pains));
+    if (isTest) p.form = 'test';
     if (window.BG_LEADS_EMAIL) jobs.push(viaEmail(p));
     // запасне сповіщення через @email2telegrambot (ліміт 30/міс) — лише поки немає свого бота через BG_LEADS_URL
     var bfUrl = isBF && window.BG_LEADS_URL_BF;
     var toScript = window.BG_LEADS_URL && !bfUrl && ((window.BG_LEADS_URL_FORMS || []).indexOf(form) >= 0 || isBF);
     var isCalc = form === 'calc' || form === 'earn';
-    if (window.BG_LEADS_PING && !toScript && !isCalc) viaPing(p);
+    var testPing = isTest && window.BG_LEADS_PING_TEST;
+    if (window.BG_LEADS_PING && !toScript && !isCalc && !testPing) viaPing(p);
+    if (testPing) viaPing(p, window.BG_LEADS_PING_TEST);
+    if (isTest && window.BG_LEADS_URL_TEST) jobs.push(viaScript(p, window.BG_LEADS_URL_TEST));
     if (isCalc && window.BG_LEADS_PING_CALC) viaPing(p, window.BG_LEADS_PING_CALC);
     if (isBF && window.BG_LEADS_PING_BF) viaPing(p, window.BG_LEADS_PING_BF);
     if (toScript) jobs.push(viaScript(p));

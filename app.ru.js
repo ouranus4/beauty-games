@@ -567,6 +567,7 @@
         bad = bad || miss;
       });
       if (bad) { avMsg.textContent = 'Укажите имя и телефон'; return; }
+      d.source = 'Тест «Точка роста» — старт';
       store.set('bg_name', d.name);
       d.page = 'avatar-start';
       avBtn.disabled = true;

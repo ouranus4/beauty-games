@@ -10,7 +10,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800;900&family=Oswald:wght@400;500;600&family=Manrope:wght@400;500;600;700&family=Pixelify+Sans:wght@400..700&family=JetBrains+Mono:wght@400;500;700&display=swap">
 <link rel="stylesheet" href="styles.css?v=ad1ccce0">
-<link rel="stylesheet" href="squid.css?v=84bca257">
+<link rel="stylesheet" href="squid.css?v=45f23747">
 
 <!-- SPRITE -->
 <div class="preloader" id="preloader">
@@ -1311,15 +1311,18 @@
 <dialog class="av-box" id="avBox" aria-labelledby="avTitle">
   <form class="av-form" id="avForm" method="dialog" novalidate>
     <button class="av-x" type="button" id="avX" aria-label="Закрыть">×</button>
-    <span class="eyebrow">Твой аватар</span>
-    <h2 class="h-md" id="avTitle">Начнём с тебя</h2>
-    <p class="lede">Оставь контакт — и переходи к шагам. Менеджер увидит твою карту, когда она будет готова.</p>
-    <label class="fld"><span>Имя</span><input name="name" id="avName" autocomplete="given-name" required maxlength="30"></label>
-    <label class="fld"><span>Телефон</span><input name="phone" id="avPhone" type="tel" inputmode="tel" autocomplete="tel" required></label>
-    <label class="fld"><span>Instagram</span><input name="instagram" placeholder="@" autocomplete="off"></label>
+    <img class="av-art" src="assets/home/mask.webp?v=367e27d3" alt="" width="400" height="400">
+    <span class="eyebrow">Тест · 4 шага · 3 минуты</span>
+    <h2 class="h-md" id="avTitle">Ваша карта <span class="glow">игрока</span></h2>
+    <p class="lede">Оставьте контакт — и пройдите четыре шага, как в игре. В конце получите персональную карту, а менеджер подберёт под неё формат участия.</p>
+    <ul class="av-get"><li>Ваши сильные стороны</li><li>Где прячутся ваши следующие деньги</li><li>С чего начать уже завтра</li></ul>
+    <label class="fld"><span>Имя</span><input name="name" id="avName" autocomplete="given-name" required maxlength="30" placeholder="Как к вам обращаться"></label>
+    <label class="fld"><span>Телефон</span><input name="phone" id="avPhone" type="tel" inputmode="tel" autocomplete="tel" required placeholder="+380"></label>
+    <label class="fld"><span>Instagram · необязательно</span><input name="instagram" placeholder="@" autocomplete="off"></label>
     <input type="text" name="bot-field" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
-    <button class="btn btn-primary" type="submit" id="avGo">Собрать аватара →</button>
+    <button class="btn btn-primary" type="submit" id="avGo">Начать тест →</button>
     <p class="av-msg" id="avMsg" role="status"></p>
+    <p class="av-note">Без спама: контакт видит только команда Beauty Games. Отправляя, вы соглашаетесь с <a href="privacy.html" target="_blank">политикой конфиденциальности</a>.</p>
   </form>
 </dialog>
 
@@ -1425,6 +1428,6 @@
   </a>
 </div>
 
-<script src="leads.js?v=dd32b178"></script>
-<script src="app.ru.js?v=2ed649ef"></script>
+<script src="leads.js?v=b3409205"></script>
+<script src="app.ru.js?v=0a4b6aa3"></script>
 <script src="fx.js?v=b9217507"></script>

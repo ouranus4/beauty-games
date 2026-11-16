@@ -3835,3 +3835,16 @@ body{touch-action:pan-y pinch-zoom;overscroll-behavior-x:none}
 .founders-dark .sec-head .lede{color:rgba(255,255,255,.78)}
 #how .sec-head .h-lg{white-space:normal!important}
 @media (max-width:760px){#how .sec-head .h-lg{font-size:clamp(24px,7.4vw,34px)}}
+
+/* Поп-ап тесту: маска, що ви отримаєте, примітка */
+.av-form{padding:26px 24px 20px;background:radial-gradient(120% 80% at 50% 0%,rgba(255,46,136,.22),transparent 60%),linear-gradient(180deg,#1A1220,#0C0810)}
+.av-art{display:block;width:84px;height:84px;margin:-6px auto 0;object-fit:contain;filter:drop-shadow(0 10px 24px rgba(255,46,136,.45));animation:avFloat 4s ease-in-out infinite}
+.av-form .eyebrow{align-self:center}
+.av-form .h-md{text-align:center}
+.av-form .lede{text-align:center}
+.av-get{list-style:none;margin:0 0 4px;padding:12px 14px;border-radius:14px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);display:grid;gap:6px}
+.av-get li{position:relative;padding-left:22px;font-size:14px;line-height:1.4;color:#fff}
+.av-get li::before{content:"✦";position:absolute;left:0;top:0;color:#FF2E88}
+.av-note{margin:0;text-align:center;font-size:11.5px;line-height:1.45;color:var(--faint)}
+.av-note a{color:inherit;text-decoration:underline}
+@media (max-height:700px){.av-art{display:none}.av-get{display:none}}
