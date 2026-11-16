@@ -77,8 +77,8 @@ window.BG_LEADS_URL_FORMS = ['earn'];
       method: 'POST',
       headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
       body: JSON.stringify({
-        _subject: 'Beauty Games: нова заявка — ' + t,
-        _template: 'table',
+        _subject: to ? '🖤 BLACK FRIDAY — нова заявка' : 'Beauty Games: нова заявка — ' + t,
+        _template: to ? 'basic' : 'table',   // у Telegram-групі Black Friday «basic» показує назви полів
         _captcha: 'false',
         Заявка: t,
         "Ім'я": p.name || '',
