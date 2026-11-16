@@ -12,6 +12,8 @@ window.BG_LEADS_EMAIL = 'beautygames.pro@gmail.com';
 window.BG_LEADS_PING = 'group-5500606997@e2t.link';
 // Окрема Telegram-група «BG заявки Black Friday» — тільки заявки з /black-friday
 window.BG_LEADS_PING_BF = 'group-1004494100276@e2t.link';
+// Окрема Telegram-група «BG заявки Калькулятор» — контакти з /calculator і /earn
+window.BG_LEADS_PING_CALC = 'group-5308257531@e2t.link';
 window.BG_LEADS_URL = 'https://script.google.com/macros/s/AKfycby6AqSiF9ECT73he1AXcqWCfHNw8jiS9DPEqyEj-2niqJ9w0dRe_qR8DXjANs9Y-y4_/exec';
 // Які форми йдуть у таблицю й бота з BG_LEADS_URL. Решта — як раніше: пошта + сповіщення.
 window.BG_LEADS_URL_FORMS = ['earn'];
@@ -79,8 +81,8 @@ window.BG_LEADS_URL_BF = 'https://script.google.com/macros/s/AKfycbwF5A4k7hhgBgt
       method: 'POST',
       headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
       body: JSON.stringify(clean({
-        _subject: to ? '🖤 BLACK FRIDAY — нова заявка' : 'Beauty Games: нова заявка — ' + t,
-        _template: to ? 'basic' : 'table',   // у Telegram-групі Black Friday «basic» показує назви полів
+        _subject: p.form === 'blackfriday' ? '🖤 BLACK FRIDAY — нова заявка' : (p.form === 'calc' || p.form === 'earn') ? '🧮 Калькулятор — новий контакт' : 'Beauty Games: нова заявка — ' + t,
+        _template: to ? 'basic' : 'table',   // в окремих Telegram-групах «basic» показує назви полів
         _captcha: 'false',
         Заявка: t,
         "Ім'я": p.name || '',
@@ -92,6 +94,10 @@ window.BG_LEADS_URL_BF = 'https://script.google.com/macros/s/AKfycbwF5A4k7hhgBgt
         Месенджер: p.messenger || '',
         'Хто запросив': p.invited_by || '',
         Відповідь: p.answer || '',
+        Telegram: p.tg_user || '',
+        Послуга: p.service || '',
+        'Чистими на місяць': p.net_month || '',
+        'Бажаний дохід': p.goal_income || '',
         Деталі: 'уся заявка — на пошті beautygames.pro@gmail.com'
       }))
     }).catch(function () {});
@@ -148,7 +154,9 @@ window.BG_LEADS_URL_BF = 'https://script.google.com/macros/s/AKfycbwF5A4k7hhgBgt
     // запасне сповіщення через @email2telegrambot (ліміт 30/міс) — лише поки немає свого бота через BG_LEADS_URL
     var bfUrl = isBF && window.BG_LEADS_URL_BF;
     var toScript = window.BG_LEADS_URL && !bfUrl && ((window.BG_LEADS_URL_FORMS || []).indexOf(form) >= 0 || isBF);
-    if (window.BG_LEADS_PING && !toScript) viaPing(p);
+    var isCalc = form === 'calc' || form === 'earn';
+    if (window.BG_LEADS_PING && !toScript && !isCalc) viaPing(p);
+    if (isCalc && window.BG_LEADS_PING_CALC) viaPing(p, window.BG_LEADS_PING_CALC);
     if (isBF && window.BG_LEADS_PING_BF) viaPing(p, window.BG_LEADS_PING_BF);
     if (toScript) jobs.push(viaScript(p));
     if (bfUrl) jobs.push(viaScript(p, bfUrl));
