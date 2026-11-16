@@ -3832,3 +3832,6 @@ body{touch-action:pan-y pinch-zoom;overscroll-behavior-x:none}
 .trio-note{max-width:760px;margin:22px auto 0;padding:14px 18px;border-radius:16px;background:rgba(255,46,136,.08);border:1px solid rgba(255,46,136,.3);font-size:15px;line-height:1.55;color:var(--muted);text-align:center}
 .trio-note b{color:#fff}
 #about .newfmt{margin-top:34px}
+.founders-dark .sec-head .lede{color:rgba(255,255,255,.78)}
+#how .sec-head .h-lg{white-space:normal!important}
+@media (max-width:760px){#how .sec-head .h-lg{font-size:clamp(24px,7.4vw,34px)}}
