@@ -17,7 +17,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800;900&family=Oswald:wght@400;500;600&family=Manrope:wght@400;500;600;700&family=Pixelify+Sans:wght@400..700&family=JetBrains+Mono:wght@400;500;700&display=swap">
 <link rel="stylesheet" href="styles.css?v=ad1ccce0">
-<link rel="stylesheet" href="squid.css?v=45f23747">
+<link rel="stylesheet" href="squid.css?v=d659bf24">
 
 <style>
 .bf-title{display:flex;flex-direction:column;align-items:flex-start;gap:12px}
@@ -355,7 +355,7 @@ html.bfg-on,html.bfg-on body{overflow:hidden}
         </span>
       </button>
       <button class="pcard rv" type="button" data-bio="bio-gorilchana">
-        <span class="pcard-ph"><img src="assets/people/gorilchana-card.jpg?v=1" alt="Тетяна Горільчана" loading="lazy" width="900" height="1125"></span>
+        <span class="pcard-ph"><img src="assets/people/gorilchana-card.jpg?v=2" alt="Тетяна Горільчана" loading="lazy" width="900" height="1125"></span>
         <span class="pcard-body">
           <span class="pcard-tag">Бренд-наставник VIP</span>
           <span class="pcard-nm">Тетяна Горільчана</span>
@@ -375,7 +375,7 @@ html.bfg-on,html.bfg-on body{overflow:hidden}
         </span>
       </button>
 <button class="pcard rv" type="button" data-bio="bio-bezhan">
-        <span class="pcard-ph"><img src="assets/people/bezhan.jpg?v=1" alt="Надія Бежан" loading="lazy" width="900" height="1125"></span>
+        <span class="pcard-ph"><img src="assets/people/bezhan.jpg?v=2" alt="Надія Бежан" loading="lazy" width="900" height="1125"></span>
         <span class="pcard-body">
           <span class="pcard-tag">Партнерка проєкту</span>
           <span class="pcard-nm">Надія Бежан</span>
@@ -970,6 +970,92 @@ html.bfg-on,html.bfg-on body{overflow:hidden}
     </div>
   </div>
 </section>
+
+<!-- ============ ПРОФІЛІ ЕКСПЕРТІВ (вікно) ============ -->
+<div class="bio" id="bioModal" hidden>
+  <div class="bio-back" data-bio-close></div>
+  <div class="bio-win" role="dialog" aria-modal="true" aria-labelledby="bioTitle">
+    <button class="bio-x" type="button" data-bio-close aria-label="Закрити">×</button>
+    <div class="bio-photo"><img id="bioPhoto" src="" alt=""></div>
+    <div class="bio-tx" id="bioTx"></div>
+  </div>
+</div>
+
+  <div class="bio-src" id="bio-horobets" hidden>
+    <span class="bio-tag">Співзасновниця</span>
+    <h3 class="bio-nm">Олександра Горобець</h3>
+    <p class="bio-rl">Напрямок бізнес-навчання Beauty Games</p>
+    <p class="bio-lead">Співзасновниця Beauty Games. Саме вона відповідає за напрямок бізнес-навчання — від структури програми до живих розборів протягом сезону.</p>
+    <ul class="bio-list"><li>Магістр фінансів, підприємець і наставник</li><li>Понад 10 років у б'юті-індустрії</li><li>Навчила сотні майстрів перманентного макіяжу, ламінування вій та оформлення брів</li><li>Сама пройшла повну трансформацію: від майстра, який працює тільки руками, до підприємця, який будує системний бізнес і масштабує процеси</li></ul>
+    <blockquote class="bio-q">Б'юті-індустрія працює за тими самими законами, що й готельний чи ресторанний бізнес. Без чітких процесів неможливо стабільно заробляти великі гроші.</blockquote>
+    <p class="bio-tail">У бізнес-програмі Олександра дає найпрактичніші інструменти: сучасний SMM та упаковку особистого бренду, таргетовану рекламу й залучення платоспроможних клієнтів, побудову системи, делегування та вихід із вигорання.</p>
+    <a class="bio-ig" href="https://instagram.com/alexa.horobets" target="_blank" rel="noopener">@alexa.horobets</a>
+  </div>
+  <div class="bio-src" id="bio-vyshnyvetska" hidden>
+    <span class="bio-tag">Спікер</span>
+    <h3 class="bio-nm">Катерина Вишневецька</h3>
+    <p class="bio-rl">Декомпозиція та побудова бізнес-систем</p>
+    <p class="bio-lead">Є люди, яких запрошують виступити, а є ті, заради кого збирають зал. Катерина — з других. Спікер бізнес-напряму Beauty Games, експерт з декомпозиції та побудови бізнес-систем.</p>
+    <ul class="bio-list"><li>Партнер Genius Space Телепорт — одного з найбільших освітніх проєктів</li><li>Співвласниця міжнародного навчального проєкту Proriv</li><li>Виростила компанію у 21 раз за 4 роки</li><li>Понад 27 000 учасників програм по всьому світу</li><li>12+ років у бізнесі, 8 із них — в інфобізнесі</li><li>Тричі стартувала з нуля без капіталу, витягувала компанію з касового розриву і тричі повертала її в ріст</li><li>Авторка методології декомпозиції: будує воронки, тестує гіпотези, створює бізнес-клуби</li><li>І автоспортсменка</li></ul>
+    <p class="bio-tail">Тисячі підприємців побудували свої результати на системі Катерини. На Beauty Games вона покаже, як розкласти будь-яку мету на цифри й кроки — саме так, як це роблять компанії, що виросли вдесятеро.</p>
+    <a class="bio-ig" href="https://instagram.com/kateryna.vish" target="_blank" rel="noopener">@kateryna.vish</a>
+  </div>
+  <div class="bio-src" id="bio-holovashchenko" hidden>
+    <span class="bio-tag">Експертка</span>
+    <h3 class="bio-nm">Олена Головащенко</h3>
+    <p class="bio-rl">Системні продажі · ТОП-10 тренерів України</p>
+    <p class="bio-lead">Експертка зі створення системних продажів для власників бізнесу та експертів, які продають свої знання, послуги й продукти. Входить до ТОП-10 тренерів України з продажів.</p>
+    <ul class="bio-list"><li>Співвласниця консалтингової компанії DIA Consulting</li><li>Бізнес-тренерка, спікерка бізнес-форумів та освітніх програм</li><li>12 років у продажах, 7+ років у консалтингу та навчанні</li><li>560+ реалізованих проєктів у 61 ніші бізнесу</li><li>$17,6 млн підтвердженого чистого прибутку клієнтів в Україні, Польщі та Казахстані</li><li>900+ менеджерів проходять навчання щороку</li><li>12 000+ учасників офлайн- та онлайн-програм</li></ul>
+    <p class="bio-tail">Допомогла сотням власників бізнесу й експертів перейти від хаотичних продажів до прогнозованої системи, яка стабільно приносить клієнтів і прибуток.</p>
+    <a class="bio-ig" href="https://instagram.com/olena.golovashchenko.sales" target="_blank" rel="noopener">@olena.golovashchenko.sales</a>
+  </div>
+  <div class="bio-src" id="bio-zaremba" hidden>
+    <span class="bio-tag">Спікер і експерт</span>
+    <h3 class="bio-nm">Тетяна Заремба</h3>
+    <p class="bio-rl">Стратегічний та антикризовий супровід бізнесу</p>
+    <p class="bio-lead">Підприємець, бізнес-ментор, коуч та аналітик з понад 20-річним досвідом у підприємництві, управлінні та супроводі бізнесу.</p>
+    <ul class="bio-list"><li>Ключовий напрям — стратегічний та антикризовий супровід власників бізнесу</li><li>Працює на стику мислення підприємця, його управлінських рішень, систематизації та фінансової стійкості компанії</li><li>У фокусі — управлінська звітність, цифри, фінансова модель, юніт-економіка, ефективність напрямів, команд і локацій</li><li>Окремий напрям — побудова та автоматизація управлінського обліку всередині бізнесу</li><li>Супровід у питаннях відділу продажів, структури, підбору й розстановки людей і мотивації команди</li></ul>
+    <p class="bio-tail">Тетяна бачить бізнес не лише через цифри, а й через контекст країни, менталітету, криз, адаптації та реальних можливостей для зростання — як окремої людини, так і компанії.</p>
+    <a class="bio-ig" href="https://instagram.com/zaremba.tatiana" target="_blank" rel="noopener">@zaremba.tatiana</a>
+  </div>
+  <div class="bio-src" id="bio-kuimova" hidden>
+    <span class="bio-tag">Експертка</span>
+    <h3 class="bio-nm">Ірина Куімова</h3>
+    <p class="bio-rl">Легалізація, податки і фінансова безпека</p>
+    <p class="bio-lead">У б'юті є ілюзія, що для високого чека достатньо робити гарні роботи. Але реальний бізнес починається там, де зникає страх перед податковою, фінансовим моніторингом і блокуванням карток. Ірина відповідає за те, щоб ваш перехід від майстра до власника системного бізнесу був юридично захищеним.</p>
+    <ul class="bio-list"><li>Легальний старт: правильно відкрити ФОП і обрати найвигіднішу систему оподаткування саме для вашої діяльності</li><li>Законна оптимізація: сплачувати податки грамотно й не переплачувати там, де цього можна уникнути</li><li>Облік без головного болю: вести облік, подавати звітність і контролювати фінанси без найму дорогих спеціалістів</li><li>Робота без «сюрпризів»: правила, ліміти та актуальні зміни в законодавстві</li></ul>
+    <blockquote class="bio-q">Я не вчу сухої теорії. Моє завдання в Beauty Games — дати вам фінансову свободу. Щоб ви чітко розуміли свій бізнес з точки зору закону, не працювали наосліп і не переплачували там, де можна законно зекономити.</blockquote>
+    <p class="bio-tail">З Іриною ви побудуєте юридичний фундамент, який дозволить відкривати салони, запускати франшизи та продавати свої послуги дорого по всьому світу.</p>
+    <a class="bio-ig" href="https://instagram.com/buhgalter.prof.iryna" target="_blank" rel="noopener">@buhgalter.prof.iryna</a>
+  </div>
+  <div class="bio-src" id="bio-gorilchana" hidden>
+    <span class="bio-tag">Бренд-наставник VIP</span>
+    <h3 class="bio-nm">Тетяна Горільчана</h3>
+    <p class="bio-rl">Стратег особистого бренду та позиціонування</p>
+    <p class="bio-lead">Методолог і стратег особистого бренду. Працює з позиціонуванням публічних людей і підприємців — і переносить ці інструменти в б’юті, де клієнтка вирішує, чи йти до вас, за перші секунди в профілі.</p>
+    <ul class="bio-list"><li>Позиціонування: чим саме ви відрізняєтеся і за що вам платять більше</li><li>Особистий бренд, який продає ще до першого повідомлення</li><li>Як піднімати ціну спокійно й без вибачень</li></ul>
+    <p class="bio-tail">У Beauty Games Тетяна — бренд-наставник учасниць пакета VIP.</p>
+    <a class="bio-ig" href="https://instagram.com/tatiana_gorilchanaya" target="_blank" rel="noopener">@tatiana_gorilchanaya</a>
+  </div>
+  <div class="bio-src" id="bio-koltypina" hidden>
+    <span class="bio-tag">Стилістка</span>
+    <h3 class="bio-nm">Анастасія Колтипіна</h3>
+    <p class="bio-rl">Персональний і корпоративний стиль</p>
+    <p class="bio-lead">Клієнтка бачить вас раніше, ніж результат вашої роботи, — і саме ваш вигляд першим підказує їй, чи варті ви своєї ціни. Анастасія робить так, щоб ваш імідж працював на вас: 6+ років у стилістиці, 300+ клієнтів, членкиня «Асоціації стилістів України».</p>
+    <ul class="bio-list"><li>Аналіз ліній, пропорцій і кольору зовнішності</li><li>Гардероб, у якому 15 речей працюють як система</li><li>Цифровий гардероб у додатку та шопінг-лист із посиланнями</li><li>Образи на подію, весілля й подорож, продумані до деталей</li><li>Авторська гра з імідж-картками, яка через образи зчитує психотип і прихований ресурс</li></ul>
+    <blockquote class="bio-q">Її метод — не «модно» і не «правильно», а «ваше».</blockquote>
+    <p class="bio-tail">Анастасія створює імідж і для керівників та топменеджменту, dress code для компаній і корпоративний стиль без уніформи — там, де від першого погляду залежать довіра й репутація.</p>
+    <a class="bio-ig" href="https://instagram.com/koltypina.stylist" target="_blank" rel="noopener">@koltypina.stylist</a>
+  </div>
+  <div class="bio-src" id="bio-bezhan" hidden>
+    <span class="bio-tag">Партнерка проєкту</span>
+    <h3 class="bio-nm">Надія Бежан</h3>
+    <p class="bio-rl">Штучний інтелект і IT для бізнесу</p>
+    <p class="bio-lead">Співзасновниця A-Team Global і Versafy. Показує б’юті-майстрам, як штучний інтелект бере на себе рутину — і звільняє час на клієнток і розвиток.</p>
+    <ul class="bio-list"><li>Штучний інтелект для б’юті-майстрів: з чого почати</li><li>IT-інструменти, які економлять години щотижня</li></ul>
+    <p class="bio-tail">Разом з Іриною Вербовою Надія вже провела для спільноти Beauty Games прямий ефір про ШІ.</p>
+    <a class="bio-ig" href="https://instagram.com/nadiabezh" target="_blank" rel="noopener">@nadiabezh</a>
+  </div>
 
 <!-- ============ ФУТЕР ============ -->
 <footer>
