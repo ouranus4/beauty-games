@@ -1401,7 +1401,7 @@
 
       // спочатку — найближчий незакритий крок
       if (!name) {
-        out.push({ k: 'Крок 1', t: 'Напишіть своє ім’я', d: 'Карта гравчині підпишеться вашим іменем', h: '#hello' });
+        out.push({ k: 'Крок 1', t: 'Напишіть своє ім’я', d: 'План підпишеться вашим іменем', h: '#hello' });
       }
       if (!skills) {
         out.push({ k: 'Крок 2', t: 'Оберіть свої скіли', d: 'Покажемо задачі саме вашого напрямку', h: '#picker' });
@@ -1436,7 +1436,7 @@
       }
       // коли карта зібрана, головна дія — заявка, тож вона стає першою
       if (name && skills && mods.length && missionOn) {
-        out.unshift({ k: 'Фінал', t: 'Забронювати місце', d: 'Карта заповнена — заявка підставиться сама', h: '#apply' });
+        out.unshift({ k: 'Фінал', t: 'Забронювати місце', d: 'Тест пройдено — заявка підставиться сама', h: '#apply' });
       }
       return out.slice(0, 4);
     };
@@ -1518,7 +1518,7 @@
     var toast = function (txt) {
       var t = document.createElement('div');
       t.className = 'toast';
-      t.innerHTML = '<b>Записали у вашу карту</b><span>' + txt + '</span>';
+      t.innerHTML = '<b>Записали у ваш план</b><span>' + txt + '</span>';
       document.body.appendChild(t);
       requestAnimationFrame(function () { t.classList.add('in'); });
       setTimeout(function () {
