@@ -137,6 +137,22 @@ html.bfg-on,html.bfg-on body{overflow:hidden}
 @media (prefers-reduced-motion:reduce){.bf-bridge span,.hero-cta .btn-primary,.form-send{animation:none}}
 .bf-irina{margin:24px 0 0;font-size:15px;line-height:1.6;color:var(--muted)}
 .bf-irina b{color:var(--white)}.bf-irina a{color:#FF2E88}
+/* Екран після заявки */
+.bf-ok{text-align:left;max-width:460px;margin:0 auto}
+.bf-ok .ok{margin:0 0 18px}
+.bf-ok h3{font-size:clamp(22px,3vw,28px)}
+.bf-ok .bf-ok-lead{margin:10px 0 0;max-width:none;color:rgba(255,255,255,.82);font-size:15.5px;line-height:1.55}
+.bf-ok-steps{list-style:none;margin:22px 0 0;padding:0;display:grid;gap:10px;counter-reset:s}
+.bf-ok-steps li{position:relative;padding:13px 14px 13px 52px;border-radius:14px;background:rgba(255,255,255,.04);border:1px solid rgba(255,46,136,.3);counter-increment:s}
+.bf-ok-steps li::before{content:counter(s);position:absolute;left:14px;top:13px;width:26px;height:26px;border-radius:50%;display:grid;place-items:center;background:#FF2E88;color:#fff;font:800 13px/1 Montserrat,sans-serif}
+.bf-ok-steps b{display:block;font-family:Montserrat,sans-serif;font-weight:800;font-size:15px;color:#fff}
+.bf-ok-steps span{display:block;font-size:13.5px;line-height:1.45;color:rgba(255,255,255,.7);margin-top:2px}
+.bf-ok-steps i{font-style:normal;color:#FF7AB8;font-weight:700}
+.bf-ok .bf-ok-alt{margin:18px 0 0;max-width:none;font-size:13.5px;color:rgba(255,255,255,.62)}
+.bf-ok .bf-ok-alt a{color:#FF7AB8;font-weight:700}
+#apply .form-main:has(.form-success.on){display:flex;flex-direction:column;justify-content:center}
+@media (max-width:520px){.bf-ok{padding:28px 4px}}
+.bf-sent .mobile-bar{display:none!important}
 </style>
 <!-- SPRITE -->
 <div class="preloader" id="preloader">
@@ -1001,11 +1017,16 @@ html.bfg-on,html.bfg-on body{overflow:hidden}
           <div class="form-alt">Є питання? <a href="https://t.me/beauty_games_pro" target="_blank" rel="noopener">Напишіть менеджеру в Telegram</a></div>
         </form>
 
-        <div class="form-success" id="formSuccess">
+        <div class="form-success bf-ok" id="formSuccess">
           <div class="ok">✓</div>
-          <h3>Заявку прийнято</h3>
-          <p>Менеджер напише найближчим часом і закріпить за вами ціну Black Friday.</p>
-          <a href="https://t.me/beauty_games_pro" target="_blank" rel="noopener" class="btn btn-primary">Написати менеджеру в Telegram</a>
+          <h3>Заявку отримано</h3>
+          <p class="bf-ok-lead">Дякуємо! Ціна Black Friday діє до 5 грудня — менеджер допоможе її закріпити.</p>
+          <ol class="bf-ok-steps">
+            <li><b>Менеджер напише вам</b><span>найближчим часом, у <i data-bf-msgr>зручний вам месенджер</i></span></li>
+            <li><b>Розповість вартість зі знижкою</b><span>для обраного пакета й відповість на питання</span></li>
+            <li><b>Ви вносите 50%</b><span>і місце та ціна закріплені за вами. Решта — 21 грудня</span></li>
+          </ol>
+          <p class="bf-ok-alt">Не хочете чекати? <a href="https://t.me/beauty_games_pro" target="_blank" rel="noopener">Напишіть менеджеру в Telegram</a></p>
         </div>
       </div>
     </div>
@@ -1271,6 +1292,9 @@ html.bfg-on,html.bfg-on body{overflow:hidden}
     b.addEventListener('click', function () { var s = $('fPack'); if (s) s.value = b.getAttribute('data-pack'); });
   });
 })();
+</script>
+<script>
+(function(){var f=document.getElementById('applyForm');if(!f)return;f.addEventListener('submit',function(){var m=f.querySelector('[name=messenger]'),t=document.querySelector('[data-bf-msgr]');if(!m||!t)return;var v=m.value;t.textContent=v==='Дзвінок'?'телефоном':v;},true);var ok=document.getElementById('formSuccess');if(ok&&window.MutationObserver)new MutationObserver(function(){if(ok.classList.contains('on'))document.documentElement.classList.add('bf-sent');}).observe(ok,{attributes:true,attributeFilter:['class']});})();
 </script>
 <script src="leads.js?v=e702e90f"></script>
 <script src="app.js?v=94db3856"></script>
