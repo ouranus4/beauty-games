@@ -17,7 +17,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800;900&family=Oswald:wght@400;500;600&family=Manrope:wght@400;500;600;700&family=Pixelify+Sans:wght@400..700&family=JetBrains+Mono:wght@400;500;700&display=swap">
 <link rel="stylesheet" href="styles.css?v=ad1ccce0">
-<link rel="stylesheet" href="squid.css?v=34aa4535">
+<link rel="stylesheet" href="squid.css?v=20b7ce1f">
 
 <style>
 .bf-title{display:flex;flex-direction:column;align-items:flex-start;gap:12px}
@@ -1022,7 +1022,7 @@ html.bfg-on,html.bfg-on body{overflow:hidden}
           <h3>Заявку отримано</h3>
           <p class="bf-ok-lead">Дякуємо! Ціна Black Friday діє до 5 грудня — менеджер допоможе її закріпити.</p>
           <ol class="bf-ok-steps">
-            <li><b>Менеджер напише вам</b><span>найближчим часом, у <i data-bf-msgr>зручний вам месенджер</i></span></li>
+            <li><b>Менеджер напише вам</b><span>найближчим часом <i data-bf-msgr>у зручний вам месенджер</i></span></li>
             <li><b>Розповість вартість зі знижкою</b><span>для обраного пакета й відповість на питання</span></li>
             <li><b>Ви вносите 50%</b><span>і місце та ціна закріплені за вами. Решта — 21 грудня</span></li>
           </ol>
@@ -1294,8 +1294,8 @@ html.bfg-on,html.bfg-on body{overflow:hidden}
 })();
 </script>
 <script>
-(function(){var f=document.getElementById('applyForm');if(!f)return;f.addEventListener('submit',function(){var m=f.querySelector('[name=messenger]'),t=document.querySelector('[data-bf-msgr]');if(!m||!t)return;var v=m.value;t.textContent=v==='Дзвінок'?'телефоном':v;},true);var ok=document.getElementById('formSuccess');if(ok&&window.MutationObserver)new MutationObserver(function(){if(ok.classList.contains('on'))document.documentElement.classList.add('bf-sent');}).observe(ok,{attributes:true,attributeFilter:['class']});})();
+(function(){var f=document.getElementById('applyForm');if(!f)return;f.addEventListener('submit',function(){var m=f.querySelector('[name=messenger]'),t=document.querySelector('[data-bf-msgr]');if(!m||!t)return;var v=m.value;t.textContent=v==='Дзвінок'?'телефоном':'у '+v;},true);var ok=document.getElementById('formSuccess');if(ok&&window.MutationObserver)new MutationObserver(function(){if(ok.classList.contains('on'))document.documentElement.classList.add('bf-sent');}).observe(ok,{attributes:true,attributeFilter:['class']});})();
 </script>
-<script src="leads.js?v=e702e90f"></script>
-<script src="app.js?v=94db3856"></script>
+<script src="leads.js?v=2ae11f66"></script>
+<script src="app.js?v=61f22e2e"></script>
 <script src="fx.js?v=b9217507"></script>
