@@ -79,6 +79,8 @@
 <style>
 .gf-hero{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);gap:clamp(24px,4vw,56px);align-items:center;width:100%}
 .gf-ph{position:relative;margin:0;max-width:420px;justify-self:center}
+.gf-ph video{display:block;width:100%;aspect-ratio:9/16;object-fit:cover;border-radius:28px;box-shadow:0 30px 80px rgba(255,46,136,.35),0 0 0 2px #FF2E88;background:#000}
+.gf-vid{max-width:360px}
 .gf-ph img{display:block;width:100%;aspect-ratio:4/5;object-fit:cover;object-position:center 25%;border-radius:28px;box-shadow:0 30px 80px rgba(255,46,136,.35),0 0 0 2px #FF2E88}
 .gf-ph figcaption{position:absolute;left:16px;right:16px;bottom:16px;padding:12px 16px;border-radius:16px;background:#fff;box-shadow:0 14px 36px rgba(0,0,0,.35)}
 .gf-ph figcaption b{display:block;font:900 16px/1.2 Montserrat,sans-serif;color:#1C0F18}
@@ -110,7 +112,6 @@
     <div class="nav-links">
       <a href="#how">Як це працює</a>
       <a href="#get">Для вас</a>
-      <a href="#gift">Подарунок</a>
       <a href="#dates">Дати</a>
       <a href="#faq">Питання</a>
     </div>
@@ -124,7 +125,6 @@
 <div class="mobile-menu" id="mobileMenu">
   <a href="#how">Як працює розіграш</a>
   <a href="#get">Що ви отримуєте</a>
-  <a href="#gift">Ваш подарунок</a>
   <a href="#dates">Дати</a>
   <a href="#faq">Питання</a>
   <a href="https://instagram.com/verbovaya_irina" target="_blank" rel="noopener" class="btn btn-primary">Беру участь</a>
@@ -148,9 +148,9 @@
           <span class="bf-micro">Опис і фото подарунка — до 22.11</span>
         </div>
       </div>
-      <figure class="gf-ph rv">
-        <img src="assets/home/photo/prizes.webp" alt="" width="900" height="1205" loading="eager">
-        <figcaption><b>Ваш подарунок — з вашим ім’ям</b><span>у пості, сторіс і на ефірі з підсумками</span></figcaption>
+      <figure class="gf-ph gf-vid rv">
+        <video src="assets/intro/hero.mp4" poster="assets/intro/hero-poster.jpg" autoplay muted playsinline preload="auto" aria-label="Ірина Вербова"></video>
+        <figcaption><b>Ірина Вербова</b><span>засновниця Beauty Games та IBV</span></figcaption>
       </figure>
     </div>
   </div>
@@ -204,100 +204,6 @@
   </div>
 </section>
 
-<section class="sec" id="gift">
-  <div class="wrap">
-    <div class="sec-head rv">
-      <span class="eyebrow">Ідея подарунка</span>
-      <h2 class="h-lg">Ідеї подарунків <span class="glow">для кожної</span></h2>
-      <div class="sec-rule"></div>
-    </div>
-    <div class="pgrid sp-grid">
-      <div class="pcard sp-card rv">
-        <span class="pcard-ph"><img src="assets/people/vyshnyvetska.jpg" alt="Катерина Вишневецька" loading="lazy" width="900" height="1125"></span>
-        <span class="pcard-body">
-          <span class="pcard-tag">Ідея подарунка</span>
-          <span class="pcard-nm">Катерина Вишневецька</span>
-          <span class="sp-topic">Розбір бізнес-системи 1:1</span>
-          <span class="sp-desc">Майстри впираються в стелю «працюю руками». Розбір від вас — найцінніше, що вони можуть виграти, і найкращий спосіб познайомитися з вами.</span>
-        </span>
-      </div>
-      <div class="pcard sp-card rv">
-        <span class="pcard-ph"><img src="assets/people/holovashchenko.jpg" alt="Олена Головащенко" loading="lazy" width="900" height="1125"></span>
-        <span class="pcard-body">
-          <span class="pcard-tag">Ідея подарунка</span>
-          <span class="pcard-nm">Олена Головащенко</span>
-          <span class="sp-topic">Аудит продажів майстра: від заявки до запису</span>
-          <span class="sp-desc">Кожна майстриня щодня чує «скільки коштує?». Аудит її переписок — подарунок, який одразу дає записи.</span>
-        </span>
-      </div>
-      <div class="pcard sp-card rv">
-        <span class="pcard-ph"><img src="assets/people/zaremba.jpg" alt="Тетяна Заремба" loading="lazy" width="900" height="1125"></span>
-        <span class="pcard-body">
-          <span class="pcard-tag">Ідея подарунка</span>
-          <span class="pcard-nm">Тетяна Заремба</span>
-          <span class="sp-topic">Консультація з фінмоделі майстра</span>
-          <span class="sp-desc">Більшість майстрів не знають свого справжнього заробітку за годину. Ваша консультація покаже це в цифрах.</span>
-        </span>
-      </div>
-      <div class="pcard sp-card rv">
-        <span class="pcard-ph"><img src="assets/people/zhdan.jpg" alt="Марина Ждан" loading="lazy" width="900" height="1125"></span>
-        <span class="pcard-body">
-          <span class="pcard-tag">Ідея подарунка</span>
-          <span class="pcard-nm">Марина Ждан</span>
-          <span class="sp-topic">Консультація 1:1 з фінансового мислення</span>
-          <span class="sp-desc">Підняти ціну майстрам заважає не техніка, а внутрішня стеля. Сесія з вами — саме те, з чого починається новий дохід.</span>
-        </span>
-      </div>
-      <div class="pcard sp-card rv">
-        <span class="pcard-ph"><img src="assets/people/kuimova.jpg" alt="Ірина Куімова" loading="lazy" width="900" height="1125"></span>
-        <span class="pcard-body">
-          <span class="pcard-tag">Ідея подарунка</span>
-          <span class="pcard-nm">Ірина Куімова</span>
-          <span class="sp-topic">Консультація з податків і легалізації майстра</span>
-          <span class="sp-desc">Наші майстри працюють в Україні та Європі, і питання податків для них — постійний стрес. Ваша консультація знімає його.</span>
-        </span>
-      </div>
-      <div class="pcard sp-card rv">
-        <span class="pcard-ph"><img src="assets/people/gorilchana.jpg" alt="Тетяна Горільчана" loading="lazy" width="900" height="1125"></span>
-        <span class="pcard-body">
-          <span class="pcard-tag">Ідея подарунка</span>
-          <span class="pcard-nm">Тетяна Горільчана</span>
-          <span class="sp-topic">Розбір особистого бренду чи профілю в Instagram</span>
-          <span class="sp-desc">Майстри хочуть, щоб до них записувалися за іменем. Розбір від методолога зірок — подарунок, про який мріють.</span>
-        </span>
-      </div>
-      <div class="pcard sp-card rv">
-        <span class="pcard-ph"><img src="assets/people/koltypina.jpg" alt="Анастасія Колтипіна" loading="lazy" width="900" height="1125"></span>
-        <span class="pcard-body">
-          <span class="pcard-tag">Ідея подарунка</span>
-          <span class="pcard-nm">Анастасія Колтипіна</span>
-          <span class="sp-topic">Онлайн-розбір стилю або капсула для майстра</span>
-          <span class="sp-desc">Образ майстра впливає на те, скільки клієнтка готова заплатити. Ваш розбір — подарунок, який видно одразу.</span>
-        </span>
-      </div>
-      <div class="pcard sp-card rv">
-        <span class="pcard-ph"><img src="assets/people/bezhan.jpg" alt="Надія Бежан" loading="lazy" width="900" height="1125"></span>
-        <span class="pcard-body">
-          <span class="pcard-tag">Ідея подарунка</span>
-          <span class="pcard-nm">Надія Бежан</span>
-          <span class="sp-topic">Доступ до Versafy на місяць або консультація з ШІ</span>
-          <span class="sp-desc">Майстри губляться в директі між клієнтками. Показати їм ШІ в роботі — найкраще знайомство з Versafy.</span>
-        </span>
-      </div>
-      <div class="pcard sp-card rv">
-        <span class="pcard-ph"><img src="assets/people/vorzheva.jpg" alt="Ксенія Воржева" loading="lazy" width="900" height="1125"></span>
-        <span class="pcard-body">
-          <span class="pcard-tag">Ідея подарунка</span>
-          <span class="pcard-nm">Ксенія Воржева</span>
-          <span class="sp-topic">Місце на вашому навчанні або консультація</span>
-          <span class="sp-desc">Частина наших майстрів уже думає, як почати навчати. Подарунок від вас — прямий шлях до ваших майбутніх учениць.</span>
-        </span>
-      </div>
-    </div>
-    <p class="gf-also rv" style="margin-top:22px">Або будь-що, що вам зручно: <b>консультація, розбір, місце на курсі, сертифікат на послуги, гайд чи запис ефіру.</b></p>
-  </div>
-</section>
-
 <section class="sec sec-light" id="dates">
   <div class="wrap">
     <div class="sec-head rv">
@@ -327,6 +233,10 @@
       <div class="sec-rule"></div>
     </div>
     <div class="acc" id="faqAcc">
+      <div class="acc-item glass-soft">
+        <button class="acc-btn" type="button"><span class="tx">Що подарувати?</span><span class="ic"></span></button>
+        <div class="acc-panel"><div class="acc-panel-in"><p>Обираєте ви — те, що вам зручно дати і що покаже вас з найкращого боку. Напишіть нам, що це буде, і ми оформимо подарунок з вашим ім’ям.</p></div></div>
+      </div>
       <div class="acc-item glass-soft">
         <button class="acc-btn" type="button"><span class="tx">Чи потрібно щось платити?</span><span class="ic"></span></button>
         <div class="acc-panel"><div class="acc-panel-in"><p>Ні. Участь у розіграші безкоштовна. Від вас — лише подарунок і репост.</p></div></div>
@@ -381,7 +291,6 @@
         <h5>Розіграш</h5>
         <a href="#how">Як це працює</a>
         <a href="#get">Для вас</a>
-        <a href="#gift">Подарунок</a>
         <a href="#dates">Дати</a>
         <a href="#faq">Питання</a>
       </div>
