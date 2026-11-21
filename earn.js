@@ -32,6 +32,8 @@
   if (state.v.goal == null) state.v.goal = DEF[state.cur].goal;
   if (!state.mode) state.mode = 'simple';
   if (/[?&#]pro\b/.test(location.search + location.hash)) state.mode = 'pro'; // посилання одразу на розширену
+  // прийшла з Telegram-бота (ManyChat): контакт уже залишила там — результат відкритий одразу, без форми
+  if (/[?&]open(&|=|$)/.test(location.search)) state.open = true;
   function save() { try { localStorage.setItem(KEY, JSON.stringify(state)); } catch (e) {} }
 
   function num(x) { var n = parseFloat(String(x).replace(/\s/g, '').replace(',', '.')); return isFinite(n) && n > 0 ? n : 0; }
