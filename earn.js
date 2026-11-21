@@ -175,7 +175,6 @@
       });
     }
     state.open = true; save();
-    botLink();
     paintLock(); calc();
     form.hidden = true;
     $('#enOk').hidden = false;
