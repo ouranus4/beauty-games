@@ -186,6 +186,39 @@
     var c = e.target.closest('[data-lead]'); if (c && e.target.value.trim()) c.classList.remove('err');
   });
 
+  /* Прийшла з Telegram-бота (?open): форми немає, тому свої цифри майстриня нікуди не відправляє.
+     Щойно вона ввела свої числа і зупинилась — тихо надсилаємо їх у ту саму таблицю й групу заявок,
+     що й форма сайту. Хто вона — по ManyChat ID з посилання (?mc=…); телефон уже є в ManyChat. */
+  if (/[?&]open(&|=|$)/.test(location.search)) {
+    var mc = (location.search.match(/[?&]mc=(\d{1,20})/) || [])[1] || '';
+    var src = (location.search.match(/[?&]s=([\w-]{1,64})/) || [])[1] || '';
+    var dirty = false, sent = 0, timer = null, last = '';
+    var sendBot = function () {
+      clearTimeout(timer);
+      if (!dirty || sent >= 3 || !window.bgSendLead) return;
+      dirty = false;
+      calc();
+      var d = {};
+      [].forEach.call(form.elements, function (el) { if (el.name && el.type === 'hidden') d[el.name] = el.value; });
+      var key = [d.currency, d.price, d.materials, d.per_week, d.fixed_month, d.mode, d.goal_income].join('|');
+      if (key === last || !num(d.price) || !num(d.per_week)) return;
+      last = key; sent++;
+      d.source = 'Telegram-бот (ManyChat)';
+      d.contact = mc ? 'ManyChat ID ' + mc : 'Telegram-бот, без ID';
+      d.name = 'Калькулятор з бота';
+      d.start = src;
+      window.bgSendLead('earn', d).catch(function (err) {
+        if (window.console && console.warn) console.warn('earn: bot numbers not sent', err);
+      });
+    };
+    inputs.forEach(function (inp) {
+      inp.addEventListener('input', function () { dirty = true; clearTimeout(timer); timer = setTimeout(sendBot, 15000); });
+    });
+    $('#enCur').addEventListener('click', function () { if (state.edited) { dirty = true; clearTimeout(timer); timer = setTimeout(sendBot, 15000); } });
+    document.addEventListener('visibilitychange', function () { if (document.visibilityState === 'hidden') sendBot(); });
+    window.addEventListener('pagehide', sendBot);
+  }
+
   // «Зберегти в Telegram»: цифри їдуть у бот у мітці /start (w_ціна_матеріали_клієнтки_витрати_валюта),
   // бот одразу надсилає результат і записує людину в базу. Мітка — лише латиниця й цифри, до 64 символів.
   function botLink() {

@@ -126,7 +126,8 @@ window.BG_LEADS_URL_BF = 'https://script.google.com/macros/s/AKfycbwF5A4k7hhgBgt
     return fetch(url || window.BG_LEADS_URL, {
       method: 'POST',
       headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-      body: JSON.stringify(p)
+      body: JSON.stringify(p),
+      keepalive: true // доходить, навіть якщо сторінку вже закривають
     })
       .then(function (r) { return r.json(); })
       .then(function (j) {
