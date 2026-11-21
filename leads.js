@@ -52,7 +52,7 @@ window.BG_LEADS_URL_BF = 'https://script.google.com/macros/s/AKfycbwF5A4k7hhgBgt
     ['verdict', 'Висновок калькулятора'], ['level', 'Досвід'], ['score', 'Самоперевірка профілю'], ['missing', 'Чого бракує в профілі'], ['bio', 'Шапка з генератора'], ['answer', 'Відповідь'], ['invite_to', 'Кому запрошення'], ['invited_by', 'Хто запросив'], ['time', 'Коли дзвонити'], ['note', 'Питання'], ['lang', 'Мова сайту'], ['page', 'Сторінка'],
     ['utm', 'UTM'], ['referrer', 'Звідки прийшла']
   ];
-  var SKIP = { 'form-name': 1, 'bot-field': 1, bot: 1, consent: 1, form: 1, sent_at: 1 };
+  var SKIP = { 'form-name': 1, 'bot-field': 1, bot: 1, consent: 1, form: 1, sent_at: 1, tg_init: 1 };
 
   function toEmail(p) {
     var out = { _subject: SUBJECT[p.form] || SUBJECT.participant, _template: 'table', _captcha: 'false' };

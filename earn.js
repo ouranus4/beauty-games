@@ -175,6 +175,7 @@
       });
     }
     state.open = true; save();
+    botLink();
     paintLock(); calc();
     form.hidden = true;
     $('#enOk').hidden = false;
@@ -183,6 +184,14 @@
   form.addEventListener('input', function (e) {
     var c = e.target.closest('[data-lead]'); if (c && e.target.value.trim()) c.classList.remove('err');
   });
+
+  // «Зберегти в Telegram»: цифри їдуть у бот у мітці /start (w_ціна_матеріали_клієнтки_витрати_валюта),
+  // бот одразу надсилає результат і записує людину в базу. Мітка — лише латиниця й цифри, до 64 символів.
+  function botLink() {
+    var a = $('#enTg'); if (!a) return;
+    var v = state.v, cur = { 'грн': 'u', '€': 'e', 'zł': 'z', '$': 'd' }[state.cur] || 'u';
+    a.href = 'https://t.me/calculator_bg_bot?start=' + ['w', v.price, v.mat, v.clients, v.rent].map(function (x, i) { return i ? Math.round(num(x)) : x; }).join('_') + '_' + cur;
+  }
 
   function paintLock() {
     $('#enRes').classList.toggle('en-locked', !state.open);
@@ -216,7 +225,7 @@
     $('.en-lead .hello-title').textContent = 'Відкрийте його одним натисканням';
     $('.en-lead .hello-sub').textContent = 'Поділіться номером телефону — і результат одразу з’явиться нижче. А ще бот надсилатиме вам ефіри, вебінари й заходи для майстрів.';
     var okP = $('#enOk p'), okA = $('#enTg');
-    okP.textContent = 'Він уже нижче. А ефіри, вебінари й заходи для майстрів бот надсилатиме вам сюди, у Telegram.';
+    okP.textContent = 'Він уже нижче, і ми надіслали його вам у чат з ботом — щоб не загубився. Ефіри й вебінари для майстрів теж приходитимуть туди.';
     okA.hidden = true;
 
     $('#enTgShare').addEventListener('click', function () {
@@ -237,7 +246,10 @@
         f.contact.value = f.tg_user.value || f.phone.value;
         f.tg_id.value = u.id || c.user_id || '';
         f.source.value = 'Telegram, міні-застосунок';
-        f.start.value = (app.initDataUnsafe || {}).start_param || '';
+        // мітка: з посилання t.me/<бот>?startapp=… або з кнопки бота (…earn.html?tg&s=ig_dohid)
+        var sp = (location.search.match(/[?&]s=([\w-]{1,64})/) || [])[1];
+        f.start.value = (app.initDataUnsafe || {}).start_param || sp || '';
+        f.tg_init.value = app.initData || ''; // підпис Telegram — бот перевіряє, що це справді ця людина
         try { app.HapticFeedback.notificationOccurred('success'); } catch (e) {}
         if (form.requestSubmit) form.requestSubmit(); else form.dispatchEvent(new Event('submit', { cancelable: true }));
       });
