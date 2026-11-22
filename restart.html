@@ -96,6 +96,16 @@
 .rs-box .f b{font:900 30px/1 Montserrat,sans-serif}
 .rs-box .f i{font-style:normal;font-weight:600;text-transform:none;font-size:8.5px;margin-top:3px;opacity:.9}
 .rs-box .s{position:absolute;top:4px;bottom:4px;left:-8px;width:10px;border-radius:3px 0 0 3px;background:#7A0640;transform:skewY(-8deg)}
+.rs-teach{max-width:980px;margin:22px auto 0;padding:clamp(22px,4vw,34px);border-radius:26px;background:linear-gradient(165deg,#FF6FB0 0%,#FF2E88 42%,#B80A59 100%);box-shadow:0 24px 60px rgba(255,46,136,.38);color:#fff}
+.rs-teach .k{font:800 12px/1 Montserrat,sans-serif;letter-spacing:.09em;text-transform:uppercase;color:rgba(255,255,255,.85)}
+.rs-teach h3{margin:10px 0 8px;font:900 clamp(22px,3vw,30px)/1.15 Montserrat,sans-serif;text-transform:uppercase}
+.rs-teach .sub{margin:0 0 16px;font-size:15.5px;line-height:1.55;color:rgba(255,255,255,.94);max-width:62ch}
+.rs-steps{margin:0;padding:0;list-style:none;counter-reset:st;display:grid;gap:10px}
+.rs-steps li{counter-increment:st;position:relative;padding:12px 14px 12px 54px;border-radius:16px;background:rgba(255,255,255,.14);font-size:15px;line-height:1.5}
+.rs-steps li::before{content:counter(st);position:absolute;left:14px;top:12px;width:28px;height:28px;border-radius:50%;display:grid;place-items:center;background:#fff;color:#D6006F;font:900 14px/1 Montserrat,sans-serif}
+.rs-teach-bg{margin-top:18px;padding:18px 20px;border-radius:18px;background:#fff;color:#1C0F18}
+.rs-teach-bg b{display:block;font:900 clamp(17px,2.2vw,21px)/1.25 Montserrat,sans-serif;color:#D6006F}
+.rs-teach-bg span{display:block;margin-top:6px;font-size:14.5px;line-height:1.5;color:#6B5762}
 @media (max-width:999px){.rs-grid{grid-template-columns:1fr}.rs-ph{max-width:320px}.rs-get{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media (max-width:760px){.rs-pains{grid-template-columns:1fr}.rs-who{grid-template-columns:1fr}.rs-who img{max-width:300px;margin:0 auto}.rs-mod{grid-template-columns:1fr;gap:6px}}
 @media (max-width:520px){.rs-f .form-send{letter-spacing:.03em;font-size:13px;padding-left:10px;padding-right:10px}.rs-get{grid-template-columns:1fr}.rs-when{grid-template-columns:repeat(3,minmax(0,1fr))}.rs-when div{padding:10px 10px}.rs-cd .u{min-width:0;flex:1}}
@@ -203,10 +213,10 @@
     </div>
     <div class="rs-pains">
       <div class="rs-pain rv"><span class="x">✕</span><p><b>Ви вигоріли від блогу.</b> Відкриваєте Instagram з думкою «треба щось викласти» — і закриваєте.</p></div>
-      <div class="rs-pain rv"><span class="x">✕</span><p><b>Сторіс і пости однакові.</b> Роботи, «вільні віконця», знову роботи — і ви самі це вже не хочете дивитися.</p></div>
-      <div class="rs-pain rv"><span class="x">✕</span><p><b>Ідеї закінчились.</b> Не знаєте, про що писати, крім фото до/після.</p></div>
+      <div class="rs-pain rv"><span class="x">✕</span><p><b>Сторіс і пости однакові, ідеї закінчились.</b> Роботи, «вільні віконця», знову роботи — і ви самі це вже не хочете дивитися.</p></div>
       <div class="rs-pain rv"><span class="x">✕</span><p><b>Камера лякає.</b> Хочеться розвивати особистий бренд, але показувати себе незручно.</p></div>
       <div class="rs-pain rv"><span class="x">✕</span><p><b>На контент немає часу.</b> Після клієнток сил вистачає хіба на одне фото.</p></div>
+      <div class="rs-pain rv"><span class="x">✕</span><p><b>Хочете навчати інших, але не знаєте, з чого почати.</b> Досвід є, а як зібрати програму й знайти перших учениць — незрозуміло.</p></div>
       <div class="rs-pain rv"><span class="x">✕</span><p><b>Чули про AI, але не пробували.</b> Не розумієте, як нейромережі можуть допомогти саме майстру.</p></div>
     </div>
   </div>
@@ -218,6 +228,7 @@
       <span class="eyebrow">Програма майстер-класу</span>
       <h2 class="h-lg">5 кроків до <span class="glow">нового Instagram</span></h2>
       <div class="sec-rule"></div>
+      <p class="lede">І бонус-блок від Beauty Games: як майстру запустити своє онлайн-навчання.</p>
     </div>
     <div class="rs-prog">
       <article class="rs-mod rv"><span class="n">01</span><div><h3>Перезавантаження мислення та контенту</h3><ul><li>Чому виникає вигорання від ведення Instagram</li><li>Як вийти із замкнутого кола однакових сторіс і публікацій</li><li>Де шукати нові ідеї та натхнення</li><li>Як повернути задоволення від створення контенту</li></ul></div></article>
@@ -225,6 +236,19 @@
       <article class="rs-mod rv"><span class="n">03</span><div><h3>Інструменти для сучасного контенту</h3><ul><li>Огляд корисних мобільних застосунків</li><li>Обробка фото та відео, стильний візуал</li><li>Монтаж, анімація та мобільна ретуш</li><li>Інструменти, які спрощують щоденну роботу з контентом</li></ul></div></article>
       <article class="rs-mod rv"><span class="n">04</span><div><h3>Візуал і проявленість</h3><ul><li>Як оновити візуальну концепцію свого Instagram</li><li>Як зробити контент впізнаваним</li><li>Як показувати експертність не лише фотографіями робіт</li><li>Як подолати страх камери й розвивати особистий бренд</li></ul></div></article>
       <article class="rs-mod rv"><span class="n">05</span><div><h3>Нова система роботи з Instagram</h3><ul><li>Як створювати контент без постійної гонитви</li><li>Як вибудувати комфортну систему публікацій</li><li>Сучасні інструменти для розвитку та просування</li><li>Як зробити Instagram інструментом професійної реалізації, а не стресу</li></ul></div></article>
+    </div>
+    <div class="rs-teach rv" id="teach">
+      <span class="k">Бонус-блок · наприкінці ефіру</span>
+      <h3>Як майстру запустити своє навчання</h3>
+      <p class="sub">Багато майстрів уже готові навчати інших, але не знають, з чого почати. Короткий розбір — 5 кроків до першого онлайн-навчання:</p>
+      <ol class="rs-steps">
+        <li><b>Результат, а не інформація.</b> Продається не «курс з манікюру», а шлях учениці з точки А в точку Б: що вона вмітиме й заробить після навчання.</li>
+        <li><b>Програма з 5–8 модулів.</b> Кожен модуль — один крок до результату, і назва говорить, що учениця отримає.</li>
+        <li><b>Короткі уроки + практика.</b> Відео по 7–15 хвилин і просте завдання після кожного.</li>
+        <li><b>Спочатку продаж — потім запис.</b> Не треба місяцями знімати весь курс: готуєте програму й 1–2 модулі, решту записуєте разом з першими ученицями.</li>
+        <li><b>Сходинки продукту.</b> Безкоштовний ефір → недорогий міні-курс → основне навчання → наставництво.</li>
+      </ol>
+      <div class="rs-teach-bg"><b>У Beauty Games ви з куратором запустите своє перше онлайн-навчання</b><span>Від ідеї й програми — до перших учениць. Як це працює в проєкті, розповімо на ефірі.</span></div>
     </div>
     <div class="rs-cta rv" style="justify-content:center"><a href="#reg" class="btn btn-primary">Забрати місце на майстер-класі</a></div>
   </div>
@@ -275,7 +299,7 @@
       <span class="k">Організатор майстер-класу</span>
       <h3>Beauty Games by Iryna Verbova</h3>
       <p>Онлайн-реаліті для б’юті-майстрів: місії, наставники й експерти, які допомагають рости в доходах, бренді та продажах. Засновниця — Ірина Вербова, організаторка міжнародних заходів б’юті-індустрії (IBV, PMU Congress &amp; Championship), суддя міжнародної категорії.</p>
-      <p>Майстер-клас Ксенії — частина циклу безкоштовних експертних ефірів проєкту. Наприкінці ефіру розповімо, як потрапити в новий сезон Beauty Games.</p>
+      <p>Майстер-клас Ксенії — частина циклу безкоштовних експертних ефірів проєкту. Наприкінці ефіру розповімо, як потрапити в новий сезон Beauty Games і як у проєкті ви з куратором запустите своє перше онлайн-навчання.</p>
     </div>
   </div>
 </section>
