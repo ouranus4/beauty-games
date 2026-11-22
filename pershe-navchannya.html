@@ -1,0 +1,208 @@
+<meta charset="utf-8">
+<script src="pixel.js?v=1b0a4353"></script>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Воркбук «Моє перше навчання» — Beauty Games</title>
+<meta name="description" content="Робочий зошит для б’юті-майстра: учениця, обіцянка, програма, тарифи і план першого запуску онлайн-навчання.">
+<meta name="robots" content="noindex">
+<script>document.documentElement.lang='uk';</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&family=Manrope:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&display=swap">
+<style>
+:root{--pink:#FF2E88;--deep:#D6006F;--ink:#1C0F18;--muted:#6B5762;--bg:#0B0710;--paper:#FBF4F8}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:#fff;font:500 16px/1.55 Manrope,system-ui,sans-serif}
+a{color:var(--pink)}
+.wrap{max-width:900px;margin:0 auto;padding:0 16px}
+.top{padding:40px 0 34px;background:radial-gradient(900px 420px at 85% -10%,rgba(255,46,136,.35),transparent 60%),radial-gradient(700px 380px at 0% 110%,rgba(214,0,111,.25),transparent 60%)}
+.logo{display:block;width:210px;height:auto;margin-bottom:28px}
+.kick{display:inline-block;font:800 12px/1 Montserrat,sans-serif;letter-spacing:.08em;text-transform:uppercase;padding:9px 12px;border-radius:999px;background:var(--pink)}
+h1{margin:16px 0 0;font:900 clamp(32px,6vw,58px)/1.02 Montserrat,sans-serif;text-transform:uppercase}
+h1 em{font-style:normal;color:var(--pink);text-shadow:0 0 30px rgba(255,46,136,.55)}
+.lede{margin:16px 0 0;max-width:62ch;color:rgba(255,255,255,.82);font-size:clamp(15.5px,1.8vw,18px)}
+.tools{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px;align-items:center}
+.btn{display:inline-block;font:800 13px/1 Montserrat,sans-serif;letter-spacing:.05em;text-transform:uppercase;text-decoration:none;cursor:pointer;border:0;border-radius:12px;padding:14px 18px;color:#1C0F18;background:linear-gradient(180deg,#F6DDA0,#D9A94E)}
+.btn.g{color:#fff;background:transparent;border:1px solid rgba(255,255,255,.35)}
+.saved{font-size:13px;color:rgba(255,255,255,.6)}
+.toc{display:flex;flex-wrap:wrap;gap:8px;margin:20px 0 0}
+.toc a{font:700 12.5px/1 Montserrat,sans-serif;color:#fff;text-decoration:none;padding:9px 12px;border-radius:999px;border:1px solid rgba(255,255,255,.25)}
+main{background:var(--paper);color:var(--ink);padding:26px 0 50px}
+.st{margin:0 0 18px;padding:24px 22px;border-radius:22px;background:#fff;box-shadow:0 10px 28px rgba(194,0,95,.09)}
+.st h2{display:flex;gap:12px;align-items:baseline;margin:0 0 6px;font:900 clamp(20px,2.8vw,26px)/1.2 Montserrat,sans-serif;text-transform:uppercase}
+.st h2 span{flex:none;font:700 13px/1 "JetBrains Mono",monospace;color:var(--deep)}
+.why{margin:0 0 16px;color:var(--muted);font-size:15px}
+.q{margin:14px 0 0}
+.q label{display:block;margin-bottom:6px;font:800 14.5px/1.35 Montserrat,sans-serif}
+.q small{display:block;margin:-2px 0 6px;color:var(--muted);font-size:13.5px}
+textarea,input[type=text]{width:100%;border:1px solid #EBD3DF;border-radius:12px;background:#FBF6F9;padding:12px 14px;font:500 15px/1.5 Manrope,sans-serif;color:var(--ink);resize:vertical}
+textarea{min-height:74px}
+textarea:focus,input:focus{outline:2px solid #FFB3D3;border-color:var(--pink);background:#fff}
+.ex{margin:10px 0 0;padding:12px 14px;border-radius:12px;background:#FFF0F7;font-size:14px;color:#5A3A4B}
+.ex b{color:var(--deep)}
+.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.mod{padding:14px;border-radius:14px;background:#FBF6F9;border:1px solid #F1DCE7}
+.mod b{display:block;margin-bottom:6px;font:800 13px/1 "JetBrains Mono",monospace;color:var(--deep)}
+.mod textarea{min-height:60px;background:#fff}
+.mod textarea+textarea{margin-top:8px}
+.ladder{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin:6px 0 4px}
+.ladder div{padding:12px;border-radius:14px;background:#FFF0F7;font-size:13.5px;line-height:1.4}
+.ladder b{display:block;font:800 14px/1.25 Montserrat,sans-serif;color:var(--ink)}
+.ladder i{display:block;font-style:normal;color:var(--deep);font-weight:700;margin-top:4px}
+.chk{list-style:none;margin:6px 0 0;padding:0;display:grid;gap:8px}
+.chk label{display:flex;gap:10px;align-items:flex-start;font-size:15px;cursor:pointer}
+.chk input{width:18px;height:18px;margin-top:3px;flex:none;accent-color:var(--deep)}
+.days{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.days div{padding:12px 14px;border-radius:14px;background:#FBF6F9;font-size:14.5px}
+.days b{font:800 13px/1 "JetBrains Mono",monospace;color:var(--deep);display:block;margin-bottom:4px}
+.bg{margin-top:26px;padding:24px 22px;border-radius:22px;background:linear-gradient(165deg,#FF6FB0 0%,#FF2E88 42%,#B80A59 100%);color:#fff}
+.bg h2{margin:0 0 8px;font:900 clamp(20px,2.8vw,26px)/1.2 Montserrat,sans-serif;text-transform:uppercase}
+.bg p{margin:0;color:rgba(255,255,255,.94)}
+.foot{padding:18px 16px;text-align:center;font-size:12.5px;color:rgba(255,255,255,.55)}
+@media (max-width:760px){.grid{grid-template-columns:1fr}.ladder{grid-template-columns:repeat(2,minmax(0,1fr))}.days{grid-template-columns:1fr}}
+@media print{.top .tools,.toc,.foot,.bg a{display:none}body{background:#fff}.top{background:#1C0F18}.st{box-shadow:none;border:1px solid #eee;break-inside:avoid}textarea,input{border:1px solid #ccc;background:#fff}}
+</style>
+
+<header class="top">
+  <div class="wrap">
+    <a href="index.html"><img class="logo" src="assets/logo-horizontal.svg" alt="Beauty Games by Verbova Iryna" width="330" height="46"></a>
+    <span class="kick">Бонус для учасниць Beauty Games</span>
+    <h1>Воркбук <em>«Моє перше навчання»</em></h1>
+    <p class="lede">Робочий зошит, щоб упакувати ваш досвід у перше онлайн-навчання для майстрів: хто ваша учениця, що ви обіцяєте, з яких модулів складається програма, скільки коштує і як запустити перший потік. Заповнюйте прямо тут — усе зберігається у вашому браузері.</p>
+    <div class="tools">
+      <button class="btn" type="button" id="printBtn">Зберегти в PDF / роздрукувати</button>
+      <button class="btn g" type="button" id="clearBtn">Очистити</button>
+      <span class="saved" id="saved">Відповіді зберігаються автоматично на цьому пристрої</span>
+    </div>
+    <nav class="toc"><a href="#w1">Учениця</a><a href="#w2">Обіцянка</a><a href="#w3">Формат</a><a href="#w4">Програма</a><a href="#w5">Модуль 0</a><a href="#w6">Тарифи</a><a href="#w7">Сходинки</a><a href="#w8">Запуск</a><a href="#w9">Готовність</a></nav>
+  </div>
+</header>
+
+<main>
+  <div class="wrap">
+
+    <section class="st" id="w1">
+      <h2><span>01</span>Ваша учениця: точка А → точка Б</h2>
+      <p class="why">Продається не інформація, а зміна. Чим точніше ви бачите ученицю, тим легше скласти програму й продати.</p>
+      <div class="q"><label>Кого ви хочете навчати?</label><small>Новачки без досвіду, практикуючі майстри, власниці кабінетів…</small><textarea data-k="who"></textarea></div>
+      <div class="q"><label>Точка А: з чим вона приходить?</label><small>Що не виходить, чого боїться, скільки зараз заробляє</small><textarea data-k="a"></textarea></div>
+      <div class="q"><label>Точка Б: що вона вміє після навчання?</label><small>Конкретно: яку процедуру робить, на яку ціну, за скільки часу</small><textarea data-k="b"></textarea></div>
+      <div class="q"><label>Чому саме ви? Ваш досвід у цифрах</label><small>Роки, процедури, учениці, нагороди, свої результати</small><textarea data-k="me"></textarea></div>
+    </section>
+
+    <section class="st" id="w2">
+      <h2><span>02</span>Ваша обіцянка</h2>
+      <p class="why">Формула: <b>за [термін] + конкретний результат + без [головного страху учениці]</b>. Тільки те, що реально.</p>
+      <div class="q"><label>Назва навчання</label><input type="text" data-k="name" placeholder="Наприклад: «Брови на потоці»"></div>
+      <div class="q"><label>Обіцянка одним реченням</label><textarea data-k="promise"></textarea></div>
+      <p class="ex"><b>Приклад:</b> «За 4 тижні освоїте ламінування брів і візьмете перших 5 платних клієнток — без дорогих матеріалів на старті».</p>
+    </section>
+
+    <section class="st" id="w3">
+      <h2><span>03</span>Формат</h2>
+      <div class="q"><label>Скільки триває навчання і як проходить?</label><small>Тижні; відеоуроки, живі зустрічі, практика на моделях, чат</small><textarea data-k="format"></textarea></div>
+      <div class="q"><label>Онлайн, офлайн чи змішано? Групою чи індивідуально?</label><textarea data-k="mode"></textarea></div>
+    </section>
+
+    <section class="st" id="w4">
+      <h2><span>04</span>Програма: 5–8 модулів</h2>
+      <p class="why">Кожен модуль — один крок до точки Б. Називайте модулі через результат: «Після модуля ви…». Уроки — відео по 7–15 хвилин, після кожного — просте завдання.</p>
+      <div class="grid" id="mods"></div>
+      <p class="ex"><b>Приклад назви:</b> «Модуль 3. Перші 10 клієнток: сторіс, які приводять записи».</p>
+    </section>
+
+    <section class="st" id="w5">
+      <h2><span>05</span>Модуль 0 — передпідготовка</h2>
+      <p class="why">Відкривається одразу після оплати: знайомство, словник термінів, легке завдання. Учениця одразу відчуває результат — і не передумує до старту.</p>
+      <div class="q"><label>Що буде в модулі 0?</label><textarea data-k="m0"></textarea></div>
+    </section>
+
+    <section class="st" id="w6">
+      <h2><span>06</span>Тарифи</h2>
+      <p class="why">Три тарифи. Найчастіше обирають середній — на нього й робіть фокус.</p>
+      <div class="grid">
+        <div class="mod"><b>БАЗОВИЙ</b><textarea data-k="t1" placeholder="Що входить: уроки, чат…"></textarea><input type="text" data-k="t1p" placeholder="Ціна" style="margin-top:8px"></div>
+        <div class="mod"><b>З ПЕРЕВІРКОЮ ★</b><textarea data-k="t2" placeholder="+ перевірка завдань, групові розбори…"></textarea><input type="text" data-k="t2p" placeholder="Ціна" style="margin-top:8px"></div>
+        <div class="mod"><b>ОСОБИСТИЙ</b><textarea data-k="t3" placeholder="+ особисті зустрічі з вами, супровід…"></textarea><input type="text" data-k="t3p" placeholder="Ціна" style="margin-top:8px"></div>
+      </div>
+    </section>
+
+    <section class="st" id="w7">
+      <h2><span>07</span>Сходинки продукту</h2>
+      <p class="why">Холодна аудиторія рідко купує дороге одразу. Ведіть її сходинками:</p>
+      <div class="ladder">
+        <div><b>Безкоштовне</b>ефір, гайд, чек-лист<i>знайомство</i></div>
+        <div><b>Міні-курс</b>3–5 уроків<i>≈ $7–30</i></div>
+        <div><b>Основне навчання</b>з кураторами й ДЗ<i>≈ $300–1 000</i></div>
+        <div><b>Наставництво</b>особисто з вами<i>від $1 500</i></div>
+      </div>
+      <p class="ex">Орієнтири цін — з бази знань із запуску онлайн-курсів; ваші ціни залежать від ніші й країни.</p>
+      <div class="q"><label>Ваш безкоштовний продукт</label><input type="text" data-k="l1"></div>
+      <div class="q"><label>Ваш міні-курс</label><input type="text" data-k="l2"></div>
+      <div class="q"><label>Ваше основне навчання</label><input type="text" data-k="l3"></div>
+    </section>
+
+    <section class="st" id="w8">
+      <h2><span>08</span>Перший запуск за 14 днів</h2>
+      <p class="why">Головне правило: <b>спочатку продаж — потім запис</b>. Не знімайте весь курс заздалегідь: продаєте за програмою і 1–2 модулями, решту записуєте разом з першими ученицями.</p>
+      <div class="days">
+        <div><b>ДНІ 1–3</b>Програма, обіцянка, тарифи (цей воркбук)</div>
+        <div><b>ДНІ 4–5</b>Записати модуль 0 і перший урок</div>
+        <div><b>ДНІ 6–10</b>Прогрів у сторіс: ваш шлях, результати, питання учениць</div>
+        <div><b>ДЕНЬ 11</b>Безкоштовний ефір з продажем у кінці</div>
+        <div><b>ДНІ 12–13</b>Відповіді в Direct, запис на навчання</div>
+        <div><b>ДЕНЬ 14</b>Старт потоку — решту уроків знімаєте по ходу</div>
+      </div>
+      <div class="q"><label>Дата вашого першого ефіру</label><input type="text" data-k="date"></div>
+      <div class="q"><label>Скільки учениць хочете в першому потоці?</label><input type="text" data-k="goal"></div>
+    </section>
+
+    <section class="st" id="w9">
+      <h2><span>09</span>Чек-лист готовності</h2>
+      <ul class="chk">
+        <li><label><input type="checkbox" data-k="c1">Описала ученицю: точка А і точка Б</label></li>
+        <li><label><input type="checkbox" data-k="c2">Є обіцянка одним реченням</label></li>
+        <li><label><input type="checkbox" data-k="c3">Програма з 5–8 модулів, назви через результат</label></li>
+        <li><label><input type="checkbox" data-k="c4">Модуль 0 готовий</label></li>
+        <li><label><input type="checkbox" data-k="c5">Три тарифи з цінами</label></li>
+        <li><label><input type="checkbox" data-k="c6">Дата першого ефіру в календарі</label></li>
+        <li><label><input type="checkbox" data-k="c7">Записала перший урок</label></li>
+      </ul>
+      <p class="ex"><b>Підказка:</b> промпти для програми, обіцянки й тарифів — у розділі «Бонус: своє навчання» чек-листа <a href="prompts.html#s7" target="_blank" rel="noopener">30 AI-промптів</a>.</p>
+    </section>
+
+    <div class="bg">
+      <h2>Далі — з куратором Beauty Games</h2>
+      <p>У сезоні ви з куратором доведете цей план до першого потоку: програма, упаковка, продаж. Принесіть заповнений воркбук на першу зустріч з командою.</p>
+    </div>
+  </div>
+</main>
+<div class="foot">© Beauty Games 2026 · beauty-games.pro</div>
+
+<script>
+(function () {
+  var mods = document.getElementById('mods'), h = '';
+  for (var i = 1; i <= 6; i++) h += '<div class="mod"><b>МОДУЛЬ ' + i + '</b><textarea data-k="m' + i + 'n" placeholder="Назва через результат"></textarea><textarea data-k="m' + i + 'l" placeholder="Уроки й завдання"></textarea></div>';
+  mods.innerHTML = h;
+  var KEY = 'bg-workbook-v1', data = {};
+  try { data = JSON.parse(localStorage.getItem(KEY) || '{}'); } catch (e) {}
+  var fields = document.querySelectorAll('[data-k]'), saved = document.getElementById('saved'), t;
+  fields.forEach(function (f) {
+    var k = f.getAttribute('data-k');
+    if (f.type === 'checkbox') f.checked = !!data[k]; else if (data[k]) f.value = data[k];
+    f.addEventListener(f.type === 'checkbox' ? 'change' : 'input', function () {
+      data[k] = f.type === 'checkbox' ? f.checked : f.value;
+      try { localStorage.setItem(KEY, JSON.stringify(data)); saved.textContent = 'Збережено ✓'; } catch (e) { saved.textContent = 'Не вдалося зберегти — роздрукуйте або збережіть PDF'; }
+      clearTimeout(t); t = setTimeout(function () { saved.textContent = 'Відповіді зберігаються автоматично на цьому пристрої'; }, 1500);
+    });
+  });
+  document.getElementById('printBtn').addEventListener('click', function () { window.print(); });
+  var clr = document.getElementById('clearBtn'), armed = false;
+  clr.addEventListener('click', function () {
+    if (!armed) { armed = true; clr.textContent = 'Точно очистити?'; setTimeout(function () { armed = false; clr.textContent = 'Очистити'; }, 3000); return; }
+    data = {}; try { localStorage.removeItem(KEY); } catch (e) {}
+    fields.forEach(function (f) { if (f.type === 'checkbox') f.checked = false; else f.value = ''; });
+    armed = false; clr.textContent = 'Очистити';
+  });
+})();
+</script>
