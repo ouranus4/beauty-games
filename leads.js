@@ -34,7 +34,8 @@ window.BG_LEADS_URL_BF = 'https://script.google.com/macros/s/AKfycbwF5A4k7hhgBgt
     profile: 'Beauty Games: контакт із гайду «Дорога упаковка профілю»',
     earn: 'Beauty Games: контакт із калькулятора «Скільки заробляєте»',
     blackfriday: 'Beauty Games: BLACK FRIDAY — нова заявка (за запрошенням)',
-    test: 'Beauty Games: тест «Точка зростання»'
+    test: 'Beauty Games: тест «Точка зростання»',
+    webinar: 'Beauty Games: реєстрація на вебінар'
   };
 
   // Назви полів у листі — людською мовою, в тому ж порядку
@@ -82,12 +83,12 @@ window.BG_LEADS_URL_BF = 'https://script.google.com/macros/s/AKfycbwF5A4k7hhgBgt
   }
 
   function viaPing(p, to) {
-    var t = { participant: 'бронювання місця', casting: 'кастинг', calc: 'калькулятор', ambassador: 'амбасадор', blackfriday: 'BLACK FRIDAY (за запрошенням)', test: 'тест «Точка зростання»', profile: 'гайд «Упаковка профілю»', earn: 'калькулятор «Скільки заробляєте»' }[p.form] || p.form;
+    var t = { participant: 'бронювання місця', casting: 'кастинг', calc: 'калькулятор', ambassador: 'амбасадор', blackfriday: 'BLACK FRIDAY (за запрошенням)', test: 'тест «Точка зростання»', webinar: 'вебінар', profile: 'гайд «Упаковка профілю»', earn: 'калькулятор «Скільки заробляєте»' }[p.form] || p.form;
     return fetch('https://formsubmit.co/ajax/' + (to || window.BG_LEADS_PING), {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
       body: JSON.stringify(clean({
-        _subject: p.form === 'blackfriday' ? '🖤 BLACK FRIDAY — нова заявка' : (p.form === 'calc' || p.form === 'earn') ? '🧮 Калькулятор — новий контакт' : p.form === 'test' ? (p.page === 'avatar-start' ? '🎮 Тест — новий контакт' : '🎮 Тест — карта гравця') : 'Beauty Games: нова заявка — ' + t,
+        _subject: p.form === 'blackfriday' ? '🖤 BLACK FRIDAY — нова заявка' : (p.form === 'calc' || p.form === 'earn') ? '🧮 Калькулятор — новий контакт' : p.form === 'webinar' ? '🎥 Вебінар — реєстрація' : p.form === 'test' ? (p.page === 'avatar-start' ? '🎮 Тест — новий контакт' : '🎮 Тест — карта гравця') : 'Beauty Games: нова заявка — ' + t,
         _template: 'basic',   // у Telegram «basic» показує назви полів, «table» їх губить
         _captcha: 'false',
         Заявка: t,
