@@ -88,6 +88,14 @@
 .rs-card .form-success h3{font-size:20px}
 .rs-card .rs-ok-btns{flex-direction:column}
 .rs-more{display:inline-block;margin-top:22px;font:800 14px/1 Montserrat,sans-serif;color:#FF2E88;text-decoration:none}
+.rs-gift{display:flex;gap:14px;align-items:center;margin:0 0 16px;padding:12px;border-radius:16px;background:rgba(255,46,136,.1);border:1px dashed rgba(255,46,136,.6)}
+.rs-gift p{margin:0;font-size:13.5px;line-height:1.45;color:rgba(255,255,255,.85)}
+.rs-gift p b{color:#fff}
+.rs-box{position:relative;flex:none;width:78px;height:96px;perspective:300px}
+.rs-box .f{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;border-radius:8px;background:linear-gradient(160deg,#FF6FB0,#FF2E88 50%,#B80A59);transform:rotateY(-18deg);transform-origin:left;box-shadow:8px 10px 22px rgba(0,0,0,.45),inset 0 0 0 1px rgba(255,255,255,.35);font:800 9.5px/1.15 Montserrat,sans-serif;color:#fff;text-transform:uppercase;padding:6px}
+.rs-box .f b{font:900 30px/1 Montserrat,sans-serif}
+.rs-box .f i{font-style:normal;font-weight:600;text-transform:none;font-size:8.5px;margin-top:3px;opacity:.9}
+.rs-box .s{position:absolute;top:4px;bottom:4px;left:-8px;width:10px;border-radius:3px 0 0 3px;background:#7A0640;transform:skewY(-8deg)}
 @media (max-width:999px){.rs-grid{grid-template-columns:1fr}.rs-ph{max-width:320px}.rs-get{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media (max-width:760px){.rs-pains{grid-template-columns:1fr}.rs-who{grid-template-columns:1fr}.rs-who img{max-width:300px;margin:0 auto}.rs-mod{grid-template-columns:1fr;gap:6px}}
 @media (max-width:520px){.rs-f .form-send{letter-spacing:.03em;font-size:13px;padding-left:10px;padding-right:10px}.rs-get{grid-template-columns:1fr}.rs-when{grid-template-columns:repeat(3,minmax(0,1fr))}.rs-when div{padding:10px 10px}.rs-cd .u{min-width:0;flex:1}}
@@ -140,6 +148,7 @@
       <div class="rs-card-who"><img src="assets/people/vorzheva.jpg" alt="Ксенія Воржева" width="900" height="1350"><span><b>Ксенія Воржева</b>@kseniia.expert · косметологиня, 10 років практики</span></div>
       <form class="rs-f" novalidate>
         <p class="rs-card-h">Безкоштовна реєстрація</p>
+        <div class="rs-gift"><div class="rs-box" aria-hidden="true"><span class="f"><b>30</b>AI-промптів<i>для б’юті-майстра</i></span><span class="s"></span></div><p><b>Подарунок одразу після реєстрації:</b> чек-лист «30 AI-промптів для б’юті-майстра» — ідеї, тексти, сценарії Reels і контент-план.</p></div>
         <p hidden><label>Не заповнюйте це поле: <input name="bot-field"></label></p>
         <div class="fgrid">
           <div class="fld full">
@@ -170,12 +179,14 @@
           <h3>Ви зареєстровані!</h3>
           <p>До зустрічі на майстер-класі <b>INSTAGRAM RE:START</b> — 26 листопада о 19:00 за Києвом.</p>
           <ol class="rs-ok-steps">
-            <li><span class="i">1</span><span><b>Додайте майстер-клас у календар</b> — щоб не загубити дату.</span></li>
-            <li><span class="i">2</span><span><b>Чекайте посилання</b> <span class="ok-msgr">у месенджері</span> — надішлемо його й нагадаємо перед стартом.</span></li>
-            <li><span class="i">3</span><span><b>Підпишіться на Ксенію</b> — до ефіру вона ділитиметься анонсами.</span></li>
+            <li><span class="i">1</span><span><b>Заберіть подарунок</b> — чек-лист «30 AI-промптів для б’юті-майстра» за кнопкою нижче.</span></li>
+            <li><span class="i">2</span><span><b>Додайте майстер-клас у календар</b> — щоб не загубити дату.</span></li>
+            <li><span class="i">3</span><span><b>Чекайте посилання</b> <span class="ok-msgr">у месенджері</span> — надішлемо його й нагадаємо перед стартом.</span></li>
+            <li><span class="i">4</span><span><b>Підпишіться на Ксенію</b> — до ефіру вона ділитиметься анонсами.</span></li>
           </ol>
           <div class="rs-ok-btns">
-            <a class="btn btn-primary" target="_blank" rel="noopener" href="https://calendar.google.com/calendar/render?action=TEMPLATE&amp;text=INSTAGRAM%20RE%3ASTART%20%E2%80%94%20%D0%BC%D0%B0%D0%B9%D1%81%D1%82%D0%B5%D1%80-%D0%BA%D0%BB%D0%B0%D1%81%20%D0%9A%D1%81%D0%B5%D0%BD%D1%96%D1%97%20%D0%92%D0%BE%D1%80%D0%B6%D0%B5%D0%B2%D0%BE%D1%97&amp;dates=20261126T170000Z/20261126T183000Z&amp;details=%D0%91%D0%B5%D0%B7%D0%BA%D0%BE%D1%88%D1%82%D0%BE%D0%B2%D0%BD%D0%B8%D0%B9%20%D0%BC%D0%B0%D0%B9%D1%81%D1%82%D0%B5%D1%80-%D0%BA%D0%BB%D0%B0%D1%81%20Beauty%20Games.%20%D0%9F%D0%BE%D1%81%D0%B8%D0%BB%D0%B0%D0%BD%D0%BD%D1%8F%20%D0%BD%D0%B0%D0%B4%D1%96%D1%88%D0%BB%D0%B5%D0%BC%D0%BE%20%D0%B2%20%D0%BC%D0%B5%D1%81%D0%B5%D0%BD%D0%B4%D0%B6%D0%B5%D1%80.%20https%3A%2F%2Fbeauty-games.pro%2Frestart">Додати в календар</a>
+            <a class="btn btn-primary" href="prompts.html" target="_blank" rel="noopener">🎁 Забрати чек-лист</a>
+            <a class="btn btn-ghost" target="_blank" rel="noopener" href="https://calendar.google.com/calendar/render?action=TEMPLATE&amp;text=INSTAGRAM%20RE%3ASTART%20%E2%80%94%20%D0%BC%D0%B0%D0%B9%D1%81%D1%82%D0%B5%D1%80-%D0%BA%D0%BB%D0%B0%D1%81%20%D0%9A%D1%81%D0%B5%D0%BD%D1%96%D1%97%20%D0%92%D0%BE%D1%80%D0%B6%D0%B5%D0%B2%D0%BE%D1%97&amp;dates=20261126T170000Z/20261126T183000Z&amp;details=%D0%91%D0%B5%D0%B7%D0%BA%D0%BE%D1%88%D1%82%D0%BE%D0%B2%D0%BD%D0%B8%D0%B9%20%D0%BC%D0%B0%D0%B9%D1%81%D1%82%D0%B5%D1%80-%D0%BA%D0%BB%D0%B0%D1%81%20Beauty%20Games.%20%D0%9F%D0%BE%D1%81%D0%B8%D0%BB%D0%B0%D0%BD%D0%BD%D1%8F%20%D0%BD%D0%B0%D0%B4%D1%96%D1%88%D0%BB%D0%B5%D0%BC%D0%BE%20%D0%B2%20%D0%BC%D0%B5%D1%81%D0%B5%D0%BD%D0%B4%D0%B6%D0%B5%D1%80.%20https%3A%2F%2Fbeauty-games.pro%2Frestart">Додати в календар</a>
             <a class="btn btn-ghost" href="https://instagram.com/kseniia.expert" target="_blank" rel="noopener">@kseniia.expert</a>
           </div>
         </div>
@@ -282,6 +293,10 @@
         <div class="acc-panel"><div class="acc-panel-in"><p>Нічого. Майстер-клас безкоштовний — потрібна лише реєстрація, щоб ми надіслали вам посилання.</p></div></div>
       </div>
       <div class="acc-item glass-soft">
+        <button class="acc-btn" type="button"><span class="tx">Що за подарунок за реєстрацію?</span><span class="ic"></span></button>
+        <div class="acc-panel"><div class="acc-panel-in"><p>Чек-лист «30 AI-промптів для б’юті-майстра»: готові запити для ChatGPT або Gemini — ідеї для сторіс, тексти постів, сценарії Reels, візуал і контент-план. Відкривається одразу після реєстрації.</p></div></div>
+      </div>
+      <div class="acc-item glass-soft">
         <button class="acc-btn" type="button"><span class="tx">Де проходитиме майстер-клас?</span><span class="ic"></span></button>
         <div class="acc-panel"><div class="acc-panel-in"><p>Онлайн, в онлайн-кімнаті — не в Zoom, нічого встановлювати не треба. Посилання надішлемо в месенджер, який ви вкажете в реєстрації, і нагадаємо перед стартом.</p></div></div>
       </div>
@@ -310,6 +325,7 @@
             <span class="eyebrow">Безкоштовна реєстрація · 26.11 о 19:00</span>
             <h2 class="h-lg">Забронюйте <span class="glow">місце на ефірі</span></h2>
           </div>
+          <div class="rs-gift"><div class="rs-box" aria-hidden="true"><span class="f"><b>30</b>AI-промптів<i>для б’юті-майстра</i></span><span class="s"></span></div><p><b>Подарунок одразу після реєстрації:</b> чек-лист «30 AI-промптів для б’юті-майстра» — ідеї, тексти, сценарії Reels і контент-план.</p></div>
           <p hidden><label>Не заповнюйте це поле: <input name="bot-field"></label></p>
         <div class="fgrid">
           <div class="fld full">
@@ -341,12 +357,14 @@
           <h3>Ви зареєстровані!</h3>
           <p>До зустрічі на майстер-класі <b>INSTAGRAM RE:START</b> — 26 листопада о 19:00 за Києвом.</p>
           <ol class="rs-ok-steps">
-            <li><span class="i">1</span><span><b>Додайте майстер-клас у календар</b> — щоб не загубити дату.</span></li>
-            <li><span class="i">2</span><span><b>Чекайте посилання</b> <span class="ok-msgr">у месенджері</span> — надішлемо його й нагадаємо перед стартом.</span></li>
-            <li><span class="i">3</span><span><b>Підпишіться на Ксенію</b> — до ефіру вона ділитиметься анонсами.</span></li>
+            <li><span class="i">1</span><span><b>Заберіть подарунок</b> — чек-лист «30 AI-промптів для б’юті-майстра» за кнопкою нижче.</span></li>
+            <li><span class="i">2</span><span><b>Додайте майстер-клас у календар</b> — щоб не загубити дату.</span></li>
+            <li><span class="i">3</span><span><b>Чекайте посилання</b> <span class="ok-msgr">у месенджері</span> — надішлемо його й нагадаємо перед стартом.</span></li>
+            <li><span class="i">4</span><span><b>Підпишіться на Ксенію</b> — до ефіру вона ділитиметься анонсами.</span></li>
           </ol>
           <div class="rs-ok-btns">
-            <a class="btn btn-primary" target="_blank" rel="noopener" href="https://calendar.google.com/calendar/render?action=TEMPLATE&amp;text=INSTAGRAM%20RE%3ASTART%20%E2%80%94%20%D0%BC%D0%B0%D0%B9%D1%81%D1%82%D0%B5%D1%80-%D0%BA%D0%BB%D0%B0%D1%81%20%D0%9A%D1%81%D0%B5%D0%BD%D1%96%D1%97%20%D0%92%D0%BE%D1%80%D0%B6%D0%B5%D0%B2%D0%BE%D1%97&amp;dates=20261126T170000Z/20261126T183000Z&amp;details=%D0%91%D0%B5%D0%B7%D0%BA%D0%BE%D1%88%D1%82%D0%BE%D0%B2%D0%BD%D0%B8%D0%B9%20%D0%BC%D0%B0%D0%B9%D1%81%D1%82%D0%B5%D1%80-%D0%BA%D0%BB%D0%B0%D1%81%20Beauty%20Games.%20%D0%9F%D0%BE%D1%81%D0%B8%D0%BB%D0%B0%D0%BD%D0%BD%D1%8F%20%D0%BD%D0%B0%D0%B4%D1%96%D1%88%D0%BB%D0%B5%D0%BC%D0%BE%20%D0%B2%20%D0%BC%D0%B5%D1%81%D0%B5%D0%BD%D0%B4%D0%B6%D0%B5%D1%80.%20https%3A%2F%2Fbeauty-games.pro%2Frestart">Додати в календар</a>
+            <a class="btn btn-primary" href="prompts.html" target="_blank" rel="noopener">🎁 Забрати чек-лист</a>
+            <a class="btn btn-ghost" target="_blank" rel="noopener" href="https://calendar.google.com/calendar/render?action=TEMPLATE&amp;text=INSTAGRAM%20RE%3ASTART%20%E2%80%94%20%D0%BC%D0%B0%D0%B9%D1%81%D1%82%D0%B5%D1%80-%D0%BA%D0%BB%D0%B0%D1%81%20%D0%9A%D1%81%D0%B5%D0%BD%D1%96%D1%97%20%D0%92%D0%BE%D1%80%D0%B6%D0%B5%D0%B2%D0%BE%D1%97&amp;dates=20261126T170000Z/20261126T183000Z&amp;details=%D0%91%D0%B5%D0%B7%D0%BA%D0%BE%D1%88%D1%82%D0%BE%D0%B2%D0%BD%D0%B8%D0%B9%20%D0%BC%D0%B0%D0%B9%D1%81%D1%82%D0%B5%D1%80-%D0%BA%D0%BB%D0%B0%D1%81%20Beauty%20Games.%20%D0%9F%D0%BE%D1%81%D0%B8%D0%BB%D0%B0%D0%BD%D0%BD%D1%8F%20%D0%BD%D0%B0%D0%B4%D1%96%D1%88%D0%BB%D0%B5%D0%BC%D0%BE%20%D0%B2%20%D0%BC%D0%B5%D1%81%D0%B5%D0%BD%D0%B4%D0%B6%D0%B5%D1%80.%20https%3A%2F%2Fbeauty-games.pro%2Frestart">Додати в календар</a>
             <a class="btn btn-ghost" href="https://instagram.com/kseniia.expert" target="_blank" rel="noopener">@kseniia.expert</a>
           </div>
         </div>
