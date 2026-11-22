@@ -1,9 +1,9 @@
 <meta charset="utf-8">
 <script src="pixel.js?v=1b0a4353"></script>
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>INSTAGRAM RE:START — безкоштовний вебінар Ксенії Воржевої · Beauty Games</title>
-<meta name="description" content="Безкоштовний вебінар для б’юті-майстрів 26 листопада: як повернути енергію в Instagram, створювати контент з AI, оновити візуал і працювати з блогом без вигорання. Спікерка — Ксенія Воржева, Beauty Games.">
-<meta property="og:title" content="INSTAGRAM RE:START — безкоштовний вебінар для б’юті-майстрів">
+<title>INSTAGRAM RE:START — безкоштовний майстер-клас Ксенії Воржевої · Beauty Games</title>
+<meta name="description" content="Безкоштовний онлайн-майстер-клас для б’юті-майстрів 26 листопада: як повернути енергію в Instagram, створювати контент з AI, оновити візуал і працювати з блогом без вигорання. Спікерка — Ксенія Воржева, Beauty Games.">
+<meta property="og:title" content="INSTAGRAM RE:START — безкоштовний майстер-клас для б’юті-майстрів">
 <meta property="og:description" content="26 листопада, онлайн. Ксенія Воржева: нові інструменти, AI для контенту, візуал і система роботи з Instagram без вигорання.">
 <meta property="og:image" content="https://beauty-games.pro/assets/people/vorzheva.jpg">
 <script>document.documentElement.setAttribute('data-page','main');document.documentElement.lang='uk';</script>
@@ -77,9 +77,20 @@
 .rs-ok-steps .i{flex:none;width:28px;height:28px;border-radius:50%;display:grid;place-items:center;background:#FF2E88;color:#fff;font:900 14px/1 Montserrat,sans-serif}
 .rs-ok-btns{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin-top:22px}
 .rs-ok-btns .btn{margin-top:0!important}
+.rs-card{position:relative;padding:clamp(20px,3vw,28px);border-radius:26px;max-width:440px;width:100%;justify-self:center}
+.rs-card-who{display:flex;align-items:center;gap:12px;margin-bottom:16px}
+.rs-card-who img{width:56px;height:56px!important;flex:none;border-radius:50%;object-fit:cover;object-position:center 22%;border:2px solid #FF2E88;box-shadow:0 0 22px rgba(255,46,136,.45)}
+.rs-card-who span{font-size:12.5px;line-height:1.35;color:rgba(255,255,255,.7)}
+.rs-card-who b{display:block;font:900 16px/1.2 Montserrat,sans-serif;color:#fff}
+.rs-card-h{margin:0 0 14px;font:900 18px/1.2 Montserrat,sans-serif;text-transform:uppercase;color:#fff}
+.rs-card .fgrid{grid-template-columns:1fr;gap:12px}
+.rs-card .form-success{padding:10px 4px}
+.rs-card .form-success h3{font-size:20px}
+.rs-card .rs-ok-btns{flex-direction:column}
+.rs-more{display:inline-block;margin-top:22px;font:800 14px/1 Montserrat,sans-serif;color:#FF2E88;text-decoration:none}
 @media (max-width:999px){.rs-grid{grid-template-columns:1fr}.rs-ph{max-width:320px}.rs-get{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media (max-width:760px){.rs-pains{grid-template-columns:1fr}.rs-who{grid-template-columns:1fr}.rs-who img{max-width:300px;margin:0 auto}.rs-mod{grid-template-columns:1fr;gap:6px}}
-@media (max-width:520px){.rs-get{grid-template-columns:1fr}.rs-when{grid-template-columns:repeat(3,minmax(0,1fr))}.rs-when div{padding:10px 10px}.rs-cd .u{min-width:0;flex:1}}
+@media (max-width:520px){.rs-f .form-send{letter-spacing:.03em;font-size:13px;padding-left:10px;padding-right:10px}.rs-get{grid-template-columns:1fr}.rs-when{grid-template-columns:repeat(3,minmax(0,1fr))}.rs-when div{padding:10px 10px}.rs-cd .u{min-width:0;flex:1}}
 </style>
 
 
@@ -104,7 +115,7 @@
   </nav>
 </div>
 <div class="mobile-menu" id="mobileMenu">
-  <a href="#program">Програма вебінару</a>
+  <a href="#program">Програма майстер-класу</a>
   <a href="#speaker">Спікерка</a>
   <a href="#faq">Питання</a>
   <a href="#reg" class="btn btn-primary">Зареєструватися</a>
@@ -113,7 +124,7 @@
 <header class="rs-hero" id="top">
   <div class="wrap rs-grid">
     <div>
-      <div class="rs-kick"><span class="free">Безкоштовно</span><span>Онлайн-вебінар</span><span>Для б’юті-майстрів</span></div>
+      <div class="rs-kick"><span class="free">Безкоштовно</span><span>Онлайн-майстер-клас</span><span>Для б’юті-майстрів</span></div>
       <h1 class="rs-h1">Instagram <em>RE:START</em></h1>
       <p class="rs-sub">Нові інструменти. Нове бачення. Нова енергія для розвитку.</p>
       <p class="rs-lede">Для майстрів, які втомилися від однакових сторіс і ведуть блог через силу. За один вечір — як повернути задоволення від контенту, створювати його з AI за хвилини і зробити Instagram інструментом, а не джерелом стресу.</p>
@@ -123,23 +134,59 @@
         <div><b>Онлайн</b><span>з будь-якої країни</span></div>
       </div>
       <div class="rs-cd" aria-live="polite"><span class="k" id="rsK">До старту</span><div class="u"><b id="rsD">00</b><i>дні</i></div><div class="u"><b id="rsH">00</b><i>год</i></div><div class="u"><b id="rsM">00</b><i>хв</i></div><div class="u"><b id="rsS">00</b><i>сек</i></div></div>
-      <div class="rs-cta">
-        <a href="#reg" class="btn btn-primary">Зареєструватися безкоштовно</a>
-        <a href="#program" class="btn btn-ghost">Програма</a>
-        <span class="rs-micro">1 хвилина · посилання на ефір надішлемо в месенджер</span>
-      </div>
+      <a href="#program" class="rs-more">Програма майстер-класу ↓</a>
     </div>
-    <figure class="rs-ph">
-      <img src="assets/people/vorzheva.jpg" alt="Ксенія Воржева" width="900" height="1350">
-      <figcaption><b>Ксенія Воржева</b><span>@kseniia.expert · косметологиня, 10 років практики, навчає майстрів</span></figcaption>
-    </figure>
+    <div class="rs-card glass bloom" id="regTop">
+      <div class="rs-card-who"><img src="assets/people/vorzheva.jpg" alt="Ксенія Воржева" width="900" height="1350"><span><b>Ксенія Воржева</b>@kseniia.expert · косметологиня, 10 років практики</span></div>
+      <form class="rs-f" novalidate>
+        <p class="rs-card-h">Безкоштовна реєстрація</p>
+        <p hidden><label>Не заповнюйте це поле: <input name="bot-field"></label></p>
+        <div class="fgrid">
+          <div class="fld full">
+            <label>Ім'я <span class="r">*</span></label>
+            <input type="text" name="name" placeholder="Як до вас звертатися" autocomplete="given-name">
+            <span class="msg">Вкажіть, будь ласка, ім'я</span>
+          </div>
+          <div class="fld full">
+            <label>Телефон <span class="r">*</span></label>
+            <input type="tel" name="phone" placeholder="+380 67 000 00 00" autocomplete="tel">
+            <span class="msg">Вкажіть телефон з кодом країни</span>
+          </div>
+          <div class="fld full">
+            <label>Куди надіслати посилання</label>
+            <select name="messenger"><option>Telegram</option><option>Viber</option><option>WhatsApp</option></select>
+          </div>
+          <label class="consent">
+            <input type="checkbox" name="consent" value="yes" checked>
+            <span>Погоджуюсь на обробку персональних даних відповідно до <a href="privacy.html" target="_blank">політики конфіденційності</a>.</span>
+          </label>
+        </div>
+        <button type="submit" class="btn btn-primary btn-block form-send">Зареєструватися безкоштовно</button>
+        <span class="rs-micro" style="text-align:center">1 хвилина · посилання надішлемо в месенджер</span>
+        <p class="rs-micro rs-err" hidden style="text-align:center;color:#FF6B88">Не вдалося надіслати. Спробуйте ще раз або напишіть нам у <a href="https://t.me/beauty_games_pro" target="_blank" rel="noopener">Telegram</a>.</p>
+      </form>
+      <div class="form-success">
+          <div class="ok">✓</div>
+          <h3>Ви зареєстровані!</h3>
+          <p>До зустрічі на майстер-класі <b>INSTAGRAM RE:START</b> — 26 листопада о 19:00 за Києвом.</p>
+          <ol class="rs-ok-steps">
+            <li><span class="i">1</span><span><b>Додайте майстер-клас у календар</b> — щоб не загубити дату.</span></li>
+            <li><span class="i">2</span><span><b>Чекайте посилання</b> <span class="ok-msgr">у месенджері</span> — надішлемо його й нагадаємо перед стартом.</span></li>
+            <li><span class="i">3</span><span><b>Підпишіться на Ксенію</b> — до ефіру вона ділитиметься анонсами.</span></li>
+          </ol>
+          <div class="rs-ok-btns">
+            <a class="btn btn-primary" target="_blank" rel="noopener" href="https://calendar.google.com/calendar/render?action=TEMPLATE&amp;text=INSTAGRAM%20RE%3ASTART%20%E2%80%94%20%D0%BC%D0%B0%D0%B9%D1%81%D1%82%D0%B5%D1%80-%D0%BA%D0%BB%D0%B0%D1%81%20%D0%9A%D1%81%D0%B5%D0%BD%D1%96%D1%97%20%D0%92%D0%BE%D1%80%D0%B6%D0%B5%D0%B2%D0%BE%D1%97&amp;dates=20261126T170000Z/20261126T183000Z&amp;details=%D0%91%D0%B5%D0%B7%D0%BA%D0%BE%D1%88%D1%82%D0%BE%D0%B2%D0%BD%D0%B8%D0%B9%20%D0%BC%D0%B0%D0%B9%D1%81%D1%82%D0%B5%D1%80-%D0%BA%D0%BB%D0%B0%D1%81%20Beauty%20Games.%20%D0%9F%D0%BE%D1%81%D0%B8%D0%BB%D0%B0%D0%BD%D0%BD%D1%8F%20%D0%BD%D0%B0%D0%B4%D1%96%D1%88%D0%BB%D0%B5%D0%BC%D0%BE%20%D0%B2%20%D0%BC%D0%B5%D1%81%D0%B5%D0%BD%D0%B4%D0%B6%D0%B5%D1%80.%20https%3A%2F%2Fbeauty-games.pro%2Frestart">Додати в календар</a>
+            <a class="btn btn-ghost" href="https://instagram.com/kseniia.expert" target="_blank" rel="noopener">@kseniia.expert</a>
+          </div>
+        </div>
+    </div>
   </div>
 </header>
 
 <section class="sec sec-light" id="pain">
   <div class="wrap">
     <div class="sec-head rv">
-      <span class="eyebrow">Цей вебінар для вас, якщо</span>
+      <span class="eyebrow">Цей майстер-клас для вас, якщо</span>
       <h2 class="h-lg">Instagram забирає сили, <span class="glow">а не дає клієнтів</span></h2>
       <div class="sec-rule"></div>
     </div>
@@ -157,7 +204,7 @@
 <section class="sec" id="program">
   <div class="wrap">
     <div class="sec-head rv">
-      <span class="eyebrow">Програма вебінару</span>
+      <span class="eyebrow">Програма майстер-класу</span>
       <h2 class="h-lg">5 кроків до <span class="glow">нового Instagram</span></h2>
       <div class="sec-rule"></div>
     </div>
@@ -168,14 +215,14 @@
       <article class="rs-mod rv"><span class="n">04</span><div><h3>Візуал і проявленість</h3><ul><li>Як оновити візуальну концепцію свого Instagram</li><li>Як зробити контент впізнаваним</li><li>Як показувати експертність не лише фотографіями робіт</li><li>Як подолати страх камери й розвивати особистий бренд</li></ul></div></article>
       <article class="rs-mod rv"><span class="n">05</span><div><h3>Нова система роботи з Instagram</h3><ul><li>Як створювати контент без постійної гонитви</li><li>Як вибудувати комфортну систему публікацій</li><li>Сучасні інструменти для розвитку та просування</li><li>Як зробити Instagram інструментом професійної реалізації, а не стресу</li></ul></div></article>
     </div>
-    <div class="rs-cta rv" style="justify-content:center"><a href="#reg" class="btn btn-primary">Забрати місце на вебінарі</a></div>
+    <div class="rs-cta rv" style="justify-content:center"><a href="#reg" class="btn btn-primary">Забрати місце на майстер-класі</a></div>
   </div>
 </section>
 
 <section class="sec sec-light" id="get">
   <div class="wrap">
     <div class="sec-head rv">
-      <span class="eyebrow">Після вебінару</span>
+      <span class="eyebrow">Після майстер-класу</span>
       <h2 class="h-lg">Що ви <span class="glow">заберете з собою</span></h2>
       <div class="sec-rule"></div>
     </div>
@@ -192,7 +239,7 @@
   <div class="wrap">
     <div class="sec-head rv">
       <span class="eyebrow">Спікерка</span>
-      <h2 class="h-lg">Хто <span class="glow">проводить вебінар</span></h2>
+      <h2 class="h-lg">Хто <span class="glow">проводить майстер-клас</span></h2>
       <div class="sec-rule"></div>
     </div>
     <div class="rs-who rv">
@@ -214,10 +261,10 @@
 <section class="sec sec-light" id="org">
   <div class="wrap">
     <div class="rs-org rv">
-      <span class="k">Організатор вебінару</span>
+      <span class="k">Організатор майстер-класу</span>
       <h3>Beauty Games by Iryna Verbova</h3>
       <p>Онлайн-реаліті для б’юті-майстрів: місії, наставники й експерти, які допомагають рости в доходах, бренді та продажах. Засновниця — Ірина Вербова, організаторка міжнародних заходів б’юті-індустрії (IBV, PMU Congress &amp; Championship), суддя міжнародної категорії.</p>
-      <p>Вебінар Ксенії — частина циклу безкоштовних експертних вебінарів проєкту. Наприкінці ефіру розповімо, як потрапити в новий сезон Beauty Games.</p>
+      <p>Майстер-клас Ксенії — частина циклу безкоштовних експертних ефірів проєкту. Наприкінці ефіру розповімо, як потрапити в новий сезон Beauty Games.</p>
     </div>
   </div>
 </section>
@@ -232,22 +279,22 @@
     <div class="acc" id="faqAcc">
       <div class="acc-item glass-soft">
         <button class="acc-btn" type="button"><span class="tx">Скільки коштує участь?</span><span class="ic"></span></button>
-        <div class="acc-panel"><div class="acc-panel-in"><p>Нічого. Вебінар безкоштовний — потрібна лише реєстрація, щоб ми надіслали вам посилання.</p></div></div>
+        <div class="acc-panel"><div class="acc-panel-in"><p>Нічого. Майстер-клас безкоштовний — потрібна лише реєстрація, щоб ми надіслали вам посилання.</p></div></div>
       </div>
       <div class="acc-item glass-soft">
-        <button class="acc-btn" type="button"><span class="tx">Де проходитиме вебінар?</span><span class="ic"></span></button>
-        <div class="acc-panel"><div class="acc-panel-in"><p>Онлайн, у вебінарній кімнаті — не в Zoom, нічого встановлювати не треба. Посилання надішлемо в месенджер, який ви вкажете в реєстрації, і нагадаємо перед стартом.</p></div></div>
+        <button class="acc-btn" type="button"><span class="tx">Де проходитиме майстер-клас?</span><span class="ic"></span></button>
+        <div class="acc-panel"><div class="acc-panel-in"><p>Онлайн, в онлайн-кімнаті — не в Zoom, нічого встановлювати не треба. Посилання надішлемо в месенджер, який ви вкажете в реєстрації, і нагадаємо перед стартом.</p></div></div>
       </div>
       <div class="acc-item glass-soft">
         <button class="acc-btn" type="button"><span class="tx">У мене мало підписників. Мені підійде?</span><span class="ic"></span></button>
-        <div class="acc-panel"><div class="acc-panel-in"><p>Так. Вебінар про те, як вести Instagram легко й системно, — це працює і на 300, і на 30 000 підписників.</p></div></div>
+        <div class="acc-panel"><div class="acc-panel-in"><p>Так. Майстер-клас про те, як вести Instagram легко й системно, — це працює і на 300, і на 30 000 підписників.</p></div></div>
       </div>
       <div class="acc-item glass-soft">
         <button class="acc-btn" type="button"><span class="tx">Я не дружу з технікою й AI. Розберуся?</span><span class="ic"></span></button>
         <div class="acc-panel"><div class="acc-panel-in"><p>Так. Ксенія показує інструменти, з якими можна працювати з телефона, без спеціальних знань.</p></div></div>
       </div>
       <div class="acc-item glass-soft">
-        <button class="acc-btn" type="button"><span class="tx">Скільки триває вебінар?</span><span class="ic"></span></button>
+        <button class="acc-btn" type="button"><span class="tx">Скільки триває майстер-клас?</span><span class="ic"></span></button>
         <div class="acc-panel"><div class="acc-panel-in"><p>Близько півтори години разом з відповідями на питання. Приходьте наживо — так ви зможете поставити своє питання Ксенії.</p></div></div>
       </div>
     </div>
@@ -258,60 +305,48 @@
   <div class="wrap">
     <div class="rs-form">
       <div class="form-main glass bloom rv">
-        <form id="webForm" novalidate>
+        <form class="rs-f" novalidate>
           <div class="sec-head" style="margin-bottom:22px">
             <span class="eyebrow">Безкоштовна реєстрація · 26.11 о 19:00</span>
             <h2 class="h-lg">Забронюйте <span class="glow">місце на ефірі</span></h2>
           </div>
           <p hidden><label>Не заповнюйте це поле: <input name="bot-field"></label></p>
-          <div class="fgrid">
-            <div class="fld">
-              <label for="wName">Ім'я <span class="r">*</span></label>
-              <input type="text" id="wName" name="name" placeholder="Як до вас звертатися" autocomplete="given-name">
-              <span class="msg">Вкажіть, будь ласка, ім'я</span>
-            </div>
-            <div class="fld">
-              <label for="wPhone">Телефон <span class="r">*</span></label>
-              <input type="tel" id="wPhone" name="phone" placeholder="+380 67 000 00 00" autocomplete="tel">
-              <span class="msg">Вкажіть телефон з кодом країни</span>
-            </div>
-            <div class="fld">
-              <label for="wMsgr">Куди надіслати посилання</label>
-              <select id="wMsgr" name="messenger">
-                <option>Telegram</option>
-                <option>Viber</option>
-                <option>WhatsApp</option>
-              </select>
-            </div>
-            <div class="fld">
-              <label for="wInst">Ваш Instagram</label>
-              <input type="text" id="wInst" name="instagram" placeholder="@nickname">
-            </div>
-            <div class="fld full">
-              <label for="wNote">Яке питання про Instagram хочете розібрати?</label>
-              <input type="text" id="wNote" name="note" placeholder="Наприклад: не знаю, що знімати в сторіс">
-            </div>
-            <label class="consent">
-              <input type="checkbox" id="wConsent" name="consent" value="yes" checked>
-              <span>Погоджуюсь на обробку персональних даних відповідно до <a href="privacy.html" target="_blank">політики конфіденційності</a>.</span>
-            </label>
+        <div class="fgrid">
+          <div class="fld full">
+            <label>Ім'я <span class="r">*</span></label>
+            <input type="text" name="name" placeholder="Як до вас звертатися" autocomplete="given-name">
+            <span class="msg">Вкажіть, будь ласка, ім'я</span>
           </div>
-          <button type="submit" class="btn btn-primary btn-block form-send" id="wSend">Зареєструватися безкоштовно</button>
-          <span class="rs-micro" style="text-align:center">Нагадаємо за день і за годину до старту</span>
-          <p class="rs-micro" id="wErr" hidden style="text-align:center;color:#FF6B88">Не вдалося надіслати. Спробуйте ще раз або напишіть нам у <a href="https://t.me/beauty_games_pro" target="_blank" rel="noopener">Telegram</a>.</p>
+          <div class="fld full">
+            <label>Телефон <span class="r">*</span></label>
+            <input type="tel" name="phone" placeholder="+380 67 000 00 00" autocomplete="tel">
+            <span class="msg">Вкажіть телефон з кодом країни</span>
+          </div>
+          <div class="fld full">
+            <label>Куди надіслати посилання</label>
+            <select name="messenger"><option>Telegram</option><option>Viber</option><option>WhatsApp</option></select>
+          </div>
+          <label class="consent">
+            <input type="checkbox" name="consent" value="yes" checked>
+            <span>Погоджуюсь на обробку персональних даних відповідно до <a href="privacy.html" target="_blank">політики конфіденційності</a>.</span>
+          </label>
+        </div>
+          <button type="submit" class="btn btn-primary btn-block form-send">Зареєструватися безкоштовно</button>
+          <span class="rs-micro" style="text-align:center">Нагадаємо в день ефіру й надішлемо посилання</span>
+          <p class="rs-micro rs-err" hidden style="text-align:center;color:#FF6B88">Не вдалося надіслати. Спробуйте ще раз або напишіть нам у <a href="https://t.me/beauty_games_pro" target="_blank" rel="noopener">Telegram</a>.</p>
         </form>
 
-        <div class="form-success" id="webOk">
+        <div class="form-success">
           <div class="ok">✓</div>
           <h3>Ви зареєстровані!</h3>
-          <p>До зустрічі на вебінарі <b>INSTAGRAM RE:START</b> — 26 листопада о 19:00 за Києвом.</p>
+          <p>До зустрічі на майстер-класі <b>INSTAGRAM RE:START</b> — 26 листопада о 19:00 за Києвом.</p>
           <ol class="rs-ok-steps">
-            <li><span class="i">1</span><span><b>Додайте вебінар у календар</b> — щоб не загубити дату.</span></li>
-            <li><span class="i">2</span><span><b>Чекайте посилання</b> <span id="okMsgr">у месенджері</span> — надішлемо його й нагадаємо перед стартом.</span></li>
+            <li><span class="i">1</span><span><b>Додайте майстер-клас у календар</b> — щоб не загубити дату.</span></li>
+            <li><span class="i">2</span><span><b>Чекайте посилання</b> <span class="ok-msgr">у месенджері</span> — надішлемо його й нагадаємо перед стартом.</span></li>
             <li><span class="i">3</span><span><b>Підпишіться на Ксенію</b> — до ефіру вона ділитиметься анонсами.</span></li>
           </ol>
           <div class="rs-ok-btns">
-            <a class="btn btn-primary" id="calBtn" target="_blank" rel="noopener" href="https://calendar.google.com/calendar/render?action=TEMPLATE&amp;text=INSTAGRAM%20RE%3ASTART%20%E2%80%94%20%D0%B2%D0%B5%D0%B1%D1%96%D0%BD%D0%B0%D1%80%20%D0%9A%D1%81%D0%B5%D0%BD%D1%96%D1%97%20%D0%92%D0%BE%D1%80%D0%B6%D0%B5%D0%B2%D0%BE%D1%97&amp;dates=20261126T170000Z/20261126T183000Z&amp;details=%D0%91%D0%B5%D0%B7%D0%BA%D0%BE%D1%88%D1%82%D0%BE%D0%B2%D0%BD%D0%B8%D0%B9%20%D0%B2%D0%B5%D0%B1%D1%96%D0%BD%D0%B0%D1%80%20Beauty%20Games.%20%D0%9F%D0%BE%D1%81%D0%B8%D0%BB%D0%B0%D0%BD%D0%BD%D1%8F%20%D0%BD%D0%B0%D0%B4%D1%96%D1%88%D0%BB%D0%B5%D0%BC%D0%BE%20%D0%B2%20%D0%BC%D0%B5%D1%81%D0%B5%D0%BD%D0%B4%D0%B6%D0%B5%D1%80.%20https%3A%2F%2Fbeauty-games.pro%2Frestart">Додати в календар</a>
+            <a class="btn btn-primary" target="_blank" rel="noopener" href="https://calendar.google.com/calendar/render?action=TEMPLATE&amp;text=INSTAGRAM%20RE%3ASTART%20%E2%80%94%20%D0%BC%D0%B0%D0%B9%D1%81%D1%82%D0%B5%D1%80-%D0%BA%D0%BB%D0%B0%D1%81%20%D0%9A%D1%81%D0%B5%D0%BD%D1%96%D1%97%20%D0%92%D0%BE%D1%80%D0%B6%D0%B5%D0%B2%D0%BE%D1%97&amp;dates=20261126T170000Z/20261126T183000Z&amp;details=%D0%91%D0%B5%D0%B7%D0%BA%D0%BE%D1%88%D1%82%D0%BE%D0%B2%D0%BD%D0%B8%D0%B9%20%D0%BC%D0%B0%D0%B9%D1%81%D1%82%D0%B5%D1%80-%D0%BA%D0%BB%D0%B0%D1%81%20Beauty%20Games.%20%D0%9F%D0%BE%D1%81%D0%B8%D0%BB%D0%B0%D0%BD%D0%BD%D1%8F%20%D0%BD%D0%B0%D0%B4%D1%96%D1%88%D0%BB%D0%B5%D0%BC%D0%BE%20%D0%B2%20%D0%BC%D0%B5%D1%81%D0%B5%D0%BD%D0%B4%D0%B6%D0%B5%D1%80.%20https%3A%2F%2Fbeauty-games.pro%2Frestart">Додати в календар</a>
             <a class="btn btn-ghost" href="https://instagram.com/kseniia.expert" target="_blank" rel="noopener">@kseniia.expert</a>
           </div>
         </div>
@@ -330,7 +365,7 @@
         <p class="about">Засновниця проєкту — Ірина Вербова: організаторка найбільших міжнародних заходів б'юті-індустрії (IBV, PMU Congress &amp; Championship), Президент Товариства спеціалістів естетичної дермопігментації, суддя міжнародної категорії.</p>
       </div>
       <div>
-        <h5>Вебінар</h5>
+        <h5>Майстер-клас</h5>
         <a href="#program">Програма</a>
         <a href="#speaker">Спікерка</a>
         <a href="#faq">Питання</a>
@@ -375,32 +410,36 @@
   }
   tick(); setInterval(tick, 1000);
 
-  var f = $('webForm'), ok = $('webOk'), send = $('wSend');
-  function mark(id, bad) { var el = $(id).closest('.fld'); el.classList.toggle('err', bad); return !bad; }
-  f.addEventListener('submit', function (e) {
-    e.preventDefault();
-    var name = $('wName').value.trim(), phone = $('wPhone').value.trim();
-    var good = mark('wName', name.length < 2) & mark('wPhone', phone.replace(/\D/g, '').length < 9);
-    if (!good) { (name.length < 2 ? $('wName') : $('wPhone')).focus(); return; }
-    var msgr = $('wMsgr').value;
-    var data = {
-      name: name, phone: phone, messenger: msgr,
-      contact: msgr + ': ' + phone,
-      instagram: $('wInst').value.trim(),
-      note: $('wNote').value.trim(),
-      source: 'Вебінар Ксенії Воржевої «Instagram RE:START» 26.11',
-      'bot-field': f.querySelector('[name=bot-field]').value
-    };
-    send.disabled = true; send.textContent = 'Надсилаємо…';
-    function done() {
-      $('okMsgr').textContent = 'у ' + msgr;
-      f.style.display = 'none'; ok.classList.add('on');
-      ok.scrollIntoView({ behavior: 'smooth', block: 'center' });
-    }
-    var p = window.bgSendLead ? window.bgSendLead('webinar', data) : Promise.reject();
-    p.then(done, function () {
-      send.disabled = false; send.textContent = 'Зареєструватися безкоштовно';
-      $('wErr').hidden = false;
+  var forms = [].slice.call(document.querySelectorAll('.rs-f'));
+  function bad(inp, cond) { inp.closest('.fld').classList.toggle('err', cond); return cond; }
+  forms.forEach(function (f) {
+    f.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var nm = f.querySelector('[name=name]'), ph = f.querySelector('[name=phone]');
+      var name = nm.value.trim(), phone = ph.value.trim();
+      var b1 = bad(nm, name.length < 2), b2 = bad(ph, phone.replace(/\D/g, '').length < 9);
+      if (b1 || b2) { (b1 ? nm : ph).focus(); return; }
+      var msgr = f.querySelector('[name=messenger]').value;
+      var send = f.querySelector('.form-send'), err = f.querySelector('.rs-err');
+      var data = {
+        name: name, phone: phone, messenger: msgr, contact: msgr + ': ' + phone,
+        source: 'Майстер-клас Ксенії Воржевої «Instagram RE:START» 26.11',
+        'bot-field': f.querySelector('[name=bot-field]').value
+      };
+      send.disabled = true; send.textContent = 'Надсилаємо…'; err.hidden = true;
+      var p = window.bgSendLead ? window.bgSendLead('webinar', data) : Promise.reject();
+      p.then(function () {
+        // зареєстрована — ховаємо обидві форми, показуємо «дякуємо»
+        forms.forEach(function (g) {
+          g.style.display = 'none';
+          var ok = g.parentNode.querySelector('.form-success');
+          ok.querySelector('.ok-msgr').textContent = 'у ' + msgr;
+          ok.classList.add('on');
+        });
+        f.parentNode.querySelector('.form-success').scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }, function () {
+        send.disabled = false; send.textContent = 'Зареєструватися безкоштовно'; err.hidden = false;
+      });
     });
   });
 })();
