@@ -790,8 +790,7 @@
       fName:    function (v) { return v.trim().length >= 2; },
       fCompany: function (v) { return v.trim().length >= 2; },
       fPhone:   function (v) { return v.replace(/[^\d]/g, '').length >= 9; },
-      fEmail:   function (v) { return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v.trim()); },
-      fPack:    function (v) { return v !== ''; }
+      fEmail:   function (v) { return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v.trim()); }
     };
 
     var validateField = function (el) {
