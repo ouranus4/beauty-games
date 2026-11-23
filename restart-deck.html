@@ -1,0 +1,1574 @@
+<!doctype html><html lang="uk"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex">
+<title>INSTAGRAM RE:START — Beauty Games</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800;900&family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap">
+<style>
+html,body{margin:0;height:100%;background:#000;overflow:hidden}
+#stage{position:fixed;left:50%;top:50%;width:1920px;height:1080px;transform-origin:0 0}
+#stage>section{position:absolute;inset:0;width:1920px;height:1080px;box-sizing:border-box;overflow:hidden;display:none}
+#stage>section.on{display:flex}
+#nav{position:fixed;right:18px;bottom:14px;font:600 14px/1 Manrope,sans-serif;color:rgba(255,255,255,.55);z-index:9;user-select:none}
+#nav button{background:rgba(255,255,255,.12);color:#fff;border:0;border-radius:8px;padding:8px 12px;margin-left:6px;cursor:pointer;font:700 14px Manrope,sans-serif}
+:root{
+  --bg:#08060C; --pink:#FF2E88; --soft:#FF8FC0; --deep:#C2005F;
+  --paper:#F6F2F8; --ink:#1C0F18; --muted:#6B5762;
+  --text:#EDEAF3; --mut:#A29BB2; --gold:#E9C67E;
+}
+body{font-family:'Manrope',Arial,sans-serif;}
+section{padding:128px;background:radial-gradient(ellipse at 14% 0%, #47103A 0%, #1A0818 34%, #08060C 68%);color:var(--text);font-family:'Manrope',Arial,sans-serif;display:flex;flex-direction:column;justify-content:center;box-sizing:border-box;}
+section.lt{background:linear-gradient(180deg,#FFFFFF 0%,#F6F2F8 100%);color:var(--ink);}
+section.pk{background:linear-gradient(150deg,#FF6FB0 0%,#FF2E88 42%,#B80A59 100%);color:#FFFFFF;}
+section.gd{background:linear-gradient(150deg,#FFF3D2 0%,#EDCB86 45%,#C99A45 100%);color:#2A1B06;}
+section.top{justify-content:flex-start;}
+h1{font-family:'Montserrat',Arial,sans-serif;font-weight:900;font-size:112px;line-height:1.02;text-transform:uppercase;margin:0;letter-spacing:-2px;}
+h2{font-family:'Montserrat',Arial,sans-serif;font-weight:900;font-size:72px;line-height:1.05;text-transform:uppercase;margin:0;letter-spacing:-1px;}
+h3{font-family:'Montserrat',Arial,sans-serif;font-weight:900;font-size:40px;line-height:1.15;text-transform:uppercase;margin:0;}
+p{font-size:32px;line-height:1.5;margin:0;}
+.mega{font-family:'Montserrat',Arial,sans-serif;font-weight:900;font-size:132px;line-height:1;text-transform:uppercase;letter-spacing:-3px;}
+.big{font-family:'Montserrat',Arial,sans-serif;font-weight:900;font-size:92px;line-height:1.04;text-transform:uppercase;letter-spacing:-2px;}
+.g{color:var(--pink);text-shadow:0 0 44px rgba(255,46,136,.6);}
+.lt .g{color:#E0127A;text-shadow:none;}
+.pk .g{color:#FFFFFF;text-shadow:0 0 40px rgba(255,255,255,.55);}
+.gd .g{color:#8A3B00;text-shadow:none;}
+.tag{font-family:'Montserrat',Arial,sans-serif;font-weight:700;font-size:24px;letter-spacing:3px;text-transform:uppercase;color:var(--soft);background:#2A0C22;padding:14px 30px;border-radius:999px;align-self:flex-start;display:inline-block;margin:0 0 36px 0;}
+.lt .tag{color:var(--deep);background:#FFE4F0;}
+.pk .tag{color:#FFFFFF;background:#D41A75;}
+.gd .tag{color:#5E4416;background:#F7E2B0;}
+.lab{font-family:'JetBrains Mono',monospace;font-weight:700;font-size:24px;letter-spacing:3px;text-transform:uppercase;color:var(--pink);}
+.lt .lab{color:var(--deep);}
+.pk .lab{color:#FFE3F0;}
+.say{font-family:'JetBrains Mono',monospace;font-weight:700;font-size:26px;letter-spacing:3px;text-transform:uppercase;color:var(--soft);margin:0 0 24px 0;}
+.lt .say{color:var(--deep);}
+.pk .say{color:#FFE3F0;}
+.lead{font-size:38px;line-height:1.4;font-weight:500;color:var(--text);}
+.lt .lead{color:#3B2A33;}
+.pk .lead{color:#FFF3F8;}
+.mut{color:var(--mut);}
+.lt .mut{color:var(--muted);}
+.pk .mut{color:#FFE3F0;}
+.mt{margin-top:36px;}
+.mt2{margin-top:64px;}
+.rule{height:3px;width:520px;background:linear-gradient(90deg,#FF2E88 0%,rgba(255,46,136,0) 100%);margin:32px 0 0 0;}
+.chat{font-family:'Montserrat',Arial,sans-serif;font-weight:900;font-size:40px;letter-spacing:1px;text-transform:uppercase;color:#2A1B06;background:linear-gradient(180deg,#F9E7BC 0%,#E9C67E 52%,#CFA453 100%);padding:26px 52px;border-radius:18px;align-self:flex-start;display:inline-block;box-shadow:0 18px 44px rgba(233,198,126,.32);}
+.pk .chat{background:#FFFFFF;color:#D3106A;box-shadow:0 18px 44px rgba(110,0,45,.35);}
+.split{display:grid;grid-template-columns:1.15fr 0.85fr;gap:96px;align-items:center;}
+.photo{width:560px;height:740px;object-fit:cover;border-radius:40px;box-shadow:0 0 0 3px #FF2E88,0 30px 90px rgba(255,46,136,.45);}
+.photo-s{width:480px;height:620px;object-fit:cover;border-radius:36px;box-shadow:0 0 0 3px #FF2E88,0 30px 80px rgba(255,46,136,.4);}
+.box{width:540px;height:540px;object-fit:cover;border-radius:40px;box-shadow:0 0 0 2px rgba(255,46,136,.6),0 30px 90px rgba(255,46,136,.45);}
+.art{width:560px;height:560px;object-fit:contain;justify-self:center;}
+.art.ic{width:420px;height:420px;}
+.st{font-size:104px;}
+.deco{position:absolute;right:120px;top:96px;width:300px;height:300px;object-fit:contain;}
+.hd{display:flex;align-items:center;gap:32px;}
+.hd img{width:150px;height:150px;object-fit:contain;flex:none;}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:32px;}
+.g3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:32px;}
+.g4{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:28px;}
+.g5{display:grid;grid-template-columns:1fr 1fr 1fr 1fr 1fr;gap:22px;}
+.card{background:#140A13;border:2px solid #3A1530;border-radius:32px;padding:40px;display:flex;flex-direction:column;gap:14px;box-shadow:0 30px 70px rgba(0,0,0,.45);animation:rise .6s ease both;animation-delay:calc(var(--i, 0) * 110ms);}
+.lt .card{background:#FFFFFF;border-color:#F1DCE7;box-shadow:0 18px 50px rgba(30,10,40,.10);}
+.pk .card{background:#FFFFFF;border-color:#FFFFFF;color:#1C0F18;box-shadow:0 24px 60px rgba(110,0,45,.35);}
+.card .t{font-family:'Montserrat',Arial,sans-serif;font-weight:900;font-size:32px;line-height:1.2;text-transform:uppercase;}
+.card .d{font-size:26px;line-height:1.45;color:var(--mut);}
+.lt .card .d,.pk .card .d{color:var(--muted);}
+.card .n{font-family:'Montserrat',Arial,sans-serif;font-weight:900;font-size:72px;line-height:1;color:var(--pink);letter-spacing:-2px;}
+.lt .card .n,.pk .card .n{color:#E0127A;}
+.card .ci{width:120px;height:120px;object-fit:contain;}
+.card.hot{background:linear-gradient(150deg,#FF6FB0 0%,#FF2E88 42%,#B80A59 100%);border-color:#FF6FB0;color:#FFFFFF;box-shadow:0 30px 70px rgba(255,46,136,.38);}
+.card.hot .d{color:#FFE3F0;}
+.card.hot .n,.card.hot .lab{color:#FFFFFF;}
+.card.vip{background:linear-gradient(150deg,#FFF3D2 0%,#EDCB86 45%,#C99A45 100%);border-color:#F7E2B0;color:#2A1B06;box-shadow:0 30px 70px rgba(233,198,126,.32);}
+.card.vip .d{color:#5E4416;}
+.card.vip .n,.card.vip .lab{color:#8A5A12;}
+.card.wh{background:#FFFFFF;border-color:#FFFFFF;color:#1C0F18;}
+.card.wh .d{color:var(--muted);}
+.card.wh .lab{color:var(--deep);}
+.pc{background:#FFFFFF;border-radius:32px;padding:16px 16px 32px 16px;display:flex;flex-direction:column;gap:18px;color:#1C0F18;box-shadow:0 30px 70px rgba(0,0,0,.45);position:relative;animation:rise .6s ease both;animation-delay:calc(var(--i, 0) * 110ms);}
+.lt .pc{box-shadow:0 18px 50px rgba(30,10,40,.12);}
+.pc img{width:100%;height:440px;object-fit:cover;border-radius:22px;}
+.pc .t{font-family:'Montserrat',Arial,sans-serif;font-weight:900;font-size:32px;line-height:1.2;text-transform:uppercase;padding:0 16px;}
+.pc .d{font-size:24px;line-height:1.45;color:var(--muted);padding:0 16px;}
+.pc .pill{position:absolute;left:36px;top:36px;font-family:'JetBrains Mono',monospace;font-weight:700;font-size:22px;letter-spacing:2px;text-transform:uppercase;color:#FFFFFF;background:#FF2E88;padding:8px 18px;border-radius:999px;}
+.tile{background:linear-gradient(150deg,#FF6FB0 0%,#FF2E88 42%,#B80A59 100%);border-radius:32px;padding:28px 44px;display:inline-block;color:#FFFFFF;box-shadow:0 24px 60px rgba(255,46,136,.34);align-self:flex-start;}
+.tile .v{font-family:'Montserrat',Arial,sans-serif;font-weight:900;font-size:88px;line-height:1;letter-spacing:-2px;}
+.tile .k{font-family:'JetBrains Mono',monospace;font-weight:700;font-size:22px;letter-spacing:2px;text-transform:uppercase;color:#FFE3F0;}
+.strike{text-decoration:line-through;color:var(--mut);}
+.lt .strike{color:var(--muted);}
+.pk .strike{color:#FFD0E5;}
+.price{font-family:'Montserrat',Arial,sans-serif;font-weight:900;font-size:196px;line-height:1;letter-spacing:-5px;}
+.gift{display:flex;align-items:center;gap:28px;background:#1A0A17;border:2px solid #FF2E88;border-radius:28px;padding:22px 36px 22px 22px;align-self:flex-start;box-shadow:0 0 50px rgba(255,46,136,.28);}
+.lt .gift{background:#FFFFFF;border-color:#F5B6D3;box-shadow:0 18px 50px rgba(30,10,40,.10);}
+.gift img{width:120px;height:120px;object-fit:contain;}
+.gift p{font-size:28px;line-height:1.35;}
+.logo{width:440px;height:62px;object-fit:contain;}
+ul.l{margin:0;padding-left:44px;display:flex;flex-direction:column;gap:18px;}
+ul.l li{font-size:32px;line-height:1.4;}
+@keyframes rise{from{opacity:0;transform:translateY(28px);}}
+
+#stage .card,#stage .pc{animation:none}
+</style></head><body>
+<div id="stage"><section id="cover">
+<div class="split">
+<div>
+<img class="logo" src="assets/deck-restart/logo-horizontal.svg" alt="Beauty Games by Verbova Iryna">
+<p class="tag mt2">Безкоштовний майстер-клас</p>
+<p class="mega" style="font-size:116px">Instagram<br><span class="g">RE:START</span></p>
+<p class="lead mt">Нові інструменти. Нове бачення.<br>Нова енергія для розвитку.</p>
+<div class="tile mt">
+<p class="v">19:00</p>
+<p class="k">за Києвом · Ксенія Воржева</p>
+</div>
+</div>
+<img class="photo" src="assets/deck-restart/vorzheva.jpg" alt="Ксенія Воржева">
+</div>
+
+</section>
+
+<section id="c02" class="lt">
+<div class="split">
+<div>
+<p class="tag">Вітаю на майстер-класі</p>
+<p class="mega st">Дякую,<br>що ви <span class="g">тут</span></p>
+<div class="rule"></div>
+<p class="lead mt">Ви знайшли вечір не для клієнтки, а для себе. Це вже крок, який роблять небагато майстрів.</p>
+</div>
+<img class="art" src="assets/deck-restart/home-art-gifts.webp" alt="">
+</div>
+
+</section>
+
+<section id="c03">
+<div class="split">
+<div>
+<p class="say">Перевіряємо зв’язок</p>
+<p class="mega st">Звідки<br><span class="g">ви?</span></p>
+<p class="chat mt2">Напишіть місто в чат</p>
+</div>
+<img class="art ic" src="assets/deck-restart/home-icons-globe.webp" alt="">
+</div>
+
+</section>
+
+<section id="c04">
+<div class="split">
+<div>
+<p class="say">Знайомимось ближче</p>
+<p class="mega st">Скільки років<br>ви в <span class="g">б’юті?</span></p>
+<p class="chat mt2">Цифрою: 1 · 5 · 10+</p>
+</div>
+<img class="art ic" src="assets/deck-restart/home-icons-calendar.webp" alt="">
+</div>
+
+</section>
+
+<section id="c05" class="top">
+<p class="tag">Хто ви сьогодні? Оберіть цифру</p>
+<h2>Напишіть у чат <span class="g">1, 2 або 3</span></h2>
+<div class="g3 mt2">
+<div class="card" style="--i:0"><p class="n">1</p><p class="t">Блог ледве живий</p><p class="d">Викладаю рідко і не знаю, що показувати, крім робіт</p></div>
+<div class="card hot" style="--i:1"><p class="n">2</p><p class="t">Веду, але без результату</p><p class="d">Стараюся щодня — а записів і нових клієнток не додається</p></div>
+<div class="card" style="--i:2"><p class="n">3</p><p class="t">Хочу ще й навчати</p><p class="d">Досвід є — хочу передавати його іншим майстрам</p></div>
+</div>
+
+</section>
+
+<section id="c08">
+<div class="split">
+<div>
+<p class="say">Чесно</p>
+<p class="mega st">Що ви вже<br><span class="g">пробували?</span></p>
+<p class="lead mt mut">Рілси щодня, курс з SMM, таргет, «просто викладати частіше»…</p>
+<p class="chat mt">Напишіть у чат</p>
+</div>
+<img class="art ic" src="assets/deck-restart/home-icons-chart.webp" alt="">
+</div>
+
+</section>
+
+<section id="c09" class="pk">
+<div class="split">
+<div>
+<p class="say">Справа не у вас</p>
+<p class="mega" style="font-size:96px">Просто не було правильного <span class="g">інструмента</span></p>
+<p class="lead mt">Сьогодні він у вас буде. Цей ефір — для кожної: і для «1», і для «2», і для «3».</p>
+</div>
+<img class="art ic" src="assets/deck-restart/home-icons-logo3d.webp" alt="">
+</div>
+
+</section>
+
+<section id="c10">
+<div class="split">
+<div>
+<p class="tag">Правило ефіру №1</p>
+<p class="mega st">Будьте<br><span class="g">до кінця</span></p>
+<div class="rule"></div>
+<p class="lead mt">Для тих, хто дійде до фіналу, — подарунок і спеціальні умови. Назву їх в останні хвилини.</p>
+</div>
+<img class="art" src="assets/deck-restart/home-gift.webp" alt="Подарунок">
+</div>
+
+</section>
+
+<section id="c11" class="lt">
+<p class="tag">Правила №2 і №3</p>
+<div class="g2">
+<div class="card" style="--i:0"><img class="ci" src="assets/deck-restart/home-real-mic.webp" alt=""><p class="t">Телефон під рукою</p><p class="d">Показуватиму застосунки й промпти — пробуйте разом зі мною.</p></div>
+<div class="card" style="--i:1"><img class="ci" src="assets/deck-restart/home-icons-star.webp" alt=""><p class="t">Пишіть у чат</p><p class="d">Питання, «+» і вогники. Наприкінці відповім наживо.</p></div>
+</div>
+<p class="chat mt2">Хто зі мною — 🔥 у чат</p>
+
+</section>
+
+<section id="c12">
+<div class="hd"><img src="assets/deck-restart/home-icons-program.webp" alt=""><h2>5 кроків до <span class="g">нового Instagram</span></h2></div>
+<div class="g3 mt">
+<div class="card" style="--i:0"><p class="lab">Крок 01</p><p class="t">Перезавантаження мислення й контенту</p></div>
+<div class="card" style="--i:1"><p class="lab">Крок 02</p><p class="t">AI для б’юті-майстра</p></div>
+<div class="card" style="--i:2"><p class="lab">Крок 03</p><p class="t">Застосунки для контенту</p></div>
+<div class="card" style="--i:3"><p class="lab">Крок 04</p><p class="t">Візуал і проявленість</p></div>
+<div class="card" style="--i:4"><p class="lab">Крок 05</p><p class="t">Система без вигорання</p></div>
+<div class="card hot" style="--i:5"><p class="lab">Бонус-блок</p><p class="t">Як запустити своє навчання</p></div>
+</div>
+<p class="lead mt mut">За кожен крок — бонус.</p>
+
+</section>
+
+<section id="c13">
+<div class="split">
+<div>
+<p class="tag">Давайте знайомитись</p>
+<p class="mega st">Ксенія<br><span class="g">Воржева</span></p>
+<p class="lab mt">@kseniia.expert</p>
+<div class="g2 mt">
+<div class="tile"><p class="v">10</p><p class="k">років практики</p></div>
+<div class="card" style="--i:0;padding:32px"><p class="t">Косметологиня з вищою медичною освітою</p></div>
+</div>
+</div>
+<img class="photo" src="assets/deck-restart/vorzheva.jpg" alt="Ксенія Воржева">
+</div>
+
+</section>
+
+<section id="c14">
+<div class="hd"><img src="assets/deck-restart/home-icons-experts.webp" alt=""><h2>Про мене <span class="g">в цифрах</span></h2></div>
+<div class="g4 mt2">
+<div class="card hot" style="--i:0"><p class="n">10</p><p class="lab">років</p><p class="d">практики · Дніпро та Запоріжжя</p></div>
+<div class="card" style="--i:1"><p class="n">МЕД</p><p class="lab">освіта</p><p class="d">косметологиня й майстриня перманенту</p></div>
+<div class="card" style="--i:2"><p class="n">[N]</p><p class="lab">[учениць]</p><p class="d">навчаю офлайн і онлайн, веду супровід</p></div>
+<div class="card" style="--i:3"><p class="n">BG</p><p class="lab">амбасадорка</p><p class="d">експертка Beauty Games</p></div>
+</div>
+
+</section>
+
+<section id="c15" class="pk">
+<div class="split">
+<div>
+<p class="say">Мої підписниці</p>
+<p class="mega" style="font-size:92px">Пишуть мені в Direct — <span class="g">навіть з постів</span></p>
+<p class="lead mt">Я привчила їх говорити зі мною. І сьогодні покажу, як це зробити вам.</p>
+</div>
+<img class="art ic" src="assets/deck-restart/home-real-mic.webp" alt="">
+</div>
+
+</section>
+
+<section id="c16">
+<div class="split">
+<div>
+<p class="say">Питання до вас</p>
+<p class="mega" style="font-size:96px">Кому важливо, щоб її довели <span class="g">за руку?</span></p>
+<p class="chat mt2">Напишіть «мені»</p>
+</div>
+<img class="art ic" src="assets/deck-restart/home-icons-team.webp" alt="">
+</div>
+
+</section>
+
+<section id="c17">
+<div class="split">
+<div>
+<p class="say">Моя історія</p>
+<p class="mega st">Але так<br>було <span class="g">не завжди</span></p>
+<div class="rule"></div>
+</div>
+<img class="photo-s" src="assets/deck-restart/vorzheva.jpg" alt="Ксенія Воржева">
+</div>
+
+</section>
+
+<section id="c18" class="lt">
+<div class="split">
+<div>
+<p class="tag">Звідки я починала</p>
+<p class="big" style="font-size:80px">[Точка А: як я прийшла в б’юті]</p>
+<p class="lead mt">[1–2 речення: перші роки, з чого починала, що було важко]</p>
+</div>
+<img class="art" src="assets/deck-restart/home-art-calendar.webp" alt="">
+</div>
+
+</section>
+
+<section id="c19" class="lt">
+<p class="tag">Що мені не подобалось</p>
+<div class="g2">
+<div class="card" style="--i:0"><p class="n">✕</p><p class="t">[наприклад: викладала через силу]</p></div>
+<div class="card" style="--i:1"><p class="n">✕</p><p class="t">[не знала, що показувати, крім робіт]</p></div>
+<div class="card" style="--i:2"><p class="n">✕</p><p class="t">[витрачала вечори на контент]</p></div>
+<div class="card" style="--i:3"><p class="n">✕</p><p class="t">[…]</p></div>
+</div>
+
+</section>
+
+<section id="c20">
+<div class="split">
+<div>
+<p class="say">Поворот</p>
+<p class="big" style="font-size:76px">[Що змінилось: момент, коли я зрозуміла, як має працювати мій <span class="g">Instagram</span>]</p>
+</div>
+<img class="art ic" src="assets/deck-restart/home-icons-growth.webp" alt="">
+</div>
+
+</section>
+
+<section id="c21" class="lt">
+<p class="tag">Для мене й моїх учениць Instagram — це</p>
+<div class="g4">
+<div class="card" style="--i:0"><img class="ci" src="assets/deck-restart/home-real-coins.webp" alt=""><p class="t">Нові клієнтки без реклами</p></div>
+<div class="card" style="--i:1"><img class="ci" src="assets/deck-restart/home-real-crown.webp" alt=""><p class="t">Ім’я, яке впізнають</p></div>
+<div class="card" style="--i:2"><img class="ci" src="assets/deck-restart/home-icons-calendar.webp" alt=""><p class="t">Вечори без гонитви</p></div>
+<div class="card" style="--i:3"><img class="ci" src="assets/deck-restart/home-icons-team.webp" alt=""><p class="t">Учениці, які приходять самі</p></div>
+</div>
+
+</section>
+
+<section id="c22" class="pk">
+<div class="split">
+<div>
+<p class="say">Ваша черга</p>
+<p class="mega st">А чого хочете саме <span class="g">ви?</span></p>
+<p class="chat mt2">Одне слово в чат</p>
+</div>
+<img class="art ic" src="assets/deck-restart/home-icons-star.webp" alt="">
+</div>
+
+</section>
+
+<section id="c23">
+<div class="split">
+<div>
+<p class="say">Почнемо</p>
+<p class="mega" style="font-size:84px">З найголовнішого — <span class="g">простими словами</span></p>
+</div>
+<img class="art ic" src="assets/deck-restart/home-icons-program.webp" alt="">
+</div>
+
+</section>
+
+<section id="c24" class="lt">
+<div class="split">
+<div>
+<p class="tag">Головне правило вечора</p>
+<p class="big" style="font-size:84px">Instagram майстра — <span class="g">не вітрина</span> робіт. Це розмова з клієнткою</p>
+</div>
+<img class="art ic" src="assets/deck-restart/home-real-mic.webp" alt="">
+</div>
+
+</section>
+
+<section id="c25">
+<div class="split">
+<div>
+<div class="tile"><p class="v">01</p><p class="k">крок з 5</p></div>
+<p class="mega mt" style="font-size:70px">Перезавантаження <span class="g">мислення й контенту</span></p>
+<div class="gift mt"><img src="assets/deck-restart/home-gift.webp" alt=""><p><b>Бонус за крок:</b> розділ «Ідеї»</p></div>
+</div>
+<img class="art ic" src="assets/deck-restart/home-icons-star.webp" alt="">
+</div>
+
+</section>
+
+<section id="c26" class="lt">
+<div class="split">
+<div>
+<p class="say">Як думаєте</p>
+<p class="mega" style="font-size:96px">Чому виникає <span class="g">вигорання</span> від Instagram?</p>
+<p class="chat mt2">Ваші версії — у чат</p>
+</div>
+<img class="art" src="assets/deck-restart/home-art-live.webp" alt="">
+</div>
+
+</section>
+
+<section id="c27" class="pk">
+<div class="split">
+<div>
+<p class="say">Відповідь</p>
+<p class="big" style="font-size:80px">Ми викладаємо одне й те саме — і чекаємо <span class="g">іншого результату</span></p>
+</div>
+<img class="art ic" src="assets/deck-restart/home-icons-chart.webp" alt="">
+</div>
+
+</section>
+
+<section id="c28">
+<div class="hd"><img src="assets/deck-restart/home-icons-star.webp" alt=""><h2>Контент — це не лише <span class="g">фото робіт</span></h2></div>
+<div class="g3 mt2">
+<div class="card" style="--i:0"><p class="n">40%</p><p class="t">Користь</p><p class="d">Догляд, міфи, відповіді на питання клієнток</p></div>
+<div class="card hot" style="--i:1"><p class="n">30%</p><p class="t">Закулісся</p><p class="d">Ваш день, стерильність, процес — і ви</p></div>
+<div class="card" style="--i:2"><p class="n">30%</p><p class="t">Продаж</p><p class="d">Вільні дати, результати, відгуки</p></div>
+</div>
+
+</section>
+
+<section id="c29">
+<div class="split">
+<div>
+<p class="say">Де брати ідеї</p>
+<p class="mega st">Вони вже є у вашому <span class="g">Direct</span></p>
+<p class="lead mt">Кожне питання клієнтки — готова тема для сторіс.</p>
+<p class="chat mt">Яке питання вам ставлять найчастіше?</p>
+</div>
+<img class="art ic" src="assets/deck-restart/home-real-mic.webp" alt="">
+</div>
+
+</section>
+
+<section id="c30" class="lt">
+<p class="tag">Як повернути задоволення</p>
+<div class="g3">
+<div class="card" style="--i:0"><p class="n">01</p><p class="t">Говоріть, а не звітуйте</p><p class="d">Сторіс — це розмова, не прайс</p></div>
+<div class="card" style="--i:1"><p class="n">02</p><p class="t">Знімайте те, що вам цікаво</p><p class="d">Аудиторія відчуває ваш настрій</p></div>
+<div class="card" style="--i:2"><p class="n">03</p><p class="t">Дозвольте собі паузу</p><p class="d">Система замість «треба щось викласти»</p></div>
+</div>
+<p class="chat mt2">Хто впізнав себе? «+»</p>
+
+</section>
+
+<section id="c31">
+<div class="split">
+<div>
+<p class="tag">Бонус за крок 01</p>
+<p class="mega st">Розділ <span class="g">«Ідеї»</span></p>
+<p class="lead mt">6 промптів: 30 тем за хвилину, міфи професії, закулісся, сторіс-опитування.</p>
+<p class="chat mt">beauty-games.pro/prompts</p>
+</div>
+<img class="art" src="assets/deck-restart/home-gift.webp" alt="Бонус">
+</div>
+
+</section>
+
+<section id="c32" class="pk">
+<div class="split">
+<div>
+<p class="say">Між кроками</p>
+<p class="mega st">Хто вже з бонусом? <span class="g">«+»</span></p>
+<p class="lead mt">Переходимо до найцікавішого — штучного інтелекту.</p>
+</div>
+<img class="art ic" src="assets/deck-restart/home-icons-gift.webp" alt="">
+</div>
+
+</section>
+
+<section id="c33">
+<div class="split">
+<div>
+<div class="tile"><p class="v">02</p><p class="k">крок з 5</p></div>
+<p class="mega mt" style="font-size:76px">Нова ера контенту: <span class="g">штучний інтелект</span></p>
+<div class="gift mt"><img src="assets/deck-restart/home-gift.webp" alt=""><p><b>Бонус за крок:</b> 30 AI-промптів</p></div>
+</div>
+<img class="art ic" src="assets/deck-restart/home-icons-biz.webp" alt="">
+</div>
+
+</section>
+
+<section id="c34" class="lt">
+<div class="split">
+<div>
+<p class="say">Чесно</p>
+<p class="mega st">Хто вже пробував <span class="g">ChatGPT?</span></p>
+<p class="chat mt2">«Так» або «ні» в чат</p>
+</div>
+<img class="art ic" src="assets/deck-restart/home-icons-program.webp" alt="">
+</div>
+
+</section>
+
+<section id="c35">
+<div class="split">
+<div>
+<p class="say">Знімаємо страх</p>
+<p class="mega" style="font-size:92px">AI не замінить вас. Він забере <span class="g">рутину</span></p>
+<p class="lead mt">Ідеї, тексти, сценарії — за хвилини. А ви займаєтесь клієнтками.</p>
+</div>
+<img class="art ic" src="assets/deck-restart/home-icons-logo3d.webp" alt="">
+</div>
+
+</section>
+
+<section id="c36" class="lt">
+<p class="tag">Що AI робить за майстра</p>
+<div class="g4">
+<div class="card" style="--i:0"><img class="ci" src="assets/deck-restart/home-icons-star.webp" alt=""><p class="t">Ідеї</p><p class="d">30 тем для сторіс за хвилину</p></div>
+<div class="card" style="--i:1"><img class="ci" src="assets/deck-restart/home-icons-program.webp" alt=""><p class="t">Тексти</p><p class="d">Пости, підписи, відповіді в Direct</p></div>
+<div class="card" style="--i:2"><img class="ci" src="assets/deck-restart/home-real-cinecam.webp" alt=""><p class="t">Сценарії</p><p class="d">Reels з хуком на 3 секунди</p></div>
+<div class="card" style="--i:3"><img class="ci" src="assets/deck-restart/home-icons-calendar.webp" alt=""><p class="t">План</p><p class="d">Контент-план на тиждень</p></div>
+</div>
+
+</section>
+
+<section id="c37" class="lt">
+<p class="tag">Повторюйте за мною</p>
+<h2>30 ідей для сторіс <span class="g">за 1 хвилину</span></h2>
+<div class="card mt" style="--i:0">
+<p class="lab">Скопіюйте в ChatGPT або Gemini</p>
+<p style="font-size:34px;line-height:1.5">«Я — [майстриня манікюру] у [місто], моя клієнтка — [жінка 25–40, мало часу]. Дай 30 тем для сторіс і постів, крім фото робіт: експертність, закулісся, клієнтки, особисте, продаж. До кожної — одне речення, що показати».</p>
+</div>
+
+</section>
+
+<section id="c38">
+<div class="split">
+<div>
+<p class="say">Показую на екрані</p>
+<p class="mega st">Дивіться, що він <span class="g">видав</span></p>
+<p class="lead mt mut">[Демонстрація екрана: відповідь ChatGPT]</p>
+</div>
+<img class="art ic" src="assets/deck-restart/home-icons-tv.webp" alt="">
+</div>
+
+</section>
+
+<section id="c39" class="pk">
+<div class="split">
+<div>
+<p class="say">Ваша черга</p>
+<p class="mega" style="font-size:92px">Напишіть найкращу тему, яку вам <span class="g">видав AI</span></p>
+<p class="chat mt2">У чат</p>
+</div>
+<img class="art ic" src="assets/deck-restart/home-icons-star.webp" alt="">
+</div>
+
+</section>
+
+<section id="c40">
+<div class="split">
+<div>
+<p class="tag">Бонус за крок 02</p>
+<p class="mega" style="font-size:92px">30 AI-промптів <span class="g">для майстра</span></p>
+<p class="lead mt">Старт, ідеї, тексти, Reels, візуал і система — копіюєте й підставляєте своє.</p>
+<p class="chat mt">beauty-games.pro/prompts</p>
+</div>
+<img class="art" src="assets/deck-restart/home-gift.webp" alt="Бонус">
+</div>
+
+</section>
+
+<section id="c41">
+<div class="split">
+<div>
+<div class="tile"><p class="v">03</p><p class="k">крок з 5</p></div>
+<p class="mega mt" style="font-size:80px">Застосунки для <span class="g">сучасного контенту</span></p>
+<div class="gift mt"><img src="assets/deck-restart/home-gift.webp" alt=""><p><b>Бонус за крок:</b> розділ «Reels»</p></div>
+</div>
+<img class="art ic" src="assets/deck-restart/home-real-cinecam.webp" alt="">
+</div>
+
+</section>
+
+<section id="c42" class="lt">
+<p class="tag">Мій набір у телефоні</p>
+<div class="g4">
+<div class="card" style="--i:0"><img class="ci" src="assets/deck-restart/home-real-cinecam.webp" alt=""><p class="t">Фото</p><p class="d">Обробка й ретуш</p><p class="d g">[застосунок]</p></div>
+<div class="card" style="--i:1"><img class="ci" src="assets/deck-restart/home-real-mic.webp" alt=""><p class="t">Відео</p><p class="d">Монтаж Reels за 10 хв</p><p class="d g">[застосунок]</p></div>
+<div class="card" style="--i:2"><img class="ci" src="assets/deck-restart/home-icons-star.webp" alt=""><p class="t">Анімація</p><p class="d">Текст і рух</p><p class="d g">[застосунок]</p></div>
+<div class="card" style="--i:3"><img class="ci" src="assets/deck-restart/home-real-crown.webp" alt=""><p class="t">Візуал</p><p class="d">Шаблони й сітка</p><p class="d g">[застосунок]</p></div>
+</div>
+<p class="chat mt2">Встановили один? «+»</p>
+
+</section>
+
+<section id="c43">
+<div class="split">
+<div>
+<p class="say">Демонстрація</p>
+<p class="mega st">Reels з телефона за <span class="g">10 хвилин</span></p>
+<p class="lead mt mut">[Ксенія показує монтаж на екрані]</p>
+</div>
+<img class="art ic" src="assets/deck-restart/home-real-photocam.webp" alt="">
+</div>
+
+</section>
+
+<section id="c44">
+<div class="split">
+<div>
+<p class="tag">Бонус за крок 03</p>
+<p class="mega st">Розділ <span class="g">«Reels»</span></p>
+<p class="lead mt">5 сценаріїв на тиждень, Reels без обличчя, 10 хуків, тренд під себе.</p>
+<p class="chat mt">beauty-games.pro/prompts</p>
+</div>
+<img class="art" src="assets/deck-restart/home-gift.webp" alt="Бонус">
+</div>
+
+</section>
+
+<section id="c45">
+<div class="split">
+<div>
+<div class="tile"><p class="v">04</p><p class="k">крок з 5</p></div>
+<p class="mega mt" style="font-size:88px">Візуал і <span class="g">проявленість</span></p>
+<div class="gift mt"><img src="assets/deck-restart/home-gift.webp" alt=""><p><b>Бонус за крок:</b> розділ «Візуал»</p></div>
+</div>
+<img class="art ic" src="assets/deck-restart/home-icons-crown.webp" alt="">
+</div>
+
+</section>
+
+<section id="c46" class="lt">
+<div class="split">
+<div>
+<p class="say">Перше враження</p>
+<p class="mega" style="font-size:92px">Профіль впізнають за <span class="g">1 секунду</span></p>
+<p class="lead mt">3–5 кольорів, один стиль фото, однакові обкладинки.</p>
+</div>
+<img class="art ic" src="assets/deck-restart/home-icons-star.webp" alt="">
+</div>
+
+</section>
+
+<section id="c47">
+<div class="split">
+<div>
+<p class="say">Експертність</p>
+<p class="big" style="font-size:80px">Показуйте не лише <span class="g">що</span> ви зробили, а <span class="g">чому</span> саме так</p>
+<p class="lead mt mut">Процес, пояснення, міфи — і клієнтка розуміє, за що платить.</p>
+</div>
+<img class="art ic" src="assets/deck-restart/home-icons-experts.webp" alt="">
+</div>
+
+</section>
+
+<section id="c48" class="pk">
+<div class="split">
+<div>
+<p class="say">Чесно</p>
+<p class="mega st">Хто боїться <span class="g">камери?</span></p>
+<p class="chat mt2">Напишіть «я»</p>
+</div>
+<img class="art ic" src="assets/deck-restart/home-real-cinecam.webp" alt="">
+</div>
+
+</section>
+
+<section id="c49" class="lt">
+<p class="tag">Від страху до відео — 3 кроки</p>
+<div class="g3">
+<div class="card" style="--i:0"><p class="n">01</p><p class="t">Руки в кадрі</p><p class="d">Процес і результат — без обличчя</p></div>
+<div class="card" style="--i:1"><p class="n">02</p><p class="t">Голос за кадром</p><p class="d">Пояснюєте, що робите, — як подрузі</p></div>
+<div class="card" style="--i:2"><p class="n">03</p><p class="t">15 секунд «Привіт, я…»</p><p class="d">Перше відео з обличчям — і далі легше</p></div>
+</div>
+
+</section>
+
+<section id="c50">
+<div class="split">
+<div>
+<p class="tag">Бонус за крок 04</p>
+<p class="mega st">Розділ <span class="g">«Візуал»</span></p>
+<p class="lead mt">Палітра, обкладинки Актуального, каруселі, підписи до фото робіт.</p>
+<p class="chat mt">beauty-games.pro/prompts</p>
+</div>
+<img class="art" src="assets/deck-restart/home-gift.webp" alt="Бонус">
+</div>
+
+</section>
+
+<section id="c51">
+<div class="split">
+<div>
+<div class="tile"><p class="v">05</p><p class="k">крок з 5</p></div>
+<p class="mega mt" style="font-size:80px">Нова система <span class="g">роботи з Instagram</span></p>
+<div class="gift mt"><img src="assets/deck-restart/home-gift.webp" alt=""><p><b>Бонус за крок:</b> розділ «Система»</p></div>
+</div>
+<img class="art" src="assets/deck-restart/home-art-calendar.webp" alt="">
+</div>
+
+</section>
+
+<section id="c52" class="top">
+<p class="tag">Без гонитви</p>
+<h2>Тиждень контенту <span class="g">за 1 годину</span></h2>
+<div class="g4 mt">
+<div class="card" style="--i:0"><p class="n">15′</p><p class="t">План</p><p class="d">AI складає контент-план на тиждень</p></div>
+<div class="card" style="--i:1"><p class="n">30′</p><p class="t">Зйомка</p><p class="d">Усе одним заходом між клієнтками</p></div>
+<div class="card" style="--i:2"><p class="n">15′</p><p class="t">Тексти</p><p class="d">AI пише підписи у вашому стилі</p></div>
+<div class="card" style="--i:3"><p class="n">0′</p><p class="t">Гонитва</p><p class="d">Відкладені публікації — і ви вільні</p></div>
+</div>
+
+</section>
+
+<section id="c53" class="pk">
+<div class="split">
+<div>
+<p class="say">Підсумок 5 кроків</p>
+<p class="mega st">Instagram — це <span class="g">інструмент,</span> а не стрес</p>
+</div>
+<img class="art ic" src="assets/deck-restart/home-icons-logo3d.webp" alt="">
+</div>
+
+</section>
+
+<section id="c54">
+<div class="split">
+<div>
+<p class="tag">Бонус за крок 05</p>
+<p class="mega st">Розділ <span class="g">«Система»</span></p>
+<p class="lead mt">Контент-план на тиждень і місяць, тиждень контенту за 1 годину зйомки.</p>
+<p class="chat mt">beauty-games.pro/prompts</p>
+</div>
+<img class="art" src="assets/deck-restart/home-gift.webp" alt="Бонус">
+</div>
+
+</section>
+
+<section id="c55" class="pk">
+<div class="split">
+<div>
+<p class="say">Чесне питання</p>
+<p class="mega" style="font-size:88px">Хто не хоче роками вчитися на <span class="g">помилках?</span></p>
+<p class="chat mt2">Напишіть «Я»</p>
+</div>
+<img class="art ic" src="assets/deck-restart/home-icons-team.webp" alt="">
+</div>
+
+</section>
+
+<section id="c56">
+<div class="split">
+<div>
+<p class="tag">Бонус-блок</p>
+<p class="mega" style="font-size:96px">Як майстру запустити <span class="g">своє навчання</span></p>
+<div class="gift mt"><img src="assets/deck-restart/home-gift.webp" alt=""><p><b>Бонус блоку:</b> промпти «Своє навчання»</p></div>
+</div>
+<img class="art" src="assets/deck-restart/home-art-edu.webp" alt="">
+</div>
+
+</section>
+
+<section id="c57" class="lt">
+<div class="split">
+<div>
+<p class="say">Хто тут «3»?</p>
+<p class="mega st">Хто хоче <span class="g">навчати</span> інших?</p>
+<p class="chat mt2">Напишіть «хочу»</p>
+</div>
+<img class="art ic" src="assets/deck-restart/home-icons-experts.webp" alt="">
+</div>
+
+</section>
+
+<section id="c58">
+<div class="split">
+<div>
+<p class="lab">Крок 1 з 5</p>
+<p class="big mt" style="font-size:84px">Продається не інформація, а <span class="g">результат</span></p>
+<p class="lead mt">Шлях учениці з точки А в точку Б: що вона вмітиме й заробить після навчання.</p>
+</div>
+<img class="art ic" src="assets/deck-restart/home-icons-growth.webp" alt="">
+</div>
+
+</section>
+
+<section id="c59" class="lt">
+<div class="split">
+<div>
+<p class="lab">Крок 2 з 5</p>
+<p class="big mt" style="font-size:88px">Програма з <span class="g">5–8 модулів</span></p>
+<p class="lead mt">Кожен модуль — один крок до результату. Назва говорить, що учениця отримає: «Модуль 3. Перші 10 клієнток».</p>
+</div>
+<img class="art ic" src="assets/deck-restart/home-icons-program.webp" alt="">
+</div>
+
+</section>
+
+<section id="c60">
+<div class="split">
+<div>
+<p class="lab">Крок 3 з 5</p>
+<p class="big mt" style="font-size:88px">Короткі уроки <span class="g">+ практика</span></p>
+<p class="lead mt">Відео по 7–15 хвилин і просте завдання після кожного. Плюс «Модуль 0» одразу після оплати.</p>
+</div>
+<img class="art ic" src="assets/deck-restart/home-icons-tv.webp" alt="">
+</div>
+
+</section>
+
+<section id="c61" class="pk">
+<div class="split">
+<div>
+<p class="lab">Крок 4 з 5 · головне правило</p>
+<p class="mega mt" style="font-size:96px">Спочатку продаж — <span class="g">потім запис</span></p>
+<p class="lead mt">Програма і 1–2 модулі — решту записуєте разом з першими ученицями.</p>
+</div>
+<img class="art ic" src="assets/deck-restart/home-icons-coin.webp" alt="">
+</div>
+
+</section>
+
+<section id="c62" class="lt">
+<div class="hd"><img src="assets/deck-restart/home-icons-growth.webp" alt=""><div><p class="lab">Крок 5 з 5</p><h2>Сходинки <span class="g">продукту</span></h2></div></div>
+<div class="g4 mt2">
+<div class="card" style="--i:0"><p class="lab">01</p><p class="t">Безкоштовне</p><p class="d">Ефір, гайд, чек-лист — знайомство</p></div>
+<div class="card" style="--i:1"><p class="lab">02</p><p class="t">Міні-курс</p><p class="d">3–5 уроків · ≈ $7–30</p></div>
+<div class="card hot" style="--i:2"><p class="lab">03</p><p class="t">Основне навчання</p><p class="d">З кураторами й ДЗ · ≈ $300–1 000</p></div>
+<div class="card vip" style="--i:3"><p class="lab">04</p><p class="t">Наставництво</p><p class="d">Особисто з вами · від $1 500</p></div>
+</div>
+
+</section>
+
+<section id="c63">
+<div class="split">
+<div>
+<p class="tag">Бонус блоку</p>
+<p class="mega" style="font-size:92px">Промпти <span class="g">«Своє навчання»</span></p>
+<p class="lead mt">Точка А → Б, програма, обіцянка, тарифи, перший продаючий ефір.</p>
+<p class="chat mt">beauty-games.pro/prompts</p>
+</div>
+<img class="art" src="assets/deck-restart/home-gift.webp" alt="Бонус">
+</div>
+
+</section>
+
+<section id="c64">
+<div class="split">
+<div>
+<p class="say">Але є одне «але»</p>
+<p class="mega st">Самостійно більшість <span class="g">зливається</span></p>
+</div>
+<img class="art" src="assets/deck-restart/home-mask.webp" alt="Маска Beauty Games" style="width:460px;height:460px">
+</div>
+
+</section>
+
+<section id="c65" class="lt">
+<div class="split">
+<div>
+<p class="say">Як думаєте</p>
+<p class="mega st">Чому люди <span class="g">зливаються?</span></p>
+<p class="chat mt2">Ваші версії — у чат</p>
+</div>
+<img class="art ic" src="assets/deck-restart/home-icons-team.webp" alt="">
+</div>
+
+</section>
+
+<section id="c66">
+<div class="hd"><img src="assets/deck-restart/home-icons-trophy.webp" alt=""><h2>5 речей, без яких <span class="g">не доходять</span></h2></div>
+<div class="g5 mt2">
+<div class="card" style="--i:0"><p class="n">1</p><p class="t">Покрокові уроки</p></div>
+<div class="card" style="--i:1"><p class="n">2</p><p class="t">Завдання й перевірка</p></div>
+<div class="card" style="--i:2"><p class="n">3</p><p class="t">Спільнота</p></div>
+<div class="card" style="--i:3"><p class="n">4</p><p class="t">Методологія</p></div>
+<div class="card hot" style="--i:4"><p class="n">5</p><p class="t">Фінал</p></div>
+</div>
+
+</section>
+
+<section id="c67">
+<div class="hd"><img src="assets/deck-restart/home-icons-globe.webp" alt=""><h2>У вас є <span class="g">два шляхи</span></h2></div>
+<div class="g2 mt2">
+<div class="card" style="--i:0"><p class="lab">Шлях 1 · самій</p><p class="t">Роки спроб і помилок</p><p class="d">Результат — як пощастить. Підтримки — нуль. Мотивація закінчується за тиждень.</p></div>
+<div class="card hot" style="--i:1"><p class="lab">Шлях 2 · з командою</p><p class="t">Система, куратор і люди поруч</p><p class="d">Покрокова програма, перевірка завдань, спільнота і чіткий фінал.</p></div>
+</div>
+
+</section>
+
+<section id="c68" class="pk">
+<div class="split">
+<div>
+<p class="say">Хто обирає другий шлях?</p>
+<p class="mega st">Хто готовий до <span class="g">швидкого шляху?</span></p>
+<p class="chat mt2">Напишіть «2»</p>
+</div>
+<img class="art ic" src="assets/deck-restart/home-icons-growth.webp" alt="">
+</div>
+
+</section>
+
+<section id="c69">
+<div class="split">
+<div>
+<p class="tag">Тому я тут</p>
+<p class="big">Я — експертка й амбасадорка <span class="g">Beauty Games</span></p>
+<p class="lead mt">Бо Instagram — лише один інструмент. Щоб рости в доході, майстру потрібна система: ціни, продажі, фінанси, бренд, команда.</p>
+</div>
+<img class="photo" src="assets/deck-restart/vorzheva.jpg" alt="Ксенія Воржева">
+</div>
+
+</section>
+
+<section id="c70">
+<div class="hd"><img src="assets/deck-restart/home-icons-logo3d.webp" alt=""><h2>Це не курс. <span class="g">Це реаліті</span></h2></div>
+<div class="g3 mt">
+<div class="pc" style="--i:0"><img src="assets/deck-restart/home-photo-trio-edu.webp" alt="Бізнес-навчання" style="height:400px"><p class="pill">01 · Гроші</p><p class="t">Бізнес-навчання</p><p class="d">9 модулів від практиків і куратор поруч</p></div>
+<div class="pc" style="--i:1"><img src="assets/deck-restart/home-photo-trio-champ.webp" alt="Онлайн-чемпіонат" style="height:400px"><p class="pill">02 · Визнання</p><p class="t">Онлайн-чемпіонат</p><p class="d">Журі з практиків, кубки, бали у фінал</p></div>
+<div class="pc" style="--i:2"><img src="assets/deck-restart/home-photo-trio-show.webp" alt="Реаліті-шоу" style="height:400px"><p class="pill">03 · Сцена</p><p class="t">Реаліті-шоу</p><p class="d">Зйомки з командою і фінал у Тбілісі</p></div>
+</div>
+
+</section>
+
+<section id="c71">
+<div class="split">
+<div>
+<p class="tag">01 · Гроші</p>
+<p class="mega" style="font-size:96px">Бізнес-<br><span class="g">навчання</span></p>
+<p class="lead mt">Ціни, клієнти, фінанси, бренд, продажі, команда — 9 модулів від практиків. Куратор перевіряє кожне завдання.</p>
+</div>
+<div class="pc" style="width:520px;justify-self:center"><img src="assets/deck-restart/home-photo-trio-edu.webp" alt="Бізнес-навчання" style="height:620px"></div>
+</div>
+
+</section>
+
+<section id="c72">
+<div class="split">
+<div>
+<p class="tag">02 · Визнання</p>
+<p class="mega" style="font-size:96px">Онлайн-<br><span class="g">чемпіонат</span></p>
+<p class="lead mt">10 категорій, журі з практиків, кубки. Маркетологи покажуть, як перетворити перемогу на клієнток.</p>
+</div>
+<div class="pc" style="width:520px;justify-self:center"><img src="assets/deck-restart/home-photo-trio-champ.webp" alt="Онлайн-чемпіонат" style="height:620px"></div>
+</div>
+
+</section>
+
+<section id="c73">
+<div class="split">
+<div>
+<p class="tag">03 · Сцена</p>
+<p class="mega" style="font-size:96px">Реаліті-<br><span class="g">шоу</span></p>
+<p class="lead mt">Зйомки з командою, фінал у Тбілісі, професійний відеоконтент, який лишається вам. У «Стандарті» камер немає.</p>
+</div>
+<div class="pc" style="width:520px;justify-self:center"><img src="assets/deck-restart/home-photo-trio-show.webp" alt="Реаліті-шоу" style="height:620px"></div>
+</div>
+
+</section>
+
+<section id="c74" class="pk">
+<div class="split">
+<div>
+<p class="say">Ціль сезону</p>
+<p class="mega st">Подвоїти ваш <span class="g">дохід</span></p>
+</div>
+<img class="art" src="assets/deck-restart/home-art-cup-money.webp" alt="">
+</div>
+
+</section>
+
+<section id="c75">
+<div class="split">
+<div>
+<p class="say">Подвоєний дохід — це</p>
+<p class="mega" style="font-size:96px">Відпустка, не дивлячись <span class="g">на запис</span></p>
+</div>
+<img class="art" src="assets/deck-restart/home-art-ticket.webp" alt="">
+</div>
+
+</section>
+
+<section id="c76" class="lt">
+<div class="split">
+<div>
+<p class="say">Подвоєний дохід — це</p>
+<p class="mega st">Своя студія або <span class="g">школа</span></p>
+</div>
+<img class="art ic" src="assets/deck-restart/home-icons-crown.webp" alt="">
+</div>
+
+</section>
+
+<section id="c77">
+<div class="split">
+<div>
+<p class="say">Подвоєний дохід — це</p>
+<p class="mega st">Спокій, що завтра буде <span class="g">запис</span></p>
+</div>
+<img class="art" src="assets/deck-restart/home-art-calendar.webp" alt="">
+</div>
+
+</section>
+
+<section id="c78" class="pk">
+<div class="split">
+<div>
+<p class="say">А для вас?</p>
+<p class="mega" style="font-size:92px">Що для вас — <span class="g">подвоєний дохід?</span></p>
+<p class="chat mt2">Напишіть у чат</p>
+</div>
+<img class="art ic" src="assets/deck-restart/home-icons-star.webp" alt="">
+</div>
+
+</section>
+
+<section id="c79">
+<div class="split">
+<div>
+<p class="tag">Засновниця</p>
+<p class="mega st">Ірина <span class="g">Вербова</span></p>
+<div class="g2 mt">
+<div class="tile"><p class="v">24+</p><p class="k">роки в індустрії</p></div>
+<div class="card" style="--i:0;padding:28px 32px"><p class="n" style="font-size:64px">40</p><p class="lab">країн</p></div>
+</div>
+<p class="lead mt">Засновниця IBV: чемпіонати й конгреси в 15 країнах. Суддя міжнародної категорії.</p>
+</div>
+<img class="photo" src="assets/deck-restart/verbova.jpg" alt="Ірина Вербова">
+</div>
+
+</section>
+
+<section id="c80" class="lt">
+<div class="split">
+<div>
+<p class="tag">Співзасновниця</p>
+<p class="mega" style="font-size:92px">Олександра <span class="g">Горобець</span></p>
+<div class="g2 mt">
+<div class="tile"><p class="v">10+</p><p class="k">років у б’юті</p></div>
+<div class="card" style="--i:0;padding:28px 32px"><p class="t">Магістр фінансів</p><p class="d">бізнес-навчання сезону</p></div>
+</div>
+<p class="lead mt">Навчила сотні майстрів і сама пройшла шлях від майстра до підприємця.</p>
+</div>
+<img class="photo" src="assets/deck-restart/horobets.jpg" alt="Олександра Горобець">
+</div>
+
+</section>
+
+<section id="c81" class="lt">
+<div class="hd"><img src="assets/deck-restart/home-icons-experts.webp" alt=""><h2>Кожен експерт — <span class="g">топ у своїй ніші</span></h2></div>
+<div class="g4 mt">
+<div class="pc" style="--i:0"><img src="assets/deck-restart/people-holovashchenko.jpg" alt="Олена Головащенко" style="height:380px"><p class="pill">Продажі</p><p class="t" style="font-size:26px">Олена Головащенко</p><p class="d">ТОП-10 тренерів України</p></div>
+<div class="pc" style="--i:1"><img src="assets/deck-restart/people-vyshnyvetska.jpg" alt="Катерина Вишневецька" style="height:380px"><p class="pill">Системи</p><p class="t" style="font-size:26px">Катерина Вишневецька</p><p class="d">×21 ріст компанії за 4 роки</p></div>
+<div class="pc" style="--i:2"><img src="assets/deck-restart/people-zaremba.jpg" alt="Тетяна Заремба" style="height:380px"><p class="pill">Фінанси</p><p class="t" style="font-size:26px">Тетяна Заремба</p><p class="d">20+ років у підприємництві</p></div>
+<div class="pc" style="--i:3"><img src="assets/deck-restart/people-kuimova.jpg" alt="Ірина Куімова" style="height:380px"><p class="pill">Податки</p><p class="t" style="font-size:26px">Ірина Куімова</p><p class="d">20+ років досвіду</p></div>
+</div>
+
+</section>
+
+<section id="c82">
+<div class="split">
+<div>
+<p class="tag">Ви не самі</p>
+<p class="mega" style="font-size:88px">Куратор веде вашу <span class="g">команду весь сезон</span></p>
+<p class="lead mt">Перевіряє завдання, тримає темп, не дає злитися. Команда з майстрів різних ніш — не конкурентки, а підтримка.</p>
+</div>
+<img class="art" src="assets/deck-restart/home-real-curator.webp" alt="Куратор">
+</div>
+
+</section>
+
+<section id="c83" class="pk">
+<div class="split">
+<div>
+<p class="say">Для тих, хто хоче навчати</p>
+<p class="mega" style="font-size:96px">Власний курс чи <span class="g">навчання</span></p>
+<p class="lead mt">У Beauty Games ви з куратором запустите своє перше онлайн-навчання — і продаватимете знання, а не лише години.</p>
+</div>
+<img class="art" src="assets/deck-restart/home-art-edu.webp" alt="">
+</div>
+
+</section>
+
+<section id="c84" class="lt">
+<div class="hd"><img src="assets/deck-restart/home-icons-trophy.webp" alt=""><h2>Їх знає весь ринок — <span class="g">завдяки Ірині</span></h2></div>
+<div class="g4 mt">
+<div class="pc" style="--i:0"><img src="assets/deck-restart/star-lux.jpg" alt="Роза Люкс" style="height:360px"><p class="pill">Кейс</p><p class="t" style="font-size:26px">Роза Люкс</p><p class="d">PMU Master Trainer, 10 000+ учениць</p></div>
+<div class="pc" style="--i:1"><img src="assets/deck-restart/star-orexanova.jpg" alt="Дар’я Ореханова" style="height:360px"><p class="pill">Кейс</p><p class="t" style="font-size:26px">Дар’я Ореханова</p><p class="d">Студія OREX, свій бренд пігментів</p></div>
+<div class="pc" style="--i:2"><img src="assets/deck-restart/star-ovcharuk.jpg" alt="Катерина Овчарук" style="height:360px"><p class="pill">Зірка ринку</p><p class="t" style="font-size:26px">Катерина Овчарук</p><p class="d">Абсолютна чемпіонка світу WULOP 2025</p></div>
+<div class="pc" style="--i:3"><img src="assets/deck-restart/star-druzhinina.jpg" alt="Юліанна Дружиніна" style="height:360px"><p class="pill">Зірка ринку</p><p class="t" style="font-size:26px">Юліанна Дружиніна</p><p class="d">Чемпіонка світу, WULOP Poland</p></div>
+</div>
+
+</section>
+
+<section id="c85" class="pk">
+<div class="split">
+<div>
+<p class="say">Чесно</p>
+<p class="mega st">Хто хоче <span class="g">так само?</span></p>
+<p class="chat mt2">Напишіть «Я»</p>
+</div>
+<img class="art" src="assets/deck-restart/home-art-trophy.webp" alt="">
+</div>
+
+</section>
+
+<section id="c86">
+<div class="hd"><img src="assets/deck-restart/home-icons-program.webp" alt=""><div><p class="lab">Модулі 1–5 з 9</p><h2>Бізнес-<span class="g">програма</span></h2></div></div>
+<div class="g5 mt2">
+<div class="card" style="--i:0"><p class="n">01</p><p class="t">Мислення</p><p class="d">Від ремісника до підприємця</p></div>
+<div class="card" style="--i:1"><p class="n">02</p><p class="t">Ціни</p><p class="d">Підняти прайс без втрати клієнток</p></div>
+<div class="card" style="--i:2"><p class="n">03</p><p class="t">Клієнти</p><p class="d">Портрет, лінійка, залучення</p></div>
+<div class="card" style="--i:3"><p class="n">04</p><p class="t">Фінанси</p><p class="d">Облік, подушка, податки</p></div>
+<div class="card" style="--i:4"><p class="n">05</p><p class="t">Бренд</p><p class="d">Контент-план за 30 хвилин, таргет</p></div>
+</div>
+
+</section>
+
+<section id="c87">
+<div class="hd"><img src="assets/deck-restart/home-icons-biz.webp" alt=""><div><p class="lab">Модулі 6–9 з 9</p><h2>Бізнес-<span class="g">програма</span></h2></div></div>
+<div class="g4 mt2">
+<div class="card" style="--i:0"><p class="n">06</p><p class="t">Продажі</p><p class="d">Через довіру, 15 скриптів</p></div>
+<div class="card" style="--i:1"><p class="n">07</p><p class="t">Команда</p><p class="d">Перший найм і делегування</p></div>
+<div class="card" style="--i:2"><p class="n">08</p><p class="t">Лідерство</p><p class="d">Антивигорання й опора</p></div>
+<div class="card hot" style="--i:3"><p class="n">09</p><p class="t">Стратегія</p><p class="d">Бізнес-план на рік</p></div>
+</div>
+<p class="chat mt2">Як вам програма? 🔥</p>
+
+</section>
+
+<section id="c88" class="lt">
+<div class="hd"><img src="assets/deck-restart/home-icons-calendar.webp" alt=""><h2>Робота починається <span class="g">одразу після оплати</span></h2></div>
+<div class="g4 mt2">
+<div class="card hot" style="--i:0"><p class="lab">Одразу</p><p class="t">Передпідготовка</p><p class="d">Психолог, «Точка зростання», стиліст, маркетолог</p></div>
+<div class="card" style="--i:1"><p class="lab">21 грудня</p><p class="t">Старт сезону</p><p class="d">Зріз показників: чек, клієнтки, дохід</p></div>
+<div class="card" style="--i:2"><p class="lab">3 місяці</p><p class="t">Активна фаза</p><p class="d">Модулі, завдання, зйомки, таблиця лідерів</p></div>
+<div class="card vip" style="--i:3"><p class="lab">Весна 2027</p><p class="t">Фінал у Тбілісі</p><p class="d">5 днів офлайн, фінал — на YouTube</p></div>
+</div>
+
+</section>
+
+<section id="c89">
+<div class="split">
+<div>
+<p class="say">Що ви отримаєте за 3 місяці</p>
+<p class="big" style="font-size:80px">Порахована економіка, вищий чек, план на рік — <span class="g">і команда поруч</span></p>
+</div>
+<img class="art" src="assets/deck-restart/home-art-final-stage.webp" alt="">
+</div>
+
+</section>
+
+<section id="c90">
+<div class="hd"><img src="assets/deck-restart/home-icons-ticket.webp" alt=""><h2>Оберіть <span class="g">свій пакет</span></h2></div>
+<div class="g3 mt2">
+<div class="card wh" style="--i:0"><img class="ci" src="assets/deck-restart/home-icons-program.webp" alt=""><p class="lab">Пакет 01</p><p class="t" style="font-size:44px">Стандарт</p><p class="d">Самостійне навчання без кураторства і без камер</p></div>
+<div class="card hot" style="--i:1"><img class="ci" src="assets/deck-restart/home-icons-trophy.webp" alt=""><p class="lab">Пакет 02 · рекомендовано</p><p class="t" style="font-size:44px">Бізнес</p><p class="d">Повна програма, куратор і командні змагання</p></div>
+<div class="card vip" style="--i:2"><img class="ci" src="assets/deck-restart/home-icons-tv.webp" alt=""><p class="lab">Пакет 03 · максимум</p><p class="t" style="font-size:44px">VIP</p><p class="d">Бренд-наставник і YouTube-реаліті</p></div>
+</div>
+
+</section>
+
+<section id="c91" class="lt">
+<div class="split">
+<div>
+<p class="tag">Пакет 01 · для досвідчених</p>
+<p class="mega st">Стандарт</p>
+<ul class="l mt">
+<li>«Точка зростання»: перезапуск з будь-якої позиції</li>
+<li>Психолог, стиліст, маркетолог на передпідготовці</li>
+<li>Спільнота 300+ майстринь і п’ятничні ефіри</li>
+<li>Без камер — навчання без публічності</li>
+</ul>
+</div>
+<img class="art ic" src="assets/deck-restart/home-icons-program.webp" alt="">
+</div>
+
+</section>
+
+<section id="c92" class="pk">
+<div class="split">
+<div>
+<p class="tag">Пакет 02 · рекомендовано</p>
+<p class="mega st">Бізнес</p>
+<ul class="l mt">
+<li>Усе зі «Стандарту» + 9 модулів бізнес-програми</li>
+<li>Команда й куратор весь сезон, Бізнес-ліга</li>
+<li>Монетизація інфоприводу, контент для Instagram і TikTok</li>
+<li>Фінал — ТОП-3 команди, Джекпот · сесія 1:1 з куратором</li>
+</ul>
+</div>
+<img class="art ic" src="assets/deck-restart/home-icons-trophy.webp" alt="">
+</div>
+
+</section>
+
+<section id="c93" class="gd">
+<div class="split">
+<div>
+<p class="tag">Пакет 03 · максимум</p>
+<p class="mega st">VIP</p>
+<ul class="l mt">
+<li>Усе з «Бізнесу» + бренд-наставник щотижня</li>
+<li>Ви — ключова героїня YouTube-реаліті</li>
+<li>Коуч індивідуально, фотосесія на фіналі</li>
+<li>Фінал — 5 команд VIP-ліги, Гран-прі</li>
+</ul>
+</div>
+<img class="art ic" src="assets/deck-restart/home-icons-tv.webp" alt="">
+</div>
+
+</section>
+
+<section id="c94">
+<div class="hd"><img src="assets/deck-restart/home-real-coins.webp" alt=""><h2>Якби купувати <span class="g">все окремо</span></h2></div>
+<div class="g3 mt2">
+<div class="card wh" style="--i:0"><p class="lab">Стандарт</p><p class="n" style="font-size:80px">≈€2 500</p></div>
+<div class="card hot" style="--i:1"><p class="lab">Бізнес</p><p class="n" style="font-size:80px">≈€6 000</p></div>
+<div class="card vip" style="--i:2"><p class="lab">VIP</p><p class="n" style="font-size:80px">≈€12 000</p></div>
+</div>
+<p class="lead mt">Навчання, команда, зйомки й чемпіонат — в одному сезоні.</p>
+
+</section>
+
+<section id="c95" class="pk">
+<div class="split">
+<div>
+<p class="say">Але</p>
+<p class="mega st">Сьогодні — <span class="g">найкращі умови</span></p>
+<p class="lead mt">Покажу на прикладі «Бізнесу», як змінюється ціна.</p>
+</div>
+<img class="art" src="assets/deck-restart/home-art-cup-money.webp" alt="">
+</div>
+
+</section>
+
+<section id="c96">
+<div class="split">
+<div>
+<p class="tag">«Бізнес» · стандартна ціна</p>
+<p class="price">€1 590</p>
+</div>
+<img class="art ic" src="assets/deck-restart/home-icons-trophy.webp" alt="">
+</div>
+
+</section>
+
+<section id="c97">
+<div class="split">
+<div>
+<p class="tag">«Бізнес» · при бронюванні протягом тижня</p>
+<p class="lead strike">€1 590</p>
+<p class="price">€1 490</p>
+</div>
+<img class="art ic" src="assets/deck-restart/home-icons-trophy.webp" alt="">
+</div>
+
+</section>
+
+<section id="c98">
+<div class="split">
+<div>
+<p class="tag">«Бізнес» · при бронюванні за 24 години</p>
+<p class="lead strike">€1 590 · €1 490</p>
+<p class="price">€1 290</p>
+</div>
+<img class="art ic" src="assets/deck-restart/home-icons-trophy.webp" alt="">
+</div>
+
+</section>
+
+<section id="c99" class="pk">
+<div class="split">
+<div>
+<p class="say">А тепер</p>
+<p class="mega st">Хто хоче <span class="g">ще дешевше?</span></p>
+<p class="chat mt2">Напишіть «Я»</p>
+</div>
+<img class="art" src="assets/deck-restart/home-art-gifts.webp" alt="">
+</div>
+
+</section>
+
+<section id="c100" class="pk">
+<div class="split">
+<div>
+<p class="tag">Для учасниць ефіру · Black Friday</p>
+<p class="lab">«Бізнес» −25% · за запрошенням Ксенії</p>
+<p class="lead mt strike">€1 590</p>
+<p class="price">€1 190</p>
+<p class="lead mt">+ 1-ша номінація чемпіонату в подарунок (€130). Половина зараз, половина — 21 грудня.</p>
+</div>
+<img class="art" src="assets/deck-restart/home-art-trophy.webp" alt="">
+</div>
+
+</section>
+
+<section id="c101" class="gd">
+<div class="hd"><img src="assets/deck-restart/home-icons-tv.webp" alt=""><div><p class="lab" style="color:#8A5A12">Для учасниць ефіру · −30%</p><h2>VIP</h2></div></div>
+<div class="g4 mt2">
+<div class="card wh" style="--i:0"><p class="lab">Стандартна</p><p class="n strike" style="font-size:60px">€2 490</p></div>
+<div class="card wh" style="--i:1"><p class="lab">За тиждень</p><p class="n strike" style="font-size:60px">€2 290</p></div>
+<div class="card wh" style="--i:2"><p class="lab">За 24 години</p><p class="n strike" style="font-size:60px">€1 990</p></div>
+<div class="card hot" style="--i:3"><p class="lab">Для вас</p><p class="n" style="font-size:60px">€1 740</p></div>
+</div>
+<p class="lead mt">Половина зараз (€870), половина — 21 грудня.</p>
+
+</section>
+
+<section id="c102" class="lt">
+<div class="split">
+<div>
+<p class="tag">«Стандарт» · при бронюванні за 24 години</p>
+<p class="lead strike">€990</p>
+<p class="price">€690</p>
+<p class="lead mt">Ціну «Стандарту» для вас назве менеджер — на нього теж діє Black Friday до 5 грудня.</p>
+</div>
+<img class="art ic" src="assets/deck-restart/home-icons-program.webp" alt="">
+</div>
+
+</section>
+
+<section id="c103">
+<div class="hd"><img src="assets/deck-restart/home-icons-ticket.webp" alt=""><h2>Три кроки — <span class="g">і місце ваше</span></h2></div>
+<div class="g3 mt2">
+<div class="card hot" style="--i:0"><p class="n">1</p><p class="t">Напишіть «RESTART»</p><p class="d">У чат ефіру або в Direct @beauty_games.pro</p></div>
+<div class="card" style="--i:1"><p class="n">2</p><p class="t">Менеджер напише вам</p><p class="d">Відповість на питання й надішле ціну для вашого пакета</p></div>
+<div class="card" style="--i:2"><p class="n">3</p><p class="t">Внесіть 50%</p><p class="d">Ціна й бонуси закріплені за вами</p></div>
+</div>
+<p class="chat mt2">beauty-games.pro/black-friday?from=Vorzheva</p>
+
+</section>
+
+<section id="c104">
+<div class="split">
+<div>
+<p class="say">Зручно платити</p>
+<p class="mega" style="font-size:92px">Половина зараз — <span class="g">половина 21 грудня</span></p>
+<div class="g2 mt">
+<div class="tile"><p class="v">2×€595</p><p class="k">«Бізнес»</p></div>
+<div class="card vip" style="--i:0;padding:32px 40px"><p class="n" style="font-size:72px">2×€870</p><p class="lab">VIP</p></div>
+</div>
+<p class="lead mt">Або частинами: 50% зараз, по 25% — до 21 грудня і до 21 січня.</p>
+</div>
+<img class="art ic" src="assets/deck-restart/home-icons-coin.webp" alt="">
+</div>
+
+</section>
+
+<section id="c105">
+<div class="hd"><img src="assets/deck-restart/home-icons-team.webp" alt=""><h2>Скільки місць <span class="g">у потоці</span></h2></div>
+<div class="g3 mt2">
+<div class="card wh" style="--i:0"><p class="n" style="font-size:120px">130</p><p class="t">Стандарт</p></div>
+<div class="card hot" style="--i:1"><p class="n" style="font-size:120px">100</p><p class="t">Бізнес</p></div>
+<div class="card vip" style="--i:2"><p class="n" style="font-size:120px">60</p><p class="t">VIP</p></div>
+</div>
+<p class="lead mt mut">Набір закривається, коли місця розібрані.</p>
+
+</section>
+
+<section id="c106" class="pk">
+<div class="split">
+<div>
+<p class="say">Щоб посилити результат</p>
+<p class="mega st">Бонуси <span class="g">швидкого рішення</span></p>
+<p class="lead mt">Для тих, хто бронює місце до 29 листопада, 23:59.</p>
+</div>
+<img class="art" src="assets/deck-restart/home-art-gifts.webp" alt="">
+</div>
+
+</section>
+
+<section id="c107">
+<div class="split">
+<div>
+<p class="say">Бонус 1 · проблема</p>
+<p class="big" style="font-size:76px">Найважче у своєму навчанні — <span class="g">почати</span></p>
+<p class="lead mt">З чого складається програма? Що обіцяти? Скільки брати?</p>
+</div>
+<img class="art" src="assets/deck-restart/home-art-edu.webp" alt="">
+</div>
+
+</section>
+
+<section id="c108">
+<div class="split">
+<div>
+<p class="tag">Бонус 1</p>
+<p class="mega" style="font-size:88px">Воркбук <span class="g">«Моє перше навчання»</span></p>
+<p class="lead mt">Учениця, обіцянка, програма з 5–8 модулів, тарифи і план запуску за 14 днів. Заповнюєте прямо на сторінці.</p>
+</div>
+<img class="art" src="assets/deck-restart/home-gift.webp" alt="Воркбук">
+</div>
+
+</section>
+
+<section id="c109" class="lt">
+<div class="split">
+<div>
+<p class="say">Бонус 2 · проблема</p>
+<p class="big" style="font-size:80px">Свій профіль <span class="g">збоку не видно</span></p>
+<p class="lead mt">А клієнтка вирішує за 5 секунд — йти до вас чи гортати далі.</p>
+</div>
+<img class="art ic" src="assets/deck-restart/home-real-photocam.webp" alt="">
+</div>
+
+</section>
+
+<section id="c110">
+<div class="split">
+<div>
+<p class="tag">Бонус 2</p>
+<p class="mega" style="font-size:88px">Розбір вашого Instagram <span class="g">від Ксенії</span></p>
+<div class="tile mt"><p class="v">20 хв</p><p class="k">у Zoom · шапка, сторіс, візуал</p></div>
+</div>
+<img class="photo-s" src="assets/deck-restart/vorzheva.jpg" alt="Ксенія Воржева">
+</div>
+
+</section>
+
+<section id="c111" class="gd">
+<div class="split">
+<div>
+<p class="tag">Бонус 3 · для «Бізнесу»</p>
+<p class="mega" style="font-size:92px">1-ша номінація <span class="g">чемпіонату</span></p>
+<p class="lead mt" style="color:#3B2A10">У подарунок до пакета замість €130. Бали чемпіонату йдуть в особистий залік фіналу.</p>
+</div>
+<img class="art" src="assets/deck-restart/home-art-trophy.webp" alt="Кубок">
+</div>
+
+</section>
+
+<section id="c112">
+<div class="hd"><img src="assets/deck-restart/home-icons-gift.webp" alt=""><h2>Що у вас буде, якщо <span class="g">вирішите зараз</span></h2></div>
+<div class="g4 mt2">
+<div class="card hot" style="--i:0"><img class="ci" src="assets/deck-restart/home-icons-crown.webp" alt=""><p class="t">Місце в сезоні</p><p class="d">«Бізнес» €1 190 або VIP €1 740</p></div>
+<div class="card" style="--i:1"><img class="ci" src="assets/deck-restart/home-icons-program.webp" alt=""><p class="t">Воркбук</p><p class="d">«Моє перше навчання»</p></div>
+<div class="card" style="--i:2"><img class="ci" src="assets/deck-restart/home-real-mic.webp" alt=""><p class="t">Розбір Instagram</p><p class="d">20 хвилин з Ксенією</p></div>
+<div class="card vip" style="--i:3"><img class="ci" src="assets/deck-restart/home-icons-trophy.webp" alt=""><p class="t">Номінація</p><p class="d">чемпіонату для «Бізнесу»</p></div>
+</div>
+<p class="chat mt2">«RESTART» — у чат</p>
+
+</section>
+
+<section id="c113" class="pk">
+<div class="split">
+<div>
+<p class="say">Чесні терміни</p>
+<div class="g2">
+<div class="card" style="--i:0"><p class="n">29.11</p><p class="lab" style="color:#C2005F">23:59</p><p class="d">бонуси швидкого рішення</p></div>
+<div class="card" style="--i:1"><p class="n">05.12</p><p class="lab" style="color:#C2005F">Black Friday</p><p class="d">після цього ціни не буде ні для кого</p></div>
+</div>
+</div>
+<img class="art" src="assets/deck-restart/home-art-calendar.webp" alt="">
+</div>
+
+</section>
+
+<section id="c114" class="lt">
+<div class="split">
+<div>
+<p class="say">Якщо щось піде не так</p>
+<p class="big" style="font-size:76px">Обставини змінились? <span class="g">Перенесемо участь</span> на наступний потік</p>
+<p class="lead mt">Умови — у публічній оферті на сайті. Складну ситуацію розглядаємо індивідуально.</p>
+</div>
+<img class="art" src="assets/deck-restart/home-art-ticket.webp" alt="">
+</div>
+
+</section>
+
+<section id="c115" class="pk">
+<div class="split">
+<div>
+<p class="say">Хто вже з нами?</p>
+<p class="mega" style="font-size:96px">Напишіть: <span class="g">«Ксеніє, я з тобою!»</span></p>
+</div>
+<img class="art ic" src="assets/deck-restart/home-real-gift.webp" alt="">
+</div>
+
+</section>
+
+<section id="c116">
+<div class="split">
+<div>
+<p class="say">Що заважає вирішити</p>
+<p class="mega st">4 міфи про <span class="g">участь</span></p>
+</div>
+<img class="art" src="assets/deck-restart/home-mask.webp" alt="Маска Beauty Games" style="width:460px;height:460px">
+</div>
+
+</section>
+
+<section id="c117" class="lt">
+<div class="split">
+<div>
+<p class="tag">Міф 1</p>
+<p class="big strike" style="font-size:80px">«У мене немає часу»</p>
+<p class="lead mt">Передпідготовка — кілька годин на тиждень. Усі ефіри лишаються в записі — дивитеся у своєму темпі.</p>
+</div>
+<img class="art" src="assets/deck-restart/home-art-calendar.webp" alt="">
+</div>
+
+</section>
+
+<section id="c118">
+<div class="split">
+<div>
+<p class="tag">Міф 2</p>
+<p class="big strike" style="font-size:80px">«Мене змусять зніматися»</p>
+<p class="lead mt">У «Стандарті» камер немає зовсім, у «Бізнесі» зйомки не обов’язкові. Героїні шоу — учасниці VIP, які свідомо йдуть у кадр.</p>
+</div>
+<img class="art ic" src="assets/deck-restart/home-real-cinecam.webp" alt="">
+</div>
+
+</section>
+
+<section id="c119" class="lt">
+<div class="split">
+<div>
+<p class="tag">Міф 3</p>
+<p class="big strike" style="font-size:80px">«Якщо не виграю — все дарма»</p>
+<p class="lead mt">Лишаться порахована економіка, вищий чек, план на рік, доступ до програми, сертифікат і записи серій.</p>
+</div>
+<img class="art" src="assets/deck-restart/home-art-trophy.webp" alt="">
+</div>
+
+</section>
+
+<section id="c120">
+<div class="split">
+<div>
+<p class="tag">Міф 4</p>
+<p class="big strike" style="font-size:80px">«Я не з України — мені не можна»</p>
+<p class="lead mt">Проєкт повністю онлайн і для майстрів з будь-якої країни. Офлайн — лише фінал навесні 2027.</p>
+</div>
+<img class="art ic" src="assets/deck-restart/home-icons-globe.webp" alt="">
+</div>
+
+</section>
+
+<section id="c121" class="pk">
+<div class="split">
+<div>
+<p class="tag">Для тих, хто був до кінця</p>
+<p class="say">Кодове слово для учасниць ефіру</p>
+<p class="mega" style="font-size:150px"><span class="g">RESTART</span></p>
+<p class="lead mt">Ціна Black Friday за запрошенням Ксенії + бонуси до 29.11. Напишіть у чат або в Direct @beauty_games.pro.</p>
+</div>
+<img class="art" src="assets/deck-restart/home-gift.webp" alt="">
+</div>
+
+</section>
+
+<section id="c122">
+<div class="split">
+<div>
+<img class="logo" src="assets/deck-restart/logo-horizontal.svg" alt="Beauty Games by Verbova Iryna">
+<p class="say mt2">Дякую, що були до кінця</p>
+<p class="mega st">Ваші <span class="g">питання</span></p>
+<p class="chat mt2">«RESTART» — у чат</p>
+</div>
+<img class="photo" src="assets/deck-restart/vorzheva.jpg" alt="Ксенія Воржева">
+</div>
+
+</section>
+</div>
+<div id="nav"><span id="cnt"></span><button id="pv">&#8592;</button><button id="nx">&#8594;</button><button id="fs">&#9974;</button></div>
+<script>
+var S=[].slice.call(document.querySelectorAll('#stage>section')),i=0,st=document.getElementById('stage');
+function fit(){var k=Math.min(innerWidth/1920,innerHeight/1080);st.style.transform='scale('+k+') translate(-50%,-50%)';}
+function show(n){i=Math.max(0,Math.min(S.length-1,n));S.forEach(function(s,k){s.classList.toggle('on',k===i)});document.getElementById('cnt').textContent=(i+1)+' / '+S.length;try{history.replaceState(null,'','#'+(i+1))}catch(e){}}
+addEventListener('resize',fit);fit();
+addEventListener('keydown',function(e){if(['ArrowRight','PageDown',' ','Enter'].indexOf(e.key)>=0){show(i+1);e.preventDefault()}if(['ArrowLeft','PageUp','Backspace'].indexOf(e.key)>=0){show(i-1);e.preventDefault()}if(e.key==='Home')show(0);if(e.key==='End')show(S.length-1);if(e.key==='f')document.documentElement.requestFullscreen&&document.documentElement.requestFullscreen()});
+document.getElementById('pv').onclick=function(){show(i-1)};document.getElementById('nx').onclick=function(){show(i+1)};
+document.getElementById('fs').onclick=function(){document.documentElement.requestFullscreen&&document.documentElement.requestFullscreen()};
+st.addEventListener('click',function(e){show(e.clientX>innerWidth/2?i+1:i-1)});
+var tx=0;addEventListener('touchstart',function(e){tx=e.touches[0].clientX});addEventListener('touchend',function(e){var dx=e.changedTouches[0].clientX-tx;if(Math.abs(dx)>40)show(dx<0?i+1:i-1)});
+show((parseInt(location.hash.slice(1))||1)-1);
+</script></body></html>
