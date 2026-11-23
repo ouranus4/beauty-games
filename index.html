@@ -9,7 +9,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800;900&family=Oswald:wght@400;500;600&family=Manrope:wght@400;500;600;700&family=Pixelify+Sans:wght@400..700&family=JetBrains+Mono:wght@400;500;700&display=swap">
-<link rel="stylesheet" href="styles.css?v=ad1ccce0">
+<link rel="stylesheet" href="styles.css?v=174e0038">
 <link rel="stylesheet" href="squid.css?v=ac372331">
 
 <!-- SPRITE -->
@@ -145,6 +145,17 @@
       <a href="#about" class="btn btn-ghost">Як це працює</a>
       <span class="bf-micro">⏱ Заявка за 1 хвилину · ні до чого не зобов’язує</span>
     </div>
+
+    <!-- Банер Black Friday: веде на /black-friday, кодове слово = «запрошення» -->
+    <a class="bfb" href="black-friday.html?from=site-banner" aria-label="Black Friday: −25% на Бізнес і −30% на VIP до 5 грудня">
+      <span class="bfb-img"><img src="assets/bf/bf-box.webp" alt="" width="1000" height="1000" loading="lazy"></span>
+      <span class="bfb-body">
+        <span class="bfb-k">Black Friday · до 5 грудня</span>
+        <span class="bfb-t">−25% на «Бізнес» · −30% на VIP</span>
+        <span class="bfb-s">Кодове слово <b class="bfb-code">BLACKFRIDAY</b> відкриває ціни для запрошених. Назвіть його менеджеру.</span>
+      </span>
+      <span class="bfb-go" aria-hidden="true">→</span>
+    </a>
 
     <div class="countdown cd2 rv" id="countdown">
       <div class="cd2-top">
@@ -1565,5 +1576,5 @@
 (function(){var f=document.getElementById('applyForm');if(!f)return;var t=document.querySelector('[data-lead-msgr]'),ph=document.querySelector('[data-lead-phone]');f.addEventListener('submit',function(){var m=f.querySelector('[name=messenger]');if(!m||!t)return;var pre=document.querySelector('[data-lead-in]');t.textContent=m.selectedIndex===m.options.length-1&&ph?ph.textContent:(pre?pre.textContent+' ':'')+m.value;},true);var ok=document.getElementById('formSuccess');if(ok&&window.MutationObserver)new MutationObserver(function(){if(ok.classList.contains('on'))document.documentElement.classList.add('lead-sent');}).observe(ok,{attributes:true,attributeFilter:['class']});})();
 </script>
 <script src="leads.js?v=64a4335c"></script>
-<script src="app.js?v=3c296b1c"></script>
+<script src="app.js?v=8f4d0cfb"></script>
 <script src="fx.js?v=b9217507"></script>
