@@ -3898,3 +3898,9 @@ body{touch-action:pan-y pinch-zoom;overscroll-behavior-x:none}
 #apply .form-main:has(.form-success.on){display:flex;flex-direction:column;justify-content:center}
 @media (max-width:520px){.lead-ok{padding:28px 4px}}
 .lead-sent .mobile-bar{display:none!important}
+
+/* Кнопка YouTube-каналу: у першому блоці й у мобільному меню */
+.btn-yt{background:#FF0033;color:#fff;gap:10px;box-shadow:0 10px 26px rgba(255,0,51,.28)}
+.btn-yt:hover{background:#E0002D;color:#fff;transform:translateY(-2px)}
+.btn-yt .yt-ic{width:22px;height:22px;flex:none}
+.mobile-menu .btn-yt{display:inline-flex;align-items:center;justify-content:center}
