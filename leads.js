@@ -27,6 +27,10 @@ window.BG_LEADS_URL_BF = 'https://script.google.com/macros/s/AKfycbwF5A4k7hhgBgt
 // Майстер-клас Ксенії Воржевої (/restart): своя таблиця + свій бот у групі «BG заявки майстер-клас», без лімітів
 // (код: Заявки_Telegram/Вебинар_таблица.gs). Порожньо — як раніше: пошта + «BG заявки сайт».
 window.BG_LEADS_URL_WEBINAR = '';
+// Свій Telegram-бот на Vercel (код: api/lead.js, як у HARDELITE): безкоштовно й без лімітів.
+// Адреса виду https://<проєкт>.vercel.app/api/lead. Форми зі списку йдуть туди замість лімітного e2t.
+window.BG_LEADS_API = '';
+window.BG_LEADS_API_FORMS = ['webinar'];
 
 (function () {
   var SUBJECT = {
@@ -175,9 +179,11 @@ window.BG_LEADS_URL_WEBINAR = '';
     var toScript = window.BG_LEADS_URL && !bfUrl && ((window.BG_LEADS_URL_FORMS || []).indexOf(form) >= 0 || isBF);
     var isCalc = form === 'calc' || form === 'earn';
     var testPing = isTest && window.BG_LEADS_PING_TEST;
-    var webUrl = form === 'webinar' && window.BG_LEADS_URL_WEBINAR;
+    var apiUrl = window.BG_LEADS_API && (window.BG_LEADS_API_FORMS || []).indexOf(form) >= 0 && window.BG_LEADS_API;
+    if (apiUrl) jobs.push(viaScript(p, apiUrl));
+    var webUrl = (form === 'webinar' && window.BG_LEADS_URL_WEBINAR) || apiUrl;
     if (window.BG_LEADS_PING && !toScript && !isCalc && !testPing && !webUrl) viaPing(p);
-    if (webUrl) jobs.push(viaScript(p, webUrl));
+    if (form === 'webinar' && window.BG_LEADS_URL_WEBINAR) jobs.push(viaScript(p, window.BG_LEADS_URL_WEBINAR));
     if (testPing) viaPing(p, window.BG_LEADS_PING_TEST);
     if (isTest && window.BG_LEADS_URL_TEST) jobs.push(viaScript(p, window.BG_LEADS_URL_TEST));
     if (isCalc && window.BG_LEADS_PING_CALC) viaPing(p, window.BG_LEADS_PING_CALC);
