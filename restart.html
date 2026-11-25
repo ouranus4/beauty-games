@@ -5,7 +5,7 @@
 <meta name="description" content="Безкоштовний онлайн-майстер-клас для майстрів перманентного макіяжу й косметологів 28 листопада: як повернути енергію в Instagram, створювати контент з AI, оновити візуал і працювати з блогом без вигорання. Спікерка — Ксенія Воржева, Beauty Games.">
 <meta property="og:title" content="INSTAGRAM RE:START — безкоштовний майстер-клас для майстрів перманенту й косметологів">
 <meta property="og:description" content="28 листопада, онлайн. Ксенія Воржева: нові інструменти, AI для контенту, візуал і система роботи з Instagram без вигорання.">
-<meta property="og:image" content="https://beauty-games.pro/assets/people/vorzheva.jpg">
+<meta property="og:image" content="https://beauty-games.pro/assets/people/vorzheva-wide.jpg">
 <script>document.documentElement.setAttribute('data-page','main');document.documentElement.lang='uk';</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -109,6 +109,58 @@
 @media (max-width:999px){.rs-grid{grid-template-columns:1fr}.rs-ph{max-width:320px}.rs-get{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media (max-width:760px){.rs-pains{grid-template-columns:1fr}.rs-who{grid-template-columns:1fr}.rs-who img{max-width:300px;margin:0 auto}.rs-mod{grid-template-columns:1fr;gap:6px}}
 @media (max-width:520px){.rs-f .form-send{letter-spacing:.03em;font-size:13px;padding-left:10px;padding-right:10px}.rs-get{grid-template-columns:1fr}.rs-when{grid-template-columns:repeat(3,minmax(0,1fr))}.rs-when div{padding:10px 10px}.rs-cd .u{min-width:0;flex:1}}
+
+/* ===== wow 25.11 ===== */
+.rs-hero::before{content:"";position:absolute;right:-10%;top:-20%;width:70vw;height:70vw;max-width:980px;max-height:980px;background:radial-gradient(closest-side,rgba(255,46,136,.32),transparent 70%);pointer-events:none;animation:rsPulse 6s ease-in-out infinite}
+@keyframes rsPulse{50%{opacity:.55;transform:scale(1.08)}}
+.rs-h1 em{background:linear-gradient(90deg,#FF2E88,#FF8CC6,#FF2E88);background-size:200% 100%;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;animation:rsShine 4s linear infinite}
+@keyframes rsShine{to{background-position:-200% 0}}
+.rs-card-ph{position:relative;margin:calc(-1*clamp(20px,3vw,28px)) calc(-1*clamp(20px,3vw,28px)) 18px;border-radius:26px 26px 0 0;overflow:hidden;aspect-ratio:16/10}
+.rs-card-ph img{display:block;width:100%;height:100%!important;object-fit:cover;object-position:center 30%}
+.rs-card-ph::after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(14,8,14,.96) 4%,rgba(14,8,14,.35) 45%,transparent 70%)}
+.rs-card-ph .cap{position:absolute;left:18px;right:18px;bottom:14px;z-index:2}
+.rs-card-ph .cap b{display:block;font:900 22px/1.1 Montserrat,sans-serif;color:#fff;text-transform:uppercase}
+.rs-card-ph .cap span{display:block;margin-top:4px;font-size:13px;color:rgba(255,255,255,.78)}
+.rs-live{position:absolute;top:14px;left:14px;z-index:2;display:inline-flex;align-items:center;gap:7px;padding:7px 11px;border-radius:999px;background:rgba(8,6,12,.7);backdrop-filter:blur(6px);font:800 11px/1 Montserrat,sans-serif;letter-spacing:.08em;text-transform:uppercase;color:#fff;border:1px solid rgba(255,46,136,.6)}
+.rs-live i{width:8px;height:8px;border-radius:50%;background:#FF2E88;box-shadow:0 0 0 0 rgba(255,46,136,.7);animation:rsDot 1.6s infinite}
+@keyframes rsDot{70%{box-shadow:0 0 0 9px rgba(255,46,136,0)}}
+.rs-ticker{position:relative;z-index:2;overflow:hidden;padding:18px 0;background:linear-gradient(90deg,#B80A59,#FF2E88,#B80A59);transform:rotate(-1.2deg);margin:10px -2vw;box-shadow:0 18px 50px rgba(255,46,136,.35)}
+.rs-ticker div{display:flex;gap:34px;width:max-content;animation:rsRun 28s linear infinite}
+.rs-ticker span{font:900 clamp(18px,2.2vw,26px)/1 Montserrat,sans-serif;text-transform:uppercase;color:#fff;white-space:nowrap}
+.rs-ticker span::after{content:"\2726";margin-left:34px;color:#FFD97A}
+@keyframes rsRun{to{transform:translateX(-50%)}}
+.rs-for{display:grid;grid-template-columns:1fr 1fr;gap:clamp(16px,2.4vw,26px);max-width:1080px;margin:0 auto}
+.rs-for article{position:relative;overflow:hidden;padding:clamp(24px,3.4vw,40px);border-radius:30px;background:linear-gradient(160deg,rgba(255,46,136,.16),rgba(255,255,255,.03) 55%);border:1px solid rgba(255,46,136,.45);box-shadow:0 30px 80px rgba(0,0,0,.35)}
+.rs-for article img{position:absolute;right:-10px;top:-10px;width:clamp(96px,10vw,120px);height:auto!important;filter:drop-shadow(0 18px 30px rgba(255,46,136,.45))}
+.rs-for .k{font:700 12px/1 "JetBrains Mono",monospace;letter-spacing:.14em;text-transform:uppercase;color:#FF2E88}
+.rs-for h3{margin:12px 0 18px;padding-right:84px;min-height:2.04em;font:900 clamp(24px,3vw,36px)/1.02 Montserrat,sans-serif;text-transform:uppercase;color:#fff}
+.rs-for ul{margin:0;padding:0;list-style:none;display:grid;gap:12px}
+.rs-for li{position:relative;padding-left:28px;font-size:15.5px;line-height:1.5;color:rgba(255,255,255,.84)}
+.rs-for li::before{content:"\2713";position:absolute;left:0;top:0;color:#FF2E88;font-weight:900}
+.rs-for-note{max-width:1080px;margin:22px auto 0;padding:18px 22px;border-radius:20px;background:#fff;color:#1C0F18;display:flex;gap:16px;align-items:center;box-shadow:0 20px 50px rgba(255,46,136,.25)}
+.rs-for-note img{width:58px;height:58px!important;border-radius:50%;object-fit:cover;object-position:center 25%;border:2px solid #FF2E88;flex:none}
+.rs-for-note p{margin:0;font-size:15.5px;line-height:1.5}
+.rs-story{max-width:1080px;margin:clamp(36px,5vw,60px) auto 0;display:grid;grid-template-columns:minmax(0,.75fr) minmax(0,1.25fr);gap:clamp(24px,4vw,56px);align-items:center}
+.rs-story>img{width:100%;height:auto!important;aspect-ratio:3/4!important;object-fit:cover;object-position:center 20%;border-radius:28px;box-shadow:0 0 0 2px #FF2E88,0 30px 80px rgba(255,46,136,.3)}
+.rs-story h3{margin:0 0 20px;font:900 clamp(22px,2.8vw,30px)/1.15 Montserrat,sans-serif;text-transform:uppercase;color:#fff}
+.rs-tl{list-style:none;margin:0;padding:0 0 0 26px;border-left:2px dashed rgba(255,46,136,.55);display:grid;gap:20px}
+.rs-tl li{position:relative}
+.rs-tl li::before{content:"";position:absolute;left:-34px;top:4px;width:14px;height:14px;border-radius:50%;background:#08060C;border:3px solid #FF2E88;box-shadow:0 0 16px rgba(255,46,136,.7)}
+.rs-tl li.now::before{background:#FF2E88}
+.rs-tl b{display:block;font:900 15px/1.2 Montserrat,sans-serif;letter-spacing:.06em;text-transform:uppercase;color:#FF2E88}
+.rs-tl p{margin:6px 0 0;font-size:15.5px;line-height:1.55;color:rgba(255,255,255,.84)}
+.rs-tl li.now p{color:#fff;font-weight:600}
+.rs-end{max-width:1080px;margin:clamp(22px,3vw,30px) auto 0;display:flex;gap:20px;align-items:center;padding:clamp(20px,3vw,30px);border-radius:26px;background:#1C0F18;color:#fff;box-shadow:0 24px 60px rgba(28,15,24,.3)}
+.rs-end img{width:84px;height:84px!important;flex:none}
+.rs-end b{display:block;font:900 clamp(18px,2.2vw,24px)/1.2 Montserrat,sans-serif;text-transform:uppercase}
+.rs-end p{margin:6px 0 0;font-size:15px;line-height:1.5;color:rgba(255,255,255,.8)}
+.rs-sticky{position:fixed;left:10px;right:10px;bottom:10px;z-index:60;display:none;align-items:center;gap:10px;padding:10px 10px 10px 16px;border-radius:20px;background:rgba(14,8,14,.92);backdrop-filter:blur(10px);border:1px solid rgba(255,46,136,.55);box-shadow:0 16px 40px rgba(0,0,0,.5);transform:translateY(140%);transition:transform .35s ease}
+.rs-sticky.on{transform:none}
+.rs-sticky span{flex:1;font:800 12.5px/1.25 Montserrat,sans-serif;color:#fff;text-transform:uppercase}
+.rs-sticky span i{display:block;font-style:normal;font-weight:600;text-transform:none;color:rgba(255,255,255,.65);font-family:Manrope,sans-serif}
+.rs-sticky .btn{margin:0!important;padding:13px 16px;font-size:12.5px;white-space:nowrap}
+@media (max-width:760px){.rs-sticky{display:flex}.rs-for{grid-template-columns:1fr}.rs-story{grid-template-columns:1fr}.rs-story>img{display:none}.rs-end{flex-direction:column;text-align:center}}
+@media (prefers-reduced-motion:reduce){.rs-ticker div,.rs-h1 em,.rs-hero::before,.rs-live i{animation:none}}
 </style>
 
 
@@ -121,6 +173,7 @@
       <img class="brand-logo" src="assets/logo-horizontal.svg" alt="Beauty Games by Verbova Iryna" width="330" height="46">
     </a>
     <div class="nav-links">
+      <a href="#for">Для кого</a>
       <a href="#program">Програма</a>
       <a href="#speaker">Спікерка</a>
       <a href="#faq">Питання</a>
@@ -155,7 +208,7 @@
       <a href="#program" class="rs-more">Програма майстер-класу ↓</a>
     </div>
     <div class="rs-card glass bloom" id="regTop">
-      <div class="rs-card-who"><img src="assets/people/vorzheva.jpg" alt="Ксенія Воржева" width="900" height="1350"><span><b>Ксенія Воржева</b>@kseniia.expert · майстриня ПМ і косметологиня, 10 років практики</span></div>
+      <div class="rs-card-ph"><img src="assets/people/vorzheva-wide.jpg" alt="Ксенія Воржева" width="900" height="675"><span class="rs-live"><i></i>Наживо · 28.11 · 19:00</span><div class="cap"><b>Ксенія Воржева</b><span>майстриня перманенту й косметологиня · 10 років практики</span></div></div>
       <form class="rs-f" novalidate>
         <p class="rs-card-h">Безкоштовна реєстрація</p>
         <div class="rs-gift"><div class="rs-box" aria-hidden="true"><span class="f"><b>30</b>AI-промптів<i>для б’юті-майстра</i></span><span class="s"></span></div><p><b>Подарунок одразу після реєстрації:</b> чек-лист «30 AI-промптів для б’юті-майстра» — ідеї, тексти, сценарії Reels і контент-план.</p></div>
@@ -208,6 +261,31 @@
     </div>
   </div>
 </header>
+
+<div class="rs-ticker" aria-hidden="true"><div><span>Instagram RE:START</span><span>AI-контент</span><span>ChatGPT</span><span>CapCut</span><span>Kling AI</span><span>Lightroom</span><span>Snapseed</span><span>Meitu</span><span>Airbrush</span><span>Reels</span><span>Особистий бренд</span><span>Сарафанне радіо</span><span>Instagram RE:START</span><span>AI-контент</span><span>ChatGPT</span><span>CapCut</span><span>Kling AI</span><span>Lightroom</span><span>Snapseed</span><span>Meitu</span><span>Airbrush</span><span>Reels</span><span>Особистий бренд</span><span>Сарафанне радіо</span></div></div>
+
+<section class="sec" id="for">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="eyebrow">Для кого майстер-клас</span>
+      <h2 class="h-lg">Ваша ніша — <span class="glow">ваші правила контенту</span></h2>
+      <div class="sec-rule"></div>
+    </div>
+    <div class="rs-for">
+      <article class="rv"><img src="assets/home/icons/pmu.webp" alt="" width="320" height="320" loading="lazy"><span class="k">01 · Перманент</span><h3>Майстрам перманенту</h3><ul>
+        <li>Брови, губи, міжвійка: як показувати роботу, щоб клієнтка довіряла ще до консультації</li>
+        <li>Про що знімати, крім «до/після»: загоєння, корекція, підбір пігменту, стерильність</li>
+        <li>Як відповідати контентом на «а це боляче?» і «а якщо не сподобається?» — а не в Direct по колу</li>
+      </ul></article>
+      <article class="rv"><img src="assets/home/icons/skin.webp" alt="" width="320" height="320" loading="lazy"><span class="k">02 · Косметологія</span><h3>Косметологам</h3><ul>
+        <li>Як говорити про процедури й догляд просто, без страшилок і складних термінів</li>
+        <li>Як показати експертність, коли результат не видно з першого фото</li>
+        <li>AI для текстів про підготовку, протипоказання й домашній догляд — за хвилини</li>
+      </ul></article>
+    </div>
+    <div class="rs-for-note rv"><img src="assets/people/vorzheva-wide.jpg" alt="" width="900" height="675" loading="lazy"><p><b>Ксенія сама і майстриня перманенту, і косметологиня.</b> Вона знає блог у вашій ніші зсередини — і покаже, що працює саме у вас.</p></div>
+  </div>
+</section>
 
 <section class="sec sec-light" id="pain">
   <div class="wrap">
@@ -272,6 +350,7 @@
       <article class="rv"><img src="assets/home/icons/shop.webp" alt="" width="320" height="320" loading="lazy"><h3>Застосунки</h3><p>Світло, кадр і монтаж з телефона — щоб роботи виглядали чисто й дорого, без ретуші результату.</p></article>
       <article class="rv"><img src="assets/home/icons/calendar.webp" alt="" width="320" height="320" loading="lazy"><h3>Систему</h3><p>Комфортний ритм публікацій, у якому блог працює на вас, а не забирає вечори.</p></article>
     </div>
+    <div class="rs-end rv"><img src="assets/home/icons/gift.webp" alt="" width="320" height="320" loading="lazy"><div><b>Будьте до кінця ефіру</b><p>Для тих, хто дійде до фіналу, — подарунок і спеціальні умови участі в Beauty Games. Назвемо їх в останні хвилини майстер-класу.</p></div></div>
   </div>
 </section>
 
@@ -293,6 +372,18 @@
           <li>Навчає майстрів офлайн і онлайн, веде індивідуальне супроводження</li>
           <li>Експертка й амбасадорка проєкту Beauty Games</li>
         </ul>
+      </div>
+    </div>
+    <div class="rs-story rv">
+      <img src="assets/people/vorzheva-2.jpg" alt="Ксенія Воржева" width="900" height="1350" loading="lazy">
+      <div>
+        <h3>Її Instagram теж <span class="glow">починався не з успіху</span></h3>
+        <ol class="rs-tl">
+          <li><b>Старт</b><p>Перше базове навчання виявилось невдалим. Ксенія переписувала коментарі інших майстрів на форумах, щоб зрозуміти свої помилки. Про просування й Instagram мови не йшло — вона чекала, коли дадуть клієнтів.</p></li>
+          <li><b>Блог через силу</b><p>Пости — через силу, у стрічці тільки роботи, контентом не займалась взагалі.</p></li>
+          <li><b>2020</b><p>Найняла SMM-спеціаліста — і почала будувати Instagram по-новому.</p></li>
+          <li class="now"><b>Сьогодні</b><p>Нові клієнти без реклами — правильно запущене сарафанне радіо. Instagram приносить задоволення, це як окреме життя.</p></li>
+        </ol>
       </div>
     </div>
   </div>
@@ -496,6 +587,12 @@
     });
   });
 })();
+</script>
+<div class="rs-sticky" id="rsSticky"><span>Безкоштовно · 28.11<i>19:00 за Києвом · онлайн</i></span><a href="#reg" class="btn btn-primary">Зареєструватися</a></div>
+<script>
+(function(){var b=document.getElementById('rsSticky'),top=document.getElementById('regTop'),reg=document.getElementById('reg');if(!b||!top||!reg||!window.IntersectionObserver)return;var seen={top:true,reg:false};
+new IntersectionObserver(function(es){es.forEach(function(e){seen[e.target===top?'top':'reg']=e.isIntersecting});var done=document.querySelector('.form-success.on');b.classList.toggle('on',!seen.top&&!seen.reg&&!done)}).observe(top);
+new IntersectionObserver(function(es){es.forEach(function(e){seen.reg=e.isIntersecting});var done=document.querySelector('.form-success.on');b.classList.toggle('on',!seen.top&&!seen.reg&&!done)}).observe(reg);})();
 </script>
 <script src="leads.js?v=06ce8a82"></script>
 <script src="app.js?v=8f4d0cfb"></script>
