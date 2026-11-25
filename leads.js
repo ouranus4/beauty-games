@@ -24,6 +24,9 @@ window.BG_LEADS_URL = 'https://script.google.com/macros/s/AKfycby6AqSiF9ECT73he1
 window.BG_LEADS_URL_FORMS = ['earn'];
 // Окрема таблиця для Black Friday (код: Заявки_Telegram/Black_Friday_таблица.gs). Порожньо — BF іде в BG_LEADS_URL.
 window.BG_LEADS_URL_BF = 'https://script.google.com/macros/s/AKfycbwF5A4k7hhgBgt4eiMTWJ8e5ayoWMeQmvgz9jeT8xzCq8wv3hfjSB6oQydCDL6eqaLL/exec';
+// Майстер-клас Ксенії Воржевої (/restart): своя таблиця + свій бот у групі «BG заявки майстер-клас», без лімітів
+// (код: Заявки_Telegram/Вебинар_таблица.gs). Порожньо — як раніше: пошта + «BG заявки сайт».
+window.BG_LEADS_URL_WEBINAR = '';
 
 (function () {
   var SUBJECT = {
@@ -172,7 +175,9 @@ window.BG_LEADS_URL_BF = 'https://script.google.com/macros/s/AKfycbwF5A4k7hhgBgt
     var toScript = window.BG_LEADS_URL && !bfUrl && ((window.BG_LEADS_URL_FORMS || []).indexOf(form) >= 0 || isBF);
     var isCalc = form === 'calc' || form === 'earn';
     var testPing = isTest && window.BG_LEADS_PING_TEST;
-    if (window.BG_LEADS_PING && !toScript && !isCalc && !testPing) viaPing(p);
+    var webUrl = form === 'webinar' && window.BG_LEADS_URL_WEBINAR;
+    if (window.BG_LEADS_PING && !toScript && !isCalc && !testPing && !webUrl) viaPing(p);
+    if (webUrl) jobs.push(viaScript(p, webUrl));
     if (testPing) viaPing(p, window.BG_LEADS_PING_TEST);
     if (isTest && window.BG_LEADS_URL_TEST) jobs.push(viaScript(p, window.BG_LEADS_URL_TEST));
     if (isCalc && window.BG_LEADS_PING_CALC) viaPing(p, window.BG_LEADS_PING_CALC);
