@@ -29,7 +29,7 @@ window.BG_LEADS_URL_BF = 'https://script.google.com/macros/s/AKfycbwF5A4k7hhgBgt
 window.BG_LEADS_URL_WEBINAR = '';
 // Свій Telegram-бот на Vercel (код: api/lead.js, як у HARDELITE): безкоштовно й без лімітів.
 // Адреса виду https://<проєкт>.vercel.app/api/lead. Форми зі списку йдуть туди замість лімітного e2t.
-window.BG_LEADS_API = '';
+window.BG_LEADS_API = 'https://bg-leads.vercel.app/api/lead';
 window.BG_LEADS_API_FORMS = ['webinar'];
 
 (function () {
