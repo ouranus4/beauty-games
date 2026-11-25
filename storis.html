@@ -2,7 +2,7 @@
 <script src="pixel.js?v=1b0a4353"></script>
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>15 серій сторіс для майстра перманенту й косметолога — Beauty Games</title>
-<meta name="description" content="Візуальний гайд: 15 готових серій сторіс з макетами кадрів, стікерами, текстами й AI-промптами для майстрів перманенту й косметологів. План на 7 днів і чек-лист.">
+<meta name="description" content="Візуальний гайд: 15 готових серій сторіс з макетами кадрів, стікерами й текстами для майстрів перманенту й косметологів. План на 7 днів і чек-лист.">
 <meta name="robots" content="noindex">
 <meta property="og:image" content="https://beauty-games.pro/assets/people/vorzheva-wide.jpg">
 <script>document.documentElement.lang='uk';</script>
@@ -137,8 +137,8 @@ main{background:var(--cream);color:var(--ink);padding:40px 0 60px}
       <div>
         <span class="kick">🎁 Бонус за підписку на @beauty_games.pro</span>
         <h1>15 серій сторіс <em>для перманенту й косметології</em></h1>
-        <p class="lede">Не теорія, а готові сторіс: кожен кадр показаний так, як його побачать ваші підписниці, — з текстом, стікером і підказкою, що зняти. Копіюєте, ставите своє фото — і публікуєте.</p>
-        <div class="inside"><span><b>75</b> кадрів-макетів</span><span><b>15</b> AI-промптів під вашу послугу</span><span><b>7</b>-денний план</span><span>✓ чек-лист перед публікацією</span></div>
+        <p class="lede">Серії, які можна зняти вже сьогодні. Кожен кадр показаний так, як його побачать ваші клієнтки: текст на плашці, стікер і що саме зняти. Берете своє фото — і публікуєте.</p>
+        <div class="inside"><span><b>75</b> кадрів-макетів</span><span><b>7</b>-денний план</span><span>✓ чек-лист перед публікацією</span></div>
       </div>
       <div class="fan" id="fan"></div>
     </div>
@@ -164,7 +164,7 @@ main{background:var(--cream);color:var(--ink);padding:40px 0 60px}
     <div class="sh"><span class="k">02 · Перший кадр</span><h2>3 формули, <em>які зупиняють палець</em></h2><p>Сторіс дивляться без звуку: головна думка — великим жирним текстом на плашці.</p></div>
     <div class="hooks" id="hooks"></div>
 
-    <div class="sh" id="series"><span class="k">03 · Серії</span><h2>15 серій <em>по кадрах</em></h2><p>Гортайте кадри вбік. Під кожним — що зняти і кнопка «Скопіювати». Внизу серії — AI-промпт, який перепише її під вашу послугу.</p></div>
+    <div class="sh" id="series"><span class="k">03 · Серії</span><h2>15 серій <em>по кадрах</em></h2><p>Гортайте кадри вбік. Під кожним — що зняти і кнопка «Скопіювати текст».</p></div>
     <nav class="filt" id="filt"><button class="on" data-f="all">Усі 15</button><button data-f="pm">💉 Перманент</button><button data-f="cos">🧴 Косметологія</button><button data-f="trust">🤝 Довіра</button><button data-f="zap">📅 Запис</button><button data-f="eng">💬 Вовлечення</button></nav>
     <div id="list"></div>
 
@@ -188,7 +188,7 @@ main{background:var(--cream);color:var(--ink);padding:40px 0 60px}
 
 <section class="end">
   <div class="wrap">
-    <h2>Хочете, щоб AI писав ці сторіс за вас?</h2>
+    <h2>Хочете побачити це наживо?</h2>
     <p>Покажемо наживо на безкоштовному майстер-класі Ксенії Воржевої «INSTAGRAM RE:START» — 28 листопада о 19:00 за Києвом. Застосунки, AI для контенту й система публікацій без вигорання.</p>
     <a class="btn" href="restart.html">Зареєструватися безкоштовно</a>
     <a class="btn g" href="prompts.html">30 AI-промптів</a>
@@ -357,7 +357,7 @@ main{background:var(--cream);color:var(--ink);padding:40px 0 60px}
         return '<div class="fr">' + phone(fr, i, s.f.length) + '<p class="cap"><b>КАДР ' + (i + 1) + '</b>📷 ' + esc(fr[4]) + '</p><button class="cp" type="button" data-c="' + esc(fr[2] + stText(fr[3])) + '">Скопіювати текст</button></div>';
       }).join('') + '</div><p class="swipe">← гортайте кадри →</p>' +
       '<p class="why">💡 <b>Навіщо:</b> ' + esc(s.why) + '</p>' +
-      '<div class="ai"><p>🤖 <b>AI-промпт:</b> перепише цю серію під вашу послугу за хвилину</p><button class="cp" type="button" data-c="' + esc(prompt) + '">Скопіювати промпт</button></div></article>';
+      '</article>';
   });
   var list = document.getElementById('list');
   list.innerHTML = html;
