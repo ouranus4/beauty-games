@@ -30,7 +30,7 @@ window.BG_LEADS_URL_WEBINAR = '';
 // Свій Telegram-бот на Vercel (код: api/lead.js, як у HARDELITE): безкоштовно й без лімітів.
 // Адреса виду https://<проєкт>.vercel.app/api/lead. Форми зі списку йдуть туди замість лімітного e2t.
 window.BG_LEADS_API = 'https://bg-leads.vercel.app/api/lead';
-window.BG_LEADS_API_FORMS = ['webinar'];
+window.BG_LEADS_API_FORMS = ['webinar', 'blackfriday'];
 
 (function () {
   var SUBJECT = {
@@ -179,15 +179,19 @@ window.BG_LEADS_API_FORMS = ['webinar'];
     var toScript = window.BG_LEADS_URL && !bfUrl && ((window.BG_LEADS_URL_FORMS || []).indexOf(form) >= 0 || isBF);
     var isCalc = form === 'calc' || form === 'earn';
     var testPing = isTest && window.BG_LEADS_PING_TEST;
-    var apiUrl = window.BG_LEADS_API && (window.BG_LEADS_API_FORMS || []).indexOf(form) >= 0 && window.BG_LEADS_API;
-    if (apiUrl) jobs.push(viaScript(p, apiUrl));
+    var apiUrl = window.BG_LEADS_API && (window.BG_LEADS_API_FORMS || []).indexOf(p.form) >= 0 && window.BG_LEADS_API;
+    // свій бот; якщо він не відповів — Black Friday іде запасним шляхом через e2t, щоб заявка не загубилась
+    if (apiUrl) jobs.push(viaScript(p, apiUrl).catch(function (e) {
+      if (isBF && window.BG_LEADS_PING_BF) viaPing(p, window.BG_LEADS_PING_BF);
+      throw e;
+    }));
     var webUrl = (form === 'webinar' && window.BG_LEADS_URL_WEBINAR) || apiUrl;
     if (window.BG_LEADS_PING && !toScript && !isCalc && !testPing && !webUrl) viaPing(p);
     if (form === 'webinar' && window.BG_LEADS_URL_WEBINAR) jobs.push(viaScript(p, window.BG_LEADS_URL_WEBINAR));
     if (testPing) viaPing(p, window.BG_LEADS_PING_TEST);
     if (isTest && window.BG_LEADS_URL_TEST) jobs.push(viaScript(p, window.BG_LEADS_URL_TEST));
     if (isCalc && window.BG_LEADS_PING_CALC) viaPing(p, window.BG_LEADS_PING_CALC);
-    if (isBF && window.BG_LEADS_PING_BF) viaPing(p, window.BG_LEADS_PING_BF);
+    if (isBF && window.BG_LEADS_PING_BF && !apiUrl) viaPing(p, window.BG_LEADS_PING_BF);
     if (toScript) jobs.push(viaScript(p));
     if (bfUrl) jobs.push(viaScript(p, bfUrl));
 

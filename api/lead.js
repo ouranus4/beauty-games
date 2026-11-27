@@ -13,6 +13,10 @@
    ========================================================= */
 
 const MAX = 400;
+// Окремі групи для форм (id групи — не секрет). Змінна TELEGRAM_CHAT_<FORM> у Vercel має перевагу.
+const FORM_CHATS = {
+  blackfriday: '-1004494100276' // «BG заявки Black Friday»
+};
 const NL = String.fromCharCode(10);
 const ALLOW = ['https://beauty-games.pro', 'https://www.beauty-games.pro', 'https://ouranus4.github.io'];
 
@@ -31,7 +35,7 @@ const TITLES = {
 const LABELS = [
   ['name', "Ім'я"], ['phone', 'Телефон'], ['messenger', 'Куди писати'], ['direction', 'Напрям'],
   ['instagram', 'Instagram'], ['contact', 'Контакт'], ['package', 'Пакет'], ['place', 'Країна, місто'],
-  ['experience', 'Досвід'], ['goal', 'Ціль'], ['note', 'Питання'], ['source', 'Джерело']
+  ['experience', 'Досвід'], ['goal', 'Ціль'], ['note', 'Питання'], ['invited_by', 'Хто порадив'], ['source', 'Джерело']
 ];
 
 module.exports = async (req, res) => {
@@ -43,7 +47,7 @@ module.exports = async (req, res) => {
 
   const token = process.env.TELEGRAM_BOT_TOKEN;
   const chatsFor = form => {
-    const own = process.env['TELEGRAM_CHAT_' + String(form || '').toUpperCase()];
+    const own = process.env['TELEGRAM_CHAT_' + String(form || '').toUpperCase()] || FORM_CHATS[form];
     return String(own || process.env.TELEGRAM_CHAT_ID || '').split(',').map(v => v.trim()).filter(Boolean);
   };
   const tg = async (method, payload) => {
