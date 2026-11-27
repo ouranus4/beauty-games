@@ -1,11 +1,11 @@
 <meta charset="utf-8">
 <script src="pixel.js?v=1b0a4353"></script>
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Black Friday у Beauty Games — −25% Бізнес, −30% VIP</title>
-<meta name="description" content="Black Friday у Beauty Games: −25% на «Бізнес» + подарунок, −30% на VIP. 50% зараз, решта — 21 грудня або частинами до 21 січня. Діє до 5 грудня.">
+<title>Black Friday у Beauty Games — до −30% на участь</title>
+<meta name="description" content="Black Friday у Beauty Games: −20% на «Стандарт», −25% на «Бізнес» + подарунок, −30% на VIP. 50% зараз, решта — 21 грудня або частинами до 21 січня. Діє до 5 грудня.">
 <meta name="robots" content="noindex">
 <meta property="og:title" content="Black Friday у Beauty Games">
-<meta property="og:description" content="−25% на «Бізнес», −30% на VIP до 5 грудня. 50% зараз, решта — 21 грудня або частинами до 21 січня.">
+<meta property="og:description" content="−20% на «Стандарт», −25% на «Бізнес», −30% на VIP до 5 грудня. 50% зараз, решта — 21 грудня або частинами до 21 січня.">
 <meta property="og:image" content="https://beauty-games.pro/assets/bf/bf-og.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -23,7 +23,12 @@
 .bf-title{display:flex;flex-direction:column;align-items:flex-start;gap:12px}
 @media (max-width:999px){.hero-head .bf-title{align-items:center}.bf-tag{font-size:18px;padding:8px 14px 9px}}
 .bf-tag{display:inline-block;font:900 clamp(20px,2.6vw,30px)/1 Montserrat,sans-serif;letter-spacing:.06em;text-transform:uppercase;color:#fff;background:#000;border:1px solid rgba(255,46,136,.6);border-radius:12px;padding:10px 16px 11px;box-shadow:0 0 34px rgba(255,46,136,.45)}
-.bf-packs{grid-template-columns:repeat(2,minmax(0,1fr));max-width:880px;margin:0 auto}
+.bf-packs{grid-template-columns:repeat(3,minmax(0,1fr));max-width:1200px;margin:0 auto}
+@media (max-width:1000px){.bf-packs{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.pack-std .price-old,.pack-std .row span{color:#7A6672}
+.pack-std .row b,.pack-std .price{color:#1C0F18;text-shadow:none}
+.pack-std .rows{border-top-color:rgba(194,0,95,.2)}
+.pack-std .bf-save b{color:#fff;background:#E0136F;padding:3px 9px;border-radius:999px}
 @media (max-width:760px){.bf-packs{grid-template-columns:1fr}}
 .bf-note{display:flex;gap:16px;align-items:center;max-width:880px;margin:20px auto 0;padding:16px 22px;border-radius:20px;background:rgba(255,255,255,.05);border:1px solid rgba(255,46,136,.3)}
 .bf-note img{width:64px;height:64px;flex:none;object-fit:contain}
@@ -262,7 +267,7 @@ html.bfg-on,html.bfg-on body{overflow:hidden}
     <div class="lede hero-lede">
       <span class="hero-wow">✦ Black Friday · до 5 грудня</span>
       <p class="hero-l2 bf-promise"><b>Ціль сезону — подвоїти ваш дохід.</b> Ми зібрали найсильніших експертів з різних ніш — і кожен веде вас у своєму напрямі. Плюс реаліті-шоу і чемпіонат. Старт 21 грудня.</p>
-      <p class="hero-l1 bf-l1"><b>−25%</b> на «Бізнес» + подарунок<br><b>−30%</b> на VIP</p>
+      <p class="hero-l1 bf-l1"><b>−20%</b> на «Стандарт»<br><b>−25%</b> на «Бізнес» + подарунок<br><b>−30%</b> на VIP</p>
       <p class="hero-l2">Половина зараз, решта — 21 грудня або двома частинами до 21 січня. <b>Тільки до 5 грудня.</b></p>
     </div>
 
@@ -790,12 +795,43 @@ html.bfg-on,html.bfg-on body{overflow:hidden}
         <div class="bf-quiz rv">
       <b>Який пакет ваш?</b>
       <div class="bf-quiz-b">
+        <button type="button" data-go="Стандарт">Хочу рости у своєму темпі</button>
         <button type="button" data-go="Бізнес">Хочу вирости в бізнесі — без щоденних камер</button>
         <button type="button" data-go="VIP">Хочу, щоб про мене говорили</button>
       </div>
     </div>
     <div class="bf-mini rv"><span class="bf-mini-k" data-bfk>До старту Black Friday</span><b data-bfcd>00 дн 00:00:00</b></div>
     <div class="packs bf-packs">
+      <!-- СТАНДАРТ -->
+      <div class="pack pack-std glass rv" data-pack-card="Стандарт">
+        <span class="kicker">Пакет 01</span>
+        <div class="pack-top"><div class="fmt-ic"><img src="assets/home/icons/program.webp?v=b24ee60f" alt="" width="320" height="320" loading="lazy"></div><h3>Стандарт</h3></div>
+        <div class="tagline">Для досвідчених майстринь, які хочуть рости у своєму темпі.</div>
+        <div class="benefit">
+          <span class="benefit-badge">−20%</span>
+          <span class="benefit-txt">Black Friday<br>до 5 грудня</span>
+        </div>
+        <div class="price-old">€990 — стандартна ціна</div>
+        <div class="price">€790</div>
+        <div class="rows">
+          <div class="row"><span>Зараз — 50%</span><b>€395</b></div>
+          <div class="row"><span>21 грудня — 50%</span><b>€395</b></div>
+          <div class="row bf-split"><span>або частинами: 21.12 і 21.01 — по 25%</span><b>по €197,50</b></div>
+          <div class="row bf-save"><span>Ваша економія</span><b>€200</b></div>
+        </div>
+        <ul>
+          <li>Блок «Точка зростання»: перезапуск бізнесу</li>
+          <li>Психолог проєкту на етапі передпідготовки</li>
+          <li>Стиліст: особистий бренд через образ</li>
+          <li>Маркетолог: Instagram і таргет</li>
+          <li>Спільнота 300+ майстринь і голосування</li>
+          <li>Ранній доступ до серій — на 24 години раніше</li>
+          <li>Сертифікат учасниці · знижка 15% на наступний потік</li>
+        </ul>
+        <a href="#apply" class="btn btn-primary btn-block js-bf" data-pack="Стандарт">Забрати місце зі знижкою</a>
+        <div class="seats">Кількість місць обмежена</div>
+      </div>
+
       <!-- БІЗНЕС -->
       <div class="pack pack-biz glass bloom spec featured rv" data-pack-card="Бізнес">
         <span class="ribbon">🎁 Подарунок до Black Friday</span>
@@ -955,7 +991,7 @@ html.bfg-on,html.bfg-on body{overflow:hidden}
         <div class="bf-mini"><span class="bf-mini-k" data-bfk>До старту Black Friday</span><b data-bfcd>00 дн 00:00:00</b></div>
         <p class="lede" style="font-size:15px">Одна хвилина — і менеджер напише вам у месенджер з вартістю зі знижкою.</p>
         <div class="facts">
-          <div class="fact"><span class="b">1</span><span><b>−25% на «Бізнес» + номінація в подарунок, −30% на VIP</b> — до 5 грудня.</span></div>
+          <div class="fact"><span class="b">1</span><span><b>−20% на «Стандарт», −25% на «Бізнес» + номінація в подарунок, −30% на VIP</b> — до 5 грудня.</span></div>
           <div class="fact"><span class="b">2</span><span><b>Половина зараз</b>, решта — 21 грудня або частинами до 21 січня.</span></div>
           <div class="fact"><span class="b">3</span><span><b>Вас обрали.</b> Людина, яка надіслала посилання, вірить у вас.</span></div>
           <div class="fact"><span class="b">4</span><span>Заявка <b>ні до чого не зобов'язує</b>.</span></div>
@@ -982,9 +1018,9 @@ html.bfg-on,html.bfg-on body{overflow:hidden}
               <label for="fPack">Пакет <span class="r">*</span></label>
               <select id="fPack" name="package">
                 <option value="">Оберіть пакет</option>
+                <option>Стандарт</option>
                 <option>Бізнес</option>
                 <option>VIP</option>
-                <option>Стандарт</option>
                 <option>Ще не визначилась</option>
               </select>
               <span class="msg">Оберіть пакет або «ще не визначилась»</span>
