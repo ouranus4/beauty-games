@@ -12,6 +12,20 @@
 <link rel="stylesheet" href="squid.css?v=a0040c6d">
 <link rel="stylesheet" href="price.css?v=e9158671">
 
+<style>
+.bfx{display:block;margin:22px 0 4px;padding:16px 20px;border-radius:18px;text-decoration:none;color:#fff;background:linear-gradient(120deg,#0b0710 0%,#2a0a1c 55%,#E6007E 140%);border:1px solid rgba(255,87,174,.55);box-shadow:0 0 28px rgba(230,0,126,.28)}
+.bfx-tag{display:inline-block;font:700 11px/1 Montserrat,sans-serif;letter-spacing:.14em;text-transform:uppercase;color:#FF57AE;margin-bottom:8px}
+.bfx b{display:block;font:800 clamp(17px,2.4vw,22px)/1.25 Montserrat,sans-serif}
+.bfx-t{display:block;margin-top:8px;font:500 14px/1.4 Manrope,sans-serif;color:rgba(255,255,255,.8)}
+.bfx-cd{font-family:'JetBrains Mono',monospace;color:#fff;font-weight:700}
+.bfbox{margin:14px 0 6px;padding:14px 16px;border-radius:14px;background:rgba(230,0,126,.12);border:1px dashed rgba(255,87,174,.7)}
+.bfbox-k{display:block;font:700 11px/1 Montserrat,sans-serif;letter-spacing:.12em;text-transform:uppercase;color:#FF57AE;margin-bottom:6px}
+.bfbox-p{font:900 28px/1.1 Montserrat,sans-serif;color:#fff}
+.bfbox-p s{font-size:16px;font-weight:600;color:rgba(255,255,255,.55);margin-left:6px}
+.bfbox-r{margin-top:6px;font:500 14px/1.4 Manrope,sans-serif;color:rgba(255,255,255,.88)}
+.bf-off .bf-only{display:none!important}
+</style>
+
 <!-- SPRITE -->
 <div class="preloader" id="preloader">
   <img class="pl-logo" src="assets/logo-vertical.svg" alt="Beauty Games by Verbova Iryna" width="260" height="121">
@@ -122,6 +136,12 @@
         <i>повна вартість участі</i>
       </a>
     </div>
+
+    <a class="bfx bf-only" href="#packs">
+      <span class="bfx-tag">Обмежена пропозиція · Black Friday</span>
+      <b>−25% на «Бізнес» + номінація в подарунок · −30% на VIP</b>
+      <span class="bfx-t">Діє тільки до 5 грудня · залишилось <span class="bfx-cd" data-bf-cd>—</span></span>
+    </a>
 
     <div class="hero-cta">
       <a href="#apply" class="btn btn-primary">Забронювати місце</a>
@@ -334,6 +354,13 @@
 
         <div class="price">€1590</div>
         <div class="price-note">повна вартість участі</div>
+        <div class="bfbox bf-only">
+          <span class="bfbox-k">Black Friday · до 5 грудня</span>
+          <div class="bfbox-p">€1190<s>€1590</s></div>
+          <div class="bfbox-r">50% зараз — €595, решта 21 грудня або по €297,50 до 21.12 і 21.01</div>
+          <div class="bfbox-r">🎁 1-ша номінація чемпіонату в подарунок (€130)</div>
+          <div class="bfbox-r">Ваша економія — €400</div>
+        </div>
         <div class="rows">
           <div class="row"><span>Розстрочка 50/50</span><b>€795 + €795</b></div>
           <div class="row"><span>Номінації чемпіонату</span><b>€130 / 100 / 80</b></div>
@@ -366,6 +393,12 @@
 
         <div class="price">€2490</div>
         <div class="price-note">повна вартість участі</div>
+        <div class="bfbox bf-only">
+          <span class="bfbox-k">Black Friday · до 5 грудня</span>
+          <div class="bfbox-p">€1740<s>€2490</s></div>
+          <div class="bfbox-r">50% зараз — €870, решта 21 грудня або по €435 до 21.12 і 21.01</div>
+          <div class="bfbox-r">Ваша економія — €750</div>
+        </div>
         <div class="rows">
           <div class="row"><span>Розстрочка 50/50</span><b>€1245 + €1245</b></div>
           <div class="row"><span>Номінації чемпіонату</span><b>1-ша включена</b></div>
@@ -799,6 +832,13 @@
   </a>
 </div>
 
+<script>
+(function(){var END=new Date('2026-12-05T23:59:59+02:00').getTime();
+function t(){var d=END-Date.now();if(d<=0){document.documentElement.classList.add('bf-off');return}
+var D=Math.floor(d/864e5),H=Math.floor(d%864e5/36e5),M=Math.floor(d%36e5/6e4);
+var x=(D?D+' дн. ':'')+H+' год. '+M+' хв.';document.querySelectorAll('[data-bf-cd]').forEach(function(e){e.textContent=x})}
+t();setInterval(t,30000)})();
+</script>
 <script src="leads.js?v=e7e30439"></script>
 <script src="app.js?v=8f4d0cfb"></script>
 <script src="fx.js?v=b9217507"></script>
